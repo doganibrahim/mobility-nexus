@@ -1,0 +1,16 @@
+{
+  "name": "@mobility-nexus/database",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Database migrations, schemas, and seeding for CAPPINNO Mobility Nexus",
+  "main": "index.js",
+  "scripts": {
+    "migrate:status": "echo 'Migrations stored in /migrations'",
+    "db:seed": "echo 'Seeding database...'"
+  },
+  "keywords": [
+    "postgres",
+    "migrations",
+    "sql"
+  ]
+}

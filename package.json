@@ -1,0 +1,30 @@
+{
+  "name": "mobility-nexus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CAPPINNO Mobility Nexus - Erasmus Mobility Management as a Service (EMaaS)",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/web",
+    "dev:all": "npm run dev --workspaces --if-present",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:api": "npm run dev --workspace=apps/api",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "keywords": [
+    "erasmus",
+    "mobility",
+    "vet",
+    "ka121",
+    "ka122",
+    "saas",
+    "multi-tenant"
+  ],
+  "author": "CAPPINNO",
+  "license": "UNLICENSED"
+}
