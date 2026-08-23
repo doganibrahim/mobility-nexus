@@ -1,0 +1,321 @@
+/* Google Fonts Imports for Erasmus+ Institutional UI:
+   Inter, Plus Jakarta Sans, Playfair Display, Source Sans 3, Montserrat, Open Sans, Merriweather, Lato, Poppins, Roboto
+*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Lato:wght@400;700&family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+/* ==========================================================================
+   1. The 4 Exact Designer Color Palettes
+   ========================================================================== */
+
+:root, [data-theme="theme-01"] {
+  /* Palet 01: #FFCA41 (Sarı), #000000 (Siyah), #A6A6A6 (Gri) */
+  --theme-primary: #FFCA41;
+  --theme-primary-hover: #EBB62D;
+  --theme-primary-text: #000000; /* High-contrast black text on gold */
+  --theme-secondary: #000000;
+  --theme-secondary-text: #FFFFFF;
+  --theme-accent: #A6A6A6;
+  --theme-bg: #FAF9F6;
+  --theme-card: #FFFFFF;
+  --theme-card-header: #FFFDF5;
+  --theme-text-main: #0A0A0A;
+  --theme-text-muted: #52525B;
+  --theme-border: #E5E5E5;
+  --theme-ring: rgba(255, 202, 65, 0.4);
+  --theme-badge-bg: #FFF8E1;
+  --theme-badge-text: #855C00;
+}
+
+[data-theme="theme-02"] {
+  /* Palet 02 (CAPPINNO Logosu İlhamlı): #E56438 (Turuncu), #302C4F (Koyu Lacivert), #C6C6C6 (Gri) */
+  --theme-primary: #E56438;
+  --theme-primary-hover: #CD4F26;
+  --theme-primary-text: #FFFFFF;
+  --theme-secondary: #302C4F;
+  --theme-secondary-text: #FFFFFF;
+  --theme-accent: #C6C6C6;
+  --theme-bg: #F8F7FA;
+  --theme-card: #FFFFFF;
+  --theme-card-header: #FAF5F2;
+  --theme-text-main: #1E1B33;
+  --theme-text-muted: #5E5873;
+  --theme-border: #E2DEEB;
+  --theme-ring: rgba(229, 100, 56, 0.35);
+  --theme-badge-bg: #FFECE5;
+  --theme-badge-text: #C2410C;
+}
+
+[data-theme="theme-03"] {
+  /* Palet 03: #863C6D (Mürdüm), #FFE5BC (Açık Sarı / Şampanya), #E8E8E8 (Açık Gri) */
+  --theme-primary: #863C6D;
+  --theme-primary-hover: #702F5A;
+  --theme-primary-text: #FFFFFF;
+  --theme-secondary: #FFE5BC;
+  --theme-secondary-text: #541B42;
+  --theme-accent: #E8E8E8;
+  --theme-bg: #FAF8F7;
+  --theme-card: #FFFFFF;
+  --theme-card-header: #FDF5EB;
+  --theme-text-main: #2A1724;
+  --theme-text-muted: #6B5565;
+  --theme-border: #E8DFE5;
+  --theme-ring: rgba(134, 60, 109, 0.35);
+  --theme-badge-bg: #F9ECF4;
+  --theme-badge-text: #863C6D;
+}
+
+[data-theme="theme-04"] {
+  /* Palet 04 (Erasmus+ Logosu İlhamlı): #013399 (Erasmus Mavisi), #F4CB1D (Erasmus Sarısı), #E8E8E8 (Açık Gri) */
+  --theme-primary: #013399;
+  --theme-primary-hover: #002266;
+  --theme-primary-text: #FFFFFF;
+  --theme-secondary: #F4CB1D;
+  --theme-secondary-text: #013399;
+  --theme-accent: #E8E8E8;
+  --theme-bg: #F3F6FA;
+  --theme-card: #FFFFFF;
+  --theme-card-header: #EBF2FF;
+  --theme-text-main: #0B192C;
+  --theme-text-muted: #475569;
+  --theme-border: #CFDAE8;
+  --theme-ring: rgba(1, 51, 153, 0.35);
+  --theme-badge-bg: #E6EDFB;
+  --theme-badge-text: #013399;
+}
+
+/* ==========================================================================
+   2. Independent Typography Presets
+   ========================================================================== */
+
+:root, [data-font="font-inter"] {
+  --font-family: 'Inter', sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+}
+
+[data-font="font-playfair"] {
+  --font-family: 'Source Sans 3', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+}
+
+[data-font="font-montserrat"] {
+  --font-family: 'Open Sans', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+}
+
+[data-font="font-poppins"] {
+  --font-family: 'Roboto', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+}
+
+[data-font="font-merriweather"] {
+  --font-family: 'Lato', sans-serif;
+  --font-heading: 'Merriweather', serif;
+}
+
+/* ==========================================================================
+   3. Global Reset & Base
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-text-main);
+  font-family: var(--font-family);
+  transition: background-color 0.15s ease, color 0.15s ease;
+  min-height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--theme-text-main);
+  letter-spacing: -0.015em;
+}
+
+/* ==========================================================================
+   4. Erasmus+ Institutional Cards & Elevation
+   ========================================================================== */
+
+.edu-card {
+  background-color: var(--theme-card);
+  border: 1px solid var(--theme-border);
+  border-radius: 0.875rem; /* rounded-xl (14px) */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.edu-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+}
+
+.edu-card-header {
+  border-bottom: 1px solid var(--theme-border);
+  padding: 1rem 1.25rem;
+  background-color: var(--theme-card-header);
+  border-top-left-radius: 0.875rem;
+  border-top-right-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edu-card-featured {
+  border-left: 4px solid var(--theme-primary);
+}
+
+/* ==========================================================================
+   5. Buttons & Interactive Controls
+   ========================================================================== */
+
+.edu-btn-primary {
+  background-color: var(--theme-primary);
+  color: var(--theme-primary-text);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: all 0.15s ease;
+}
+
+.edu-btn-primary:hover {
+  background-color: var(--theme-primary-hover);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.edu-btn-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--theme-ring);
+}
+
+.edu-btn-secondary {
+  background-color: #FFFFFF;
+  color: #1E293B;
+  border: 1px solid #CBD5E1;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  transition: all 0.15s ease;
+}
+
+.edu-btn-secondary:hover {
+  background-color: #F8FAFC;
+  border-color: #94A3B8;
+  transform: translateY(-1px);
+}
+
+.edu-btn-ghost {
+  background-color: transparent;
+  color: var(--theme-text-main);
+  border: 1px solid var(--theme-border);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.edu-btn-ghost:hover {
+  background-color: #FFFFFF;
+  border-color: #CBD5E1;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   6. Form Controls
+   ========================================================================== */
+
+.edu-input {
+  background-color: #FFFFFF;
+  border: 1px solid var(--theme-border);
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.875rem;
+  color: var(--theme-text-main);
+  width: 100%;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.edu-input:focus {
+  outline: none;
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 0 3px var(--theme-ring);
+}
+
+/* ==========================================================================
+   7. Rounded Status Badges
+   ========================================================================== */
+
+.edu-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  background-color: var(--theme-badge-bg);
+  color: var(--theme-badge-text);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.edu-badge-good {
+  background-color: #ECFDF5;
+  color: #047857;
+  border-color: #A7F3D0;
+}
+
+.edu-badge-warn {
+  background-color: #FFFBEB;
+  color: #B45309;
+  border-color: #FDE68A;
+}
+
+.edu-badge-bad {
+  background-color: #FEF2F2;
+  color: #B91C1C;
+  border-color: #FECACA;
+}
+
+/* Print Optimization */
+@media print {
+  header, nav, .no-print {
+    display: none !important;
+  }
+  body {
+    background: #FFFFFF !important;
+  }
+  .edu-card {
+    box-shadow: none !important;
+    border: 1px solid #CBD5E1 !important;
+    break-inside: avoid;
+  }
+}
