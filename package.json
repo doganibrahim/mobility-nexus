@@ -17,7 +17,7 @@
     "dev:all": "npm run dev --workspaces --if-present",
     "dev:web": "npm run dev --workspace=apps/web",
     "dev:api": "npm run dev --workspace=apps/api",
-    "build": "npm rebuild && npm run build --workspace=packages/types && npm run build --workspace=apps/api && npm run build --workspace=apps/web",
+    "build": "npm rebuild --workspaces && npm run build --workspace=packages/types && npm run build --workspace=apps/api && npm run build --workspace=apps/web",
     "start": "npm run start:web",
     "start:web": "npm run start --workspace=apps/web",
     "start:api": "npm run start:prod --workspace=apps/api",
