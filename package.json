@@ -17,7 +17,7 @@
     "dev:all": "npm run dev --workspaces --if-present",
     "dev:web": "npm run dev --workspace=apps/web",
     "dev:api": "npm run dev --workspace=apps/api",
-    "build": "npm install --no-save --force lightningcss-linux-x64-gnu lightningcss-linux-x64-musl @tailwindcss/oxide-linux-x64-gnu @tailwindcss/oxide-linux-x64-musl && npm run build --workspace=packages/types && npm run build --workspace=apps/api && npm run build --workspace=apps/web",
+    "build": "npm run build --workspace=packages/types && npm run build --workspace=apps/api && npm run build --workspace=apps/web",
     "start": "npm run start:web",
     "start:web": "npm run start --workspace=apps/web",
     "start:api": "npm run start:prod --workspace=apps/api",
