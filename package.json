@@ -2,6 +2,11 @@
   "name": "mobility-nexus",
   "version": "1.0.0",
   "private": true,
+  "allowScripts": {
+    "lightningcss": "*",
+    "@next/swc-linux-x64-gnu": "*",
+    "@next/swc-linux-x64-musl": "*"
+  },
   "description": "CAPPINNO Mobility Nexus - Erasmus Mobility Management as a Service (EMaaS)",
   "workspaces": [
     "apps/*",
@@ -12,7 +17,7 @@
     "dev:all": "npm run dev --workspaces --if-present",
     "dev:web": "npm run dev --workspace=apps/web",
     "dev:api": "npm run dev --workspace=apps/api",
-    "build": "npm run build --workspaces --if-present",
+    "build": "npm run build --workspace=packages/types && npm run build --workspace=apps/api && npm run build --workspace=apps/web",
     "start": "npm run start:web",
     "start:web": "npm run start --workspace=apps/web",
     "start:api": "npm run start:prod --workspace=apps/api",
