@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" data-theme="theme-01" suppressHydrationWarning>
-      <body className="antialiased selection:bg-black selection:text-white">
+      <body className="antialiased selection:bg-black selection:text-white" suppressHydrationWarning>
         <ThemeProvider>
           <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>

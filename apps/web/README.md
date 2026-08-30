@@ -54,7 +54,7 @@ Lütfen tüm kod üretimlerinde ve mimari kararlarda aşağıdaki kurallara kesi
 
 Yukarıdaki bağlamı anladığını onayla. Anladıysan, Sprint 0'ın ilk görevi olan **Monorepo klasör yapısının oluşturulması ve PostgreSQL Docker-compose dosyasının yazılması** ile geliştirmeye başlayalım.
 
-Toplam fazda tamamlanacak.
+Toplam 4 fazda tamamlanacak.
 
 **1. Faz**
 Sen kıdemli bir Full-Stack Yazılım Mühendisi olarak, Erasmus hareketlilik süreçlerini yöneten çok kiracılı (multi-tenant) B2B SaaS platformu "CAPPINNO Mobility Nexus" projesinin ilk ay (Sprint 0 ve Sprint 1) geliştirmelerini yapacaksın. Geliştirme sürecinde aşağıdaki teknik gereksinimlere ve iş kurallarına kesinlikle uymalısın:

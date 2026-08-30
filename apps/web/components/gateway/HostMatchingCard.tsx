@@ -153,7 +153,15 @@ export default function HostMatchingCard({
                   {scoreResult.score}/100
                 </span>
               </div>
-              <span className="edu-badge edu-badge-good font-bold">
+              <span
+                className={`edu-badge font-bold ${
+                  scoreResult.level === 'good'
+                    ? 'edu-badge-good'
+                    : scoreResult.level === 'warn'
+                      ? 'edu-badge-warn'
+                      : 'edu-badge-bad'
+                }`}
+              >
                 {scoreResult.label}
               </span>
             </div>

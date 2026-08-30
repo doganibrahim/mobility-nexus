@@ -17,8 +17,8 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<string>('theme-01');
-  const [font, setFontState] = useState<string>('font-inter');
+  const [theme, setThemeState] = useState<string>('theme-02');
+  const [font, setFontState] = useState<string>('font-merriweather');
 
   useEffect(() => {
     // 1. Load Color Theme
@@ -27,7 +27,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setThemeState(savedTheme);
       document.documentElement.setAttribute('data-theme', savedTheme);
     } else {
-      document.documentElement.setAttribute('data-theme', 'theme-01');
+      document.documentElement.setAttribute('data-theme', 'theme-02');
     }
 
     // 2. Load Font Preset
@@ -36,7 +36,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setFontState(savedFont);
       document.documentElement.setAttribute('data-font', savedFont);
     } else {
-      document.documentElement.setAttribute('data-font', 'font-inter');
+      document.documentElement.setAttribute('data-font', 'font-merriweather');
     }
   }, []);
 
@@ -54,8 +54,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.setAttribute('data-font', fontId);
   };
 
-  const themeConfig = THEMES[theme] || THEMES['theme-01'];
-  const fontPreset = FONT_PRESETS[font] || FONT_PRESETS['font-inter'];
+  const themeConfig = THEMES[theme] || THEMES['theme-02'];
+  const fontPreset = FONT_PRESETS[font] || FONT_PRESETS['font-merriweather'];
 
   return (
     <ThemeContext.Provider

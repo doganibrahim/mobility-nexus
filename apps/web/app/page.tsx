@@ -29,6 +29,7 @@ import {
   DecisionEngineResult,
 } from '../lib/calculations';
 import { ParticipantType, MobilityGoal, HostType } from '@mobility-nexus/types';
+import { useAppStore } from '../lib/store';
 
 export default function Home() {
   const { t, locale } = useTranslation();
@@ -45,97 +46,67 @@ export default function Home() {
     { id: 'report', code: '5', label: t.tabs.report.label, desc: t.tabs.report.desc },
   ];
 
+  // --- ZUSTAND STORE INTEGRATION ---
+  const store = useAppStore();
+
   // 1. School Profile State
-  const [schoolName, setSchoolName] = useState(
-    locale === 'en'
-      ? 'Ankara Vocational and Technical Anatolian High School'
-      : 'Ankara Mesleki ve Teknik Anadolu Lisesi',
-  );
-  const [city, setCity] = useState('Ankara');
-  const [accredited, setAccredited] = useState<'yes' | 'no' | 'unknown'>('yes');
-  const [oid, setOid] = useState('E10123456');
-  const [erasmusPlan, setErasmusPlan] = useState(
-    locale === 'en'
-      ? 'Enhance teachers and learners competence in Industry 4.0, smart automation, and robotics.'
-      : 'Öğretmen ve öğrencilerin Endüstri 4.0 / dijital üretim ve robotik yetkinliklerini geliştirmek.',
-  );
-  const [institutionNeed, setInstitutionNeed] = useState(
-    locale === 'en'
-      ? 'Our school has established a new PLC lab and requires European job-shadowing for technical staff.'
-      : 'Okulumuzda yeni nesil PLC ve endüstriyel haberleşme laboratuvarı kurulmuş olup, öğretmenlerimizin Avrupa standartlarında pratik işbaşı gözlem ihtiyacı bulunmaktadır.',
-  );
+  const { schoolName, city, accredited, oid, erasmusPlan, institutionNeed } = store.schoolProfile;
+  const setSchoolName = (v: string) => store.setSchoolProfile({ schoolName: v });
+  const setCity = (v: string) => store.setSchoolProfile({ city: v });
+  const setAccredited = (v: any) => store.setSchoolProfile({ accredited: v });
+  const setOid = (v: string) => store.setSchoolProfile({ oid: v });
+  const setErasmusPlan = (v: string) => store.setSchoolProfile({ erasmusPlan: v });
+  const setInstitutionNeed = (v: string) => store.setSchoolProfile({ institutionNeed: v });
 
   // 2. Participant Profile State
-  const [participantType, setParticipantType] = useState<ParticipantType>('teacher');
-  const [mobilityGoal, setMobilityGoal] = useState<MobilityGoal>('Job shadowing / observation');
-  const [participantName, setParticipantName] = useState(
-    locale === 'en' ? 'Vocational Teachers Group' : 'Teknik Öğretmen Grubu',
-  );
-  const [language, setLanguage] = useState(70);
-  const [country, setCountry] = useState(locale === 'en' ? 'Germany / Netherlands' : 'Almanya / Hollanda');
-  const [duration, setDuration] = useState(locale === 'en' ? '10 days' : '10 gün');
+  const { participantType, mobilityGoal, participantName, language, country, duration } = store.participantProfile;
+  const setParticipantType = (v: any) => store.setParticipantProfile({ participantType: v });
+  const setMobilityGoal = (v: any) => store.setParticipantProfile({ mobilityGoal: v });
+  const setParticipantName = (v: string) => store.setParticipantProfile({ participantName: v });
+  const setLanguage = (v: number) => store.setParticipantProfile({ language: v });
+  const setCountry = (v: string) => store.setParticipantProfile({ country: v });
+  const setDuration = (v: string) => store.setParticipantProfile({ duration: v });
 
   // 3. ESCO - ISCED State
-  const [vetField, setVetField] = useState('automation');
-  const [iscedCode, setIscedCode] = useState('0714');
-  const [iscedName, setIscedName] = useState('Electronics and automation');
-  const [escoTerm, setEscoTerm] = useState(
-    'automation technician / mechatronics technician / industrial electrician',
-  );
-  const [iscoCode, setIscoCode] = useState('3115');
-  const [escoUri, setEscoUri] = useState('http://data.europa.eu/esco/occupation/3115');
-  const [skills, setSkills] = useState(
-    'PLC programlama; endüstriyel otomasyon; robotik; arıza tespiti; kontrol sistemleri; önleyici bakım',
-  );
+  const { vetField, iscedCode, iscedName, escoTerm, iscoCode, escoUri, skills } = store.escoIsced;
+  const setVetField = (v: string) => store.setEscoIsced({ vetField: v });
+  const setIscedCode = (v: string) => store.setEscoIsced({ iscedCode: v });
+  const setIscedName = (v: string) => store.setEscoIsced({ iscedName: v });
+  const setEscoTerm = (v: string) => store.setEscoIsced({ escoTerm: v });
+  const setIscoCode = (v: string) => store.setEscoIsced({ iscoCode: v });
+  const setEscoUri = (v: string) => store.setEscoIsced({ escoUri: v });
+  const setSkills = (v: string) => store.setEscoIsced({ skills: v });
 
   // 4. Competence Assessment & Gap State
-  const [assessmentAnswers, setAssessmentAnswers] = useState<Record<number, number>>({
-    1: 4,
-    2: 4,
-    3: 3,
-    4: 5,
-    5: 4,
-    6: 4,
-    7: 4,
-    8: 4,
-    9: 3,
-    10: 4,
-    11: 4,
-    12: 4,
-  });
-  const [competenceScore, setCompetenceScore] = useState<number | null>(78);
-  const [assessmentResultMsg, setAssessmentResultMsg] = useState<string>(
-    'Skor: 78/100 | Hedef: 80 | Yetkinlik Farkı: 2 Puan (Yüksek Hazırlık Seviyesi)',
-  );
-  const [assessmentResultType, setAssessmentResultType] = useState<'good' | 'warn' | 'bad'>('good');
-  const [targetScore, setTargetScore] = useState(80);
-  const [externalScore, setExternalScore] = useState('');
+  const { assessmentAnswers, competenceScore, assessmentResultMsg, assessmentResultType, targetScore, externalScore } = store.competence;
+  const setAssessmentAnswers = (fn: any) => {
+    store.setCompetence({ assessmentAnswers: typeof fn === 'function' ? fn(store.competence.assessmentAnswers) : fn });
+  };
+  const setCompetenceScore = (v: any) => store.setCompetence({ competenceScore: v });
+  const setAssessmentResultMsg = (v: string) => store.setCompetence({ assessmentResultMsg: v });
+  const setAssessmentResultType = (v: any) => store.setCompetence({ assessmentResultType: v });
+  const setTargetScore = (v: number) => store.setCompetence({ targetScore: v });
+  const setExternalScore = (v: string) => store.setCompetence({ externalScore: v });
 
   // 5. Decision Engine State
-  const [decisionResult, setDecisionResult] = useState<DecisionEngineResult | null>(null);
+  const { decisionResult } = store.decisionEngine;
+  const setDecisionResult = (v: any) => store.setDecisionEngine({ decisionResult: v });
 
   // 6. Host Matching State
-  const [hostName, setHostName] = useState('Leipzig Vocational Training Center (BSZ 7)');
-  const [hostCountry, setHostCountry] = useState(locale === 'en' ? 'Germany' : 'Almanya');
-  const [hostType, setHostType] = useState<HostType>('VET school');
-  const [hostMetrics, setHostMetrics] = useState<Record<string, number>>({
-    h1: 85,
-    h2: 80,
-    h3: 85,
-    h4: 70,
-    h5: 75,
-    h6: 70,
-    h7: 85,
-    h8: 80,
-    h9: 90,
-    h10: 80,
-  });
-  const [hostScoreResult, setHostScoreResult] = useState<HostScoreResult | null>(null);
+  const { hostName, hostCountry, hostType, hostMetrics, hostScoreResult } = store.hostMatching;
+  const setHostName = (v: string) => store.setHostMatching({ hostName: v });
+  const setHostCountry = (v: string) => store.setHostMatching({ hostCountry: v });
+  const setHostType = (v: any) => store.setHostMatching({ hostType: v });
+  const setHostMetrics = (fn: any) => {
+    store.setHostMatching({ hostMetrics: typeof fn === 'function' ? fn(store.hostMatching.hostMetrics) : fn });
+  };
+  const setHostScoreResult = (v: any) => store.setHostMatching({ hostScoreResult: v });
 
   // 7. Learning Outcomes State
-  const [primaryGap, setPrimaryGap] = useState('Endüstriyel PLC Programlama & Robotik');
-  const [technicalOutcome, setTechnicalOutcome] = useState('');
-  const [transversalOutcome, setTransversalOutcome] = useState('');
+  const { primaryGap, technicalOutcome, transversalOutcome } = store.learningOutcomes;
+  const setPrimaryGap = (v: string) => store.setLearningOutcomes({ primaryGap: v });
+  const setTechnicalOutcome = (v: string) => store.setLearningOutcomes({ technicalOutcome: v });
+  const setTransversalOutcome = (v: string) => store.setLearningOutcomes({ transversalOutcome: v });
 
   // Initial Calculation on Mount
   useEffect(() => {
@@ -383,7 +354,8 @@ export default function Home() {
       {/* 2. Institutional Stepper Navigation Bar */}
       <div className="border-b border-slate-200 bg-white sticky top-[69px] z-20 shadow-xs no-print">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-1 py-2">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 py-2">
+            <div className="grid grid-cols-2 sm:flex flex-wrap gap-1">
             {TABS.map((tab, idx) => {
               const isActive = activeTab === tab.id;
               const isPast = idx < currentTabIndex;
@@ -421,6 +393,22 @@ export default function Home() {
                 </button>
               );
             })}
+            </div>
+            
+            <div className="flex items-center gap-2 justify-end">
+              <button
+                onClick={() => { store.loadDemoData(locale); handleRefreshReport(); }}
+                className="text-xs font-bold px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 transition-colors shadow-xs"
+              >
+                ✨ Demo Verisi Yükle
+              </button>
+              <button
+                onClick={() => { store.resetData(); setActiveTab('profile'); }}
+                className="text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200 transition-colors"
+              >
+                Sıfırla
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -505,7 +493,7 @@ export default function Home() {
                 <CompetenceAssessmentCard
                   answers={assessmentAnswers}
                   onAnswerChange={(qId, val) =>
-                    setAssessmentAnswers((prev) => ({ ...prev, [qId]: val }))
+                    setAssessmentAnswers((prev: any) => ({ ...prev, [qId]: val }))
                   }
                   onScoreClick={handleScoreAssessment}
                   resultMessage={assessmentResultMsg}
@@ -548,7 +536,7 @@ export default function Home() {
                 if (field === 'hostType') setHostType(val as HostType);
               }}
               onMetricChange={(metricId, val) =>
-                setHostMetrics((prev) => ({ ...prev, [metricId]: val }))
+                setHostMetrics((prev: any) => ({ ...prev, [metricId]: val }))
               }
               onScoreHost={handleScoreHost}
             />

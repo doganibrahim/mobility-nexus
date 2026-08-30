@@ -8,26 +8,7 @@
    1. The 4 Exact Designer Color Palettes
    ========================================================================== */
 
-:root, [data-theme="theme-01"] {
-  /* Palet 01: #FFCA41 (Sarı), #000000 (Siyah), #A6A6A6 (Gri) */
-  --theme-primary: #FFCA41;
-  --theme-primary-hover: #EBB62D;
-  --theme-primary-text: #000000; /* High-contrast black text on gold */
-  --theme-secondary: #000000;
-  --theme-secondary-text: #FFFFFF;
-  --theme-accent: #A6A6A6;
-  --theme-bg: #FAF9F6;
-  --theme-card: #FFFFFF;
-  --theme-card-header: #FFFDF5;
-  --theme-text-main: #0A0A0A;
-  --theme-text-muted: #52525B;
-  --theme-border: #E5E5E5;
-  --theme-ring: rgba(255, 202, 65, 0.4);
-  --theme-badge-bg: #FFF8E1;
-  --theme-badge-text: #855C00;
-}
-
-[data-theme="theme-02"] {
+:root, [data-theme="theme-02"] {
   /* Palet 02 (CAPPINNO Logosu İlhamlı): #E56438 (Turuncu), #302C4F (Koyu Lacivert), #C6C6C6 (Gri) */
   --theme-primary: #E56438;
   --theme-primary-hover: #CD4F26;
@@ -46,6 +27,25 @@
   --theme-badge-text: #C2410C;
 }
 
+[data-theme="theme-01"] {
+  /* Palet 01: #FFCA41 (Sarı), #000000 (Siyah), #A6A6A6 (Gri) */
+  --theme-primary: #FFCA41;
+  --theme-primary-hover: #EBB62D;
+  --theme-primary-text: #000000; /* High-contrast black text on gold */
+  --theme-secondary: #000000;
+  --theme-secondary-text: #FFFFFF;
+  --theme-accent: #A6A6A6;
+  --theme-bg: #FAF9F6;
+  --theme-card: #FFFFFF;
+  --theme-card-header: #FFFDF5;
+  --theme-text-main: #0A0A0A;
+  --theme-text-muted: #52525B;
+  --theme-border: #E5E5E5;
+  --theme-ring: rgba(255, 202, 65, 0.4);
+  --theme-badge-bg: #FFF8E1;
+  --theme-badge-text: #855C00;
+}
+
 [data-theme="theme-03"] {
   /* Palet 03: #863C6D (Mürdüm), #FFE5BC (Açık Sarı / Şampanya), #E8E8E8 (Açık Gri) */
   --theme-primary: #863C6D;
@@ -58,25 +58,25 @@
   --theme-card: #FFFFFF;
   --theme-card-header: #FDF5EB;
   --theme-text-main: #2A1724;
-  --theme-text-muted: #6B5565;
-  --theme-border: #E8DFE5;
+  --theme-text-muted: #6B5162;
+  --theme-border: #EADCE5;
   --theme-ring: rgba(134, 60, 109, 0.35);
-  --theme-badge-bg: #F9ECF4;
+  --theme-badge-bg: #F8EBF2;
   --theme-badge-text: #863C6D;
 }
 
 [data-theme="theme-04"] {
   /* Palet 04 (Erasmus+ Logosu İlhamlı): #013399 (Erasmus Mavisi), #F4CB1D (Erasmus Sarısı), #E8E8E8 (Açık Gri) */
   --theme-primary: #013399;
-  --theme-primary-hover: #002266;
+  --theme-primary-hover: #01246B;
   --theme-primary-text: #FFFFFF;
   --theme-secondary: #F4CB1D;
-  --theme-secondary-text: #013399;
+  --theme-secondary-text: #000000;
   --theme-accent: #E8E8E8;
-  --theme-bg: #F3F6FA;
+  --theme-bg: #F6F8FC;
   --theme-card: #FFFFFF;
-  --theme-card-header: #EBF2FF;
-  --theme-text-main: #0B192C;
+  --theme-card-header: #F1F4FA;
+  --theme-text-main: #0B1930;
   --theme-text-muted: #475569;
   --theme-border: #CFDAE8;
   --theme-ring: rgba(1, 51, 153, 0.35);
@@ -88,7 +88,12 @@
    2. Independent Typography Presets
    ========================================================================== */
 
-:root, [data-font="font-inter"] {
+:root, [data-font="font-merriweather"] {
+  --font-family: 'Lato', sans-serif;
+  --font-heading: 'Merriweather', serif;
+}
+
+[data-font="font-inter"] {
   --font-family: 'Inter', sans-serif;
   --font-heading: 'Plus Jakarta Sans', sans-serif;
 }
@@ -106,11 +111,6 @@
 [data-font="font-poppins"] {
   --font-family: 'Roboto', sans-serif;
   --font-heading: 'Poppins', sans-serif;
-}
-
-[data-font="font-merriweather"] {
-  --font-family: 'Lato', sans-serif;
-  --font-heading: 'Merriweather', serif;
 }
 
 /* ==========================================================================

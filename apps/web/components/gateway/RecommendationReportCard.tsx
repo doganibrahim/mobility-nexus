@@ -120,7 +120,15 @@ export default function RecommendationReportCard({
                 </p>
               </div>
               {decisionResult && (
-                <span className="edu-badge edu-badge-good text-xs font-bold">
+                <span
+                  className={`edu-badge text-xs font-bold ${
+                    decisionResult.level === 'good'
+                      ? 'edu-badge-good'
+                      : decisionResult.level === 'warn'
+                        ? 'edu-badge-warn'
+                        : 'edu-badge-bad'
+                  }`}
+                >
                   {decisionResult.action} • {decisionResult.readiness}
                 </span>
               )}

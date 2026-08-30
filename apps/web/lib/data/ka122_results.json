@@ -1,0 +1,1010 @@
+[
+  {
+    "row_no":1,
+    "project_code":"2026-1-TR01-KA122-VET-000404854",
+    "organisation_name":"Antalya Berberler Esnaf ve Sanatkarlar Odası",
+    "project_title":"Berberlikte Eğitici ve Mentorluk Kapasitesinin Güçlendirilmesi",
+    "city":"Antalya",
+    "grant_amount_eur":14528.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":2,
+    "project_code":"2026-1-TR01-KA122-VET-000405133",
+    "organisation_name":"Recep Atakaş Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Geleceğin İstihdamı için Akıllı Enerji Becerileri",
+    "city":"Hatay",
+    "grant_amount_eur":69318.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":3,
+    "project_code":"2026-1-TR01-KA122-VET-000405246",
+    "organisation_name":"Ankara Çankaya Dikmen Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Elektrikli\/Hibrit Araçlarda Dijital Dönüşüm ve Yeşil Beceriler",
+    "city":"Ankara",
+    "grant_amount_eur":49138.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":4,
+    "project_code":"2026-1-TR01-KA122-VET-000406216",
+    "organisation_name":"Nedime Serap Ulusoy Denizcilik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"River Skills 4.0: Gemi Kaptanlığı Öğrencileri için Tuna'da Dijital ve Yeşil Staj",
+    "city":"Samsun",
+    "grant_amount_eur":23684.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":5,
+    "project_code":"2026-1-TR01-KA122-VET-000406437",
+    "organisation_name":"Altındağ Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Sürdürülebilir Dünya için Yenilenebilir Enerji ve Enerji Verimliliği",
+    "city":"Ankara",
+    "grant_amount_eur":41256.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":6,
+    "project_code":"2026-1-TR01-KA122-VET-000406489",
+    "organisation_name":"Gebze Özel Eğitim Mesleki Eğitim Okulu",
+    "project_title":"Her Zihin Bir Dünya, Her Eğitim Bir Köprü",
+    "city":"Kocaeli",
+    "grant_amount_eur":27820.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":7,
+    "project_code":"2026-1-TR01-KA122-VET-000406766",
+    "organisation_name":"Mehmet Cevdet Urgan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Avrupa Hareketliliği Yoluyla Ayakkabıcılıkta Mesleki Becerilerin Geliştirilmesi",
+    "city":"Gaziantep",
+    "grant_amount_eur":27763.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":8,
+    "project_code":"2026-1-TR01-KA122-VET-000407182",
+    "organisation_name":"Kuşadası Mesleki Eğitim Merkezi Müdürlüğü",
+    "project_title":"Yeni Nesil Güneş Enerji Sistemleri Stajı",
+    "city":"Aydın",
+    "grant_amount_eur":19034.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":9,
+    "project_code":"2026-1-TR01-KA122-VET-000408915",
+    "organisation_name":"Burdur Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Oyun Değiştirici: Mesleki Eğitimde Geleceğin Oyun Geliştiricileri için Avrupa Hareketliliği",
+    "city":"Burdur",
+    "grant_amount_eur":59513.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":10,
+    "project_code":"2026-1-TR01-KA122-VET-000410140",
+    "organisation_name":"Bulancak Kaptan Fatoğlu Denizcilik Mesleki ve Teknik Eğitim Anadolu Lisesi Müdürlüğü",
+    "project_title":"Denizcilikte Rotamız Yeşil Liman",
+    "city":"Giresun",
+    "grant_amount_eur":72190.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":11,
+    "project_code":"2026-1-TR01-KA122-VET-000410513",
+    "organisation_name":"Şehit Jandarma Komando Er Bahri Avcı Mesleki Eğitim Merkezi Müdürlüğü",
+    "project_title":"Otomotiv Mesleki Eğitiminde Dijital Dönüşüm",
+    "city":"Bursa",
+    "grant_amount_eur":40058.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":12,
+    "project_code":"2026-1-TR01-KA122-VET-000410597",
+    "organisation_name":"Esenler Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"İlmekten Eskize: Üretimden Sanatkârlığa",
+    "city":"İstanbul",
+    "grant_amount_eur":29266.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":13,
+    "project_code":"2026-1-TR01-KA122-VET-000411839",
+    "organisation_name":"Akçakoca Fedai Karabıyık Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Geleceğin Ustaları: Metal ile Makine ve Tasarım Teknolojileri Öğrencilerimizin Avrupa Stajı",
+    "city":"Düzce",
+    "grant_amount_eur":87308.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":14,
+    "project_code":"2026-1-TR01-KA122-VET-000411891",
+    "organisation_name":"Doç. Dr. Burhan Bahriyeli Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Yazılım Destekli Dijital Lojistik Alanında Avrupa Stajı",
+    "city":"İstanbul",
+    "grant_amount_eur":43066.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":15,
+    "project_code":"2026-1-TR01-KA122-VET-000411958",
+    "organisation_name":"Alaşehir Sümer Oral Mesleki Eğitim Merkezi Müdürlüğü",
+    "project_title":"Almanya'da Staj Alaşehir'de İstihdam",
+    "city":"Manisa",
+    "grant_amount_eur":30844.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":16,
+    "project_code":"2026-1-TR01-KA122-VET-000412661",
+    "organisation_name":"Milas Atatürk Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Mesleki Lezzet ve Sürdürülebilir Gastronomi Yoluyla İstihdam",
+    "city":"Muğla",
+    "grant_amount_eur":89803.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":17,
+    "project_code":"2026-1-TR01-KA122-VET-000412779",
+    "organisation_name":"Karşıyaka Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Endüstri 4.0’da Hassas Üretim: CNC 3D Baskı ile İşgücü Optimizasyonu",
+    "city":"Adana",
+    "grant_amount_eur":52318.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":18,
+    "project_code":"2026-1-TR01-KA122-VET-000412868",
+    "organisation_name":"Hatay Samandağ Adem Nural Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Geleceği Yeniden İnşa Eden Mesleki Beceriler",
+    "city":"Hatay",
+    "grant_amount_eur":28570.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":19,
+    "project_code":"2026-1-TR01-KA122-VET-000413013",
+    "organisation_name":"Aziz Sancar Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Geleceğin Mühendisleri için Avrupa’da Güneş Enerjisi ve Akıllı Şebeke Teknolojileri Stajı",
+    "city":"Adana",
+    "grant_amount_eur":85094.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":20,
+    "project_code":"2026-1-TR01-KA122-VET-000414300",
+    "organisation_name":"Payas Mesleki Eğitim Merkezi Müdürlüğü",
+    "project_title":"Avrupa’da ‘’U Dönüşü'' ile Geleceği İnşa Ediyoruz",
+    "city":"Hatay",
+    "grant_amount_eur":74204.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":21,
+    "project_code":"2026-1-TR01-KA122-VET-000414536",
+    "organisation_name":"Altınekin Şehit Adem Yıldırım Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Konya Ovası'ndan Yükselen Geleceğimiz için: Agroekolojik Tarım Sesleri",
+    "city":"Konya",
+    "grant_amount_eur":30524.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":22,
+    "project_code":"2026-1-TR01-KA122-VET-000414637",
+    "organisation_name":"Kanuni Sultan Süleyman Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"E-Mobilite Alanında Mesleki Eğitim Öğrencileri ve Öğretmenlerinin Yetkinliklerinin Geliştirilmesi",
+    "city":"Gaziantep",
+    "grant_amount_eur":61858.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":23,
+    "project_code":"2026-1-TR01-KA122-VET-000415369",
+    "organisation_name":"Ardeşen Piri Reis Denizcilik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Ekobakım: Mavi Ekonomi için Yeşil Teknolojiler",
+    "city":"Rize",
+    "grant_amount_eur":44766.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":24,
+    "project_code":"2026-1-TR01-KA122-VET-000415613",
+    "organisation_name":"Hatay Mesleki Eğitim Merkezi Müdürlüğü",
+    "project_title":"Beceri Bizden, Tasarruf Enerji 4.0 Sistemlerinden",
+    "city":"Hatay",
+    "grant_amount_eur":59970.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":25,
+    "project_code":"2026-1-TR01-KA122-VET-000415736",
+    "organisation_name":"Gaziantep Nizip Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Geleceğimin Formülü: Yeşil Dönüşümde Erasmus Katalizörü",
+    "city":"Gaziantep",
+    "grant_amount_eur":55653.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":26,
+    "project_code":"2026-1-TR01-KA122-VET-000416140",
+    "organisation_name":"İsmet İnönü Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Future Green VET Beyond Borders",
+    "city":"Adana",
+    "grant_amount_eur":42150.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":27,
+    "project_code":"2026-1-TR01-KA122-VET-000416488",
+    "organisation_name":"İzmir Menderes Mesleki Eğitim Merkezi Müdürlüğü",
+    "project_title":"Atıktan Yeşil İstihdama: Gıda Temaslı rPET",
+    "city":"İzmir",
+    "grant_amount_eur":74204.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":28,
+    "project_code":"2026-1-TR01-KA122-VET-000416981",
+    "organisation_name":"Hacı Nihat Sözmen Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Mobilyada Yeşil Değişim, Sürdürülebilir Geleceğe Erişim",
+    "city":"Şanlıurfa",
+    "grant_amount_eur":65040.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":29,
+    "project_code":"2026-1-TR01-KA122-VET-000417115",
+    "organisation_name":"Buca Süleyman Şah Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Nesnelerin İnterneti (IoT) Uygulamaları ile Mesleki Yetkinlik Gelişimi",
+    "city":"İzmir",
+    "grant_amount_eur":40323.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":30,
+    "project_code":"2026-1-TR01-KA122-VET-000417407",
+    "organisation_name":"Hopa 15 Temmuz Şehitleri Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Avrupa’da Yapay Zekayı Öğrenin, Tüm Sınırları Aşın, Geleceğe Hazırlanın",
+    "city":"Artvin",
+    "grant_amount_eur":55695.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":31,
+    "project_code":"2026-1-TR01-KA122-VET-000417892",
+    "organisation_name":"Ordu Ünye Adnan Menderes Ticaret Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"AkIllı ve Yeşil Lojistikle Hasadımız Güvende",
+    "city":"Ordu",
+    "grant_amount_eur":74204.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":32,
+    "project_code":"2026-1-TR01-KA122-VET-000418254",
+    "organisation_name":"İskenderun Sahil Kız Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Mutfakta İnovasyonla Gelişim, Teknikte Küresel Değişim",
+    "city":"Hatay",
+    "grant_amount_eur":62648.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":33,
+    "project_code":"2026-1-TR01-KA122-VET-000418522",
+    "organisation_name":"Afşin Şifa Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Afet Sonrası Sağlık Hizmetlerinde Destek Personelinin Mesleki Kapasitesinin Artırılması",
+    "city":"Kahramanmaraş",
+    "grant_amount_eur":44652.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":34,
+    "project_code":"2026-1-TR01-KA122-VET-000418523",
+    "organisation_name":"Bafra Mimar Sinan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Yaşama Destek, İstihdama Destek: Biyomedikal Cihaz Teknolojilerinde Avrupa Stajı",
+    "city":"Samsun",
+    "grant_amount_eur":61688.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":35,
+    "project_code":"2026-1-TR01-KA122-VET-000418719",
+    "organisation_name":"Muharrem Malazgirt Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Sürdürülebilir Tarım için Avrupa Staj Hareketliliği",
+    "city":"Hakkari",
+    "grant_amount_eur":32694.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":36,
+    "project_code":"2026-1-TR01-KA122-VET-000418775",
+    "organisation_name":"Mehmet Erdemoğlu Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Eski Güç,Yeni Verim; Motorda Tam Değişim",
+    "city":"Van",
+    "grant_amount_eur":70628.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":37,
+    "project_code":"2026-1-TR01-KA122-VET-000419919",
+    "organisation_name":"Türkiye Cumhuriyeti Cumhurbaşkanlığı Devlet Arşivleri Başkanlığı",
+    "project_title":"Mesleki Arşiv Hizmetlerinde Metadata Standartlarının Uygulanması",
+    "city":"Ankara",
+    "grant_amount_eur":7264.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":38,
+    "project_code":"2026-1-TR01-KA122-VET-000421972",
+    "organisation_name":"Gaziantep Şahinbey Mennan Usta Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Karbonsuz Ustalık, Yeşil İstihdam",
+    "city":"Gaziantep",
+    "grant_amount_eur":74204.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":39,
+    "project_code":"2026-1-TR01-KA122-VET-000422016",
+    "organisation_name":"Tarsus Borsa İstanbul Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Motorlu Araçlar Teknolojisi Alanımız Avrupa'da",
+    "city":"Mersin",
+    "grant_amount_eur":79764.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":40,
+    "project_code":"2026-1-TR01-KA122-VET-000422078",
+    "organisation_name":"Ziya Kalkavan Denizcilik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Mavi Derinlik, Yeşil Gelecek; Çift Yakıtla Karbon Silinecek",
+    "city":"İstanbul",
+    "grant_amount_eur":59688.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":41,
+    "project_code":"2026-1-TR01-KA122-VET-000422107",
+    "organisation_name":"Sarıgöl Milli Egemenlik Çok Programlı Anadolu Lisesi Müdürlüğü",
+    "project_title":"Meslekte Nitelik, Zeytinde Verimlilik",
+    "city":"Manisa",
+    "grant_amount_eur":55528.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":42,
+    "project_code":"2026-1-TR01-KA122-VET-000422151",
+    "organisation_name":"Ankara Altındağ Süleyman Şah Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Ulaşımda Elektrifikasyon Mesleğimde İnovasyon",
+    "city":"Ankara",
+    "grant_amount_eur":74204.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":43,
+    "project_code":"2026-1-TR01-KA122-VET-000422211",
+    "organisation_name":"Şehit Serkan Talan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Gelecek: Betonda Değil Teknolojide, El Gücünde Değil Teknikte!",
+    "city":"Hatay",
+    "grant_amount_eur":59970.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":44,
+    "project_code":"2026-1-TR01-KA122-VET-000422248",
+    "organisation_name":"Bursa İnegöl Dörtçelik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Operatör 360: Dikişte Kalite-Hız- Sürdürülebilirlik",
+    "city":"Bursa",
+    "grant_amount_eur":72484.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":45,
+    "project_code":"2026-1-TR01-KA122-VET-000422330",
+    "organisation_name":"Telkari Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Enerjiye İnovasyon Kat, Kaybı Azalt",
+    "city":"Mardin",
+    "grant_amount_eur":74204.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":46,
+    "project_code":"2026-1-TR01-KA122-VET-000422435",
+    "organisation_name":"Kahramankazan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Kahramankazan’dan Hollanda’ya Dijital Köprü: Lojistik 4.0 ve Akıllı Antrepo Uygulamaları",
+    "city":"Ankara",
+    "grant_amount_eur":65388.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":47,
+    "project_code":"2026-1-TR01-KA122-VET-000422457",
+    "organisation_name":"Van Piri Reis Denizcilik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Akıllı-Karbonsuz Gövde, Piri Reis'in Çocukları Avrupa Tersanesinde",
+    "city":"Van",
+    "grant_amount_eur":58428.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":48,
+    "project_code":"2026-1-TR01-KA122-VET-000422609",
+    "organisation_name":"Çerkezköy Türk Tekstil Vakfı Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Sürdürülebilir Tekstil Baskı Teknolojileri için Avrupa İşbaşı Öğrenme Hareketliliği",
+    "city":"Tekirdağ",
+    "grant_amount_eur":65949.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":49,
+    "project_code":"2026-1-TR01-KA122-VET-000422702",
+    "organisation_name":"Nene Hatun Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Textile 4.0 Üretimde Mükemmellik",
+    "city":"Bursa",
+    "grant_amount_eur":59968.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":50,
+    "project_code":"2026-1-TR01-KA122-VET-000422999",
+    "organisation_name":"Adana Seyhan Yeşilevler Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Endüstri 4.0. Yolcuları ile Akıllı Fabrikasyon ve Çevreci Dokumada Fark Yaratıyoruz",
+    "city":"Adana",
+    "grant_amount_eur":62188.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":51,
+    "project_code":"2026-1-TR01-KA122-VET-000423324",
+    "organisation_name":"Sakarya Ticaret ve Sanayi Odası Ticaret Mesleki ve Teknik Anadolu Lisesi",
+    "project_title":"Dijital Becerilerle Güçlü Gelecek: IoT Temelli Mesleki Eğitim Hareketliliği",
+    "city":"Sakarya",
+    "grant_amount_eur":62007.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":52,
+    "project_code":"2026-1-TR01-KA122-VET-000423438",
+    "organisation_name":"Aydın Efeler Mimar Sinan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Adblue Sistemi ve Endüstriyel Nicel Analiz Eğitimi",
+    "city":"Aydın",
+    "grant_amount_eur":45862.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":53,
+    "project_code":"2026-1-TR01-KA122-VET-000423624",
+    "organisation_name":"Pazar Kız Kulesi Kız Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Pazarlı Genç Şeflerin Avrupa Otel Mutfaklarında Mesleki Eğitim Yoluyla Güçlendirilmesi",
+    "city":"Rize",
+    "grant_amount_eur":38027.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":54,
+    "project_code":"2026-1-TR01-KA122-VET-000423667",
+    "organisation_name":"Kepez Özel Eğitim Meslek Lisesi Müdürlüğü",
+    "project_title":"Engellilerimiz Erasmus+ Stajıyla Nitelik Kazanarak Engelleri Aşıyor",
+    "city":"Antalya",
+    "grant_amount_eur":40916.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":55,
+    "project_code":"2026-1-TR01-KA122-VET-000424186",
+    "organisation_name":"Özel Güleç ABC Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Yerelden Avrupa’ya CNC: Avrupa Üretim Standartlarıyla Becerilerin Geliştirilmesi",
+    "city":"Kırıkkale",
+    "grant_amount_eur":59334.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":56,
+    "project_code":"2026-1-TR01-KA122-VET-000424624",
+    "organisation_name":"İstanbul Ümraniye İMES Süheyl Erboz Mesleki Eğitim Merkezi Müdürlüğü",
+    "project_title":"Yeşil Voltaj: Çıraklıkta Geleceğin Motorunu Çalıştırıyoruz",
+    "city":"İstanbul",
+    "grant_amount_eur":78431.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":57,
+    "project_code":"2026-1-TR01-KA122-VET-000425072",
+    "organisation_name":"Türk Telekom Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Nesnelerin İnterneti (IoT) ve Akıllı Sistemler için Yeni Nesil Mesleki Beceriler",
+    "city":"Diyarbakır",
+    "grant_amount_eur":86340.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":58,
+    "project_code":"2026-1-TR01-KA122-VET-000425148",
+    "organisation_name":"Köyceğiz Şehit Ömer Halisdemir Denizcilik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Akıllı Rotalar, Sürdürülebilir Deniz Turizmi: Yat Kaptanlığı Eğitiminde Yapay Zekâ Tabanlı Uygulamalar",
+    "city":"Muğla",
+    "grant_amount_eur":46362.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":59,
+    "project_code":"2026-1-TR01-KA122-VET-000425311",
+    "organisation_name":"Antalya Aksu Aysel Akın-Klaus Wagner Tarım Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Tarımda Sektörel Beklentileri Karşılamak: Avrupa’da Akıllı Tarım ve İşbaşı Öğrenme ile Mesleki Beceri Gelişimi",
+    "city":"Antalya",
+    "grant_amount_eur":32555.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":60,
+    "project_code":"2026-1-TR01-KA122-VET-000425868",
+    "organisation_name":"Eczacı Güzin Velittin Bekrioğlu Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Mesleki Gücümüz Avrupa ile Büyüyor",
+    "city":"Antalya",
+    "grant_amount_eur":62924.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":61,
+    "project_code":"2026-1-TR01-KA122-VET-000427321",
+    "organisation_name":"Tavşanlı Arslanbey Ticaret Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Securing the Future: Integrating Digital Safety in ICT Training",
+    "city":"Kütahya",
+    "grant_amount_eur":37602.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":62,
+    "project_code":"2026-1-TR01-KA122-VET-000428017",
+    "organisation_name":"Saffet Çebi Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Sürekli Enerji, Sürekli İstihdam",
+    "city":"Trabzon",
+    "grant_amount_eur":46266.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":63,
+    "project_code":"2026-1-TR01-KA122-VET-000428060",
+    "organisation_name":"Ahi Evran Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"High Voltage Safety and Green Mobility Skills in Electric and Hybrid Vehicles Through European Work-Based Learning",
+    "city":"Tekirdağ",
+    "grant_amount_eur":33254.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":64,
+    "project_code":"2026-1-TR01-KA122-VET-000430719",
+    "organisation_name":"Milas Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Elektrikli Yeşil Bir Gelecek ve Sürdürülebilir Güvenli Atölye için, Elektrikli Araç Teknolojilerinin İş Güvenliği Alanında Avrupa'da Staj",
+    "city":"Muğla",
+    "grant_amount_eur":25266.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":65,
+    "project_code":"2026-1-TR01-KA122-VET-000431121",
+    "organisation_name":"Mehmet Kemal Coşkunoz Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Mesleki Eğitimde Dijital Dönüşüm: 3D Yazıcılar ve Sanal Gerçeklik Uygulamaları",
+    "city":"Bursa",
+    "grant_amount_eur":50748.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":66,
+    "project_code":"2026-1-TR01-KA122-VET-000431618",
+    "organisation_name":"Afyonkarahisar Özel AOSB Rahmiye Sare Palalı Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Endüstriyel Otomasyon ve Makine Sistemlerinde Avrupa İş Kültürü ve Mesleki Yetkinlik Gelişimi",
+    "city":"Afyonkarahisar",
+    "grant_amount_eur":59978.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":67,
+    "project_code":"2026-1-TR01-KA122-VET-000431656",
+    "organisation_name":"Nezihe Yalvaç Turizm Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Sürdürülebilir Turizmde Yeşil ve Dijital Mesleki Becerilerin Geliştirilmesi",
+    "city":"Adana",
+    "grant_amount_eur":78282.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":68,
+    "project_code":"2026-1-TR01-KA122-VET-000431960",
+    "organisation_name":"Honaz Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"M-Odak - Müşteri Odaklı Yazılım Stajı",
+    "city":"Denizli",
+    "grant_amount_eur":27536.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":69,
+    "project_code":"2026-1-TR01-KA122-VET-000432116",
+    "organisation_name":"Ankara Etlik Şehir Hastanesi",
+    "project_title":"Yoğun Bakım Sonrası Hastalarda Solunum ve Yutma Rehabilitasyonunun Birlikte Yönetimi: Ekip Temelli Öğrenme ve Gelişim Projesi",
+    "city":"Ankara",
+    "grant_amount_eur":40365.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":70,
+    "project_code":"2026-1-TR01-KA122-VET-000432456",
+    "organisation_name":"Manisa İl Sağlık Müdürlüğü",
+    "project_title":"Boyundan Soluyanlar için İlk Yardım",
+    "city":"Manisa",
+    "grant_amount_eur":13840.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":71,
+    "project_code":"2026-1-TR01-KA122-VET-000432760",
+    "organisation_name":"Kanuni Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Mentorspace ile Mesleki Dönüşüm: Teoriden Pratiğe Yapay Zeka Çözümleri",
+    "city":"Ankara",
+    "grant_amount_eur":21880.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":72,
+    "project_code":"2026-1-TR01-KA122-VET-000434585",
+    "organisation_name":"Şehit Salih Helvacı Ticaret Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Farklılıklar Gücümüz Oyunlar Yolumuz",
+    "city":"Ankara",
+    "grant_amount_eur":22436.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":73,
+    "project_code":"2026-1-TR01-KA122-VET-000435194",
+    "organisation_name":"Denizli İl Tarım ve Orman Müdürlüğü",
+    "project_title":"Sürdürülebilir Gıda Arzı için Tarım 5.0 Uygulamalarına Yönelik Mesleki Kapasitenin Güçlendirilmesi",
+    "city":"Denizli",
+    "grant_amount_eur":10896.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":74,
+    "project_code":"2026-1-TR01-KA122-VET-000435910",
+    "organisation_name":"Rize Borsa İstanbul Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Milimetrik Ustalık: Avrupa’da ADAS Servis Uygulamaları",
+    "city":"Rize",
+    "grant_amount_eur":74204.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":75,
+    "project_code":"2026-1-TR01-KA122-VET-000435955",
+    "organisation_name":"Büyükkarıştıran Çok Programlı Anadolu Lisesi Müdürlüğü",
+    "project_title":"Endüstri 4.0 Teknisyenleri Avrupa Stajinda",
+    "city":"Kırklareli",
+    "grant_amount_eur":26316.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":76,
+    "project_code":"2026-1-TR01-KA122-VET-000436033",
+    "organisation_name":"Niksar Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Avrupa'da CNC Uygulamaları: Dijital Üretim ve Teknolojik Beceriler Stajı",
+    "city":"Tokat",
+    "grant_amount_eur":84770.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":77,
+    "project_code":"2026-1-TR01-KA122-VET-000436305",
+    "organisation_name":"Dündar Uçar Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Güvenli Ev, Güçlü Kariyer için Avrupa’dayız",
+    "city":"İstanbul",
+    "grant_amount_eur":40890.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":78,
+    "project_code":"2026-1-TR01-KA122-VET-000436750",
+    "organisation_name":"Bayrampaşa İstanbul Ticaret Odası Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Genç Medya Profesyonelleri Avrupa’da",
+    "city":"İstanbul",
+    "grant_amount_eur":35936.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":79,
+    "project_code":"2026-1-TR01-KA122-VET-000437317",
+    "organisation_name":"Sema - Abdurrahman Karamanlıoğlu Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Genç Şeflerin Mutfaktan Hayata Katılımı",
+    "city":"Denizli",
+    "grant_amount_eur":93720.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":80,
+    "project_code":"2026-1-TR01-KA122-VET-000438112",
+    "organisation_name":"Pazar Şehit Murat Naiboğlu Sivil Havacılık Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Raising Aviation Professionals for a Green Future",
+    "city":"Rize",
+    "grant_amount_eur":16940.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":81,
+    "project_code":"2026-1-TR01-KA122-VET-000439019",
+    "organisation_name":"Trabzon Ortahisar Prof. Dr. Necmettin Erbakan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Elektrikli ve Hibrit Araçlarda Güvenli, Dijital ve Sürdürülebilir Servis Uzmanlığı",
+    "city":"Trabzon",
+    "grant_amount_eur":61688.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":82,
+    "project_code":"2026-1-TR01-KA122-VET-000439427",
+    "organisation_name":"Zeytinburnu Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"İklim Kriziyle Mücadele ve Florlu Gazların Azaltılması için Avrupa Yolculuğu",
+    "city":"İstanbul",
+    "grant_amount_eur":65135.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":83,
+    "project_code":"2026-1-TR01-KA122-VET-000439741",
+    "organisation_name":"Sivas Atatürk Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Sivas'ta Sıfır Emisyon, Avrupa ile Tam Motivasyon",
+    "city":"Sivas",
+    "grant_amount_eur":59968.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":84,
+    "project_code":"2026-1-TR01-KA122-VET-000440360",
+    "organisation_name":"Osmancık Nenehatun Özel Eğitim Uygulama Okulu",
+    "project_title":"Özel Gereksinimli Bireyler için Yenilikçi Mesleki Eğitim ve İstihdam Yaklaşımları",
+    "city":"Çorum",
+    "grant_amount_eur":25060.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":85,
+    "project_code":"2026-1-TR01-KA122-VET-000440542",
+    "organisation_name":"Aziziye Yavuz Selim Tarım Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"GEM Skills (Green European Mobility Skills)",
+    "city":"Erzurum",
+    "grant_amount_eur":55381.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":86,
+    "project_code":"2026-1-TR01-KA122-VET-000440845",
+    "organisation_name":"Bursa Atatürk Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Güneş Enerjisi Sistemleri ile Sürdürülebilir Elektrikli Araç Şarj İstasyonu Stajı",
+    "city":"Bursa",
+    "grant_amount_eur":62139.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":87,
+    "project_code":"2026-1-TR01-KA122-VET-000441179",
+    "organisation_name":"Orhangazi Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Avrupa İşletmelerinde İstihdam Edilebilirlik Becerileri Geliştirme",
+    "city":"Bursa",
+    "grant_amount_eur":55368.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":88,
+    "project_code":"2026-1-TR01-KA122-VET-000441580",
+    "organisation_name":"Abdulkadir Özgül Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Gaziantep'in Kanatları",
+    "city":"Gaziantep",
+    "grant_amount_eur":42980.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":89,
+    "project_code":"2026-1-TR01-KA122-VET-000441717",
+    "organisation_name":"Ulus Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Yeşil Teknolojili Yeni Nesil Akıllı Ev ve Fabrikalarda Endüstriyel Kontrol Uygulamalari Stajı",
+    "city":"Ankara",
+    "grant_amount_eur":73500.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":90,
+    "project_code":"2026-1-TR01-KA122-VET-000441947",
+    "organisation_name":"Yunusemre Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Yunus Emre Meslek’ten Avrupa’ya Geleceğe Köprü",
+    "city":"Eskişehir",
+    "grant_amount_eur":66380.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":91,
+    "project_code":"2026-1-TR01-KA122-VET-000443037",
+    "organisation_name":"Özlem Burma Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Öğrencilerimiz İstihdam için Avrupa Stajında",
+    "city":"Kastamonu",
+    "grant_amount_eur":37102.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":92,
+    "project_code":"2026-1-TR01-KA122-VET-000443152",
+    "organisation_name":"Seferihisar Borsa İstanbul Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Avrupa Stajıyla İstihdam Kapılarını Açıyoruz",
+    "city":"İzmir",
+    "grant_amount_eur":55368.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":93,
+    "project_code":"2026-1-TR01-KA122-VET-000443238",
+    "organisation_name":"Nevşehir Teknik ve Endüstri Meslek Lisesi Müdürlüğü",
+    "project_title":"VET 4.0: Motor ve Elektrik Alanlarında Yapay Zekâ Tabanlı Dijital Mesleki Dönüşüm",
+    "city":"Nevşehir",
+    "grant_amount_eur":32144.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":94,
+    "project_code":"2026-1-TR01-KA122-VET-000443279",
+    "organisation_name":"Üsküdar Borsa İstanbul Kız Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Yapay Zeka ile Engelleri Aşan Avrupa Stajı",
+    "city":"İstanbul",
+    "grant_amount_eur":18454.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":95,
+    "project_code":"2026-1-TR01-KA122-VET-000443422",
+    "organisation_name":"Elazığ Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Bilişimde Kapsayıcı Gelecek: Dezavantajlı Kız Öğrencilerin Avrupa Deneyimi ve Rol Model Stratejisi ile Mesleki Rehabilitasyonu",
+    "city":"Elazığ",
+    "grant_amount_eur":24808.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":96,
+    "project_code":"2026-1-TR01-KA122-VET-000443747",
+    "organisation_name":"Silopi Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Fide 4.0: Geleceğe Kök Salıyoruz",
+    "city":"Şırnak",
+    "grant_amount_eur":49552.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":97,
+    "project_code":"2026-1-TR01-KA122-VET-000444723",
+    "organisation_name":"Atatürk Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Geleceğin Güvencesi Meslek Lisesi",
+    "city":"Denizli",
+    "grant_amount_eur":47368.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":98,
+    "project_code":"2026-1-TR01-KA122-VET-000445085",
+    "organisation_name":"Didim Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Deniz Araçları Kavitasyon, Pervane İmalatı, Bakım ve Çeşitliliği, Öğrenci Staj Hareketi",
+    "city":"Aydın",
+    "grant_amount_eur":14992.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":99,
+    "project_code":"2026-1-TR01-KA122-VET-000445361",
+    "organisation_name":"Tarsus Ticaret ve Sanayi Odası Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Tarsus Sanayisinin Yeşil Dönüşümü için Fotovoltaik Sistemlerde Avrupa Standartlarında Teknik Staj",
+    "city":"Mersin",
+    "grant_amount_eur":60288.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":100,
+    "project_code":"2026-1-TR01-KA122-VET-000445407",
+    "organisation_name":"Of Hacı Mehmet Bahattin Ulusoy Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Kuzeyin Genç Denizcileri",
+    "city":"Trabzon",
+    "grant_amount_eur":16870.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":101,
+    "project_code":"2026-1-TR01-KA122-VET-000447714",
+    "organisation_name":"Fatima Zehra Kız Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Hasta ve Yaşlı Hizmetleri Öğrencilerinin Mesleki Stajı",
+    "city":"Siirt",
+    "grant_amount_eur":29474.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":102,
+    "project_code":"2026-1-TR01-KA122-VET-000448082",
+    "organisation_name":"Vali Necati Bilican Mesleki Eğitim Merkezi Müdürlüğü",
+    "project_title":"Dijital Üretimden Çevresel Sürdürülebilirliğe: Yeni Nesil Mesleki Eğitim",
+    "city":"Denizli",
+    "grant_amount_eur":68918.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":1,
+    "project_code":"2026-1-TR01-KA122-VET-000408506",
+    "organisation_name":"Hatay Saadet Yusuf Mıstıkoğlu Tarım Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Doğru Tarım, Doğru Gelecek: Hatay’da Dijital ve Sürdürülebilir Üretime Geçiş",
+    "city":"Hatay",
+    "grant_amount_eur":73877.0,
+    "list_type":"Yedek Listesi"
+  },
+  {
+    "row_no":2,
+    "project_code":"2026-1-TR01-KA122-VET-000416398",
+    "organisation_name":"Şaban Üçgül ve Kardeşleri Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Klinik Hemşirelikte Geriatrik Bakım ve Rehabilitasyon Teknikleri",
+    "city":"Adana",
+    "grant_amount_eur":80426.0,
+    "list_type":"Yedek Listesi"
+  },
+  {
+    "row_no":3,
+    "project_code":"2026-1-TR01-KA122-VET-000431489",
+    "organisation_name":"Mersin Akdeniz Mesleki Eğitim Merkezi Müdürlüğü",
+    "project_title":"Yarının Ustaları, Bugünün Kodları: CNC Teknolojileri ile Yeni Nesil Mobilyacılık",
+    "city":"Mersin",
+    "grant_amount_eur":61688.0,
+    "list_type":"Yedek Listesi"
+  },
+  {
+    "row_no":4,
+    "project_code":"2026-1-TR01-KA122-VET-000441787",
+    "organisation_name":"Buca Şerife Bacı Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Genç İstihdamın Mesleki Beceri Köprüsü",
+    "city":"İzmir",
+    "grant_amount_eur":22270.0,
+    "list_type":"Yedek Listesi"
+  },
+  {
+    "row_no":5,
+    "project_code":"2026-1-TR01-KA122-VET-000419266",
+    "organisation_name":"Gaziemir Borsa İstanbul Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Geleceğin Yeşil Atölyesi: Tasarımdan Üretime Sürdürülebilirlik",
+    "city":"İzmir",
+    "grant_amount_eur":23096.0,
+    "list_type":"Yedek Listesi"
+  },
+  {
+    "row_no":6,
+    "project_code":"2026-1-TR01-KA122-VET-000427954",
+    "organisation_name":"Halide Edip Adıvar Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Tarladan Tabağa Stratejisi Kapsamında Atıksız Mutfak ve Enerji Verimliliği Uygulamaları",
+    "city":"Van",
+    "grant_amount_eur":33230.0,
+    "list_type":"Yedek Listesi"
+  },
+  {
+    "row_no":7,
+    "project_code":"2026-1-TR01-KA122-VET-000420430",
+    "organisation_name":"Vehbi Güzel Kız Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Eco-Speed Gastronomy: Sürdürülebilirlik ve Hızın Birleşimi",
+    "city":"Adana",
+    "grant_amount_eur":59970.0,
+    "list_type":"Yedek Listesi"
+  },
+  {
+    "row_no":8,
+    "project_code":"2026-1-TR01-KA122-VET-000417235",
+    "organisation_name":"El-Cabir Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Gelecek Enerjide, Güç Mesleki Beceride",
+    "city":"Şanlıurfa",
+    "grant_amount_eur":69824.0,
+    "list_type":"Yedek Listesi"
+  },
+  {
+    "row_no":9,
+    "project_code":"2026-1-TR01-KA122-VET-000436328",
+    "organisation_name":"Mut Özdemirler Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Mut Özdemirler ÇPAL'nin Sağlıkta Avrupa İmzası: Dijital Hijyen ve Modern Aseptik Teknikler Stajı",
+    "city":"Mersin",
+    "grant_amount_eur":61688.0,
+    "list_type":"Yedek Listesi"
+  },
+  {
+    "row_no":10,
+    "project_code":"2026-1-TR01-KA122-VET-000412795",
+    "organisation_name":"Gaziantep Ticaret Odası Mesleki ve Teknik Anadolu Lisesi Müdürlüğü",
+    "project_title":"Çıraklar Mesleki Becerilerini Avrupa’da Geliştiriyor ve Dijital Yetkinliklerini Arttırıyor",
+    "city":"Gaziantep",
+    "grant_amount_eur":22248.0,
+    "list_type":"Yedek Listesi"
+  }
+]

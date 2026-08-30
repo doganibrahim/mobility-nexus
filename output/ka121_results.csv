@@ -1,0 +1,131 @@
+row_no,project_code,activity_field,organisation_name,city,grant_amount_eur,list_type
+1,2026-1-TR01-KA121-VET-000407105,Mesleki Eğitim Alanında Erasmus Akreditasyonu,"GEBKİM Eğitim, Araştırma ve Sağlık Vakfı",Kocaeli,133849.0,Kabul Listesi
+2,2026-1-TR01-KA121-VET-000413168,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Türkiye Kızılay Derneği,Ankara,43690.0,Kabul Listesi
+3,2026-1-TR01-KA121-VET-000417730,Mesleki Eğitim Alanında Erasmus Akreditasyonu,ASO 1. Organize Sanayi Bölgesi,Ankara,136417.0,Kabul Listesi
+4,2026-1-TR01-KA121-VET-000421708,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Karaman İl Milli Eğitim Müdürlüğü,Karaman,318585.0,Kabul Listesi
+5,2026-1-TR01-KA121-VET-000421983,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Türkiye Cumhuriyeti Devlet Demiryolları İşletmesi Genel Müdürlüğü,Ankara,250806.0,Kabul Listesi
+6,2026-1-TR01-KA121-VET-000424865,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Çorum İl Milli Eğitim Müdürlüğü,Çorum,140477.0,Kabul Listesi
+7,2026-1-TR01-KA121-VET-000425312,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Muğla İl Milli Eğitim Müdürlüğü,Muğla,295600.0,Kabul Listesi
+8,2026-1-TR01-KA121-VET-000425583,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İzmit Mesleki ve Teknik Anadolu Lisesi,Kocaeli,362811.0,Kabul Listesi
+9,2026-1-TR01-KA121-VET-000425667,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bursa Osmangazi Tophane Mesleki ve Teknik Anadolu Lisesi,Bursa,217497.0,Kabul Listesi
+10,2026-1-TR01-KA121-VET-000425773,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Türkiye Adalet Akademisi,Ankara,77900.0,Kabul Listesi
+11,2026-1-TR01-KA121-VET-000426040,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Orman Genel Müdürlüğü,Ankara,126094.0,Kabul Listesi
+12,2026-1-TR01-KA121-VET-000426645,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Erzurum Oltu Mesleki Eğitim Merkezi,Erzurum,183602.0,Kabul Listesi
+13,2026-1-TR01-KA121-VET-000426785,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Hatay İl Milli Eğitim Müdürlüğü,Hatay,340302.0,Kabul Listesi
+14,2026-1-TR01-KA121-VET-000427218,Mesleki Eğitim Alanında Erasmus Akreditasyonu,T.C. Tarım ve Orman Bakanlığı Balıkçılık ve Su Ürünleri Genel Müdürlüğü,Ankara,57839.0,Kabul Listesi
+15,2026-1-TR01-KA121-VET-000427670,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Elazığ İl Milli Eğitim Müdürlüğü,Elazığ,322856.0,Kabul Listesi
+16,2026-1-TR01-KA121-VET-000427827,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Roketsan Roket Sanayii ve Ticaret A.Ş.,Ankara,31760.0,Kabul Listesi
+17,2026-1-TR01-KA121-VET-000427836,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bolu İl Milli Eğitim Müdürlüğü,Bolu,235100.0,Kabul Listesi
+18,2026-1-TR01-KA121-VET-000427888,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Erzincan İl Milli Eğitim Müdürlüğü,Erzincan,140030.0,Kabul Listesi
+19,2026-1-TR01-KA121-VET-000427975,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Artvin İl Milli Eğitim Müdürlüğü,Artvin,96579.0,Kabul Listesi
+20,2026-1-TR01-KA121-VET-000428225,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Ankara Üniversitesi Deniz Hukuku Ulusal Araştırma Merkezi,Ankara,321384.0,Kabul Listesi
+21,2026-1-TR01-KA121-VET-000428751,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Şaban Temuge Turizm Mesleki ve Teknik Anadolu Lisesi,Yalova,341551.0,Kabul Listesi
+22,2026-1-TR01-KA121-VET-000428771,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Antalya İl Milli Eğitim Müdürlüğü,Antalya,340987.0,Kabul Listesi
+23,2026-1-TR01-KA121-VET-000428906,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kastamonu İl Milli Eğitim Müdürlüğü,Kastamonu,296589.0,Kabul Listesi
+24,2026-1-TR01-KA121-VET-000428908,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kütahya Ticaret ve Sanayi Odası,Kütahya,107280.0,Kabul Listesi
+25,2026-1-TR01-KA121-VET-000428962,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Amasya İl Milli Eğitim Müdürlüğü,Amasya,248776.0,Kabul Listesi
+26,2026-1-TR01-KA121-VET-000428993,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Müstakil Sanayici ve İşadamları Derneği,İstanbul,394270.0,Kabul Listesi
+27,2026-1-TR01-KA121-VET-000429005,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Erzurum İl Milli Eğitim Müdürlüğü,Erzurum,246980.0,Kabul Listesi
+28,2026-1-TR01-KA121-VET-000429027,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Batman İl Milli Eğitim Müdürlüğü,Batman,269119.0,Kabul Listesi
+29,2026-1-TR01-KA121-VET-000429639,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İstanbul İl Milli Eğitim Müdürlüğü,İstanbul,386787.0,Kabul Listesi
+30,2026-1-TR01-KA121-VET-000430266,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İstanbul Arnavutköy İbrahim Özaydın Mesleki ve Teknik Anadolu Lisesi,İstanbul,160261.0,Kabul Listesi
+31,2026-1-TR01-KA121-VET-000430450,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Türkiye Aşçılar ve Şefler Federasyonu,İstanbul,125083.0,Kabul Listesi
+32,2026-1-TR01-KA121-VET-000431100,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bahçelievler Aydın Doğan Ticaret Mesleki ve Teknik Anadolu Lisesi,İstanbul,221211.0,Kabul Listesi
+33,2026-1-TR01-KA121-VET-000431725,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Aydın İl Milli Eğitim Müdürlüğü,Aydın,286080.0,Kabul Listesi
+34,2026-1-TR01-KA121-VET-000431907,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Gaziantep Ticaret Odası,Gaziantep,22957.0,Kabul Listesi
+35,2026-1-TR01-KA121-VET-000431912,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Yalova İl Milli Eğitim Müdürlüğü,Yalova,241314.0,Kabul Listesi
+36,2026-1-TR01-KA121-VET-000431990,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Denizli İl Milli Eğitim Müdürlüğü,Denizli,172857.0,Kabul Listesi
+37,2026-1-TR01-KA121-VET-000432020,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Tunceli İl Milli Eğitim Müdürlüğü,Tunceli,244222.0,Kabul Listesi
+38,2026-1-TR01-KA121-VET-000432078,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Sivas İl Milli Eğitim Müdürlüğü,Sivas,180138.0,Kabul Listesi
+39,2026-1-TR01-KA121-VET-000432099,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Edirne İl Milli Eğitim Müdürlüğü,Edirne,225214.0,Kabul Listesi
+40,2026-1-TR01-KA121-VET-000432237,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Ankara Turizm Mesleki ve Teknik Anadolu Lisesi,Ankara,260564.0,Kabul Listesi
+41,2026-1-TR01-KA121-VET-000432242,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İzmir İl Milli Eğitim Müdürlüğü,İzmir,415788.0,Kabul Listesi
+42,2026-1-TR01-KA121-VET-000432419,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Hakkari İl Milli Eğitim Müdürlüğü,Hakkari,73824.0,Kabul Listesi
+43,2026-1-TR01-KA121-VET-000432516,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Adıyaman İl Milli Eğitim Müdürlüğü,Adıyaman,258855.0,Kabul Listesi
+44,2026-1-TR01-KA121-VET-000432617,Mesleki Eğitim Alanında Erasmus Akreditasyonu,TÜBİTAK Uzay Teknolojileri Araştırma Enstitüsü,Ankara,52210.0,Kabul Listesi
+45,2026-1-TR01-KA121-VET-000432945,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Antalya Manavgat Şule Muzaffer Büyük Kız Mesleki ve Teknik Anadolu Lisesi,Antalya,430959.0,Kabul Listesi
+46,2026-1-TR01-KA121-VET-000433092,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Aksaray İl Milli Eğitim Müdürlüğü,Aksaray,118084.0,Kabul Listesi
+47,2026-1-TR01-KA121-VET-000433883,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bursa Osmangazi Ali Osman Sönmez Mesleki ve Teknik Anadolu Lisesi,Bursa,129218.0,Kabul Listesi
+48,2026-1-TR01-KA121-VET-000434031,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kayseri İl Milli Eğitim Müdürlüğü,Kayseri,249720.0,Kabul Listesi
+49,2026-1-TR01-KA121-VET-000434216,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Diyarbakır İl Milli Eğitim Müdürlüğü,Diyarbakır,260658.0,Kabul Listesi
+50,2026-1-TR01-KA121-VET-000434245,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bursa İl Milli Eğitim Müdürlüğü,Bursa,464218.0,Kabul Listesi
+51,2026-1-TR01-KA121-VET-000434485,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Mardin İl Milli Eğitim Müdürlüğü,Mardin,275537.0,Kabul Listesi
+52,2026-1-TR01-KA121-VET-000434561,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bozüyük Mesleki ve Teknik Anadolu Lisesi,Bilecik,157130.0,Kabul Listesi
+53,2026-1-TR01-KA121-VET-000434633,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Ankara İl Milli Eğitim Müdürlüğü,Ankara,468174.0,Kabul Listesi
+54,2026-1-TR01-KA121-VET-000434723,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Akçakoca Turizm Mesleki ve Teknik Anadolu Lisesi,Kocaeli,277314.0,Kabul Listesi
+55,2026-1-TR01-KA121-VET-000434830,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Düzce İl Milli Eğitim Müdürlüğü,Düzce,164067.0,Kabul Listesi
+56,2026-1-TR01-KA121-VET-000434841,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kırıkkale İl Milli Eğitim Müdürlüğü,Kırıkkale,99128.0,Kabul Listesi
+57,2026-1-TR01-KA121-VET-000434899,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kilis İl Milli Eğitim Müdürlüğü,Kilis,278210.0,Kabul Listesi
+58,2026-1-TR01-KA121-VET-000434913,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bilecik İl Milli Eğitim Müdürlüğü,Bilecik,255858.0,Kabul Listesi
+59,2026-1-TR01-KA121-VET-000435210,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Uşak İl Milli Eğitim Müdürlüğü,Uşak,277133.0,Kabul Listesi
+60,2026-1-TR01-KA121-VET-000435360,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Nevşehir İl Milli Eğitim Müdürlüğü,Nevşehir,200500.0,Kabul Listesi
+61,2026-1-TR01-KA121-VET-000435561,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bartın İl Milli Eğitim Müdürlüğü,Bartın,124200.0,Kabul Listesi
+62,2026-1-TR01-KA121-VET-000435735,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Sakarya İl Milli Eğitim Müdürlüğü,Sakarya,271563.0,Kabul Listesi
+63,2026-1-TR01-KA121-VET-000435765,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Giresun İl Milli Eğitim Müdürlüğü,Giresun,131636.0,Kabul Listesi
+64,2026-1-TR01-KA121-VET-000435783,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kahramanmaraş İl Milli Eğitim Müdürlüğü,Kahramanmaraş,269167.0,Kabul Listesi
+65,2026-1-TR01-KA121-VET-000435793,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Samsun İl Milli Eğitim Müdürlüğü,Samsun,301823.0,Kabul Listesi
+66,2026-1-TR01-KA121-VET-000435819,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Muş İl Milli Eğitim Müdürlüğü,Muş,65490.0,Kabul Listesi
+67,2026-1-TR01-KA121-VET-000435855,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Tokat Mesleki ve Teknik Anadolu Lisesi,Tokat,351613.0,Kabul Listesi
+68,2026-1-TR01-KA121-VET-000435866,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İstanbul Arnavutköy İstanbul Havalimanı Mesleki ve Teknik Anadolu Lisesi,İstanbul,119959.0,Kabul Listesi
+69,2026-1-TR01-KA121-VET-000435869,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Gölcük Şehit Volkan Tantürk Mesleki ve Teknik Anadolu Lisesi,Kocaeli,396461.0,Kabul Listesi
+70,2026-1-TR01-KA121-VET-000435940,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Malatya İl Milli Eğitim Müdürlüğü,Malatya,289916.0,Kabul Listesi
+71,2026-1-TR01-KA121-VET-000435975,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Ankara Sincan Erkunt Mesleki Eğitim Merkezi,Ankara,137220.0,Kabul Listesi
+72,2026-1-TR01-KA121-VET-000435980,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Demirören Medya ve Teknoloji Mesleki ve Teknik Anadolu Lisesi,İstanbul,172890.0,Kabul Listesi
+73,2026-1-TR01-KA121-VET-000435986,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Ordu İl Milli Eğitim Müdürlüğü,Ordu,342519.0,Kabul Listesi
+74,2026-1-TR01-KA121-VET-000436010,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bingöl İl Milli Eğitim Müdürlüğü,Bingöl,151063.0,Kabul Listesi
+75,2026-1-TR01-KA121-VET-000436034,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Hidromek-Hidrolik ve Mekanik Makina İmalat Sanayi ve Ticaret A.Ş.,Ankara,90415.0,Kabul Listesi
+76,2026-1-TR01-KA121-VET-000436049,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Yozgat İl Milli Eğitim Müdürlüğü,Yozgat,107358.0,Kabul Listesi
+77,2026-1-TR01-KA121-VET-000436073,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Adana Sanayi Odası,Adana,243792.0,Kabul Listesi
+78,2026-1-TR01-KA121-VET-000436108,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Manisa İl Milli Eğitim Müdürlüğü,Manisa,270082.0,Kabul Listesi
+79,2026-1-TR01-KA121-VET-000436123,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Adana İl Milli Eğitim Müdürlüğü,Adana,215867.0,Kabul Listesi
+80,2026-1-TR01-KA121-VET-000436231,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Ardahan İl Milli Eğitim Müdürlüğü,Ardahan,87917.0,Kabul Listesi
+81,2026-1-TR01-KA121-VET-000436253,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Sivas Mesleki ve Teknik Anadolu Lisesi,Sivas,95780.0,Kabul Listesi
+82,2026-1-TR01-KA121-VET-000436313,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Tokat İl Milli Eğitim Müdürlüğü,Tokat,246420.0,Kabul Listesi
+83,2026-1-TR01-KA121-VET-000436428,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kütahya Mesleki ve Teknik Anadolu Lisesi,Kütahya,137642.0,Kabul Listesi
+84,2026-1-TR01-KA121-VET-000436511,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bilgi Teknolojileri ve İletişim Kurumu,Ankara,80290.0,Kabul Listesi
+85,2026-1-TR01-KA121-VET-000436555,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Türkiye Ayakkabı Sektörü Araştırma Geliştirme ve Eğitim Vakfı,İstanbul,62933.0,Kabul Listesi
+86,2026-1-TR01-KA121-VET-000436580,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Osmaniye İl Milli Eğitim Müdürlüğü,Osmaniye,107452.0,Kabul Listesi
+87,2026-1-TR01-KA121-VET-000436629,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İstanbul Ticaret Odası,İstanbul,207350.0,Kabul Listesi
+88,2026-1-TR01-KA121-VET-000436677,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Ankara Sanayi Odası,Ankara,123268.0,Kabul Listesi
+89,2026-1-TR01-KA121-VET-000436706,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Afyonkarahisar İl Milli Eğitim Müdürlüğü,Afyonkarahisar,356540.0,Kabul Listesi
+90,2026-1-TR01-KA121-VET-000436711,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Anadolu Ajansı Türk A.Ş.,Ankara,28022.0,Kabul Listesi
+91,2026-1-TR01-KA121-VET-000438102,Mesleki Eğitim Alanında Erasmus Akreditasyonu,T.C. Çalışma ve Sosyal Güvenlik Bakanlığı Dış İlişkiler ve Avrupa Birliği Genel Müdürlüğü,Ankara,332579.0,Kabul Listesi
+92,2026-1-TR01-KA121-VET-000438725,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bursa Nilüfer Otomotiv Endüstrisi İhracatçıları Birliği Mesleki ve Teknik Anadolu Lisesi,Bursa,357784.0,Kabul Listesi
+93,2026-1-TR01-KA121-VET-000439041,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Baykar Fen Lisesi,İstanbul,146854.0,Kabul Listesi
+94,2026-1-TR01-KA121-VET-000439617,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İstanbul Pendik Teknopark İstanbul Mesleki ve Teknik Anadolu Lisesi,İstanbul,116553.0,Kabul Listesi
+95,2026-1-TR01-KA121-VET-000440020,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Karabük İl Milli Eğitim Müdürlüğü,Karabük,246650.0,Kabul Listesi
+96,2026-1-TR01-KA121-VET-000440262,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Bitlis İl Milli Eğitim Müdürlüğü,Bitlis,122797.0,Kabul Listesi
+97,2026-1-TR01-KA121-VET-000440412,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Isparta İl Milli Eğitim Müdürlüğü,Isparta,351654.0,Kabul Listesi
+98,2026-1-TR01-KA121-VET-000440667,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kocaeli Derince Çınarlı Mesleki ve Teknik Anadolu Lisesi,Kocaeli,455349.0,Kabul Listesi
+99,2026-1-TR01-KA121-VET-000441434,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Çanakkale İl Milli Eğitim Müdürlüğü,Çanakkale,234968.0,Kabul Listesi
+100,2026-1-TR01-KA121-VET-000442001,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Sultanbeyli Sabiha Gökçen Mesleki ve Teknik Anadolu Lisesi,İstanbul,232836.0,Kabul Listesi
+101,2026-1-TR01-KA121-VET-000442061,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Ankara Etimesgut Cezeri Yeşil Teknoloji Mesleki ve Teknik Anadolu Lisesi,Ankara,88689.0,Kabul Listesi
+102,2026-1-TR01-KA121-VET-000442103,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Gaziantep İl Milli Eğitim Müdürlüğü,Gaziantep,310980.0,Kabul Listesi
+103,2026-1-TR01-KA121-VET-000442124,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Mersin İl Milli Eğitim Müdürlüğü,Mersin,176857.0,Kabul Listesi
+104,2026-1-TR01-KA121-VET-000442138,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kırklareli İl Milli Eğitim Müdürlüğü,Kırklareli,344645.0,Kabul Listesi
+105,2026-1-TR01-KA121-VET-000442446,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Rize İl Milli Eğitim Müdürlüğü,Rize,79960.0,Kabul Listesi
+106,2026-1-TR01-KA121-VET-000442465,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Balıkesir İl Milli Eğitim Müdürlüğü,Balıkesir,411442.0,Kabul Listesi
+107,2026-1-TR01-KA121-VET-000442511,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İMES Organize Sanayi Bölgesi Mükemmeliyet Merkezi İleri Mühendislik A.Ş.,Kocaeli,258435.0,Kabul Listesi
+108,2026-1-TR01-KA121-VET-000442540,Mesleki Eğitim Alanında Erasmus Akreditasyonu,T.C. Milli Eğitim Bakanlığı Mesleki ve Teknik Eğitim Genel Müdürlüğü,Ankara,151500.0,Kabul Listesi
+109,2026-1-TR01-KA121-VET-000442805,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Karaman Merkez Temizel-Ünlü Mesleki ve Teknik Anadolu Lisesi,Karaman,260482.0,Kabul Listesi
+110,2026-1-TR01-KA121-VET-000442835,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Zonguldak İl Milli Eğitim Müdürlüğü,Zonguldak,170077.0,Kabul Listesi
+111,2026-1-TR01-KA121-VET-000442843,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Sinop İl Milli Eğitim Müdürlüğü,Sinop,73888.0,Kabul Listesi
+112,2026-1-TR01-KA121-VET-000442922,Mesleki Eğitim Alanında Erasmus Akreditasyonu,TUSAŞ-Türk Havacılık ve Uzay Sanayii A.Ş.,Ankara,295760.0,Kabul Listesi
+113,2026-1-TR01-KA121-VET-000443292,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Trabzon İl Milli Eğitim Müdürlüğü,Trabzon,302285.0,Kabul Listesi
+114,2026-1-TR01-KA121-VET-000443452,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Ağrı İl Milli Eğitim Müdürlüğü,Ağrı,220708.0,Kabul Listesi
+115,2026-1-TR01-KA121-VET-000443644,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Şanlıurfa İl Milli Eğitim Müdürlüğü,Şanlıurfa,243500.0,Kabul Listesi
+116,2026-1-TR01-KA121-VET-000443829,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Eskişehir İl Milli Eğitim Müdürlüğü,Eskişehir,272640.0,Kabul Listesi
+117,2026-1-TR01-KA121-VET-000443836,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kocaeli İl Milli Eğitim Müdürlüğü,Kocaeli,412398.0,Kabul Listesi
+118,2026-1-TR01-KA121-VET-000444250,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Niğde İl Milli Eğitim Müdürlüğü,Niğde,142115.0,Kabul Listesi
+119,2026-1-TR01-KA121-VET-000444254,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Burdur İl Milli Eğitim Müdürlüğü,Burdur,220801.0,Kabul Listesi
+120,2026-1-TR01-KA121-VET-000444712,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İstanbul Sanayi Odası,İstanbul,349990.0,Kabul Listesi
+121,2026-1-TR01-KA121-VET-000444869,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İstanbul Teknik Üniversitesi Mesleki ve Teknik Anadolu Lisesi,İstanbul,93355.0,Kabul Listesi
+122,2026-1-TR01-KA121-VET-000445673,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Tekirdağ İl Milli Eğitim Müdürlüğü,Tekirdağ,261269.0,Kabul Listesi
+123,2026-1-TR01-KA121-VET-000446718,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Aksu Uçak Bakım Teknolojisi Mesleki ve Teknik Anadolu Lisesi,Antalya,127152.0,Kabul Listesi
+124,2026-1-TR01-KA121-VET-000447011,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Van İl Milli Eğitim Müdürlüğü,Van,344872.0,Kabul Listesi
+125,2026-1-TR01-KA121-VET-000447730,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Konya Selçuklu Mehmet Tuza Pakpen Mesleki ve Teknik Anadolu Lisesi,Konya,201201.0,Kabul Listesi
+126,2026-1-TR01-KA121-VET-000447786,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Kütahya İl Milli Eğitim Müdürlüğü,Kütahya,152490.0,Kabul Listesi
+127,2026-1-TR01-KA121-VET-000447939,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Arçelik A.Ş.,İstanbul,436200.0,Kabul Listesi
+128,2026-1-TR01-KA121-VET-000448137,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Çankırı İl Milli Eğitim Müdürlüğü,Çankırı,180269.0,Kabul Listesi
+129,2026-1-TR01-KA121-VET-000448167,Mesleki Eğitim Alanında Erasmus Akreditasyonu,İstanbul Kartal Yakacık Mesleki ve Teknik Anadolu Lisesi,İstanbul,303845.0,Kabul Listesi
+130,2026-1-TR01-KA121-VET-000448552,Mesleki Eğitim Alanında Erasmus Akreditasyonu,Çankaya Borsa İstanbul Mesleki ve Teknik Anadolu Lisesi,Ankara,294913.0,Kabul Listesi

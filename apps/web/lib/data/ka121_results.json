@@ -1,0 +1,1172 @@
+[
+  {
+    "row_no":1,
+    "project_code":"2026-1-TR01-KA121-VET-000407105",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"GEBKİM Eğitim, Araştırma ve Sağlık Vakfı",
+    "city":"Kocaeli",
+    "grant_amount_eur":133849.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":2,
+    "project_code":"2026-1-TR01-KA121-VET-000413168",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Türkiye Kızılay Derneği",
+    "city":"Ankara",
+    "grant_amount_eur":43690.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":3,
+    "project_code":"2026-1-TR01-KA121-VET-000417730",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"ASO 1. Organize Sanayi Bölgesi",
+    "city":"Ankara",
+    "grant_amount_eur":136417.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":4,
+    "project_code":"2026-1-TR01-KA121-VET-000421708",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Karaman İl Milli Eğitim Müdürlüğü",
+    "city":"Karaman",
+    "grant_amount_eur":318585.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":5,
+    "project_code":"2026-1-TR01-KA121-VET-000421983",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Türkiye Cumhuriyeti Devlet Demiryolları İşletmesi Genel Müdürlüğü",
+    "city":"Ankara",
+    "grant_amount_eur":250806.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":6,
+    "project_code":"2026-1-TR01-KA121-VET-000424865",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Çorum İl Milli Eğitim Müdürlüğü",
+    "city":"Çorum",
+    "grant_amount_eur":140477.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":7,
+    "project_code":"2026-1-TR01-KA121-VET-000425312",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Muğla İl Milli Eğitim Müdürlüğü",
+    "city":"Muğla",
+    "grant_amount_eur":295600.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":8,
+    "project_code":"2026-1-TR01-KA121-VET-000425583",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İzmit Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Kocaeli",
+    "grant_amount_eur":362811.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":9,
+    "project_code":"2026-1-TR01-KA121-VET-000425667",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bursa Osmangazi Tophane Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Bursa",
+    "grant_amount_eur":217497.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":10,
+    "project_code":"2026-1-TR01-KA121-VET-000425773",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Türkiye Adalet Akademisi",
+    "city":"Ankara",
+    "grant_amount_eur":77900.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":11,
+    "project_code":"2026-1-TR01-KA121-VET-000426040",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Orman Genel Müdürlüğü",
+    "city":"Ankara",
+    "grant_amount_eur":126094.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":12,
+    "project_code":"2026-1-TR01-KA121-VET-000426645",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Erzurum Oltu Mesleki Eğitim Merkezi",
+    "city":"Erzurum",
+    "grant_amount_eur":183602.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":13,
+    "project_code":"2026-1-TR01-KA121-VET-000426785",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Hatay İl Milli Eğitim Müdürlüğü",
+    "city":"Hatay",
+    "grant_amount_eur":340302.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":14,
+    "project_code":"2026-1-TR01-KA121-VET-000427218",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"T.C. Tarım ve Orman Bakanlığı Balıkçılık ve Su Ürünleri Genel Müdürlüğü",
+    "city":"Ankara",
+    "grant_amount_eur":57839.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":15,
+    "project_code":"2026-1-TR01-KA121-VET-000427670",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Elazığ İl Milli Eğitim Müdürlüğü",
+    "city":"Elazığ",
+    "grant_amount_eur":322856.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":16,
+    "project_code":"2026-1-TR01-KA121-VET-000427827",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Roketsan Roket Sanayii ve Ticaret A.Ş.",
+    "city":"Ankara",
+    "grant_amount_eur":31760.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":17,
+    "project_code":"2026-1-TR01-KA121-VET-000427836",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bolu İl Milli Eğitim Müdürlüğü",
+    "city":"Bolu",
+    "grant_amount_eur":235100.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":18,
+    "project_code":"2026-1-TR01-KA121-VET-000427888",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Erzincan İl Milli Eğitim Müdürlüğü",
+    "city":"Erzincan",
+    "grant_amount_eur":140030.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":19,
+    "project_code":"2026-1-TR01-KA121-VET-000427975",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Artvin İl Milli Eğitim Müdürlüğü",
+    "city":"Artvin",
+    "grant_amount_eur":96579.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":20,
+    "project_code":"2026-1-TR01-KA121-VET-000428225",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Ankara Üniversitesi Deniz Hukuku Ulusal Araştırma Merkezi",
+    "city":"Ankara",
+    "grant_amount_eur":321384.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":21,
+    "project_code":"2026-1-TR01-KA121-VET-000428751",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Şaban Temuge Turizm Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Yalova",
+    "grant_amount_eur":341551.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":22,
+    "project_code":"2026-1-TR01-KA121-VET-000428771",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Antalya İl Milli Eğitim Müdürlüğü",
+    "city":"Antalya",
+    "grant_amount_eur":340987.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":23,
+    "project_code":"2026-1-TR01-KA121-VET-000428906",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kastamonu İl Milli Eğitim Müdürlüğü",
+    "city":"Kastamonu",
+    "grant_amount_eur":296589.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":24,
+    "project_code":"2026-1-TR01-KA121-VET-000428908",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kütahya Ticaret ve Sanayi Odası",
+    "city":"Kütahya",
+    "grant_amount_eur":107280.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":25,
+    "project_code":"2026-1-TR01-KA121-VET-000428962",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Amasya İl Milli Eğitim Müdürlüğü",
+    "city":"Amasya",
+    "grant_amount_eur":248776.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":26,
+    "project_code":"2026-1-TR01-KA121-VET-000428993",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Müstakil Sanayici ve İşadamları Derneği",
+    "city":"İstanbul",
+    "grant_amount_eur":394270.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":27,
+    "project_code":"2026-1-TR01-KA121-VET-000429005",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Erzurum İl Milli Eğitim Müdürlüğü",
+    "city":"Erzurum",
+    "grant_amount_eur":246980.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":28,
+    "project_code":"2026-1-TR01-KA121-VET-000429027",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Batman İl Milli Eğitim Müdürlüğü",
+    "city":"Batman",
+    "grant_amount_eur":269119.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":29,
+    "project_code":"2026-1-TR01-KA121-VET-000429639",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İstanbul İl Milli Eğitim Müdürlüğü",
+    "city":"İstanbul",
+    "grant_amount_eur":386787.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":30,
+    "project_code":"2026-1-TR01-KA121-VET-000430266",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İstanbul Arnavutköy İbrahim Özaydın Mesleki ve Teknik Anadolu Lisesi",
+    "city":"İstanbul",
+    "grant_amount_eur":160261.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":31,
+    "project_code":"2026-1-TR01-KA121-VET-000430450",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Türkiye Aşçılar ve Şefler Federasyonu",
+    "city":"İstanbul",
+    "grant_amount_eur":125083.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":32,
+    "project_code":"2026-1-TR01-KA121-VET-000431100",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bahçelievler Aydın Doğan Ticaret Mesleki ve Teknik Anadolu Lisesi",
+    "city":"İstanbul",
+    "grant_amount_eur":221211.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":33,
+    "project_code":"2026-1-TR01-KA121-VET-000431725",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Aydın İl Milli Eğitim Müdürlüğü",
+    "city":"Aydın",
+    "grant_amount_eur":286080.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":34,
+    "project_code":"2026-1-TR01-KA121-VET-000431907",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Gaziantep Ticaret Odası",
+    "city":"Gaziantep",
+    "grant_amount_eur":22957.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":35,
+    "project_code":"2026-1-TR01-KA121-VET-000431912",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Yalova İl Milli Eğitim Müdürlüğü",
+    "city":"Yalova",
+    "grant_amount_eur":241314.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":36,
+    "project_code":"2026-1-TR01-KA121-VET-000431990",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Denizli İl Milli Eğitim Müdürlüğü",
+    "city":"Denizli",
+    "grant_amount_eur":172857.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":37,
+    "project_code":"2026-1-TR01-KA121-VET-000432020",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Tunceli İl Milli Eğitim Müdürlüğü",
+    "city":"Tunceli",
+    "grant_amount_eur":244222.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":38,
+    "project_code":"2026-1-TR01-KA121-VET-000432078",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Sivas İl Milli Eğitim Müdürlüğü",
+    "city":"Sivas",
+    "grant_amount_eur":180138.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":39,
+    "project_code":"2026-1-TR01-KA121-VET-000432099",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Edirne İl Milli Eğitim Müdürlüğü",
+    "city":"Edirne",
+    "grant_amount_eur":225214.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":40,
+    "project_code":"2026-1-TR01-KA121-VET-000432237",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Ankara Turizm Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Ankara",
+    "grant_amount_eur":260564.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":41,
+    "project_code":"2026-1-TR01-KA121-VET-000432242",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İzmir İl Milli Eğitim Müdürlüğü",
+    "city":"İzmir",
+    "grant_amount_eur":415788.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":42,
+    "project_code":"2026-1-TR01-KA121-VET-000432419",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Hakkari İl Milli Eğitim Müdürlüğü",
+    "city":"Hakkari",
+    "grant_amount_eur":73824.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":43,
+    "project_code":"2026-1-TR01-KA121-VET-000432516",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Adıyaman İl Milli Eğitim Müdürlüğü",
+    "city":"Adıyaman",
+    "grant_amount_eur":258855.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":44,
+    "project_code":"2026-1-TR01-KA121-VET-000432617",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"TÜBİTAK Uzay Teknolojileri Araştırma Enstitüsü",
+    "city":"Ankara",
+    "grant_amount_eur":52210.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":45,
+    "project_code":"2026-1-TR01-KA121-VET-000432945",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Antalya Manavgat Şule Muzaffer Büyük Kız Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Antalya",
+    "grant_amount_eur":430959.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":46,
+    "project_code":"2026-1-TR01-KA121-VET-000433092",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Aksaray İl Milli Eğitim Müdürlüğü",
+    "city":"Aksaray",
+    "grant_amount_eur":118084.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":47,
+    "project_code":"2026-1-TR01-KA121-VET-000433883",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bursa Osmangazi Ali Osman Sönmez Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Bursa",
+    "grant_amount_eur":129218.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":48,
+    "project_code":"2026-1-TR01-KA121-VET-000434031",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kayseri İl Milli Eğitim Müdürlüğü",
+    "city":"Kayseri",
+    "grant_amount_eur":249720.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":49,
+    "project_code":"2026-1-TR01-KA121-VET-000434216",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Diyarbakır İl Milli Eğitim Müdürlüğü",
+    "city":"Diyarbakır",
+    "grant_amount_eur":260658.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":50,
+    "project_code":"2026-1-TR01-KA121-VET-000434245",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bursa İl Milli Eğitim Müdürlüğü",
+    "city":"Bursa",
+    "grant_amount_eur":464218.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":51,
+    "project_code":"2026-1-TR01-KA121-VET-000434485",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Mardin İl Milli Eğitim Müdürlüğü",
+    "city":"Mardin",
+    "grant_amount_eur":275537.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":52,
+    "project_code":"2026-1-TR01-KA121-VET-000434561",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bozüyük Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Bilecik",
+    "grant_amount_eur":157130.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":53,
+    "project_code":"2026-1-TR01-KA121-VET-000434633",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Ankara İl Milli Eğitim Müdürlüğü",
+    "city":"Ankara",
+    "grant_amount_eur":468174.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":54,
+    "project_code":"2026-1-TR01-KA121-VET-000434723",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Akçakoca Turizm Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Kocaeli",
+    "grant_amount_eur":277314.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":55,
+    "project_code":"2026-1-TR01-KA121-VET-000434830",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Düzce İl Milli Eğitim Müdürlüğü",
+    "city":"Düzce",
+    "grant_amount_eur":164067.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":56,
+    "project_code":"2026-1-TR01-KA121-VET-000434841",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kırıkkale İl Milli Eğitim Müdürlüğü",
+    "city":"Kırıkkale",
+    "grant_amount_eur":99128.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":57,
+    "project_code":"2026-1-TR01-KA121-VET-000434899",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kilis İl Milli Eğitim Müdürlüğü",
+    "city":"Kilis",
+    "grant_amount_eur":278210.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":58,
+    "project_code":"2026-1-TR01-KA121-VET-000434913",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bilecik İl Milli Eğitim Müdürlüğü",
+    "city":"Bilecik",
+    "grant_amount_eur":255858.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":59,
+    "project_code":"2026-1-TR01-KA121-VET-000435210",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Uşak İl Milli Eğitim Müdürlüğü",
+    "city":"Uşak",
+    "grant_amount_eur":277133.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":60,
+    "project_code":"2026-1-TR01-KA121-VET-000435360",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Nevşehir İl Milli Eğitim Müdürlüğü",
+    "city":"Nevşehir",
+    "grant_amount_eur":200500.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":61,
+    "project_code":"2026-1-TR01-KA121-VET-000435561",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bartın İl Milli Eğitim Müdürlüğü",
+    "city":"Bartın",
+    "grant_amount_eur":124200.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":62,
+    "project_code":"2026-1-TR01-KA121-VET-000435735",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Sakarya İl Milli Eğitim Müdürlüğü",
+    "city":"Sakarya",
+    "grant_amount_eur":271563.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":63,
+    "project_code":"2026-1-TR01-KA121-VET-000435765",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Giresun İl Milli Eğitim Müdürlüğü",
+    "city":"Giresun",
+    "grant_amount_eur":131636.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":64,
+    "project_code":"2026-1-TR01-KA121-VET-000435783",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kahramanmaraş İl Milli Eğitim Müdürlüğü",
+    "city":"Kahramanmaraş",
+    "grant_amount_eur":269167.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":65,
+    "project_code":"2026-1-TR01-KA121-VET-000435793",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Samsun İl Milli Eğitim Müdürlüğü",
+    "city":"Samsun",
+    "grant_amount_eur":301823.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":66,
+    "project_code":"2026-1-TR01-KA121-VET-000435819",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Muş İl Milli Eğitim Müdürlüğü",
+    "city":"Muş",
+    "grant_amount_eur":65490.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":67,
+    "project_code":"2026-1-TR01-KA121-VET-000435855",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Tokat Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Tokat",
+    "grant_amount_eur":351613.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":68,
+    "project_code":"2026-1-TR01-KA121-VET-000435866",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İstanbul Arnavutköy İstanbul Havalimanı Mesleki ve Teknik Anadolu Lisesi",
+    "city":"İstanbul",
+    "grant_amount_eur":119959.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":69,
+    "project_code":"2026-1-TR01-KA121-VET-000435869",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Gölcük Şehit Volkan Tantürk Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Kocaeli",
+    "grant_amount_eur":396461.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":70,
+    "project_code":"2026-1-TR01-KA121-VET-000435940",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Malatya İl Milli Eğitim Müdürlüğü",
+    "city":"Malatya",
+    "grant_amount_eur":289916.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":71,
+    "project_code":"2026-1-TR01-KA121-VET-000435975",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Ankara Sincan Erkunt Mesleki Eğitim Merkezi",
+    "city":"Ankara",
+    "grant_amount_eur":137220.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":72,
+    "project_code":"2026-1-TR01-KA121-VET-000435980",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Demirören Medya ve Teknoloji Mesleki ve Teknik Anadolu Lisesi",
+    "city":"İstanbul",
+    "grant_amount_eur":172890.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":73,
+    "project_code":"2026-1-TR01-KA121-VET-000435986",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Ordu İl Milli Eğitim Müdürlüğü",
+    "city":"Ordu",
+    "grant_amount_eur":342519.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":74,
+    "project_code":"2026-1-TR01-KA121-VET-000436010",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bingöl İl Milli Eğitim Müdürlüğü",
+    "city":"Bingöl",
+    "grant_amount_eur":151063.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":75,
+    "project_code":"2026-1-TR01-KA121-VET-000436034",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Hidromek-Hidrolik ve Mekanik Makina İmalat Sanayi ve Ticaret A.Ş.",
+    "city":"Ankara",
+    "grant_amount_eur":90415.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":76,
+    "project_code":"2026-1-TR01-KA121-VET-000436049",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Yozgat İl Milli Eğitim Müdürlüğü",
+    "city":"Yozgat",
+    "grant_amount_eur":107358.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":77,
+    "project_code":"2026-1-TR01-KA121-VET-000436073",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Adana Sanayi Odası",
+    "city":"Adana",
+    "grant_amount_eur":243792.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":78,
+    "project_code":"2026-1-TR01-KA121-VET-000436108",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Manisa İl Milli Eğitim Müdürlüğü",
+    "city":"Manisa",
+    "grant_amount_eur":270082.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":79,
+    "project_code":"2026-1-TR01-KA121-VET-000436123",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Adana İl Milli Eğitim Müdürlüğü",
+    "city":"Adana",
+    "grant_amount_eur":215867.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":80,
+    "project_code":"2026-1-TR01-KA121-VET-000436231",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Ardahan İl Milli Eğitim Müdürlüğü",
+    "city":"Ardahan",
+    "grant_amount_eur":87917.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":81,
+    "project_code":"2026-1-TR01-KA121-VET-000436253",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Sivas Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Sivas",
+    "grant_amount_eur":95780.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":82,
+    "project_code":"2026-1-TR01-KA121-VET-000436313",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Tokat İl Milli Eğitim Müdürlüğü",
+    "city":"Tokat",
+    "grant_amount_eur":246420.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":83,
+    "project_code":"2026-1-TR01-KA121-VET-000436428",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kütahya Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Kütahya",
+    "grant_amount_eur":137642.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":84,
+    "project_code":"2026-1-TR01-KA121-VET-000436511",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bilgi Teknolojileri ve İletişim Kurumu",
+    "city":"Ankara",
+    "grant_amount_eur":80290.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":85,
+    "project_code":"2026-1-TR01-KA121-VET-000436555",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Türkiye Ayakkabı Sektörü Araştırma Geliştirme ve Eğitim Vakfı",
+    "city":"İstanbul",
+    "grant_amount_eur":62933.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":86,
+    "project_code":"2026-1-TR01-KA121-VET-000436580",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Osmaniye İl Milli Eğitim Müdürlüğü",
+    "city":"Osmaniye",
+    "grant_amount_eur":107452.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":87,
+    "project_code":"2026-1-TR01-KA121-VET-000436629",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İstanbul Ticaret Odası",
+    "city":"İstanbul",
+    "grant_amount_eur":207350.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":88,
+    "project_code":"2026-1-TR01-KA121-VET-000436677",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Ankara Sanayi Odası",
+    "city":"Ankara",
+    "grant_amount_eur":123268.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":89,
+    "project_code":"2026-1-TR01-KA121-VET-000436706",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Afyonkarahisar İl Milli Eğitim Müdürlüğü",
+    "city":"Afyonkarahisar",
+    "grant_amount_eur":356540.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":90,
+    "project_code":"2026-1-TR01-KA121-VET-000436711",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Anadolu Ajansı Türk A.Ş.",
+    "city":"Ankara",
+    "grant_amount_eur":28022.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":91,
+    "project_code":"2026-1-TR01-KA121-VET-000438102",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"T.C. Çalışma ve Sosyal Güvenlik Bakanlığı Dış İlişkiler ve Avrupa Birliği Genel Müdürlüğü",
+    "city":"Ankara",
+    "grant_amount_eur":332579.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":92,
+    "project_code":"2026-1-TR01-KA121-VET-000438725",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bursa Nilüfer Otomotiv Endüstrisi İhracatçıları Birliği Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Bursa",
+    "grant_amount_eur":357784.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":93,
+    "project_code":"2026-1-TR01-KA121-VET-000439041",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Baykar Fen Lisesi",
+    "city":"İstanbul",
+    "grant_amount_eur":146854.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":94,
+    "project_code":"2026-1-TR01-KA121-VET-000439617",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İstanbul Pendik Teknopark İstanbul Mesleki ve Teknik Anadolu Lisesi",
+    "city":"İstanbul",
+    "grant_amount_eur":116553.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":95,
+    "project_code":"2026-1-TR01-KA121-VET-000440020",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Karabük İl Milli Eğitim Müdürlüğü",
+    "city":"Karabük",
+    "grant_amount_eur":246650.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":96,
+    "project_code":"2026-1-TR01-KA121-VET-000440262",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Bitlis İl Milli Eğitim Müdürlüğü",
+    "city":"Bitlis",
+    "grant_amount_eur":122797.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":97,
+    "project_code":"2026-1-TR01-KA121-VET-000440412",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Isparta İl Milli Eğitim Müdürlüğü",
+    "city":"Isparta",
+    "grant_amount_eur":351654.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":98,
+    "project_code":"2026-1-TR01-KA121-VET-000440667",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kocaeli Derince Çınarlı Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Kocaeli",
+    "grant_amount_eur":455349.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":99,
+    "project_code":"2026-1-TR01-KA121-VET-000441434",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Çanakkale İl Milli Eğitim Müdürlüğü",
+    "city":"Çanakkale",
+    "grant_amount_eur":234968.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":100,
+    "project_code":"2026-1-TR01-KA121-VET-000442001",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Sultanbeyli Sabiha Gökçen Mesleki ve Teknik Anadolu Lisesi",
+    "city":"İstanbul",
+    "grant_amount_eur":232836.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":101,
+    "project_code":"2026-1-TR01-KA121-VET-000442061",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Ankara Etimesgut Cezeri Yeşil Teknoloji Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Ankara",
+    "grant_amount_eur":88689.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":102,
+    "project_code":"2026-1-TR01-KA121-VET-000442103",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Gaziantep İl Milli Eğitim Müdürlüğü",
+    "city":"Gaziantep",
+    "grant_amount_eur":310980.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":103,
+    "project_code":"2026-1-TR01-KA121-VET-000442124",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Mersin İl Milli Eğitim Müdürlüğü",
+    "city":"Mersin",
+    "grant_amount_eur":176857.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":104,
+    "project_code":"2026-1-TR01-KA121-VET-000442138",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kırklareli İl Milli Eğitim Müdürlüğü",
+    "city":"Kırklareli",
+    "grant_amount_eur":344645.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":105,
+    "project_code":"2026-1-TR01-KA121-VET-000442446",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Rize İl Milli Eğitim Müdürlüğü",
+    "city":"Rize",
+    "grant_amount_eur":79960.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":106,
+    "project_code":"2026-1-TR01-KA121-VET-000442465",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Balıkesir İl Milli Eğitim Müdürlüğü",
+    "city":"Balıkesir",
+    "grant_amount_eur":411442.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":107,
+    "project_code":"2026-1-TR01-KA121-VET-000442511",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İMES Organize Sanayi Bölgesi Mükemmeliyet Merkezi İleri Mühendislik A.Ş.",
+    "city":"Kocaeli",
+    "grant_amount_eur":258435.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":108,
+    "project_code":"2026-1-TR01-KA121-VET-000442540",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"T.C. Milli Eğitim Bakanlığı Mesleki ve Teknik Eğitim Genel Müdürlüğü",
+    "city":"Ankara",
+    "grant_amount_eur":151500.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":109,
+    "project_code":"2026-1-TR01-KA121-VET-000442805",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Karaman Merkez Temizel-Ünlü Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Karaman",
+    "grant_amount_eur":260482.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":110,
+    "project_code":"2026-1-TR01-KA121-VET-000442835",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Zonguldak İl Milli Eğitim Müdürlüğü",
+    "city":"Zonguldak",
+    "grant_amount_eur":170077.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":111,
+    "project_code":"2026-1-TR01-KA121-VET-000442843",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Sinop İl Milli Eğitim Müdürlüğü",
+    "city":"Sinop",
+    "grant_amount_eur":73888.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":112,
+    "project_code":"2026-1-TR01-KA121-VET-000442922",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"TUSAŞ-Türk Havacılık ve Uzay Sanayii A.Ş.",
+    "city":"Ankara",
+    "grant_amount_eur":295760.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":113,
+    "project_code":"2026-1-TR01-KA121-VET-000443292",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Trabzon İl Milli Eğitim Müdürlüğü",
+    "city":"Trabzon",
+    "grant_amount_eur":302285.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":114,
+    "project_code":"2026-1-TR01-KA121-VET-000443452",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Ağrı İl Milli Eğitim Müdürlüğü",
+    "city":"Ağrı",
+    "grant_amount_eur":220708.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":115,
+    "project_code":"2026-1-TR01-KA121-VET-000443644",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Şanlıurfa İl Milli Eğitim Müdürlüğü",
+    "city":"Şanlıurfa",
+    "grant_amount_eur":243500.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":116,
+    "project_code":"2026-1-TR01-KA121-VET-000443829",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Eskişehir İl Milli Eğitim Müdürlüğü",
+    "city":"Eskişehir",
+    "grant_amount_eur":272640.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":117,
+    "project_code":"2026-1-TR01-KA121-VET-000443836",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kocaeli İl Milli Eğitim Müdürlüğü",
+    "city":"Kocaeli",
+    "grant_amount_eur":412398.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":118,
+    "project_code":"2026-1-TR01-KA121-VET-000444250",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Niğde İl Milli Eğitim Müdürlüğü",
+    "city":"Niğde",
+    "grant_amount_eur":142115.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":119,
+    "project_code":"2026-1-TR01-KA121-VET-000444254",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Burdur İl Milli Eğitim Müdürlüğü",
+    "city":"Burdur",
+    "grant_amount_eur":220801.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":120,
+    "project_code":"2026-1-TR01-KA121-VET-000444712",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İstanbul Sanayi Odası",
+    "city":"İstanbul",
+    "grant_amount_eur":349990.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":121,
+    "project_code":"2026-1-TR01-KA121-VET-000444869",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İstanbul Teknik Üniversitesi Mesleki ve Teknik Anadolu Lisesi",
+    "city":"İstanbul",
+    "grant_amount_eur":93355.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":122,
+    "project_code":"2026-1-TR01-KA121-VET-000445673",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Tekirdağ İl Milli Eğitim Müdürlüğü",
+    "city":"Tekirdağ",
+    "grant_amount_eur":261269.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":123,
+    "project_code":"2026-1-TR01-KA121-VET-000446718",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Aksu Uçak Bakım Teknolojisi Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Antalya",
+    "grant_amount_eur":127152.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":124,
+    "project_code":"2026-1-TR01-KA121-VET-000447011",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Van İl Milli Eğitim Müdürlüğü",
+    "city":"Van",
+    "grant_amount_eur":344872.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":125,
+    "project_code":"2026-1-TR01-KA121-VET-000447730",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Konya Selçuklu Mehmet Tuza Pakpen Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Konya",
+    "grant_amount_eur":201201.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":126,
+    "project_code":"2026-1-TR01-KA121-VET-000447786",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Kütahya İl Milli Eğitim Müdürlüğü",
+    "city":"Kütahya",
+    "grant_amount_eur":152490.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":127,
+    "project_code":"2026-1-TR01-KA121-VET-000447939",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Arçelik A.Ş.",
+    "city":"İstanbul",
+    "grant_amount_eur":436200.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":128,
+    "project_code":"2026-1-TR01-KA121-VET-000448137",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Çankırı İl Milli Eğitim Müdürlüğü",
+    "city":"Çankırı",
+    "grant_amount_eur":180269.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":129,
+    "project_code":"2026-1-TR01-KA121-VET-000448167",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"İstanbul Kartal Yakacık Mesleki ve Teknik Anadolu Lisesi",
+    "city":"İstanbul",
+    "grant_amount_eur":303845.0,
+    "list_type":"Kabul Listesi"
+  },
+  {
+    "row_no":130,
+    "project_code":"2026-1-TR01-KA121-VET-000448552",
+    "activity_field":"Mesleki Eğitim Alanında Erasmus Akreditasyonu",
+    "organisation_name":"Çankaya Borsa İstanbul Mesleki ve Teknik Anadolu Lisesi",
+    "city":"Ankara",
+    "grant_amount_eur":294913.0,
+    "list_type":"Kabul Listesi"
+  }
+]

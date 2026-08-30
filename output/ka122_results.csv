@@ -1,0 +1,113 @@
+row_no,project_code,organisation_name,project_title,city,grant_amount_eur,list_type
+1,2026-1-TR01-KA122-VET-000404854,Antalya Berberler Esnaf ve Sanatkarlar Odası,Berberlikte Eğitici ve Mentorluk Kapasitesinin Güçlendirilmesi,Antalya,14528.0,Kabul Listesi
+2,2026-1-TR01-KA122-VET-000405133,Recep Atakaş Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Geleceğin İstihdamı için Akıllı Enerji Becerileri,Hatay,69318.0,Kabul Listesi
+3,2026-1-TR01-KA122-VET-000405246,Ankara Çankaya Dikmen Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Elektrikli/Hibrit Araçlarda Dijital Dönüşüm ve Yeşil Beceriler,Ankara,49138.0,Kabul Listesi
+4,2026-1-TR01-KA122-VET-000406216,Nedime Serap Ulusoy Denizcilik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,River Skills 4.0: Gemi Kaptanlığı Öğrencileri için Tuna'da Dijital ve Yeşil Staj,Samsun,23684.0,Kabul Listesi
+5,2026-1-TR01-KA122-VET-000406437,Altındağ Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Sürdürülebilir Dünya için Yenilenebilir Enerji ve Enerji Verimliliği,Ankara,41256.0,Kabul Listesi
+6,2026-1-TR01-KA122-VET-000406489,Gebze Özel Eğitim Mesleki Eğitim Okulu,"Her Zihin Bir Dünya, Her Eğitim Bir Köprü",Kocaeli,27820.0,Kabul Listesi
+7,2026-1-TR01-KA122-VET-000406766,Mehmet Cevdet Urgan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Avrupa Hareketliliği Yoluyla Ayakkabıcılıkta Mesleki Becerilerin Geliştirilmesi,Gaziantep,27763.0,Kabul Listesi
+8,2026-1-TR01-KA122-VET-000407182,Kuşadası Mesleki Eğitim Merkezi Müdürlüğü,Yeni Nesil Güneş Enerji Sistemleri Stajı,Aydın,19034.0,Kabul Listesi
+9,2026-1-TR01-KA122-VET-000408915,Burdur Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Oyun Değiştirici: Mesleki Eğitimde Geleceğin Oyun Geliştiricileri için Avrupa Hareketliliği,Burdur,59513.0,Kabul Listesi
+10,2026-1-TR01-KA122-VET-000410140,Bulancak Kaptan Fatoğlu Denizcilik Mesleki ve Teknik Eğitim Anadolu Lisesi Müdürlüğü,Denizcilikte Rotamız Yeşil Liman,Giresun,72190.0,Kabul Listesi
+11,2026-1-TR01-KA122-VET-000410513,Şehit Jandarma Komando Er Bahri Avcı Mesleki Eğitim Merkezi Müdürlüğü,Otomotiv Mesleki Eğitiminde Dijital Dönüşüm,Bursa,40058.0,Kabul Listesi
+12,2026-1-TR01-KA122-VET-000410597,Esenler Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,İlmekten Eskize: Üretimden Sanatkârlığa,İstanbul,29266.0,Kabul Listesi
+13,2026-1-TR01-KA122-VET-000411839,Akçakoca Fedai Karabıyık Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Geleceğin Ustaları: Metal ile Makine ve Tasarım Teknolojileri Öğrencilerimizin Avrupa Stajı,Düzce,87308.0,Kabul Listesi
+14,2026-1-TR01-KA122-VET-000411891,Doç. Dr. Burhan Bahriyeli Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Yazılım Destekli Dijital Lojistik Alanında Avrupa Stajı,İstanbul,43066.0,Kabul Listesi
+15,2026-1-TR01-KA122-VET-000411958,Alaşehir Sümer Oral Mesleki Eğitim Merkezi Müdürlüğü,Almanya'da Staj Alaşehir'de İstihdam,Manisa,30844.0,Kabul Listesi
+16,2026-1-TR01-KA122-VET-000412661,Milas Atatürk Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Mesleki Lezzet ve Sürdürülebilir Gastronomi Yoluyla İstihdam,Muğla,89803.0,Kabul Listesi
+17,2026-1-TR01-KA122-VET-000412779,Karşıyaka Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Endüstri 4.0’da Hassas Üretim: CNC 3D Baskı ile İşgücü Optimizasyonu,Adana,52318.0,Kabul Listesi
+18,2026-1-TR01-KA122-VET-000412868,Hatay Samandağ Adem Nural Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Geleceği Yeniden İnşa Eden Mesleki Beceriler,Hatay,28570.0,Kabul Listesi
+19,2026-1-TR01-KA122-VET-000413013,Aziz Sancar Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Geleceğin Mühendisleri için Avrupa’da Güneş Enerjisi ve Akıllı Şebeke Teknolojileri Stajı,Adana,85094.0,Kabul Listesi
+20,2026-1-TR01-KA122-VET-000414300,Payas Mesleki Eğitim Merkezi Müdürlüğü,Avrupa’da ‘’U Dönüşü'' ile Geleceği İnşa Ediyoruz,Hatay,74204.0,Kabul Listesi
+21,2026-1-TR01-KA122-VET-000414536,Altınekin Şehit Adem Yıldırım Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Konya Ovası'ndan Yükselen Geleceğimiz için: Agroekolojik Tarım Sesleri,Konya,30524.0,Kabul Listesi
+22,2026-1-TR01-KA122-VET-000414637,Kanuni Sultan Süleyman Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,E-Mobilite Alanında Mesleki Eğitim Öğrencileri ve Öğretmenlerinin Yetkinliklerinin Geliştirilmesi,Gaziantep,61858.0,Kabul Listesi
+23,2026-1-TR01-KA122-VET-000415369,Ardeşen Piri Reis Denizcilik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Ekobakım: Mavi Ekonomi için Yeşil Teknolojiler,Rize,44766.0,Kabul Listesi
+24,2026-1-TR01-KA122-VET-000415613,Hatay Mesleki Eğitim Merkezi Müdürlüğü,"Beceri Bizden, Tasarruf Enerji 4.0 Sistemlerinden",Hatay,59970.0,Kabul Listesi
+25,2026-1-TR01-KA122-VET-000415736,Gaziantep Nizip Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Geleceğimin Formülü: Yeşil Dönüşümde Erasmus Katalizörü,Gaziantep,55653.0,Kabul Listesi
+26,2026-1-TR01-KA122-VET-000416140,İsmet İnönü Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Future Green VET Beyond Borders,Adana,42150.0,Kabul Listesi
+27,2026-1-TR01-KA122-VET-000416488,İzmir Menderes Mesleki Eğitim Merkezi Müdürlüğü,Atıktan Yeşil İstihdama: Gıda Temaslı rPET,İzmir,74204.0,Kabul Listesi
+28,2026-1-TR01-KA122-VET-000416981,Hacı Nihat Sözmen Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Mobilyada Yeşil Değişim, Sürdürülebilir Geleceğe Erişim",Şanlıurfa,65040.0,Kabul Listesi
+29,2026-1-TR01-KA122-VET-000417115,Buca Süleyman Şah Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Nesnelerin İnterneti (IoT) Uygulamaları ile Mesleki Yetkinlik Gelişimi,İzmir,40323.0,Kabul Listesi
+30,2026-1-TR01-KA122-VET-000417407,Hopa 15 Temmuz Şehitleri Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Avrupa’da Yapay Zekayı Öğrenin, Tüm Sınırları Aşın, Geleceğe Hazırlanın",Artvin,55695.0,Kabul Listesi
+31,2026-1-TR01-KA122-VET-000417892,Ordu Ünye Adnan Menderes Ticaret Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,AkIllı ve Yeşil Lojistikle Hasadımız Güvende,Ordu,74204.0,Kabul Listesi
+32,2026-1-TR01-KA122-VET-000418254,İskenderun Sahil Kız Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Mutfakta İnovasyonla Gelişim, Teknikte Küresel Değişim",Hatay,62648.0,Kabul Listesi
+33,2026-1-TR01-KA122-VET-000418522,Afşin Şifa Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Afet Sonrası Sağlık Hizmetlerinde Destek Personelinin Mesleki Kapasitesinin Artırılması,Kahramanmaraş,44652.0,Kabul Listesi
+34,2026-1-TR01-KA122-VET-000418523,Bafra Mimar Sinan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Yaşama Destek, İstihdama Destek: Biyomedikal Cihaz Teknolojilerinde Avrupa Stajı",Samsun,61688.0,Kabul Listesi
+35,2026-1-TR01-KA122-VET-000418719,Muharrem Malazgirt Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Sürdürülebilir Tarım için Avrupa Staj Hareketliliği,Hakkari,32694.0,Kabul Listesi
+36,2026-1-TR01-KA122-VET-000418775,Mehmet Erdemoğlu Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Eski Güç,Yeni Verim; Motorda Tam Değişim",Van,70628.0,Kabul Listesi
+37,2026-1-TR01-KA122-VET-000419919,Türkiye Cumhuriyeti Cumhurbaşkanlığı Devlet Arşivleri Başkanlığı,Mesleki Arşiv Hizmetlerinde Metadata Standartlarının Uygulanması,Ankara,7264.0,Kabul Listesi
+38,2026-1-TR01-KA122-VET-000421972,Gaziantep Şahinbey Mennan Usta Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Karbonsuz Ustalık, Yeşil İstihdam",Gaziantep,74204.0,Kabul Listesi
+39,2026-1-TR01-KA122-VET-000422016,Tarsus Borsa İstanbul Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Motorlu Araçlar Teknolojisi Alanımız Avrupa'da,Mersin,79764.0,Kabul Listesi
+40,2026-1-TR01-KA122-VET-000422078,Ziya Kalkavan Denizcilik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Mavi Derinlik, Yeşil Gelecek; Çift Yakıtla Karbon Silinecek",İstanbul,59688.0,Kabul Listesi
+41,2026-1-TR01-KA122-VET-000422107,Sarıgöl Milli Egemenlik Çok Programlı Anadolu Lisesi Müdürlüğü,"Meslekte Nitelik, Zeytinde Verimlilik",Manisa,55528.0,Kabul Listesi
+42,2026-1-TR01-KA122-VET-000422151,Ankara Altındağ Süleyman Şah Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Ulaşımda Elektrifikasyon Mesleğimde İnovasyon,Ankara,74204.0,Kabul Listesi
+43,2026-1-TR01-KA122-VET-000422211,Şehit Serkan Talan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Gelecek: Betonda Değil Teknolojide, El Gücünde Değil Teknikte!",Hatay,59970.0,Kabul Listesi
+44,2026-1-TR01-KA122-VET-000422248,Bursa İnegöl Dörtçelik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Operatör 360: Dikişte Kalite-Hız- Sürdürülebilirlik,Bursa,72484.0,Kabul Listesi
+45,2026-1-TR01-KA122-VET-000422330,Telkari Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Enerjiye İnovasyon Kat, Kaybı Azalt",Mardin,74204.0,Kabul Listesi
+46,2026-1-TR01-KA122-VET-000422435,Kahramankazan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Kahramankazan’dan Hollanda’ya Dijital Köprü: Lojistik 4.0 ve Akıllı Antrepo Uygulamaları,Ankara,65388.0,Kabul Listesi
+47,2026-1-TR01-KA122-VET-000422457,Van Piri Reis Denizcilik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Akıllı-Karbonsuz Gövde, Piri Reis'in Çocukları Avrupa Tersanesinde",Van,58428.0,Kabul Listesi
+48,2026-1-TR01-KA122-VET-000422609,Çerkezköy Türk Tekstil Vakfı Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Sürdürülebilir Tekstil Baskı Teknolojileri için Avrupa İşbaşı Öğrenme Hareketliliği,Tekirdağ,65949.0,Kabul Listesi
+49,2026-1-TR01-KA122-VET-000422702,Nene Hatun Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Textile 4.0 Üretimde Mükemmellik,Bursa,59968.0,Kabul Listesi
+50,2026-1-TR01-KA122-VET-000422999,Adana Seyhan Yeşilevler Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Endüstri 4.0. Yolcuları ile Akıllı Fabrikasyon ve Çevreci Dokumada Fark Yaratıyoruz,Adana,62188.0,Kabul Listesi
+51,2026-1-TR01-KA122-VET-000423324,Sakarya Ticaret ve Sanayi Odası Ticaret Mesleki ve Teknik Anadolu Lisesi,Dijital Becerilerle Güçlü Gelecek: IoT Temelli Mesleki Eğitim Hareketliliği,Sakarya,62007.0,Kabul Listesi
+52,2026-1-TR01-KA122-VET-000423438,Aydın Efeler Mimar Sinan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Adblue Sistemi ve Endüstriyel Nicel Analiz Eğitimi,Aydın,45862.0,Kabul Listesi
+53,2026-1-TR01-KA122-VET-000423624,Pazar Kız Kulesi Kız Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Pazarlı Genç Şeflerin Avrupa Otel Mutfaklarında Mesleki Eğitim Yoluyla Güçlendirilmesi,Rize,38027.0,Kabul Listesi
+54,2026-1-TR01-KA122-VET-000423667,Kepez Özel Eğitim Meslek Lisesi Müdürlüğü,Engellilerimiz Erasmus+ Stajıyla Nitelik Kazanarak Engelleri Aşıyor,Antalya,40916.0,Kabul Listesi
+55,2026-1-TR01-KA122-VET-000424186,Özel Güleç ABC Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Yerelden Avrupa’ya CNC: Avrupa Üretim Standartlarıyla Becerilerin Geliştirilmesi,Kırıkkale,59334.0,Kabul Listesi
+56,2026-1-TR01-KA122-VET-000424624,İstanbul Ümraniye İMES Süheyl Erboz Mesleki Eğitim Merkezi Müdürlüğü,Yeşil Voltaj: Çıraklıkta Geleceğin Motorunu Çalıştırıyoruz,İstanbul,78431.0,Kabul Listesi
+57,2026-1-TR01-KA122-VET-000425072,Türk Telekom Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Nesnelerin İnterneti (IoT) ve Akıllı Sistemler için Yeni Nesil Mesleki Beceriler,Diyarbakır,86340.0,Kabul Listesi
+58,2026-1-TR01-KA122-VET-000425148,Köyceğiz Şehit Ömer Halisdemir Denizcilik Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Akıllı Rotalar, Sürdürülebilir Deniz Turizmi: Yat Kaptanlığı Eğitiminde Yapay Zekâ Tabanlı Uygulamalar",Muğla,46362.0,Kabul Listesi
+59,2026-1-TR01-KA122-VET-000425311,Antalya Aksu Aysel Akın-Klaus Wagner Tarım Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Tarımda Sektörel Beklentileri Karşılamak: Avrupa’da Akıllı Tarım ve İşbaşı Öğrenme ile Mesleki Beceri Gelişimi,Antalya,32555.0,Kabul Listesi
+60,2026-1-TR01-KA122-VET-000425868,Eczacı Güzin Velittin Bekrioğlu Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Mesleki Gücümüz Avrupa ile Büyüyor,Antalya,62924.0,Kabul Listesi
+61,2026-1-TR01-KA122-VET-000427321,Tavşanlı Arslanbey Ticaret Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Securing the Future: Integrating Digital Safety in ICT Training,Kütahya,37602.0,Kabul Listesi
+62,2026-1-TR01-KA122-VET-000428017,Saffet Çebi Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Sürekli Enerji, Sürekli İstihdam",Trabzon,46266.0,Kabul Listesi
+63,2026-1-TR01-KA122-VET-000428060,Ahi Evran Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,High Voltage Safety and Green Mobility Skills in Electric and Hybrid Vehicles Through European Work-Based Learning,Tekirdağ,33254.0,Kabul Listesi
+64,2026-1-TR01-KA122-VET-000430719,Milas Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Elektrikli Yeşil Bir Gelecek ve Sürdürülebilir Güvenli Atölye için, Elektrikli Araç Teknolojilerinin İş Güvenliği Alanında Avrupa'da Staj",Muğla,25266.0,Kabul Listesi
+65,2026-1-TR01-KA122-VET-000431121,Mehmet Kemal Coşkunoz Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Mesleki Eğitimde Dijital Dönüşüm: 3D Yazıcılar ve Sanal Gerçeklik Uygulamaları,Bursa,50748.0,Kabul Listesi
+66,2026-1-TR01-KA122-VET-000431618,Afyonkarahisar Özel AOSB Rahmiye Sare Palalı Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Endüstriyel Otomasyon ve Makine Sistemlerinde Avrupa İş Kültürü ve Mesleki Yetkinlik Gelişimi,Afyonkarahisar,59978.0,Kabul Listesi
+67,2026-1-TR01-KA122-VET-000431656,Nezihe Yalvaç Turizm Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Sürdürülebilir Turizmde Yeşil ve Dijital Mesleki Becerilerin Geliştirilmesi,Adana,78282.0,Kabul Listesi
+68,2026-1-TR01-KA122-VET-000431960,Honaz Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,M-Odak - Müşteri Odaklı Yazılım Stajı,Denizli,27536.0,Kabul Listesi
+69,2026-1-TR01-KA122-VET-000432116,Ankara Etlik Şehir Hastanesi,Yoğun Bakım Sonrası Hastalarda Solunum ve Yutma Rehabilitasyonunun Birlikte Yönetimi: Ekip Temelli Öğrenme ve Gelişim Projesi,Ankara,40365.0,Kabul Listesi
+70,2026-1-TR01-KA122-VET-000432456,Manisa İl Sağlık Müdürlüğü,Boyundan Soluyanlar için İlk Yardım,Manisa,13840.0,Kabul Listesi
+71,2026-1-TR01-KA122-VET-000432760,Kanuni Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Mentorspace ile Mesleki Dönüşüm: Teoriden Pratiğe Yapay Zeka Çözümleri,Ankara,21880.0,Kabul Listesi
+72,2026-1-TR01-KA122-VET-000434585,Şehit Salih Helvacı Ticaret Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Farklılıklar Gücümüz Oyunlar Yolumuz,Ankara,22436.0,Kabul Listesi
+73,2026-1-TR01-KA122-VET-000435194,Denizli İl Tarım ve Orman Müdürlüğü,Sürdürülebilir Gıda Arzı için Tarım 5.0 Uygulamalarına Yönelik Mesleki Kapasitenin Güçlendirilmesi,Denizli,10896.0,Kabul Listesi
+74,2026-1-TR01-KA122-VET-000435910,Rize Borsa İstanbul Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Milimetrik Ustalık: Avrupa’da ADAS Servis Uygulamaları,Rize,74204.0,Kabul Listesi
+75,2026-1-TR01-KA122-VET-000435955,Büyükkarıştıran Çok Programlı Anadolu Lisesi Müdürlüğü,Endüstri 4.0 Teknisyenleri Avrupa Stajinda,Kırklareli,26316.0,Kabul Listesi
+76,2026-1-TR01-KA122-VET-000436033,Niksar Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Avrupa'da CNC Uygulamaları: Dijital Üretim ve Teknolojik Beceriler Stajı,Tokat,84770.0,Kabul Listesi
+77,2026-1-TR01-KA122-VET-000436305,Dündar Uçar Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Güvenli Ev, Güçlü Kariyer için Avrupa’dayız",İstanbul,40890.0,Kabul Listesi
+78,2026-1-TR01-KA122-VET-000436750,Bayrampaşa İstanbul Ticaret Odası Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Genç Medya Profesyonelleri Avrupa’da,İstanbul,35936.0,Kabul Listesi
+79,2026-1-TR01-KA122-VET-000437317,Sema - Abdurrahman Karamanlıoğlu Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Genç Şeflerin Mutfaktan Hayata Katılımı,Denizli,93720.0,Kabul Listesi
+80,2026-1-TR01-KA122-VET-000438112,Pazar Şehit Murat Naiboğlu Sivil Havacılık Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Raising Aviation Professionals for a Green Future,Rize,16940.0,Kabul Listesi
+81,2026-1-TR01-KA122-VET-000439019,Trabzon Ortahisar Prof. Dr. Necmettin Erbakan Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Elektrikli ve Hibrit Araçlarda Güvenli, Dijital ve Sürdürülebilir Servis Uzmanlığı",Trabzon,61688.0,Kabul Listesi
+82,2026-1-TR01-KA122-VET-000439427,Zeytinburnu Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,İklim Kriziyle Mücadele ve Florlu Gazların Azaltılması için Avrupa Yolculuğu,İstanbul,65135.0,Kabul Listesi
+83,2026-1-TR01-KA122-VET-000439741,Sivas Atatürk Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Sivas'ta Sıfır Emisyon, Avrupa ile Tam Motivasyon",Sivas,59968.0,Kabul Listesi
+84,2026-1-TR01-KA122-VET-000440360,Osmancık Nenehatun Özel Eğitim Uygulama Okulu,Özel Gereksinimli Bireyler için Yenilikçi Mesleki Eğitim ve İstihdam Yaklaşımları,Çorum,25060.0,Kabul Listesi
+85,2026-1-TR01-KA122-VET-000440542,Aziziye Yavuz Selim Tarım Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,GEM Skills (Green European Mobility Skills),Erzurum,55381.0,Kabul Listesi
+86,2026-1-TR01-KA122-VET-000440845,Bursa Atatürk Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Güneş Enerjisi Sistemleri ile Sürdürülebilir Elektrikli Araç Şarj İstasyonu Stajı,Bursa,62139.0,Kabul Listesi
+87,2026-1-TR01-KA122-VET-000441179,Orhangazi Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Avrupa İşletmelerinde İstihdam Edilebilirlik Becerileri Geliştirme,Bursa,55368.0,Kabul Listesi
+88,2026-1-TR01-KA122-VET-000441580,Abdulkadir Özgül Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Gaziantep'in Kanatları,Gaziantep,42980.0,Kabul Listesi
+89,2026-1-TR01-KA122-VET-000441717,Ulus Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Yeşil Teknolojili Yeni Nesil Akıllı Ev ve Fabrikalarda Endüstriyel Kontrol Uygulamalari Stajı,Ankara,73500.0,Kabul Listesi
+90,2026-1-TR01-KA122-VET-000441947,Yunusemre Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Yunus Emre Meslek’ten Avrupa’ya Geleceğe Köprü,Eskişehir,66380.0,Kabul Listesi
+91,2026-1-TR01-KA122-VET-000443037,Özlem Burma Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Öğrencilerimiz İstihdam için Avrupa Stajında,Kastamonu,37102.0,Kabul Listesi
+92,2026-1-TR01-KA122-VET-000443152,Seferihisar Borsa İstanbul Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Avrupa Stajıyla İstihdam Kapılarını Açıyoruz,İzmir,55368.0,Kabul Listesi
+93,2026-1-TR01-KA122-VET-000443238,Nevşehir Teknik ve Endüstri Meslek Lisesi Müdürlüğü,VET 4.0: Motor ve Elektrik Alanlarında Yapay Zekâ Tabanlı Dijital Mesleki Dönüşüm,Nevşehir,32144.0,Kabul Listesi
+94,2026-1-TR01-KA122-VET-000443279,Üsküdar Borsa İstanbul Kız Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Yapay Zeka ile Engelleri Aşan Avrupa Stajı,İstanbul,18454.0,Kabul Listesi
+95,2026-1-TR01-KA122-VET-000443422,Elazığ Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Bilişimde Kapsayıcı Gelecek: Dezavantajlı Kız Öğrencilerin Avrupa Deneyimi ve Rol Model Stratejisi ile Mesleki Rehabilitasyonu,Elazığ,24808.0,Kabul Listesi
+96,2026-1-TR01-KA122-VET-000443747,Silopi Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Fide 4.0: Geleceğe Kök Salıyoruz,Şırnak,49552.0,Kabul Listesi
+97,2026-1-TR01-KA122-VET-000444723,Atatürk Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Geleceğin Güvencesi Meslek Lisesi,Denizli,47368.0,Kabul Listesi
+98,2026-1-TR01-KA122-VET-000445085,Didim Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Deniz Araçları Kavitasyon, Pervane İmalatı, Bakım ve Çeşitliliği, Öğrenci Staj Hareketi",Aydın,14992.0,Kabul Listesi
+99,2026-1-TR01-KA122-VET-000445361,Tarsus Ticaret ve Sanayi Odası Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Tarsus Sanayisinin Yeşil Dönüşümü için Fotovoltaik Sistemlerde Avrupa Standartlarında Teknik Staj,Mersin,60288.0,Kabul Listesi
+100,2026-1-TR01-KA122-VET-000445407,Of Hacı Mehmet Bahattin Ulusoy Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Kuzeyin Genç Denizcileri,Trabzon,16870.0,Kabul Listesi
+101,2026-1-TR01-KA122-VET-000447714,Fatima Zehra Kız Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Hasta ve Yaşlı Hizmetleri Öğrencilerinin Mesleki Stajı,Siirt,29474.0,Kabul Listesi
+102,2026-1-TR01-KA122-VET-000448082,Vali Necati Bilican Mesleki Eğitim Merkezi Müdürlüğü,Dijital Üretimden Çevresel Sürdürülebilirliğe: Yeni Nesil Mesleki Eğitim,Denizli,68918.0,Kabul Listesi
+1,2026-1-TR01-KA122-VET-000408506,Hatay Saadet Yusuf Mıstıkoğlu Tarım Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Doğru Tarım, Doğru Gelecek: Hatay’da Dijital ve Sürdürülebilir Üretime Geçiş",Hatay,73877.0,Yedek Listesi
+2,2026-1-TR01-KA122-VET-000416398,Şaban Üçgül ve Kardeşleri Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Klinik Hemşirelikte Geriatrik Bakım ve Rehabilitasyon Teknikleri,Adana,80426.0,Yedek Listesi
+3,2026-1-TR01-KA122-VET-000431489,Mersin Akdeniz Mesleki Eğitim Merkezi Müdürlüğü,"Yarının Ustaları, Bugünün Kodları: CNC Teknolojileri ile Yeni Nesil Mobilyacılık",Mersin,61688.0,Yedek Listesi
+4,2026-1-TR01-KA122-VET-000441787,Buca Şerife Bacı Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Genç İstihdamın Mesleki Beceri Köprüsü,İzmir,22270.0,Yedek Listesi
+5,2026-1-TR01-KA122-VET-000419266,Gaziemir Borsa İstanbul Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Geleceğin Yeşil Atölyesi: Tasarımdan Üretime Sürdürülebilirlik,İzmir,23096.0,Yedek Listesi
+6,2026-1-TR01-KA122-VET-000427954,Halide Edip Adıvar Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Tarladan Tabağa Stratejisi Kapsamında Atıksız Mutfak ve Enerji Verimliliği Uygulamaları,Van,33230.0,Yedek Listesi
+7,2026-1-TR01-KA122-VET-000420430,Vehbi Güzel Kız Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Eco-Speed Gastronomy: Sürdürülebilirlik ve Hızın Birleşimi,Adana,59970.0,Yedek Listesi
+8,2026-1-TR01-KA122-VET-000417235,El-Cabir Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,"Gelecek Enerjide, Güç Mesleki Beceride",Şanlıurfa,69824.0,Yedek Listesi
+9,2026-1-TR01-KA122-VET-000436328,Mut Özdemirler Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Mut Özdemirler ÇPAL'nin Sağlıkta Avrupa İmzası: Dijital Hijyen ve Modern Aseptik Teknikler Stajı,Mersin,61688.0,Yedek Listesi
+10,2026-1-TR01-KA122-VET-000412795,Gaziantep Ticaret Odası Mesleki ve Teknik Anadolu Lisesi Müdürlüğü,Çıraklar Mesleki Becerilerini Avrupa’da Geliştiriyor ve Dijital Yetkinliklerini Arttırıyor,Gaziantep,22248.0,Yedek Listesi

@@ -1,14 +1,14 @@
 'use client';
 
-import React from 'react';
-import ThemeSwitcher from './ThemeSwitcher';
-import FontSwitcher from './FontSwitcher';
+import React, { useState } from 'react';
 import { useTranslation } from '../../lib/i18n';
 import { useTheme } from '../../lib/theme-context';
+import ErasmusResultsWidget from '../ui/ErasmusResultsWidget';
 
 export default function AppHeader() {
   const { locale, setLocale, t } = useTranslation();
   const { themeConfig } = useTheme();
+  const [isWidgetOpen, setIsWidgetOpen] = useState(false);
 
   return (
     <header className="bg-white text-slate-900 border-b border-slate-200 sticky top-0 z-30 shadow-xs">
@@ -57,13 +57,19 @@ export default function AppHeader() {
           </div>
         </div>
 
-        {/* Action Controls: Theme Switcher, Font Switcher & Language Switcher */}
-        <div className="flex items-center gap-2 self-end md:self-auto flex-wrap">
-          {/* Color Theme Selector */}
-          <ThemeSwitcher />
+        {/* Action Controls: Language Switcher and Tools */}
+        <div className="flex items-center gap-3 self-end md:self-auto flex-wrap">
 
-          {/* Typography Selector */}
-          <FontSwitcher />
+          {/* Hibe Sonuçları Button */}
+          <button
+            onClick={() => setIsWidgetOpen(true)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-xs"
+          >
+            <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+            2026 Hibe Sonuçlarını İncele
+          </button>
 
           {/* TR / EN Language Toggle */}
           <div className="inline-flex rounded-lg bg-slate-100 p-1 border border-slate-200">
@@ -94,6 +100,8 @@ export default function AppHeader() {
           </div>
         </div>
       </div>
+
+      <ErasmusResultsWidget isOpen={isWidgetOpen} onClose={() => setIsWidgetOpen(false)} />
     </header>
   );
 }
