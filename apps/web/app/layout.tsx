@@ -1,7 +1,9 @@
+import {ClerkProvider} from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '../lib/theme-context';
 import { LanguageProvider } from '../lib/i18n';
+import UserOrgSync from '../components/auth/UserOrgSync';
 
 export const metadata: Metadata = {
   title: 'CAPPINNO Mobility Nexus | EU VET Matching & Competence Gateway',
@@ -28,9 +30,12 @@ export default function RootLayout({
   return (
     <html lang="tr" data-theme="theme-01" suppressHydrationWarning>
       <body className="antialiased selection:bg-black selection:text-white" suppressHydrationWarning>
-        <ThemeProvider>
-          <LanguageProvider>{children}</LanguageProvider>
-        </ThemeProvider>
+        <ClerkProvider>
+          <UserOrgSync />
+          <ThemeProvider>
+            <LanguageProvider>{children}</LanguageProvider>
+          </ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

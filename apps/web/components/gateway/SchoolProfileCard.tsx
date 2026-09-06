@@ -4,6 +4,7 @@ import React from 'react';
 import NeoCard from '../ui/NeoCard';
 import { calculateReadinessScore } from '../../lib/calculations';
 import { useTranslation } from '../../lib/i18n';
+import { useAppStore } from '../../lib/store';
 
 interface SchoolProfileCardProps {
   data: {
@@ -22,6 +23,7 @@ export default function SchoolProfileCard({
   onChange,
 }: SchoolProfileCardProps) {
   const { t } = useTranslation();
+  const { currentOrg, isOnboarded } = useAppStore();
   const { score: readinessScore } = calculateReadinessScore(data);
 
   return (
@@ -33,6 +35,17 @@ export default function SchoolProfileCard({
       featured
     >
       <div className="space-y-4">
+        {isOnboarded && currentOrg && (
+          <div className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-800">
+            <span className="font-semibold flex items-center gap-1.5">
+              <span>🏛️</span>
+              <span>Kayıtlı Kurum: <strong>{currentOrg.name}</strong></span>
+            </span>
+            <span className="text-[11px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
+              Aktif Profil
+            </span>
+          </div>
+        )}
         {/* Row 1: School Name & City */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
           <div className="md:col-span-8">

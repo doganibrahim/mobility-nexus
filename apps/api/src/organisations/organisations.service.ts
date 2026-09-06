@@ -2,7 +2,7 @@ import {
   Injectable,
   NotFoundException,
   ConflictException,
-  BadRequestException,
+  Logger,
 } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -12,13 +12,17 @@ import {
 import { CreateOrganisationDto } from './dto/create-organisation.dto';
 import { UpdateOrganisationDto } from './dto/update-organisation.dto';
 import { AuditService } from '../audit/audit.service';
+import { DatabaseService } from '../database/database.service';
 
 @Injectable()
 export class OrganisationsService {
-  // In-memory data store for Phase 1 prototype; easily mapped to PostgreSQL
+  private readonly logger = new Logger(OrganisationsService.name);
   private organisations: Map<string, Organisation> = new Map();
 
-  constructor(private readonly auditService: AuditService) {
+  constructor(
+    private readonly auditService: AuditService,
+    private readonly db: DatabaseService,
+  ) {
     // Seed an initial demo organization
     const demoId = 'a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d';
     this.organisations.set(demoId, {
@@ -53,14 +57,30 @@ export class OrganisationsService {
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/(^-|-$)+/g, '');
 
-    // Check slug uniqueness
-    const existing = Array.from(this.organisations.values()).find(
-      (o) => o.slug === slug || (dto.oid && o.oid === dto.oid),
-    );
-    if (existing) {
-      throw new ConflictException(
-        'Bu isim, slug veya OID ile kayıtlı bir kurum zaten mevcut.',
+    // Check slug or OID uniqueness
+    if (this.db.isConnected) {
+      try {
+        const existing = await this.db.query(
+          `SELECT id FROM organisation WHERE slug = $1 OR (oid IS NOT NULL AND oid = $2) LIMIT 1`,
+          [slug, dto.oid || null],
+        );
+        if (existing.length > 0) {
+          throw new ConflictException(
+            'Bu isim, slug veya OID ile kayıtlı bir kurum zaten mevcut.',
+          );
+        }
+      } catch (err: any) {
+        if (err instanceof ConflictException) throw err;
+      }
+    } else {
+      const existing = Array.from(this.organisations.values()).find(
+        (o) => o.slug === slug || (dto.oid && o.oid === dto.oid),
       );
+      if (existing) {
+        throw new ConflictException(
+          'Bu isim, slug veya OID ile kayıtlı bir kurum zaten mevcut.',
+        );
+      }
     }
 
     const id = uuidv4();
@@ -94,6 +114,83 @@ export class OrganisationsService {
       updatedAt: new Date().toISOString(),
     };
 
+    // 1. Write to PostgreSQL if connected
+    if (this.db.isConnected) {
+      try {
+        await this.db.query(
+          `INSERT INTO organisation (
+            id, name, slug, oid, city, country_code, accreditation_status, 
+            erasmus_plan, institution_need, readiness_score, is_active, settings, created_at, updated_at
+          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
+          [
+            organisation.id,
+            organisation.name,
+            organisation.slug,
+            organisation.oid,
+            organisation.city,
+            organisation.countryCode,
+            organisation.accreditationStatus,
+            organisation.erasmusPlan,
+            organisation.institutionNeed,
+            organisation.readinessScore,
+            organisation.isActive,
+            JSON.stringify(organisation.settings || {}),
+            organisation.createdAt,
+            organisation.updatedAt,
+          ],
+        );
+        this.logger.log(`[DB] Kurum PostgreSQL'e kaydedildi: ${organisation.name} (${organisation.id})`);
+
+        // 2. Multi-tenant RBAC: create or find user account & membership
+        if (userId) {
+          const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(userId);
+          const clerkEmail = `${userId}@clerk.user`;
+          const fullName = dto.userFullName || (dto.name + ' Yöneticisi');
+
+          let actualUserId: string | null = null;
+          try {
+            const existingUsers = await this.db.query(
+              `SELECT id, full_name FROM user_account WHERE email = $1 OR id::text = $2 LIMIT 1`,
+              [clerkEmail, userId],
+            );
+            if (existingUsers && existingUsers.length > 0) {
+              actualUserId = existingUsers[0].id;
+              if (dto.userFullName && existingUsers[0].full_name !== dto.userFullName) {
+                await this.db.query(
+                  `UPDATE user_account SET full_name = $1 WHERE id = $2`,
+                  [dto.userFullName, actualUserId],
+                );
+              }
+            } else {
+              const newId = isUuid ? userId : uuidv4();
+              await this.db.query(
+                `INSERT INTO user_account (id, email, full_name, is_active, email_verified)
+                 VALUES ($1, $2, $3, TRUE, TRUE)
+                 ON CONFLICT (email) DO UPDATE SET full_name = EXCLUDED.full_name`,
+                [newId, clerkEmail, fullName],
+              );
+              actualUserId = newId;
+            }
+
+            if (actualUserId) {
+              await this.db.query(
+                `INSERT INTO membership (id, organisation_id, user_id, role, is_active)
+                 VALUES ($1, $2, $3, 'ORG_ADMIN', TRUE)
+                 ON CONFLICT (organisation_id, user_id) DO UPDATE SET is_active = TRUE`,
+                [uuidv4(), organisation.id, actualUserId],
+              );
+              this.logger.log(`[DB] Kullanıcı-Kurum bağı (ORG_ADMIN) kuruldu: User ${actualUserId} -> Org ${organisation.id}`);
+            }
+          } catch (e: any) {
+            this.logger.warn(`user_account / membership error: ${e.message}`);
+          }
+        }
+      } catch (err: any) {
+        this.logger.warn(`PostgreSQL kayıt hatası: ${err.message}`);
+      }
+    }
+
+    // Mirror to in-memory map
     this.organisations.set(id, organisation);
 
     await this.auditService.logEvent({
@@ -110,15 +207,79 @@ export class OrganisationsService {
   }
 
   async findAll(): Promise<Organisation[]> {
+    if (this.db.isConnected) {
+      try {
+        const rows = await this.db.query(`
+          SELECT 
+            id, name, slug, oid, city, country_code AS "countryCode", 
+            accreditation_status AS "accreditationStatus", erasmus_plan AS "erasmusPlan", 
+            institution_need AS "institutionNeed", readiness_score AS "readinessScore", 
+            is_active AS "isActive", settings, created_at AS "createdAt", updated_at AS "updatedAt"
+          FROM organisation
+          WHERE is_active = TRUE
+          ORDER BY created_at DESC
+        `);
+        return rows;
+      } catch (err: any) {
+        this.logger.warn(`PostgreSQL findAll hatası: ${err.message}`);
+      }
+    }
     return Array.from(this.organisations.values());
   }
 
   async findOne(id: string): Promise<Organisation> {
+    if (this.db.isConnected) {
+      try {
+        const rows = await this.db.query(
+          `SELECT 
+            id, name, slug, oid, city, country_code AS "countryCode", 
+            accreditation_status AS "accreditationStatus", erasmus_plan AS "erasmusPlan", 
+            institution_need AS "institutionNeed", readiness_score AS "readinessScore", 
+            is_active AS "isActive", settings, created_at AS "createdAt", updated_at AS "updatedAt"
+          FROM organisation
+          WHERE id = $1`,
+          [id],
+        );
+        if (rows.length > 0) return rows[0];
+      } catch (err: any) {
+        this.logger.warn(`PostgreSQL findOne hatası: ${err.message}`);
+      }
+    }
+
     const org = this.organisations.get(id);
     if (!org) {
       throw new NotFoundException(`Kurum bulunamadı (ID: ${id})`);
     }
     return org;
+  }
+
+  async findByUser(
+    userId: string,
+  ): Promise<(Organisation & { role: string }) | null> {
+    if (this.db.isConnected) {
+      try {
+        const emailPattern = `${userId}@clerk.user`;
+        const rows = await this.db.query(
+          `SELECT 
+            o.id, o.name, o.slug, o.oid, o.city, o.country_code AS "countryCode", 
+            o.accreditation_status AS "accreditationStatus", o.erasmus_plan AS "erasmusPlan", 
+            o.institution_need AS "institutionNeed", o.readiness_score AS "readinessScore", 
+            o.is_active AS "isActive", o.settings, o.created_at AS "createdAt", o.updated_at AS "updatedAt",
+            m.role
+          FROM organisation o
+          JOIN membership m ON m.organisation_id = o.id
+          JOIN user_account u ON u.id = m.user_id
+          WHERE u.email = $1 OR u.id::text = $2
+          ORDER BY m.created_at DESC
+          LIMIT 1`,
+          [emailPattern, userId],
+        );
+        if (rows.length > 0) return rows[0];
+      } catch (err: any) {
+        this.logger.warn(`PostgreSQL findByUser hatası: ${err.message}`);
+      }
+    }
+    return null;
   }
 
   async update(
@@ -146,6 +307,30 @@ export class OrganisationsService {
     const readiness = this.calculateReadiness(updated);
     updated.readinessScore = readiness.score;
 
+    if (this.db.isConnected) {
+      try {
+        await this.db.query(
+          `UPDATE organisation SET 
+            name = $1, oid = $2, city = $3, accreditation_status = $4,
+            erasmus_plan = $5, institution_need = $6, readiness_score = $7, updated_at = $8
+          WHERE id = $9`,
+          [
+            updated.name,
+            updated.oid,
+            updated.city,
+            updated.accreditationStatus,
+            updated.erasmusPlan,
+            updated.institutionNeed,
+            updated.readinessScore,
+            updated.updatedAt,
+            id,
+          ],
+        );
+      } catch (err: any) {
+        this.logger.warn(`PostgreSQL update hatası: ${err.message}`);
+      }
+    }
+
     this.organisations.set(id, updated);
 
     await this.auditService.logEvent({
@@ -168,6 +353,15 @@ export class OrganisationsService {
     userId?: string,
   ): Promise<{ success: boolean }> {
     const current = await this.findOne(id);
+
+    if (this.db.isConnected) {
+      try {
+        await this.db.query(`UPDATE organisation SET is_active = FALSE WHERE id = $1`, [id]);
+      } catch (err: any) {
+        this.logger.warn(`PostgreSQL remove hatası: ${err.message}`);
+      }
+    }
+
     this.organisations.delete(id);
 
     await this.auditService.logEvent({
@@ -183,10 +377,6 @@ export class OrganisationsService {
     return { success: true };
   }
 
-  /**
-   * Evaluates organisation readiness (0-100) based on accreditation,
-   * OID validity, needs description, and Erasmus plan completeness.
-   */
   getReadiness(id: string): ReadinessScoreResponse {
     const org = this.organisations.get(id);
     if (!org) {
@@ -215,7 +405,7 @@ export class OrganisationsService {
     if (org.accreditationStatus === 'YES') {
       accPoints += 10;
     } else if (org.accreditationStatus === 'NO') {
-      accPoints += 7; // Non-accredited is valid for KA122
+      accPoints += 7;
     } else {
       recommendations.push('Erasmus akreditasyon durumunuzu (Evet/Hayır) belirtin.');
     }
@@ -233,12 +423,10 @@ export class OrganisationsService {
     } else if (org.accreditationStatus === 'YES') {
       recommendations.push('Akreditasyon hedefleriyle uyumlu Erasmus Plan metnini girin.');
     } else {
-      needsPoints += 10; // For non-accredited, plan is optional
+      needsPoints += 10;
     }
 
-    // 4. Operational readiness & settings (20 pts)
     const operationalPoints = 20;
-
     const totalScore = Math.min(
       100,
       identityPoints + accPoints + needsPoints + operationalPoints,

@@ -6,10 +6,13 @@ import { APP_GUARD } from '@nestjs/core';
 import { CorrelationIdMiddleware } from './common/middleware/correlation-id.middleware';
 import { TenantGuard } from './common/guards/tenant.guard';
 import { RolesGuard } from './common/guards/rbac.guard';
+import { DatabaseModule } from './database/database.module';
 import { HealthModule } from './health/health.module';
 import { AuditModule } from './audit/audit.module';
 import { OrganisationsModule } from './organisations/organisations.module';
 import { MembersModule } from './members/members.module';
+import { ReferenceModule } from './reference/reference.module';
+import { HostsModule } from './hosts/hosts.module';
 
 @Module({
   imports: [
@@ -20,10 +23,13 @@ import { MembersModule } from './members/members.module';
         limit: 100,
       },
     ]),
+    DatabaseModule,
     AuditModule,
     HealthModule,
     OrganisationsModule,
     MembersModule,
+    ReferenceModule,
+    HostsModule,
   ],
   providers: [
     {

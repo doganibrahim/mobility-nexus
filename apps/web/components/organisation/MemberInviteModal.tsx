@@ -2,19 +2,24 @@
 
 import React, { useState } from 'react';
 
+import { apiClient } from '../../lib/api-client';
+
 interface MemberInviteModalProps {
   isOpen: boolean;
   onClose: () => void;
   orgName: string;
+  orgId?: string;
 }
 
 export default function MemberInviteModal({
   isOpen,
   onClose,
   orgName,
+  orgId = 'current-org',
 }: MemberInviteModalProps) {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState<'ORG_ADMIN' | 'MEMBER' | 'VIEWER'>('MEMBER');
+  const [isSending, setIsSending] = useState(false);
   const [generatedInvite, setGeneratedInvite] = useState<{
     token: string;
     url: string;
@@ -26,30 +31,32 @@ export default function MemberInviteModal({
 
   if (!isOpen) return null;
 
-  const handleSendInvite = (e: React.FormEvent) => {
+  const handleSendInvite = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes('@')) {
       alert('Lütfen geçerli bir e-posta adresi giriniz.');
       return;
     }
 
-    const token = `inv-tok-${Math.random().toString(36).substring(2, 10)}${Date.now().toString(36)}`;
-    const url = `${window.location.origin}/invitations/accept?token=${token}`;
-    const expiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000).toLocaleDateString('tr-TR', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+    setIsSending(true);
+    try {
+      const invite = await apiClient.createInvitation(orgId, {
+        email: email.trim(),
+        role,
+      });
 
-    setGeneratedInvite({
-      token,
-      url,
-      email,
-      role,
-      expiresAt,
-    });
+      setGeneratedInvite({
+        token: invite.token,
+        url: invite.inviteUrl,
+        email: invite.email,
+        role: invite.role,
+        expiresAt: invite.expiresAt,
+      });
+    } catch (err: any) {
+      alert(err.message || 'Davet oluşturulamadı.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const handleCopy = () => {
@@ -127,9 +134,22 @@ export default function MemberInviteModal({
               >
                 İptal
               </button>
-              <button type="submit" className="enterprise-btn-primary text-xs">
-                <span>✉️</span>
-                <span>Davet Bağlantısı Üret</span>
+              <button
+                type="submit"
+                disabled={isSending}
+                className="enterprise-btn-primary text-xs flex items-center gap-1.5"
+              >
+                {isSending ? (
+                  <>
+                    <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Üretiliyor...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>✉️</span>
+                    <span>Davet Bağlantısı Üret</span>
+                  </>
+                )}
               </button>
             </div>
           </form>

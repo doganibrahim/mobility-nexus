@@ -29,13 +29,23 @@ export class OrganisationsController {
     @Body() createDto: CreateOrganisationDto,
     @Headers(CORRELATION_ID_HEADER) correlationId = 'api-req',
   ) {
-    return this.organisationsService.create(createDto, correlationId);
+    return this.organisationsService.create(
+      createDto,
+      correlationId,
+      createDto.userId,
+    );
   }
 
   @Get()
   @ApiOperation({ summary: 'Tüm Kayıtlı Kurumları Listele' })
   findAll() {
     return this.organisationsService.findAll();
+  }
+
+  @Get('user/:userId')
+  @ApiOperation({ summary: 'Kullanıcının Bağlı Olduğu Kurumu ve Rolünü Getir' })
+  findByUser(@Param('userId') userId: string) {
+    return this.organisationsService.findByUser(userId);
   }
 
   @Get(':id')

@@ -72,7 +72,21 @@ export interface AppState {
   };
   setLearningOutcomes: (data: Partial<AppState['learningOutcomes']>) => void;
 
+  // 8. Organisation & Multi-Tenant Onboarding State
+  currentOrg: any | null;
+  currentHost: any | null;
+  orgType: 'SCHOOL' | 'HOST' | null;
+  userRole: 'ORG_ADMIN' | 'MEMBER' | 'VIEWER' | null;
+  isOnboarded: boolean;
+  setCurrentOrg: (
+    org: any,
+    role?: 'ORG_ADMIN' | 'MEMBER' | 'VIEWER',
+  ) => void;
+  setCurrentHost: (host: any) => void;
+
   // Actions
+  initFromStorage: () => void;
+  clearOrg: () => void;
   loadDemoData: (locale: string) => void;
   resetData: () => void;
 }
@@ -126,10 +140,132 @@ const initialEmptyState = {
     technicalOutcome: '',
     transversalOutcome: '',
   },
+  currentOrg: null,
+  currentHost: null,
+  orgType: null,
+  userRole: null,
+  isOnboarded: false,
 };
 
 export const useAppStore = create<AppState>((set) => ({
   ...initialEmptyState,
+
+  setCurrentOrg: (org, role = 'ORG_ADMIN') => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(
+          'cappinno_current_org',
+          JSON.stringify({ org, role }),
+        );
+        localStorage.removeItem('cappinno_current_host');
+      } catch {}
+    }
+    return set((state) => ({
+      currentOrg: org,
+      currentHost: null,
+      orgType: 'SCHOOL',
+      userRole: role,
+      isOnboarded: true,
+      schoolProfile: {
+        ...state.schoolProfile,
+        schoolName: org.name || state.schoolProfile.schoolName,
+        city: org.city || state.schoolProfile.city,
+        accredited: (org.accreditationStatus === 'YES'
+          ? 'yes'
+          : org.accreditationStatus === 'NO'
+            ? 'no'
+            : state.schoolProfile.accredited) as any,
+        oid: org.oid || state.schoolProfile.oid,
+        erasmusPlan: org.erasmusPlan || state.schoolProfile.erasmusPlan,
+        institutionNeed:
+          org.institutionNeed || state.schoolProfile.institutionNeed,
+      },
+    }));
+  },
+
+  setCurrentHost: (host) => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(
+          'cappinno_current_host',
+          JSON.stringify({ host }),
+        );
+        localStorage.removeItem('cappinno_current_org');
+      } catch {}
+    }
+    return set(() => ({
+      currentHost: host,
+      currentOrg: null,
+      orgType: 'HOST',
+      userRole: 'ORG_ADMIN',
+      isOnboarded: true,
+    }));
+  },
+
+  initFromStorage: () => {
+    if (typeof window !== 'undefined') {
+      try {
+        const storedHost = localStorage.getItem('cappinno_current_host');
+        if (storedHost) {
+          const { host } = JSON.parse(storedHost);
+          if (host && host.name) {
+            set(() => ({
+              currentHost: host,
+              currentOrg: null,
+              orgType: 'HOST',
+              userRole: 'ORG_ADMIN',
+              isOnboarded: true,
+            }));
+            return;
+          }
+        }
+
+        const stored = localStorage.getItem('cappinno_current_org');
+        if (stored) {
+          const { org, role } = JSON.parse(stored);
+          if (org && org.name) {
+            set((state) => ({
+              currentOrg: org,
+              currentHost: null,
+              orgType: 'SCHOOL',
+              userRole: role || 'ORG_ADMIN',
+              isOnboarded: true,
+              schoolProfile: {
+                ...state.schoolProfile,
+                schoolName: org.name || state.schoolProfile.schoolName,
+                city: org.city || state.schoolProfile.city,
+                accredited: (org.accreditationStatus === 'YES'
+                  ? 'yes'
+                  : org.accreditationStatus === 'NO'
+                    ? 'no'
+                    : state.schoolProfile.accredited) as any,
+                oid: org.oid || state.schoolProfile.oid,
+                erasmusPlan: org.erasmusPlan || state.schoolProfile.erasmusPlan,
+                institutionNeed:
+                  org.institutionNeed || state.schoolProfile.institutionNeed,
+              },
+            }));
+          }
+        }
+      } catch {}
+    }
+  },
+
+  clearOrg: () => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('cappinno_current_org');
+        localStorage.removeItem('cappinno_current_host');
+      } catch {}
+    }
+    set({
+      currentOrg: null,
+      currentHost: null,
+      orgType: null,
+      userRole: null,
+      isOnboarded: false,
+    });
+  },
 
   setSchoolProfile: (data) =>
     set((state) => ({ schoolProfile: { ...state.schoolProfile, ...data } })),

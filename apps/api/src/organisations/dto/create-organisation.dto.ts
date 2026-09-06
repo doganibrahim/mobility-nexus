@@ -72,4 +72,28 @@ export class CreateOrganisationDto {
   @IsString()
   @IsOptional()
   institutionNeed?: string;
+
+  @ApiPropertyOptional({
+    example: 'user_2b9x...',
+    description: 'Kurumu oluşturan kullanıcının kimlik kodu (Clerk / internal user id)',
+  })
+  @IsString()
+  @IsOptional()
+  userId?: string;
+
+  @ApiPropertyOptional({
+    example: 'ahmet@okul.k12.tr',
+    description: 'Kullanıcının gerçek e-posta adresi (Clerk)',
+  })
+  @IsString()
+  @IsOptional()
+  userEmail?: string;
+
+  @ApiPropertyOptional({
+    example: 'Ahmet Yılmaz',
+    description: 'Kullanıcının tam adı ve soyadı (Clerk)',
+  })
+  @IsString()
+  @IsOptional()
+  userFullName?: string;
 }

@@ -30,7 +30,7 @@ Lütfen tüm kod üretimlerinde ve mimari kararlarda aşağıdaki kurallara kesi
 * **Multi-tenant (Çoklu Kiracı) İzolasyonu:** Veriler kurumlara (`organisation_id`) göre izole edilecek; hiçbir kurum diğerinin verisine API veya UI üzerinden erişemeyecektir.
 
 
-* **OIDC/OAuth2 ve RBAC:** Kimlik doğrulama işlemleri güvenli bir altyapıyla yapılacak ve "Platform Admin, Org Admin, Viewer" gibi Rol Tabanlı Erişim Kontrolü (RBAC) mekanizmaları API korumalarında (Guard/Middleware) zorunlu kılınacaktır.
+* **Kimlik Doğrulama (Auth) ve RBAC:** Kayıt ve kimlik doğrulama işlemleri **Clerk** altyapısı kullanılarak (aylık 10.000 aktif kullanıcı ücretsiz planı çerçevesinde) güvenli ve modern bir akışla kurulacaktır. "Platform Admin, Org Admin, Viewer" gibi Rol Tabanlı Erişim Kontrolü (RBAC) mekanizmaları Clerk entegrasyonu ile API korumalarında (Guard/Middleware) zorunlu kılınacaktır.
 
 
 * **KVKK/GDPR ve Audit Trail:** Hassas veriler korunacak, onay (consent) logları tutulacak ve silinemez bir denetim izi (audit_event) tablosu ile tüm kritik değişiklikler loglanacaktır.
@@ -82,7 +82,7 @@ Sen kıdemli bir Full-Stack Yazılım Mühendisi olarak, Erasmus hareketlilik s�
 
 ### Sprint 1: Kurum ve Kullanıcı Yönetimi
 
-* **Kurum Profili (CRUD):** Akredite kurumların profil kayıtları için `organisation` tablosu oluşturulacak, zorunlu alan doğrulamaları (validation) yapılarak API'ler ve UI bileşenleri yazılacaktır.
+* **Kurum Profili (CRUD) & Onboarding:** Akredite kurumların profil kayıtları için `organisation` tablosu oluşturulacak. İlk kayıt (Onboarding) aşamasında kullanıcıyı yormamak adına yalnızca sabit kimlik verileri (OID Numarası, Yasal Ad, Ülke, Kurum Türü) alınacak, formlardaki diğer tüm proje detayları ileriki evrak aşamalarına (Sihirbaza) bırakılacaktır. Zorunlu alan doğrulamaları (validation) yapılarak API'ler ve UI bileşenleri yazılacaktır.
 
 
 * **Kullanıcı Davetleri:** `membership` ve `invitation` tabloları kurularak; tek kullanımlık, süresi dolabilen token içeren e-posta davet akışları ve rol atama ekranları kodlanacaktır.
@@ -170,7 +170,9 @@ Sen kıdemli bir Full-Stack Yazılım Mühendisi olarak, CAPPINNO Mobility Nexus
 **4. Faz**
 Sen kıdemli bir Full-Stack Yazılım Mühendisi olarak, CAPPINNO Mobility Nexus projesinin 4. ve son ay geliştirmelerini (Sprint 11 ve Sprint 12) yapacaksın. Bu nihai aşamada; sisteme yapay zeka (AI) destekli belge/rapor üretimi, abonelik/ödeme altyapısı ve canlıya alım (production) kalite kontrol modüllerini entegre edeceksin. Lütfen aşağıdaki teknik mimari ve iş gereksinimlerine kesin olarak uy:
 
-### Sprint 11: Yapay Zeka Asistanı ve Raporlama (AI Assistant & Reporting)
+### Sprint 11: Yapay Zeka Evrak Asistanı (AI Questionnaire) ve Raporlama
+
+* **Sihirbaz (Questionnaire) Karar Mantığı (KA121/KA122):** Kullanıcılara evrak doldurtulurken teknik faaliyet sınıflandırmaları (ör: Job Shadowing), bütçe-matematik hesaplamaları (katılımcı-gün, seyahat) ve doğrulama/kısıtlama (validation) kuralları tamamen sistemin arka planında otomatize edilecektir. Kullanıcıdan yalnızca projeye özgü değişkenler (destekleyici kuruluş, gidilecek yer, kişi sayıları, özel bütçe ihtiyaçları ve şablon bazlı hedefler) kısa sohbet metinleriyle alınacaktır. Üretilen dokümanlara 1. fazda alınan OID ve kurum kimlikleri sistem tarafından basılacaktır.
 
 * **Veritabanı Altyapısı:** Yapay zeka sohbetleri ve bilgi yönetimi için `ai_knowledge_item`, `ai_conversation` ve `ai_message` tablolarını kur. Üretim görevleri ve raporlar için `ai_generation_job`, `ai_report` ve denetim amaçlı `ai_generation_event` tablolarını (migration) oluştur.
 

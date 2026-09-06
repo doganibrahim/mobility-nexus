@@ -1,14 +1,21 @@
 'use client';
 
 import React, { useState } from 'react';
+import { SignInButton, SignUpButton, Show, UserButton } from '@clerk/nextjs';
 import { useTranslation } from '../../lib/i18n';
 import { useTheme } from '../../lib/theme-context';
 import ErasmusResultsWidget from '../ui/ErasmusResultsWidget';
+import MebSchoolsWidget from '../ui/MebSchoolsWidget';
+
+import Link from 'next/link';
+import { useAppStore } from '../../lib/store';
 
 export default function AppHeader() {
   const { locale, setLocale, t } = useTranslation();
   const { themeConfig } = useTheme();
+  const { currentOrg, currentHost, orgType, userRole, isOnboarded } = useAppStore();
   const [isWidgetOpen, setIsWidgetOpen] = useState(false);
+  const [isMebWidgetOpen, setIsMebWidgetOpen] = useState(false);
 
   return (
     <header className="bg-white text-slate-900 border-b border-slate-200 sticky top-0 z-30 shadow-xs">
@@ -60,6 +67,17 @@ export default function AppHeader() {
         {/* Action Controls: Language Switcher and Tools */}
         <div className="flex items-center gap-3 self-end md:self-auto flex-wrap">
 
+          {/* MEB Okulları Button */}
+          <button
+            onClick={() => setIsMebWidgetOpen(true)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-xs"
+          >
+            <svg className="w-4 h-4 text-indigo-600" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+            </svg>
+            Tüm Meslek Liseleri
+          </button>
+
           {/* Hibe Sonuçları Button */}
           <button
             onClick={() => setIsWidgetOpen(true)}
@@ -98,10 +116,60 @@ export default function AppHeader() {
               🇬🇧 EN
             </button>
           </div>
+
+          {/* Clerk Auth Controls */}
+          <div className="flex items-center gap-2 ml-1 border-l border-slate-200 pl-3">
+            <Show when="signed-out">
+              <SignInButton mode="modal">
+                <button className="px-3 py-1.5 text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors">
+                  Giriş Yap
+                </button>
+              </SignInButton>
+              <SignUpButton
+                mode="modal"
+                fallbackRedirectUrl="/onboarding"
+                forceRedirectUrl="/onboarding"
+              >
+                <button className="px-3 py-1.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-xs">
+                  Ücretsiz Kayıt Ol
+                </button>
+              </SignUpButton>
+            </Show>
+            <Show when="signed-in">
+              <div className="flex items-center gap-2">
+                {isOnboarded && (currentOrg || currentHost) ? (
+                  <Link
+                    href="/onboarding"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold bg-slate-50 text-slate-900 border border-slate-200 rounded-lg hover:bg-slate-100 hover:border-slate-300 transition-colors shadow-2xs"
+                    title="Kurum Profilini ve Detaylarını Gör"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                    <span className="font-bold">
+                      {orgType === 'HOST'
+                        ? (currentHost?.name?.length > 22 ? currentHost.name.slice(0, 20) + '...' : currentHost?.name)
+                        : (currentOrg?.name?.length > 22 ? currentOrg.name.slice(0, 20) + '...' : currentOrg?.name)}
+                    </span>
+                    <span className="text-[10px] bg-slate-200/80 text-slate-700 px-1.5 py-0.5 rounded font-medium hidden md:inline">
+                      {orgType === 'HOST' ? 'Ev Sahibi Kurum' : (userRole === 'ORG_ADMIN' ? 'Okul Yöneticisi' : 'Ekip Üyesi')}
+                    </span>
+                  </Link>
+                ) : (
+                  <Link
+                    href="/onboarding"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-amber-900 bg-amber-50 border border-amber-300 rounded-lg hover:bg-amber-100 transition-colors shadow-2xs"
+                  >
+                    <span>Kurulumu Tamamla</span>
+                  </Link>
+                )}
+                <UserButton />
+              </div>
+            </Show>
+          </div>
         </div>
       </div>
 
       <ErasmusResultsWidget isOpen={isWidgetOpen} onClose={() => setIsWidgetOpen(false)} />
+      <MebSchoolsWidget isOpen={isMebWidgetOpen} onClose={() => setIsMebWidgetOpen(false)} />
     </header>
   );
 }
