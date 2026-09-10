@@ -23,18 +23,30 @@ export interface CreateInvitePayload {
 
 export interface RegisterHostPayload {
   name: string;
+  tradingName?: string;
+  organisationType: string;
   countryCode: string;
   city: string;
+  registeredAddress: string;
+  operationalAddress?: string;
   address?: string;
-  websiteUrl?: string;
+  yearEstablished: number;
+  oid: string;
+  picNumber?: string;
+  websiteUrl: string;
+  generalEmail: string;
+  telephone: string;
   primarySector: string;
   contactPerson: string;
+  contactTitle: string;
   contactEmail: string;
   contactPhone?: string;
+  consentPublicDisplay: boolean;
   maxLearnersPerTerm?: number;
   totalAnnualCapacity?: number;
   activities?: string[];
   languages?: string[];
+  workingLanguages?: string[];
   userId?: string;
   userEmail?: string;
   userFullName?: string;
@@ -361,14 +373,14 @@ export const apiClient = {
         slug: payload.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         countryCode: payload.countryCode || 'DE',
         city: payload.city,
-        address: payload.address || null,
+        address: payload.registeredAddress || payload.address || null,
         websiteUrl: payload.websiteUrl || null,
         primarySector: payload.primarySector,
         verificationStatus: 'PENDING',
         contactPerson: payload.contactPerson,
         contactEmail: payload.contactEmail,
-        contactPhone: payload.contactPhone || null,
-        languages: payload.languages || ['EN'],
+        contactPhone: payload.telephone || payload.contactPhone || null,
+        languages: payload.languages || payload.workingLanguages || ['EN'],
         maxLearnersPerTerm: payload.maxLearnersPerTerm || 4,
         totalAnnualCapacity: payload.totalAnnualCapacity || 12,
         activities: payload.activities || ['VET_INTERNSHIP'],
@@ -408,4 +420,117 @@ export const apiClient = {
       return { data: null };
     }
   },
+
+  /**
+   * Updates host organisation portfolio and Erasmus+ experience metrics (Tier 2).
+   */
+  async updateHostPortfolio(
+    hostId: string,
+    payload: any,
+  ): Promise<{ data: any; isFallback: boolean }> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/hosts/${hostId}/portfolio`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error();
+      const host = await response.json();
+      return { data: host, isFallback: false };
+    } catch {
+      return { data: payload, isFallback: true };
+    }
+  },
+
+  /**
+   * Submits official legal & verification KYC documents (Tier 3 - Admin Only).
+   */
+  async submitHostVerification(
+    hostId: string,
+    payload: any,
+  ): Promise<{ data: any; isFallback: boolean }> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/hosts/${hostId}/verification`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error();
+      const host = await response.json();
+      return { data: host, isFallback: false };
+    } catch {
+      return { data: { ...payload, verificationStatus: 'UNDER_REVIEW' }, isFallback: true };
+    }
+  },
+
+  /**
+   * Fetches the admin verification review queue.
+   */
+  async getVerificationQueue(status?: string): Promise<any[]> {
+    try {
+      const url = status
+        ? `${API_BASE_URL}/hosts/verifications/queue?status=${status}`
+        : `${API_BASE_URL}/hosts/verifications/queue`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error();
+      return await response.json();
+    } catch {
+      return [];
+    }
+  },
+
+  /**
+   * Admin approves, rejects, or requests updates for host verification.
+   */
+  async reviewHostVerification(
+    hostId: string,
+    payload: { status: 'VERIFIED' | 'NEEDS_UPDATE' | 'REJECTED'; reviewerNotes?: string; criteriaChecklist?: Record<string, boolean> },
+  ): Promise<{ data: any; isFallback: boolean }> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/hosts/${hostId}/verification/review`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error();
+      const host = await response.json();
+      return { data: host, isFallback: false };
+    } catch {
+      return { data: payload, isFallback: true };
+    }
+  },
+
+  /**
+   * Uploads a file (PDF, image, document) to Cloudflare R2 / Local storage.
+   */
+  async uploadFile(
+    file: File,
+    folder = 'documents',
+    isPrivate = false,
+  ): Promise<{ url: string; key: string; filename: string; sizeBytes: number }> {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch(
+        `${API_BASE_URL}/storage/upload?folder=${encodeURIComponent(folder)}&isPrivate=${isPrivate}`,
+        {
+          method: 'POST',
+          body: formData,
+        },
+      );
+
+      if (!response.ok) throw new Error('Upload error');
+      return await response.json();
+    } catch {
+      // Mock / fallback url for offline development
+      return {
+        url: URL.createObjectURL(file),
+        key: `${folder}/${Date.now()}-${file.name}`,
+        filename: file.name,
+        sizeBytes: file.size,
+      };
+    }
+  },
 };
+

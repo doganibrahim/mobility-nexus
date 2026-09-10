@@ -216,3 +216,166 @@ export interface ReadinessScoreResponse {
   };
   recommendations: string[];
 }
+
+// ==============================================================================
+// 4. Host Organisation 3-Tier Profile Types & DTOs
+// ==============================================================================
+
+export type HostVerificationStatus =
+  | 'PENDING'
+  | 'UNDER_REVIEW'
+  | 'VERIFIED'
+  | 'NEEDS_UPDATE'
+  | 'REJECTED'
+  | 'SUSPENDED';
+
+export interface HostOrganisationFull {
+  id: string;
+  name: string; // Full legal name
+  legalName?: string;
+  tradingName?: string | null;
+  organisationType: string;
+  countryCode: string;
+  city: string;
+  registeredAddress: string;
+  operationalAddress?: string | null;
+  yearEstablished: number;
+  oid: string;
+  picNumber?: string | null;
+  websiteUrl: string;
+  generalEmail: string;
+  telephone: string;
+  workingLanguages: string[];
+  logoUrl?: string | null;
+  shortDescription?: string | null;
+  detailedProfileUrl?: string | null;
+
+  // Contact Person Details
+  contactPerson: string;
+  contactTitle?: string | null;
+  contactEmail: string;
+  contactDirectPhone?: string | null;
+  contactWhatsapp?: string | null;
+  contactLinkedin?: string | null;
+  contactLanguages?: string[];
+  contactPhotoUrl?: string | null;
+  consentPublicDisplay: boolean;
+  turkeyContactPerson?: string | null;
+
+  // Emergency (Admin Only)
+  emergencyContactPerson?: string | null;
+  emergencyContactPhone?: string | null;
+
+  // Legal / KYC (Admin Only)
+  registrationNumber?: string | null;
+  registrationDocumentUrl?: string | null;
+  taxVatNumber?: string | null;
+
+  // Erasmus+ Experience (Public Portfolio)
+  yearsOfExperience?: number;
+  totalParticipantsHosted?: number;
+  groupsHostedLast3Years?: number;
+  sendingCountries?: string[];
+  turkishGroupsHosted?: number;
+  turkishParticipantsHosted?: number;
+  hasKa121?: boolean;
+  hasKa122?: boolean;
+  hasVetLearner?: boolean;
+  hasStaffMobility?: boolean;
+  completedProjects?: Array<{
+    title: string;
+    referenceNumber: string;
+    year: number;
+    role: string;
+  }>;
+  projectResultsLinks?: string[];
+  nationalAgencyExperience?: string | null;
+  sampleMobilityProgrammeUrl?: string | null;
+
+  // Verification Documents (Admin Only)
+  participantEvidenceUrls?: string[];
+  sampleDocumentsUrls?: string[];
+
+  // Status & Metrics
+  verificationStatus: HostVerificationStatus;
+  profileCompletenessScore: number;
+  primarySector: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Tier 1: Post-Registration Quick Onboarding DTO
+export interface RegisterHostQuickDto {
+  name: string;
+  tradingName?: string;
+  organisationType: string;
+  countryCode: string;
+  city: string;
+  registeredAddress: string;
+  yearEstablished: number;
+  oid: string;
+  picNumber?: string;
+  websiteUrl: string;
+  generalEmail: string;
+  telephone: string;
+  workingLanguages: string[];
+  primarySector: string;
+  contactPerson: string;
+  contactTitle: string;
+  contactEmail: string;
+  consentPublicDisplay: boolean;
+  userId?: string;
+  userEmail?: string;
+  userFullName?: string;
+}
+
+// Tier 2: Dashboard Profile & Erasmus+ Portfolio DTO
+export interface UpdateHostPortfolioDto {
+  operationalAddress?: string;
+  logoUrl?: string;
+  shortDescription?: string;
+  detailedProfileUrl?: string;
+  contactLinkedin?: string;
+  contactLanguages?: string[];
+  contactPhotoUrl?: string;
+  turkeyContactPerson?: string;
+  yearsOfExperience?: number;
+  totalParticipantsHosted?: number;
+  groupsHostedLast3Years?: number;
+  sendingCountries?: string[];
+  turkishGroupsHosted?: number;
+  turkishParticipantsHosted?: number;
+  hasKa121?: boolean;
+  hasKa122?: boolean;
+  hasVetLearner?: boolean;
+  hasStaffMobility?: boolean;
+  completedProjects?: Array<{
+    title: string;
+    referenceNumber: string;
+    year: number;
+    role: string;
+  }>;
+  projectResultsLinks?: string[];
+  nationalAgencyExperience?: string;
+  sampleMobilityProgrammeUrl?: string;
+}
+
+// Tier 3: Verification & KYC DTO (Admin Only Documents)
+export interface SubmitHostVerificationDto {
+  registrationNumber: string;
+  registrationDocumentUrl: string;
+  taxVatNumber: string;
+  emergencyContactPerson: string;
+  emergencyContactPhone: string;
+  contactDirectPhone?: string;
+  contactWhatsapp?: string;
+  participantEvidenceUrls?: string[];
+  sampleDocumentsUrls?: string[];
+}
+
+export interface HostVerificationReviewDto {
+  status: 'VERIFIED' | 'NEEDS_UPDATE' | 'REJECTED';
+  reviewerNotes?: string;
+  criteriaChecklist?: Record<string, boolean>;
+}

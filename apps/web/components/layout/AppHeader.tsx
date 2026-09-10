@@ -6,6 +6,7 @@ import { useTranslation } from '../../lib/i18n';
 import { useTheme } from '../../lib/theme-context';
 import ErasmusResultsWidget from '../ui/ErasmusResultsWidget';
 import MebSchoolsWidget from '../ui/MebSchoolsWidget';
+import AdminVerificationQueueModal from '../admin/AdminVerificationQueueModal';
 
 import Link from 'next/link';
 import { useAppStore } from '../../lib/store';
@@ -16,6 +17,7 @@ export default function AppHeader() {
   const { currentOrg, currentHost, orgType, userRole, isOnboarded } = useAppStore();
   const [isWidgetOpen, setIsWidgetOpen] = useState(false);
   const [isMebWidgetOpen, setIsMebWidgetOpen] = useState(false);
+  const [isAdminQueueOpen, setIsAdminQueueOpen] = useState(false);
 
   return (
     <header className="bg-white text-slate-900 border-b border-slate-200 sticky top-0 z-30 shadow-xs">
@@ -87,6 +89,16 @@ export default function AppHeader() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
             </svg>
             2026 Hibe Sonuçlarını İncele
+          </button>
+
+          {/* Admin Doğrulama Havuzu Button */}
+          <button
+            onClick={() => setIsAdminQueueOpen(true)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-xs"
+            title="Admin Evrak İnceleme ve Onay Havuzu"
+          >
+            <span>🛡️</span>
+            <span className="hidden lg:inline">Admin Doğrulama</span>
           </button>
 
           {/* TR / EN Language Toggle */}
@@ -170,6 +182,7 @@ export default function AppHeader() {
 
       <ErasmusResultsWidget isOpen={isWidgetOpen} onClose={() => setIsWidgetOpen(false)} />
       <MebSchoolsWidget isOpen={isMebWidgetOpen} onClose={() => setIsMebWidgetOpen(false)} />
+      <AdminVerificationQueueModal isOpen={isAdminQueueOpen} onClose={() => setIsAdminQueueOpen(false)} />
     </header>
   );
 }

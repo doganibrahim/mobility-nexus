@@ -8,6 +8,9 @@ import { apiClient } from '../../lib/api-client';
 import { useAppStore } from '../../lib/store';
 import { useTheme } from '../../lib/theme-context';
 import { AccreditationStatus } from '@mobility-nexus/types';
+import HostPortfolioModal from '../../components/host/HostPortfolioModal';
+import HostVerificationModal from '../../components/host/HostVerificationModal';
+import AdminVerificationQueueModal from '../../components/admin/AdminVerificationQueueModal';
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -35,16 +38,25 @@ export default function OnboardingPage() {
     useState<AccreditationStatus>('YES');
   const [role, setRole] = useState<'ORG_ADMIN' | 'MEMBER'>('ORG_ADMIN');
 
-  // 2. Host Form State
+  // 2. Host Form State (Tier 1: Onboarding Quick Setup)
   const [hostName, setHostName] = useState('');
+  const [hostTradingName, setHostTradingName] = useState('');
+  const [hostOrgType, setHostOrgType] = useState('Company');
   const [hostCountryCode, setHostCountryCode] = useState('DE');
   const [hostCity, setHostCity] = useState('');
-  const [hostAddress, setHostAddress] = useState('');
+  const [hostRegisteredAddress, setHostRegisteredAddress] = useState('');
+  const [hostOperationalAddress, setHostOperationalAddress] = useState('');
+  const [hostYearEstablished, setHostYearEstablished] = useState<number>(2018);
+  const [hostOid, setHostOid] = useState('');
+  const [hostPicNumber, setHostPicNumber] = useState('');
   const [hostWebsite, setHostWebsite] = useState('');
+  const [hostGeneralEmail, setHostGeneralEmail] = useState('');
+  const [hostTelephone, setHostTelephone] = useState('');
   const [hostSector, setHostSector] = useState('ict');
   const [hostContactPerson, setHostContactPerson] = useState('');
+  const [hostContactTitle, setHostContactTitle] = useState('');
   const [hostContactEmail, setHostContactEmail] = useState('');
-  const [hostContactPhone, setHostContactPhone] = useState('');
+  const [hostConsentPublicDisplay, setHostConsentPublicDisplay] = useState(true);
   const [hostMaxLearners, setHostMaxLearners] = useState(4);
   const [hostActivities, setHostActivities] = useState<string[]>([
     'VET_INTERNSHIP',
@@ -69,6 +81,11 @@ export default function OnboardingPage() {
   // Submitted Data View
   const [submittedOrg, setSubmittedOrg] = useState<any | null>(null);
   const [submittedHost, setSubmittedHost] = useState<any | null>(null);
+
+  // Host Modals State
+  const [isPortfolioModalOpen, setIsPortfolioModalOpen] = useState(false);
+  const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
+  const [isAdminQueueModalOpen, setIsAdminQueueModalOpen] = useState(false);
 
   // Fetch Reference Data on mount
   useEffect(() => {
@@ -158,11 +175,19 @@ export default function OnboardingPage() {
   const canSubmitSchool =
     schoolName.trim().length >= 3 && schoolCity.trim().length >= 2 && isSchoolOidValid;
 
-  // Validation - Host
+  // Validation - Host (Tier 1 Quick Onboarding)
+  const isHostOidValid = !hostOid || /^E10[0-9]{5,7}$/i.test(hostOid.trim());
   const canSubmitHost =
     hostName.trim().length >= 3 &&
     hostCity.trim().length >= 2 &&
+    hostRegisteredAddress.trim().length >= 5 &&
+    hostOid.trim().length >= 8 &&
+    isHostOidValid &&
+    hostWebsite.trim().length >= 4 &&
+    hostGeneralEmail.includes('@') &&
+    hostTelephone.trim().length >= 5 &&
     hostContactPerson.trim().length >= 3 &&
+    hostContactTitle.trim().length >= 2 &&
     hostContactEmail.includes('@');
 
   // Live Hazırlık Skoru Calculation (School)
@@ -232,7 +257,7 @@ export default function OnboardingPage() {
     }
   };
 
-  // Handle Host Form Submit
+  // Handle Host Form Submit (Tier 1)
   const handleHostSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmitHost) return;
@@ -246,18 +271,27 @@ export default function OnboardingPage() {
 
       const { data } = await apiClient.registerHost({
         name: hostName.trim(),
+        tradingName: hostTradingName.trim() || undefined,
+        organisationType: hostOrgType,
         countryCode: hostCountryCode,
         city: hostCity.trim(),
-        address: hostAddress.trim() || undefined,
-        websiteUrl: hostWebsite.trim() || undefined,
+        registeredAddress: hostRegisteredAddress.trim(),
+        operationalAddress: hostOperationalAddress.trim() || undefined,
+        yearEstablished: Number(hostYearEstablished) || new Date().getFullYear(),
+        oid: hostOid.trim().toUpperCase(),
+        picNumber: hostPicNumber.trim() || undefined,
+        websiteUrl: hostWebsite.trim(),
+        generalEmail: hostGeneralEmail.trim().toLowerCase(),
+        telephone: hostTelephone.trim(),
         primarySector: hostSector,
+        workingLanguages: hostLanguages,
         contactPerson: hostContactPerson.trim(),
+        contactTitle: hostContactTitle.trim(),
         contactEmail: hostContactEmail.trim().toLowerCase(),
-        contactPhone: hostContactPhone.trim() || undefined,
+        consentPublicDisplay: hostConsentPublicDisplay,
         maxLearnersPerTerm: hostMaxLearners,
         totalAnnualCapacity: hostMaxLearners * 3,
         activities: hostActivities,
-        languages: hostLanguages,
         userId: user?.id,
         userEmail,
         userFullName,
@@ -459,91 +493,154 @@ export default function OnboardingPage() {
           </div>
         ) : submittedHost ? (
           /* ========================================================================= */
-          /* DURUM 2: EV SAHİBİ (HOST) ÖZET KARTI                                      */
+          /* DURUM 2: EV SAHİBİ (HOST) ÖZET KARTI - 3 AŞAMALI İLERLEME                 */
           /* ========================================================================= */
-          <div className="bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden animate-fadeIn">
+          <div className="bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden animate-fadeIn space-y-6">
             <div className="p-6 sm:p-8 text-white" style={{ backgroundColor: primaryColor }}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400 text-amber-950 text-xs font-bold tracking-wide uppercase mb-3">
-                <span className="w-2 h-2 rounded-full bg-amber-800"></span>
-                <span>Doğrulama İncelemesinde</span>
+              <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold tracking-wide uppercase">
+                  <span>✓</span>
+                  <span>Aşama 1: Temel Kurum Kurulumu Tamamlandı</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-bold font-mono">
+                  <span>OID: {submittedHost.oid || 'E10XXXXXX'}</span>
+                </div>
               </div>
+
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight m-0 text-white">
                 {submittedHost.name}
               </h2>
               <p className="text-white/80 text-sm mt-2 max-w-xl leading-relaxed">
-                Avrupa ev sahibi kurum başvurunuz sisteme başarıyla iletildi. Kalite kontrol ve 15 kriterli inceleme sürecinin ardından akredite okulların arama sonuçlarında listelenecektir.
+                Avrupa ev sahibi kurumunuz sisteme başarıyla tanımlandı. Okullarla güvenle eşleşmek ve <strong>"Doğrulanmış Partner"</strong> rozeti almak için aşağıdaki adımları tamamlayabilirsiniz.
               </p>
             </div>
 
-            <div className="p-6 sm:p-8 space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
-                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
-                    Faaliyet Sektörü & Konum
+            <div className="px-6 sm:px-8 pb-6 space-y-6">
+              {/* Profil Tamamlama Çubuğu */}
+              <div className="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                <div className="flex items-center justify-between mb-2">
+                  <div>
+                    <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                      Kurumsal Profil Doluluk Oranı
+                    </span>
+                    <p className="text-xs text-slate-500 m-0 mt-0.5">
+                      Portföy ve doğrulama evraklarınızı ekledikçe okulların arama sonuçlarında üst sıralara çıkarsınız.
+                    </p>
                   </div>
-                  <div className="text-lg font-bold text-slate-900 mt-1 capitalize">
-                    {submittedHost.primarySector || hostSector}
-                  </div>
-                  <div className="text-xs text-slate-600 mt-1">
+                  <span className="text-2xl font-black text-slate-900">
+                    %{submittedHost.profileCompletenessScore || 40}
+                  </span>
+                </div>
+                <div className="w-full h-2.5 rounded-full bg-slate-200 overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-emerald-500 transition-all duration-700"
+                    style={{ width: `${submittedHost.profileCompletenessScore || 40}%` }}
+                  ></div>
+                </div>
+              </div>
+
+              {/* Kurum Bilgi Özeti Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5">
+                  <span className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider block">
+                    Konum & Ülke
+                  </span>
+                  <span className="text-sm font-bold text-slate-900 mt-1 block">
                     {submittedHost.city}, {submittedHost.countryCode}
-                  </div>
+                  </span>
+                  <span className="text-[11px] text-slate-500 mt-0.5 block truncate">
+                    {submittedHost.registeredAddress || 'Resmi Adres'}
+                  </span>
                 </div>
 
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
-                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
-                    Kabul Kapasitesi
-                  </div>
-                  <div className="text-lg font-bold text-slate-900 mt-1">
-                    {submittedHost.maxLearnersPerTerm || 4} Stajyer / Dönem
-                  </div>
-                  <div className="text-xs text-slate-600 mt-1">
-                    Yıllık azami: {submittedHost.totalAnnualCapacity || 12} öğrenci
-                  </div>
+                <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5">
+                  <span className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider block">
+                    Kurum Türü & Sektör
+                  </span>
+                  <span className="text-sm font-bold text-slate-900 mt-1 block capitalize">
+                    {submittedHost.organisationType || 'Company'}
+                  </span>
+                  <span className="text-[11px] text-slate-500 mt-0.5 block capitalize">
+                    Sektör: {submittedHost.primarySector}
+                  </span>
                 </div>
 
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
-                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
-                    İletişim Yetkilisi
-                  </div>
-                  <div className="text-base font-bold text-slate-900 mt-1">
-                    {submittedHost.contactPerson}
-                  </div>
-                  <div className="text-xs text-slate-600 mt-1">
-                    {submittedHost.contactEmail}
-                  </div>
-                </div>
-
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
-                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
-                    Çalışma Dilleri
-                  </div>
-                  <div className="text-base font-bold text-slate-900 mt-1 flex gap-1.5 flex-wrap">
-                    {(submittedHost.languages || ['EN']).map((lang: string) => (
-                      <span key={lang} className="px-2 py-0.5 bg-blue-50 text-blue-800 text-xs rounded-md font-semibold border border-blue-200">
-                        {lang}
-                      </span>
-                    ))}
-                  </div>
+                <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5">
+                  <span className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider block">
+                    İrtibat Yetkilisi & İzin
+                  </span>
+                  <span className="text-sm font-bold text-slate-900 mt-1 block truncate">
+                    {submittedHost.contactPerson} ({submittedHost.contactTitle || 'Yetkili'})
+                  </span>
+                  <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded-sm inline-block mt-0.5">
+                    ✓ Kamusal Profilde Gösterim Onaylı
+                  </span>
                 </div>
               </div>
 
-              {/* 15 Kriterlik Kalite Güvence Bilgi Kutusu */}
-              <div className="p-4 rounded-xl border border-blue-200 bg-blue-50/60 text-slate-800 text-xs space-y-2">
-                <div className="font-bold text-blue-950 flex items-center gap-2">
-                  <span>🛡️</span>
-                  <span>15 Kriterli Kalite & Güvenlik Doğrulama Süreci</span>
+              {/* 3 AŞAMALI AKSİYON KARTLARI */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                {/* Aşama 2: Portföy Kartı */}
+                <div className="border border-blue-200 bg-blue-50/40 rounded-xl p-5 flex flex-col justify-between space-y-3">
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800 mb-2">
+                      Aşama 2: Vitrin & Portföy
+                    </div>
+                    <h4 className="text-sm font-bold text-slate-900 m-0">
+                      Erasmus+ Portföyünü ve Detayları Ekle
+                    </h4>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed m-0">
+                      Örnek hareketlilik programı, 150 kelimelik kısa açıklama, logo, LinkedIn ve geçmiş Türkiye deneyimlerinizi ekleyerek okulların sizi keşfetmesini sağlayın.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsPortfolioModalOpen(true)}
+                    className="w-full py-2.5 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition-colors text-center"
+                  >
+                    🎨 Portföyü Düzenle (%75-80 Doluluk)
+                  </button>
                 </div>
-                <p className="text-slate-600 leading-relaxed m-0">
-                  CAPPINNO Partner Network yöneticileri; vergi kaydı, fiziksel işyeri standartları, İngilizce mentorluk varlığı ve iş güvenliği kriterlerini inceleyecektir. Doğrulandığında profiliniz <strong>"Doğrulanmış Ev Sahibi"</strong> statüsü alacaktır.
-                </p>
+
+                {/* Aşama 3: Kurumsal Doğrulama / KYC Kartı */}
+                <div className="border border-emerald-200 bg-emerald-50/40 rounded-xl p-5 flex flex-col justify-between space-y-3">
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 mb-2">
+                      Aşama 3: Admin Only Doğrulama
+                    </div>
+                    <h4 className="text-sm font-bold text-slate-900 m-0">
+                      Kurumsal Doğrulama & Rozet Başvurusu
+                    </h4>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed m-0">
+                      Şirket sicil belgesi, vergi numarası, 7/24 acil durum kontağı ve katılımcı kanıt evraklarını yükleyerek <strong>"Verified Partner"</strong> rozeti kazanın.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsVerificationModalOpen(true)}
+                    className="w-full py-2.5 px-4 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition-colors text-center"
+                  >
+                    🛡️ Doğrulama Evraklarını Yükle (Admin Only)
+                  </button>
+                </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-200 flex items-center justify-end">
+              {/* Alt Butonlar ve Admin Simülasyon Paneli */}
+              <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsAdminQueueModalOpen(true)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 p-2 rounded-lg hover:bg-slate-100 transition-colors border border-slate-200/80"
+                >
+                  <span>👁️</span>
+                  <span>Yönetici Doğrulama Havuzunu İncele (Admin View)</span>
+                </button>
+
                 <Link
                   href="/"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-all shadow-md"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white font-bold text-sm bg-slate-900 hover:bg-slate-800 transition-all shadow-md"
                 >
-                  <span>Ana Sayfaya Dön</span>
+                  <span>Platform Ana Sayfasına Git</span>
                   <span>→</span>
                 </Link>
               </div>
@@ -850,20 +947,20 @@ export default function OnboardingPage() {
           </div>
         ) : (
           /* ========================================================================= */
-          /* FORM 2: EV SAHİBİ KURUM / AVRUPALI İŞLETME FORMU (Sprint 2)              */
+          /* FORM 2: EV SAHİBİ KURUM (HOST) - AŞAMA 1 HIZLI ONBOARDING                 */
           /* ========================================================================= */
           <div className="bg-white border border-slate-200 rounded-2xl shadow-lg p-6 sm:p-9 animate-fadeIn">
             <div className="flex items-center justify-between border-b border-slate-100 pb-5 mb-6">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold mb-2.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
-                  <span>Ev Sahibi Kurum Kaydı</span>
+                  <span>Aşama 1: Temel Kurum Kurulumu</span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight m-0">
-                  Ev Sahibi İşletme Profilinizi Oluşturun
+                  Ev Sahibi Kurum Profilinizi Tanımlayın
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
-                  Avrupa'daki işletmeniz veya eğitim merkeziniz için stajyer kabul kapasitesini ve sektör alanlarınızı tanımlayın.
+                  Kurumunuzun yasal kimliğini, Erasmus+ OID kodunu ve ana irtibat yetkilisini tanımlayarak sisteme hızlıca dahil olun.
                 </p>
               </div>
 
@@ -882,147 +979,353 @@ export default function OnboardingPage() {
               </div>
             )}
 
-            <form onSubmit={handleHostSubmit} className="space-y-6">
+            <form onSubmit={handleHostSubmit} className="space-y-8">
+              {/* BÖLÜM 1: Kurum Kimliği ve Tüzel Bilgiler */}
               <div>
-                <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                  İşletme / Kurum Yasal Adı <span className="text-rose-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Örn: TechNordic Solutions GmbH"
-                  value={hostName}
-                  onChange={(e) => setHostName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
-                />
+                <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
+                  <span className="text-base">🏢</span>
+                  <h3 className="text-sm font-bold text-slate-900 tracking-tight uppercase">
+                    1. Kurum Kimliği ve Resmi Bilgiler
+                  </h3>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Kurumun Yasal Tam Adı (Legal Name) <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Örn: TechNordic Solutions GmbH"
+                        value={hostName}
+                        onChange={(e) => setHostName(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Ticari / Marka Adı (Varsa)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Örn: TechNordic"
+                        value={hostTradingName}
+                        onChange={(e) => setHostTradingName(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Kurum Türü <span className="text-rose-500">*</span>
+                      </label>
+                      <select
+                        value={hostOrgType}
+                        onChange={(e) => setHostOrgType(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all bg-white"
+                      >
+                        <option value="Company">Şirket / İşletme (SME / Company)</option>
+                        <option value="NGO">STK / Dernek / Vakıf (NGO)</option>
+                        <option value="VET School">Meslek Okulu / Kolej (VET School)</option>
+                        <option value="University">Üniversite (University)</option>
+                        <option value="Training Centre">Eğitim Merkezi (Training Centre)</option>
+                        <option value="Public Institution">Kamu Kurumu (Public Institution)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Kayıtlı Ülke <span className="text-rose-500">*</span>
+                      </label>
+                      <select
+                        value={hostCountryCode}
+                        onChange={(e) => setHostCountryCode(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all bg-white"
+                      >
+                        {countries.map((c) => (
+                          <option key={c.code} value={c.code}>
+                            {c.flagEmoji || '🇪🇺'} {c.nameTr} ({c.code})
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Şehir / Bölge <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Örn: Berlin"
+                        value={hostCity}
+                        onChange={(e) => setHostCity(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="sm:col-span-2">
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Resmi Kayıtlı Adres (Registered Address) <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Örn: Friedrichstraße 120, 10117 Berlin"
+                        value={hostRegisteredAddress}
+                        onChange={(e) => setHostRegisteredAddress(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Kuruluş Yılı <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="number"
+                        required
+                        min={1800}
+                        max={2030}
+                        value={hostYearEstablished}
+                        onChange={(e) => setHostYearEstablished(Number(e.target.value) || 2015)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                      Operasyonel Hizmet Adresi (Resmi adresten farklıysa)
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Örn: Alexanderplatz 5, 10178 Berlin"
+                      value={hostOperationalAddress}
+                      onChange={(e) => setHostOperationalAddress(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                    Ülke <span className="text-rose-500">*</span>
-                  </label>
-                  <select
-                    value={hostCountryCode}
-                    onChange={(e) => setHostCountryCode(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all bg-white"
-                  >
-                    {countries.map((c) => (
-                      <option key={c.code} value={c.code}>
-                        {c.flagEmoji || '🇪🇺'} {c.nameTr} ({c.code})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                    Şehir <span className="text-rose-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Örn: Berlin"
-                    value={hostCity}
-                    onChange={(e) => setHostCity(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                    Faaliyet Sektörü <span className="text-rose-500">*</span>
-                  </label>
-                  <select
-                    value={hostSector}
-                    onChange={(e) => setHostSector(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all bg-white"
-                  >
-                    {sectors.map((s) => (
-                      <option key={s.code} value={s.code}>
-                        {s.nameTr}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                    Dönemlik Kabul Kapasitesi (Öğrenci)
-                  </label>
-                  <input
-                    type="number"
-                    min={1}
-                    max={30}
-                    value={hostMaxLearners}
-                    onChange={(e) => setHostMaxLearners(Number(e.target.value) || 1)}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                    İrtibat Yetkilisi <span className="text-rose-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Örn: Markus Schmidt"
-                    value={hostContactPerson}
-                    onChange={(e) => setHostContactPerson(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                    İletişim E-Posta Adresi <span className="text-rose-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="placement@technordic.de"
-                    value={hostContactEmail}
-                    onChange={(e) => setHostContactEmail(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Sunulan Faaliyetler */}
+              {/* BÖLÜM 2: Erasmus+ ve Dijital İletişim */}
               <div>
-                <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                  Sunulan Hareketlilik Faaliyetleri
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/50 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={hostActivities.includes('VET_INTERNSHIP')}
-                      onChange={(e) => {
-                        if (e.target.checked) setHostActivities([...hostActivities, 'VET_INTERNSHIP']);
-                        else setHostActivities(hostActivities.filter((a) => a !== 'VET_INTERNSHIP'));
-                      }}
-                    />
-                    <span className="font-semibold text-slate-800">Öğrenci Staj ve Beceri Eğitimi</span>
-                  </label>
-
-                  <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/50 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={hostActivities.includes('JOB_SHADOWING')}
-                      onChange={(e) => {
-                        if (e.target.checked) setHostActivities([...hostActivities, 'JOB_SHADOWING']);
-                        else setHostActivities(hostActivities.filter((a) => a !== 'JOB_SHADOWING'));
-                      }}
-                    />
-                    <span className="font-semibold text-slate-800">Öğretmen İşbaşı Gözlem (Job Shadowing)</span>
-                  </label>
+                <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
+                  <span className="text-base">🇪🇺</span>
+                  <h3 className="text-sm font-bold text-slate-900 tracking-tight uppercase">
+                    2. Erasmus+ Kimliği ve Kurumsal İletişim
+                  </h3>
                 </div>
+
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Erasmus+ OID Numarası <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="E10123456"
+                        value={hostOid}
+                        onChange={(e) => setHostOid(e.target.value.toUpperCase())}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all uppercase"
+                      />
+                      {!isHostOidValid && hostOid.length > 0 && (
+                        <p className="text-xs text-rose-600 mt-1 font-medium">
+                          Geçerli bir Erasmus OID formatı giriniz (Örn: E10123456).
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        PIC Numarası (Varsa)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Örn: 987654321"
+                        value={hostPicNumber}
+                        onChange={(e) => setHostPicNumber(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Resmi Web Sitesi <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="url"
+                        required
+                        placeholder="https://technordic.de"
+                        value={hostWebsite}
+                        onChange={(e) => setHostWebsite(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Genel E-Posta Adresi <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="info@technordic.de"
+                        value={hostGeneralEmail}
+                        onChange={(e) => setHostGeneralEmail(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Telefon Numarası <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="+49 30 1234567"
+                        value={hostTelephone}
+                        onChange={(e) => setHostTelephone(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Faaliyet Sektörü <span className="text-rose-500">*</span>
+                      </label>
+                      <select
+                        value={hostSector}
+                        onChange={(e) => setHostSector(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all bg-white"
+                      >
+                        {sectors.map((s) => (
+                          <option key={s.code} value={s.code}>
+                            {s.nameTr}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Dönemlik Stajyer Kapasitesi
+                      </label>
+                      <input
+                        type="number"
+                        min={1}
+                        max={50}
+                        value={hostMaxLearners}
+                        onChange={(e) => setHostMaxLearners(Number(e.target.value) || 1)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* BÖLÜM 3: Ana İrtibat Yetkilisi ve Açık Rıza */}
+              <div>
+                <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
+                  <span className="text-base">👤</span>
+                  <h3 className="text-sm font-bold text-slate-900 tracking-tight uppercase">
+                    3. Hareketlilik İrtibat Yetkilisi
+                  </h3>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Yetkili Adı Soyadı <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Örn: Markus Schmidt"
+                        value={hostContactPerson}
+                        onChange={(e) => setHostContactPerson(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Unvan / Görevi <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Örn: Mobility Coordinator"
+                        value={hostContactTitle}
+                        onChange={(e) => setHostContactTitle(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                        Yetkili Kurumsal E-Posta <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="schmidt@technordic.de"
+                        value={hostContactEmail}
+                        onChange={(e) => setHostContactEmail(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Açık Rıza / Consent Checkbox (KVKK/GDPR Şartı) */}
+                  <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/40 text-xs">
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={hostConsentPublicDisplay}
+                        onChange={(e) => setHostConsentPublicDisplay(e.target.checked)}
+                        className="mt-0.5 rounded-md text-emerald-600 focus:ring-emerald-500"
+                      />
+                      <div className="text-slate-700 leading-relaxed">
+                        <span className="font-bold text-slate-900 block mb-0.5">
+                          Kamusal Profilde İletişim Bilgilerinin Sergilenmesi Açık Rıza Onayı
+                        </span>
+                        <span>
+                          İrtibat yetkilisinin adı, unvanı ve kurumsal e-posta adresinin, hareketlilik planlayan okullar tarafından görülebilmesi için kurum profilimizde sergilenmesini onaylıyorum.
+                        </span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bilgilendirme Notu */}
+              <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 text-xs text-slate-600 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-base">💡</span>
+                  <span>
+                    Vergi Numarası, Sicil Evrakları ve Katılımcı Kanıt Belgeleri sonraki aşamalarda <strong>Kurumsal Doğrulama</strong> panelinden yüklenecektir.
+                  </span>
+                </div>
+                <span className="font-bold text-slate-900 text-[11px] bg-slate-200 px-2 py-0.5 rounded-md">
+                  Başlangıç Puanı: %40
+                </span>
               </div>
 
               <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
@@ -1044,10 +1347,10 @@ export default function OnboardingPage() {
                   }`}
                 >
                   {isSubmitting ? (
-                    <span>Kaydediliyor...</span>
+                    <span>Kuruluyor...</span>
                   ) : (
                     <>
-                      <span>Ev Sahibi Kurum Kaydını Tamamla</span>
+                      <span>Kurulumu Tamamla ve Profili Aç</span>
                       <span>✓</span>
                     </>
                   )}
@@ -1062,6 +1365,36 @@ export default function OnboardingPage() {
       <footer className="py-4 text-center text-xs text-slate-500 border-t border-slate-200 bg-white">
         CAPPINNO Mobility Nexus • Erasmus Mobility Management as a Service (EMaaS)
       </footer>
+
+      {/* Host Tier 2 & Tier 3 & Admin Modals */}
+      {submittedHost && (
+        <>
+          <HostPortfolioModal
+            isOpen={isPortfolioModalOpen}
+            onClose={() => setIsPortfolioModalOpen(false)}
+            host={submittedHost}
+            onSuccess={(updated) => {
+              setSubmittedHost(updated);
+              setCurrentHost(updated);
+            }}
+          />
+
+          <HostVerificationModal
+            isOpen={isVerificationModalOpen}
+            onClose={() => setIsVerificationModalOpen(false)}
+            host={submittedHost}
+            onSuccess={(updated) => {
+              setSubmittedHost(updated);
+              setCurrentHost(updated);
+            }}
+          />
+        </>
+      )}
+
+      <AdminVerificationQueueModal
+        isOpen={isAdminQueueModalOpen}
+        onClose={() => setIsAdminQueueModalOpen(false)}
+      />
     </div>
   );
 }

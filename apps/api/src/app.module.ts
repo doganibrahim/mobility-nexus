@@ -13,10 +13,14 @@ import { OrganisationsModule } from './organisations/organisations.module';
 import { MembersModule } from './members/members.module';
 import { ReferenceModule } from './reference/reference.module';
 import { HostsModule } from './hosts/hosts.module';
+import { StorageModule } from './storage/storage.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ['.env', '../../.env', '../.env'],
+    }),
     ThrottlerModule.forRoot([
       {
         ttl: 60000,
@@ -30,6 +34,7 @@ import { HostsModule } from './hosts/hosts.module';
     MembersModule,
     ReferenceModule,
     HostsModule,
+    StorageModule,
   ],
   providers: [
     {

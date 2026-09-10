@@ -6,24 +6,43 @@ import {
   IsEmail,
   IsArray,
   IsNumber,
+  IsBoolean,
   Min,
   Max,
   MaxLength,
+  Matches,
 } from 'class-validator';
 
 export class RegisterHostDto {
   @ApiProperty({
     example: 'TechNordic Solutions GmbH',
-    description: 'Ev sahibi işletmenin veya kurumun yasal tam adı',
+    description: 'Ev sahibi işletmenin veya kurumun resmi kayıtlı yasal tam adı (Full Legal Name)',
   })
   @IsString()
-  @IsNotEmpty({ message: 'Kurum adı boş bırakılamaz.' })
+  @IsNotEmpty({ message: 'Kurum yasal adı (Full Legal Name) boş bırakılamaz.' })
   @MaxLength(255)
   name: string;
 
+  @ApiPropertyOptional({
+    example: 'TechNordic',
+    description: 'Ticari veya marka adı (varsa yasal addan farklı)',
+  })
+  @IsString()
+  @IsOptional()
+  @MaxLength(255)
+  tradingName?: string;
+
+  @ApiProperty({
+    example: 'Company',
+    description: 'Kurum türü (Company, NGO, School, University, Training Centre, vb.)',
+  })
+  @IsString()
+  @IsNotEmpty({ message: 'Kurum türü seçilmelidir.' })
+  organisationType: string;
+
   @ApiProperty({
     example: 'DE',
-    description: 'Ev sahibi kurumun bulunduğu 2 veya 3 haneli ülke kodu (Örn: DE, NL, ES)',
+    description: 'Kurumun kayıtlı olduğu 2 veya 3 haneli ülke kodu (Örn: DE, NL, ES)',
   })
   @IsString()
   @IsNotEmpty({ message: 'Ülke kodu seçilmelidir.' })
@@ -31,27 +50,79 @@ export class RegisterHostDto {
 
   @ApiProperty({
     example: 'Berlin',
-    description: 'Ev sahibi kurumun bulunduğu şehir',
+    description: 'Hizmet verilen ana şehir / bölge',
   })
   @IsString()
   @IsNotEmpty({ message: 'Şehir boş bırakılamaz.' })
   city: string;
 
-  @ApiPropertyOptional({
+  @ApiProperty({
     example: 'Friedrichstraße 120, 10117 Berlin',
-    description: 'İşletme açık adresi',
+    description: 'Resmi kayıtlı tebligat adresi (Registered Address)',
   })
   @IsString()
-  @IsOptional()
-  address?: string;
+  @IsNotEmpty({ message: 'Resmi kayıtlı adres girilmelidir.' })
+  registeredAddress: string;
 
   @ApiPropertyOptional({
-    example: 'https://technordic.de',
-    description: 'Kurumsal web sitesi URL adresi',
+    example: 'Alexanderplatz 5, 10178 Berlin',
+    description: 'Hizmet verilen operasyonel adres (resmi adresten farklıysa)',
   })
   @IsString()
   @IsOptional()
-  websiteUrl?: string;
+  operationalAddress?: string;
+
+  @ApiProperty({
+    example: 2012,
+    description: 'Kurumun faaliyete başladığı kuruluş yılı',
+  })
+  @IsNumber()
+  @Min(1800)
+  @Max(2100)
+  @IsNotEmpty({ message: 'Kuruluş yılı belirtilmelidir.' })
+  yearEstablished: number;
+
+  @ApiProperty({
+    example: 'E10123456',
+    description: 'Erasmus+ Organizasyon Kimlik Numarası (OID - E10 ile başlayan 8 haneli kod)',
+  })
+  @IsString()
+  @IsNotEmpty({ message: 'Erasmus+ OID numarası zorunludur.' })
+  @Matches(/^E10[0-9]{5,7}$/i, {
+    message: 'Geçerli bir Erasmus+ OID numarası giriniz (Örn: E10123456).',
+  })
+  oid: string;
+
+  @ApiPropertyOptional({
+    example: '987654321',
+    description: 'Funding & Tenders Portal Katılımcı Kimlik Kodu (PIC Number)',
+  })
+  @IsString()
+  @IsOptional()
+  picNumber?: string;
+
+  @ApiProperty({
+    example: 'https://technordic.de',
+    description: 'Aktif kurumsal web sitesi URL adresi',
+  })
+  @IsString()
+  @IsNotEmpty({ message: 'Kurumsal web sitesi girilmelidir.' })
+  websiteUrl: string;
+
+  @ApiProperty({
+    example: 'info@technordic.de',
+    description: 'Kurumsal genel e-posta adresi',
+  })
+  @IsEmail({}, { message: 'Geçerli bir genel e-posta adresi giriniz.' })
+  generalEmail: string;
+
+  @ApiProperty({
+    example: '+49 30 1234567',
+    description: 'Uluslararası ülke kodlu kurumsal telefon numarası',
+  })
+  @IsString()
+  @IsNotEmpty({ message: 'Kurumsal telefon numarası girilmelidir.' })
+  telephone: string;
 
   @ApiProperty({
     example: 'ict',
@@ -61,37 +132,50 @@ export class RegisterHostDto {
   @IsNotEmpty({ message: 'Ana sektör seçilmelidir.' })
   primarySector: string;
 
-  @ApiProperty({
-    example: 'Markus Schmidt',
-    description: 'Staj ve hareketlilikten sorumlu irtibat kişisi',
-  })
-  @IsString()
-  @IsNotEmpty({ message: 'İrtibat kişisi belirtilmelidir.' })
-  contactPerson: string;
-
-  @ApiProperty({
-    example: 'placement@technordic.de',
-    description: 'Resmi iletişim e-posta adresi',
-  })
-  @IsEmail({}, { message: 'Geçerli bir e-posta adresi giriniz.' })
-  contactEmail: string;
-
-  @ApiPropertyOptional({
-    example: '+49 30 1234567',
-    description: 'İletişim telefon numarası',
-  })
-  @IsString()
-  @IsOptional()
-  contactPhone?: string;
-
   @ApiPropertyOptional({
     example: ['EN', 'DE'],
-    description: 'Staj ve mentorluk sürecinde kullanılan çalışma dilleri',
+    description: 'Kurumsal ve katılımcı desteğinde kullanılan çalışma dilleri',
   })
   @IsArray()
   @IsOptional()
-  languages?: string[];
+  workingLanguages?: string[];
 
+  // --------------------------------------------------------------------------
+  // Primary Contact Person
+  // --------------------------------------------------------------------------
+  @ApiProperty({
+    example: 'Markus Schmidt',
+    description: 'Hareketlilik işbirliklerinden sorumlu ana irtibat kişisi (Ad Soyad)',
+  })
+  @IsString()
+  @IsNotEmpty({ message: 'İrtibat yetkilisinin adı soyadı belirtilmelidir.' })
+  contactPerson: string;
+
+  @ApiProperty({
+    example: 'Mobility Coordinator',
+    description: 'İrtibat yetkilisinin unvanı/görevi (Director, Project Manager vb.)',
+  })
+  @IsString()
+  @IsNotEmpty({ message: 'İrtibat yetkilisinin unvanı belirtilmelidir.' })
+  contactTitle: string;
+
+  @ApiProperty({
+    example: 'schmidt@technordic.de',
+    description: 'Yetkilinin doğrudan kurumsal e-posta adresi',
+  })
+  @IsEmail({}, { message: 'Geçerli bir kurumsal yetkili e-posta adresi giriniz.' })
+  contactEmail: string;
+
+  @ApiProperty({
+    example: true,
+    description: 'İletişim kişisinin adı, unvanı ve e-postasının kamusal profilde yayınlanması için açık rıza onayı (Consent)',
+  })
+  @IsBoolean()
+  consentPublicDisplay: boolean;
+
+  // --------------------------------------------------------------------------
+  // Optional Capacity & Activity defaults
+  // --------------------------------------------------------------------------
   @ApiPropertyOptional({
     example: 4,
     description: 'Dönem başına kabul edilebilecek maksimum stajyer/öğrenci sayısı',
@@ -114,7 +198,7 @@ export class RegisterHostDto {
 
   @ApiPropertyOptional({
     example: ['VET_INTERNSHIP', 'JOB_SHADOWING'],
-    description: 'Sunulan faaliyet türleri (VET_INTERNSHIP, JOB_SHADOWING, INVITED_EXPERT)',
+    description: 'Sunulan faaliyet türleri',
   })
   @IsArray()
   @IsOptional()
@@ -122,7 +206,7 @@ export class RegisterHostDto {
 
   @ApiPropertyOptional({
     example: 'user_2b9x...',
-    description: 'Kaydı oluşturan Clerk kullanıcısının kimlik kodu',
+    description: 'Kaydı oluşturan kullanıcının kimlik kodu',
   })
   @IsString()
   @IsOptional()
@@ -130,7 +214,7 @@ export class RegisterHostDto {
 
   @ApiPropertyOptional({
     example: 'user@clerk.user',
-    description: 'Kullanıcının Clerk e-posta adresi',
+    description: 'Kullanıcının e-posta adresi',
   })
   @IsString()
   @IsOptional()
