@@ -18,11 +18,17 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
       'postgresql://postgres:postgres@localhost:5433/mobility_nexus';
 
     try {
+      const isSsl =
+        process.env.DATABASE_SSL === 'true' ||
+        connectionString.includes('sslmode=require') ||
+        connectionString.includes('railway');
+
       this.pool = new Pool({
         connectionString,
+        ssl: isSsl ? { rejectUnauthorized: false } : undefined,
         max: 10,
         idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 3000,
+        connectionTimeoutMillis: 5000,
       });
 
       // Test connection
