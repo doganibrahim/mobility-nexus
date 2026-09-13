@@ -1,0 +1,167 @@
+{
+  "osb": {
+    "columns": [
+      "Unnamed: 0",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4"
+    ],
+    "rows": 425,
+    "head": [
+      {
+        "Unnamed: 0": "Türkiye Organize Sanayi Bölgeleri Listesi",
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN
+      },
+      {
+        "Unnamed: 0": "OSBÜK resmî dizininde 11 Eylül 2026 tarihinde yer alan kayıtlar",
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN
+      },
+      {
+        "Unnamed: 0": NaN,
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN
+      },
+      {
+        "Unnamed: 0": "OSB: 419",
+        "Unnamed: 1": "İl: 81",
+        "Unnamed: 2": "Web eksik: 45",
+        "Unnamed: 3": "E-posta eksik: 2",
+        "Unnamed: 4": "Kaynak"
+      },
+      {
+        "Unnamed: 0": NaN,
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN
+      }
+    ]
+  },
+  "ttso": {
+    "columns": [
+      "Unnamed: 0",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4",
+      "Unnamed: 5",
+      "Unnamed: 6",
+      "Unnamed: 7"
+    ],
+    "rows": 256,
+    "head": [
+      {
+        "Unnamed: 0": "Türkiye Ticaret ve Sanayi Odaları Listesi",
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN,
+        "Unnamed: 5": NaN,
+        "Unnamed: 6": NaN,
+        "Unnamed: 7": NaN
+      },
+      {
+        "Unnamed: 0": "TOBB il bazlı oda ve borsa dizininde 11 Eylül 2026 tarihinde yer alan ticaret ve sanayi odaları",
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN,
+        "Unnamed: 5": NaN,
+        "Unnamed: 6": NaN,
+        "Unnamed: 7": NaN
+      },
+      {
+        "Unnamed: 0": NaN,
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN,
+        "Unnamed: 5": NaN,
+        "Unnamed: 6": NaN,
+        "Unnamed: 7": NaN
+      },
+      {
+        "Unnamed: 0": "250 Oda",
+        "Unnamed: 1": "186 TSO",
+        "Unnamed: 2": "52 TO",
+        "Unnamed: 3": "12 SO",
+        "Unnamed: 4": "E-posta yok: 55",
+        "Unnamed: 5": "Kaynak",
+        "Unnamed: 6": "https://www.tobb.org.tr/OdaveBorsalarDB/Sayfalar/oda--borsa-sorgulama.php",
+        "Unnamed: 7": NaN
+      },
+      {
+        "Unnamed: 0": NaN,
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN,
+        "Unnamed: 5": NaN,
+        "Unnamed: 6": NaN,
+        "Unnamed: 7": NaN
+      }
+    ]
+  },
+  "esnaf": {
+    "columns": [
+      "Unnamed: 0",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4",
+      "Unnamed: 5"
+    ],
+    "rows": 88,
+    "head": [
+      {
+        "Unnamed: 0": "Türkiye İl Esnaf ve Sanatkârlar Odaları Birlikleri Listesi",
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN,
+        "Unnamed: 5": NaN
+      },
+      {
+        "Unnamed: 0": "TESK teşkilat yapısı kayıtlarında 11 Eylül 2026 tarihinde yer alan il birlikleri",
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN,
+        "Unnamed: 5": NaN
+      },
+      {
+        "Unnamed: 0": NaN,
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN,
+        "Unnamed: 5": NaN
+      },
+      {
+        "Unnamed: 0": "82 İl Birliği",
+        "Unnamed: 1": "81 İl",
+        "Unnamed: 2": "İstanbul'da 2 Birlik",
+        "Unnamed: 3": "Web sitesi yok: 17",
+        "Unnamed: 4": "E-posta: 82/82",
+        "Unnamed: 5": "Kaynak"
+      },
+      {
+        "Unnamed: 0": NaN,
+        "Unnamed: 1": NaN,
+        "Unnamed: 2": NaN,
+        "Unnamed: 3": NaN,
+        "Unnamed: 4": NaN,
+        "Unnamed: 5": NaN
+      }
+    ]
+  }
+}

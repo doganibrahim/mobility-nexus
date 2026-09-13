@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useUser } from '@clerk/nextjs';
 import { apiClient } from '../../lib/api-client';
 
 interface AdminVerificationQueueModalProps {
@@ -12,6 +13,9 @@ export default function AdminVerificationQueueModal({
   isOpen,
   onClose,
 }: AdminVerificationQueueModalProps) {
+  const { user } = useUser();
+  const userEmail = user?.primaryEmailAddress?.emailAddress;
+
   const [queue, setQueue] = useState<any[]>([]);
   const [selectedHost, setSelectedHost] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +37,7 @@ export default function AdminVerificationQueueModal({
     async function loadQueue() {
       setIsLoading(true);
       try {
-        const data = await apiClient.getVerificationQueue();
+        const data = await apiClient.getVerificationQueue(undefined, userEmail);
         setQueue(data);
         if (data.length > 0 && !selectedHost) {
           setSelectedHost(data[0]);
@@ -45,7 +49,7 @@ export default function AdminVerificationQueueModal({
       }
     }
     loadQueue();
-  }, [isOpen]);
+  }, [isOpen, userEmail]);
 
   if (!isOpen) return null;
 
@@ -55,11 +59,15 @@ export default function AdminVerificationQueueModal({
     setFeedbackMsg(null);
 
     try {
-      await apiClient.reviewHostVerification(selectedHost.id, {
-        status,
-        reviewerNotes,
-        criteriaChecklist: checklist,
-      });
+      await apiClient.reviewHostVerification(
+        selectedHost.id,
+        {
+          status,
+          reviewerNotes,
+          criteriaChecklist: checklist,
+        },
+        userEmail,
+      );
 
       setFeedbackMsg(`Kurum başarıyla "${status}" durumuna getirildi.`);
 
@@ -104,9 +112,9 @@ export default function AdminVerificationQueueModal({
 
         {/* Content Layout: Left list, Right review */}
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-          {/* Sol Panel: Liste */}
-          <div className="w-full md:w-80 border-r border-slate-200 bg-slate-50 overflow-y-auto p-4 space-y-2">
-            <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center justify-between">
+          {/* Sol Panel: Liste (Mobilde max-h-48 ve border-b, Masaüstünde md:w-80 ve md:border-r) */}
+          <div className="w-full md:w-80 max-h-44 md:max-h-none shrink-0 border-b md:border-b-0 md:border-r border-slate-200 bg-slate-50 overflow-y-auto p-4 space-y-2">
+            <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 md:mb-3 flex items-center justify-between">
               <span>Talepler ({queue.length})</span>
               <span className="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-sm">Canlı</span>
             </div>
@@ -314,12 +322,13 @@ export default function AdminVerificationQueueModal({
                     />
                   </div>
 
-                  <div className="flex items-center justify-end gap-3 pt-2">
+                  {/* Karar Butonları */}
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2.5 pt-2">
                     <button
                       type="button"
                       disabled={isProcessing}
                       onClick={() => handleDecision('REJECTED')}
-                      className="px-4 py-2 rounded-lg text-xs font-bold text-rose-700 bg-rose-50 border border-rose-200 hover:bg-rose-100 transition-colors"
+                      className="px-4 py-2.5 rounded-lg text-xs font-bold text-rose-700 bg-rose-50 border border-rose-200 hover:bg-rose-100 transition-colors text-center"
                     >
                       Reddet
                     </button>
@@ -328,7 +337,7 @@ export default function AdminVerificationQueueModal({
                       type="button"
                       disabled={isProcessing}
                       onClick={() => handleDecision('NEEDS_UPDATE')}
-                      className="px-4 py-2 rounded-lg text-xs font-bold text-amber-800 bg-amber-50 border border-amber-200 hover:bg-amber-100 transition-colors"
+                      className="px-4 py-2.5 rounded-lg text-xs font-bold text-amber-800 bg-amber-50 border border-amber-200 hover:bg-amber-100 transition-colors text-center"
                     >
                       Eksik Evrak İste (NEEDS_UPDATE)
                     </button>
@@ -337,7 +346,7 @@ export default function AdminVerificationQueueModal({
                       type="button"
                       disabled={isProcessing}
                       onClick={() => handleDecision('VERIFIED')}
-                      className="px-6 py-2 rounded-lg text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 shadow-sm transition-all"
+                      className="px-6 py-2.5 rounded-lg text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 shadow-sm transition-all text-center"
                     >
                       {isProcessing ? 'İşleniyor...' : '✓ Onayla & "Verified Partner" Rozeti Ver'}
                     </button>

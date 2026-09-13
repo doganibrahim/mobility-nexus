@@ -1,0 +1,832 @@
+[
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Birlik Adı",
+    "il": "İl",
+    "ilce": "",
+    "webSitesi": "Web Sitesi",
+    "eposta": "İrtibat E-posta Adresi",
+    "telefon": "Telefon",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ADANA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ADANA",
+    "ilce": "",
+    "webSitesi": "https://www.adanaesob.org.tr",
+    "eposta": "adanaesob@tesk.org.tr",
+    "telefon": "0322 3651010",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ADIYAMAN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ADIYAMAN",
+    "ilce": "",
+    "webSitesi": "https://www.adiyamanesob.org.tr",
+    "eposta": "adiyamanesob@tesk.org.tr",
+    "telefon": "0416 2163362",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AFYONKARAHİSAR ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "AFYONKARAHİSAR",
+    "ilce": "",
+    "webSitesi": "https://www.afyonesob.org.tr",
+    "eposta": "afyonesob@tesk.org.tr",
+    "telefon": "0272 2235116",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AĞRI ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "AĞRI",
+    "ilce": "",
+    "webSitesi": "https://www.agriesob.org",
+    "eposta": "agriesob@tesk.org.tr",
+    "telefon": "0472 2154176",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AKSARAY ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "AKSARAY",
+    "ilce": "",
+    "webSitesi": "https://www.akesob.org.tr",
+    "eposta": "aksarayesob@tesk.org.tr",
+    "telefon": "0382 2124569",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AMASYA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "AMASYA",
+    "ilce": "",
+    "webSitesi": "https://www.amasyaesob.org.tr",
+    "eposta": "amasyaesob@tesk.org.tr",
+    "telefon": "0358 2184344",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ANKARA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ANKARA",
+    "ilce": "",
+    "webSitesi": "https://www.ankesob.org.tr",
+    "eposta": "ankaraesob@tesk.org.tr",
+    "telefon": "0312 3102244",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ANTALYA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ANTALYA",
+    "ilce": "",
+    "webSitesi": "https://www.aesob.org.tr",
+    "eposta": "antalyaesob@tesk.org.tr",
+    "telefon": "0242 3345656",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ARDAHAN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ARDAHAN",
+    "ilce": "",
+    "webSitesi": "https://www.ardahanesob.org",
+    "eposta": "ardahanesob@tesk.org.tr",
+    "telefon": "0478 2116276",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ARTVİN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ARTVİN",
+    "ilce": "",
+    "webSitesi": "https://www.artvinesob.org.tr",
+    "eposta": "artvinesob@tesk.org.tr",
+    "telefon": "0466 2123276",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AYDIN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "AYDIN",
+    "ilce": "",
+    "webSitesi": "https://www.ayesob.org.tr",
+    "eposta": "aydinesob@tesk.org.tr",
+    "telefon": "0256 2310674",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BALIKESİR ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "BALIKESİR",
+    "ilce": "",
+    "webSitesi": "https://www.balikesiresob.org",
+    "eposta": "balikesiresob@tesk.org.tr",
+    "telefon": "0266 2394255",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BARTIN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "BARTIN",
+    "ilce": "",
+    "webSitesi": "https://www.bartinesob.com",
+    "eposta": "bartinesob@tesk.org.tr",
+    "telefon": "0378 2274651",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BATMAN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "BATMAN",
+    "ilce": "",
+    "webSitesi": "https://www.batmanbesob.org",
+    "eposta": "batmanesob@tesk.org.tr",
+    "telefon": "0488 2138403",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BAYBURT ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "BAYBURT",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "bayburtesob@tesk.org.tr",
+    "telefon": "0458 2113219",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BİLECİK ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "BİLECİK",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "bilecikesob@tesk.org.tr",
+    "telefon": "0228 2123785",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BİNGÖL ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "BİNGÖL",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "bingolesob@tesk.org.tr",
+    "telefon": "0426 2133883",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BİTLİS ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "BİTLİS",
+    "ilce": "",
+    "webSitesi": "https://www.bitlisesob.org.tr",
+    "eposta": "bitlisesob@tesk.org.tr",
+    "telefon": "0434 2266682",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BOLU ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "BOLU",
+    "ilce": "",
+    "webSitesi": "https://www.boluesob.org.tr",
+    "eposta": "boluesob@tesk.org.tr",
+    "telefon": "0374 2155571",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BURDUR ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "BURDUR",
+    "ilce": "",
+    "webSitesi": "https://www.burduresob.org",
+    "eposta": "burduresob@tesk.org.tr",
+    "telefon": "0248 2340604",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BURSA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "BURSA",
+    "ilce": "",
+    "webSitesi": "https://www.besob.org.tr",
+    "eposta": "bursaesob@tesk.org.tr",
+    "telefon": "0224 3623980",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇANAKKALE ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ÇANAKKALE",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "canakkaleesob@tesk.org.tr",
+    "telefon": "0286 2176031",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇANKIRI ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ÇANKIRI",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "cankiriesob@tesk.org.tr",
+    "telefon": "0376 2133458",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇORUM ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ÇORUM",
+    "ilce": "",
+    "webSitesi": "https://www.corumesob.org.tr",
+    "eposta": "corumesob@tesk.org.tr",
+    "telefon": "0364 2240187",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DENİZLİ ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "DENİZLİ",
+    "ilce": "",
+    "webSitesi": "https://www.denizliesob.org",
+    "eposta": "denizliesob@tesk.org.tr",
+    "telefon": "0258 2427176",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DİYARBAKIR ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "DİYARBAKIR",
+    "ilce": "",
+    "webSitesi": "https://www.desob.com.tr",
+    "eposta": "diyarbakiresob@tesk.org.tr",
+    "telefon": "0412 2525690",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DÜZCE ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "DÜZCE",
+    "ilce": "",
+    "webSitesi": "https://www.desob.org.tr",
+    "eposta": "duzceesob@tesk.org.tr",
+    "telefon": "0380 5241390",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "EDİRNE ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "EDİRNE",
+    "ilce": "",
+    "webSitesi": "https://www.edesob.org.tr",
+    "eposta": "edirneesob@tesk.org.tr",
+    "telefon": "0284 2135274",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ELAZIĞ ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ELAZIĞ",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "elazigesob@tesk.org.tr",
+    "telefon": "424 2181721",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ERZİNCAN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ERZİNCAN",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "erzincanesob@tesk.org.tr",
+    "telefon": "0446 2142664",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ERZURUM ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ERZURUM",
+    "ilce": "",
+    "webSitesi": "https://www.eesob.org",
+    "eposta": "erzurumesob@tesk.org.tr",
+    "telefon": "0442 2335454",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ESKİŞEHİR ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ESKİŞEHİR",
+    "ilce": "",
+    "webSitesi": "https://www.esesob.org.tr",
+    "eposta": "eskisehiresob@tesk.org.tr",
+    "telefon": "0222 2314820",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GAZİANTEP ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "GAZİANTEP",
+    "ilce": "",
+    "webSitesi": "https://www.gesob.org.tr",
+    "eposta": "gaziantepesob@tesk.org.tr",
+    "telefon": "0342 2204080",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GİRESUN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "GİRESUN",
+    "ilce": "",
+    "webSitesi": "https://www.giresunesob.org.tr",
+    "eposta": "giresunesob@tesk.org.tr",
+    "telefon": "0454 212 9069",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GÜMÜŞHANE ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "GÜMÜŞHANE",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "gumushaneesob@tesk.org.tr",
+    "telefon": "0456 2133165",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "HAKKARİ ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "HAKKARİ",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "hakkariesob@tesk.org.tr",
+    "telefon": "0438 2112714",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "HATAY ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "HATAY",
+    "ilce": "",
+    "webSitesi": "https://www.hesob.org.tr",
+    "eposta": "hatayesob@tesk.org.tr",
+    "telefon": "0537 7726737",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "IĞDIR ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "IĞDIR",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "igdiresob@tesk.org.tr",
+    "telefon": "0476 2278333",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ISPARTA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ISPARTA",
+    "ilce": "",
+    "webSitesi": "https://www.ispartaesob.org",
+    "eposta": "ispartaesob@tesk.org.tr",
+    "telefon": "0246 2181513",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İSTANBUL ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "İSTANBUL",
+    "ilce": "",
+    "webSitesi": "https://www.istesob.org.tr",
+    "eposta": "istanbulesob@tesk.org.tr",
+    "telefon": "0212 6606020",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İSTANBUL (Bil.Mad.Eşya) ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "İSTANBUL",
+    "ilce": "",
+    "webSitesi": "https://www.imesob.org",
+    "eposta": "istanbulmesob@tesk.org.tr",
+    "telefon": "0212 3610303",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İZMİR ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "İZMİR",
+    "ilce": "",
+    "webSitesi": "https://www.iesob.org.tr",
+    "eposta": "izmir@tesk.org.tr",
+    "telefon": "0232 4820262",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KAHRAMANMARAŞ ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KAHRAMANMARAŞ",
+    "ilce": "",
+    "webSitesi": "https://www.kmesob.org.tr",
+    "eposta": "kahramanmaras@tesk.org.tr",
+    "telefon": "0344 2314050",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KARABÜK ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KARABÜK",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "karabukesob@tesk.org.tr",
+    "telefon": "0370 4124247",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KARAMAN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KARAMAN",
+    "ilce": "",
+    "webSitesi": "https://www.karamanesnaf.org.tr",
+    "eposta": "karaman@tesk.org.tr",
+    "telefon": "0338 2122398",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KARS ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KARS",
+    "ilce": "",
+    "webSitesi": "https://www.karsesob.org.tr",
+    "eposta": "karsesob@tesk.org.tr",
+    "telefon": "0474 2124224",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KASTAMONU ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KASTAMONU",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "kastamonuesob@tesk.org.tr",
+    "telefon": "0366 2146285",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KAYSERİ ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KAYSERİ",
+    "ilce": "",
+    "webSitesi": "https://www.kesob.com",
+    "eposta": "kayseriesob@tesk.org.tr",
+    "telefon": "0352 2226685",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KIRIKKALE ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KIRIKKALE",
+    "ilce": "",
+    "webSitesi": "https://www.kirikkaleesob.com.tr",
+    "eposta": "kirikkaleesob@tesk.org.tr",
+    "telefon": "0318 2127890",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KIRKLARELİ ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KIRKLARELİ",
+    "ilce": "",
+    "webSitesi": "https://www.kesob.org.tr",
+    "eposta": "kirklareliesob@tesk.org.tr",
+    "telefon": "0288 2141054",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KIRŞEHİR ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KIRŞEHİR",
+    "ilce": "",
+    "webSitesi": "https://www.kirsehiresob.org.tr",
+    "eposta": "kirsehiresob@tesk.org.tr",
+    "telefon": "0386 2132663",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KİLİS ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KİLİS",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "kilisesob@tesk.org.tr",
+    "telefon": "0348 8143223",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KOCAELİ ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KOCAELİ",
+    "ilce": "",
+    "webSitesi": "https://www.kocaeliesob.com",
+    "eposta": "kocaeliesob@tesk.org.tr",
+    "telefon": "0262 3211590",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KONYA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KONYA",
+    "ilce": "",
+    "webSitesi": "https://www.konesob.org.tr",
+    "eposta": "konyaesob@tesk.org.tr",
+    "telefon": "0332 2350292",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KÜTAHYA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "KÜTAHYA",
+    "ilce": "",
+    "webSitesi": "https://www.kutesob.org.tr",
+    "eposta": "kutahyaesob@tesk.org.tr",
+    "telefon": "0274 2716285",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MALATYA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "MALATYA",
+    "ilce": "",
+    "webSitesi": "https://www.malatyaesob.org.tr",
+    "eposta": "malatyaesob@tesk.org.tr",
+    "telefon": "0422 3244446",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MANİSA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "MANİSA",
+    "ilce": "",
+    "webSitesi": "https://www.mesob.org.tr",
+    "eposta": "manisaesob@tesk.org.tr",
+    "telefon": "0236 2312980",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MARDİN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "MARDİN",
+    "ilce": "",
+    "webSitesi": "https://www.mardinesob.org.tr",
+    "eposta": "mardinesob@tesk.org.tr",
+    "telefon": "0482 2123801",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MERSİN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "MERSİN",
+    "ilce": "",
+    "webSitesi": "https://www.mersinesob.org.tr",
+    "eposta": "mersinesob@tesk.org.tr",
+    "telefon": "0324 2389400",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MUĞLA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "MUĞLA",
+    "ilce": "",
+    "webSitesi": "https://www.muglaesob.org.tr",
+    "eposta": "muglaesob@tesk.org.tr",
+    "telefon": "0252 2142335",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MUŞ ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "MUŞ",
+    "ilce": "",
+    "webSitesi": "https://www.musesob.org.tr",
+    "eposta": "musesob@tesk.org.tr",
+    "telefon": "0436 2121889",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "NEVŞEHİR ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "NEVŞEHİR",
+    "ilce": "",
+    "webSitesi": "https://www.nevesob.com",
+    "eposta": "nevsehiresob@tesk.org.tr",
+    "telefon": "038 2131376",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "NİĞDE ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "NİĞDE",
+    "ilce": "",
+    "webSitesi": "https://www.nesob.org.tr",
+    "eposta": "nigdeesob@tesk.org.tr",
+    "telefon": "0388 2321444",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ORDU ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ORDU",
+    "ilce": "",
+    "webSitesi": "https://www.oesob.org.tr",
+    "eposta": "orduesob@tesk.org.tr",
+    "telefon": "0452 2339050",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "OSMANİYE ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "OSMANİYE",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "osmaniyeesob@tesk.org.tr",
+    "telefon": "0328 8146417",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "RİZE ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "RİZE",
+    "ilce": "",
+    "webSitesi": "https://www.resob.org.tr",
+    "eposta": "rizeesob@tesk.org.tr",
+    "telefon": "0464 2132397",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SAKARYA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "SAKARYA",
+    "ilce": "",
+    "webSitesi": "https://www.sesob.org.tr",
+    "eposta": "sakaryaesob@tesk.org.tr",
+    "telefon": "0264 2823750",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SAMSUN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "SAMSUN",
+    "ilce": "",
+    "webSitesi": "https://www.samsunesob.org.tr",
+    "eposta": "samsunesob@tesk.org.tr",
+    "telefon": "0362 2286014",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SİİRT ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "SİİRT",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "siirtesob@tesk.org.tr",
+    "telefon": "0484 2236656",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SİNOP ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "SİNOP",
+    "ilce": "",
+    "webSitesi": "https://www.sinopesob.org.tr",
+    "eposta": "sinopesob@tesk.org.tr",
+    "telefon": "0368 2615840",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SİVAS ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "SİVAS",
+    "ilce": "",
+    "webSitesi": "https://www.sivasesob.org.tr",
+    "eposta": "sivasesob@tesk.org.tr",
+    "telefon": "0346 2211648",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ŞANLIURFA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ŞANLIURFA",
+    "ilce": "",
+    "webSitesi": "https://www.urfaesob.org.tr",
+    "eposta": "sanliurfaesob@tesk.org.tr",
+    "telefon": "0414 3161155",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ŞIRNAK ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ŞIRNAK",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "sirnakesob@tesk.org.tr",
+    "telefon": "0486 2161907",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TEKİRDAĞ ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "TEKİRDAĞ",
+    "ilce": "",
+    "webSitesi": "https://www.tekirdagesob.org.tr",
+    "eposta": "tekirdagesob@tesk.org.tr",
+    "telefon": "0282 2612287",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TOKAT ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "TOKAT",
+    "ilce": "",
+    "webSitesi": "https://www.tesob.net",
+    "eposta": "tokatesob@tesk.org.tr",
+    "telefon": "0356 2141653",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TRABZON ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "TRABZON",
+    "ilce": "",
+    "webSitesi": "https://www.tesob.org.tr",
+    "eposta": "trabzonesob@tesk.org.tr",
+    "telefon": "0462 3234190",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TUNCELİ ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "TUNCELİ",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "tunceliesob@tesk.org.tr",
+    "telefon": "0428 2131443",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "UŞAK ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "UŞAK",
+    "ilce": "",
+    "webSitesi": "https://www.usak-esob.org.tr",
+    "eposta": "usakesob@tesk.org.tr",
+    "telefon": "0276 2122517",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "VAN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "VAN",
+    "ilce": "",
+    "webSitesi": "https://www.vesob.org.tr",
+    "eposta": "vanesob@tesk.org.tr",
+    "telefon": "0432 2143812",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "YALOVA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "YALOVA",
+    "ilce": "",
+    "webSitesi": "https://www.yalovaesob.org.tr",
+    "eposta": "yalovaesob@tesk.org.tr",
+    "telefon": "0226 8136314",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "YOZGAT ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "YOZGAT",
+    "ilce": "",
+    "webSitesi": "https://www.yozgatesob.org.tr",
+    "eposta": "yozgatesob@tesk.org.tr",
+    "telefon": "0354 2129200",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ZONGULDAK ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+    "il": "ZONGULDAK",
+    "ilce": "",
+    "webSitesi": "https://www.zesob.org.tr",
+    "eposta": "zonguldakesob@tesk.org.tr",
+    "telefon": "037 2577696",
+    "okulTuru": "Esnaf ve Sanatkârlar"
+  }
+]

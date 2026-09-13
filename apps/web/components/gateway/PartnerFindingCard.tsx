@@ -6,13 +6,13 @@ import { PARTNER_FUNNEL } from '../../lib/constants';
 import { useTranslation } from '../../lib/i18n';
 
 export default function PartnerFindingCard() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   return (
     <NeoCard
       id="partners"
       title={t.partners.title}
-      badge="Resmî AB Ağları"
+      badge={locale === 'tr' ? 'Resmi AB Ağları' : 'Official EU Networks'}
       badgeType="primary"
     >
       <div className="space-y-4">

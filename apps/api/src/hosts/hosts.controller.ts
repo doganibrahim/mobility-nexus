@@ -9,6 +9,7 @@ import {
   Headers,
   UsePipes,
   ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
 import { HostsService } from './hosts.service';
@@ -16,7 +17,9 @@ import { RegisterHostDto } from './dto/register-host.dto';
 import { UpdateHostPortfolioDto } from './dto/update-host-portfolio.dto';
 import { SubmitHostVerificationDto } from './dto/submit-host-verification.dto';
 import { ReviewHostVerificationDto } from './dto/review-host-verification.dto';
+import { MatchHostsDto } from './dto/match-hosts.dto';
 import { CORRELATION_ID_HEADER } from '../common/middleware/correlation-id.middleware';
+import { AdminGuard } from '../common/guards/admin.guard';
 
 @ApiTags('Host Organisations (Ev Sahibi Kurumlar)')
 @Controller('hosts')
@@ -59,6 +62,7 @@ export class HostsController {
   }
 
   @Get('verifications/queue')
+  @UseGuards(AdminGuard)
   @ApiOperation({ summary: 'Yönetici: Onay Bekleyen Evrak İnceleme Havuzunu Getir' })
   @ApiQuery({ name: 'status', required: false, example: 'UNDER_REVIEW' })
   @ApiResponse({ status: 200, description: 'İnceleme bekleyen kurum ve evrak listesi' })
@@ -67,6 +71,7 @@ export class HostsController {
   }
 
   @Post(':id/verification/review')
+  @UseGuards(AdminGuard)
   @UsePipes(new ValidationPipe({ whitelist: true, transform: true }))
   @ApiOperation({ summary: 'Yönetici: Kurum Doğrulama Kararı Ver (Onayla/Rozet Ver, Revize İste)' })
   @ApiResponse({ status: 200, description: 'Doğrulama kararı işlendi' })
@@ -90,5 +95,16 @@ export class HostsController {
   @ApiResponse({ status: 200, description: 'Ev sahibi kurum profili' })
   findOne(@Param('id') id: string) {
     return this.hostsService.findOne(id);
+  }
+
+  @Post('match')
+  @UsePipes(new ValidationPipe({ whitelist: true, transform: true }))
+  @ApiOperation({ summary: 'Yararlanıcı Okul Gereksinimlerine Göre Ev Sahibi (Host) Eşleştir & İki Kademeli Skorla' })
+  @ApiResponse({ status: 200, description: 'Filtrelenmiş ve iki kademeli puanlanmış ev sahibi adayları' })
+  matchHosts(
+    @Body() dto: MatchHostsDto,
+    @Headers(CORRELATION_ID_HEADER) correlationId = 'match-req',
+  ) {
+    return this.hostsService.matchHosts(dto, correlationId);
   }
 }

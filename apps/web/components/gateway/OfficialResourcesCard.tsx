@@ -5,12 +5,12 @@ import NeoCard from '../ui/NeoCard';
 import { useTranslation } from '../../lib/i18n';
 
 export default function OfficialResourcesCard() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   return (
     <NeoCard
       title={t.official.title}
-      badge="Resmî Rehberler"
+      badge={locale === 'tr' ? 'Resmi Rehberler' : 'Official Guidelines'}
       badgeType="primary"
     >
       <div className="space-y-4">
@@ -46,7 +46,7 @@ export default function OfficialResourcesCard() {
             rel="noopener noreferrer"
             className="edu-btn-secondary text-xs"
           >
-            🌐 Resmî ESCO Portalı ↗
+            {locale === 'tr' ? '🌐 Resmi ESCO Portalı ↗' : '🌐 Official ESCO Portal ↗'}
           </a>
         </div>
       </div>

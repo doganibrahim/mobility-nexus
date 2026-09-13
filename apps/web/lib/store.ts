@@ -1,6 +1,113 @@
 import { create } from 'zustand';
-import { ParticipantType, MobilityGoal, HostType } from '@mobility-nexus/types';
+import {
+  ParticipantType,
+  MobilityGoal,
+  HostType,
+  Ka122EligibilityResult,
+} from '@mobility-nexus/types';
 import { DecisionEngineResult, HostScoreResult } from './calculations';
+
+export interface MobilityInquiry {
+  id: string;
+  createdAt: string;
+  isMock?: boolean;
+  // Sending school details
+  schoolName: string;
+  schoolCity: string;
+  schoolOid: string;
+  schoolContactName?: string;
+  schoolContactEmail?: string;
+  projectType: 'KA121' | 'KA122';
+  // Target Host details
+  hostId: string;
+  hostName: string;
+  hostCountry: string;
+  // Mobility details
+  vetField: string;
+  iscedCode?: string;
+  participantCount: number;
+  accompanyingPersonsCount: number;
+  durationDays: number;
+  targetStartDate: string;
+  targetEndDate: string;
+  logisticsRequired: {
+    accommodation: boolean;
+    meals: boolean;
+    transfers: boolean;
+  };
+  notes?: string;
+  status: 'PENDING' | 'ACCEPTED' | 'REVISED' | 'DECLINED';
+  hostReplyNote?: string;
+}
+
+export const createDemoInquiries = (locale: string): MobilityInquiry[] => {
+  const isEn = locale === 'en';
+  return [
+    {
+      id: 'inq-mock-kapadokya',
+      createdAt: '2026-09-10T10:30:00Z',
+      isMock: true,
+      schoolName: isEn ? 'Kapadokya Technical High School [MOCK]' : 'Kapadokya Teknik Lisesi [MOCK]',
+      schoolCity: 'Nevşehir / Kapadokya',
+      schoolOid: 'E10999001',
+      schoolContactName: 'Ahmet Yılmaz',
+      schoolContactEmail: 'proje@kapadokyateknik.k12.tr',
+      projectType: 'KA121',
+      hostId: 'demo-host-berlin',
+      hostName: isEn ? 'Berlin VET Training Solutions GmbH' : 'Berlin VET Eğitim Çözümleri GmbH',
+      hostCountry: 'DE',
+      vetField: isEn ? 'Information & Communication Technologies (ICT / Cybersecurity)' : 'Bilişim Teknolojileri & Siber Güvenlik',
+      iscedCode: '0613',
+      participantCount: 6,
+      accompanyingPersonsCount: 1,
+      durationDays: 14,
+      targetStartDate: '2026-10-12',
+      targetEndDate: '2026-10-25',
+      logisticsRequired: {
+        accommodation: true,
+        meals: true,
+        transfers: false,
+      },
+      notes: isEn
+        ? 'Our accredited VET school seeks a 14-day internship placement for 6 cybersecurity students and 1 accompanying teacher. We require local workshop mentoring.'
+        : 'KA121 akredite meslek lisemizden 6 siber güvenlik öğrencisi ve 1 refakatçi öğretmen için 14 günlük işletme stajı planlamaktayız. Pratik atölye eğitimi ve İngilizce/Almanca mentorluk desteği talep ediyoruz.',
+      status: 'PENDING',
+    },
+    {
+      id: 'inq-mock-seyrek',
+      createdAt: '2026-09-08T14:15:00Z',
+      isMock: true,
+      schoolName: isEn ? 'Seyrek Technical High School [MOCK]' : 'Seyrek Teknik Lisesi [MOCK]',
+      schoolCity: 'İzmir / Seyrek',
+      schoolOid: 'E10999002',
+      schoolContactName: 'Merve Demir',
+      schoolContactEmail: 'erasmus@seyrekteknik.k12.tr',
+      projectType: 'KA122',
+      hostId: 'demo-host-berlin',
+      hostName: isEn ? 'Berlin VET Training Solutions GmbH' : 'Berlin VET Eğitim Çözümleri GmbH',
+      hostCountry: 'DE',
+      vetField: isEn ? 'Industrial Automation & Mechatronics' : 'Endüstriyel Otomasyon & Mekatronik',
+      iscedCode: '0714',
+      participantCount: 4,
+      accompanyingPersonsCount: 1,
+      durationDays: 21,
+      targetStartDate: '2026-11-02',
+      targetEndDate: '2026-11-22',
+      logisticsRequired: {
+        accommodation: true,
+        meals: true,
+        transfers: true,
+      },
+      notes: isEn
+        ? 'KA122 short-term mobility proposal for 4 industrial automation students. Initial Letter of Intent (LoI) approved by host.'
+        : 'KA122 kısa dönemli hareketlilik kapsamında 4 mekatronik öğrencimizin PLC ve robotik hatlar üzerinde staj yapması hedeflenmektedir. Kurumunuzdan ön kabul mektubu alınmıştır.',
+      status: 'ACCEPTED',
+      hostReplyNote: isEn
+        ? 'Letter of Intent (LoI) signed. We confirm capacity for 4 students during November 2026.'
+        : 'Ön kabul onaylandı. Kasım 2026 dönemi için 4 öğrenci kontenjanı rezerve edildi.',
+    },
+  ];
+};
 
 export interface AppState {
   // 1. School Profile
@@ -20,8 +127,12 @@ export interface AppState {
     mobilityGoal: MobilityGoal;
     participantName: string;
     language: number;
-    country: string;
-    duration: string;
+    targetCountries: string[];
+    startDate: string;
+    endDate: string;
+    participantCount: number;
+    accompanyingPersonsCount: number;
+    ageGroup: 'under_18' | '18_plus' | 'mixed';
   };
   setParticipantProfile: (data: Partial<AppState['participantProfile']>) => void;
 
@@ -54,6 +165,18 @@ export interface AppState {
   };
   setDecisionEngine: (data: Partial<AppState['decisionEngine']>) => void;
 
+  // 5b. Eligibility Gatekeeper State
+  eligibilityGatekeeper: {
+    participantCount: number;
+    projectDurationMonths: number;
+    pastKa122GrantsCount: number;
+    mobilityStrategy: 'ad_hoc' | 'regular_annual';
+    eligibilityResult: Ka122EligibilityResult | null;
+  };
+  setEligibilityGatekeeper: (
+    data: Partial<AppState['eligibilityGatekeeper']>,
+  ) => void;
+
   // 6. Host Matching State
   hostMatching: {
     hostName: string;
@@ -84,14 +207,26 @@ export interface AppState {
   ) => void;
   setCurrentHost: (host: any) => void;
 
+  // 9. Mobility Inquiries State (Sending & Receiving)
+  inquiries: MobilityInquiry[];
+  sendInquiry: (inquiry: Omit<MobilityInquiry, 'id' | 'createdAt' | 'status'>) => MobilityInquiry;
+  updateInquiryStatus: (
+    inquiryId: string,
+    status: MobilityInquiry['status'],
+    replyNote?: string,
+  ) => void;
+  removeInquiry: (inquiryId: string) => void;
+
   // Actions
   initFromStorage: () => void;
   clearOrg: () => void;
   loadDemoData: (locale: string) => void;
+  loadHostDemoData: (locale: string) => void;
   resetData: () => void;
 }
 
 const initialEmptyState = {
+  inquiries: [] as MobilityInquiry[],
   schoolProfile: {
     schoolName: '',
     city: '',
@@ -102,11 +237,15 @@ const initialEmptyState = {
   },
   participantProfile: {
     participantType: 'student' as ParticipantType,
-    mobilityGoal: 'Short-term VET mobility' as MobilityGoal,
+    mobilityGoal: 'VET_SHORT_TERM' as MobilityGoal,
     participantName: '',
     language: 0,
-    country: '',
-    duration: '',
+    targetCountries: [],
+    startDate: '',
+    endDate: '',
+    participantCount: 1,
+    accompanyingPersonsCount: 0,
+    ageGroup: 'mixed' as const,
   },
   escoIsced: {
     vetField: '',
@@ -127,6 +266,13 @@ const initialEmptyState = {
   },
   decisionEngine: {
     decisionResult: null,
+  },
+  eligibilityGatekeeper: {
+    participantCount: 15,
+    projectDurationMonths: 12,
+    pastKa122GrantsCount: 0,
+    mobilityStrategy: 'ad_hoc' as const,
+    eligibilityResult: null,
   },
   hostMatching: {
     hostName: '',
@@ -202,9 +348,69 @@ export const useAppStore = create<AppState>((set) => ({
     }));
   },
 
+  sendInquiry: (inquiryData) => {
+    const newInquiry: MobilityInquiry = {
+      ...inquiryData,
+      id: 'inq-' + Date.now().toString(36) + Math.random().toString(36).substring(2, 5),
+      createdAt: new Date().toISOString(),
+      status: 'PENDING',
+    };
+    set((state) => {
+      const updated = [newInquiry, ...state.inquiries];
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('cappinno_inquiries', JSON.stringify(updated));
+        } catch {}
+      }
+      return { inquiries: updated };
+    });
+    return newInquiry;
+  },
+
+  updateInquiryStatus: (inquiryId, status, replyNote) => {
+    set((state) => {
+      const updated = state.inquiries.map((inq) =>
+        inq.id === inquiryId
+          ? {
+              ...inq,
+              status,
+              hostReplyNote: replyNote !== undefined ? replyNote : inq.hostReplyNote,
+            }
+          : inq,
+      );
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('cappinno_inquiries', JSON.stringify(updated));
+        } catch {}
+      }
+      return { inquiries: updated };
+    });
+  },
+
+  removeInquiry: (inquiryId) => {
+    set((state) => {
+      const updated = state.inquiries.filter((inq) => inq.id !== inquiryId);
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('cappinno_inquiries', JSON.stringify(updated));
+        } catch {}
+      }
+      return { inquiries: updated };
+    });
+  },
+
   initFromStorage: () => {
     if (typeof window !== 'undefined') {
       try {
+        // Restore Inquiries
+        const storedInquiries = localStorage.getItem('cappinno_inquiries');
+        if (storedInquiries) {
+          const parsedInquiries = JSON.parse(storedInquiries);
+          if (Array.isArray(parsedInquiries)) {
+            set(() => ({ inquiries: parsedInquiries }));
+          }
+        }
+
         const storedHost = localStorage.getItem('cappinno_current_host');
         if (storedHost) {
           const { host } = JSON.parse(storedHost);
@@ -282,6 +488,11 @@ export const useAppStore = create<AppState>((set) => ({
   setDecisionEngine: (data) =>
     set((state) => ({ decisionEngine: { ...state.decisionEngine, ...data } })),
 
+  setEligibilityGatekeeper: (data) =>
+    set((state) => ({
+      eligibilityGatekeeper: { ...state.eligibilityGatekeeper, ...data },
+    })),
+
   setHostMatching: (data) =>
     set((state) => ({ hostMatching: { ...state.hostMatching, ...data } })),
 
@@ -291,22 +502,35 @@ export const useAppStore = create<AppState>((set) => ({
   loadDemoData: (locale: string) => {
     const isEn = locale === 'en';
     
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('cappinno_current_host');
+      } catch {}
+    }
+
     set({
+      currentHost: null,
+      orgType: 'SCHOOL',
+      isOnboarded: true,
       schoolProfile: {
-        schoolName: isEn ? 'Ankara Vocational and Technical Anatolian High School' : 'Ankara Mesleki ve Teknik Anadolu Lisesi',
-        city: 'Ankara',
+        schoolName: isEn ? 'Kapadokya Technical High School [MOCK]' : 'Kapadokya Teknik Lisesi [MOCK]',
+        city: 'Nevşehir',
         accredited: 'yes',
-        oid: 'E10123456',
+        oid: 'E10999001',
         erasmusPlan: isEn ? 'Enhance teachers and learners competence in Industry 4.0, smart automation, and robotics.' : 'Öğretmen ve öğrencilerin Endüstri 4.0 / dijital üretim ve robotik yetkinliklerini geliştirmek.',
         institutionNeed: isEn ? 'Our school has established a new PLC lab and requires European job-shadowing for technical staff.' : 'Okulumuzda yeni nesil PLC ve endüstriyel haberleşme laboratuvarı kurulmuş olup, öğretmenlerimizin Avrupa standartlarında pratik işbaşı gözlem ihtiyacı bulunmaktadır.',
       },
       participantProfile: {
         participantType: 'teacher',
-        mobilityGoal: 'Job shadowing / observation',
+        mobilityGoal: 'JOB_SHADOWING',
         participantName: isEn ? 'Vocational Teachers Group' : 'Teknik Öğretmen Grubu',
         language: 70,
-        country: isEn ? 'Germany / Netherlands' : 'Almanya / Hollanda',
-        duration: isEn ? '10 days' : '10 gün',
+        targetCountries: ['DE', 'NL'],
+        startDate: '2026-10-15',
+        endDate: '2026-10-25',
+        participantCount: 5,
+        accompanyingPersonsCount: 0,
+        ageGroup: '18_plus',
       },
       escoIsced: {
         vetField: 'automation',
@@ -340,6 +564,58 @@ export const useAppStore = create<AppState>((set) => ({
         technicalOutcome: '',
         transversalOutcome: '',
       },
+    });
+  },
+
+  loadHostDemoData: (locale: string) => {
+    const isEn = locale === 'en';
+    const demoHost = {
+      id: 'demo-host-berlin',
+      name: isEn ? 'Berlin VET Training Solutions GmbH' : 'Berlin VET Eğitim Çözümleri GmbH',
+      tradingName: 'Berlin VET Academy',
+      organisationType: 'Company',
+      countryCode: 'DE',
+      city: 'Berlin',
+      registeredAddress: 'Friedrichstraße 120, 10117 Berlin',
+      operationalAddress: 'Alexanderplatz 5, 10178 Berlin',
+      yearEstablished: 2017,
+      oid: 'E10345678',
+      picNumber: '948215632',
+      websiteUrl: 'https://berlin-vet-solutions.de',
+      generalEmail: 'contact@berlin-vet-solutions.de',
+      telephone: '+49 30 12345678',
+      primarySector: 'ict',
+      workingLanguages: ['EN', 'DE'],
+      contactPerson: 'Klaus Weber',
+      contactTitle: isEn ? 'Head of International Mobility' : 'Uluslararası Hareketlilik Direktörü',
+      contactEmail: 'k.weber@berlin-vet-solutions.de',
+      verificationStatus: 'VERIFIED',
+      profileCompletenessScore: 85,
+      maxLearnersPerTerm: 6,
+      totalAnnualCapacity: 18,
+      yearsOfExperience: 6,
+      totalParticipantsHosted: 92,
+      consentPublicDisplay: true,
+      activities: ['VET_INTERNSHIP', 'JOB_SHADOWING'],
+    };
+
+    const demoInquiries = createDemoInquiries(locale);
+
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('cappinno_current_host', JSON.stringify({ host: demoHost }));
+        localStorage.setItem('cappinno_inquiries', JSON.stringify(demoInquiries));
+        localStorage.removeItem('cappinno_current_org');
+      } catch {}
+    }
+
+    set({
+      currentHost: demoHost,
+      currentOrg: null,
+      orgType: 'HOST',
+      userRole: 'ORG_ADMIN',
+      isOnboarded: true,
+      inquiries: demoInquiries,
     });
   },
 

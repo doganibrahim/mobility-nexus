@@ -466,15 +466,22 @@ export const apiClient = {
   /**
    * Fetches the admin verification review queue.
    */
-  async getVerificationQueue(status?: string): Promise<any[]> {
+  async getVerificationQueue(status?: string, userEmail?: string, adminKey?: string): Promise<any[]> {
     try {
       const url = status
         ? `${API_BASE_URL}/hosts/verifications/queue?status=${status}`
         : `${API_BASE_URL}/hosts/verifications/queue`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error();
+      
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      const secret = adminKey || process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY;
+      if (secret) headers['x-admin-key'] = secret;
+      if (userEmail) headers['x-user-email'] = userEmail;
+
+      const response = await fetch(url, { headers });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
-    } catch {
+    } catch (err: any) {
+      console.warn('Doğrulama kuyruğu yüklenirken hata:', err.message);
       return [];
     }
   },
@@ -485,14 +492,21 @@ export const apiClient = {
   async reviewHostVerification(
     hostId: string,
     payload: { status: 'VERIFIED' | 'NEEDS_UPDATE' | 'REJECTED'; reviewerNotes?: string; criteriaChecklist?: Record<string, boolean> },
+    userEmail?: string,
+    adminKey?: string,
   ): Promise<{ data: any; isFallback: boolean }> {
     try {
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      const secret = adminKey || process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY;
+      if (secret) headers['x-admin-key'] = secret;
+      if (userEmail) headers['x-user-email'] = userEmail;
+
       const response = await fetch(`${API_BASE_URL}/hosts/${hostId}/verification/review`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify(payload),
       });
-      if (!response.ok) throw new Error();
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const host = await response.json();
       return { data: host, isFallback: false };
     } catch {
@@ -530,6 +544,41 @@ export const apiClient = {
         filename: file.name,
         sizeBytes: file.size,
       };
+    }
+  },
+
+  /**
+   * Matches candidate European host organisations based on school's requirements.
+   * Calls POST /hosts/match with graceful fallback to local client matching engine.
+   */
+  async matchHosts(
+    payload: import('@mobility-nexus/types').MatchHostsRequestDto,
+  ): Promise<{ data: import('@mobility-nexus/types').MatchHostsResponseDto; isFallback: boolean }> {
+    const correlationId = `web-match-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+      const response = await fetch(`${API_BASE_URL}/hosts/match`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Correlation-Id': correlationId,
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      return { data, isFallback: false };
+    } catch {
+      // Resilient client-side fallback
+      const { matchHostsClientSide } = await import('./matching-engine');
+      const fallbackData = matchHostsClientSide(payload);
+      return { data: fallbackData, isFallback: true };
     }
   },
 };

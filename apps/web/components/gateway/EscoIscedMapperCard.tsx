@@ -24,7 +24,7 @@ export default function EscoIscedMapperCard({
   onSelectField,
   onChange,
 }: EscoIscedMapperCardProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   const escoSearchUrl = data.escoTerm
     ? `https://esco.ec.europa.eu/en/classification/occupation-main?search=${encodeURIComponent(
@@ -159,7 +159,7 @@ export default function EscoIscedMapperCard({
             rel="noopener noreferrer"
             className="edu-btn-secondary text-xs"
           >
-            🌐 Resmî ESCO Portalı ↗
+            {locale === 'tr' ? '🌐 Resmi ESCO Portalı ↗' : '🌐 Official ESCO Portal ↗'}
           </a>
           <a
             href="https://uis.unesco.org/sites/default/files/documents/isced-fields-of-education-and-training-2013-en.pdf"

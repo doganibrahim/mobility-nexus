@@ -86,14 +86,19 @@ export interface AuditEvent {
 // 2. Gateway / Mobility Profile Domain Types
 // ==============================================================================
 
-export type ParticipantType = 'teacher' | 'student';
+export type ParticipantType = 'teacher' | 'student' | 'staff' | 'incoming' | 'project_team';
 
 export type MobilityGoal =
-  | 'Job shadowing / observation'
-  | 'Work-based learner mobility'
-  | 'Skills training'
-  | 'Teaching/training assignment'
-  | 'Mixed / not decided';
+  | 'VET_SKILLS_COMPETITION'
+  | 'VET_GROUP_MOBILITY'
+  | 'VET_SHORT_TERM'
+  | 'VET_LONG_TERM_PRO'
+  | 'JOB_SHADOWING'
+  | 'TEACHING_ASSIGNMENT'
+  | 'STAFF_COURSE_TRAINING'
+  | 'INVITED_EXPERT'
+  | 'HOSTING_TEACHERS'
+  | 'PREPARATORY_VISIT';
 
 export type HostType =
   | 'VET school'
@@ -124,9 +129,38 @@ export interface HostMetrics {
 
 export interface DecisionResult {
   score: number;
-  action: 'KA121-VET' | 'KA122-VET' | 'Akreditasyon durumu doğrulanmalı';
+  action:
+    | 'KA121-VET'
+    | 'KA122-VET'
+    | 'KA120-VET Erasmus Accreditation Recommended'
+    | 'Akreditasyon durumu doğrulanmalı';
   readiness: string;
+  level?: 'good' | 'warn' | 'bad';
   rationale?: string;
+}
+
+export interface Ka122EligibilityState {
+  accredited: 'yes' | 'no' | 'unknown';
+  participantCount: number;
+  projectDurationMonths: number;
+  pastKa122GrantsCount: number;
+  mobilityStrategy: 'ad_hoc' | 'regular_annual';
+}
+
+export interface Ka122EligibilityCheckItem {
+  id: string;
+  title: string;
+  passed: boolean;
+  status: 'eligible' | 'warning' | 'ineligible' | 'recommend_ka120' | 'recommend_ka121';
+  message: string;
+}
+
+export interface Ka122EligibilityResult {
+  isEligibleForKa122: boolean;
+  recommendedPathway: 'KA121-VET' | 'KA122-VET' | 'KA120-VET' | 'NEEDS_VERIFICATION';
+  summaryTitle: string;
+  summaryMessage: string;
+  checks: Ka122EligibilityCheckItem[];
 }
 
 export interface MobilityGatewayState {
@@ -143,8 +177,12 @@ export interface MobilityGatewayState {
   mobilityGoal: MobilityGoal;
   participantName: string;
   language: number;
-  country: string;
-  duration: string;
+  targetCountries: string[];
+  startDate: string;
+  endDate: string;
+  participantCount: number;
+  accompanyingPersonsCount: number;
+  ageGroup: 'under_18' | '18_plus' | 'mixed';
 
   // 3. ESCO - ISCED
   vetField: string;
@@ -378,4 +416,107 @@ export interface HostVerificationReviewDto {
   status: 'VERIFIED' | 'NEEDS_UPDATE' | 'REJECTED';
   reviewerNotes?: string;
   criteriaChecklist?: Record<string, boolean>;
+}
+
+// ==============================================================================
+// 5. Host Matching Engine Types & DTOs
+// ==============================================================================
+
+export interface MatchHostsRequestDto {
+  projectType: 'KA121' | 'KA122';
+  targetCountries: string[]; // e.g. ['DE', 'ES'] or ['ANY'] or empty
+  preferredCity?: string;
+  mobilityGoal: MobilityGoal;
+  participantType: ParticipantType;
+  participantCount: number;
+  accompanyingPersonsCount?: number;
+  durationDays?: number;
+  ageGroup: 'under_18' | '18_plus' | 'mixed';
+  vetField?: string;
+  iscedCode?: string;
+  languages?: string[];
+  logisticsRequired?: {
+    accommodation?: boolean;
+    meals?: boolean;
+    transfers?: boolean;
+  };
+  specialNeeds?: {
+    wheelchairAccessible?: boolean;
+    specialDiet?: boolean;
+    visualAid?: boolean;
+  };
+}
+
+export interface MatchScoreBreakdown {
+  sectorMatch: number; // 0-100
+  activityMatch: number; // 0-100
+  kycTrust: number; // 0-100
+  experience: number; // 0-100
+  languageMatch: number; // 0-100
+  accommodation: number; // 0-100
+  meals: number; // 0-100
+  transfers: number; // 0-100
+  emergencySupport: number; // 0-100
+}
+
+export interface HostMatchCandidate {
+  hostId: string;
+  hostName: string;
+  legalName?: string;
+  countryCode: string;
+  city: string;
+  oid?: string;
+  primarySector: string;
+  organisationType: string;
+  verificationStatus: HostVerificationStatus;
+  profileCompletenessScore: number;
+  logoUrl?: string | null;
+  shortDescription?: string | null;
+  websiteUrl?: string;
+
+  // Logistics flags
+  providesAccommodation?: boolean;
+  accommodationDetails?: string | null;
+  providesMeals?: boolean;
+  mealsDetails?: string | null;
+  providesTransfers?: boolean;
+  transfersDetails?: string | null;
+  acceptsUnder18?: boolean;
+
+  // Capacity & Activities
+  maxLearnersPerTerm: number;
+  supportedActivities: string[];
+  workingLanguages: string[];
+
+  // Eligibility evaluation
+  isEligible: boolean;
+  disqualificationReasons: string[];
+  passedFilters: string[];
+
+  // Two-tier independent scores (0-100)
+  educationScore: number;
+  educationScoreLabel: string;
+  logisticsScore: number;
+  logisticsScoreLabel: string;
+  compositeScore: number;
+  matchGrade: 'EXCELLENT' | 'HIGH' | 'MODERATE' | 'LOW';
+
+  scoreBreakdown: MatchScoreBreakdown;
+}
+
+export interface MatchHostsResponseDto {
+  totalEvaluated: number;
+  eligibleCount: number;
+  disqualifiedCount: number;
+  matches: HostMatchCandidate[];
+  disqualified: HostMatchCandidate[];
+  queryCriteria: {
+    projectType: string;
+    targetCountries: string[];
+    mobilityGoal: string;
+    participantType: string;
+    totalParticipants: number;
+    ageGroup: string;
+    vetField?: string;
+  };
 }

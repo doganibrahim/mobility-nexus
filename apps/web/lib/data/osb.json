@@ -1,0 +1,4202 @@
+[
+  {
+    "kurumKodu": null,
+    "kurumAdi": "OSB Adı",
+    "il": "İl",
+    "ilce": "",
+    "webSitesi": "Web Sitesi",
+    "eposta": "İrtibat E-posta Adresi",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Adana Gıda İhtisas",
+    "il": "Adana",
+    "ilce": "",
+    "webSitesi": "https://www.agiosb.org",
+    "eposta": "info@agiosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Adana Hacı Sabancı",
+    "il": "Adana",
+    "ilce": "",
+    "webSitesi": "https://www.adanaorganize.org.tr",
+    "eposta": "asistan@adanaorganize.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Adana Karataş TDİ (Su Ürünleri)",
+    "il": "Adana",
+    "ilce": "",
+    "webSitesi": "https://www.adana.gov.tr/yikob",
+    "eposta": "hassezer@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Adana TDİ (Sera)",
+    "il": "Adana",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "hassezer@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ceyhan",
+    "il": "Adana",
+    "ilce": "",
+    "webSitesi": "https://www.ceyhanosb.org",
+    "eposta": "bilgi@ceyhanosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kozan",
+    "il": "Adana",
+    "ilce": "",
+    "webSitesi": "https://www.kozanosb.org.tr",
+    "eposta": "kozanosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Adıyaman",
+    "il": "Adıyaman",
+    "ilce": "",
+    "webSitesi": "https://www.adiyamanosb.org.tr",
+    "eposta": "adosab02@adiyamanosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Adıyaman Gölbaşı",
+    "il": "Adıyaman",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "golbasi_osb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Adıyaman Kahta",
+    "il": "Adıyaman",
+    "ilce": "",
+    "webSitesi": "https://www.kahtaosb.org.tr",
+    "eposta": "kahtaosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Besni",
+    "il": "Adıyaman",
+    "ilce": "",
+    "webSitesi": "https://www.besniosb.org",
+    "eposta": "besniosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Örenli",
+    "il": "Adıyaman",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "kuyuluosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Afyonkarahisar",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "https://www.afyonosb.org.tr",
+    "eposta": "bilgi@afyonosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Afyonkarahisar Bolvadin",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "https://www.bolvadinosb.org.tr",
+    "eposta": "bolvadinosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Afyonkarahisar Bolvadin TDİ(Besi)",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "https://www.afyonotb.org.tr",
+    "eposta": "afyonkarahisarotb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Afyonkarahisar Çay Jeotermal Kaynaklı Sera TDİOSB",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "https://www.afyonotb.org.tr",
+    "eposta": "afyonkarahisarotb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Afyonkarahisar Emirdağ",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "https://www.emirdagosb.org.tr",
+    "eposta": "emirdagosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Afyonkarahisar Merkez II",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "https://www.afyon2osb.org.tr",
+    "eposta": "ina_nir@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Afyonkarahisar-Dinar",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "https://www.dinarosb.org.tr",
+    "eposta": "dinarosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Dazkırı",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "https://www.dazkiriosb.org.tr",
+    "eposta": "info@dazkiriosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İscehisar Mermer İhtisas",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "https://www.iscehisarosb.org.tr",
+    "eposta": "info@iscehisarosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sandıklı",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "cem_yavuz03@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şuhut",
+    "il": "Afyonkarahisar",
+    "ilce": "",
+    "webSitesi": "https://www.suhutosb.org.tr",
+    "eposta": "info@suhutosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ağrı",
+    "il": "Ağrı",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "agriosb@yahoo.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ağrı Diyadin (Sera) TDİ (Jeotermal)",
+    "il": "Ağrı",
+    "ilce": "",
+    "webSitesi": "https://www.diyadintdiosb.org.tr",
+    "eposta": "info@diyadintdiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aksaray",
+    "il": "Aksaray",
+    "ilce": "",
+    "webSitesi": "https://www.aksarayosb.org.tr",
+    "eposta": "info@aksarayosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aksaray Eskil Tuz Gölü",
+    "il": "Aksaray",
+    "ilce": "",
+    "webSitesi": "https://www.aksarayeskilosb.org.tr",
+    "eposta": "eskil@etgo.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aksaray Gülağaç Gülpınar",
+    "il": "Aksaray",
+    "ilce": "",
+    "webSitesi": "https://www.gulagacgulpinarosb.org",
+    "eposta": "gulagacgulpinarosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aksaray Karkın TDİ (Jeo.Kayn.Sera)",
+    "il": "Aksaray",
+    "ilce": "",
+    "webSitesi": "https://www.aksaraytdiosb.org.tr",
+    "eposta": "aksaraykargintdiosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aksaray Ortaköy Yunus Emre",
+    "il": "Aksaray",
+    "ilce": "",
+    "webSitesi": "https://www.ortakoyyunusemreosb.org.tr",
+    "eposta": "info@ortakoyyunusemreosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aksaray Sarıyahşi",
+    "il": "Aksaray",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "sariyahsiosb@outlook.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aksaray Sultanhanı",
+    "il": "Aksaray",
+    "ilce": "",
+    "webSitesi": "https://www.aksaraysultanhaniosb.org.tr",
+    "eposta": "bilgi@sultanhani.bel.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Amasya",
+    "il": "Amasya",
+    "ilce": "",
+    "webSitesi": "https://www.amasyaosb.org.tr",
+    "eposta": "info@amasyaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Amasya Merzifon",
+    "il": "Amasya",
+    "ilce": "",
+    "webSitesi": "https://www.merzifonosb.org.tr",
+    "eposta": "bilgi@merzifonosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Suluova",
+    "il": "Amasya",
+    "ilce": "",
+    "webSitesi": "https://www.suluovaosb.org.tr",
+    "eposta": "suluovaosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Suluova Besi",
+    "il": "Amasya",
+    "ilce": "",
+    "webSitesi": "https://www.suluovabesiosb.org.tr",
+    "eposta": "suluovatdibosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Anadolu",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.anadoluosb.org.tr",
+    "eposta": "bilgi@anadoluosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ankara Anadolu Geri Dönüşümcüleri İhtisas",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "agdihtisasosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ankara Dökümcüler İhtisas",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.dokumculerosb.org.tr",
+    "eposta": "info@dokumculerosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ankara Sanayi Odası 2.ve 3.",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.aso2osb.org.tr",
+    "eposta": "bilgi@aso2osb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ankara Sanayi Odası I.",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.aosb.org.tr",
+    "eposta": "aosb@aosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ankara Uzay ve Havacılık İhtisas",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.hab.org.tr",
+    "eposta": "hab@hab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ankara-Çubuk TDİ (Besi)",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.cubuktdiosb.org",
+    "eposta": "cubukosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ankara-İvedik",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.ivedikosb.org.tr",
+    "eposta": "ivedik@ivedikosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Başkent",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.baskentosb.org",
+    "eposta": "info@baskentosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Beypazarı",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.beyosb.org.tr",
+    "eposta": "info@beyosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Elmadağ Mobilyacılar İhtisas",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.mobilyacilarosb.com",
+    "eposta": "mobilyacilarosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ostim",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.ostim.org.tr",
+    "eposta": "ostim@ostim.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Polatlı",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.posb.org.tr",
+    "eposta": "polatliosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Polatlı Ticaret Odası",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.ptoosb.org.tr",
+    "eposta": "ptoosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şereflikoçhisar",
+    "il": "Ankara",
+    "ilce": "",
+    "webSitesi": "https://www.sereflikochisarosb.org.tr",
+    "eposta": "bilgi@sereflikochisarosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Antalya",
+    "il": "Antalya",
+    "ilce": "",
+    "webSitesi": "https://www.antalyaosb.org.tr",
+    "eposta": "antalyaosb@antalyaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kaş Gıda İhtisas",
+    "il": "Antalya",
+    "ilce": "",
+    "webSitesi": "https://www.kasgidaosb.org.tr",
+    "eposta": "kasgidaosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Korkuteli",
+    "il": "Antalya",
+    "ilce": "",
+    "webSitesi": "info@korkuteliosb.org.tr",
+    "eposta": "info@kormer.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Manavgat",
+    "il": "Antalya",
+    "ilce": "",
+    "webSitesi": "https://www.manavgatosb.org.tr",
+    "eposta": "manavgatosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ardahan",
+    "il": "Ardahan",
+    "ilce": "",
+    "webSitesi": "https://www.ardahanosb.org.tr",
+    "eposta": "ardahanosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Artvin Arhavi",
+    "il": "Artvin",
+    "ilce": "",
+    "webSitesi": "https://www.arosb.com.tr",
+    "eposta": "arosb@outlook.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aydın",
+    "il": "Aydın",
+    "ilce": "",
+    "webSitesi": "https://www.aydinosb.org.tr",
+    "eposta": "aosb@aydinosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aydın ASTİM",
+    "il": "Aydın",
+    "ilce": "",
+    "webSitesi": "https://www.astimosborg.tr",
+    "eposta": "info@astimosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aydın Efeler TDİ (Jeo.Isıtmalı.Sera)",
+    "il": "Aydın",
+    "ilce": "",
+    "webSitesi": "https://www.aydintdiosb.org",
+    "eposta": "aydintdiosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aydın-Nazilli",
+    "il": "Aydın",
+    "ilce": "",
+    "webSitesi": "https://www.nazilliosb.org.tr",
+    "eposta": "info@nazilliosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Buharkent",
+    "il": "Aydın",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "buharkentosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çine",
+    "il": "Aydın",
+    "ilce": "",
+    "webSitesi": "https://www.cineosb.org.tr",
+    "eposta": "cineosb@cineosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ortaklar",
+    "il": "Aydın",
+    "ilce": "",
+    "webSitesi": "https://www.ortaklarosb.org.tr",
+    "eposta": "info@ortaklarosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Söke",
+    "il": "Aydın",
+    "ilce": "",
+    "webSitesi": "https://www.sokeosb.org.tr",
+    "eposta": "info@sokeosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Balıkesir",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "https://www.balosb.org.tr",
+    "eposta": "balosb@balosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Balıkesir Ayvalık Gıda ve Gıda İşleme İhtisas",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "https://www.ayvalikosb.org.tr",
+    "eposta": "info@ayvalikosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Balıkesir Bigadiç Jeotermal Kaynaklı TDI (Sera) OSB",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "https://www.bigadictdiosb.org.tr",
+    "eposta": "bigadictdiosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Balıkesir Edremit TDİ(Jeo.Kayn.Sera)",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "https://www.edremittdiosb.org.tr",
+    "eposta": "edremittdiosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Balıkesir Gönen TDİ (jeo.Kayn.Sera)",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "https://www.gonentdiosb.org.tr",
+    "eposta": "gonentdiosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bandırma",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "https://www.banosb.org",
+    "eposta": "bilgi@banosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Burhaniye Zeytin ve Zeytin Ürünleri İşleme İhtisas ve Karma",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "https://www.burhosb.org.tr",
+    "eposta": "burhaniyeosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Dursunbey",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "https://www.dursunbeyosb.org.tr",
+    "eposta": "dursunbeyosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gönen Deri ihtisas Ve Karma",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "https://www.gonenosb.org.tr",
+    "eposta": "info@gonenosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kepsut",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "kepsut@kepsut.bel.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Marmara Yüksek Teknoloji ve Makine İhtisas",
+    "il": "Balıkesir",
+    "ilce": "",
+    "webSitesi": "https://marmaraosb.org",
+    "eposta": "info@marmaraosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bartın Merkez I",
+    "il": "Bartın",
+    "ilce": "",
+    "webSitesi": "https://www.bartinosb.org.tr",
+    "eposta": "bartinorganize@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Batman İli",
+    "il": "Batman",
+    "ilce": "",
+    "webSitesi": "https://www.batmanosb.org.tr",
+    "eposta": "bilgi@batmanosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Batman TDI(SERA) OSB",
+    "il": "Batman",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "ciftciresat@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bayburt",
+    "il": "Bayburt",
+    "ilce": "",
+    "webSitesi": "https://www.bayburtosb.org.tr",
+    "eposta": "bayburtosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bilecik 3.",
+    "il": "Bilecik",
+    "ilce": "",
+    "webSitesi": "https://www.bilecik3osb.org.tr",
+    "eposta": "bilecik3.osb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bilecik Bozüyük",
+    "il": "Bilecik",
+    "ilce": "",
+    "webSitesi": "https://www.bozuyukosb.org.tr",
+    "eposta": "bozuyukosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bilecik I.",
+    "il": "Bilecik",
+    "ilce": "",
+    "webSitesi": "https://www.bilosb.org",
+    "eposta": "bilosb@bilosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bilecik Kayı",
+    "il": "Bilecik",
+    "ilce": "",
+    "webSitesi": "https://www.bilecik2osb.org.tr",
+    "eposta": "bilorsa@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gölpazarı Gıda İhtisas",
+    "il": "Bilecik",
+    "ilce": "",
+    "webSitesi": "https://www.golpazariosb.org.tr",
+    "eposta": "info@golpazariosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Osmaneli",
+    "il": "Bilecik",
+    "ilce": "",
+    "webSitesi": "https://www.osmaneliosb.org.tr",
+    "eposta": "osmaneliosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Pazaryeri",
+    "il": "Bilecik",
+    "ilce": "",
+    "webSitesi": "https://www.porsab.org.tr",
+    "eposta": "bilgi@porsab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Söğüt",
+    "il": "Bilecik",
+    "ilce": "",
+    "webSitesi": "https://www.sogutosb.org.tr",
+    "eposta": "hasim_11@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bingöl",
+    "il": "Bingöl",
+    "ilce": "",
+    "webSitesi": "https://www.bingolosb.org.tr",
+    "eposta": "bilgi@bingolosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bitlis",
+    "il": "Bitlis",
+    "ilce": "",
+    "webSitesi": "https://www.bitlisosb.org.tr",
+    "eposta": "bitlisosb2001@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bolu karma ve tekstil ihtisas",
+    "il": "Bolu",
+    "ilce": "",
+    "webSitesi": "https://www.boluosb.org.tr",
+    "eposta": "osb@boluosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gerede",
+    "il": "Bolu",
+    "ilce": "",
+    "webSitesi": "https://www.geredeosb.org.tr",
+    "eposta": "geredeosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gerede Deri İhtisas",
+    "il": "Bolu",
+    "ilce": "",
+    "webSitesi": "https://www.geredederiosb.org",
+    "eposta": "geredederiosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yeniçağa",
+    "il": "Bolu",
+    "ilce": "",
+    "webSitesi": "https://www.yenicagaosb.org.tr",
+    "eposta": "yenicagaosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Burdur",
+    "il": "Burdur",
+    "ilce": "",
+    "webSitesi": "https://www.burorsan.org.tr",
+    "eposta": "burorsan@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Burdur II.",
+    "il": "Burdur",
+    "ilce": "",
+    "webSitesi": "https://www.burdur2osb.org.tr",
+    "eposta": "posta@burdur2osb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Burdur-Bucak",
+    "il": "Burdur",
+    "ilce": "",
+    "webSitesi": "https://www.bucakosb.org.tr",
+    "eposta": "bilgi@bucakosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Barakfakih",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.bosab.com.tr",
+    "eposta": "info@bosab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bursa",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.bosb.org.tr",
+    "eposta": "bosb@bosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bursa Deri İhtisas ve Karma",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.bursaderiosb.com",
+    "eposta": "bursaderi@bursaderiosb.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bursa Teknoloji (BURSA TEKNOSAB)",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.teknosab.org.tr",
+    "eposta": "info@teknosab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Demirtaş",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.dosab.org.tr",
+    "eposta": "yonetim@dosab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Hasanağa",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.hosab.org.tr",
+    "eposta": "hosab@hosab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İnegöl",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.inegolosb.org.tr",
+    "eposta": "info@inegolosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İnegöl Mobilya Ağaç İşleri İhtisas ve Karma",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.imosab.org.tr",
+    "eposta": "info@imosab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kayapa",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.kayapaosb.org.tr",
+    "eposta": "info@kayapaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kestel",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.kosab.org.tr",
+    "eposta": "kosab@kosab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Mustafakemalpaşa",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.mkposb.org.tr",
+    "eposta": "info@mkposb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Mustafakemalpaşa-mermerciler İhtisas",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.mkpmermercilerosb.org.tr",
+    "eposta": "mermercilerosb2016@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Nilüfer",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.nosab.org.tr",
+    "eposta": "info@nosab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TOSAB Bursa Tekstil Boyahaneleri İhtisas",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.tosab.org.tr",
+    "eposta": "iletisim@tosab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Uludağ",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.uludagosb.org.tr",
+    "eposta": "info@uludagosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yenice",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.yeniceosb.org.tr",
+    "eposta": "info@yeniceosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yenişehir",
+    "il": "Bursa",
+    "ilce": "",
+    "webSitesi": "https://www.yosab.org.tr",
+    "eposta": "info@yosab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Biga",
+    "il": "Çanakkale",
+    "ilce": "",
+    "webSitesi": "https://www.bigaosb.org.tr",
+    "eposta": "iletisim@bigaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çanakkale",
+    "il": "Çanakkale",
+    "ilce": "",
+    "webSitesi": "https://www.canakkaleosb.org",
+    "eposta": "info@canakkaleosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çanakkale Ayvacık TDİ (Jeo.Kayn.Sera)",
+    "il": "Çanakkale",
+    "ilce": "",
+    "webSitesi": "https://www.canakkaleayvaciktdiosb.org.tr",
+    "eposta": "info@osbuk.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ezine Gıda İhtisas",
+    "il": "Çanakkale",
+    "ilce": "",
+    "webSitesi": "https://www.canakkaleezinegiosb.org",
+    "eposta": "osbezine2017@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çankırı korgun",
+    "il": "Çankırı",
+    "ilce": "",
+    "webSitesi": "https://www.korgunosb.org.tr",
+    "eposta": "korgun@korgunosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çankırı Orta",
+    "il": "Çankırı",
+    "ilce": "",
+    "webSitesi": "https://www.ortaosb.org",
+    "eposta": "ortaosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çankırı Yakınkent",
+    "il": "Çankırı",
+    "ilce": "",
+    "webSitesi": "https://www.cankiriyakinkentosb.org",
+    "eposta": "info@cankiriyakinkentosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çerkeş",
+    "il": "Çankırı",
+    "ilce": "",
+    "webSitesi": "https://www.cerkesosb.org.tr",
+    "eposta": "cerkesosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kurşunlu Çavundur",
+    "il": "Çankırı",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "kursunlubelediyesi@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şabanözü(Çankırı)",
+    "il": "Çankırı",
+    "ilce": "",
+    "webSitesi": "https://www.sabanozuosb.org",
+    "eposta": "sabanozuosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çorum",
+    "il": "Çorum",
+    "ilce": "",
+    "webSitesi": "https://www.corumosb.org.tr",
+    "eposta": "corumosb@corumosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çorum Merkez 2.",
+    "il": "Çorum",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çorum Sungurlu",
+    "il": "Çorum",
+    "ilce": "",
+    "webSitesi": "https://www.sungurluosb.org.tr",
+    "eposta": "sungurlu-osb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İskilip",
+    "il": "Çorum",
+    "ilce": "",
+    "webSitesi": "https://www.iskiliposb.org.tr",
+    "eposta": "iskilip@iskilip.bel.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Osmancık",
+    "il": "Çorum",
+    "ilce": "",
+    "webSitesi": "https://www.osmancikosb.org.tr",
+    "eposta": "bilgi@osmancikosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çivril",
+    "il": "Denizli",
+    "ilce": "",
+    "webSitesi": "https://www.civrilosb.org.tr",
+    "eposta": "info@civrilosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Denizli",
+    "il": "Denizli",
+    "ilce": "",
+    "webSitesi": "https://www.dosb.org.tr",
+    "eposta": "dosb@dosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Denizli Çardak",
+    "il": "Denizli",
+    "ilce": "",
+    "webSitesi": "https://www.cardakosb.org.tr",
+    "eposta": "info@cardakosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Denizli Deri İhtisas ve Karma",
+    "il": "Denizli",
+    "ilce": "",
+    "webSitesi": "https://www.denizlideriosb.org.tr",
+    "eposta": "denizlideriosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Denizli Makine İhtisas",
+    "il": "Denizli",
+    "ilce": "",
+    "webSitesi": "https://www.demiosb.org.tr",
+    "eposta": "info@demiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Denizli-Sarayköy TDİ (Jeotermal)",
+    "il": "Denizli",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "organizesera@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Diyarbakır",
+    "il": "Diyarbakır",
+    "ilce": "",
+    "webSitesi": "https://www.diyarbakirosb.org.tr",
+    "eposta": "info@diyarbakirosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Diyarbakır Karacadağ",
+    "il": "Diyarbakır",
+    "ilce": "",
+    "webSitesi": "https://www.karacadagosb.org",
+    "eposta": "info@karacadagosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Diyarbakır TDİ (Besi-Süt)",
+    "il": "Diyarbakır",
+    "ilce": "",
+    "webSitesi": "https://www.diyarbakirbesiosb.org.tr",
+    "eposta": "tdi_osb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Diyarbakır Tekstil İhtisas ve Karma",
+    "il": "Diyarbakır",
+    "ilce": "",
+    "webSitesi": "https://www.dtiosb.org",
+    "eposta": "info@dtiosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Silvan Gıda ve Tarımsal Sanayi İhtisas",
+    "il": "Diyarbakır",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "stmdiyarbakiril@sanayi.gov.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Akçakoca Demir Çelik İhtisas",
+    "il": "Düzce",
+    "ilce": "",
+    "webSitesi": "https://www.akcakocaosb.org.tr",
+    "eposta": "info@akcakocaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çilimli",
+    "il": "Düzce",
+    "ilce": "",
+    "webSitesi": "https://www.cilimliosb.org.tr",
+    "eposta": "info@cilimliosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Düzce",
+    "il": "Düzce",
+    "ilce": "",
+    "webSitesi": "https://www.duzceosb.org.tr",
+    "eposta": "info@duzceosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Düzce Gümüşova",
+    "il": "Düzce",
+    "ilce": "",
+    "webSitesi": "https://www.dgosb.org.tr",
+    "eposta": "info@dgosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Düzce II.",
+    "il": "Düzce",
+    "ilce": "",
+    "webSitesi": "https://www.duzce2osb.org.tr",
+    "eposta": "info@duzce2osb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Edirne",
+    "il": "Edirne",
+    "ilce": "",
+    "webSitesi": "https://www.edirneosb.org.tr",
+    "eposta": "info@edirneosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İpsala",
+    "il": "Edirne",
+    "ilce": "",
+    "webSitesi": "https://www.ipsalaosb.org.tr",
+    "eposta": "info@ipsalaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Keşan",
+    "il": "Edirne",
+    "ilce": "",
+    "webSitesi": "https://www.kesanosb.org.tr",
+    "eposta": "kesantso@tobb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Uzunköprü",
+    "il": "Edirne",
+    "ilce": "",
+    "webSitesi": "https://www.uzunkopruosb.org",
+    "eposta": "uzunkoprutso@tobb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Uzunköprü Atatürk",
+    "il": "Edirne",
+    "ilce": "",
+    "webSitesi": "https://www.uzataosb.org.tr",
+    "eposta": "uzunkoprutso@tobb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Elazığ",
+    "il": "Elâzığ",
+    "ilce": "",
+    "webSitesi": "https://www.elazigosb.org.tr",
+    "eposta": "info@elazigosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Elazığ Hayvan Ürünleri",
+    "il": "Elâzığ",
+    "ilce": "",
+    "webSitesi": "https://www.elazightdiosb.com",
+    "eposta": "elazigorganize@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Elazığ TDİ (Besi)",
+    "il": "Elâzığ",
+    "ilce": "",
+    "webSitesi": "https://www.elazigbesiosb.org.tr",
+    "eposta": "elazigtdibesiosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Elazığ Teknova",
+    "il": "Elâzığ",
+    "ilce": "",
+    "webSitesi": "https://www.elazigteknovaosb.org.tr",
+    "eposta": "elazig2osb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kovancılar",
+    "il": "Elâzığ",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Erzincan",
+    "il": "Erzincan",
+    "ilce": "",
+    "webSitesi": "https://www.erzincanosb.com",
+    "eposta": "info@erzincanosb.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Erzincan TDİ (Besi)",
+    "il": "Erzincan",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "info@erzincanosb.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Erzurum Merkez I.",
+    "il": "Erzurum",
+    "ilce": "",
+    "webSitesi": "https://www.erzurumosb.org",
+    "eposta": "info@erzurumosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Erzurum Merkez II",
+    "il": "Erzurum",
+    "ilce": "",
+    "webSitesi": "https://www.erzurum2osb.org.tr",
+    "eposta": "erzurumosb2@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Oltu",
+    "il": "Erzurum",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "oltutso@tobb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Eskişehir",
+    "il": "Eskişehir",
+    "ilce": "",
+    "webSitesi": "https://www.eosb.org.tr",
+    "eposta": "info@eosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Eskişehir-Beylikova Besi",
+    "il": "Eskişehir",
+    "ilce": "",
+    "webSitesi": "https://www.bbesiosb.org.tr",
+    "eposta": "bbesiosb@bbesiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sivrihisar",
+    "il": "Eskişehir",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "info@sivrihisarosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gaziantep",
+    "il": "Gaziantep",
+    "ilce": "",
+    "webSitesi": "https://www.gaosb.org",
+    "eposta": "gaosb@gaosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gaziantep Ayakkabı Terlik ve Yan Sanayi İhtisas",
+    "il": "Gaziantep",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "bilgi@ayakkabiosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gaziantep Besi",
+    "il": "Gaziantep",
+    "ilce": "",
+    "webSitesi": "https://www.gbosb.org.tr",
+    "eposta": "gbosb27@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gaziantep Oğuzeli",
+    "il": "Gaziantep",
+    "ilce": "",
+    "webSitesi": "https://www.oguzeliosb.org.tr",
+    "eposta": "info@oguzeliosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İslahiye",
+    "il": "Gaziantep",
+    "ilce": "",
+    "webSitesi": "https://www.islahiyeosb.org",
+    "eposta": "islahiyeosb@outlook.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Nizip",
+    "il": "Gaziantep",
+    "ilce": "",
+    "webSitesi": "https://www.niziposb.org",
+    "eposta": "niziposb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Nizip 2.",
+    "il": "Gaziantep",
+    "ilce": "",
+    "webSitesi": "https://www.nizip2osb.org",
+    "eposta": "iletisim@nizip2osb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Nurdağı",
+    "il": "Gaziantep",
+    "ilce": "",
+    "webSitesi": "https://www.nurdagiosb.org.tr",
+    "eposta": "nurdagi@icisleri.gov.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Giresun",
+    "il": "Giresun",
+    "ilce": "",
+    "webSitesi": "https://www.giresunosb.com",
+    "eposta": "giresunosb@ttmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Giresun 2.",
+    "il": "Giresun",
+    "ilce": "",
+    "webSitesi": "https://www.g2osb.org.tr",
+    "eposta": "grs2osb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Giresun 3.",
+    "il": "Giresun",
+    "ilce": "",
+    "webSitesi": "https://www.giresun3osb.org.tr",
+    "eposta": "test@test.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Giresun 4.",
+    "il": "Giresun",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "serdarodemis1981@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Giresun Şebinkarahisar Karma OSB",
+    "il": "Giresun",
+    "ilce": "",
+    "webSitesi": "https://www.sebinkarahisarosb.org.tr",
+    "eposta": "sebinkarahisarkarmaosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gümüşhane",
+    "il": "Gümüşhane",
+    "ilce": "",
+    "webSitesi": "https://www.gumushaneosb.org.tr",
+    "eposta": "info@gumushaneosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kelkit",
+    "il": "Gümüşhane",
+    "ilce": "",
+    "webSitesi": "https://www.kelkitosb.org.tr",
+    "eposta": "cetinkaya291@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Hakkari Yüksekova",
+    "il": "Hakkâri",
+    "ilce": "",
+    "webSitesi": "https://www.hakkariyuksekovaosb.org.tr",
+    "eposta": "stmhakkariil@sanayi.gov.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Antakya",
+    "il": "Hatay",
+    "ilce": "",
+    "webSitesi": "https://www.antakyaosb.org.tr",
+    "eposta": "bilgi@antakyaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Hatay Altınözü Enek",
+    "il": "Hatay",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "test@test.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Hatay Altınözü Enek (Süt) TDİ",
+    "il": "Hatay",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "ekremozer72@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Hatay Erzin",
+    "il": "Hatay",
+    "ilce": "",
+    "webSitesi": "https://www.erzinosb.org",
+    "eposta": "meryem_guc@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Hatay Hassa",
+    "il": "Hatay",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "ekremozer72@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Hatay İskenderun II.",
+    "il": "Hatay",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "ekremozer72@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Hatay Kırıkhan",
+    "il": "Hatay",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "ekremozer72@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Hatay Payas",
+    "il": "Hatay",
+    "ilce": "",
+    "webSitesi": "https://www.payasosb.org.tr",
+    "eposta": "hataypayasosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İskenderun",
+    "il": "Hatay",
+    "ilce": "",
+    "webSitesi": "https://www.iskenderunosb.org.tr",
+    "eposta": "bilgi@iskenderunosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Iğdır",
+    "il": "Iğdır",
+    "ilce": "",
+    "webSitesi": "https://www.igdirosb.org.tr",
+    "eposta": "igdirosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Isparta Deri İhtisas ve Karma",
+    "il": "Isparta",
+    "ilce": "",
+    "webSitesi": "https://www.ispartaderikarmaosb.com.tr",
+    "eposta": "ispartaderiosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Isparta Süleyman Demirel",
+    "il": "Isparta",
+    "ilce": "",
+    "webSitesi": "https://www.isdosb.com.tr",
+    "eposta": "organizesanayi@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Isparta-Yalvaç",
+    "il": "Isparta",
+    "ilce": "",
+    "webSitesi": "https://www.yalvacosb.org.tr",
+    "eposta": "info@yalvacosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Beylikdüzü",
+    "il": "İstanbul",
+    "ilce": "",
+    "webSitesi": "https://www.ibosb.com",
+    "eposta": "yonetim@ibosb.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Birlik",
+    "il": "İstanbul",
+    "ilce": "",
+    "webSitesi": "https://www.birlikosb.org.tr",
+    "eposta": "info@birlikosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Biyoteknoloji İhtisas",
+    "il": "İstanbul",
+    "ilce": "",
+    "webSitesi": "https://www.biosb.org.tr",
+    "eposta": "info@biyosad.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İstanbul Anadolu Yakası",
+    "il": "İstanbul",
+    "ilce": "",
+    "webSitesi": "https://www.iayosb.com",
+    "eposta": "info@iayosb.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İstanbul Deri",
+    "il": "İstanbul",
+    "ilce": "",
+    "webSitesi": "https://www.ideriosb.org.tr",
+    "eposta": "info@ideriosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İstanbul Dudullu",
+    "il": "İstanbul",
+    "ilce": "",
+    "webSitesi": "https://www.dudulluosb.org.tr",
+    "eposta": "info@dudulluosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İstanbul İkitelli",
+    "il": "İstanbul",
+    "ilce": "",
+    "webSitesi": "https://www.iosb.org.tr",
+    "eposta": "bolgemudurlugu@iosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İstanbul Tuzla",
+    "il": "İstanbul",
+    "ilce": "",
+    "webSitesi": "https://www.itosb.org.tr",
+    "eposta": "itosb@itosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İstanbul Tuzla Kimya Sanayicileri",
+    "il": "İstanbul",
+    "ilce": "",
+    "webSitesi": "https://www.kosb.com.tr",
+    "eposta": "info@kosb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Aliağa Kimya İhtisas ve Karma",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.alosbi.org.tr",
+    "eposta": "info@alosbi.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bağyurdu (BAYOSB)",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.bayosb.org",
+    "eposta": "info@bayosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bergama",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.bosbi.org.tr",
+    "eposta": "bosbi@bosbi.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Buca Ege",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.begos.org.tr",
+    "eposta": "info@begos.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Dikili TDİ (Jeo.Kayn.Sera)",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.dikilitdiosb.org.tr",
+    "eposta": "info@dikilitdiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İTOB",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.itob.org.tr",
+    "eposta": "info@itob.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İzmir Aliağa Bağyurdu ( ÖZEL )",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.aliagabagyurduosb.org.tr",
+    "eposta": "matli@matli.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İzmir Atatürk",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.iaosb.org.tr",
+    "eposta": "iaosb@iaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İzmir Bayındır TDİ(Sera)",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.bayindirtdiosb.org.tr",
+    "eposta": "info@bayindirtdiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İzmir Kemalpaşa",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.kosbi.org.tr",
+    "eposta": "info@kosbi.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İzmir Kınık Bitkisel Üretim (Tohum,Fide,Tıbbi ve Aromatik Bitkiler vb.) TDİ",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://kiniktdiosb.org.tr/",
+    "eposta": "izmirtdiosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İzmir Pancar",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.iposb.com.tr",
+    "eposta": "iposb@iposb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kınık",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.kinikosb.org.tr",
+    "eposta": "info@kinikosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Menemen Plastik İhtisas",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.impiosb.org.tr",
+    "eposta": "impiosb@impiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ödemiş",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.odemisosb.org.tr",
+    "eposta": "bilgi@odemisosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Tire",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.tosbi.org.tr",
+    "eposta": "info@tosbi.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Torbalı Karma ve Mobilya",
+    "il": "İzmir",
+    "ilce": "",
+    "webSitesi": "https://www.torbaliosb.org.tr",
+    "eposta": "info@torbaliosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Afşin",
+    "il": "Kahramanmaraş",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "afsinosb@afsin.bel.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Elbistan",
+    "il": "Kahramanmaraş",
+    "ilce": "",
+    "webSitesi": "https://www.elbistanosb.org.tr",
+    "eposta": "muhasebe.yunus@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Erkenez",
+    "il": "Kahramanmaraş",
+    "ilce": "",
+    "webSitesi": "https://www.erkenezosb.org",
+    "eposta": "finans@erkenezosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kahramanmaraş",
+    "il": "Kahramanmaraş",
+    "ilce": "",
+    "webSitesi": "https://www.kmosb.org",
+    "eposta": "info@kmosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kahramanmaraş Elbistan TDİ (Besi)",
+    "il": "Kahramanmaraş",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "info@elbistantdibosb.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kahramanmaraş Gıda İhtisas",
+    "il": "Kahramanmaraş",
+    "ilce": "",
+    "webSitesi": "https://www.kagiosb.org.tr",
+    "eposta": "orer@msn.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kahramanmaraş Tomsuklu",
+    "il": "Kahramanmaraş",
+    "ilce": "",
+    "webSitesi": "https://www.tomsukluosb.org",
+    "eposta": "info@ktiosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Türkoğlu",
+    "il": "Kahramanmaraş",
+    "ilce": "",
+    "webSitesi": "https://www.turkogluosb.org",
+    "eposta": "info@turkogluosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Eskipazar",
+    "il": "Karabük",
+    "ilce": "",
+    "webSitesi": "https://www.kemosb.org.tr",
+    "eposta": "eskipazar@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Karabük",
+    "il": "Karabük",
+    "ilce": "",
+    "webSitesi": "https://www.karorsan.org.tr",
+    "eposta": "evrakkayit@karorsan.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Karaman",
+    "il": "Karaman",
+    "ilce": "",
+    "webSitesi": "https://www.karamanosb.org.tr",
+    "eposta": "info@karamanosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Karaman 2.",
+    "il": "Karaman",
+    "ilce": "",
+    "webSitesi": "https://www.karaman.bel.tr",
+    "eposta": "ozelkalem@karaman.bel.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kars",
+    "il": "Kars",
+    "ilce": "",
+    "webSitesi": "https://www.karsosb.org.tr",
+    "eposta": "bilgi@karsosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kars İhtisas Besi",
+    "il": "Kars",
+    "ilce": "",
+    "webSitesi": "https://www.karsbesiosb.org.tr",
+    "eposta": "Kars_tdi@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kastamonu",
+    "il": "Kastamonu",
+    "ilce": "",
+    "webSitesi": "https://www.kastamonuosb.org.tr",
+    "eposta": "osb@kastamonuosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kastamonu Araç-İhsangazi",
+    "il": "Kastamonu",
+    "ilce": "",
+    "webSitesi": "https://www.kastamonuaracihsangaziosb.org.tr",
+    "eposta": "kaiosb@kastamonuaracihsangaziosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kastamonu Devrekani TDİ (Besi)",
+    "il": "Kastamonu",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "devrekanibesiosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kastamonu Seydiler",
+    "il": "Kastamonu",
+    "ilce": "",
+    "webSitesi": "https://www.seydilerosb.org.tr",
+    "eposta": "seydilerosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kastamonu Taşköprü",
+    "il": "Kastamonu",
+    "ilce": "",
+    "webSitesi": "https://www.taskopruosb.gov.tr",
+    "eposta": "kastamonutaskopruosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Tosya",
+    "il": "Kastamonu",
+    "ilce": "",
+    "webSitesi": "https://www.tosyaosb.com",
+    "eposta": "info@tosyaosb.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Erciyes",
+    "il": "Kayseri",
+    "ilce": "",
+    "webSitesi": "https://www.erciyesosb.org.tr",
+    "eposta": "erciyesosb@erciyesosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kayseri",
+    "il": "Kayseri",
+    "ilce": "",
+    "webSitesi": "https://www.kayseriosb.org",
+    "eposta": "info@kayseriosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kayseri İncesu",
+    "il": "Kayseri",
+    "ilce": "",
+    "webSitesi": "https://www.incesuosb.org.tr",
+    "eposta": "info@incesuosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kayseri Kocasinan TDİ(Jeo.Kayn.Sera)",
+    "il": "Kayseri",
+    "ilce": "",
+    "webSitesi": "https://www.kayseritdiosb.org",
+    "eposta": "genelsekreterlik@kayseritb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kayseri Mimarsinan",
+    "il": "Kayseri",
+    "ilce": "",
+    "webSitesi": "https://www.mimarsinanosb.org.tr",
+    "eposta": "mimarsinanosb@mimarsinanosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Balışeyh",
+    "il": "Kırıkkale",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "muhammet.tumer@meb.gov.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Keskin",
+    "il": "Kırıkkale",
+    "ilce": "",
+    "webSitesi": "https://www.keskinosb.org.tr",
+    "eposta": "info@keskinosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kırıkkale I",
+    "il": "Kırıkkale",
+    "ilce": "",
+    "webSitesi": "https://www.kirikkaleosb.org.tr",
+    "eposta": "info@kirikkaleosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kırıkkale Silah Sanayi İhtisas",
+    "il": "Kırıkkale",
+    "ilce": "",
+    "webSitesi": "https://www.silahosb.org.tr",
+    "eposta": "info@silahosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Büyükkarıştıran",
+    "il": "Kırklareli",
+    "ilce": "",
+    "webSitesi": "https://www.buyukkaristiranosb.org.tr",
+    "eposta": "buyukkaristiranosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Evrensekiz",
+    "il": "Kırklareli",
+    "ilce": "",
+    "webSitesi": "https://www.evrensekizosb.org.tr",
+    "eposta": "evrensekizosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kırklareli",
+    "il": "Kırklareli",
+    "ilce": "",
+    "webSitesi": "https://www.kirklareliosb.org.tr",
+    "eposta": "info@kirklareliosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kırklareli Kavaklı TDİ (Süt)",
+    "il": "Kırklareli",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "info@osbuk.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Pagder-Aslan Plastikçiler İhtisas ( ÖZEL )",
+    "il": "Kırklareli",
+    "ilce": "",
+    "webSitesi": "https://www.paosb.org",
+    "eposta": "paosb@paosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kaman",
+    "il": "Kırşehir",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "osbkaman@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kırşehir",
+    "il": "Kırşehir",
+    "ilce": "",
+    "webSitesi": "https://www.kirsehirosb.gov.tr",
+    "eposta": "info@kirsehirosb.gov.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Mucur",
+    "il": "Kırşehir",
+    "ilce": "",
+    "webSitesi": "https://www.mucurosb.com.tr",
+    "eposta": "kaymakamlikmucur@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kilis",
+    "il": "Kilis",
+    "ilce": "",
+    "webSitesi": "https://www.kilisosb.org.tr",
+    "eposta": "info@kilisosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kilis Polateli Şahinbey",
+    "il": "Kilis",
+    "ilce": "",
+    "webSitesi": "https://www.kilispolateliosb.org.tr",
+    "eposta": "kilistso@tobb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Asım Kibar",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.akosb.com.tr",
+    "eposta": "info@akosb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gebze",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.gosb.com.tr",
+    "eposta": "info@gosb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Global Karma",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.globalosb.org.tr",
+    "eposta": "info@globalosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kandıra Gıda İhtisas",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.kandiragiosb.org.tr",
+    "eposta": "info@kandiragiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kocaeli Alikahya",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.kaosb.org.tr",
+    "eposta": "info@kaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kocaeli Arslanbey",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.arslanbeyosb.org",
+    "eposta": "info@arslanbeyosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kocaeli Gebze Dilovası",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.dosb.com.tr",
+    "eposta": "info@dosb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kocaeli Gebze Güzeller",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.ggosb.com.tr",
+    "eposta": "info@ggosb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kocaeli Gebze Plastikçiler",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.geposb.com.tr",
+    "eposta": "geposb@geposb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kocaeli Gebze V(kimya) İhtisas",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.gebkim.org.tr",
+    "eposta": "gebkim@gebkim.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kocaeli Gebze VI(İMES)Makine İhtisas",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.imesdilovasi.org",
+    "eposta": "yonetim@imesosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kocaeli Kobi",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.kocaelikobiosb.org.tr",
+    "eposta": "info@kocaelikobiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Makine İhtisas",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.makineosb.org.tr",
+    "eposta": "info@makineosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TOSB Otomotiv Tedarik Sanayi İhtisas",
+    "il": "Kocaeli",
+    "ilce": "",
+    "webSitesi": "https://www.tosb.com.tr",
+    "eposta": "info@tosb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Akşehir",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.aksehirosb.org.tr",
+    "eposta": "info@aksehirosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Akşehir Gıda İhtisas",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.aksehirgidaihtisasosb.org.tr",
+    "eposta": "info@aksehirgidaihtisasosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Beyşehir",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.beysehirosb.org",
+    "eposta": "beysehirosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çumra",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.cumraosb.org.tr",
+    "eposta": "bilgi@cumraosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Karapınar",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.karapinarosb.org.tr",
+    "eposta": "info@karapinarosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Konya",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.kos.org.tr",
+    "eposta": "info@kos.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Konya Birinci",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.kosb.org.tr",
+    "eposta": "kosb@kosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Konya Ereğli",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.konyaeregliosb.org",
+    "eposta": "konyaeregliosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Konya-Ilgın",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.ilginosb.org",
+    "eposta": "ilginosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kulu",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.kuluosb.org.tr",
+    "eposta": "kuluimar@kulu.bel.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sarayönü",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.sarayonuosb.org.tr",
+    "eposta": "mscakici@sarayonuosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Seydişehir",
+    "il": "Konya",
+    "ilce": "",
+    "webSitesi": "https://www.seydisehirosb.org",
+    "eposta": "seydisehir@seydisehirosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Gediz",
+    "il": "Kütahya",
+    "ilce": "",
+    "webSitesi": "https://www.gedizosb.org.tr",
+    "eposta": "gedizosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kütahya",
+    "il": "Kütahya",
+    "ilce": "",
+    "webSitesi": "https://www.kutahyaosb.org.tr",
+    "eposta": "kutahyaosb@kutahyaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kütahya 30 Ağustos",
+    "il": "Kütahya",
+    "ilce": "",
+    "webSitesi": "https://www.30agustososb.org.tr",
+    "eposta": "info@30agustososb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kütahya Altıntaş Zafer",
+    "il": "Kütahya",
+    "ilce": "",
+    "webSitesi": "https://www.zaferosb.com.tr",
+    "eposta": "info@zaferosb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kütahya Seramik",
+    "il": "Kütahya",
+    "ilce": "",
+    "webSitesi": "https://www.kutahyaseramikosb.com.tr",
+    "eposta": "info@kutahyaseramikosb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kütahya Simav TDİ(Jeo. Kayn. Sera)",
+    "il": "Kütahya",
+    "ilce": "",
+    "webSitesi": "https://www.simavtdiosb.org.tr",
+    "eposta": "bilgi@simavtdiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kütahya Tavşanlı",
+    "il": "Kütahya",
+    "ilce": "",
+    "webSitesi": "https://www.tavsanliosb.org.tr",
+    "eposta": "info@tavsanliosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Darende",
+    "il": "Malatya",
+    "ilce": "",
+    "webSitesi": "https://www.darendeosb.org.tr",
+    "eposta": "yalinozalit@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Malatya (Besi) TDİ",
+    "il": "Malatya",
+    "ilce": "",
+    "webSitesi": "https://www.ybosb.org.tr",
+    "eposta": "malatya@tuketbir.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Malatya II.",
+    "il": "Malatya",
+    "ilce": "",
+    "webSitesi": "https://www.malatyaosb.org.tr",
+    "eposta": "bilgi@malatyaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Malatya Merkez I.",
+    "il": "Malatya",
+    "ilce": "",
+    "webSitesi": "https://www.malorsa.org.tr",
+    "eposta": "bilgi@malorsa.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Malatya Yazıhan (Sera) TDİ",
+    "il": "Malatya",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "info@yazihan.bel.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Akhisar",
+    "il": "Manisa",
+    "ilce": "",
+    "webSitesi": "https://www.akhisarosb.org.tr",
+    "eposta": "info@akhisarosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Akhisar Zeytin ve Zeytinyağı ve Türevleri İhtisas",
+    "il": "Manisa",
+    "ilce": "",
+    "webSitesi": "https://www.akhisarzeytinosb.org.tr",
+    "eposta": "zeytinosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Demirci",
+    "il": "Manisa",
+    "ilce": "",
+    "webSitesi": "https://www.demirciosb.org.tr",
+    "eposta": "demirci@icisleri.gov.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kula Deri İhtisas ve Karma",
+    "il": "Manisa",
+    "ilce": "",
+    "webSitesi": "https://www.kulaosb.org",
+    "eposta": "kulaosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Manisa",
+    "il": "Manisa",
+    "ilce": "",
+    "webSitesi": "https://www.mosb.org.tr",
+    "eposta": "mosb@mosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Manisa Salihli Jeotermal Kaynaklı Sera TDİOSB",
+    "il": "Manisa",
+    "ilce": "",
+    "webSitesi": "https://www.salihliotb.org.tr",
+    "eposta": "bilgi@salihliotb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Manisa Turgutlu I.",
+    "il": "Manisa",
+    "ilce": "",
+    "webSitesi": "https://www.turgutluosb.org.tr",
+    "eposta": "turgutlu@turgutluosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Muradiye",
+    "il": "Manisa",
+    "ilce": "",
+    "webSitesi": "https://www.muosb.org.tr",
+    "eposta": "info@muosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Salihli",
+    "il": "Manisa",
+    "ilce": "",
+    "webSitesi": "https://www.salihliosb.org.tr",
+    "eposta": "salihliosb@salihliosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Soma",
+    "il": "Manisa",
+    "ilce": "",
+    "webSitesi": "https://www.somaosb.org.tr",
+    "eposta": "bilgi@somaosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Mardin",
+    "il": "Mardin",
+    "ilce": "",
+    "webSitesi": "https://www.mardinosb.org.tr",
+    "eposta": "osbmardin@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Mardin 2’nci",
+    "il": "Mardin",
+    "ilce": "",
+    "webSitesi": "https://www.mardin2osb.org.tr",
+    "eposta": "info@mardin2osb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Mardin Midyat",
+    "il": "Mardin",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "mardin.midyat.osb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Anamur",
+    "il": "Mersin",
+    "ilce": "",
+    "webSitesi": "https://www.anamurosb.org.tr",
+    "eposta": "anamurosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Mersin",
+    "il": "Mersin",
+    "ilce": "",
+    "webSitesi": "https://www.mersinosb.org.tr",
+    "eposta": "info@mersinosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Mersin Erdemli",
+    "il": "Mersin",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "bilgi@erdemli.bel.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Mut",
+    "il": "Mersin",
+    "ilce": "",
+    "webSitesi": "https://www.mutosb.org",
+    "eposta": "iletisim@mutosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Silifke",
+    "il": "Mersin",
+    "ilce": "",
+    "webSitesi": "https://www.silifkeosb.org.tr",
+    "eposta": "info@silifkeosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Tarsus",
+    "il": "Mersin",
+    "ilce": "",
+    "webSitesi": "https://www.tarsusosb.org.tr",
+    "eposta": "bilgi@tarsusosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TÜİOSB Gıda İhtisas ve Karma",
+    "il": "Mersin",
+    "ilce": "",
+    "webSitesi": "https://www.tuiosb.org",
+    "eposta": "info@tuiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Milas",
+    "il": "Muğla",
+    "ilce": "",
+    "webSitesi": "https://www.milasosb.org.tr",
+    "eposta": "info@milasosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Muğla Seydikemer TDİ (Süt)",
+    "il": "Muğla",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "tttokmak@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Muş",
+    "il": "Muş",
+    "ilce": "",
+    "webSitesi": "https://www.musosb.com",
+    "eposta": "musorganizesanayi@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Nevşehir",
+    "il": "Nevşehir",
+    "ilce": "",
+    "webSitesi": "https://www.nevsehirosb.org",
+    "eposta": "muhasebe@nevsehirosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Nevşehir Acıgöl",
+    "il": "Nevşehir",
+    "ilce": "",
+    "webSitesi": "https://www.acigolosb.org",
+    "eposta": "mcicek46@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Nevşehir Avanos Kapadokya",
+    "il": "Nevşehir",
+    "ilce": "",
+    "webSitesi": "https://www.avanoskapadokyaosb.org",
+    "eposta": "nevsehirtso@tobb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Nevşehir Kozaklı TDİ (Jeo.Kayn.Sera)",
+    "il": "Nevşehir",
+    "ilce": "",
+    "webSitesi": "https://www.nevsehirtdiosb.org.tr",
+    "eposta": "nevsehirtdiosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Niğde",
+    "il": "Niğde",
+    "ilce": "",
+    "webSitesi": "https://www.nigdeosb.com",
+    "eposta": "info@nigdeosb.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Niğde Bor Karma ve Deri İhtisas",
+    "il": "Niğde",
+    "ilce": "",
+    "webSitesi": "https://www.borosb.org.tr",
+    "eposta": "borkarmaosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Niğde II.",
+    "il": "Niğde",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "stmniinfo@n2osb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Niğde-Bor TDİ (Besi)",
+    "il": "Niğde",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "nigde@icisleri.gov.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Fatsa",
+    "il": "Ordu",
+    "ilce": "",
+    "webSitesi": "https://www.fatsaosb.com.tr",
+    "eposta": "fatsaosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ordu",
+    "il": "Ordu",
+    "ilce": "",
+    "webSitesi": "https://www.orduosb.com",
+    "eposta": "info@orduosb.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ordu 2’nci",
+    "il": "Ordu",
+    "ilce": "",
+    "webSitesi": "https://www.ordu2osb.org.tr",
+    "eposta": "orduosb2@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ordu Ünye",
+    "il": "Ordu",
+    "ilce": "",
+    "webSitesi": "https://www.unyeosb.org.tr",
+    "eposta": "unyeosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Düziçi Karma",
+    "il": "Osmaniye",
+    "ilce": "",
+    "webSitesi": "https://www.duziciosb.org",
+    "eposta": "info@osbuk.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kadirli",
+    "il": "Osmaniye",
+    "ilce": "",
+    "webSitesi": "https://www.kadirliosb.org",
+    "eposta": "kadirliosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Osmaniye",
+    "il": "Osmaniye",
+    "ilce": "",
+    "webSitesi": "https://www.oosb.org.tr",
+    "eposta": "oosb@oosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sumbas Karma",
+    "il": "Osmaniye",
+    "ilce": "",
+    "webSitesi": "https://www.sumbasosb.org.tr",
+    "eposta": "sumbasosb@sumbasosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Rize",
+    "il": "Rize",
+    "ilce": "",
+    "webSitesi": "https://www.rizeosb.com.tr",
+    "eposta": "info@rizeosb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Rize Ardeşen",
+    "il": "Rize",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "mustafaon64@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ferizli",
+    "il": "Sakarya",
+    "ilce": "",
+    "webSitesi": "https://www.ferizliosb.org.tr",
+    "eposta": "info@ferizliosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Karasu",
+    "il": "Sakarya",
+    "ilce": "",
+    "webSitesi": "https://www.karasuosb.org.tr",
+    "eposta": "karasuosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kaynarca Mobilya İhtisas",
+    "il": "Sakarya",
+    "ilce": "",
+    "webSitesi": "https://www.kamosb.org.tr",
+    "eposta": "kamosb@kamosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sakarya I",
+    "il": "Sakarya",
+    "ilce": "",
+    "webSitesi": "https://www.sosb.org.tr",
+    "eposta": "sosb@sosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sakarya II",
+    "il": "Sakarya",
+    "ilce": "",
+    "webSitesi": "https://www.s2osb.org.tr",
+    "eposta": "s2osb@s2osb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sakarya III",
+    "il": "Sakarya",
+    "ilce": "",
+    "webSitesi": "https://www.s3osb.org.tr",
+    "eposta": "sakarya3osb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sakarya Kaynarca Doğu Marmara Makine İmalatçıları İhtisas",
+    "il": "Sakarya",
+    "ilce": "",
+    "webSitesi": "https://www.domiosb.org.tr",
+    "eposta": "info@domiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sakarya Otomotiv ve Metal İhtisas",
+    "il": "Sakarya",
+    "ilce": "",
+    "webSitesi": "https://www.somiosb.org.tr",
+    "eposta": "1@1",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sakarya Söğütlü",
+    "il": "Sakarya",
+    "ilce": "",
+    "webSitesi": "https://www.sogutluosb.org.tr",
+    "eposta": "sogutluosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çarşamba",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "https://www.carsambaosb.com",
+    "eposta": "carsambaosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Samsun Bafra",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "https://www.bafraosb.org",
+    "eposta": "info@bafraosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Samsun Bafra (Sera) TDİ",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "https://www.seraosb.org",
+    "eposta": "info@bafraseraosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Samsun Gıda İhtisas",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "https://www.samsungidaosb.org.tr",
+    "eposta": "samsungidaosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Samsun Havza",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "https://www.havzaosb.org.tr",
+    "eposta": "havzaosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Samsun Kavak",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "https://www.kavakosb.org.tr",
+    "eposta": "info@kavakosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Samsun Merkez",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "https://www.samsunosb.org.tr",
+    "eposta": "info@samsunosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Samsun Yeni",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "https://www.samsunyeniosb.org.tr",
+    "eposta": "samsunyeniosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Terme Karma",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "termebelediyesi@hs01.kep.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Vezirköprü Karma",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "https://www.vezirkopruosb.org",
+    "eposta": "info@osbuk.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yakakent Su Ürünleri İşleme İhtisas OSB",
+    "il": "Samsun",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "yakakentosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Siirt",
+    "il": "Siirt",
+    "ilce": "",
+    "webSitesi": "https://www.siirtosb.org",
+    "eposta": "osbsiirt56@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Boyabat",
+    "il": "Sinop",
+    "ilce": "",
+    "webSitesi": "https://www.boyabatosb.com.tr",
+    "eposta": "boyabatorganizesanayi@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sinop",
+    "il": "Sinop",
+    "ilce": "",
+    "webSitesi": "https://www.sinoposb.org.tr",
+    "eposta": "sinoposb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Demirağ",
+    "il": "Sivas",
+    "ilce": "",
+    "webSitesi": "https://www.demiragosb.org.tr",
+    "eposta": "info@demiragosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sivas Gemerek",
+    "il": "Sivas",
+    "ilce": "",
+    "webSitesi": "https://www.gemerekosb.org.tr",
+    "eposta": "sivasgemerekosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sivas Merkez I",
+    "il": "Sivas",
+    "ilce": "",
+    "webSitesi": "https://www.sivasosb.org.tr",
+    "eposta": "sivas@sivasosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Sivas Şarkışla",
+    "il": "Sivas",
+    "ilce": "",
+    "webSitesi": "https://www.sarkislaosb.org.tr",
+    "eposta": "hancerlizade@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şarkışla TDİ",
+    "il": "Sivas",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "hancerlizade@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Birecik",
+    "il": "Şanlıurfa",
+    "ilce": "",
+    "webSitesi": "https://www.birecikosb.org.tr",
+    "eposta": "info@birecikosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Siverek",
+    "il": "Şanlıurfa",
+    "ilce": "",
+    "webSitesi": "https://www.siverekosb.org",
+    "eposta": "info@siverekorganize.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şanlıurfa",
+    "il": "Şanlıurfa",
+    "ilce": "",
+    "webSitesi": "https://www.suosb.org.tr",
+    "eposta": "info@suosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şanlıurfa Gıda İhtisas",
+    "il": "Şanlıurfa",
+    "ilce": "",
+    "webSitesi": "https://www.sugiosb.org",
+    "eposta": "bilgi@sugiosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şanlıurfa TDİ",
+    "il": "Şanlıurfa",
+    "ilce": "",
+    "webSitesi": "https://www.urfatdiosb.org",
+    "eposta": "info@urfatdiosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şanlıurfa Viranşehir",
+    "il": "Şanlıurfa",
+    "ilce": "",
+    "webSitesi": "https://www.viransehirosb.org.tr",
+    "eposta": "viransehirosb.63@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şırnak",
+    "il": "Şırnak",
+    "ilce": "",
+    "webSitesi": "https://www.sirnakosb.org.tr",
+    "eposta": "sirnaktso@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şırnak Cizre",
+    "il": "Şırnak",
+    "ilce": "",
+    "webSitesi": "https://www.cizreosb.org",
+    "eposta": "cizreosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şırnak Silopi TDİ (Sera)",
+    "il": "Şırnak",
+    "ilce": "",
+    "webSitesi": "https://www.sirnakozelidare.gov.tr",
+    "eposta": "bilgi@sirnakozelidare.gov.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çerkezköy",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.cosb.org.tr",
+    "eposta": "cosb@cosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çorlu 1",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.corlu1osb.org.tr",
+    "eposta": "info@corlu1osb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çorlu deri İhtisas ve karma",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.corluderiosb.org.tr",
+    "eposta": "bilgi@corluderiosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ergene-1",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.ergene1osb.org",
+    "eposta": "info@ergene1osb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Ergene-2",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.ergene2osb.org.tr",
+    "eposta": "bilgi@ergene2osb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Hayrabolu",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.hayraboluosb.org.tr",
+    "eposta": "info@hayraboluosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kapaklı",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.kapakliosb.org.tr",
+    "eposta": "bilgi@kapakliosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Malkara",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.malkaraosb.org.tr",
+    "eposta": "info@malkaraosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Marmaraereğlisi",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.marsab.org.tr",
+    "eposta": "info@marsab.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Muratlı",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.muratliosb.org",
+    "eposta": "info@muratliosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Veliköy",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.vosb.org.tr",
+    "eposta": "info@vosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Velimeşe",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.velimeseosb.org.tr",
+    "eposta": "info@velimeseosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yalıboyu",
+    "il": "Tekirdağ",
+    "ilce": "",
+    "webSitesi": "https://www.yaliboyuosb.org.tr",
+    "eposta": "bilgi@yaliboyuosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Erbaa Toprak Sanayi İhtisas ve Karma",
+    "il": "Tokat",
+    "ilce": "",
+    "webSitesi": "https://www.erbaaosb.org.tr",
+    "eposta": "erbaaorganizesanayi@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Niksar",
+    "il": "Tokat",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "niksar.osb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Tokat Merkez",
+    "il": "Tokat",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "o.s.b.tokat@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Tokat-Turhal",
+    "il": "Tokat",
+    "ilce": "",
+    "webSitesi": "https://www.turhalosb.org",
+    "eposta": "turhalosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Zile",
+    "il": "Tokat",
+    "ilce": "",
+    "webSitesi": "https://www.zileosb.org.tr",
+    "eposta": "bilgi@zileosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Araklı Hazır Giyim/Tekstil İhtisas",
+    "il": "Trabzon",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "araklibelediyesi@arakli.bel.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Şinik (Akçaabat)",
+    "il": "Trabzon",
+    "ilce": "",
+    "webSitesi": "https://www.sinikosb.com",
+    "eposta": "sinikosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Trabzon Arsin",
+    "il": "Trabzon",
+    "ilce": "",
+    "webSitesi": "https://www.tosbol.org.tr",
+    "eposta": "info@tosbol.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Trabzon Beşikdüzü",
+    "il": "Trabzon",
+    "ilce": "",
+    "webSitesi": "https://www.besosb.com",
+    "eposta": "info@besosb.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Vakfıkebir (Trabzon)",
+    "il": "Trabzon",
+    "ilce": "",
+    "webSitesi": "https://www.vakfikebirosb.org.tr",
+    "eposta": "vakfikebirosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Tunceli",
+    "il": "Tunceli",
+    "ilce": "",
+    "webSitesi": "https://www.tunceliosb.org.tr",
+    "eposta": "tunceliosb1@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Banaz",
+    "il": "Uşak",
+    "ilce": "",
+    "webSitesi": "https://www.banazosb.org.tr",
+    "eposta": "banazosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Uşak",
+    "il": "Uşak",
+    "ilce": "",
+    "webSitesi": "https://www.uosb.org.tr",
+    "eposta": "bilgi@uosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Uşak Banaz TDİ(Jeo.Kayn.Sera)",
+    "il": "Uşak",
+    "ilce": "",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "bilgi@usakilozelidaresi.gov.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Uşak Deri (karma)",
+    "il": "Uşak",
+    "ilce": "",
+    "webSitesi": "https://www.ukosb.org.tr",
+    "eposta": "info@ukosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Uşak Karahallı",
+    "il": "Uşak",
+    "ilce": "",
+    "webSitesi": "https://www.karahalliosb.org.tr",
+    "eposta": "bilgi@karahalliosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Erciş",
+    "il": "Van",
+    "ilce": "",
+    "webSitesi": "https://www.ercisosb.org.tr",
+    "eposta": "ercisosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Van",
+    "il": "Van",
+    "ilce": "",
+    "webSitesi": "https://www.vanosb.org.tr",
+    "eposta": "vanosb@vanosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Van TDİ (Besi)",
+    "il": "Van",
+    "ilce": "",
+    "webSitesi": "https://vanbesiosb.org.tr",
+    "eposta": "vantso@vantso.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yalova Avrasya Giyim ve Gemi İhtisas",
+    "il": "Yalova",
+    "ilce": "",
+    "webSitesi": "https://www.avrasyaosb.com.tr",
+    "eposta": "info@avrasyaosb.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yalova Çiçekçilik TDİOSB",
+    "il": "Yalova",
+    "ilce": "",
+    "webSitesi": "https://www.yalovacicekcilikosb.org.tr",
+    "eposta": "info@yalovacicekcilikosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yalova Kalıp İmalatı İhtisas",
+    "il": "Yalova",
+    "ilce": "",
+    "webSitesi": "https://www.ukub.org.tr",
+    "eposta": "ukub@ukub.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yalova Kompozit ve Kimya İhtisas",
+    "il": "Yalova",
+    "ilce": "",
+    "webSitesi": "https://www.yalkimosb.org.tr",
+    "eposta": "info@yalkimosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yalova Makina İhtisas",
+    "il": "Yalova",
+    "ilce": "",
+    "webSitesi": "https://www.yalovaosb.org",
+    "eposta": "info@yalovaimesosb.org",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Bozok",
+    "il": "Yozgat",
+    "ilce": "",
+    "webSitesi": "https://www.bozokosb.org",
+    "eposta": "bozokosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Fuat Oktay",
+    "il": "Yozgat",
+    "ilce": "",
+    "webSitesi": "https://fuatoktayosb.org",
+    "eposta": "bogazliyanosb@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Kaleseramik ( ÖZEL )",
+    "il": "Yozgat",
+    "ilce": "",
+    "webSitesi": "https://www.kaleseramikosb.org.tr",
+    "eposta": "kaleseramikosb@kale.com.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yozgat",
+    "il": "Yozgat",
+    "ilce": "",
+    "webSitesi": "https://www.yozgatosb.org.tr",
+    "eposta": "osbyozgat@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Yozgat Yerköy (Jeo.Kayn.Sera) TDİOSB",
+    "il": "Yozgat",
+    "ilce": "",
+    "webSitesi": "https://www.yerkoytdiosb.org.tr",
+    "eposta": "yerkoytdiosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Çaycuma (Sera) TDİ",
+    "il": "Zonguldak",
+    "ilce": "",
+    "webSitesi": "https://www.caycumaseraosb.org.tr",
+    "eposta": "ozzokur@hotmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Zonguldak Alaplı",
+    "il": "Zonguldak",
+    "ilce": "",
+    "webSitesi": "https://www.alapliosb.org.tr",
+    "eposta": "bilgi@alapliosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Zonguldak Çaycuma",
+    "il": "Zonguldak",
+    "ilce": "",
+    "webSitesi": "https://www.cayorsan.org.tr",
+    "eposta": "caycumaosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Zonguldak Ereğli",
+    "il": "Zonguldak",
+    "ilce": "",
+    "webSitesi": "https://www.zeosb.org.tr",
+    "eposta": "info@zeosb.org.tr",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Zonguldak Gökçebey",
+    "il": "Zonguldak",
+    "ilce": "",
+    "webSitesi": "https://www.zonguldakgokcebeyosb.org.tr",
+    "eposta": "gokcebeyosb@gmail.com",
+    "telefon": "",
+    "okulTuru": "Organize Sanayi Bölgesi"
+  }
+]

@@ -197,12 +197,50 @@ export class RegisterHostDto {
   totalAnnualCapacity?: number;
 
   @ApiPropertyOptional({
-    example: ['VET_INTERNSHIP', 'JOB_SHADOWING'],
+    example: ['VET_SHORT_TERM', 'JOB_SHADOWING'],
     description: 'Sunulan faaliyet türleri',
   })
   @IsArray()
   @IsOptional()
   activities?: string[];
+
+  // --------------------------------------------------------------------------
+  // Logistics & Additional Capabilities
+  // --------------------------------------------------------------------------
+  @ApiPropertyOptional({ description: 'Konaklama organizasyonu sağlayabiliyor mu?' })
+  @IsBoolean()
+  @IsOptional()
+  providesAccommodation?: boolean;
+
+  @ApiPropertyOptional({ description: 'Konaklama detayları (örn: Yurt, Otel, Aile yanı)' })
+  @IsString()
+  @IsOptional()
+  accommodationDetails?: string;
+
+  @ApiPropertyOptional({ description: 'Yemek organizasyonu (kantin, vb.) sağlayabiliyor mu?' })
+  @IsBoolean()
+  @IsOptional()
+  providesMeals?: boolean;
+
+  @ApiPropertyOptional({ description: 'Yemek detayları (örn: Günde 3 öğün, sadece öğle yemeği)' })
+  @IsString()
+  @IsOptional()
+  mealsDetails?: string;
+
+  @ApiPropertyOptional({ description: 'Havalimanı veya yerel transfer desteği sağlayabiliyor mu?' })
+  @IsBoolean()
+  @IsOptional()
+  providesTransfers?: boolean;
+
+  @ApiPropertyOptional({ description: 'Transfer detayları (örn: Havalimanı karşılama)' })
+  @IsString()
+  @IsOptional()
+  transfersDetails?: string;
+
+  @ApiPropertyOptional({ description: '18 yaş altı (reşit olmayan) stajyer kabul edebiliyor mu?' })
+  @IsBoolean()
+  @IsOptional()
+  acceptsUnder18?: boolean;
 
   @ApiPropertyOptional({
     example: 'user_2b9x...',

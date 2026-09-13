@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@clerk/nextjs';
+import { useUser, SignInButton } from '@clerk/nextjs';
 import { apiClient } from '../../lib/api-client';
 import { useAppStore } from '../../lib/store';
 import { useTheme } from '../../lib/theme-context';
@@ -11,6 +11,8 @@ import { AccreditationStatus } from '@mobility-nexus/types';
 import HostPortfolioModal from '../../components/host/HostPortfolioModal';
 import HostVerificationModal from '../../components/host/HostVerificationModal';
 import AdminVerificationQueueModal from '../../components/admin/AdminVerificationQueueModal';
+import { useTranslation } from '../../lib/i18n';
+import LegalModal from '../../components/ui/LegalModal';
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -28,6 +30,27 @@ export default function OnboardingPage() {
 
   // Role Selection State: 'SCHOOL' | 'HOST' | null
   const [selectedRole, setSelectedRole] = useState<'SCHOOL' | 'HOST' | null>(null);
+
+  // Platform Admin verification check
+  const adminEmails = (
+    process.env.NEXT_PUBLIC_ADMIN_EMAILS ||
+    'ibrahimdogan.js@gmail.com'
+  )
+    .toLowerCase()
+    .split(',')
+    .map((e) => e.trim());
+
+  const userEmail = user?.primaryEmailAddress?.emailAddress?.toLowerCase() || '';
+  const userRoleMeta = (user?.publicMetadata?.role as string)?.toUpperCase();
+
+  const isPlatformAdmin = Boolean(
+    user &&
+      (userRoleMeta === 'SUPER_ADMIN' ||
+        userRoleMeta === 'ADMIN' ||
+        userRoleMeta === 'PLATFORM_ADMIN' ||
+        user?.publicMetadata?.isAdmin === true ||
+        (userEmail && adminEmails.includes(userEmail)))
+  );
 
   // 1. School Form State
   const [schoolName, setSchoolName] = useState('');
@@ -86,6 +109,11 @@ export default function OnboardingPage() {
   const [isPortfolioModalOpen, setIsPortfolioModalOpen] = useState(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
   const [isAdminQueueModalOpen, setIsAdminQueueModalOpen] = useState(false);
+
+  // Legal & i18n State
+  const { t, locale } = useTranslation();
+  const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
+  const [legalConsentAccepted, setLegalConsentAccepted] = useState(true);
 
   // Fetch Reference Data on mount
   useEffect(() => {
@@ -339,20 +367,34 @@ export default function OnboardingPage() {
                 CAPPINNO Mobility Nexus
               </span>
               <span className="text-xs text-slate-500 block">
-                Erasmus+ VET Kurum & Ev Sahibi Yönetimi
+                {locale === 'tr' ? 'Erasmus+ VET Kurum & Ev Sahibi Yönetimi' : 'Erasmus+ VET School & Host Portal'}
               </span>
             </div>
           </Link>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs text-slate-500 hidden sm:inline">
-              Giriş yapan: <strong className="text-slate-800">{user?.fullName || user?.primaryEmailAddress?.emailAddress}</strong>
-            </span>
+            {user ? (
+              <span className="text-xs text-slate-500 hidden sm:inline">
+                {locale === 'tr' ? 'Giriş yapan:' : 'Signed in as:'}{' '}
+                <strong className="text-slate-800">
+                  {user.fullName || user.primaryEmailAddress?.emailAddress}
+                </strong>
+              </span>
+            ) : (
+              <SignInButton mode="modal">
+                <button
+                  type="button"
+                  className="text-xs font-bold text-slate-700 hover:text-slate-950 bg-white border border-slate-300 px-3 py-1.5 rounded-lg shadow-2xs hover:bg-slate-50 transition-colors cursor-pointer"
+                >
+                  {locale === 'tr' ? 'Giriş Yap' : 'Sign In'}
+                </button>
+              </SignInButton>
+            )}
             <Link
               href="/"
               className="text-xs font-semibold text-slate-600 hover:text-slate-900 border border-slate-200 px-3 py-1.5 rounded-lg bg-white shadow-xs hover:bg-slate-50 transition-colors"
             >
-              Ana Sayfaya Dön
+              {t.profile.backHome}
             </Link>
           </div>
         </div>
@@ -391,7 +433,7 @@ export default function OnboardingPage() {
                   </div>
                   <div className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
                     <span>🇪🇺</span>
-                    <span>Resmî Format Doğrulandı</span>
+                    <span>Resmi Format Doğrulandı</span>
                   </div>
                 </div>
 
@@ -654,18 +696,81 @@ export default function OnboardingPage() {
             <div className="text-center max-w-xl mx-auto space-y-2.5">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold uppercase tracking-wider">
                 <span>🇪🇺</span>
-                <span>Erasmus+ Hareketlilik Portalı</span>
+                <span>{t.onboarding.roleSelectBadge}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight m-0">
-                Kurumsal Profilinizi Seçin
+                {t.onboarding.roleSelectTitle}
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed m-0">
-                Platform üzerindeki faaliyet alanınıza uygun kurumsal rolü seçerek kurulumu başlatın.
+                {t.onboarding.roleSelectSubtitle}
               </p>
             </div>
 
+            {/* Guest Notice for Unauthenticated Visitors */}
+            {!user && (
+              <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border-2 border-blue-200 bg-blue-50/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div className="space-y-1 max-w-xl">
+                  <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[11px] font-bold uppercase tracking-wider">
+                    <span>💡</span>
+                    <span>{t.guestOnboarding.guestNoticeBadge}</span>
+                  </div>
+                  <h3 className="text-base font-extrabold text-slate-900 m-0">
+                    {t.guestOnboarding.guestNoticeTitle}
+                  </h3>
+                  <p className="text-xs text-slate-600 m-0 leading-relaxed">
+                    {t.guestOnboarding.guestNoticeDesc}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0 flex-wrap">
+                  <SignInButton mode="modal">
+                    <button
+                      type="button"
+                      className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer"
+                    >
+                      {t.guestOnboarding.guestNoticeBtn}
+                    </button>
+                  </SignInButton>
+                </div>
+              </div>
+            )}
+
+            {/* Platform Admin Bilgilendirme Bannerı (Düz, Sade ve Net Tasarım - Sıfır Gradient) */}
+            {isPlatformAdmin && (
+              <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border-2 border-slate-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div className="space-y-1.5 max-w-xl">
+                  <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider border border-slate-200">
+                    <span>🛡️</span>
+                    <span>{t.onboarding.adminBadge}</span>
+                  </div>
+                  <h3 className="text-xl font-extrabold text-slate-900 m-0">
+                    {t.onboarding.adminTitle}
+                  </h3>
+                  <p className="text-xs text-slate-600 m-0 leading-relaxed">
+                    {t.onboarding.adminDesc}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 shrink-0 flex-wrap">
+                  <button
+                    type="button"
+                    onClick={() => setIsAdminQueueModalOpen(true)}
+                    className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-all shadow-xs flex items-center gap-1.5"
+                  >
+                    <span>🛡️</span>
+                    <span>{t.onboarding.adminQueueBtn}</span>
+                  </button>
+                  <Link
+                    href="/"
+                    className="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all border border-slate-300 flex items-center gap-1"
+                  >
+                    <span>{t.onboarding.goToHomeBtn}</span>
+                    <span>→</span>
+                  </Link>
+                </div>
+              </div>
+            )}
+
             {/* Çift Kart Seçimi */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
               {/* Kart 1: Okul / Gönderen Kurum */}
               <div
                 onClick={() => setSelectedRole('SCHOOL')}
@@ -676,33 +781,33 @@ export default function OnboardingPage() {
                     🏛️
                   </div>
                   <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-800 border border-blue-200 mb-2">
-                    Öğrenci & Personel Gönderen
+                    {t.onboarding.schoolCardBadge}
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                    Okul / Gönderen Kurum
+                    {t.onboarding.schoolCardTitle}
                   </h3>
                   <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                    Erasmus+ KA121 akreditasyonu veya KA122 kısa dönem projeleri ile mesleki eğitim öğrencilerini ve öğretmenlerini Avrupa'ya staj ve eğitime gönderen meslek liseleri ve kurumlar.
+                    {t.onboarding.schoolCardDesc}
                   </p>
 
                   <ul className="mt-4 space-y-2 text-xs text-slate-600">
                     <li className="flex items-center gap-2">
                       <span className="text-emerald-600 font-bold">✓</span>
-                      <span>Resmi Erasmus OID & Akreditasyon Eşleşmesi</span>
+                      <span>{t.onboarding.schoolFeature1}</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-emerald-600 font-bold">✓</span>
-                      <span>Canlı Kurumsal Hazırlık Skoru</span>
+                      <span>{t.onboarding.schoolFeature2}</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-emerald-600 font-bold">✓</span>
-                      <span>ESCO / ISCED-F Eşleştirme Motoru</span>
+                      <span>{t.onboarding.schoolFeature3}</span>
                     </li>
                   </ul>
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-blue-600 font-bold text-xs group-hover:translate-x-1 transition-transform">
-                  <span>Okul Kurulumuna Başla</span>
+                  <span>{t.onboarding.schoolCardAction}</span>
                   <span>→</span>
                 </div>
               </div>
@@ -717,33 +822,33 @@ export default function OnboardingPage() {
                     🏢
                   </div>
                   <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 mb-2">
-                    Avrupa Staj / İşbaşı Sağlayıcısı
+                    {t.onboarding.hostCardBadge}
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
-                    Ev Sahibi Kurum / İşletme
+                    {t.onboarding.hostCardTitle}
                   </h3>
                   <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                    Avrupa'da faaliyet gösteren; Türk ve AB meslek lisesi öğrencilerine staj ve beceri eğitimi, öğretmenlere işbaşı gözlem (Job Shadowing) imkanı sağlayan işletmeler.
+                    {t.onboarding.hostCardDesc}
                   </p>
 
                   <ul className="mt-4 space-y-2 text-xs text-slate-600">
                     <li className="flex items-center gap-2">
                       <span className="text-emerald-600 font-bold">✓</span>
-                      <span>15 Kriterli Resmi Doğrulama Güvencesi</span>
+                      <span>{t.onboarding.hostFeature1}</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-emerald-600 font-bold">✓</span>
-                      <span>Dönemlik Öğrenci Kapasite Yönetimi</span>
+                      <span>{t.onboarding.hostFeature2}</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-emerald-600 font-bold">✓</span>
-                      <span>Akredite Okullarla Doğrudan Eşleşme</span>
+                      <span>{t.onboarding.hostFeature3}</span>
                     </li>
                   </ul>
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-emerald-600 font-bold text-xs group-hover:translate-x-1 transition-transform">
-                  <span>Ev Sahibi Kaydına Başla</span>
+                  <span>{t.onboarding.hostCardAction}</span>
                   <span>→</span>
                 </div>
               </div>
@@ -758,13 +863,13 @@ export default function OnboardingPage() {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-xs font-semibold mb-2.5">
                   <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                  <span>{isEditing ? 'Kurum Bilgilerini Güncelle' : 'Okul / Gönderen Kurum Kurulumu'}</span>
+                  <span>{isEditing ? t.onboarding.schoolUpdateBadge : t.onboarding.schoolSetupBadge}</span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight m-0">
-                  {isEditing ? 'Kurum Profilinizi Düzenleyin' : 'Okul Profilinizi Tanımlayın'}
+                  {isEditing ? t.onboarding.schoolEditTitle : t.onboarding.schoolFormTitle}
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
-                  Erasmus+ KA121 / KA122 hareketlilik süreçlerinde kullanılmak üzere temel kurumsal bilgilerinizi giriniz.
+                  {t.onboarding.schoolFormSubtitle}
                 </p>
               </div>
 
@@ -774,7 +879,7 @@ export default function OnboardingPage() {
                   onClick={() => setSelectedRole(null)}
                   className="text-xs font-semibold text-slate-500 hover:text-slate-800 border border-slate-200 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors"
                 >
-                  ← Rol Değiştir
+                  {t.onboarding.changeRole}
                 </button>
               )}
             </div>
@@ -905,6 +1010,49 @@ export default function OnboardingPage() {
                 </div>
               </div>
 
+              {/* KVKK / GDPR Rıza Onayı (Dile Göre Ayrık) */}
+              <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-xs flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="schoolLegalConsent"
+                  checked={legalConsentAccepted}
+                  onChange={(e) => setLegalConsentAccepted(e.target.checked)}
+                  className="mt-0.5 rounded text-blue-600 focus:ring-blue-500"
+                />
+                <label htmlFor="schoolLegalConsent" className="text-slate-600 leading-relaxed cursor-pointer select-none">
+                  {locale === 'tr' ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsLegalModalOpen(true);
+                        }}
+                        className="font-bold text-blue-700 hover:underline inline p-0 m-0 bg-transparent border-none text-xs"
+                      >
+                        6698 sayılı KVKK Aydınlatma Metni
+                      </button>
+                      &apos;ni okudum, kişisel ve kurumsal verilerimin bu kapsamda işlenmesini onaylıyorum.
+                    </>
+                  ) : (
+                    <>
+                      I have read and agree to the{' '}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsLegalModalOpen(true);
+                        }}
+                        className="font-bold text-blue-700 hover:underline inline p-0 m-0 bg-transparent border-none text-xs"
+                      >
+                        GDPR Privacy Policy (Regulation EU 2016/679)
+                      </button>
+                      .
+                    </>
+                  )}
+                </label>
+              </div>
+
               <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
                 {isEditing ? (
                   <button
@@ -912,7 +1060,7 @@ export default function OnboardingPage() {
                     onClick={() => setIsEditing(false)}
                     className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors border border-slate-200"
                   >
-                    Vazgeç
+                    {t.onboarding.cancel}
                   </button>
                 ) : (
                   <button
@@ -920,24 +1068,24 @@ export default function OnboardingPage() {
                     onClick={() => setSelectedRole(null)}
                     className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors border border-slate-200"
                   >
-                    Geri Dön
+                    {t.onboarding.back}
                   </button>
                 )}
 
                 <button
                   type="submit"
-                  disabled={!canSubmitSchool || isSubmitting}
+                  disabled={!canSubmitSchool || isSubmitting || !legalConsentAccepted}
                   className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold text-white transition-all shadow-sm ${
-                    !canSubmitSchool || isSubmitting
+                    !canSubmitSchool || isSubmitting || !legalConsentAccepted
                       ? 'bg-slate-400 cursor-not-allowed opacity-70'
                       : 'bg-blue-600 hover:bg-blue-700 hover:shadow-md'
                   }`}
                 >
                   {isSubmitting ? (
-                    <span>İşleniyor...</span>
+                    <span>{locale === 'tr' ? 'İşleniyor...' : 'Processing...'}</span>
                   ) : (
                     <>
-                      <span>{isEditing ? 'Bilgileri Güncelle ve Kaydet' : 'Kurulumu Tamamla ve Özet Gör'}</span>
+                      <span>{isEditing ? t.onboarding.updateAndSave : t.onboarding.completeAndReview}</span>
                       <span>✓</span>
                     </>
                   )}
@@ -954,13 +1102,13 @@ export default function OnboardingPage() {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold mb-2.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
-                  <span>Aşama 1: Temel Kurum Kurulumu</span>
+                  <span>{t.onboarding.hostSetupBadge}</span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight m-0">
-                  Ev Sahibi Kurum Profilinizi Tanımlayın
+                  {t.onboarding.hostFormTitle}
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
-                  Kurumunuzun yasal kimliğini, Erasmus+ OID kodunu ve ana irtibat yetkilisini tanımlayarak sisteme hızlıca dahil olun.
+                  {t.onboarding.hostFormSubtitle}
                 </p>
               </div>
 
@@ -969,7 +1117,7 @@ export default function OnboardingPage() {
                 onClick={() => setSelectedRole(null)}
                 className="text-xs font-semibold text-slate-500 hover:text-slate-800 border border-slate-200 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors"
               >
-                ← Rol Değiştir
+                {t.onboarding.changeRole}
               </button>
             </div>
 
@@ -985,7 +1133,7 @@ export default function OnboardingPage() {
                 <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                   <span className="text-base">🏢</span>
                   <h3 className="text-sm font-bold text-slate-900 tracking-tight uppercase">
-                    1. Kurum Kimliği ve Resmi Bilgiler
+                    {t.onboarding.hostSection1}
                   </h3>
                 </div>
 
@@ -1293,7 +1441,7 @@ export default function OnboardingPage() {
                     </div>
                   </div>
 
-                  {/* Açık Rıza / Consent Checkbox (KVKK/GDPR Şartı) */}
+                  {/* Açık Rıza / Consent Checkbox (Kamusal Profil Gösterimi) */}
                   <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/40 text-xs">
                     <label className="flex items-start gap-3 cursor-pointer">
                       <input
@@ -1312,6 +1460,49 @@ export default function OnboardingPage() {
                       </div>
                     </label>
                   </div>
+
+                  {/* KVKK / GDPR Hukuki Aydınlatma (Dile Göre Ayrık) */}
+                  <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-xs flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="hostLegalConsent"
+                      checked={legalConsentAccepted}
+                      onChange={(e) => setLegalConsentAccepted(e.target.checked)}
+                      className="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500"
+                    />
+                    <label htmlFor="hostLegalConsent" className="text-slate-600 leading-relaxed cursor-pointer select-none">
+                      {locale === 'tr' ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setIsLegalModalOpen(true);
+                            }}
+                            className="font-bold text-emerald-700 hover:underline inline p-0 m-0 bg-transparent border-none text-xs"
+                          >
+                            6698 sayılı KVKK Aydınlatma Metni
+                          </button>
+                          &apos;ni okudum, ev sahibi kurum ve yetkili verilerimizin bu kapsamda işlenmesini onaylıyorum.
+                        </>
+                      ) : (
+                        <>
+                          I confirm that I have read and agree to the{' '}
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setIsLegalModalOpen(true);
+                            }}
+                            className="font-bold text-emerald-700 hover:underline inline p-0 m-0 bg-transparent border-none text-xs"
+                          >
+                            EU GDPR 2016/679 Privacy Policy
+                          </button>
+                          .
+                        </>
+                      )}
+                    </label>
+                  </div>
                 </div>
               </div>
 
@@ -1320,11 +1511,11 @@ export default function OnboardingPage() {
                 <div className="flex items-center gap-2.5">
                   <span className="text-base">💡</span>
                   <span>
-                    Vergi Numarası, Sicil Evrakları ve Katılımcı Kanıt Belgeleri sonraki aşamalarda <strong>Kurumsal Doğrulama</strong> panelinden yüklenecektir.
+                    {t.onboarding.kycNotice}
                   </span>
                 </div>
                 <span className="font-bold text-slate-900 text-[11px] bg-slate-200 px-2 py-0.5 rounded-md">
-                  Başlangıç Puanı: %40
+                  {locale === 'tr' ? 'Başlangıç Puanı: %40' : 'Initial Score: 40%'}
                 </span>
               </div>
 
@@ -1334,23 +1525,23 @@ export default function OnboardingPage() {
                   onClick={() => setSelectedRole(null)}
                   className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors border border-slate-200"
                 >
-                  Geri Dön
+                  {t.onboarding.back}
                 </button>
 
                 <button
                   type="submit"
-                  disabled={!canSubmitHost || isSubmitting}
+                  disabled={!canSubmitHost || isSubmitting || !legalConsentAccepted}
                   className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold text-white transition-all shadow-sm ${
-                    !canSubmitHost || isSubmitting
+                    !canSubmitHost || isSubmitting || !legalConsentAccepted
                       ? 'bg-slate-400 cursor-not-allowed opacity-70'
                       : 'bg-emerald-600 hover:bg-emerald-700 hover:shadow-md'
                   }`}
                 >
                   {isSubmitting ? (
-                    <span>Kuruluyor...</span>
+                    <span>{locale === 'tr' ? 'Kuruluyor...' : 'Registering...'}</span>
                   ) : (
                     <>
-                      <span>Kurulumu Tamamla ve Profili Aç</span>
+                      <span>{t.onboarding.completeHostSetup}</span>
                       <span>✓</span>
                     </>
                   )}
@@ -1362,8 +1553,21 @@ export default function OnboardingPage() {
       </main>
 
       {/* Simple Clean Footer */}
-      <footer className="py-4 text-center text-xs text-slate-500 border-t border-slate-200 bg-white">
-        CAPPINNO Mobility Nexus • Erasmus Mobility Management as a Service (EMaaS)
+      <footer className="py-4 px-4 text-center text-xs text-slate-500 border-t border-slate-200 bg-white">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span>CAPPINNO Mobility Nexus • Erasmus Mobility Management as a Service (EMaaS)</span>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setIsLegalModalOpen(true)}
+              className="text-slate-500 hover:text-blue-700 hover:underline transition-colors font-medium"
+            >
+              {locale === 'tr' ? 'KVKK Aydınlatma Metni' : 'GDPR Privacy Policy'}
+            </button>
+            <span>•</span>
+            <span className="text-slate-400">{locale === 'tr' ? 'Gizlilik & Güvenlik' : 'Privacy & Security'}</span>
+          </div>
+        </div>
       </footer>
 
       {/* Host Tier 2 & Tier 3 & Admin Modals */}
@@ -1394,6 +1598,12 @@ export default function OnboardingPage() {
       <AdminVerificationQueueModal
         isOpen={isAdminQueueModalOpen}
         onClose={() => setIsAdminQueueModalOpen(false)}
+      />
+
+      {/* Language-exclusive Legal Modal */}
+      <LegalModal
+        isOpen={isLegalModalOpen}
+        onClose={() => setIsLegalModalOpen(false)}
       />
     </div>
   );

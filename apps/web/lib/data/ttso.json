@@ -1,0 +1,2512 @@
+[
+  {
+    "kurumKodu": null,
+    "kurumAdi": "Oda Adı",
+    "il": "İl",
+    "ilce": "İlçe",
+    "webSitesi": "Web Sitesi",
+    "eposta": "İrtibat E-posta Adresi",
+    "telefon": "Telefon",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "CEYHAN TİCARET ODASI",
+    "il": "ADANA",
+    "ilce": "CEYHAN",
+    "webSitesi": "http://www.ceyhanto.org.tr/",
+    "eposta": "",
+    "telefon": "322-6131073-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KOZAN TİCARET ODASI",
+    "il": "ADANA",
+    "ilce": "KOZAN",
+    "webSitesi": "http://kozanto.org/",
+    "eposta": "kozanticaretodasi@hotmail.com",
+    "telefon": "322-5158466-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ADANA SANAYİ ODASI",
+    "il": "ADANA",
+    "ilce": "SEYHAN",
+    "webSitesi": "http://www.adaso.org.tr",
+    "eposta": "adaso@adaso.org.tr",
+    "telefon": "322-4366363",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ADANA TİCARET ODASI",
+    "il": "ADANA",
+    "ilce": "SEYHAN",
+    "webSitesi": "http://www.adanato.org.tr",
+    "eposta": "yaziisleri@adanato.org.tr",
+    "telefon": "850-3460101",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ADIYAMAN TİCARET VE SANAYİ ODASI",
+    "il": "ADIYAMAN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.adiyamantso.org.tr",
+    "eposta": "atso@adiyamantso.org.tr",
+    "telefon": "416-2164646",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BOLVADİN TİCARET VE SANAYİ ODASI",
+    "il": "AFYONKARAHİSAR",
+    "ilce": "BOLVADİN",
+    "webSitesi": "http://www.bolvadintso.org.tr/",
+    "eposta": "",
+    "telefon": "272-6125010",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DİNAR TİCARET VE SANAYİ ODASI",
+    "il": "AFYONKARAHİSAR",
+    "ilce": "DİNAR",
+    "webSitesi": "http://www.dinartso.org.tr",
+    "eposta": "dinartso@ttnet.net.tr",
+    "telefon": "272-3536064",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "EMİRDAĞ TİCARET VE SANAYİ ODASI",
+    "il": "AFYONKARAHİSAR",
+    "ilce": "EMİRDAĞ",
+    "webSitesi": "http://www.emirdagtso.org.tr",
+    "eposta": "emirdagtso@e-kolay.net",
+    "telefon": "272-4425199",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AFYONKARAHİSAR TİCARET VE SANAYİ ODASI",
+    "il": "AFYONKARAHİSAR",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.afyontso.org.tr/",
+    "eposta": "info@afyonkarahisartso.org.tr",
+    "telefon": "272-2135657",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SANDIKLI TİCARET VE SANAYİ ODASI",
+    "il": "AFYONKARAHİSAR",
+    "ilce": "SANDIKLI",
+    "webSitesi": "http://www.sandiklitso.tobb.org.tr",
+    "eposta": "sandiklitso@x.com",
+    "telefon": "272-5125139-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇAY TİCARET VE SANAYİ ODASI",
+    "il": "AFYONKARAHİSAR",
+    "ilce": "ÇAY",
+    "webSitesi": "http://www.caytso.org.tr",
+    "eposta": "caytso_03@hotmail.com",
+    "telefon": "272-6312087-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AKSARAY TİCARET VE SANAYİ ODASI",
+    "il": "AKSARAY",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.aksaraytso.org.tr",
+    "eposta": "aksaraytso@gmail.com",
+    "telefon": "382-4444756",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GÜMÜŞHACIKÖY TİCARET VE SANAYİ ODASI",
+    "il": "AMASYA",
+    "ilce": "GÜMÜŞHACIKÖY",
+    "webSitesi": "http://www.gumushacikoytso.org.tr/",
+    "eposta": "gumushacikoytso@tobb.org.tr",
+    "telefon": "358-7171103",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MERZİFON TİCARET VE SANAYİ ODASI",
+    "il": "AMASYA",
+    "ilce": "MERZİFON",
+    "webSitesi": "https://www.merzifontso.org.tr/",
+    "eposta": "merzifontso@tobb.org.tr",
+    "telefon": "358-5138096",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AMASYA TİCARET VE SANAYİ ODASI",
+    "il": "AMASYA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.amasyatso.org.tr/",
+    "eposta": "amasyatso@tobb.org.tr",
+    "telefon": "358-2181079",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SULUOVA TİCARET VE SANAYİ ODASI",
+    "il": "AMASYA",
+    "ilce": "SULUOVA",
+    "webSitesi": "http://www.suluovatso.org.tr/",
+    "eposta": "stso@suluovatso.org.tr",
+    "telefon": "358-4171299",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BEYPAZARI TİCARET ODASI",
+    "il": "ANKARA",
+    "ilce": "BEYPAZARI",
+    "webSitesi": "http://www.beypazarito.tobb.org.tr/",
+    "eposta": "beypazarito@tobb.org.tr",
+    "telefon": "0312-7628989",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "HAYMANA TİCARET ODASI",
+    "il": "ANKARA",
+    "ilce": "HAYMANA",
+    "webSitesi": "https://haymanato.org.tr/",
+    "eposta": "",
+    "telefon": "312-6581562",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ANKARA SANAYİ ODASI",
+    "il": "ANKARA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.aso.org.tr",
+    "eposta": "aso@aso.org.tr",
+    "telefon": "312-4171200",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ANKARA TİCARET ODASI",
+    "il": "ANKARA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.atonet.org.tr/",
+    "eposta": "info@atonet.com",
+    "telefon": "312-2018100-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "POLATLI TİCARET ODASI",
+    "il": "ANKARA",
+    "ilce": "POLATLI",
+    "webSitesi": "http://www.pto.org.tr/",
+    "eposta": "iletisim@pto.org.tr",
+    "telefon": "312-6231084",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ŞEREFLİKOÇHİSAR TİCARET ODASI",
+    "il": "ANKARA",
+    "ilce": "Ş.KOÇHİSAR",
+    "webSitesi": "http://www.sereflikochisarto.org.tr/",
+    "eposta": "",
+    "telefon": "312-6871152",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ALANYA TİCARET VE SANAYİ ODASI",
+    "il": "ANTALYA",
+    "ilce": "ALANYA",
+    "webSitesi": "http://www.altso.org.tr",
+    "eposta": "altso@altso.org.tr",
+    "telefon": "242-5121697-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KUMLUCA TİCARET VE SANAYİ ODASI",
+    "il": "ANTALYA",
+    "ilce": "KUMLUCA",
+    "webSitesi": "http://www.kumlucatso.org.tr",
+    "eposta": "kutso@superonlıne.com",
+    "telefon": "242-8890707",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MANAVGAT TİCARET VE SANAYİ ODASI",
+    "il": "ANTALYA",
+    "ilce": "MANAVGAT",
+    "webSitesi": "http://www.matso.org.tr/",
+    "eposta": "",
+    "telefon": "242-7428380",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ANTALYA TİCARET VE SANAYİ ODASI",
+    "il": "ANTALYA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.atso.org.tr",
+    "eposta": "info@atso.org.tr",
+    "telefon": "242-3143737",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ARDAHAN TİCARET VE SANAYİ ODASI",
+    "il": "ARDAHAN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.ardahantso.org.tr/",
+    "eposta": "",
+    "telefon": "478-2113036",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ARHAVİ TİCARET VE SANAYİ ODASI",
+    "il": "ARTVİN",
+    "ilce": "ARHAVİ",
+    "webSitesi": "http://www.arhavitso.org.tr",
+    "eposta": "arhavitso@tobb.org.tr",
+    "telefon": "466-3122335",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BORÇKA TİCARET VE SANAYİ ODASI",
+    "il": "ARTVİN",
+    "ilce": "BORÇKA",
+    "webSitesi": "http://www.borckatso.tobb.org.tr/",
+    "eposta": "borckatso@tobb.org.tr",
+    "telefon": "466-4151117",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "HOPA TİCARET VE SANAYİ ODASI",
+    "il": "ARTVİN",
+    "ilce": "HOPA",
+    "webSitesi": "http://www.hopatso.org.tr",
+    "eposta": "",
+    "telefon": "466-3514217-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ARTVİN TİCARET VE SANAYİ ODASI",
+    "il": "ARTVİN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.artvintso.org.tr/",
+    "eposta": "artvintso@tobb.org.tr",
+    "telefon": "466-2121061",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DİDİM TİCARET ODASI",
+    "il": "AYDIN",
+    "ilce": "DİDİM",
+    "webSitesi": "http://www.didimto.org.tr/",
+    "eposta": "info@didimto.org.tr",
+    "telefon": "256-8112563",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KUŞADASI TİCARET ODASI",
+    "il": "AYDIN",
+    "ilce": "KUŞADASI",
+    "webSitesi": "https://kuto.org.tr/",
+    "eposta": "info@kuto.org.tr",
+    "telefon": "256-6125763-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AYDIN SANAYİ ODASI",
+    "il": "AYDIN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.ayso.org.tr/",
+    "eposta": "info@ayso.org.tr",
+    "telefon": "0256-2310404",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AYDIN TİCARET ODASI",
+    "il": "AYDIN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.ayto.org.tr/",
+    "eposta": "info@ayto.org.tr",
+    "telefon": "256-2180909",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "NAZİLLİ TİCARET ODASI",
+    "il": "AYDIN",
+    "ilce": "NAZİLLİ",
+    "webSitesi": "http://www.naztic.org.tr/",
+    "eposta": "naztic@naztic.org.tr",
+    "telefon": "256-3159315",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SÖKE TİCARET ODASI",
+    "il": "AYDIN",
+    "ilce": "SÖKE",
+    "webSitesi": "http://www.sto.org.tr/",
+    "eposta": "",
+    "telefon": "256-5182980",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DOĞUBAYAZIT TİCARET VE SANAYİ ODASI",
+    "il": "AĞRI",
+    "ilce": "DOĞUBAYAZIT",
+    "webSitesi": "http://www.dogubayazittso.tobb.org.tr",
+    "eposta": "",
+    "telefon": "472-3127853",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AĞRI TİCARET VE SANAYİ ODASI",
+    "il": "AĞRI",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.agritso.org.tr",
+    "eposta": "",
+    "telefon": "472-2151210",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AYVALIK TİCARET ODASI",
+    "il": "BALIKESİR",
+    "ilce": "AYVALIK",
+    "webSitesi": "http://www.ayvalikto.org.tr/",
+    "eposta": "ayvalikto@tobb.org.tr",
+    "telefon": "266-3121517-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BANDIRMA TİCARET ODASI",
+    "il": "BALIKESİR",
+    "ilce": "BANDIRMA",
+    "webSitesi": "http://www.bandirmato.org.tr",
+    "eposta": "bandirmaticoda@superonline.com",
+    "telefon": "266-7151800-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BURHANİYE TİCARET ODASI",
+    "il": "BALIKESİR",
+    "ilce": "BURHANİYE",
+    "webSitesi": "http://www.burhaniyeto.org.tr/",
+    "eposta": "",
+    "telefon": "266-4221044",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "EDREMİT TİCARET ODASI",
+    "il": "BALIKESİR",
+    "ilce": "EDREMİT",
+    "webSitesi": "http://www.edremit-to.org.tr/",
+    "eposta": "edrticodasi@ttnet.net.tr",
+    "telefon": "266-3731061-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ERDEK TİCARET ODASI",
+    "il": "BALIKESİR",
+    "ilce": "ERDEK",
+    "webSitesi": "http://www.erdekto.org.tr/",
+    "eposta": "erdekto@tobb.org.tr",
+    "telefon": "266-8351090",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GÖNEN TİCARET ODASI",
+    "il": "BALIKESİR",
+    "ilce": "GÖNEN",
+    "webSitesi": "http://www.gonento.tobb.org.tr/",
+    "eposta": "gonento@tobb.org.tr",
+    "telefon": "266-7621091-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BALIKESİR SANAYİ ODASI",
+    "il": "BALIKESİR",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.bso.org.tr/",
+    "eposta": "bso@bso.org.tr, balikesirso@tobb.org.tr",
+    "telefon": "266-2811180",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BALIKESİR TİCARET ODASI",
+    "il": "BALIKESİR",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.bato.org.tr/",
+    "eposta": "info@bato.org.tr",
+    "telefon": "266-2446868",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SUSURLUK TİCARET ODASI",
+    "il": "BALIKESİR",
+    "ilce": "SUSURLUK",
+    "webSitesi": "http://www.susurlukto.org.tr",
+    "eposta": "",
+    "telefon": "266-8654672",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BARTIN TİCARET VE SANAYİ ODASI",
+    "il": "BARTIN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.bartintso.org.tr/",
+    "eposta": "info@bartintso.org",
+    "telefon": "378-2271046-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BATMAN TİCARET VE SANAYİ ODASI",
+    "il": "BATMAN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.batso.org.tr/",
+    "eposta": "info@batso.org.tr",
+    "telefon": "488-2131245",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BAYBURT TİCARET VE SANAYİ ODASI",
+    "il": "BAYBURT",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.bayburttso.org.tr",
+    "eposta": "bayburttso@hotmail.com",
+    "telefon": "458-2117013",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GEREDE TİCARET VE SANAYİ ODASI",
+    "il": "BOLU",
+    "ilce": "GEREDE",
+    "webSitesi": "http://geredetso.tobb.org.tr/",
+    "eposta": "geredetso@tobb.org.tr",
+    "telefon": "374-3116711",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BOLU TİCARET VE SANAYİ ODASI",
+    "il": "BOLU",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.bolutso.org.tr/",
+    "eposta": "info@bolutso.org.tr",
+    "telefon": "374-2151218-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BUCAK TİCARET VE SANAYİ ODASI",
+    "il": "BURDUR",
+    "ilce": "BUCAK",
+    "webSitesi": "http://www.bucaktso.org.tr/",
+    "eposta": "bucaktso@tobb.org.tr",
+    "telefon": "248-3251100",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BURDUR TİCARET VE SANAYİ ODASI",
+    "il": "BURDUR",
+    "ilce": "Merkez",
+    "webSitesi": "https://www.butso.org.tr",
+    "eposta": "burdur_tso@hotmail.com",
+    "telefon": "248-2346205",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GEMLİK TİCARET VE SANAYİ ODASI",
+    "il": "BURSA",
+    "ilce": "GEMLİK",
+    "webSitesi": "http://www.gtso.org.tr/",
+    "eposta": "bilgi@gtso.org.tr",
+    "telefon": "224-5131023",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KARACABEY TİCARET VE SANAYİ ODASI",
+    "il": "BURSA",
+    "ilce": "KARACABEY",
+    "webSitesi": "http://www.karacabeytso.com/",
+    "eposta": "bilgi@karacabeytso.com",
+    "telefon": "224-6718548-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MUSTAFAKEMALPAŞA TİCARET VE SANAYİ ODASI",
+    "il": "BURSA",
+    "ilce": "M.KEMALPAŞA",
+    "webSitesi": "http://www.mkptso.org.tr",
+    "eposta": "bilgi@mkptso.org.tr",
+    "telefon": "224-6180525-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BURSA TİCARET VE SANAYİ ODASI",
+    "il": "BURSA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.btso.org.tr/",
+    "eposta": "btso@btso.org.tr",
+    "telefon": "224-2751600",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ORHANGAZİ TİCARET VE SANAYİ ODASI",
+    "il": "BURSA",
+    "ilce": "ORHANGAZİ",
+    "webSitesi": "http://www.orhangazitso.org.tr/",
+    "eposta": "bilgi@orhangazitso.org.tr",
+    "telefon": "224-5738169",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "YENİŞEHİR TİCARET VE SANAYİ ODASI",
+    "il": "BURSA",
+    "ilce": "YENİŞEHİR",
+    "webSitesi": "http://www.yenisehirtso.org.tr/",
+    "eposta": "",
+    "telefon": "224-7730238",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İNEGÖL TİCARET VE SANAYİ ODASI",
+    "il": "BURSA",
+    "ilce": "İNEGÖL",
+    "webSitesi": "http://www.itso.org.tr/",
+    "eposta": "itso@itso.org.tr",
+    "telefon": "224-7148260",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İZNİK TİCARET VE SANAYİ ODASI",
+    "il": "BURSA",
+    "ilce": "İZNİK",
+    "webSitesi": "http://www.izniktso.org.tr/",
+    "eposta": "",
+    "telefon": "224-7571576-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BOZÜYÜK TİCARET VE SANAYİ ODASI",
+    "il": "BİLECİK",
+    "ilce": "BOZÜYÜK",
+    "webSitesi": "http://www.bozuyuktso.org.tr/",
+    "eposta": "bozuyuk@bozuyuktso.org.tr",
+    "telefon": "228-3142921-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BİLECİK TİCARET VE SANAYİ ODASI",
+    "il": "BİLECİK",
+    "ilce": "Merkez",
+    "webSitesi": "http://bileciktso.org.tr",
+    "eposta": "bileciktso@tobb.org.tr",
+    "telefon": "228-2160011-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BİNGÖL TİCARET VE SANAYİ ODASI",
+    "il": "BİNGÖL",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.bintso.org.tr/",
+    "eposta": "info@bintso.org.tr",
+    "telefon": "426-2133163",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BİTLİS TİCARET VE SANAYİ ODASI",
+    "il": "BİTLİS",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.bitlistso.org.tr/",
+    "eposta": "",
+    "telefon": "434-2267115",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TATVAN TİCARET VE SANAYİ ODASI",
+    "il": "BİTLİS",
+    "ilce": "TATVAN",
+    "webSitesi": "http://www.tatso.org.tr/",
+    "eposta": "",
+    "telefon": "0434-8271266",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ACIPAYAM TİCARET ODASI",
+    "il": "DENİZLİ",
+    "ilce": "ACIPAYAM",
+    "webSitesi": "https://www.acipayamto.org.tr/",
+    "eposta": "",
+    "telefon": "258-5183409",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BABADAĞ TİCARET ODASI",
+    "il": "DENİZLİ",
+    "ilce": "BABADAĞ",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "",
+    "telefon": "258-4812026",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BULDAN TİCARET ODASI",
+    "il": "DENİZLİ",
+    "ilce": "BULDAN",
+    "webSitesi": "http://www.buldanticaretodasi.org.tr",
+    "eposta": "buldanto@tobb.org.tr",
+    "telefon": "258-4313009",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DENİZLİ SANAYİ ODASI",
+    "il": "DENİZLİ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.dso.org.tr/",
+    "eposta": "dso@dso.org.tr",
+    "telefon": "258-2655599-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DENİZLİ TİCARET ODASI",
+    "il": "DENİZLİ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.dto.org.tr/",
+    "eposta": "info@dto.org.tr",
+    "telefon": "258-2950000",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SARAYKÖY TİCARET ODASI",
+    "il": "DENİZLİ",
+    "ilce": "SARAYKÖY",
+    "webSitesi": "http://www.saraykoyticaretodasi.org.tr/",
+    "eposta": "saraykoyto@tobb.org.tr",
+    "telefon": "258-4151061",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TAVAS TİCARET ODASI",
+    "il": "DENİZLİ",
+    "ilce": "TAVAS",
+    "webSitesi": "http://www.tavasto.org.tr/",
+    "eposta": "tavasto@tobb.org.tr",
+    "telefon": "0258-6131294",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AKÇAKOCA TİCARET VE SANAYİ ODASI",
+    "il": "DÜZCE",
+    "ilce": "AKÇAKOCA",
+    "webSitesi": "http://www.akcakocatso.org.tr/",
+    "eposta": "akcakocatso@tobb.org.tr akcakocatso@hotmail.com",
+    "telefon": "380-6114143",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DÜZCE TİCARET VE SANAYİ ODASI",
+    "il": "DÜZCE",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.duzcetso.org.tr/",
+    "eposta": "info@duzcetso.org.tr",
+    "telefon": "380-5242550",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DİYARBAKIR TİCARET VE SANAYİ ODASI",
+    "il": "DİYARBAKIR",
+    "ilce": "YENİŞEHİR",
+    "webSitesi": "http://www.dtso.org.tr",
+    "eposta": "bilgi@dtso.org.tr, diyarbakirtso@tobb.org.tr",
+    "telefon": "412-2803550",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KEŞAN TİCARET VE SANAYİ ODASI",
+    "il": "EDİRNE",
+    "ilce": "KEŞAN",
+    "webSitesi": "http://www.kesantso.tobb.org.tr",
+    "eposta": "kesantso@tobb.org.tr",
+    "telefon": "284-7141137-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "EDİRNE TİCARET VE SANAYİ ODASI",
+    "il": "EDİRNE",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.etso.org.tr/",
+    "eposta": "etso@etso.org.tr",
+    "telefon": "284-2251014-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "UZUNKÖPRÜ TİCARET VE SANAYİ ODASI",
+    "il": "EDİRNE",
+    "ilce": "UZUNKÖPRÜ",
+    "webSitesi": "http://www.utso.org.tr/",
+    "eposta": "uzunkoprutso@tobb.org.tr",
+    "telefon": "284-5131064",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ELAZIĞ TİCARET VE SANAYİ ODASI",
+    "il": "ELAZIĞ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.elazigtso.org.tr/",
+    "eposta": "elazigtso@elazigtso.org.tr",
+    "telefon": "424-2183500",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ERZURUM TİCARET VE SANAYİ ODASI",
+    "il": "ERZURUM",
+    "ilce": "Merkez",
+    "webSitesi": "https://www.erzurumtso.org.tr/",
+    "eposta": "erzurumtso@tobb.org.tr",
+    "telefon": "442-2333389",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "OLTU TİCARET VE SANAYİ ODASI",
+    "il": "ERZURUM",
+    "ilce": "OLTU",
+    "webSitesi": "http://www.oltutso.org.tr",
+    "eposta": "",
+    "telefon": "442-8163999",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "PASİNLER TİCARET VE SANAYİ ODASI",
+    "il": "ERZURUM",
+    "ilce": "PASİNLER",
+    "webSitesi": "http://www.pasinlertso.tobb.org.tr/",
+    "eposta": "",
+    "telefon": "442-6613847",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ERZİNCAN TİCARET VE SANAYİ ODASI",
+    "il": "ERZİNCAN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.erzincantso.org.tr",
+    "eposta": "erzincantso@tobb.org.tr",
+    "telefon": "446-502 55 5",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ESKİŞEHİR SANAYİ ODASI",
+    "il": "ESKİŞEHİR",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.eso.org.tr/",
+    "eposta": "eso@eso.org.tr, info@eso.org.tr",
+    "telefon": "222-2360360-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ESKİŞEHİR TİCARET ODASI",
+    "il": "ESKİŞEHİR",
+    "ilce": "ODUNPAZARI",
+    "webSitesi": "http://www.etonet.org.tr/",
+    "eposta": "bilgi@etonet.org.tr",
+    "telefon": "0222-2222626",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GAZİANTEP SANAYİ ODASI",
+    "il": "GAZİANTEP",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.gso.org.tr/",
+    "eposta": "gso@gso.org.tr",
+    "telefon": "342-2210900-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GAZİANTEP TİCARET ODASI",
+    "il": "GAZİANTEP",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.gto.org.tr/",
+    "eposta": "gto@gto.org.tr",
+    "telefon": "342-2203030-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "NİZİP TİCARET ODASI",
+    "il": "GAZİANTEP",
+    "ilce": "NİZİP",
+    "webSitesi": "http://www.nto.org.tr/",
+    "eposta": "info@nto.org.tr",
+    "telefon": "342-5171011-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İSLAHİYE TİCARET ODASI",
+    "il": "GAZİANTEP",
+    "ilce": "İSLAHİYE",
+    "webSitesi": "http://www.islahiyeto.org.tr",
+    "eposta": "islahiyeto@tobb.org.tr",
+    "telefon": "342-8621126",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KELKİT TİCARET VE SANAYİ ODASI",
+    "il": "GÜMÜŞHANE",
+    "ilce": "KELKİT",
+    "webSitesi": "http://kelkittso.tobb.org.tr/",
+    "eposta": "",
+    "telefon": "456-3171548",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GÜMÜŞHANE TİCARET VE SANAYİ ODASI",
+    "il": "GÜMÜŞHANE",
+    "ilce": "Merkez",
+    "webSitesi": "http://gumushanetso.org.tr/",
+    "eposta": "",
+    "telefon": "456-2131112",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BULANCAK TİCARET VE SANAYİ ODASI",
+    "il": "GİRESUN",
+    "ilce": "BULANCAK",
+    "webSitesi": "http://www.bulancak-tso.org.tr/",
+    "eposta": "bulancak@bulancak-tso.org.tr, bulancaktso@tobb.org.tr",
+    "telefon": "454-3142829",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GİRESUN TİCARET VE SANAYİ ODASI",
+    "il": "GİRESUN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.giresuntso.org.tr/",
+    "eposta": "giresun@giresun-tso.org.tr, giresuntso@tobb.org.tr",
+    "telefon": "454-2161127",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "HAKKARİ TİCARET VE SANAYİ ODASI",
+    "il": "HAKKARİ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.hatso.org.tr",
+    "eposta": "hakkaritso@tobb.org.tr",
+    "telefon": "438-2112726",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "YÜKSEKOVA TİCARET VE SANAYİ ODASI",
+    "il": "HAKKARİ",
+    "ilce": "YUKSEKOVA",
+    "webSitesi": "http://www.yuksekovatso.org.tr",
+    "eposta": "",
+    "telefon": "438-3512447",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DÖRTYOL TİCARET VE SANAYİ ODASI",
+    "il": "HATAY",
+    "ilce": "DÖRTYOL",
+    "webSitesi": "http://www.dortyoltso.org.tr",
+    "eposta": "info@dortyoltso.org",
+    "telefon": "326-7121041-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ERZİN TİCARET VE SANAYİ ODASI",
+    "il": "HATAY",
+    "ilce": "ERZİN",
+    "webSitesi": "http://www.erzintso.org.tr",
+    "eposta": "",
+    "telefon": "326-6814283",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KIRIKHAN TİCARET VE SANAYİ ODASI",
+    "il": "HATAY",
+    "ilce": "KIRIKHAN",
+    "webSitesi": "http://kirikhantso.org.tr",
+    "eposta": "",
+    "telefon": "326-3441094",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "HATAY TİCARET VE SANAYİ ODASI",
+    "il": "HATAY",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.antakyatso.org.tr/",
+    "eposta": "antakyatso@tobb.org.tr",
+    "telefon": "326-2165800",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "REYHANLI TİCARET VE SANAYİ ODASI",
+    "il": "HATAY",
+    "ilce": "REYHANLI",
+    "webSitesi": "http://www.reyhanlitso.org.tr/",
+    "eposta": "info@reyhanlitso.org.tr",
+    "telefon": "326-4131770-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İSKENDERUN TİCARET VE SANAYİ ODASI",
+    "il": "HATAY",
+    "ilce": "İSKENDERUN",
+    "webSitesi": "http://www.iskenderuntso.org.tr/",
+    "eposta": "info@iskenderuntso.org",
+    "telefon": "0326-6145225",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ISPARTA TİCARET VE SANAYİ ODASI",
+    "il": "ISPARTA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.itso.org/",
+    "eposta": "itso@itso.org",
+    "telefon": "246-2329496",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "YALVAÇ TİCARET VE SANAYİ ODASI",
+    "il": "ISPARTA",
+    "ilce": "YALVAÇ",
+    "webSitesi": "http://www.yalvactso.org.tr/",
+    "eposta": "info@yalvactso.org.tr",
+    "telefon": "246-4413374",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "IĞDIR TİCARET VE SANAYİ ODASI",
+    "il": "IĞDIR",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.igdirtso.org.tr",
+    "eposta": "ticaretoda2@ttnet.net.tr",
+    "telefon": "4762278242-2",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AFŞİN TİCARET VE SANAYİ ODASI",
+    "il": "K.MARAŞ",
+    "ilce": "AFŞİN",
+    "webSitesi": "http://www.afsintso.org.tr",
+    "eposta": "afsintso@hotmail.com",
+    "telefon": "344-5118462-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ELBİSTAN TİCARET VE SANAYİ ODASI",
+    "il": "K.MARAŞ",
+    "ilce": "ELBİSTAN",
+    "webSitesi": "http://www.elbistantso.org.tr",
+    "eposta": "elbistan.ticvesanoda@ttnet.net.tr",
+    "telefon": "344-4120081-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KAHRAMANMARAŞ TİCARET VE SANAYİ ODASI",
+    "il": "K.MARAŞ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kmtso.org.tr/",
+    "eposta": "info@kmtso.org.tr",
+    "telefon": "344-2353220",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KARABÜK TİCARET VE SANAYİ ODASI",
+    "il": "KARABÜK",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.karabuktso.org.tr/",
+    "eposta": "tso@karabuktso.org.tr",
+    "telefon": "370-4241630",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SAFRANBOLU TİCARET VE SANAYİ ODASI",
+    "il": "KARABÜK",
+    "ilce": "SAFRANBOLU",
+    "webSitesi": "http://www.safranbolutso.org.tr/",
+    "eposta": "safranbolutso@tobb.org.tr",
+    "telefon": "370-7121670",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KARAMAN TİCARET VE SANAYİ ODASI",
+    "il": "KARAMAN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.ktso.org.tr/",
+    "eposta": "ktso@ktso.org.tr",
+    "telefon": "338-2131021",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KARS TİCARET VE SANAYİ ODASI",
+    "il": "KARS",
+    "ilce": "Merkez",
+    "webSitesi": "http://karstso.org.tr",
+    "eposta": "karstso@gmail.com",
+    "telefon": "474-2231072-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KASTAMONU TİCARET VE SANAYİ ODASI",
+    "il": "KASTAMONU",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kastamonutso.org.tr/",
+    "eposta": "katso@kastamonutso.org.tr",
+    "telefon": "366-2141074-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TAŞKÖPRÜ TİCARET VE SANAYİ ODASI",
+    "il": "KASTAMONU",
+    "ilce": "TAŞKÖPRÜ",
+    "webSitesi": "http://taskoprutso.tobb.org.tr",
+    "eposta": "",
+    "telefon": "366-4173339",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TOSYA TİCARET VE SANAYİ ODASI",
+    "il": "KASTAMONU",
+    "ilce": "TOSYA",
+    "webSitesi": "http://www.tosyatso.org.tr",
+    "eposta": "tosyatso@ttnet.net.tr",
+    "telefon": "366-3131017",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İNEBOLU TİCARET VE SANAYİ ODASI",
+    "il": "KASTAMONU",
+    "ilce": "İNEBOLU",
+    "webSitesi": "http://www.inebolutso.org.tr",
+    "eposta": "",
+    "telefon": "366-8114004",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BÜNYAN TİCARET ODASI",
+    "il": "KAYSERİ",
+    "ilce": "BÜNYAN",
+    "webSitesi": "http://www.bunyanto.org.tr",
+    "eposta": "bunyanto@tobb.org.tr",
+    "telefon": "352-7121147",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DEVELİ TİCARET ODASI",
+    "il": "KAYSERİ",
+    "ilce": "DEVELİ",
+    "webSitesi": "http://www.develito.org.tr/",
+    "eposta": "develito@develito.org.tr, develito@tobb.org.tr",
+    "telefon": "352-6216181",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KAYSERİ SANAYİ ODASI",
+    "il": "KAYSERİ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kayso.org.tr/",
+    "eposta": "info@kayso.org.tr",
+    "telefon": "352-2451050",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KAYSERİ TİCARET ODASI",
+    "il": "KAYSERİ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kayserito.org.tr",
+    "eposta": "kaytic@kayserito.org.tr",
+    "telefon": "352-2224528-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "YAHYALI TİCARET ODASI",
+    "il": "KAYSERİ",
+    "ilce": "YAHYALI",
+    "webSitesi": "http://yahyalito.org.tr",
+    "eposta": "yahyalito@tobb.org.tr",
+    "telefon": "352-6113013",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KIRIKKALE TİCARET VE SANAYİ ODASI",
+    "il": "KIRIKKALE",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kirikkaletso.org.tr/",
+    "eposta": "info@kirikkaletso.org.tr",
+    "telefon": "318-2249493-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BABAESKİ TİCARET VE SANAYİ ODASI",
+    "il": "KIRKLARELİ",
+    "ilce": "BABAESKİ",
+    "webSitesi": "http://www.babaeskitso.org.tr/",
+    "eposta": "babaeskitso@tobb.org.tr",
+    "telefon": "288-5122031",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "LÜLEBURGAZ TİCARET VE SANAYİ ODASI",
+    "il": "KIRKLARELİ",
+    "ilce": "LÜLEBURGAZ",
+    "webSitesi": "http://www.ltso.org.tr/",
+    "eposta": "luleburgaztso@tobb.org.tr",
+    "telefon": "288-4171121-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KIRKLARELİ TİCARET VE SANAYİ ODASI",
+    "il": "KIRKLARELİ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kirklarelitso.org.tr/",
+    "eposta": "ktso@kirklarelitso.org.tr",
+    "telefon": "288-2144256",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KAMAN TİCARET VE SANAYİ ODASI",
+    "il": "KIRŞEHİR",
+    "ilce": "KAMAN",
+    "webSitesi": "http://www.kamantso.org.tr",
+    "eposta": "",
+    "telefon": "386-7122519",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MUCUR TİCARET VE SANAYİ ODASI",
+    "il": "KIRŞEHİR",
+    "ilce": "MUCUR",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "",
+    "telefon": "386-8124245",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KIRŞEHİR TİCARET VE SANAYİ ODASI",
+    "il": "KIRŞEHİR",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kirsehirtso.org.tr/",
+    "eposta": "bilgi@kirsehirtso.org.tr",
+    "telefon": "386-2131186",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GEBZE TİCARET ODASI",
+    "il": "KOCAELİ",
+    "ilce": "GEBZE",
+    "webSitesi": "http://www.gebzeto.org.tr/",
+    "eposta": "bilgi@gebzeto.org.tr",
+    "telefon": "262-6442234",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KÖRFEZ TİCARET ODASI",
+    "il": "KOCAELİ",
+    "ilce": "KÖRFEZ",
+    "webSitesi": "http://www.korfezto.org.tr",
+    "eposta": "",
+    "telefon": "262-5284800",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KOCAELİ SANAYİ ODASI",
+    "il": "KOCAELİ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kosano.org.tr/",
+    "eposta": "kso@kosano.org.tr",
+    "telefon": "262-3158000-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KOCAELİ TİCARET ODASI",
+    "il": "KOCAELİ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.koto.org.tr/",
+    "eposta": "koto@koto.org.tr",
+    "telefon": "262-3223010",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AKŞEHİR TİCARET VE SANAYİ ODASI",
+    "il": "KONYA",
+    "ilce": "AKŞEHİR",
+    "webSitesi": "http://www.aksehirtso.org.tr",
+    "eposta": "bilgi@aksehirtso.org.tr",
+    "telefon": "332-8133827",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BEYŞEHİR TİCARET VE SANAYİ ODASI",
+    "il": "KONYA",
+    "ilce": "BEYŞEHİR",
+    "webSitesi": "http://www.beysehirto.org.tr/",
+    "eposta": "beysehirto@tobb.org.tr",
+    "telefon": "332-5122134",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DOĞANHİSAR TİCARET ODASI",
+    "il": "KONYA",
+    "ilce": "DOĞANHİSAR",
+    "webSitesi": "http://www.doganhisarto.org.tr/",
+    "eposta": "doganhisarto@tobb.org.tr",
+    "telefon": "332-5561140",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ILGIN TİCARET VE SANAYİ ODASI",
+    "il": "KONYA",
+    "ilce": "ILGIN",
+    "webSitesi": "http://www.ilginto.org.tr/",
+    "eposta": "",
+    "telefon": "332-8816138/",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KARAPINAR TİCARET VE SANAYİ ODASI",
+    "il": "KONYA",
+    "ilce": "KARAPINAR",
+    "webSitesi": "http://www.karapinartso.org.tr/",
+    "eposta": "",
+    "telefon": "332-7551276",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "EREĞLİ/KONYA TİCARET VE SANAYİ ODASI",
+    "il": "KONYA",
+    "ilce": "KON.EREĞLİ",
+    "webSitesi": "http://www.ertso.org.tr",
+    "eposta": "",
+    "telefon": "332-7131073",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KONYA SANAYİ ODASI",
+    "il": "KONYA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kso.org.tr/",
+    "eposta": "kso@kso.org.tr",
+    "telefon": "332-2510670(",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KONYA TİCARET ODASI",
+    "il": "KONYA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kto.org.tr/",
+    "eposta": "kto@kto.org.tr",
+    "telefon": "332- 2215252",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SEYDİŞEHİR TİCARET VE SANAYİ ODASI",
+    "il": "KONYA",
+    "ilce": "SEYDİŞEHİR",
+    "webSitesi": "http://www.seydisehirtso.org.tr/",
+    "eposta": "bilgi@seydisehirtso.org.tr",
+    "telefon": "332-5826788",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇUMRA TİCARET VE SANAYİ ODASI",
+    "il": "KONYA",
+    "ilce": "ÇUMRA",
+    "webSitesi": "https://www.cumratso.org.tr/",
+    "eposta": "info@cumratso.org.tr",
+    "telefon": "0332-4471066",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GEDİZ TİCARET VE SANAYİ ODASI",
+    "il": "KÜTAHYA",
+    "ilce": "GEDİZ",
+    "webSitesi": "http://gediztso.tobb.org.tr/",
+    "eposta": "gediztso@kobinet.org.tr",
+    "telefon": "274-4127036-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KÜTAHYA TİCARET VE SANAYİ ODASI",
+    "il": "KÜTAHYA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kutso.org.tr/",
+    "eposta": "kutso@kutso.org.tr",
+    "telefon": "274-2283232",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SİMAV TİCARET VE SANAYİ ODASI",
+    "il": "KÜTAHYA",
+    "ilce": "SİMAV",
+    "webSitesi": "http://www.simavtso.org.tr/",
+    "eposta": "simavtso@tobb.org.tr",
+    "telefon": "274-5131046",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TAVŞANLI TİCARET VE SANAYİ ODASI",
+    "il": "KÜTAHYA",
+    "ilce": "TAVŞANLI",
+    "webSitesi": "http://www.tavsanlitso.org.tr/",
+    "eposta": "ttso@ttso.org",
+    "telefon": "274-6141381-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KİLİS TİCARET VE SANAYİ ODASI",
+    "il": "KİLİS",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.kilistso.tobb.org.tr/",
+    "eposta": "kilistso@tobb.org.tr",
+    "telefon": "348-8131044-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MALATYA TİCARET VE SANAYİ ODASI",
+    "il": "MALATYA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.malatyatso.org.tr/",
+    "eposta": "tso@malatyatso.org.tr",
+    "telefon": "422-4448944",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AKHİSAR TİCARET VE SANAYİ ODASI",
+    "il": "MANİSA",
+    "ilce": "AKHİSAR",
+    "webSitesi": "http://www.akhisartso.org.tr",
+    "eposta": "akhisartso@tobb.org.tr",
+    "telefon": "236-4141563-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ALAŞEHİR TİCARET VE SANAYİ ODASI",
+    "il": "MANİSA",
+    "ilce": "ALAŞEHİR",
+    "webSitesi": "http://www.alasehirtso.com/",
+    "eposta": "alasehirtso@tobb.org.tr",
+    "telefon": "236-6531061",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DEMİRCİ TİCARET VE SANAYİ ODASI",
+    "il": "MANİSA",
+    "ilce": "DEMİRCİ",
+    "webSitesi": "http://www.demircitso.org.tr",
+    "eposta": "",
+    "telefon": "236-4621071",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GÖRDES TİCARET VE SANAYİ ODASI",
+    "il": "MANİSA",
+    "ilce": "GÖRDES",
+    "webSitesi": "http://gordestso.org.tr/",
+    "eposta": "",
+    "telefon": "236-5471239",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MANİSA TİCARET VE SANAYİ ODASI",
+    "il": "MANİSA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.manisatso.org.tr",
+    "eposta": "info@manisatso.org.tr",
+    "telefon": "236-2311045-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SALİHLİ TİCARET VE SANAYİ ODASI",
+    "il": "MANİSA",
+    "ilce": "SALİHLİ",
+    "webSitesi": "http://www.salihlitso.org.tr",
+    "eposta": "salihlitso@tobb.org.tr",
+    "telefon": "236-7145342",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SOMA TİCARET VE SANAYİ ODASI",
+    "il": "MANİSA",
+    "ilce": "SOMA",
+    "webSitesi": "http://www.somatso.org.tr/",
+    "eposta": "info@somatso.org.tr",
+    "telefon": "236-6131156-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TURGUTLU TİCARET VE SANAYİ ODASI",
+    "il": "MANİSA",
+    "ilce": "TURGUTLU",
+    "webSitesi": "http://www.tutso.org.tr/",
+    "eposta": "posta@tutso.org.tr",
+    "telefon": "236-3136325-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KIZILTEPE TİCARET VE SANAYİ ODASI",
+    "il": "MARDİN",
+    "ilce": "KIZILTEPE",
+    "webSitesi": "http://www.kiziltepetso.org.tr/",
+    "eposta": "",
+    "telefon": "482-3121787-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MARDİN TİCARET VE SANAYİ ODASI",
+    "il": "MARDİN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.mardintso.tobb.org.tr/",
+    "eposta": "",
+    "telefon": "482-2121033",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "NUSAYBİN TİCARET VE SANAYİ ODASI",
+    "il": "MARDİN",
+    "ilce": "NUSAYBİN",
+    "webSitesi": "http://nusaybintso.org.tr/",
+    "eposta": "",
+    "telefon": "482-4151846",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ANAMUR TİCARET VE SANAYİ ODASI",
+    "il": "MERSİN",
+    "ilce": "ANAMUR",
+    "webSitesi": "http://www.anamurtso.org.tr",
+    "eposta": "",
+    "telefon": "324-8141050",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ERDEMLİ TİCARET VE SANAYİ ODASI",
+    "il": "MERSİN",
+    "ilce": "ERDEMLİ",
+    "webSitesi": "http://www.erdemlitso.org.tr",
+    "eposta": "",
+    "telefon": "324-5151055-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MUT TİCARET VE SANAYİ ODASI",
+    "il": "MERSİN",
+    "ilce": "MUT",
+    "webSitesi": "http://www.muttso.org.tr/",
+    "eposta": "muttso@ttnet.net.tr",
+    "telefon": "324-7742773",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MERSİN TİCARET VE SANAYİ ODASI",
+    "il": "MERSİN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.mtso.org.tr/",
+    "eposta": "info@mtso.org.tr",
+    "telefon": "324-2389500(",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SİLİFKE TİCARET VE SANAYİ ODASI",
+    "il": "MERSİN",
+    "ilce": "SİLİFKE",
+    "webSitesi": "http://www.sitso.org.tr/",
+    "eposta": "silifketicaretodasi@ttnet.net.tr",
+    "telefon": "324-7141038",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TARSUS TİCARET VE SANAYİ ODASI",
+    "il": "MERSİN",
+    "ilce": "TARSUS",
+    "webSitesi": "http://www.tarsustso.org.tr",
+    "eposta": "tarsustso@tarsustso.org",
+    "telefon": "324-6135550-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BODRUM TİCARET ODASI",
+    "il": "MUĞLA",
+    "ilce": "BODRUM",
+    "webSitesi": "http://www.bodto.org.tr/",
+    "eposta": "bilgi@bodto.org.tr",
+    "telefon": "252-3161412",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "FETHİYE TİCARET VE SANAYİ ODASI",
+    "il": "MUĞLA",
+    "ilce": "FETHİYE",
+    "webSitesi": "http://www.fto.org.tr/",
+    "eposta": "info@fto.org.tr",
+    "telefon": "252-6141115-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MARMARİS TİCARET ODASI",
+    "il": "MUĞLA",
+    "ilce": "MARMARİS",
+    "webSitesi": "http://www.mto.org.tr/",
+    "eposta": "mto@mto.org.tr",
+    "telefon": "252-4170469-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MUĞLA TİCARET VE SANAYİ ODASI",
+    "il": "MUĞLA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.mutso.org.tr/",
+    "eposta": "muglatso@tobb.org.tr",
+    "telefon": "252-2141122-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MİLAS TİCARET VE SANAYİ ODASI",
+    "il": "MUĞLA",
+    "ilce": "MİLAS",
+    "webSitesi": "http://mitso.org.tr/",
+    "eposta": "info@mitso.org.tr",
+    "telefon": "252-5121118-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MUŞ TİCARET VE SANAYİ ODASI",
+    "il": "MUŞ",
+    "ilce": "Merkez",
+    "webSitesi": "http://mustso.org.tr/",
+    "eposta": "49mustso49@mynet.com",
+    "telefon": "436-2121195-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "NEVŞEHİR TİCARET VE SANAYİ ODASI",
+    "il": "NEVŞEHİR",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.ntso.org.tr/",
+    "eposta": "nevsehirtso@tobb.org.tr",
+    "telefon": "3842131036",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÜRGÜP TİCARET VE SANAYİ ODASI",
+    "il": "NEVŞEHİR",
+    "ilce": "ÜRGÜP",
+    "webSitesi": "http://urguptso.org.tr/",
+    "eposta": "urguptso@tobb.org.tr",
+    "telefon": "384-3414133",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BOR TİCARET VE SANAYİ ODASI",
+    "il": "NİĞDE",
+    "ilce": "BOR",
+    "webSitesi": "http://www.bortso.tobb.org.tr/index.htm",
+    "eposta": "bortso@tobb.org.tr",
+    "telefon": "388-3117185",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "NİĞDE TİCARET VE SANAYİ ODASI",
+    "il": "NİĞDE",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.nitso.org.tr/",
+    "eposta": "nigdetso@tobb.org.tr",
+    "telefon": "388-2335501",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "FATSA TİCARET VE SANAYİ ODASI",
+    "il": "ORDU",
+    "ilce": "FATSA",
+    "webSitesi": "https://fatsatso.org.tr/",
+    "eposta": "fatsatso@tobb.org.tr",
+    "telefon": "452-4231023",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ORDU TİCARET VE SANAYİ ODASI",
+    "il": "ORDU",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.otso.org.tr/",
+    "eposta": "ordutso@tobb.org.tr",
+    "telefon": "452-2141077",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÜNYE TİCARET VE SANAYİ ODASI",
+    "il": "ORDU",
+    "ilce": "ÜNYE",
+    "webSitesi": "http://www.unyetso.org.tr/",
+    "eposta": "unyetso@unyetso.org.tr",
+    "telefon": "452-3231066",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KADİRLİ TİCARET VE SANAYİ ODASI",
+    "il": "OSMANİYE",
+    "ilce": "KADİRLİ",
+    "webSitesi": "http://www.kadirlito.tobb.org.tr",
+    "eposta": "kadirlito@tobb.org.tr",
+    "telefon": "0328-7181175",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "OSMANİYE TİCARET VE SANAYİ ODASI",
+    "il": "OSMANİYE",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.osmaniyetso.org.tr/",
+    "eposta": "otso80@ttnet.net.tr",
+    "telefon": "328-8250068-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ARDEŞEN TİCARET VE SANAYİ ODASI",
+    "il": "RİZE",
+    "ilce": "ARDEŞEN",
+    "webSitesi": "http://www.ardesentso.org.tr/",
+    "eposta": "",
+    "telefon": "464-7153524",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "RİZE TİCARET VE SANAYİ ODASI",
+    "il": "RİZE",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.rizetso.org.tr/",
+    "eposta": "rizetso@tobb.org.tr",
+    "telefon": "464-2175566-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "PAZAR TİCARET VE SANAYİ ODASI",
+    "il": "RİZE",
+    "ilce": "PAZAR",
+    "webSitesi": "http://www.ptso.org.tr/",
+    "eposta": "",
+    "telefon": "464-6127100",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇAYELİ TİCARET VE SANAYİ ODASI",
+    "il": "RİZE",
+    "ilce": "ÇAYELİ",
+    "webSitesi": "http://www.cayelitso.org.tr",
+    "eposta": "cayelitso@tobb.org.tr",
+    "telefon": "464-5327510",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "AKYAZI TİCARET VE SANAYİ ODASI",
+    "il": "SAKARYA",
+    "ilce": "AKYAZI",
+    "webSitesi": "http://akyazitso.tobb.org.tr/",
+    "eposta": "akatso@superonline.com.tr",
+    "telefon": "264-4188485",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SAKARYA TİCARET VE SANAYİ ODASI",
+    "il": "SAKARYA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.satso.org.tr",
+    "eposta": "satso@satso.org.tr",
+    "telefon": "264-8883000",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BAFRA TİCARET VE SANAYİ ODASI",
+    "il": "SAMSUN",
+    "ilce": "BAFRA",
+    "webSitesi": "http://www.bafratso.org.tr/",
+    "eposta": "info@bafratso.org.tr",
+    "telefon": "362-5425848",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "HAVZA TİCARET VE SANAYİ ODASI",
+    "il": "SAMSUN",
+    "ilce": "HAVZA",
+    "webSitesi": "http://www.havzatso.org.tr/",
+    "eposta": "",
+    "telefon": "362-7142287-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SAMSUN TİCARET VE SANAYİ ODASI",
+    "il": "SAMSUN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.samsuntso.org.tr/",
+    "eposta": "samsuntso@samsuntso.org.tr",
+    "telefon": "03624323626",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TERME TİCARET VE SANAYİ ODASI",
+    "il": "SAMSUN",
+    "ilce": "TERME",
+    "webSitesi": "http://termetso.org.tr/",
+    "eposta": "info@termetso.org.tr",
+    "telefon": "362-8765953",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "VEZİRKÖPRÜ TİCARET VE SANAYİ ODASI",
+    "il": "SAMSUN",
+    "ilce": "VEZİRKÖPRÜ",
+    "webSitesi": "http://www.vezirkoprutso.org.tr",
+    "eposta": "",
+    "telefon": "362-6471051",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇARŞAMBA TİCARET VE SANAYİ ODASI",
+    "il": "SAMSUN",
+    "ilce": "ÇARŞAMBA",
+    "webSitesi": "http://www.carsambatso.org.tr",
+    "eposta": "bilgi@carsambatso.org.tr, carsambatso@hotmail.com",
+    "telefon": "362-8331360",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BOYABAT TİCARET VE SANAYİ ODASI",
+    "il": "SİNOP",
+    "ilce": "BOYABAT",
+    "webSitesi": "http://www.boyabattso.org.tr/",
+    "eposta": "",
+    "telefon": "368-3151203",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SİNOP TİCARET VE SANAYİ ODASI",
+    "il": "SİNOP",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.sinoptso.tobb.org.tr/",
+    "eposta": "",
+    "telefon": "368-2611806",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SİVAS TİCARET VE SANAYİ ODASI",
+    "il": "SİVAS",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.sivastso.org.tr",
+    "eposta": "bilgi@sivastso.org.tr",
+    "telefon": "346-2211384-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SİİRT TİCARET VE SANAYİ ODASI",
+    "il": "SİİRT",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.siirttso.org.tr",
+    "eposta": "info@siirttso.org.tr",
+    "telefon": "484-2231203/",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "HAYRABOLU TİCARET VE SANAYİ ODASI",
+    "il": "TEKİRDAĞ",
+    "ilce": "HAYRABOLU",
+    "webSitesi": "http://www.hayrabolutso.org.tr/",
+    "eposta": "hayrabolutso@tobb.org.tr",
+    "telefon": "282-3151149",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MALKARA TİCARET VE SANAYİ ODASI",
+    "il": "TEKİRDAĞ",
+    "ilce": "MALKARA",
+    "webSitesi": "http://www.malkaratso.org.tr/",
+    "eposta": "malkara@malkaratso.org.tr",
+    "telefon": "282-4271121",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TEKİRDAĞ TİCARET VE SANAYİ ODASI",
+    "il": "TEKİRDAĞ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.tekirdagtso.org.tr/",
+    "eposta": "ttso@tekirdagtso.org.tr",
+    "telefon": "282-2612171",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇERKEZKÖY TİCARET VE SANAYİ ODASI",
+    "il": "TEKİRDAĞ",
+    "ilce": "ÇERKEZKÖY",
+    "webSitesi": "http://www.cerkezkoytso.org.tr/",
+    "eposta": "info@cerkezkoytso.org.tr",
+    "telefon": "282-7268888-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇORLU TİCARET VE SANAYİ ODASI",
+    "il": "TEKİRDAĞ",
+    "ilce": "ÇORLU",
+    "webSitesi": "http://www.corlutso.org.tr/",
+    "eposta": "corlutso@yahoo.com",
+    "telefon": "282-6511096",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ERBAA TİCARET VE SANAYİ ODASI",
+    "il": "TOKAT",
+    "ilce": "ERBAA",
+    "webSitesi": "http://www.erbaatso.org.tr/",
+    "eposta": "",
+    "telefon": "356-7152820",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TOKAT TİCARET VE SANAYİ ODASI",
+    "il": "TOKAT",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.tokattso.org.tr/",
+    "eposta": "info@tokattso.org.tr",
+    "telefon": "356-2141033",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "NİKSAR TİCARET VE SANAYİ ODASI",
+    "il": "TOKAT",
+    "ilce": "NİKSAR",
+    "webSitesi": "https://www.niksartso.org.tr/",
+    "eposta": "niksartso@tobb.org.tr",
+    "telefon": "356-5271104-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TURHAL TİCARET VE SANAYİ ODASI",
+    "il": "TOKAT",
+    "ilce": "TURHAL",
+    "webSitesi": "http://www.turhaltso.org.tr/",
+    "eposta": "turhaltso@tobb.org.tr",
+    "telefon": "356-2751214",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ZİLE TİCARET VE SANAYİ ODASI",
+    "il": "TOKAT",
+    "ilce": "ZİLE",
+    "webSitesi": "http://www.ziletso.org.tr/",
+    "eposta": "ziletso@tobb.org.tr",
+    "telefon": "356-3171086-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TRABZON TİCARET VE SANAYİ ODASI",
+    "il": "TRABZON",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.ttso.org.tr/",
+    "eposta": "ttso@ttso.org.tr",
+    "telefon": "462-3268070(",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "OF TİCARET VE SANAYİ ODASI",
+    "il": "TRABZON",
+    "ilce": "OF",
+    "webSitesi": "http://www.oftso.org.tr/",
+    "eposta": "oftso@tobb.org.tr",
+    "telefon": "0462-7717160",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TUNCELİ TİCARET VE SANAYİ ODASI",
+    "il": "TUNCELİ",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.tuncelitso.org.tr/",
+    "eposta": "tuncelitso@mynet.com",
+    "telefon": "428-2122929",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KARAHALLI TİCARET VE SANAYİ ODASI",
+    "il": "UŞAK",
+    "ilce": "KARAHALLI",
+    "webSitesi": "Belirtilmemiş",
+    "eposta": "",
+    "telefon": "276-5171163",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "UŞAK TİCARET VE SANAYİ ODASI",
+    "il": "UŞAK",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.usaktso.org.tr",
+    "eposta": "info@usaktso.org",
+    "telefon": "276-2270203",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ERCİŞ TİCARET VE SANAYİ ODASI",
+    "il": "VAN",
+    "ilce": "ERCİŞ",
+    "webSitesi": "http://www.ercistso.tobb.org.tr/",
+    "eposta": "ercistso@tobb.org.tr",
+    "telefon": "432-3516231-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "VAN TİCARET VE SANAYİ ODASI",
+    "il": "VAN",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.vantso.org.tr/",
+    "eposta": "vatso@vatso.org.tr",
+    "telefon": "04322100055",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "YALOVA TİCARET VE SANAYİ ODASI",
+    "il": "YALOVA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.ytso.org.tr/",
+    "eposta": "yalovatso@tobb.org.tr, info@ytso.org.tr",
+    "telefon": "226-8141224",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BOĞAZLIYAN TİCARET VE SANAYİ ODASI",
+    "il": "YOZGAT",
+    "ilce": "BOĞAZLIYAN",
+    "webSitesi": "http://bogazliyantso.org.tr/",
+    "eposta": "",
+    "telefon": "354-6454785",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "YOZGAT TİCARET VE SANAYİ ODASI",
+    "il": "YOZGAT",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.yozgattso.org.tr/",
+    "eposta": "",
+    "telefon": "354-2121121",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SORGUN TİCARET VE SANAYİ ODASI",
+    "il": "YOZGAT",
+    "ilce": "SORGUN",
+    "webSitesi": "http://sorguntso.org.tr/",
+    "eposta": "",
+    "telefon": "354-4151676",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "YERKÖY TİCARET VE SANAYİ ODASI",
+    "il": "YOZGAT",
+    "ilce": "YERKÖY",
+    "webSitesi": "https://yerkoytso.org.tr/",
+    "eposta": "yerticodasi@hotmail.com",
+    "telefon": "354-5161188",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ŞEFAATLİ TİCARET VE SANAYİ ODASI",
+    "il": "YOZGAT",
+    "ilce": "ŞEFAATLI",
+    "webSitesi": "http://www.sefaatlitso.tobb.org.tr/",
+    "eposta": "",
+    "telefon": "354-5641274",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ALAPLI TİCARET VE SANAYİ ODASI",
+    "il": "ZONGULDAK",
+    "ilce": "ALAPLI",
+    "webSitesi": "http://www.alaplitso.tobb.org.tr",
+    "eposta": "",
+    "telefon": "372-3786910",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "DEVREK TİCARET VE SANAYİ ODASI",
+    "il": "ZONGULDAK",
+    "ilce": "DEVREK",
+    "webSitesi": "http://www.devrektso.org.tr/",
+    "eposta": "devrektso@tobb.org.tr",
+    "telefon": "372-5563991",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "KARADENİZ EREĞLİ TİCARET VE SANAYİ ODASI",
+    "il": "ZONGULDAK",
+    "ilce": "KRDZ.EREĞLİ",
+    "webSitesi": "http://www.ereglitso.org.tr",
+    "eposta": "bilgi@ereglitso.org.tr",
+    "telefon": "372-3161161-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ZONGULDAK TİCARET VE SANAYİ ODASI",
+    "il": "ZONGULDAK",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.ztso.org.tr/",
+    "eposta": "bilgi@ztso.org.tr",
+    "telefon": "372-2511156",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇAYCUMA TİCARET VE SANAYİ ODASI",
+    "il": "ZONGULDAK",
+    "ilce": "ÇAYCUMA",
+    "webSitesi": "http://www.caycumatso.tobb.org.tr/",
+    "eposta": "caycumatso@tobb.org.tr",
+    "telefon": "372-6151073",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BİGA TİCARET VE SANAYİ ODASI",
+    "il": "ÇANAKKALE",
+    "ilce": "BİGA",
+    "webSitesi": "http://www.bigatso.tobb.org.tr/",
+    "eposta": "bigatso@tobb.org.tr",
+    "telefon": "286-3164888",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "GELİBOLU TİCARET VE SANAYİ ODASI",
+    "il": "ÇANAKKALE",
+    "ilce": "GELİBOLU",
+    "webSitesi": "http://www.gelibolutso.org.tr",
+    "eposta": "bilgi@gelibolutso.com",
+    "telefon": "286-5661108",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇANAKKALE TİCARET VE SANAYİ ODASI",
+    "il": "ÇANAKKALE",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.canakkaletso.org.tr/",
+    "eposta": "oda@canakkaletso.org.tr",
+    "telefon": "286-2171014",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇANKIRI TİCARET VE SANAYİ ODASI",
+    "il": "ÇANKIRI",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.catso.org.tr/",
+    "eposta": "tic.san@catso.org.tr",
+    "telefon": "376-2131053",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ALACA TİCARET VE SANAYİ ODASI",
+    "il": "ÇORUM",
+    "ilce": "ALACA",
+    "webSitesi": "http://www.alacatso.org.tr",
+    "eposta": "alacatso@tobb.org.tr",
+    "telefon": "364-4115042",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÇORUM TİCARET VE SANAYİ ODASI",
+    "il": "ÇORUM",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.ctso.org.tr",
+    "eposta": "oda@ctso.org.tr",
+    "telefon": "364-2244450",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SUNGURLU TİCARET VE SANAYİ ODASI",
+    "il": "ÇORUM",
+    "ilce": "SUNGURLU",
+    "webSitesi": "http://www.sungurlutso.org.tr",
+    "eposta": "sungurlutso@ttnet.net.tr",
+    "telefon": "364-3112010",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İSTANBUL SANAYİ ODASI",
+    "il": "İSTANBUL",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.iso.org.tr/",
+    "eposta": "info@iso.org.tr",
+    "telefon": "212-2522900(",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İSTANBUL TİCARET ODASI",
+    "il": "İSTANBUL",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.ito.org.tr",
+    "eposta": "ito@ito.org.tr",
+    "telefon": "212-4556000",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ALİAĞA TİCARET ODASI",
+    "il": "İZMİR",
+    "ilce": "ALİAĞA",
+    "webSitesi": "http://www.alto.org.tr/",
+    "eposta": "bilgi@alto.org.tr",
+    "telefon": "232-6164151-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BAYINDIR TİCARET ODASI",
+    "il": "İZMİR",
+    "ilce": "BAYINDIR",
+    "webSitesi": "http://www.bayindirto.tobb.org.tr",
+    "eposta": "",
+    "telefon": "232-5813504",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BERGAMA TİCARET ODASI",
+    "il": "İZMİR",
+    "ilce": "BERGAMA",
+    "webSitesi": "http://www.berto.org.tr/",
+    "eposta": "bergamato@tobb.org.tr",
+    "telefon": "232-6331078-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "MENEMEN TİCARET ODASI",
+    "il": "İZMİR",
+    "ilce": "MENEMEN",
+    "webSitesi": "http://www.menemento.tobb.org.tr",
+    "eposta": "",
+    "telefon": "232-8321021-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "İZMİR TİCARET ODASI",
+    "il": "İZMİR",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.izto.org.tr/",
+    "eposta": "info@izto.org.tr",
+    "telefon": "232-4449292",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SELÇUK TİCARET ODASI",
+    "il": "İZMİR",
+    "ilce": "SELÇUK",
+    "webSitesi": "http://www.selcukticaretodasi.org.tr/",
+    "eposta": "info@selcukticaretodasi.org.tr",
+    "telefon": "232-8927008-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TORBALI TİCARET ODASI",
+    "il": "İZMİR",
+    "ilce": "TORBALI",
+    "webSitesi": "http://www.torbalito.tobb.org.tr/",
+    "eposta": "torbalito@tobb.org.tr",
+    "telefon": "232-8561334",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "TİRE TİCARET ODASI",
+    "il": "İZMİR",
+    "ilce": "TİRE",
+    "webSitesi": "http://www.tireto.org.tr/",
+    "eposta": "bilgi@tireto.org.tr",
+    "telefon": "232-5121079",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "EGE BOLGESI SANAYİ ODASI",
+    "il": "İZMİR",
+    "ilce": "ÇİĞLİ",
+    "webSitesi": "http://www.ebso.org.tr",
+    "eposta": "info@ebso.org.tr",
+    "telefon": "232-4552900",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ÖDEMİŞ TİCARET ODASI",
+    "il": "İZMİR",
+    "ilce": "ÖDEMİŞ",
+    "webSitesi": "http://www.odemisto.org.tr/",
+    "eposta": "odemisto@tobb.org.tr",
+    "telefon": "232-5431168-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "BİRECİK TİCARET VE SANAYİ ODASI",
+    "il": "Ş.URFA",
+    "ilce": "BİRECİK",
+    "webSitesi": "http://www.bireciktso.org.tr/",
+    "eposta": "btsob@netbulmail.com",
+    "telefon": "414-6521165",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ŞANLIURFA TİCARET VE SANAYİ ODASI",
+    "il": "Ş.URFA",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.sutso.org.tr/",
+    "eposta": "sanliurfatso@tobb.org.tr",
+    "telefon": "414-3181801-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "SİVEREK TİCARET VE SANAYİ ODASI",
+    "il": "Ş.URFA",
+    "ilce": "SİVEREK",
+    "webSitesi": "http://www.siverektso.org.tr",
+    "eposta": "siverektso@tobb.org.tr",
+    "telefon": "414-5521023",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "CİZRE TİCARET VE SANAYİ ODASI",
+    "il": "ŞIRNAK",
+    "ilce": "CİZRE",
+    "webSitesi": "http://www.cizretso.tobb.org.tr",
+    "eposta": "ctso98@hotmail.com",
+    "telefon": "486-6167254",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  },
+  {
+    "kurumKodu": null,
+    "kurumAdi": "ŞIRNAK TİCARET VE SANAYİ ODASI",
+    "il": "ŞIRNAK",
+    "ilce": "Merkez",
+    "webSitesi": "http://www.sirnaktso.org.tr",
+    "eposta": "bilgi@sirnaktso.org.tr",
+    "telefon": "486-2165905-",
+    "okulTuru": "Ticaret ve Sanayi Odası"
+  }
+]

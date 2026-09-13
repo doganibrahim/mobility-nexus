@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import AppHeader from '../components/layout/AppHeader';
 import AppFooter from '../components/layout/AppFooter';
+import CookieBanner from '../components/ui/CookieBanner';
+import LegalModal from '../components/ui/LegalModal';
 
 import SystemKpiCard from '../components/gateway/SystemKpiCard';
 import SchoolProfileCard from '../components/gateway/SchoolProfileCard';
@@ -11,12 +13,19 @@ import EscoIscedMapperCard from '../components/gateway/EscoIscedMapperCard';
 import CompetenceAssessmentCard from '../components/gateway/CompetenceAssessmentCard';
 import CompetenceGapCard from '../components/gateway/CompetenceGapCard';
 import DecisionEngineCard from '../components/gateway/DecisionEngineCard';
+import EligibilityGatekeeperCard from '../components/gateway/EligibilityGatekeeperCard';
 import HostMatchingCard from '../components/gateway/HostMatchingCard';
 import PartnerFindingCard from '../components/gateway/PartnerFindingCard';
 import LearningOutcomesCard from '../components/gateway/LearningOutcomesCard';
 import QualityChecklistCard from '../components/gateway/QualityChecklistCard';
 import RecommendationReportCard from '../components/gateway/RecommendationReportCard';
 import OfficialResourcesCard from '../components/gateway/OfficialResourcesCard';
+import SentInquiriesCard from '../components/gateway/SentInquiriesCard';
+import { useUser } from '@clerk/nextjs';
+import AdminDashboardView from '../components/dashboard/AdminDashboardView';
+import HostDashboardView from '../components/dashboard/HostDashboardView';
+import GuestWelcomeBanner from '../components/gateway/GuestWelcomeBanner';
+import GuestOnboardingModal from '../components/ui/GuestOnboardingModal';
 
 import { VET_FIELDS } from '../lib/constants';
 import { useTranslation } from '../lib/i18n';
@@ -36,6 +45,9 @@ export default function Home() {
 
   // Active Tab State
   const [activeTab, setActiveTab] = useState<string>('profile');
+  const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
+  const [isGuestTourOpen, setIsGuestTourOpen] = useState(false);
+  const [isBannerDismissed, setIsBannerDismissed] = useState(false);
 
   // Dynamic Tabs Configuration using i18n
   const TABS = [
@@ -49,6 +61,66 @@ export default function Home() {
   // --- ZUSTAND STORE INTEGRATION ---
   const store = useAppStore();
 
+  // User Authentication & Platform Role Detection
+  const { user, isLoaded: isUserLoaded, isSignedIn } = useUser();
+
+  const adminEmails = (
+    process.env.NEXT_PUBLIC_ADMIN_EMAILS ||
+    'ibrahimdogan.js@gmail.com'
+  )
+    .toLowerCase()
+    .split(',')
+    .map((e) => e.trim());
+
+  const userEmail = user?.primaryEmailAddress?.emailAddress?.toLowerCase() || '';
+  const userRoleMeta = (user?.publicMetadata?.role as string)?.toUpperCase();
+
+  const isAdmin = Boolean(
+    isSignedIn &&
+      (userRoleMeta === 'SUPER_ADMIN' ||
+        userRoleMeta === 'ADMIN' ||
+        userRoleMeta === 'PLATFORM_ADMIN' ||
+        user?.publicMetadata?.isAdmin === true ||
+        (userEmail && adminEmails.includes(userEmail)))
+  );
+
+  // Simulation mode for admins ('ADMIN' | 'SCHOOL' | 'HOST')
+  const [adminSimulationMode, setAdminSimulationMode] = useState<'ADMIN' | 'SCHOOL' | 'HOST'>('ADMIN');
+
+  // Determine current active view:
+  // - Admin (default: 'ADMIN', but can switch to 'SCHOOL' or 'HOST' to simulate)
+  // - Host: 'HOST'
+  // - School / Guest / Default: 'SCHOOL'
+  const isHostUser = store.orgType === 'HOST' || Boolean(store.currentHost);
+  let effectiveView: 'ADMIN' | 'HOST' | 'SCHOOL' = 'SCHOOL';
+
+  if (isAdmin) {
+    effectiveView = adminSimulationMode;
+  } else if (isHostUser) {
+    effectiveView = 'HOST';
+  } else {
+    effectiveView = 'SCHOOL';
+  }
+
+  // Automatic onboarding tour trigger for first-time unauthenticated visitors
+  useEffect(() => {
+    if (isUserLoaded && !isSignedIn) {
+      try {
+        const tourDismissed = localStorage.getItem('cappinno_guest_onboarding_dismissed');
+        if (!tourDismissed) {
+          const timer = setTimeout(() => setIsGuestTourOpen(true), 600);
+          return () => clearTimeout(timer);
+        }
+        const bannerDismissed = sessionStorage.getItem('cappinno_guest_banner_dismissed');
+        if (bannerDismissed) {
+          setIsBannerDismissed(true);
+        }
+      } catch (err) {
+        // Fallback for restricted storage environments
+      }
+    }
+  }, [isUserLoaded, isSignedIn]);
+
   // 1. School Profile State
   const { schoolName, city, accredited, oid, erasmusPlan, institutionNeed } = store.schoolProfile;
   const setSchoolName = (v: string) => store.setSchoolProfile({ schoolName: v });
@@ -59,13 +131,17 @@ export default function Home() {
   const setInstitutionNeed = (v: string) => store.setSchoolProfile({ institutionNeed: v });
 
   // 2. Participant Profile State
-  const { participantType, mobilityGoal, participantName, language, country, duration } = store.participantProfile;
+  const { participantType, mobilityGoal, participantName, language, targetCountries, startDate, endDate, participantCount, accompanyingPersonsCount, ageGroup } = store.participantProfile;
   const setParticipantType = (v: any) => store.setParticipantProfile({ participantType: v });
   const setMobilityGoal = (v: any) => store.setParticipantProfile({ mobilityGoal: v });
   const setParticipantName = (v: string) => store.setParticipantProfile({ participantName: v });
   const setLanguage = (v: number) => store.setParticipantProfile({ language: v });
-  const setCountry = (v: string) => store.setParticipantProfile({ country: v });
-  const setDuration = (v: string) => store.setParticipantProfile({ duration: v });
+  const setTargetCountries = (v: string[]) => store.setParticipantProfile({ targetCountries: v });
+  const setStartDate = (v: string) => store.setParticipantProfile({ startDate: v });
+  const setEndDate = (v: string) => store.setParticipantProfile({ endDate: v });
+  const setParticipantCount = (v: number) => store.setParticipantProfile({ participantCount: v });
+  const setAccompanyingPersonsCount = (v: number) => store.setParticipantProfile({ accompanyingPersonsCount: v });
+  const setAgeGroup = (v: any) => store.setParticipantProfile({ ageGroup: v });
 
   // 3. ESCO - ISCED State
   const { vetField, iscedCode, iscedName, escoTerm, iscoCode, escoUri, skills } = store.escoIsced;
@@ -91,6 +167,21 @@ export default function Home() {
   // 5. Decision Engine State
   const { decisionResult } = store.decisionEngine;
   const setDecisionResult = (v: any) => store.setDecisionEngine({ decisionResult: v });
+
+  // 5b. Eligibility Gatekeeper State
+  const {
+    participantCount: eligibilityParticipantCount,
+    projectDurationMonths: eligibilityDurationMonths,
+    pastKa122GrantsCount: eligibilityPastGrants,
+    mobilityStrategy: eligibilityStrategy,
+  } = store.eligibilityGatekeeper;
+
+  const setEligibilityField = (field: string, val: any) => {
+    store.setEligibilityGatekeeper({ [field]: val });
+    if (field === 'accredited') {
+      setAccredited(val);
+    }
+  };
 
   // 6. Host Matching State
   const { hostName, hostCountry, hostType, hostMetrics, hostScoreResult } = store.hostMatching;
@@ -154,14 +245,28 @@ export default function Home() {
       setAssessmentResultMsg(`Competence4VET Dış Test Skoru Uygulandı: ${s}/100`);
       setAssessmentResultType('good');
     } else {
-      alert('Lütfen 0 ile 100 arasında bir skor giriniz.');
+      alert(locale === 'tr' ? 'Lütfen 0 ile 100 arasında bir skor giriniz.' : 'Please enter a score between 0 and 100.');
     }
   };
 
   // Handler: Host Score calculation
-  const handleScoreHost = () => {
-    const res = scoreHost(hostMetrics);
-    setHostScoreResult(res);
+  const handleScoreHost = (customScore?: number) => {
+    if (typeof customScore === 'number') {
+      const level: 'good' | 'warn' | 'bad' =
+        customScore >= 70 ? 'good' : customScore >= 55 ? 'warn' : 'bad';
+      const label =
+        customScore >= 85
+          ? 'Mükemmel Eşleşme (Excellent)'
+          : customScore >= 70
+          ? 'Uygun Kuruluş (Suitable)'
+          : customScore >= 55
+          ? 'Şartlı Kısa Liste (Conditional)'
+          : 'Yetersiz Uyum (Weak match)';
+      setHostScoreResult({ score: customScore, label, level });
+    } else {
+      const res = scoreHost(hostMetrics);
+      setHostScoreResult(res);
+    }
   };
 
   // Handler: Make Decision (KA121 vs KA122)
@@ -179,6 +284,10 @@ export default function Home() {
       competenceScore: currentCompScore,
       targetScore,
       hostScore: currentHostScore,
+      participantCount: eligibilityParticipantCount,
+      projectDurationMonths: eligibilityDurationMonths,
+      pastKa122GrantsCount: eligibilityPastGrants,
+      mobilityStrategy: eligibilityStrategy,
     });
 
     setDecisionResult(res);
@@ -212,8 +321,12 @@ export default function Home() {
       mobilityGoal,
       participantName,
       language,
-      country,
-      duration,
+      targetCountries,
+      startDate,
+      endDate,
+      participantCount,
+      accompanyingPersonsCount,
+      ageGroup,
       vetField,
       iscedCode,
       iscedName,
@@ -234,14 +347,14 @@ export default function Home() {
     };
 
     localStorage.setItem('cappinno_mobility_nexus_data', JSON.stringify(payload));
-    alert(`[Kayıt Başarılı] ${t.report.savedAlert}`);
+    alert(`${locale === 'tr' ? '[Kayıt Başarılı] ' : '[Saved Successfully] '}${t.report.savedAlert}`);
   };
 
   // Handler: Load from LocalStorage
   const handleLoadLocal = () => {
     const raw = localStorage.getItem('cappinno_mobility_nexus_data');
     if (!raw) {
-      alert(`[Uyarı] ${t.report.notFoundAlert}`);
+      alert(`${locale === 'tr' ? '[Uyarı] ' : '[Warning] '}${t.report.notFoundAlert}`);
       return;
     }
 
@@ -257,8 +370,12 @@ export default function Home() {
       if (d.mobilityGoal) setMobilityGoal(d.mobilityGoal);
       if (d.participantName) setParticipantName(d.participantName);
       if (d.language !== undefined) setLanguage(d.language);
-      if (d.country) setCountry(d.country);
-      if (d.duration) setDuration(d.duration);
+      if (d.targetCountries) setTargetCountries(d.targetCountries);
+      if (d.startDate) setStartDate(d.startDate);
+      if (d.endDate) setEndDate(d.endDate);
+      if (d.participantCount !== undefined) setParticipantCount(d.participantCount);
+      if (d.accompanyingPersonsCount !== undefined) setAccompanyingPersonsCount(d.accompanyingPersonsCount);
+      if (d.ageGroup) setAgeGroup(d.ageGroup);
       if (d.vetField) setVetField(d.vetField);
       if (d.iscedCode) setIscedCode(d.iscedCode);
       if (d.iscedName) setIscedName(d.iscedName);
@@ -277,9 +394,9 @@ export default function Home() {
       if (d.technicalOutcome) setTechnicalOutcome(d.technicalOutcome);
       if (d.transversalOutcome) setTransversalOutcome(d.transversalOutcome);
 
-      alert(`[Başarılı] ${t.report.loadedAlert}`);
+      alert(`${locale === 'tr' ? '[Başarılı] ' : '[Loaded Successfully] '}${t.report.loadedAlert}`);
     } catch {
-      alert('Kayıtlı veri ayrıştırılırken hata oluştu.');
+      alert(locale === 'tr' ? 'Kayıtlı veri ayrıştırılırken hata oluştu.' : 'Failed to parse saved data.');
     }
   };
 
@@ -296,8 +413,12 @@ export default function Home() {
       mobilityGoal,
       participantName,
       language,
-      country,
-      duration,
+      targetCountries,
+      startDate,
+      endDate,
+      participantCount,
+      accompanyingPersonsCount,
+      ageGroup,
       vetField,
       iscedCode,
       iscedName,
@@ -351,11 +472,70 @@ export default function Home() {
       {/* 1. Official Erasmus+ Header */}
       <AppHeader />
 
-      {/* 2. Institutional Stepper Navigation Bar */}
-      <div className="border-b border-slate-200 bg-white sticky top-[69px] z-20 shadow-xs no-print">
+      {/* Persistent Simulation Mode Banner for Platform Admin */}
+      {isAdmin && adminSimulationMode !== 'ADMIN' && (
+        <div className="bg-slate-900 text-white px-4 py-2.5 text-xs font-bold flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-xs border-b border-slate-700 sticky top-[57px] sm:top-[69px] z-30">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0"></span>
+            <span className="leading-snug">
+              {t.simulation.bannerTitle}: {adminSimulationMode === 'SCHOOL' ? t.simulation.viewingAsSchool : t.simulation.viewingAsHost}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+            {adminSimulationMode === 'SCHOOL' ? (
+              <button
+                type="button"
+                onClick={() => setAdminSimulationMode('HOST')}
+                className="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-white rounded-md text-[11px] font-semibold transition-colors"
+              >
+                {t.simulation.switchToHost}
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setAdminSimulationMode('SCHOOL')}
+                className="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-white rounded-md text-[11px] font-semibold transition-colors"
+              >
+                {t.simulation.switchToSchool}
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => setAdminSimulationMode('ADMIN')}
+              className="px-3 py-1 bg-white hover:bg-slate-100 text-slate-900 font-bold rounded-md transition-colors text-xs"
+            >
+              {t.simulation.backToAdmin}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* VIEW 1: ADMIN DASHBOARD */}
+      {effectiveView === 'ADMIN' ? (
+        <main className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+          <AdminDashboardView
+            onSwitchView={(view) => setAdminSimulationMode(view)}
+            userEmail={userEmail}
+          />
+        </main>
+      ) : effectiveView === 'HOST' ? (
+        /* VIEW 2: HOST ORGANISATION DASHBOARD */
+        <main className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+          <HostDashboardView
+            hostData={store.currentHost}
+            onUpdateHost={store.setCurrentHost}
+            isSimulated={isAdmin && adminSimulationMode === 'HOST'}
+          />
+        </main>
+      ) : (
+        /* VIEW 3: SCHOOL 5-STEP PIPELINE */
+        <>
+          {/* 2. Institutional Stepper Navigation Bar */}
+          <div className="border-b border-slate-200 bg-white sticky top-[57px] sm:top-[69px] z-20 shadow-xs no-print">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 py-2">
-            <div className="grid grid-cols-2 sm:flex flex-wrap gap-1">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 py-2">
+            {/* Step Tabs: Horizontal Touch-friendly Scroll on Mobile, Flex on Desktop */}
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 max-w-full">
             {TABS.map((tab, idx) => {
               const isActive = activeTab === tab.id;
               const isPast = idx < currentTabIndex;
@@ -363,7 +543,7 @@ export default function Home() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`p-2.5 rounded-xl text-left transition-all flex items-center gap-3 ${
+                  className={`p-2 sm:p-2.5 rounded-xl text-left transition-all flex items-center gap-2 sm:gap-3 shrink-0 ${
                     isActive
                       ? 'bg-blue-50/90 text-blue-950 font-bold border border-blue-200 shadow-xs'
                       : isPast
@@ -372,7 +552,7 @@ export default function Home() {
                   }`}
                 >
                   <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 transition-all ${
+                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 transition-all ${
                       isActive
                         ? 'bg-blue-600 text-white shadow-xs'
                         : isPast
@@ -386,7 +566,7 @@ export default function Home() {
                     <div className="text-xs font-bold truncate">
                       {tab.label}
                     </div>
-                    <div className="text-[11px] font-normal text-slate-500 truncate hidden md:block">
+                    <div className="text-[11px] font-normal text-slate-500 truncate hidden lg:block">
                       {tab.desc}
                     </div>
                   </div>
@@ -395,12 +575,12 @@ export default function Home() {
             })}
             </div>
             
-            <div className="flex items-center gap-2 justify-end">
+            <div className="flex items-center gap-2 justify-end shrink-0 pt-1 md:pt-0 border-t md:border-t-0 border-slate-100">
               <button
                 onClick={() => { store.loadDemoData(locale); handleRefreshReport(); }}
                 className="text-xs font-bold px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 transition-colors shadow-xs"
               >
-                ✨ Demo Verisi Yükle
+                ✨ Demo Verisi
               </button>
               <button
                 onClick={() => { store.resetData(); setActiveTab('profile'); }}
@@ -415,6 +595,24 @@ export default function Home() {
 
       {/* 3. Main Content Container */}
       <main className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-8">
+        {/* Guest Welcome Banner for Unauthenticated Visitors */}
+        {!isSignedIn && !isBannerDismissed && (
+          <GuestWelcomeBanner
+            onOpenTour={() => setIsGuestTourOpen(true)}
+            onStartDemo={() => {
+              store.loadDemoData(locale);
+              handleRefreshReport();
+              setActiveTab('profile');
+            }}
+            onDismiss={() => {
+              setIsBannerDismissed(true);
+              try {
+                sessionStorage.setItem('cappinno_guest_banner_dismissed', 'true');
+              } catch (e) {}
+            }}
+          />
+        )}
+
         {/* TAB 1: Kurum & Katilimci Profili */}
         {activeTab === 'profile' && (
           <div className="space-y-8 animate-in fade-in duration-150">
@@ -449,16 +647,24 @@ export default function Home() {
                     mobilityGoal,
                     participantName,
                     language,
-                    country,
-                    duration,
+                    targetCountries,
+                    startDate,
+                    endDate,
+                    participantCount,
+                    accompanyingPersonsCount,
+                    ageGroup,
                   }}
                   onChange={(field, val) => {
                     if (field === 'participantType') setParticipantType(val as ParticipantType);
                     if (field === 'mobilityGoal') setMobilityGoal(val as MobilityGoal);
                     if (field === 'participantName') setParticipantName(val as string);
                     if (field === 'language') setLanguage(val as number);
-                    if (field === 'country') setCountry(val as string);
-                    if (field === 'duration') setDuration(val as string);
+                    if (field === 'targetCountries') setTargetCountries(val as string[]);
+                    if (field === 'startDate') setStartDate(val as string);
+                    if (field === 'endDate') setEndDate(val as string);
+                    if (field === 'participantCount') setParticipantCount(val as number);
+                    if (field === 'accompanyingPersonsCount') setAccompanyingPersonsCount(val as number);
+                    if (field === 'ageGroup') setAgeGroup(val);
                   }}
                 />
               </div>
@@ -514,20 +720,40 @@ export default function Home() {
           </div>
         )}
 
-        {/* TAB 3: Karar Motoru & Host Eslestirme */}
+        {/* TAB 3: Host Eslestirme & Karar Motoru */}
         {activeTab === 'matching' && (
           <div className="space-y-8 animate-in fade-in duration-150">
-            <DecisionEngineCard
-              decision={decisionResult}
-              onMakeDecision={handleMakeDecision}
+            {/* Step 5: Mandatory Eligibility Gatekeeper */}
+            <EligibilityGatekeeperCard
+              data={{
+                accredited,
+                participantCount: eligibilityParticipantCount,
+                projectDurationMonths: eligibilityDurationMonths,
+                pastKa122GrantsCount: eligibilityPastGrants,
+                mobilityStrategy: eligibilityStrategy,
+              }}
+              onChange={setEligibilityField}
             />
 
+            {/* Step 6: 10-Criteria Host Matching & Scoring */}
             <HostMatchingCard
               data={{
                 hostName,
                 hostCountry,
                 hostType,
                 hostMetrics,
+              }}
+              schoolProfile={{
+                projectType: accredited === 'yes' ? 'KA121' : 'KA122',
+                targetCountries,
+                mobilityGoal,
+                participantType,
+                participantCount,
+                accompanyingPersonsCount,
+                ageGroup,
+                vetField,
+                iscedCode,
+                languages: language ? ['EN'] : ['EN'],
               }}
               scoreResult={hostScoreResult}
               onChangeHostInfo={(field, val) => {
@@ -539,9 +765,29 @@ export default function Home() {
                 setHostMetrics((prev: any) => ({ ...prev, [metricId]: val }))
               }
               onScoreHost={handleScoreHost}
+              onSelectMatchedHost={(candidate) => {
+                setHostName(candidate.hostName);
+                setHostCountry(candidate.countryCode);
+                if (candidate.organisationType) {
+                  setHostType(candidate.organisationType as HostType);
+                }
+                handleScoreHost(candidate.compositeScore);
+              }}
             />
 
+            {/* Step 7: 8-Factor KA120 / KA121 / KA122 Decision Engine */}
+            <DecisionEngineCard
+              decision={decisionResult}
+              onMakeDecision={handleMakeDecision}
+            />
+
+            {/* Step 8: EU Partner & Host Finding Gateway */}
             <PartnerFindingCard />
+
+            {/* Step 9: Gönderilen Hareketlilik Talepleri / Sent Inquiries Tracker */}
+            <div id="sent-inquiries">
+              <SentInquiriesCard />
+            </div>
           </div>
         )}
 
@@ -581,7 +827,12 @@ export default function Home() {
                 participantType,
                 participantName,
                 mobilityGoal,
-                duration,
+                targetCountries,
+                startDate,
+                endDate,
+                participantCount,
+                accompanyingPersonsCount,
+                ageGroup,
                 iscedName,
                 iscedCode,
                 escoTerm,
@@ -601,6 +852,13 @@ export default function Home() {
               onSaveLocal={handleSaveLocal}
               onLoadLocal={handleLoadLocal}
               onExportJson={handleExportJson}
+              onNavigateToSent={() => {
+                setActiveTab('matching');
+                setTimeout(() => {
+                  const el = document.getElementById('sent-inquiries');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 150);
+              }}
             />
 
             <OfficialResourcesCard />
@@ -643,9 +901,36 @@ export default function Home() {
           )}
         </div>
       </main>
+        </>
+      )}
 
       {/* 5. Institutional Footer */}
       <AppFooter />
+
+      {/* 6. Cookie Consent Banner */}
+      <CookieBanner onManagePreferences={() => setIsCookieLegalOpen(true)} />
+
+      {/* Direct Cookie Preferences Modal */}
+      <LegalModal
+        isOpen={isCookieLegalOpen}
+        onClose={() => setIsCookieLegalOpen(false)}
+        initialTab="COOKIES"
+      />
+
+      {/* Interactive Guest Onboarding Modal */}
+      <GuestOnboardingModal
+        isOpen={isGuestTourOpen}
+        onClose={() => setIsGuestTourOpen(false)}
+        onStartDemo={(role) => {
+          if (role === 'SCHOOL') {
+            if (isAdmin) setAdminSimulationMode('SCHOOL');
+            handleRefreshReport();
+            setActiveTab('profile');
+          } else if (role === 'HOST') {
+            if (isAdmin) setAdminSimulationMode('HOST');
+          }
+        }}
+      />
     </div>
   );
 }

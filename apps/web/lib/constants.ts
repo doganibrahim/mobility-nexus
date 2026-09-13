@@ -53,7 +53,7 @@ export const THEMES: Record<string, ThemeConfig> = {
     primary: '#013399',
     secondary: '#F4CB1D',
     accent: '#E8E8E8',
-    description: 'Resmî Erasmus+ logosundan ilham alan AB Mavisi (#013399), Erasmus Sarısı (#F4CB1D) ve Açık Gri (#E8E8E8).',
+    description: 'Resmi Erasmus+ logosundan ilham alan AB Mavisi (#013399), Erasmus Sarısı (#F4CB1D) ve Açık Gri (#E8E8E8).',
   },
 };
 
@@ -287,16 +287,16 @@ export const ASSESSMENT_QUESTIONS: Question[] = [
 ];
 
 export const HOST_METRIC_CONFIG = [
-  { id: 'h1', label: 'Mesleki Alan Uyumu', weight: 20, defaultVal: 80 },
-  { id: 'h2', label: 'Öğrenme Kazanımları Kapasitesi', weight: 15, defaultVal: 80 },
-  { id: 'h3', label: 'Teknik ve Laboratuvar Altyapısı', weight: 10, defaultVal: 80 },
-  { id: 'h4', label: 'Erasmus+ Proje Deneyimi', weight: 10, defaultVal: 60 },
-  { id: 'h5', label: 'İngilizce / Çalışma Dili İletişimi', weight: 10, defaultVal: 70 },
-  { id: 'h6', label: 'Öğrenici / Stajyer Kabul Kapasitesi', weight: 10, defaultVal: 70 },
-  { id: 'h7', label: 'Öğretmen İşbaşı Gözlem Kapasitesi', weight: 5, defaultVal: 70 },
-  { id: 'h8', label: 'Mentor ve Eğitici Desteği', weight: 10, defaultVal: 80 },
-  { id: 'h9', label: 'İSG ve Güvenlik Standartları', weight: 5, defaultVal: 80 },
-  { id: 'h10', label: 'Uzun Dönemli İşbirliği İsteği', weight: 5, defaultVal: 70 },
+  { id: 'h1', label: 'Mesleki Alan Uyumu', labelTr: 'Mesleki Alan Uyumu', labelEn: 'Vocational Field Alignment', weight: 20, defaultVal: 80 },
+  { id: 'h2', label: 'Öğrenme Kazanımları Kapasitesi', labelTr: 'Öğrenme Kazanımları Kapasitesi', labelEn: 'Learning Outcomes Capacity', weight: 15, defaultVal: 80 },
+  { id: 'h3', label: 'Teknik ve Laboratuvar Altyapısı', labelTr: 'Teknik ve Laboratuvar Altyapısı', labelEn: 'Technical & Lab Infrastructure', weight: 10, defaultVal: 80 },
+  { id: 'h4', label: 'Erasmus+ Proje Deneyimi', labelTr: 'Erasmus+ Proje Deneyimi', labelEn: 'Erasmus+ Project Experience', weight: 10, defaultVal: 60 },
+  { id: 'h5', label: 'İngilizce / Çalışma Dili İletişimi', labelTr: 'İngilizce / Çalışma Dili İletişimi', labelEn: 'English / Working Language Communication', weight: 10, defaultVal: 70 },
+  { id: 'h6', label: 'Öğrenici / Stajyer Kabul Kapasitesi', labelTr: 'Öğrenici / Stajyer Kabul Kapasitesi', labelEn: 'Learner / Trainee Hosting Capacity', weight: 10, defaultVal: 70 },
+  { id: 'h7', label: 'Öğretmen İşbaşı Gözlem Kapasitesi', labelTr: 'Öğretmen İşbaşı Gözlem Kapasitesi', labelEn: 'Staff Job Shadowing Capacity', weight: 5, defaultVal: 70 },
+  { id: 'h8', label: 'Mentor ve Eğitici Desteği', labelTr: 'Mentor ve Eğitici Desteği', labelEn: 'Mentorship & Trainer Support', weight: 10, defaultVal: 80 },
+  { id: 'h9', label: 'İSG ve Güvenlik Standartları', labelTr: 'İSG ve Güvenlik Standartları', labelEn: 'OHS & Safety Standards', weight: 5, defaultVal: 80 },
+  { id: 'h10', label: 'Uzun Dönemli İşbirliği İsteği', labelTr: 'Uzun Dönemli İşbirliği İsteği', labelEn: 'Long-Term Partnership Commitment', weight: 5, defaultVal: 70 },
 ] as const;
 
 export const DECISION_WEIGHTS = [
@@ -329,3 +329,161 @@ export const PARTNER_FUNNEL = [
   { step: '4', source: 'Kuruluş Web Sitesi & Doğrulama', query: 'Teknik kapasite, mentor varlığı, dil, İSG', output: 'Kısa Liste (Shortlist)' },
   { step: '5', source: 'Mutabakat & Görev Dağılımı', query: 'Öğrenme programı ve kalite taahhüdü', output: '1–2 kesinleşmiş Ev Sahibi' },
 ];
+
+export interface OfficialActivityConfig {
+  code: string;
+  category: 'VET_LEARNER' | 'STAFF' | 'HOSTED' | 'PROJECT_TEAM';
+  categoryLabelTr: string;
+  categoryLabelEn: string;
+  participantRoleTr: string;
+  participantRoleEn: string;
+  nameTr: string;
+  nameEn: string;
+  minDays: number;
+  maxDays: number;
+  ruleDescriptionTr: string;
+  ruleDescriptionEn: string;
+}
+
+export const OFFICIAL_VET_ACTIVITIES: Record<string, OfficialActivityConfig> = {
+  VET_SKILLS_COMPETITION: {
+    code: 'VET_SKILLS_COMPETITION',
+    category: 'VET_LEARNER',
+    categoryLabelTr: 'VET Öğrenici Hareketliliği',
+    categoryLabelEn: 'VET Learner Mobility',
+    participantRoleTr: 'VET Öğrencisi',
+    participantRoleEn: 'VET Learner',
+    nameTr: 'Mesleki Beceri Yarışmasına Katılım (1–10 gün)',
+    nameEn: 'Participation in VET skills competitions (1–10 days)',
+    minDays: 1,
+    maxDays: 10,
+    ruleDescriptionTr: 'Mesleki eğitim öğrenicilerinin uluslararası beceri yarışmalarına katılımı (1–10 gün).',
+    ruleDescriptionEn: 'Participation of VET learners in international skills competitions (1–10 days).',
+  },
+  VET_GROUP_MOBILITY: {
+    code: 'VET_GROUP_MOBILITY',
+    category: 'VET_LEARNER',
+    categoryLabelTr: 'VET Öğrenici Hareketliliği',
+    categoryLabelEn: 'VET Learner Mobility',
+    participantRoleTr: 'VET Öğrencileri',
+    participantRoleEn: 'VET Learners (Group)',
+    nameTr: 'Grup Hareketliliği (2–30 gün)',
+    nameEn: 'Group mobility of VET learners (2–30 days)',
+    minDays: 2,
+    maxDays: 30,
+    ruleDescriptionTr: 'VET öğrenicilerinin ortak kurumdaki akranlarıyla birlikte grupça öğrenme faaliyeti (2–30 gün, en az 2 öğrenici).',
+    ruleDescriptionEn: 'Group learning activity with peers at host institution (2–30 days, min 2 learners).',
+  },
+  VET_SHORT_TERM: {
+    code: 'VET_SHORT_TERM',
+    category: 'VET_LEARNER',
+    categoryLabelTr: 'VET Öğrenici Hareketliliği',
+    categoryLabelEn: 'VET Learner Mobility',
+    participantRoleTr: 'VET Öğrencisi',
+    participantRoleEn: 'VET Learner',
+    nameTr: 'Kısa Dönemli Bireysel Öğrenme Hareketliliği (10–89 gün)',
+    nameEn: 'Short-term learning mobility of VET learners (10–89 days)',
+    minDays: 10,
+    maxDays: 89,
+    ruleDescriptionTr: 'VET öğrenicilerinin ev sahibi işletmede veya mesleki okulda iş temelli stajı (10–89 gün).',
+    ruleDescriptionEn: 'Work-based internship or vocational school learning (10–89 days).',
+  },
+  VET_LONG_TERM_PRO: {
+    code: 'VET_LONG_TERM_PRO',
+    category: 'VET_LEARNER',
+    categoryLabelTr: 'VET Öğrenici Hareketliliği',
+    categoryLabelEn: 'VET Learner Mobility',
+    participantRoleTr: 'VET Öğrencisi',
+    participantRoleEn: 'VET Learner (ErasmusPro)',
+    nameTr: 'ErasmusPro Uzun Dönemli Hareketlilik (90–365 gün)',
+    nameEn: 'ErasmusPro long-term mobility of VET learners (90–365 days)',
+    minDays: 90,
+    maxDays: 365,
+    ruleDescriptionTr: 'VET öğrenicileri ve yeni mezunlar için kapsamlı işbaşı staj (90–365 gün).',
+    ruleDescriptionEn: 'Comprehensive long-term work-based placement (90–365 days).',
+  },
+  JOB_SHADOWING: {
+    code: 'JOB_SHADOWING',
+    category: 'STAFF',
+    categoryLabelTr: 'Personel Hareketliliği',
+    categoryLabelEn: 'Staff Mobility',
+    participantRoleTr: 'Personel / Öğretmen',
+    participantRoleEn: 'Staff / Teacher',
+    nameTr: 'İşbaşı Gözlem / Job Shadowing (2–60 gün)',
+    nameEn: 'Job shadowing (2–60 days)',
+    minDays: 2,
+    maxDays: 60,
+    ruleDescriptionTr: 'Personelin ev sahibi işletmede veya okulda iyi uygulamaları ve süreçleri gözlemlemesi (2–60 gün).',
+    ruleDescriptionEn: 'Observation of practices and processes at host partner (2–60 days).',
+  },
+  TEACHING_ASSIGNMENT: {
+    code: 'TEACHING_ASSIGNMENT',
+    category: 'STAFF',
+    categoryLabelTr: 'Personel Hareketliliği',
+    categoryLabelEn: 'Staff Mobility',
+    participantRoleTr: 'Personel / Öğretmen',
+    participantRoleEn: 'Staff / Teacher',
+    nameTr: 'Öğretme veya Eğitim Görevlendirmesi (2–365 gün)',
+    nameEn: 'Teaching or training assignments (2–365 days)',
+    minDays: 2,
+    maxDays: 365,
+    ruleDescriptionTr: 'Eğitici veya personelin ortak kurumda ders verme ya da eğitim yürütme görevi (2–365 gün).',
+    ruleDescriptionEn: 'Staff delivering teaching or training at a partner institution (2–365 days).',
+  },
+  STAFF_COURSE_TRAINING: {
+    code: 'STAFF_COURSE_TRAINING',
+    category: 'STAFF',
+    categoryLabelTr: 'Personel Hareketliliği',
+    categoryLabelEn: 'Staff Mobility',
+    participantRoleTr: 'Personel / Öğretmen',
+    participantRoleEn: 'Staff / Teacher',
+    nameTr: 'Kurs ve Eğitim (2–10 gün)',
+    nameEn: 'Courses and training (2–10 days)',
+    minDays: 2,
+    maxDays: 10,
+    ruleDescriptionTr: 'Mesleki eğitim personelinin yapılandırılmış uzmanlık kurslarına katılımı (2–10 gün).',
+    ruleDescriptionEn: 'Participation of VET staff in structured training courses (2–10 days).',
+  },
+  INVITED_EXPERT: {
+    code: 'INVITED_EXPERT',
+    category: 'HOSTED',
+    categoryLabelTr: 'Kuruma Gelen Katılımcılar',
+    categoryLabelEn: 'Hosted Participants',
+    participantRoleTr: 'Kuruma Gelen',
+    participantRoleEn: 'Hosted Expert',
+    nameTr: 'Davetli Uzman / Invited Expert (2–60 gün)',
+    nameEn: 'Invited experts (2–60 days)',
+    minDays: 2,
+    maxDays: 60,
+    ruleDescriptionTr: 'Yurt dışından okulunuza davet edilen sektör profesyonelleri veya eğitmenler (2–60 gün).',
+    ruleDescriptionEn: 'Trainers or industry experts invited from abroad to your institution (2–60 days).',
+  },
+  HOSTING_TEACHERS: {
+    code: 'HOSTING_TEACHERS',
+    category: 'HOSTED',
+    categoryLabelTr: 'Kuruma Gelen Katılımcılar',
+    categoryLabelEn: 'Hosted Participants',
+    participantRoleTr: 'Kuruma Gelen',
+    participantRoleEn: 'Hosted Teacher-in-Training',
+    nameTr: 'Öğretmen/Eğitimci Adayına Ev Sahipliği (10–365 gün)',
+    nameEn: 'Hosting teachers and educators in training (10–365 days)',
+    minDays: 10,
+    maxDays: 365,
+    ruleDescriptionTr: 'Yurt dışındaki öğretmenlik/eğitmenlik öğrencilerinin kurumunuzda staj yapması (10–365 gün).',
+    ruleDescriptionEn: 'Hosting prospective teachers from abroad for placements at your school (10–365 days).',
+  },
+  PREPARATORY_VISIT: {
+    code: 'PREPARATORY_VISIT',
+    category: 'PROJECT_TEAM',
+    categoryLabelTr: 'Proje Ekibi',
+    categoryLabelEn: 'Project Team',
+    participantRoleTr: 'Proje Ekibi',
+    participantRoleEn: 'Project Team',
+    nameTr: 'Hazırlık Ziyareti (Maks. 3 kişi)',
+    nameEn: 'Preparatory visit (Max 3 persons)',
+    minDays: 1,
+    maxDays: 5,
+    ruleDescriptionTr: 'Ev sahibi başına bir ziyaret; hareketlilik öncesi teknik ve idari mutabakat için en fazla 3 kişi.',
+    ruleDescriptionEn: 'One visit per host institution; max 3 persons for pre-mobility preparation.',
+  },
+};

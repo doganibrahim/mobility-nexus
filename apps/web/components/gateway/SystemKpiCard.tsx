@@ -5,7 +5,7 @@ import NeoCard from '../ui/NeoCard';
 import { useTranslation } from '../../lib/i18n';
 
 export default function SystemKpiCard() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   return (
     <NeoCard
@@ -105,7 +105,7 @@ export default function SystemKpiCard() {
               </p>
             </div>
             <div className="mt-4 pt-2.5 border-t border-slate-200/60 text-[11px] font-medium text-slate-500">
-              Çıktı: Başvuru Dosyası & PDF
+              {locale === 'tr' ? 'Çıktı: Planlama Raporu & PDF' : 'Output: Planning Report & PDF'}
             </div>
           </div>
         </div>

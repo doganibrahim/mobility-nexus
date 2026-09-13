@@ -1,0 +1,322 @@
+[
+  {
+    "il": "ADANA",
+    "ilce": "SEYHAN",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "971738",
+    "kurumAdi": "Adana Olgunlaşma Enstitüsü",
+    "eposta": "971738@meb.k12.tr",
+    "webSitesi": "https://adanaolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "AFYON",
+    "ilce": "MERKEZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "772298",
+    "kurumAdi": "Afyonkarahisar Olgunlaşma Enstitüsü",
+    "eposta": "772298@meb.k12.tr",
+    "webSitesi": "https://afyonkarahisarolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "AMASYA",
+    "ilce": "MERKEZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "775019",
+    "kurumAdi": "Amasya Olgunlaşma Enstitüsü",
+    "eposta": "775019@meb.k12.tr",
+    "webSitesi": "https://amasyaolgunlasmaenstitusu.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "ANKARA",
+    "ilce": "ALTINDAĞ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "972455",
+    "kurumAdi": "Ankara Olgunlaşma Enstitüsü",
+    "eposta": "972455@meb.k12.tr",
+    "webSitesi": "https://ankaraolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "ANTALYA",
+    "ilce": "MURATPAŞA",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "972206",
+    "kurumAdi": "Antalya Olgunlaşma Enstitüsü",
+    "eposta": "972206@meb.k12.tr",
+    "webSitesi": "https://antalyaolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "BALIKESİR",
+    "ilce": "KARESİ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "769489",
+    "kurumAdi": "Balıkesir Olgunlaşma Enstitüsü",
+    "eposta": "769489@meb.k12.tr",
+    "webSitesi": "https://balikesirolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "BURSA",
+    "ilce": "OSMANGAZİ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "966823",
+    "kurumAdi": "Bursa Olgunlaşma Enstitüsü",
+    "eposta": "966823@meb.k12.tr",
+    "webSitesi": "https://bursaolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "DİYARBAKIR",
+    "ilce": "YENİŞEHİR",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "967729",
+    "kurumAdi": "Diyarbakır Olgunlaşma Enstitüsü",
+    "eposta": "967729@meb.k12.tr",
+    "webSitesi": "https://diyarbakirolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "EDİRNE",
+    "ilce": "MERKEZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "769557",
+    "kurumAdi": "Edirne Olgunlaşma Enstitüsü",
+    "eposta": "769557@meb.k12.tr",
+    "webSitesi": "https://edirneolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "ERZURUM",
+    "ilce": "YAKUTİYE",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "765936",
+    "kurumAdi": "Erzurum Olgunlaşma Enstitüsü",
+    "eposta": "765936@meb.k12.tr",
+    "webSitesi": "https://erzurumolgunlasmaenstitusu.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "ESKİŞEHİR",
+    "ilce": "ODUNPAZARI",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "967732",
+    "kurumAdi": "Eskişehir Olgunlaşma Enstitüsü",
+    "eposta": "967732@meb.k12.tr",
+    "webSitesi": "https://eskolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "GAZİANTEP",
+    "ilce": "ŞAHİNBEY",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "763501",
+    "kurumAdi": "Nurel Enver Taner Gaziantep Olgunlaşma Enstitüsü",
+    "eposta": "763501@meb.k12.tr",
+    "webSitesi": "https://antepolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "KAHRAMANMARAŞ",
+    "ilce": "DULKADİROĞLU",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "764438",
+    "kurumAdi": "Kahramanmaraş Olgunlaşma Enstitüsü",
+    "eposta": "764438@meb.k12.tr",
+    "webSitesi": "https://kmarasolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "KASTAMONU",
+    "ilce": "MERKEZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "769494",
+    "kurumAdi": "Kastamonu Olgunlaşma Enstitüsü",
+    "eposta": "769494@meb.k12.tr",
+    "webSitesi": "https://kastamonuolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "KAYSERİ",
+    "ilce": "KOCASİNAN",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "169835",
+    "kurumAdi": "Kayseri Olgunlaşma Enstitüsü",
+    "eposta": "169835@meb.k12.tr",
+    "webSitesi": "https://kayseriolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "KIRKLARELİ",
+    "ilce": "MERKEZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "762978",
+    "kurumAdi": "Kırklareli Olgunlaşma Enstitüsü",
+    "eposta": "762978@meb.k12.tr",
+    "webSitesi": "https://olgunlasma39.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "KONYA",
+    "ilce": "MERAM",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "972426",
+    "kurumAdi": "Konya Olgunlaşma Enstitüsü",
+    "eposta": "972426@meb.k12.tr",
+    "webSitesi": "https://konyaolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "KÜTAHYA",
+    "ilce": "MERKEZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "761541",
+    "kurumAdi": "Kütahya Olgunlaşma Enstitüsü",
+    "eposta": "761541@meb.k12.tr",
+    "webSitesi": "https://kutahyaolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "MARDİN",
+    "ilce": "ARTUKLU",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "973173",
+    "kurumAdi": "Mardin Olgunlaşma Enstitüsü",
+    "eposta": "973173@meb.k12.tr",
+    "webSitesi": "https://mardinolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "MERSİN",
+    "ilce": "AKDENİZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "973192",
+    "kurumAdi": "Mersin Olgunlaşma Enstitüsü",
+    "eposta": "973192@meb.k12.tr",
+    "webSitesi": "https://mersinolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "MUĞLA",
+    "ilce": "MENTEŞE",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "764771",
+    "kurumAdi": "Muğla Olgunlaşma Enstitüsü",
+    "eposta": "764771@meb.k12.tr",
+    "webSitesi": "https://muglaolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "ORDU",
+    "ilce": "ALTINORDU",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "774336",
+    "kurumAdi": "Ordu Olgunlaşma Enstitüsü",
+    "eposta": "774336@meb.k12.tr",
+    "webSitesi": "https://orduolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "SAMSUN",
+    "ilce": "İLKADIM",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "967721",
+    "kurumAdi": "Samsun Olgunlaşma Enstitüsü",
+    "eposta": "967721@meb.k12.tr",
+    "webSitesi": "https://samsunolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "SİVAS",
+    "ilce": "MERKEZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "764825",
+    "kurumAdi": "Sivas Olgunlaşma Enstitüsü",
+    "eposta": "764825@meb.k12.tr",
+    "webSitesi": "https://sivasolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "SİİRT",
+    "ilce": "MERKEZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "769490",
+    "kurumAdi": "Siirt Olgunlaşma Enstitüsü",
+    "eposta": "769490@meb.k12.tr",
+    "webSitesi": "https://siirtolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "TOKAT",
+    "ilce": "MERKEZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "763236",
+    "kurumAdi": "Tokat Olgunlaşma Enstitüsü",
+    "eposta": "763236@meb.k12.tr",
+    "webSitesi": "https://tokatolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "TRABZON",
+    "ilce": "ORTAHİSAR",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "202971",
+    "kurumAdi": "Trabzon Olgunlaşma Enstitüsü",
+    "eposta": "202971@meb.k12.tr",
+    "webSitesi": "https://trabzonolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "VAN",
+    "ilce": "TUŞBA",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "765944",
+    "kurumAdi": "Van Olgunlaşma Enstitüsü",
+    "eposta": "765944@meb.k12.tr",
+    "webSitesi": "https://vanolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "ZONGULDAK",
+    "ilce": "MERKEZ",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "769486",
+    "kurumAdi": "Zonguldak Olgunlaşma Enstitüsü",
+    "eposta": "769486@meb.k12.tr",
+    "webSitesi": "https://zonguldakolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "İSTANBUL",
+    "ilce": "BEYOĞLU",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "159342",
+    "kurumAdi": "İstanbul Beyoğlu Refia Övüç Olgunlaşma Enstitüsü",
+    "eposta": "159342@meb.k12.tr",
+    "webSitesi": "https://beyogluolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "İSTANBUL",
+    "ilce": "ÜSKÜDAR",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "215177",
+    "kurumAdi": "İstanbul Beylerbeyi Sabancı Olgunlaşma Enstitüsü",
+    "eposta": "215177@meb.k12.tr",
+    "webSitesi": "https://sabanciolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  },
+  {
+    "il": "İZMİR",
+    "ilce": "KONAK",
+    "okulTuru": "Olgunlaşma Enstitüsü",
+    "kurumKodu": "972392",
+    "kurumAdi": "İzmir Olgunlaşma Enstitüsü",
+    "eposta": "972392@meb.k12.tr",
+    "webSitesi": "https://izmirolgunlasma.meb.k12.tr/",
+    "veriTarihi": "2025-12-28"
+  }
+]

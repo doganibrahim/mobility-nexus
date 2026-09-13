@@ -1,0 +1,812 @@
+[
+  {
+    "il": "ADANA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-01",
+    "kurumAdi": "Adana İl Milli Eğitim Müdürlüğü",
+    "eposta": "adanamem@meb.gov.tr",
+    "webSitesi": "https://adana.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ADIYAMAN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-02",
+    "kurumAdi": "Adiyaman İl Milli Eğitim Müdürlüğü",
+    "eposta": "adiyamanmem@meb.gov.tr",
+    "webSitesi": "https://adiyaman.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "AFYONKARAHİSAR",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-03",
+    "kurumAdi": "Afyonkarahi̇sar İl Milli Eğitim Müdürlüğü",
+    "eposta": "afyonkarahisarmem@meb.gov.tr",
+    "webSitesi": "https://afyonkarahisar.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "AĞRI",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-04",
+    "kurumAdi": "Ağri İl Milli Eğitim Müdürlüğü",
+    "eposta": "agrimem@meb.gov.tr",
+    "webSitesi": "https://agri.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "AKSARAY",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-05",
+    "kurumAdi": "Aksaray İl Milli Eğitim Müdürlüğü",
+    "eposta": "aksaraymem@meb.gov.tr",
+    "webSitesi": "https://aksaray.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "AMASYA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-06",
+    "kurumAdi": "Amasya İl Milli Eğitim Müdürlüğü",
+    "eposta": "amasyamem@meb.gov.tr",
+    "webSitesi": "https://amasya.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ANKARA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-07",
+    "kurumAdi": "Ankara İl Milli Eğitim Müdürlüğü",
+    "eposta": "ankaramem@meb.gov.tr",
+    "webSitesi": "https://ankara.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ANTALYA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-08",
+    "kurumAdi": "Antalya İl Milli Eğitim Müdürlüğü",
+    "eposta": "antalyamem@meb.gov.tr",
+    "webSitesi": "https://antalya.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ARDAHAN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-09",
+    "kurumAdi": "Ardahan İl Milli Eğitim Müdürlüğü",
+    "eposta": "ardahanmem@meb.gov.tr",
+    "webSitesi": "https://ardahan.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ARTVİN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-10",
+    "kurumAdi": "Artvi̇n İl Milli Eğitim Müdürlüğü",
+    "eposta": "artvinmem@meb.gov.tr",
+    "webSitesi": "https://artvin.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "AYDIN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-11",
+    "kurumAdi": "Aydin İl Milli Eğitim Müdürlüğü",
+    "eposta": "aydinmem@meb.gov.tr",
+    "webSitesi": "https://aydin.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "BALIKESİR",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-12",
+    "kurumAdi": "Balikesi̇r İl Milli Eğitim Müdürlüğü",
+    "eposta": "balikesirmem@meb.gov.tr",
+    "webSitesi": "https://balikesir.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "BARTIN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-13",
+    "kurumAdi": "Bartin İl Milli Eğitim Müdürlüğü",
+    "eposta": "bartinmem@meb.gov.tr",
+    "webSitesi": "https://bartin.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "BATMAN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-14",
+    "kurumAdi": "Batman İl Milli Eğitim Müdürlüğü",
+    "eposta": "batmanmem@meb.gov.tr",
+    "webSitesi": "https://batman.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "BAYBURT",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-15",
+    "kurumAdi": "Bayburt İl Milli Eğitim Müdürlüğü",
+    "eposta": "bayburtmem@meb.gov.tr",
+    "webSitesi": "https://bayburt.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "BİLECİK",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-16",
+    "kurumAdi": "Bi̇leci̇k İl Milli Eğitim Müdürlüğü",
+    "eposta": "bilecikmem@meb.gov.tr",
+    "webSitesi": "https://bilecik.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "BİNGÖL",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-17",
+    "kurumAdi": "Bi̇ngöl İl Milli Eğitim Müdürlüğü",
+    "eposta": "bingolmem@meb.gov.tr",
+    "webSitesi": "https://bingol.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "BİTLİS",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-18",
+    "kurumAdi": "Bi̇tli̇s İl Milli Eğitim Müdürlüğü",
+    "eposta": "bitlismem@meb.gov.tr",
+    "webSitesi": "https://bitlis.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "BOLU",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-19",
+    "kurumAdi": "Bolu İl Milli Eğitim Müdürlüğü",
+    "eposta": "bolumem@meb.gov.tr",
+    "webSitesi": "https://bolu.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "BURDUR",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-20",
+    "kurumAdi": "Burdur İl Milli Eğitim Müdürlüğü",
+    "eposta": "burdurmem@meb.gov.tr",
+    "webSitesi": "https://burdur.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "BURSA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-21",
+    "kurumAdi": "Bursa İl Milli Eğitim Müdürlüğü",
+    "eposta": "bursamem@meb.gov.tr",
+    "webSitesi": "https://bursa.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ÇANAKKALE",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-22",
+    "kurumAdi": "Çanakkale İl Milli Eğitim Müdürlüğü",
+    "eposta": "canakkalemem@meb.gov.tr",
+    "webSitesi": "https://canakkale.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ÇANKIRI",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-23",
+    "kurumAdi": "Çankiri İl Milli Eğitim Müdürlüğü",
+    "eposta": "cankirimem@meb.gov.tr",
+    "webSitesi": "https://cankiri.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ÇORUM",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-24",
+    "kurumAdi": "Çorum İl Milli Eğitim Müdürlüğü",
+    "eposta": "corummem@meb.gov.tr",
+    "webSitesi": "https://corum.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "DENİZLİ",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-25",
+    "kurumAdi": "Deni̇zli̇ İl Milli Eğitim Müdürlüğü",
+    "eposta": "denizlimem@meb.gov.tr",
+    "webSitesi": "https://denizli.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "DİYARBAKIR",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-26",
+    "kurumAdi": "Di̇yarbakir İl Milli Eğitim Müdürlüğü",
+    "eposta": "diyarbakirmem@meb.gov.tr",
+    "webSitesi": "https://diyarbakir.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "DÜZCE",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-27",
+    "kurumAdi": "Düzce İl Milli Eğitim Müdürlüğü",
+    "eposta": "duzcemem@meb.gov.tr",
+    "webSitesi": "https://duzce.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "EDİRNE",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-28",
+    "kurumAdi": "Edi̇rne İl Milli Eğitim Müdürlüğü",
+    "eposta": "edirnemem@meb.gov.tr",
+    "webSitesi": "https://edirne.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ELAZIĞ",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-29",
+    "kurumAdi": "Elaziğ İl Milli Eğitim Müdürlüğü",
+    "eposta": "elazigmem@meb.gov.tr",
+    "webSitesi": "https://elazig.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ERZİNCAN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-30",
+    "kurumAdi": "Erzi̇ncan İl Milli Eğitim Müdürlüğü",
+    "eposta": "erzincanmem@meb.gov.tr",
+    "webSitesi": "https://erzincan.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ERZURUM",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-31",
+    "kurumAdi": "Erzurum İl Milli Eğitim Müdürlüğü",
+    "eposta": "erzurummem@meb.gov.tr",
+    "webSitesi": "https://erzurum.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ESKİŞEHİR",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-32",
+    "kurumAdi": "Eski̇şehi̇r İl Milli Eğitim Müdürlüğü",
+    "eposta": "eskisehirmem@meb.gov.tr",
+    "webSitesi": "https://eskisehir.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "GAZİANTEP",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-33",
+    "kurumAdi": "Gazi̇antep İl Milli Eğitim Müdürlüğü",
+    "eposta": "gaziantepmem@meb.gov.tr",
+    "webSitesi": "https://gaziantep.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "GİRESUN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-34",
+    "kurumAdi": "Gi̇resun İl Milli Eğitim Müdürlüğü",
+    "eposta": "giresunmem@meb.gov.tr",
+    "webSitesi": "https://giresun.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "GÜMÜŞHANE",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-35",
+    "kurumAdi": "Gümüşhane İl Milli Eğitim Müdürlüğü",
+    "eposta": "gumushanemem@meb.gov.tr",
+    "webSitesi": "https://gumushane.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "HAKKARİ",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-36",
+    "kurumAdi": "Hakkari̇ İl Milli Eğitim Müdürlüğü",
+    "eposta": "hakkarimem@meb.gov.tr",
+    "webSitesi": "https://hakkari.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "HATAY",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-37",
+    "kurumAdi": "Hatay İl Milli Eğitim Müdürlüğü",
+    "eposta": "hataymem@meb.gov.tr",
+    "webSitesi": "https://hatay.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "IĞDIR",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-38",
+    "kurumAdi": "Iğdir İl Milli Eğitim Müdürlüğü",
+    "eposta": "igdirmem@meb.gov.tr",
+    "webSitesi": "https://igdir.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ISPARTA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-39",
+    "kurumAdi": "Isparta İl Milli Eğitim Müdürlüğü",
+    "eposta": "ispartamem@meb.gov.tr",
+    "webSitesi": "https://isparta.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "İSTANBUL",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-40",
+    "kurumAdi": "İstanbul İl Milli Eğitim Müdürlüğü",
+    "eposta": "istanbulmem@meb.gov.tr",
+    "webSitesi": "https://istanbul.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "İZMİR",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-41",
+    "kurumAdi": "İzmi̇r İl Milli Eğitim Müdürlüğü",
+    "eposta": "izmirmem@meb.gov.tr",
+    "webSitesi": "https://izmir.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KAHRAMANMARAŞ",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-42",
+    "kurumAdi": "Kahramanmaraş İl Milli Eğitim Müdürlüğü",
+    "eposta": "kahramanmarasmem@meb.gov.tr",
+    "webSitesi": "https://kahramanmaras.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KARABÜK",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-43",
+    "kurumAdi": "Karabük İl Milli Eğitim Müdürlüğü",
+    "eposta": "karabukmem@meb.gov.tr",
+    "webSitesi": "https://karabuk.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KARAMAN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-44",
+    "kurumAdi": "Karaman İl Milli Eğitim Müdürlüğü",
+    "eposta": "karamanmem@meb.gov.tr",
+    "webSitesi": "https://karaman.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KARS",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-45",
+    "kurumAdi": "Kars İl Milli Eğitim Müdürlüğü",
+    "eposta": "karsmem@meb.gov.tr",
+    "webSitesi": "https://kars.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KASTAMONU",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-46",
+    "kurumAdi": "Kastamonu İl Milli Eğitim Müdürlüğü",
+    "eposta": "kastamonumem@meb.gov.tr",
+    "webSitesi": "https://kastamonu.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KAYSERİ",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-47",
+    "kurumAdi": "Kayseri̇ İl Milli Eğitim Müdürlüğü",
+    "eposta": "kayserimem@meb.gov.tr",
+    "webSitesi": "https://kayseri.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KIRIKKALE",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-48",
+    "kurumAdi": "Kirikkale İl Milli Eğitim Müdürlüğü",
+    "eposta": "kirikkalemem@meb.gov.tr",
+    "webSitesi": "https://kirikkale.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KIRKLARELİ",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-49",
+    "kurumAdi": "Kirklareli̇ İl Milli Eğitim Müdürlüğü",
+    "eposta": "kirklarelimem@meb.gov.tr",
+    "webSitesi": "https://kirklareli.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KIRŞEHİR",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-50",
+    "kurumAdi": "Kirşehi̇r İl Milli Eğitim Müdürlüğü",
+    "eposta": "kirsehirmem@meb.gov.tr",
+    "webSitesi": "https://kirsehir.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KİLİS",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-51",
+    "kurumAdi": "Ki̇li̇s İl Milli Eğitim Müdürlüğü",
+    "eposta": "kilismem@meb.gov.tr",
+    "webSitesi": "https://kilis.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KOCAELİ",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-52",
+    "kurumAdi": "Kocaeli̇ İl Milli Eğitim Müdürlüğü",
+    "eposta": "kocaelimem@meb.gov.tr",
+    "webSitesi": "https://kocaeli.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KONYA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-53",
+    "kurumAdi": "Konya İl Milli Eğitim Müdürlüğü",
+    "eposta": "konyamem@meb.gov.tr",
+    "webSitesi": "https://konya.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "KÜTAHYA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-54",
+    "kurumAdi": "Kütahya İl Milli Eğitim Müdürlüğü",
+    "eposta": "kutahyamem@meb.gov.tr",
+    "webSitesi": "https://kutahya.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "MALATYA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-55",
+    "kurumAdi": "Malatya İl Milli Eğitim Müdürlüğü",
+    "eposta": "malatyamem@meb.gov.tr",
+    "webSitesi": "https://malatya.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "MANİSA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-56",
+    "kurumAdi": "Mani̇sa İl Milli Eğitim Müdürlüğü",
+    "eposta": "manisamem@meb.gov.tr",
+    "webSitesi": "https://manisa.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "MARDİN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-57",
+    "kurumAdi": "Mardi̇n İl Milli Eğitim Müdürlüğü",
+    "eposta": "mardinmem@meb.gov.tr",
+    "webSitesi": "https://mardin.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "MERSİN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-58",
+    "kurumAdi": "Mersi̇n İl Milli Eğitim Müdürlüğü",
+    "eposta": "mersinmem@meb.gov.tr",
+    "webSitesi": "https://mersin.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "MUĞLA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-59",
+    "kurumAdi": "Muğla İl Milli Eğitim Müdürlüğü",
+    "eposta": "muglamem@meb.gov.tr",
+    "webSitesi": "https://mugla.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "MUŞ",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-60",
+    "kurumAdi": "Muş İl Milli Eğitim Müdürlüğü",
+    "eposta": "musmem@meb.gov.tr",
+    "webSitesi": "https://mus.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "NEVŞEHİR",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-61",
+    "kurumAdi": "Nevşehi̇r İl Milli Eğitim Müdürlüğü",
+    "eposta": "nevsehirmem@meb.gov.tr",
+    "webSitesi": "https://nevsehir.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "NİĞDE",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-62",
+    "kurumAdi": "Ni̇ğde İl Milli Eğitim Müdürlüğü",
+    "eposta": "nigdemem@meb.gov.tr",
+    "webSitesi": "https://nigde.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ORDU",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-63",
+    "kurumAdi": "Ordu İl Milli Eğitim Müdürlüğü",
+    "eposta": "ordumem@meb.gov.tr",
+    "webSitesi": "https://ordu.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "OSMANİYE",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-64",
+    "kurumAdi": "Osmani̇ye İl Milli Eğitim Müdürlüğü",
+    "eposta": "osmaniyemem@meb.gov.tr",
+    "webSitesi": "https://osmaniye.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "RİZE",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-65",
+    "kurumAdi": "Ri̇ze İl Milli Eğitim Müdürlüğü",
+    "eposta": "rizemem@meb.gov.tr",
+    "webSitesi": "https://rize.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "SAKARYA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-66",
+    "kurumAdi": "Sakarya İl Milli Eğitim Müdürlüğü",
+    "eposta": "sakaryamem@meb.gov.tr",
+    "webSitesi": "https://sakarya.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "SAMSUN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-67",
+    "kurumAdi": "Samsun İl Milli Eğitim Müdürlüğü",
+    "eposta": "samsunmem@meb.gov.tr",
+    "webSitesi": "https://samsun.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "SİİRT",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-68",
+    "kurumAdi": "Si̇i̇rt İl Milli Eğitim Müdürlüğü",
+    "eposta": "siirtmem@meb.gov.tr",
+    "webSitesi": "https://siirt.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "SİNOP",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-69",
+    "kurumAdi": "Si̇nop İl Milli Eğitim Müdürlüğü",
+    "eposta": "sinopmem@meb.gov.tr",
+    "webSitesi": "https://sinop.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "SİVAS",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-70",
+    "kurumAdi": "Si̇vas İl Milli Eğitim Müdürlüğü",
+    "eposta": "sivasmem@meb.gov.tr",
+    "webSitesi": "https://sivas.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ŞANLIURFA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-71",
+    "kurumAdi": "Şanliurfa İl Milli Eğitim Müdürlüğü",
+    "eposta": "sanliurfamem@meb.gov.tr",
+    "webSitesi": "https://sanliurfa.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ŞIRNAK",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-72",
+    "kurumAdi": "Şirnak İl Milli Eğitim Müdürlüğü",
+    "eposta": "sirnakmem@meb.gov.tr",
+    "webSitesi": "https://sirnak.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "TEKİRDAĞ",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-73",
+    "kurumAdi": "Teki̇rdağ İl Milli Eğitim Müdürlüğü",
+    "eposta": "tekirdagmem@meb.gov.tr",
+    "webSitesi": "https://tekirdag.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "TOKAT",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-74",
+    "kurumAdi": "Tokat İl Milli Eğitim Müdürlüğü",
+    "eposta": "tokatmem@meb.gov.tr",
+    "webSitesi": "https://tokat.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "TRABZON",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-75",
+    "kurumAdi": "Trabzon İl Milli Eğitim Müdürlüğü",
+    "eposta": "trabzonmem@meb.gov.tr",
+    "webSitesi": "https://trabzon.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "TUNCELİ",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-76",
+    "kurumAdi": "Tunceli̇ İl Milli Eğitim Müdürlüğü",
+    "eposta": "tuncelimem@meb.gov.tr",
+    "webSitesi": "https://tunceli.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "UŞAK",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-77",
+    "kurumAdi": "Uşak İl Milli Eğitim Müdürlüğü",
+    "eposta": "usakmem@meb.gov.tr",
+    "webSitesi": "https://usak.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "VAN",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-78",
+    "kurumAdi": "Van İl Milli Eğitim Müdürlüğü",
+    "eposta": "vanmem@meb.gov.tr",
+    "webSitesi": "https://van.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "YALOVA",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-79",
+    "kurumAdi": "Yalova İl Milli Eğitim Müdürlüğü",
+    "eposta": "yalovamem@meb.gov.tr",
+    "webSitesi": "https://yalova.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "YOZGAT",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-80",
+    "kurumAdi": "Yozgat İl Milli Eğitim Müdürlüğü",
+    "eposta": "yozgatmem@meb.gov.tr",
+    "webSitesi": "https://yozgat.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  },
+  {
+    "il": "ZONGULDAK",
+    "ilce": "MERKEZ",
+    "okulTuru": "İl Milli Eğitim Müdürlüğü",
+    "kurumKodu": "MEM-81",
+    "kurumAdi": "Zonguldak İl Milli Eğitim Müdürlüğü",
+    "eposta": "zonguldakmem@meb.gov.tr",
+    "webSitesi": "https://zonguldak.meb.gov.tr/",
+    "veriTarihi": "2026-01-01"
+  }
+]

@@ -1,0 +1,117 @@
+{
+  "osb": {
+    "columns": [
+      "Unnamed: 0",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4"
+    ],
+    "rows": 420,
+    "head": [
+      {
+        "Unnamed: 0": "Sıra No",
+        "Unnamed: 1": "İl",
+        "Unnamed: 2": "OSB Adı",
+        "Unnamed: 3": "Web Sitesi",
+        "Unnamed: 4": "İrtibat E-posta Adresi"
+      },
+      {
+        "Unnamed: 0": 1,
+        "Unnamed: 1": "Adana",
+        "Unnamed: 2": "Adana Gıda İhtisas",
+        "Unnamed: 3": "https://www.agiosb.org",
+        "Unnamed: 4": "info@agiosb.org"
+      },
+      {
+        "Unnamed: 0": 2,
+        "Unnamed: 1": "Adana",
+        "Unnamed: 2": "Adana Hacı Sabancı",
+        "Unnamed: 3": "https://www.adanaorganize.org.tr",
+        "Unnamed: 4": "asistan@adanaorganize.org.tr"
+      }
+    ]
+  },
+  "ttso": {
+    "columns": [
+      "Unnamed: 0",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4",
+      "Unnamed: 5",
+      "Unnamed: 6",
+      "Unnamed: 7"
+    ],
+    "rows": 251,
+    "head": [
+      {
+        "Unnamed: 0": "Sıra No",
+        "Unnamed: 1": "İl",
+        "Unnamed: 2": "İlçe",
+        "Unnamed: 3": "Oda Adı",
+        "Unnamed: 4": "Web Sitesi",
+        "Unnamed: 5": "İrtibat E-posta Adresi",
+        "Unnamed: 6": "Telefon",
+        "Unnamed: 7": "KEP Adresi"
+      },
+      {
+        "Unnamed: 0": 1,
+        "Unnamed: 1": "ADANA",
+        "Unnamed: 2": "CEYHAN",
+        "Unnamed: 3": "CEYHAN TİCARET ODASI",
+        "Unnamed: 4": "http://www.ceyhanto.org.tr/",
+        "Unnamed: 5": "Belirtilmemiş",
+        "Unnamed: 6": "322-6131073-",
+        "Unnamed: 7": "ceyhanto@hs01.kep.tr"
+      },
+      {
+        "Unnamed: 0": 2,
+        "Unnamed: 1": "ADANA",
+        "Unnamed: 2": "KOZAN",
+        "Unnamed: 3": "KOZAN TİCARET ODASI",
+        "Unnamed: 4": "http://kozanto.org/",
+        "Unnamed: 5": "kozanticaretodasi@hotmail.com",
+        "Unnamed: 6": "322-5158466-",
+        "Unnamed: 7": "kozanticaretodasi@hs01.kep.tr"
+      }
+    ]
+  },
+  "esnaf": {
+    "columns": [
+      "Unnamed: 0",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4",
+      "Unnamed: 5"
+    ],
+    "rows": 83,
+    "head": [
+      {
+        "Unnamed: 0": "Sıra No",
+        "Unnamed: 1": "İl",
+        "Unnamed: 2": "Birlik Adı",
+        "Unnamed: 3": "Web Sitesi",
+        "Unnamed: 4": "İrtibat E-posta Adresi",
+        "Unnamed: 5": "Telefon"
+      },
+      {
+        "Unnamed: 0": 1,
+        "Unnamed: 1": "ADANA",
+        "Unnamed: 2": "ADANA ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+        "Unnamed: 3": "https://www.adanaesob.org.tr",
+        "Unnamed: 4": "adanaesob@tesk.org.tr",
+        "Unnamed: 5": "0322 3651010"
+      },
+      {
+        "Unnamed: 0": 2,
+        "Unnamed: 1": "ADIYAMAN",
+        "Unnamed: 2": "ADIYAMAN ESNAF VE SANATKARLAR ODALARI BİRLİĞİ",
+        "Unnamed: 3": "https://www.adiyamanesob.org.tr",
+        "Unnamed: 4": "adiyamanesob@tesk.org.tr",
+        "Unnamed: 5": "0416 2163362"
+      }
+    ]
+  }
+}
