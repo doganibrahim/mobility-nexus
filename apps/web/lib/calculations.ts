@@ -1,5 +1,5 @@
 /**
- * CAPPINNO Mobility Nexus - Core Calculation Engine & Algorithms
+ * ErasmusMobility - Core Calculation Engine & Algorithms
  */
 
 import {
@@ -56,6 +56,7 @@ export interface LearningOutcomesResult {
 export function validateActivityDuration(
   goal: string,
   days: number,
+  locale: 'tr' | 'en' = 'tr',
 ): {
   isValid: boolean;
   minDays: number;
@@ -69,18 +70,19 @@ export function validateActivityDuration(
       isValid: true,
       minDays: 1,
       maxDays: 365,
-      rule: 'Standart Erasmus+ kuralı',
+      rule: locale === 'en' ? 'Standard Erasmus+ rule' : 'Standart Erasmus+ kuralı',
     };
   }
 
-  const { minDays, maxDays, ruleDescriptionTr } = config;
+  const { minDays, maxDays, ruleDescriptionTr, ruleDescriptionEn } = config;
+  const activeRule = locale === 'en' ? ruleDescriptionEn : ruleDescriptionTr;
 
   if (days <= 0) {
     return {
       isValid: true,
       minDays,
       maxDays,
-      rule: ruleDescriptionTr,
+      rule: activeRule,
     };
   }
 
@@ -89,8 +91,11 @@ export function validateActivityDuration(
       isValid: false,
       minDays,
       maxDays,
-      warning: `Seçilen süre (${days} gün), bu faaliyet için Erasmus+ asgari süresinden (${minDays} gün) düşüktür.`,
-      rule: ruleDescriptionTr,
+      warning:
+        locale === 'en'
+          ? `Selected duration (${days} days) is below the official Erasmus+ minimum duration (${minDays} days).`
+          : `Seçilen süre (${days} gün), bu faaliyet için Erasmus+ asgari süresinden (${minDays} gün) düşüktür.`,
+      rule: activeRule,
     };
   }
 
@@ -99,8 +104,11 @@ export function validateActivityDuration(
       isValid: false,
       minDays,
       maxDays,
-      warning: `Seçilen süre (${days} gün), bu faaliyet için Erasmus+ azami süresini (${maxDays} gün) aşmaktadır.`,
-      rule: ruleDescriptionTr,
+      warning:
+        locale === 'en'
+          ? `Selected duration (${days} days) exceeds the official Erasmus+ maximum duration (${maxDays} days).`
+          : `Seçilen süre (${days} gün), bu faaliyet için Erasmus+ azami süresini (${maxDays} gün) aşmaktadır.`,
+      rule: activeRule,
     };
   }
 
@@ -108,7 +116,7 @@ export function validateActivityDuration(
     isValid: true,
     minDays,
     maxDays,
-    rule: ruleDescriptionTr,
+    rule: activeRule,
   };
 }
 

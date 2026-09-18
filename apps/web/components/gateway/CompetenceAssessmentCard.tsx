@@ -20,7 +20,7 @@ export default function CompetenceAssessmentCard({
   resultMessage,
   resultType = 'warn',
 }: CompetenceAssessmentCardProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   const answeredCount = Object.keys(answers).filter(
     (k) => answers[Number(k)] > 0,
@@ -30,7 +30,7 @@ export default function CompetenceAssessmentCard({
     <NeoCard
       id="assessment"
       title={t.assessment.title}
-      badge={`${answeredCount}/12 Tamamlandı`}
+      badge={`${answeredCount}/12 ${locale === 'en' ? 'Completed' : 'Tamamlandı'}`}
       badgeType={answeredCount === 12 ? 'good' : 'warn'}
     >
       <div className="space-y-4">
@@ -99,7 +99,7 @@ export default function CompetenceAssessmentCard({
             📊 Yetkinlik Skorunu Hesapla
           </button>
           <a
-            href="https://www.competence4vet.com/CAPPINNO_Competence4VET_Assessment_Gateway_v7.html"
+            href="https://www.competence4vet.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="edu-btn-secondary text-xs"

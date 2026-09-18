@@ -19,7 +19,7 @@ export class AdminGuard implements CanActivate {
     const configuredSecret =
       this.config.get<string>('ADMIN_SECRET_KEY') ||
       this.config.get<string>('JWT_SECRET') ||
-      'super-secret-jwt-key-change-in-production-cappinno-2026';
+      'super-secret-jwt-key-change-in-production-erasmusmobility-2026';
 
     const configuredEmails = (
       this.config.get<string>('ADMIN_EMAILS') ||

@@ -1,0 +1,1813 @@
+[
+  {
+    "id": 1,
+    "category": "Turkish Interface",
+    "current": "CAPPINNO Mobility Nexus",
+    "proposed": "ErasmusMobility.com",
+    "location": "Ana sayfa – üst menü ve alt bilgi",
+    "targetFiles": [
+      "components/layout/AppHeader.tsx",
+      "components/layout/AppFooter.tsx"
+    ]
+  },
+  {
+    "id": 2,
+    "category": "Turkish Interface",
+    "current": "Erasmus+ VET Hareketlilik Ağ Geçidi",
+    "proposed": "Erasmus+ Mesleki Eğitim Hareketlilik Platformu",
+    "location": "Ana sayfa",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 3,
+    "category": "Turkish Interface",
+    "current": "Host & Karar",
+    "proposed": "Ev Sahibi Eşleştirme ve Proje Yolu",
+    "location": "Ana sayfa – aşama menüsü",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 4,
+    "category": "Turkish Interface",
+    "current": "Host eşleştirme",
+    "proposed": "Ev sahibi kuruluş eşleştirmesi",
+    "location": "Ana sayfa – aşama menüsü",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 5,
+    "category": "Turkish Interface",
+    "current": "Fırsatlar & Hostlar",
+    "proposed": "Ev Sahibi Kuruluşlar ve Hizmetler",
+    "location": "Ana sayfa – üst menü",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 6,
+    "category": "Turkish Interface",
+    "current": "Yararlanıcılar",
+    "proposed": "Gönderen Kuruluşlar",
+    "location": "Ana sayfa – üst menü",
+    "targetFiles": [
+      "components/ui/BeneficiariesModal.tsx",
+      "components/ui/LegalModal.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 7,
+    "category": "Turkish Interface",
+    "current": "Avrupa genelindeki doğrulanmış ev sahipleri",
+    "proposed": "ErasmusMobility.com tarafından doğrulanmış ev sahibi kuruluşlar",
+    "location": "Ana sayfa – karşılama alanı",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 8,
+    "category": "Turkish Interface",
+    "current": "KA121 & KA122 Uyumlu",
+    "proposed": "KA121-VET ve KA122-VET Planlamasını Destekler",
+    "location": "Ana sayfa – karşılama alanı",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 9,
+    "category": "Turkish Interface",
+    "current": "15 Kriterli Güvenli Eşleştirme",
+    "proposed": "15 Kriterli Kuruluş Eşleştirmesi",
+    "location": "Ana sayfa – karşılama alanı",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 10,
+    "category": "Turkish Interface",
+    "current": "Kurum akreditasyon OID kaydı",
+    "proposed": "Kuruluş Kimlik Numarası OID ve Erasmus Akreditasyonu bilgileri",
+    "location": "Ana sayfa – sistem iş akışı",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 11,
+    "category": "Turkish Interface",
+    "current": "Gelişim açığı (gap)",
+    "proposed": "Yetkinlik açığı",
+    "location": "Ana sayfa – sistem iş akışı",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 12,
+    "category": "Turkish Interface",
+    "current": "AB Ev Sahibi",
+    "proposed": "Ev Sahibi Kuruluş",
+    "location": "Ana sayfa – sistem iş akışı",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 13,
+    "category": "Turkish Interface",
+    "current": "Host skorlaması",
+    "proposed": "Ev sahibi kuruluş puanlaması",
+    "location": "Ana sayfa – sistem iş akışı",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 14,
+    "category": "Turkish Interface",
+    "current": "Partner arama hunisi",
+    "proposed": "Ortak ve ev sahibi kuruluş arama süreci",
+    "location": "Ana sayfa – sistem iş akışı",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 15,
+    "category": "Turkish Interface",
+    "current": "Meslek Lisesi / VET Kuruluşu Tam Adı",
+    "proposed": "Mesleki Eğitim Kuruluşunun Tam Yasal Adı",
+    "location": "Aşama 1 – kuruluş profili",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 16,
+    "category": "Turkish Interface",
+    "current": "Erasmus VET Akreditasyonu",
+    "proposed": "Erasmus Akreditasyonu KA120-VET",
+    "location": "Aşama 1 – kuruluş profili",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 17,
+    "category": "Turkish Interface",
+    "current": "Evet (Akredite Kurum – KA121)",
+    "proposed": "Evet – Erasmus Akreditasyonuna Sahip KA120-VET Kuruluşu",
+    "location": "Aşama 1 – kuruluş profili",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 18,
+    "category": "Turkish Interface",
+    "current": "Hayır (Kısa Dönem Başvuru – KA122)",
+    "proposed": "Hayır – KA122-VET Kısa Dönemli Proje Başvurusu Planlanıyor",
+    "location": "Aşama 1 – kuruluş profili",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 19,
+    "category": "Turkish Interface",
+    "current": "Erasmus OID Kodu",
+    "proposed": "Kuruluş Kimlik Numarası OID",
+    "location": "Aşama 1 – kuruluş profili",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 20,
+    "category": "Turkish Interface",
+    "current": "Kurumsal İhtiyaç / Somut Challenge",
+    "proposed": "Kurumsal İhtiyaç veya Somut Sorun",
+    "location": "Aşama 1 – kuruluş profili",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 21,
+    "category": "Turkish Interface",
+    "current": "Meslek Lisesi Öğrencisi / Çırak",
+    "proposed": "Mesleki Eğitim Öğrenicisi / Çırak",
+    "location": "Aşama 1 – katılımcı profili",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 22,
+    "category": "Turkish Interface",
+    "current": "Teknik Öğretmen / Eğitici (Staff)",
+    "proposed": "Öğretmen / Eğitici / Personel Katılımcı",
+    "location": "Aşama 1 – katılımcı profili",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 23,
+    "category": "Turkish Interface",
+    "current": "Kuruma Gelen (Davetli Uzman / Eğitici)",
+    "proposed": "Davetli Uzman",
+    "location": "Aşama 1 – katılımcı profili",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 24,
+    "category": "Turkish Interface",
+    "current": "Proje Ekibi (Hazırlık Ziyareti)",
+    "proposed": "Hazırlık Ziyareti Katılımcısı",
+    "location": "Aşama 1 – katılımcı profili",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 25,
+    "category": "Turkish Interface",
+    "current": "Hareketlilik Tercihi / Faaliyet Türü",
+    "proposed": "Erasmus+ Faaliyet Türü",
+    "location": "Aşama 1 – katılımcı profili",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 26,
+    "category": "Turkish Interface",
+    "current": "10 Resmî Erasmus+ Faaliyeti",
+    "proposed": "Desteklenen Erasmus+ Faaliyet Türleri",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 27,
+    "category": "Turkish Interface",
+    "current": "Öğrenici Grup Hareketliliği",
+    "proposed": "Mesleki Eğitim Öğrenicilerinin Grup Hareketliliği",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 28,
+    "category": "Turkish Interface",
+    "current": "Kısa Dönemli Bireysel Öğrenme / Staj",
+    "proposed": "Mesleki Eğitim Öğrenicilerinin Kısa Dönemli Öğrenme Hareketliliği",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 29,
+    "category": "Turkish Interface",
+    "current": "ErasmusPro Uzun Dönemli Staj",
+    "proposed": "Mesleki Eğitim Öğrenicilerinin Uzun Dönemli Öğrenme Hareketliliği ErasmusPro",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 30,
+    "category": "Turkish Interface",
+    "current": "İşbaşı Gözlem / Job Shadowing",
+    "proposed": "İşbaşı Gözlem",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 31,
+    "category": "Turkish Interface",
+    "current": "Öğretme veya Eğitim Görevlendirmesi",
+    "proposed": "Öğretme veya Eğitim Verme Görevi",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 32,
+    "category": "Turkish Interface",
+    "current": "Kurs ve Eğitim",
+    "proposed": "Kurslar ve Eğitimler",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 33,
+    "category": "Turkish Interface",
+    "current": "Davetli Uzman / Invited Expert",
+    "proposed": "Davetli Uzman",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 34,
+    "category": "Turkish Interface",
+    "current": "Öğretmen/Eğitimci Adayına Ev Sahipliği",
+    "proposed": "Eğitimdeki Öğretmen ve Eğiticilere Ev Sahipliği Yapılması",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 35,
+    "category": "Turkish Interface",
+    "current": "Farketmez / Tüm Ülkeler",
+    "proposed": "Fark Etmez / Tüm Uygun Ülkeler",
+    "location": "Aşama 1 – hedef ülkeler",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 36,
+    "category": "Turkish Interface",
+    "current": "18 Yaş Altı (Reşit Değil)",
+    "proposed": "18 Yaş Altı Reşit Olmayan Katılımcı",
+    "location": "Aşama 1 – yaş grubu",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 37,
+    "category": "Turkish Interface",
+    "current": "AB ESCO v1.1",
+    "proposed": "Avrupa Birliği ESCO Sınıflandırması",
+    "location": "Aşama 2 – ESCO eşleştirmesi",
+    "targetFiles": [
+      "components/gateway/EscoIscedMapperCard.tsx"
+    ]
+  },
+  {
+    "id": 38,
+    "category": "Turkish Interface",
+    "current": "ESCO Arama Terimi / Meslek Ailesi",
+    "proposed": "ESCO Meslek Arama Terimi / Meslek Profili",
+    "location": "Aşama 2 – ESCO eşleştirmesi",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 39,
+    "category": "Turkish Interface",
+    "current": "Yetkinlik Değerlendirme",
+    "proposed": "Yetkinlik Öz Değerlendirmesi",
+    "location": "Aşama 2 – değerlendirme",
+    "targetFiles": [
+      "components/ui/LegalModal.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 40,
+    "category": "Turkish Interface",
+    "current": "Hedeflenen Seviye",
+    "proposed": "Hedef Yetkinlik Düzeyi",
+    "location": "Aşama 2 – değerlendirme",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 41,
+    "category": "Turkish Interface",
+    "current": "Resmî Uygunluk Kapısı (Gatekeeper)",
+    "proposed": "Ön Uygunluk Kontrolü",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 42,
+    "category": "Turkish Interface",
+    "current": "Zorunlu Uygunluk Denetimi",
+    "proposed": "Ön Uygunluk Kontrolü",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "targetFiles": [
+      "components/gateway/EligibilityGatekeeperCard.tsx"
+    ]
+  },
+  {
+    "id": 43,
+    "category": "Turkish Interface",
+    "current": "Akreditasyon Yok (KA120 Belgesi Bulunmuyor)",
+    "proposed": "Erasmus Akreditasyonu Bulunmuyor",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "targetFiles": [
+      "components/gateway/EligibilityGatekeeperCard.tsx"
+    ]
+  },
+  {
+    "id": 44,
+    "category": "Turkish Interface",
+    "current": "Akredite Kurum (KA120 Belgesi Mevcut)",
+    "proposed": "Erasmus Akreditasyonuna Sahip Kuruluş KA120-VET",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "targetFiles": [
+      "components/gateway/EligibilityGatekeeperCard.tsx"
+    ]
+  },
+  {
+    "id": 45,
+    "category": "Turkish Interface",
+    "current": "Son 36 Ayda Alınan KA122 Hibesi",
+    "proposed": "Ardışık Beş Çağrı Yılı İçinde Alınan KA122-VET Hibesi",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 46,
+    "category": "Turkish Interface",
+    "current": "36 Ayda Maks. 3",
+    "proposed": "Ardışık Beş Çağrı Yılında En Fazla 3 Hibe",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "targetFiles": [
+      "lib/calculations.ts"
+    ]
+  },
+  {
+    "id": 47,
+    "category": "Turkish Interface",
+    "current": "KA120 Zorunlu",
+    "proposed": "KA122-VET Hibe Sınırına Ulaşıldı",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "targetFiles": [
+      "components/gateway/EligibilityGatekeeperCard.tsx"
+    ]
+  },
+  {
+    "id": 48,
+    "category": "Turkish Interface",
+    "current": "KA120 Önerilir",
+    "proposed": "Erasmus Akreditasyonu KA120-VET Değerlendirilebilir",
+    "location": "Aşama 3 – proje yolu",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 49,
+    "category": "Turkish Interface",
+    "current": "Garantili yıllık bütçe tahsisatı",
+    "proposed": "Yıllık hibe başvurusu yapma imkânı",
+    "location": "Aşama 3 – proje yolu",
+    "targetFiles": [
+      "lib/calculations.ts",
+      "components/ui/ProgrammesModal.tsx"
+    ]
+  },
+  {
+    "id": 50,
+    "category": "Turkish Interface",
+    "current": "KA121 tahsisatı",
+    "proposed": "KA121-VET Akredite Proje Hibe Başvurusu",
+    "location": "Aşama 3 – proje yolu",
+    "targetFiles": [
+      "lib/calculations.ts"
+    ]
+  },
+  {
+    "id": 51,
+    "category": "Turkish Interface",
+    "current": "AB Ev Sahibi Kuruluş (Host)",
+    "proposed": "Ev Sahibi Kuruluş",
+    "location": "Aşama 3 – eşleştirme",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 52,
+    "category": "Turkish Interface",
+    "current": "Akıllı AB Ev Sahibi Eşleştirme (Live Match)",
+    "proposed": "Ev Sahibi Kuruluş Eşleştirmesi",
+    "location": "Aşama 3 – eşleştirme",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 53,
+    "category": "Turkish Interface",
+    "current": "5 Asil + 0 Refakatçi",
+    "proposed": "5 Katılımcı + 0 Refakat Eden Kişi",
+    "location": "Aşama 3 – eşleştirme özeti",
+    "targetFiles": [
+      "components/gateway/HostMatchingCard.tsx",
+      "components/gateway/RecommendationReportCard.tsx"
+    ]
+  },
+  {
+    "id": 54,
+    "category": "Turkish Interface",
+    "current": "Yemek / İaşe Şartı",
+    "proposed": "Yemek Hizmeti",
+    "location": "Aşama 3 – lojistik talepleri",
+    "targetFiles": [
+      "components/gateway/HostMatchingCard.tsx"
+    ]
+  },
+  {
+    "id": 55,
+    "category": "Turkish Interface",
+    "current": "Havalimanı / Yerel Transfer",
+    "proposed": "Havalimanı Transferi ve Yerel Ulaşım",
+    "location": "Aşama 3 – lojistik talepleri",
+    "targetFiles": [
+      "components/inquiry/MobilityInquiryModal.tsx",
+      "components/gateway/HostMatchingCard.tsx"
+    ]
+  },
+  {
+    "id": 56,
+    "category": "Turkish Interface",
+    "current": "Karar Motoru",
+    "proposed": "Proje Yolu Öneri Aracı",
+    "location": "Aşama 3 – proje yolu",
+    "targetFiles": [
+      "components/ui/GuestOnboardingModal.tsx",
+      "app/school/pipeline/page.tsx",
+      "lib/i18n.tsx",
+      "app/platform/page.tsx",
+      "components/layout/NavSticky.tsx"
+    ]
+  },
+  {
+    "id": 57,
+    "category": "Turkish Interface",
+    "current": "Partner & Host Arama Portalları",
+    "proposed": "Ortak ve Ev Sahibi Kuruluş Arama Platformları",
+    "location": "Aşama 3 – arama platformları",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 58,
+    "category": "Turkish Interface",
+    "current": "Partner Arama Hunisi",
+    "proposed": "Ortak Arama ve Kısa Liste Oluşturma Süreci",
+    "location": "Aşama 3 – arama platformları",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 59,
+    "category": "Turkish Interface",
+    "current": "Ön Kabul Alındı (LoI Hazır)",
+    "proposed": "Ön Kabul Alındı / Niyet Mektubu Hazır",
+    "location": "Aşama 3 – talep durumları",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 60,
+    "category": "Turkish Interface",
+    "current": "Öğrenme Kazanımları Üreteci",
+    "proposed": "Öğrenme Çıktıları Oluşturma Aracı",
+    "location": "Aşama 4 – öğrenme çıktıları",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 61,
+    "category": "Turkish Interface",
+    "current": "ECVET & Europass Uyumlu",
+    "proposed": "Öğrenme Çıktıları ve Europass Mobility ile Uyumlu",
+    "location": "Aşama 4 ve alt bilgi",
+    "targetFiles": [
+      "components/gateway/LearningOutcomesCard.tsx",
+      "components/layout/AppFooter.tsx"
+    ]
+  },
+  {
+    "id": 62,
+    "category": "Turkish Interface",
+    "current": "Hard Skills",
+    "proposed": "Teknik ve Mesleki Beceriler",
+    "location": "Aşama 4 – öğrenme çıktıları",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 63,
+    "category": "Turkish Interface",
+    "current": "Soft Skills",
+    "proposed": "Aktarılabilir Beceriler",
+    "location": "Aşama 4 – öğrenme çıktıları",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 64,
+    "category": "Turkish Interface",
+    "current": "ECVET Standartlarında Kazanımları Yeniden Üret",
+    "proposed": "Öğrenme Çıktılarını Yeniden Oluştur",
+    "location": "Aşama 4 – öğrenme çıktıları",
+    "targetFiles": [
+      "components/gateway/LearningOutcomesCard.tsx"
+    ]
+  },
+  {
+    "id": 65,
+    "category": "Turkish Interface",
+    "current": "Gönderen Kurum (Yararlanıcı VET)",
+    "proposed": "Gönderen Kuruluş / Yararlanıcı Kuruluş",
+    "location": "Aşama 4 – sorumluluk matrisi",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 66,
+    "category": "Turkish Interface",
+    "current": "Ev Sahibi (AB Partneri)",
+    "proposed": "Ev Sahibi Kuruluş",
+    "location": "Aşama 4 – sorumluluk matrisi",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 67,
+    "category": "Turkish Interface",
+    "current": "Destekleyici aracı kuruluşlar",
+    "proposed": "Destekleyici Kuruluşlar",
+    "location": "Aşama 4 – temel kural",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 68,
+    "category": "Turkish Interface",
+    "current": "Gönderen Kurum (Sending VET)",
+    "proposed": "Gönderen Kuruluş",
+    "location": "Aşama 5 – planlama raporu",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 69,
+    "category": "Turkish Interface",
+    "current": "OID Kodu",
+    "proposed": "Kuruluş Kimlik Numarası OID",
+    "location": "Aşama 5 – planlama raporu",
+    "targetFiles": [
+      "components/application-draft/sections/OrgProfileSection.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 70,
+    "category": "Turkish Interface",
+    "current": "Ev Sahibi Kuruluş (EU Host)",
+    "proposed": "Ev Sahibi Kuruluş",
+    "location": "Aşama 5 – planlama raporu",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 71,
+    "category": "Turkish Interface",
+    "current": "Format & Detaylar",
+    "proposed": "Faaliyet Türü ve Ayrıntılar",
+    "location": "Aşama 5 – planlama raporu",
+    "targetFiles": [
+      "components/gateway/RecommendationReportCard.tsx"
+    ]
+  },
+  {
+    "id": 72,
+    "category": "Turkish Interface",
+    "current": "Beklenen Öğrenme Kazanımları",
+    "proposed": "Beklenen Öğrenme Çıktıları",
+    "location": "Aşama 5 – planlama raporu",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 73,
+    "category": "Turkish Interface",
+    "current": "Mobilite sonunda",
+    "proposed": "Hareketlilik sonunda",
+    "location": "Aşama 5 – oluşturulan metin",
+    "targetFiles": [
+      "lib/calculations.ts"
+    ]
+  },
+  {
+    "id": 74,
+    "category": "Turkish Interface",
+    "current": "Resmî Kaynaklar ve Yasal Çerçeve",
+    "proposed": "Resmî Kaynaklar ve Program Çerçevesi",
+    "location": "Aşama 5 – kaynaklar",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 75,
+    "category": "Turkish Interface",
+    "current": "Kurumsal arkaplan",
+    "proposed": "Kurumsal arka plan",
+    "location": "Aşama 5 – kaynaklar",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 76,
+    "category": "Turkish Interface",
+    "current": "İhtiyaç/challenge",
+    "proposed": "İhtiyaçlar ve sorunlar",
+    "location": "Aşama 5 – kaynaklar",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 77,
+    "category": "Turkish Interface",
+    "current": "Mobility Suitability skoru",
+    "proposed": "Hareketlilik Uygunluk Skoru",
+    "location": "Aşama 5 – yasal uyarı",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 78,
+    "category": "English Interface",
+    "current": "Erasmus+ Mesleki Eğitim",
+    "proposed": "Erasmus+ Vocational Education and Training",
+    "location": "English interface – header",
+    "targetFiles": [
+      "components/ui/LegalModal.tsx",
+      "app/news-and-events/page.tsx",
+      "app/about/page.tsx",
+      "components/ui/ProgrammesModal.tsx",
+      "app/onboarding/page.tsx",
+      "components/layout/AppHeader.tsx"
+    ]
+  },
+  {
+    "id": 79,
+    "category": "English Interface",
+    "current": "CAPPINNO Mobility Nexus",
+    "proposed": "ErasmusMobility.com",
+    "location": "English interface – header and footer",
+    "targetFiles": [
+      "components/layout/AppHeader.tsx",
+      "components/layout/AppFooter.tsx"
+    ]
+  },
+  {
+    "id": 80,
+    "category": "English Interface",
+    "current": "Beneficiaries",
+    "proposed": "Sending Organisations",
+    "location": "English interface – main menu",
+    "targetFiles": [
+      "components/ui/LegalModal.tsx",
+      "lib/i18n.tsx",
+      "components/ui/MebSchoolsWidget.tsx",
+      "components/ui/BeneficiariesModal.tsx",
+      "components/layout/AppHeader.tsx"
+    ]
+  },
+  {
+    "id": 81,
+    "category": "English Interface",
+    "current": "Opportunities & Hosts",
+    "proposed": "Hosting Organisations and Services",
+    "location": "English interface – main menu",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 82,
+    "category": "English Interface",
+    "current": "How It Works?",
+    "proposed": "How It Works",
+    "location": "English interface – header",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 83,
+    "category": "English Interface",
+    "current": "Giriş Yap",
+    "proposed": "Sign In",
+    "location": "English interface – header",
+    "targetFiles": [
+      "app/onboarding/page.tsx",
+      "app/school/application-draft/page.tsx",
+      "components/layout/AppHeader.tsx"
+    ]
+  },
+  {
+    "id": 84,
+    "category": "English Interface",
+    "current": "KA121 & KA122 Aligned",
+    "proposed": "Supports KA121-VET and KA122-VET Planning",
+    "location": "English interface – welcome section",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 85,
+    "category": "English Interface",
+    "current": "Verified European hosts",
+    "proposed": "Hosting organisations verified by ErasmusMobility.com",
+    "location": "English interface – welcome section",
+    "targetFiles": [
+      "app/platform/page.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 86,
+    "category": "English Interface",
+    "current": "15-Factor Verified Matching",
+    "proposed": "15-Criteria Organisation Matching",
+    "location": "English interface – welcome section",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 87,
+    "category": "English Interface",
+    "current": "Erasmus+ VET Modeli",
+    "proposed": "Erasmus+ VET Model",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/SystemKpiCard.tsx"
+    ]
+  },
+  {
+    "id": 88,
+    "category": "English Interface",
+    "current": "Aşama 1/2/3/4",
+    "proposed": "Stage 1/2/3/4",
+    "location": "English interface – Stage 1 workflow",
+    "targetFiles": [
+      "app/school/pipeline/page.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 89,
+    "category": "English Interface",
+    "current": "Çıktı: Kurum Profili & OID",
+    "proposed": "Output: Organisation Profile and OID",
+    "location": "English interface – Stage 1 workflow",
+    "targetFiles": [
+      "components/gateway/SystemKpiCard.tsx"
+    ]
+  },
+  {
+    "id": 90,
+    "category": "English Interface",
+    "current": "Çıktı: ESCO Eşleştirmesi & Boşluk",
+    "proposed": "Output: ESCO Mapping and Competence Gap",
+    "location": "English interface – Stage 1 workflow",
+    "targetFiles": [
+      "components/gateway/SystemKpiCard.tsx"
+    ]
+  },
+  {
+    "id": 91,
+    "category": "English Interface",
+    "current": "Çıktı: KA121 / KA122 Kararı",
+    "proposed": "Output: Recommended Project Path",
+    "location": "English interface – Stage 1 workflow",
+    "targetFiles": [
+      "components/gateway/SystemKpiCard.tsx"
+    ]
+  },
+  {
+    "id": 92,
+    "category": "English Interface",
+    "current": "EU Host & Mobility Plan",
+    "proposed": "Hosting Organisation and Mobility Plan",
+    "location": "English interface – Stage 1 workflow",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 93,
+    "category": "English Interface",
+    "current": "Host scoring",
+    "proposed": "Hosting Organisation Scoring",
+    "location": "English interface – Stage 1 workflow",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 94,
+    "category": "English Interface",
+    "current": "Partner search funnel",
+    "proposed": "Partner Search and Shortlisting Process",
+    "location": "English interface – Stage 1 workflow",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 95,
+    "category": "English Interface",
+    "current": "Hazırlık Skoru",
+    "proposed": "Readiness Score",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "app/onboarding/page.tsx",
+      "components/gateway/SchoolProfileCard.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 96,
+    "category": "English Interface",
+    "current": "Yes (Accredited Institution – KA121)",
+    "proposed": "Yes – Holds an Erasmus Accreditation KA120-VET",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 97,
+    "category": "English Interface",
+    "current": "No (Short-term Mobility – KA122)",
+    "proposed": "No – Planning a KA122-VET Short-term Project",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 98,
+    "category": "English Interface",
+    "current": "Institutional Need / Concrete Challenge",
+    "proposed": "Institutional Needs and Identified Gaps",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 99,
+    "category": "English Interface",
+    "current": "Hedef Kitle",
+    "proposed": "Target Group",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/application-draft/Ka120ImportPreviewModal.tsx",
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 100,
+    "category": "English Interface",
+    "current": "VET Student / Apprentice (VET Learner)",
+    "proposed": "VET Learner / Apprentice",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 101,
+    "category": "English Interface",
+    "current": "Vocational Teacher / Trainer (Staff)",
+    "proposed": "Staff Participant – Teacher or Trainer",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 102,
+    "category": "English Interface",
+    "current": "Eğitici & Mesleki Personel",
+    "proposed": "Trainer and Other VET Staff",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 103,
+    "category": "English Interface",
+    "current": "Kuruma Gelen (Davetli Uzman / Eğitici)",
+    "proposed": "Invited Expert",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 104,
+    "category": "English Interface",
+    "current": "Proje Ekibi (Hazırlık Ziyareti)",
+    "proposed": "Preparatory Visit Participant",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 105,
+    "category": "English Interface",
+    "current": "Mobility Format / Activity Type",
+    "proposed": "Erasmus+ Activity Type",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 106,
+    "category": "English Interface",
+    "current": "10 Resmi Erasmus+ Faaliyeti",
+    "proposed": "Supported Erasmus+ Activity Types",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 107,
+    "category": "English Interface",
+    "current": "Mesleki Beceri Yarışmasına Katılım",
+    "proposed": "Participation in VET Skills Competitions",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 108,
+    "category": "English Interface",
+    "current": "Öğrenici Grup Hareketliliği",
+    "proposed": "Group Mobility of VET Learners",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 109,
+    "category": "English Interface",
+    "current": "Kısa Dönemli Bireysel Öğrenme / Staj",
+    "proposed": "Short-term Learning Mobility of VET Learners",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 110,
+    "category": "English Interface",
+    "current": "ErasmusPro Uzun Dönemli Staj",
+    "proposed": "Long-term Learning Mobility of VET Learners ErasmusPro",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 111,
+    "category": "English Interface",
+    "current": "İşbaşı Gözlem / Job Shadowing",
+    "proposed": "Job Shadowing",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 112,
+    "category": "English Interface",
+    "current": "Öğretme veya Eğitim Görevlendirmesi",
+    "proposed": "Teaching or Training Assignment",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 113,
+    "category": "English Interface",
+    "current": "Kurs ve Eğitim",
+    "proposed": "Courses and Training",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 114,
+    "category": "English Interface",
+    "current": "Davetli Uzman / Invited Expert",
+    "proposed": "Invited Expert",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 115,
+    "category": "English Interface",
+    "current": "Öğretmen/Eğitimci Adayına Ev Sahipliği",
+    "proposed": "Hosting Teachers and Educators in Training",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 116,
+    "category": "English Interface",
+    "current": "Hazırlık Ziyareti",
+    "proposed": "Preparatory Visit",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "lib/constants.ts",
+      "components/gateway/ParticipantProfileCard.tsx",
+      "components/application-draft/sections/ActivityDetailsSection.tsx"
+    ]
+  },
+  {
+    "id": 117,
+    "category": "English Interface",
+    "current": "Hedef Ülkeler",
+    "proposed": "Preferred Hosting Countries",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 118,
+    "category": "English Interface",
+    "current": "Farketmez / Tüm Ülkeler",
+    "proposed": "No Preference / All Eligible Countries",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 119,
+    "category": "English Interface",
+    "current": "Planlanan Başlangıç Tarihi",
+    "proposed": "Planned Start Date",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 120,
+    "category": "English Interface",
+    "current": "Planlanan Bitiş Tarihi",
+    "proposed": "Planned End Date",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 121,
+    "category": "English Interface",
+    "current": "Katılımcı Sayısı",
+    "proposed": "Number of Participants",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/host/HostPortfolioModal.tsx",
+      "components/application-draft/sections/AiOfficialQuestionsSection.tsx",
+      "components/gateway/ParticipantProfileCard.tsx",
+      "lib/i18n.tsx",
+      "components/host/HostVerificationModal.tsx",
+      "components/application-draft/sections/ActivityDetailsSection.tsx"
+    ]
+  },
+  {
+    "id": 122,
+    "category": "English Interface",
+    "current": "Refakatçi Sayısı",
+    "proposed": "Number of Accompanying Persons",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/gateway/ParticipantProfileCard.tsx",
+      "components/application-draft/sections/ActivityDetailsSection.tsx"
+    ]
+  },
+  {
+    "id": 123,
+    "category": "English Interface",
+    "current": "Yaş Grubu",
+    "proposed": "Age Group",
+    "location": "English interface – Stage 1",
+    "targetFiles": [
+      "components/dashboard/SchoolDashboardView.tsx",
+      "components/application-draft/sections/OrgProfileSection.tsx",
+      "components/application-draft/Ka120ImportPreviewModal.tsx",
+      "components/gateway/RecommendationReportCard.tsx",
+      "components/gateway/ParticipantProfileCard.tsx"
+    ]
+  },
+  {
+    "id": 124,
+    "category": "English Interface",
+    "current": "AB ESCO v1.1",
+    "proposed": "EU ESCO Classification",
+    "location": "English interface – Stage 2",
+    "targetFiles": [
+      "components/gateway/EscoIscedMapperCard.tsx"
+    ]
+  },
+  {
+    "id": 125,
+    "category": "English Interface",
+    "current": "Elektrik-Elektronik / Endüstriyel Otomasyon",
+    "proposed": "Electrical and Electronic Engineering / Industrial Automation",
+    "location": "English interface – Stage 2",
+    "targetFiles": [
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 126,
+    "category": "English Interface",
+    "current": "Bilişim / Yazılım Geliştirme",
+    "proposed": "Information Technologies / Software Development",
+    "location": "English interface – Stage 2",
+    "targetFiles": [
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 127,
+    "category": "English Interface",
+    "current": "Bilişim / Ağ Sistemleri & Siber Güvenlik",
+    "proposed": "Information Technologies / Network Systems and Cybersecurity",
+    "location": "English interface – Stage 2",
+    "targetFiles": [
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 128,
+    "category": "English Interface",
+    "current": "ESCO Doğrula",
+    "proposed": "Verify on ESCO",
+    "location": "English interface – Stage 2",
+    "targetFiles": [
+      "components/gateway/EscoIscedMapperCard.tsx"
+    ]
+  },
+  {
+    "id": 129,
+    "category": "English Interface",
+    "current": "ISCED-F 2013 Rehberi",
+    "proposed": "ISCED-F 2013 Manual",
+    "location": "English interface – Stage 2",
+    "targetFiles": [
+      "components/gateway/EscoIscedMapperCard.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 130,
+    "category": "English Interface",
+    "current": "12/12 Tamamlandı",
+    "proposed": "12/12 Completed",
+    "location": "English interface – Stage 2",
+    "targetFiles": [
+      "components/gateway/CompetenceAssessmentCard.tsx"
+    ]
+  },
+  {
+    "id": 131,
+    "category": "English Interface",
+    "current": "Mesleki Teknik Yetkinlik",
+    "proposed": "Technical and Occupational Competence",
+    "location": "English interface – Stage 2",
+    "targetFiles": [
+      "lib/constants.ts"
+    ]
+  },
+  {
+    "id": 132,
+    "category": "English Interface",
+    "current": "Yetkinlik Skorunu Hesapla",
+    "proposed": "Calculate Competence Score",
+    "location": "English interface – Stage 2",
+    "targetFiles": [
+      "components/gateway/CompetenceAssessmentCard.tsx"
+    ]
+  },
+  {
+    "id": 133,
+    "category": "English Interface",
+    "current": "Analiz & Boşluk",
+    "proposed": "Assessment and Competence Gap",
+    "location": "English interface – Stage 2",
+    "targetFiles": [
+      "components/gateway/CompetenceGapCard.tsx"
+    ]
+  },
+  {
+    "id": 134,
+    "category": "English Interface",
+    "current": "KA122-VET Pre-Application Mandatory Eligibility Gatekeeper",
+    "proposed": "KA122-VET Pre-application Eligibility Check",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 135,
+    "category": "English Interface",
+    "current": "Official Eligibility Gatekeeper",
+    "proposed": "Preliminary Eligibility Check",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 136,
+    "category": "English Interface",
+    "current": "Mandatory Eligibility Verification",
+    "proposed": "Preliminary Eligibility Assessment",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "components/gateway/EligibilityGatekeeperCard.tsx"
+    ]
+  },
+  {
+    "id": 137,
+    "category": "English Interface",
+    "current": "Not Accredited (No KA120)",
+    "proposed": "Does Not Hold an Erasmus Accreditation",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "components/gateway/EligibilityGatekeeperCard.tsx"
+    ]
+  },
+  {
+    "id": 138,
+    "category": "English Interface",
+    "current": "Accredited (Holds KA120)",
+    "proposed": "Holds an Erasmus Accreditation KA120-VET",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "components/gateway/EligibilityGatekeeperCard.tsx"
+    ]
+  },
+  {
+    "id": 139,
+    "category": "English Interface",
+    "current": "KA122 Grants in Past 36 Months",
+    "proposed": "KA122-VET Grants Received During Five Consecutive Call Years",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 140,
+    "category": "English Interface",
+    "current": "36-month grant limits",
+    "proposed": "Limit of Three Grants During Five Consecutive Call Years",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 141,
+    "category": "English Interface",
+    "current": "KA120 Recommended",
+    "proposed": "Erasmus Accreditation KA120-VET May Be Considered",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 142,
+    "category": "English Interface",
+    "current": "Pax",
+    "proposed": "Participants",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "components/gateway/EligibilityGatekeeperCard.tsx"
+    ]
+  },
+  {
+    "id": 143,
+    "category": "English Interface",
+    "current": "Smart EU Host Matching",
+    "proposed": "Hosting Organisation Matching",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 144,
+    "category": "English Interface",
+    "current": "Eşleştirme Kriterleri Özeti",
+    "proposed": "Summary of Matching Criteria",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "components/gateway/HostMatchingCard.tsx"
+    ]
+  },
+  {
+    "id": 145,
+    "category": "English Interface",
+    "current": "5 Asil + 0 Refakatçi",
+    "proposed": "5 Participants + 0 Accompanying Persons",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "components/gateway/HostMatchingCard.tsx",
+      "components/gateway/RecommendationReportCard.tsx"
+    ]
+  },
+  {
+    "id": 146,
+    "category": "English Interface",
+    "current": "Lojistik Talepleri",
+    "proposed": "Logistical Service Requirements",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "components/admin/AdminInquiryDetailModal.tsx",
+      "components/gateway/HostMatchingCard.tsx"
+    ]
+  },
+  {
+    "id": 147,
+    "category": "English Interface",
+    "current": "Konaklama Şartı",
+    "proposed": "Accommodation Required",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "components/gateway/HostMatchingCard.tsx"
+    ]
+  },
+  {
+    "id": 148,
+    "category": "English Interface",
+    "current": "Yemek / İaşe Şartı",
+    "proposed": "Meals Required",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "components/gateway/HostMatchingCard.tsx"
+    ]
+  },
+  {
+    "id": 149,
+    "category": "English Interface",
+    "current": "Havalimanı / Yerel Transfer",
+    "proposed": "Airport Transfer and Local Transport",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "components/inquiry/MobilityInquiryModal.tsx",
+      "components/gateway/HostMatchingCard.tsx"
+    ]
+  },
+  {
+    "id": 150,
+    "category": "English Interface",
+    "current": "KA120 / KA121 / KA122 Decision Engine",
+    "proposed": "Erasmus+ Project Path Recommendation Tool",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "app/school/pipeline/page.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 151,
+    "category": "English Interface",
+    "current": "RECOMMENDED ERASMUS+ ACTİON PATHWAY",
+    "proposed": "Recommended Erasmus+ Project Path",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "lib/i18n.tsx",
+      "components/gateway/DecisionEngineCard.tsx"
+    ]
+  },
+  {
+    "id": 152,
+    "category": "English Interface",
+    "current": "EU Partner & Host Finding Gateway",
+    "proposed": "Partner and Hosting Organisation Search",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "app/school/pipeline/page.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 153,
+    "category": "English Interface",
+    "current": "My Sent Mobility Inquiries & Application Status",
+    "proposed": "My Mobility Requests and Their Status",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 154,
+    "category": "English Interface",
+    "current": "Accepted (LoI Ready)",
+    "proposed": "Pre-accepted / Letter of Intent Ready",
+    "location": "English interface – Stage 3",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 155,
+    "category": "English Interface",
+    "current": "ECVET & Europass Uyumlu",
+    "proposed": "Aligned with Learning Outcomes and Europass Mobility",
+    "location": "English interface – Stage 4",
+    "targetFiles": [
+      "components/gateway/LearningOutcomesCard.tsx",
+      "components/layout/AppFooter.tsx"
+    ]
+  },
+  {
+    "id": 156,
+    "category": "English Interface",
+    "current": "Expected Technical Learning Outcome (Hard Skills)",
+    "proposed": "Expected Technical and Occupational Learning Outcomes",
+    "location": "English interface – Stage 4",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 157,
+    "category": "English Interface",
+    "current": "Transversal / Green / Digital & Language Outcome (Soft Skills)",
+    "proposed": "Expected Transversal, Green, Digital and Language Learning Outcomes",
+    "location": "English interface – Stage 4",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 158,
+    "category": "English Interface",
+    "current": "ECVET Standartlarında Kazanımları Yeniden Üret",
+    "proposed": "Regenerate Learning Outcomes",
+    "location": "English interface – Stage 4",
+    "targetFiles": [
+      "components/gateway/LearningOutcomesCard.tsx"
+    ]
+  },
+  {
+    "id": 159,
+    "category": "English Interface",
+    "current": "Sending Institution (Beneficiary)",
+    "proposed": "Sending Organisation / Beneficiary Organisation",
+    "location": "English interface – Stage 4",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 160,
+    "category": "English Interface",
+    "current": "Host Organisation (EU Partner)",
+    "proposed": "Hosting Organisation",
+    "location": "English interface – Stage 4",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 161,
+    "category": "English Interface",
+    "current": "Supporting partner organizations",
+    "proposed": "Supporting Organisations",
+    "location": "English interface – Stage 4",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 162,
+    "category": "English Interface",
+    "current": "Sending Institution (VET)",
+    "proposed": "Sending Organisation",
+    "location": "English interface – Stage 5",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 163,
+    "category": "English Interface",
+    "current": "OID Code",
+    "proposed": "Organisation ID OID",
+    "location": "English interface – Stage 5",
+    "targetFiles": [
+      "components/gateway/SchoolProfileCard.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 164,
+    "category": "English Interface",
+    "current": "Host Organisation (EU Partner)",
+    "proposed": "Hosting Organisation",
+    "location": "English interface – Stage 5",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 165,
+    "category": "English Interface",
+    "current": "Mobility Suitability",
+    "proposed": "Mobility Suitability Score",
+    "location": "English interface – Stage 5",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 166,
+    "category": "English Interface",
+    "current": "Format & Detaylar",
+    "proposed": "Activity Type and Details",
+    "location": "English interface – Stage 5",
+    "targetFiles": [
+      "components/gateway/RecommendationReportCard.tsx"
+    ]
+  },
+  {
+    "id": 167,
+    "category": "English Interface",
+    "current": "Ülkeler / Tarih / Kişi / Yaş Grubu",
+    "proposed": "Countries / Dates / Participants / Age Group",
+    "location": "English interface – Stage 5",
+    "targetFiles": [
+      "components/gateway/RecommendationReportCard.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 168,
+    "category": "English Interface",
+    "current": "Teknik Kazanım",
+    "proposed": "Technical Learning Outcome",
+    "location": "English interface – Stage 5",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 169,
+    "category": "English Interface",
+    "current": "Sonuç & Değerlendirme",
+    "proposed": "Conclusion and Assessment",
+    "location": "English interface – Stage 5",
+    "targetFiles": [
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 170,
+    "category": "English Interface",
+    "current": "Erasmus+ Program Rehberi",
+    "proposed": "Erasmus+ Programme Guide",
+    "location": "English interface – Stage 5",
+    "targetFiles": [
+      "components/gateway/OfficialResourcesCard.tsx",
+      "components/application-draft/sections/DeclarationsSection.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 171,
+    "category": "English Interface",
+    "current": "Türkiye Ulusal Ajansı",
+    "proposed": "Turkish National Agency",
+    "location": "English interface – Stage 5",
+    "targetFiles": [
+      "components/gateway/OfficialResourcesCard.tsx",
+      "components/host/HostPortfolioModal.tsx",
+      "app/news-and-events/page.tsx",
+      "lib/i18n.tsx"
+    ]
+  },
+  {
+    "id": 172,
+    "category": "English Interface",
+    "current": "ECVET & Europass Uyumlu",
+    "proposed": "Aligned with Learning Outcomes and Europass Mobility",
+    "location": "English interface – footer",
+    "targetFiles": [
+      "components/gateway/LearningOutcomesCard.tsx",
+      "components/layout/AppFooter.tsx"
+    ]
+  },
+  {
+    "id": 173,
+    "category": "English Interface",
+    "current": "Tüm hakları saklıdır",
+    "proposed": "All rights reserved",
+    "location": "English interface – footer",
+    "targetFiles": [
+      "components/layout/AppFooter.tsx"
+    ]
+  },
+  {
+    "id": 174,
+    "category": "English Interface",
+    "current": "CAPPINNO Mobility Nexus • Erasmus+ EMaaS Platformu",
+    "proposed": "ErasmusMobility.com • Mobility Planning and Matching Platform",
+    "location": "English interface – footer",
+    "targetFiles": [
+      "components/layout/AppFooter.tsx",
+      "lib/i18n.tsx"
+    ]
+  }
+]

@@ -81,7 +81,7 @@ export default function MobilityInquiryModal({
 
     setTimeout(() => {
       const inquiry = store.sendInquiry({
-        isMock: true,
+        isMock: Boolean(targetHost.hostId?.startsWith('demo-')),
         schoolName,
         schoolCity,
         schoolOid,
@@ -353,7 +353,7 @@ export default function MobilityInquiryModal({
                         onChange={(e) => setReqAccommodation(e.target.checked)}
                         className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 border-slate-300 cursor-pointer"
                       />
-                      <span>🏨 {locale === 'tr' ? 'Konaklama Desteği' : 'Accommodation'}</span>
+                      <span>🏨 {locale === 'tr' ? 'Konaklama Şartı' : 'Accommodation Required'}</span>
                     </label>
 
                     <label className="flex items-center gap-2 cursor-pointer">
@@ -363,7 +363,7 @@ export default function MobilityInquiryModal({
                         onChange={(e) => setReqMeals(e.target.checked)}
                         className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 border-slate-300 cursor-pointer"
                       />
-                      <span>🍽️ {locale === 'tr' ? 'Yemek / İaşe Desteği' : 'Meals & Boarding'}</span>
+                      <span>🍽️ {locale === 'tr' ? 'Yemek Hizmeti' : 'Meals Required'}</span>
                     </label>
 
                     <label className="flex items-center gap-2 cursor-pointer">
@@ -373,7 +373,7 @@ export default function MobilityInquiryModal({
                         onChange={(e) => setReqTransfers(e.target.checked)}
                         className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 border-slate-300 cursor-pointer"
                       />
-                      <span>🚗 {locale === 'tr' ? 'Havalimanı / Yerel Transfer' : 'Local Transfers'}</span>
+                      <span>🚗 {locale === 'tr' ? 'Havalimanı Transferi ve Yerel Ulaşım' : 'Airport Transfer and Local Transport'}</span>
                     </label>
                   </div>
                 </div>

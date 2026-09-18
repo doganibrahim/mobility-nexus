@@ -90,35 +90,35 @@ export default function RecommendationReportCard({
             onClick={onRefreshReport}
             className="edu-btn-primary text-xs"
           >
-            🔄 Raporu Güncelle
+            🔄 {t.report.refreshBtn}
           </button>
           <button
             type="button"
             onClick={handlePrint}
             className="edu-btn-secondary text-xs"
           >
-            🖨️ Yazdır / PDF İndir
+            🖨️ {t.report.printBtn}
           </button>
           <button
             type="button"
             onClick={onSaveLocal}
             className="edu-btn-secondary text-xs"
           >
-            💾 Tarayıcıya Kaydet
+            💾 {t.report.saveBtn}
           </button>
           <button
             type="button"
             onClick={onLoadLocal}
             className="edu-btn-secondary text-xs"
           >
-            📂 Kayıtlı Veriyi Yükle
+            📂 {t.report.loadBtn}
           </button>
           <button
             type="button"
             onClick={onExportJson}
             className="edu-btn-secondary text-xs font-mono"
           >
-            📋 JSON İndir
+            📋 {t.report.exportBtn}
           </button>
 
           {data.hostName && (
@@ -172,7 +172,7 @@ export default function RecommendationReportCard({
             <div className="border-b border-slate-200 pb-4 flex justify-between items-start flex-wrap gap-3">
               <div>
                 <span className="text-[11px] font-bold text-blue-700 uppercase tracking-wide">
-                  Erasmus+ VET Mesleki Eğitim Hareketliliği
+                  {locale === 'en' ? 'Erasmus+ VET Mobility' : 'Erasmus+ VET Mesleki Eğitim Hareketliliği'}
                 </span>
                 <h3 className="text-lg font-bold text-slate-900 m-0 mt-0.5">
                   {t.report.dossierTitle}
@@ -201,7 +201,7 @@ export default function RecommendationReportCard({
                   }`}
                 >
                   {decisionResult.action === 'KA120-VET Erasmus Accreditation Recommended'
-                    ? '⭐ KA120-VET Akreditasyon Tavsiyesi'
+                    ? (locale === 'en' ? '⭐ KA120-VET Accreditation Recommended' : '⭐ KA120-VET Akreditasyon Tavsiyesi')
                     : decisionResult.action} • {decisionResult.readiness}
                 </span>
               )}
@@ -360,15 +360,15 @@ export default function RecommendationReportCard({
 
                   <tr>
                     <th className="p-3 bg-slate-50 font-semibold text-slate-700 border-r border-slate-200">
-                      Format & Detaylar
+                      {locale === 'tr' ? 'Faaliyet Türü ve Ayrıntılar' : 'Activity Type and Details'}
                     </th>
                     <td colSpan={3} className="p-3 text-slate-800">
                       <div className="flex flex-wrap gap-x-6 gap-y-2">
-                        <span><strong>Format:</strong> {data.mobilityGoal}</span>
-                        <span><strong>Ülkeler:</strong> {data.targetCountries?.length > 0 ? data.targetCountries.join(', ') : 'Farketmez / Tümü'}</span>
-                        <span><strong>Tarih:</strong> {data.startDate || '—'} / {data.endDate || '—'}</span>
-                        <span><strong>Kişi:</strong> {data.participantCount} Asil (+{data.accompanyingPersonsCount} Refakatçi)</span>
-                        <span><strong>Yaş Grubu:</strong> {data.ageGroup === 'under_18' ? '18 Yaş Altı' : data.ageGroup === '18_plus' ? '18 Yaş ve Üstü' : 'Karma'}</span>
+                        <span><strong>{locale === 'tr' ? 'Faaliyet:' : 'Activity:'}</strong> {data.mobilityGoal}</span>
+                        <span><strong>{locale === 'tr' ? 'Ülkeler:' : 'Countries:'}</strong> {data.targetCountries?.length > 0 ? data.targetCountries.join(', ') : (locale === 'tr' ? 'Fark Etmez / Tüm Uygun Ülkeler' : 'No Preference / All Eligible Countries')}</span>
+                        <span><strong>{locale === 'tr' ? 'Tarih:' : 'Dates:'}</strong> {data.startDate || '—'} / {data.endDate || '—'}</span>
+                        <span><strong>{locale === 'tr' ? 'Katılımcı:' : 'Participants:'}</strong> {data.participantCount} {locale === 'tr' ? 'Katılımcı' : 'Participants'} (+{data.accompanyingPersonsCount} {locale === 'tr' ? 'Refakat Eden Kişi' : 'Accompanying Persons'})</span>
+                        <span><strong>{locale === 'tr' ? 'Yaş Grubu:' : 'Age Group:'}</strong> {data.ageGroup === 'under_18' ? (locale === 'tr' ? '18 Yaş Altı Reşit Olmayan Katılımcı' : 'Under 18 Minor Participant') : data.ageGroup === '18_plus' ? (locale === 'tr' ? '18+ Yetişkin' : '18+ Adult') : (locale === 'tr' ? 'Karma' : 'Mixed')}</span>
                       </div>
                     </td>
                   </tr>

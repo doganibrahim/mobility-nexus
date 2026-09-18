@@ -1,5 +1,5 @@
 /**
- * CAPPINNO Mobility Nexus - Domain Types, Interfaces and DTOs
+ * ErasmusMobility - Domain Types, Interfaces and DTOs
  */
 
 // ==============================================================================
@@ -520,3 +520,11 @@ export interface MatchHostsResponseDto {
     vetField?: string;
   };
 }
+
+// ==============================================================================
+// 6. KA121 Official Form Schema & Guidance Types
+// ==============================================================================
+
+export * from './ka121-form-schema';
+export * from './ka122-form-schema';
+

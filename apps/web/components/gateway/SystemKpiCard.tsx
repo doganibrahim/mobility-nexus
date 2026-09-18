@@ -11,7 +11,7 @@ export default function SystemKpiCard() {
     <NeoCard
       id="system-kpi"
       title={t.system.title}
-      badge="Erasmus+ VET Modeli"
+      badge={locale === 'en' ? 'Erasmus+ VET Model' : 'Erasmus+ VET Modeli'}
       badgeType="primary"
     >
       <div className="space-y-6">
@@ -22,7 +22,7 @@ export default function SystemKpiCard() {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-blue-700">
-                  Aşama 1
+                  {locale === 'en' ? 'Stage 1' : 'Aşama 1'}
                 </span>
                 <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs font-bold flex items-center justify-center">
                   1
@@ -36,7 +36,7 @@ export default function SystemKpiCard() {
               </p>
             </div>
             <div className="mt-4 pt-2.5 border-t border-slate-200/60 text-[11px] font-medium text-slate-500">
-              Çıktı: Kurum Profili & OID
+              {locale === 'en' ? 'Output: Organisation Profile and OID' : 'Çıktı: Kurum Profili & OID'}
             </div>
           </div>
 
@@ -45,7 +45,7 @@ export default function SystemKpiCard() {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-blue-700">
-                  Aşama 2
+                  {locale === 'en' ? 'Stage 2' : 'Aşama 2'}
                 </span>
                 <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs font-bold flex items-center justify-center">
                   2
@@ -59,7 +59,7 @@ export default function SystemKpiCard() {
               </p>
             </div>
             <div className="mt-4 pt-2.5 border-t border-slate-200/60 text-[11px] font-medium text-slate-500">
-              Çıktı: ESCO Eşleştirmesi & Boşluk
+              {locale === 'en' ? 'Output: ESCO Mapping and Competence Gap' : 'Çıktı: ESCO Eşleştirmesi & Yetkinlik Açığı'}
             </div>
           </div>
 
@@ -68,7 +68,7 @@ export default function SystemKpiCard() {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-blue-700">
-                  Aşama 3
+                  {locale === 'en' ? 'Stage 3' : 'Aşama 3'}
                 </span>
                 <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs font-bold flex items-center justify-center">
                   3
@@ -82,7 +82,7 @@ export default function SystemKpiCard() {
               </p>
             </div>
             <div className="mt-4 pt-2.5 border-t border-slate-200/60 text-[11px] font-medium text-slate-500">
-              Çıktı: KA121 / KA122 Kararı
+              {locale === 'en' ? 'Output: Recommended Project Path' : 'Çıktı: Önerilen Proje Yolu'}
             </div>
           </div>
 
@@ -91,7 +91,7 @@ export default function SystemKpiCard() {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-blue-700">
-                  Aşama 4
+                  {locale === 'en' ? 'Stage 4' : 'Aşama 4'}
                 </span>
                 <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs font-bold flex items-center justify-center">
                   4

@@ -13,6 +13,53 @@ export interface Translations {
     themeLabel: string;
     fontLabel: string;
     nav: {
+      home: string;
+      about: string;
+      platform: {
+        label: string;
+        desc: string;
+        pipeline: string;
+        pipelineDesc: string;
+        schoolDashboard: string;
+        schoolDashboardDesc: string;
+        hostPortal: string;
+        hostPortalDesc: string;
+        onboarding: string;
+        onboardingDesc: string;
+      };
+      library: {
+        label: string;
+        desc: string;
+        ka121Guide: string;
+        ka121GuideDesc: string;
+        ka122Guide: string;
+        ka122GuideDesc: string;
+        programmeGuide: string;
+        programmeGuideDesc: string;
+        grantResults: string;
+        grantResultsDesc: string;
+        mebAtlas: string;
+        mebAtlasDesc: string;
+        legal: string;
+        legalDesc: string;
+      };
+      newsAndEvents: {
+        label: string;
+        desc: string;
+        calls2026: string;
+        calls2026Desc: string;
+        events: string;
+        eventsDesc: string;
+        deadlines: string;
+        deadlinesDesc: string;
+      };
+      contact: {
+        label: string;
+        appointment: string;
+        appointmentDesc: string;
+        support: string;
+        supportDesc: string;
+      };
       programmes: {
         label: string;
         ka121: string;
@@ -56,11 +103,6 @@ export interface Translations {
         mebAtlasDesc: string;
         legal: string;
         legalDesc: string;
-      };
-      contact: {
-        label: string;
-        appointment: string;
-        appointmentDesc: string;
       };
     };
     beneficiaries: {
@@ -635,18 +677,116 @@ export interface Translations {
     btnSignIn: string;
     noticeNoCard: string;
   };
+  chatbot: {
+    title: string;
+    badge: string;
+    status: string;
+    welcomeMsg: string;
+    resetTooltip: string;
+    closeTooltip: string;
+    resetMsg: string;
+    suggestedLabel: string;
+    quick1: string;
+    quick2: string;
+    quick3: string;
+    quick4: string;
+    inputPlaceholder: string;
+    sendTooltip: string;
+    thinking: string;
+    errorMsg: string;
+    triggerSubtitle: string;
+    triggerDismissTooltip: string;
+    reopenBtn: string;
+    reopenTooltip: string;
+    closeLink: string;
+    version: string;
+  };
+  applicationDraft: {
+    sectionContextKa121: string;
+    sectionActivitiesKa121: string;
+    sectionDeclarationsKa121: string;
+    sectionAiQuestionsKa121: string;
+    sectionContextKa122: string;
+    sectionOrgProfileKa122: string;
+    sectionNeedsObjectivesKa122: string;
+    sectionActivitiesKa122: string;
+    sectionQualityTeamKa122: string;
+    sectionDeclarationsKa122: string;
+    sectionAiQuestionsKa122: string;
+    btnLoadPreset: string;
+    btnSyncPipeline: string;
+    btnResetDraft: string;
+    btnUploadKa120: string;
+    uploadPdfOnly: string;
+    uploadSizeLimit: string;
+    uploadParseError: string;
+    uploadReadError: string;
+    resetConfirm: string;
+    resetToast: string;
+    syncSuccessToast: string;
+    templateLoadedToast: string;
+    completionRate: string;
+    requiredFields: string;
+  };
 }
 
 const TRANSLATIONS: Record<Locale, Translations> = {
   tr: {
     header: {
-      title: 'CAPPINNO Mobility Nexus',
-      subtitle: 'KA121-VET • KA122-VET • ESCO & ISCED-F • Yetkinlik Ölçümü • AB Ev Sahibi Eşleştirme',
+      title: 'ErasmusMobility',
+      subtitle: 'KA121-VET • KA122-VET • ESCO & ISCED-F • Yetkinlik Ölçümü • Ev Sahibi Kuruluş Eşleştirmesi',
       badge: 'EMaaS v1.0 • 2026',
       langToggle: 'Dil',
       themeLabel: 'Tema',
       fontLabel: 'Yazı Tipi',
       nav: {
+        home: 'Anasayfa',
+        about: 'Hakkımızda',
+        platform: {
+          label: 'Platform',
+          desc: 'EMaaS karar, eşleştirme ve planlama araçları',
+          pipeline: '5 Adımlı Hareketlilik Planı',
+          pipelineDesc: 'Okul profili, ESCO analizi ve hibe karar motoru',
+          schoolDashboard: 'Okul Gösterge Paneli',
+          schoolDashboardDesc: 'Aktif hareketlilikler, OID ve başvuru takibi',
+          hostPortal: 'Ev Sahibi Kuruluşlar ve Hizmetler',
+          hostPortalDesc: 'Doğrulanmış stajyer kontenjanları ve niyet mektubu kabulü',
+          onboarding: 'Kurumsal Kayıt & Doğrulama',
+          onboardingDesc: 'OID, okul ve ev sahibi kuruluş kurulumu',
+        },
+        library: {
+          label: 'Kütüphane',
+          desc: 'Resmi rehberler, başvuru formları ve hibe analizleri',
+          ka121Guide: 'KA121 Resmi Başvuru Form Rehberi',
+          ka121GuideDesc: 'Akredite kurum yıllık bütçe ve hedef planlama',
+          ka122Guide: 'KA122 Resmi Başvuru Form Rehberi',
+          ka122GuideDesc: 'Kısa dönemli proje başvuru alanları ve standartları',
+          programmeGuide: 'Erasmus+ Program Rehberi 2026-2027',
+          programmeGuideDesc: 'Resmi hibe kuralları, birim maliyetler ve öncelikler',
+          grantResults: '2026 Hibe Dağılımı ve Analizi',
+          grantResultsDesc: 'Türkiye geneli akredite kurum hibe istatistikleri',
+          mebAtlas: 'MEB Açık Veri Referans Kataloğu',
+          mebAtlasDesc: '81 il resmi okul ve kurum verileri rehberi',
+          legal: 'KVKK ve Hukuki Metinler',
+          legalDesc: '6698 sayılı kanun kapsamında veri işleme ilkeleri',
+        },
+        newsAndEvents: {
+          label: 'Haberler & Etkinlikler',
+          desc: 'Çağrı duyuruları, son başvuru tarihleri ve çalıştaylar',
+          calls2026: '2026-2027 Erasmus+ VET Çağrı Takvimi',
+          calls2026Desc: 'Önemli tarihler, hibe tahsisatı ve ara raporlama',
+          events: 'Erasmus Days & Beceriler Haftası',
+          eventsDesc: 'Uluslararası mesleki eğitim etkinlikleri ve çalıştaylar',
+          deadlines: 'Son Başvuru Tarihleri & Takvim',
+          deadlinesDesc: 'Konsorsiyum ve bireysel başvuru kritik tarihleri',
+        },
+        contact: {
+          label: 'İletişim',
+          appointment: 'Randevu Al',
+          appointmentDesc: 'Online danışmanlık ve tanışma toplantısı planlayın',
+          support: 'Destek Masası & Bize Ulaşın',
+          supportDesc: 'Doğrudan mesaj ve kurumsal yardım masası',
+        },
         programmes: {
           label: 'Programlar',
           ka121: 'KA121-VET (Akredite Kurumlar)',
@@ -657,7 +797,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
           comparisonDesc: 'Uygunluk kuralları, hibe limitleri ve kriterler',
         },
         beneficiaries: {
-          label: 'Yararlanıcılar',
+          label: 'Gönderen Kuruluşlar',
           meslekLiseleri: 'Meslek Liseleri',
           meslekLiseleriDesc: '3.700+ MTAL ve ÇPAL açık veri kataloğu',
           halkEgitim: 'Halk Eğitim Merkezleri',
@@ -674,7 +814,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
           esnafDesc: 'TESK il esnaf ve sanatkârlar birlikleri',
         },
         opportunities: {
-          label: 'Fırsatlar & Hostlar',
+          label: 'Ev Sahibi Kuruluşlar ve Hizmetler',
           hostOrgs: 'Ev Sahibi Kurumlar (Host Portföyü)',
           hostOrgsDesc: 'Avrupa genelinde onaylı işletmeler ve merkezler',
           internships: 'Staj ve İşbaşı İzleme Alanları',
@@ -691,14 +831,9 @@ const TRANSLATIONS: Record<Locale, Translations> = {
           legal: 'KVKK Aydınlatma Metni',
           legalDesc: '6698 sayılı kanun kapsamında veri işleme ilkeleri',
         },
-        contact: {
-          label: 'İletişim',
-          appointment: 'Randevu Al',
-          appointmentDesc: 'Online danışmanlık ve tanışma toplantısı planlayın',
-        },
       },
       beneficiaries: {
-        label: 'Yararlanıcılar',
+        label: 'Gönderen Kuruluşlar',
         meslekLiseleri: 'Meslek Liseleri',
         halkEgitim: 'Halk Eğitim Merkezleri',
         olgunlasma: 'Olgunlaşma Enstitüleri',
@@ -712,7 +847,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
     tabs: {
       profile: { label: '1. Kurum & Katılımcı', desc: 'Okul ve hedef profil' },
       competence: { label: '2. ESCO & Yetkinlik', desc: 'Taksonomi ve değerlendirme' },
-      matching: { label: '3. Host & Karar', desc: 'Host eşleştirme ve KA120/121/122' },
+      matching: { label: '3. Ev Sahibi Eşleştirme ve Proje Yolu', desc: 'Ev sahibi kuruluş eşleştirmesi ve KA120/121/122' },
       outcomes: { label: '4. Kazanımlar & Kalite', desc: 'Öğrenme çıktıları ve İSG' },
       report: { label: '5. Planlama Raporu', desc: 'Kurum içi planlama ve tavsiye raporu' },
     },
@@ -726,30 +861,30 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       title: '1. Sistem Mimarisi & EMaaS İş Akışı',
       badge: 'Platform Rehberi',
       step1Title: 'Kurum & Katılımcı Profili',
-      step1Desc: 'Kurum akreditasyon OID kaydı, Erasmus Plan hedefleri ve katılımcı dil/profil verileri.',
+      step1Desc: 'Kuruluş Kimlik Numarası OID ve Erasmus Akreditasyonu bilgileri, Erasmus Planı hedefleri ve hedef kitle profili.',
       step2Title: 'ESCO + ISCED-F Eşleştirici',
       step2Desc: '12 Mesleki alan için ISCED-F eğitim kodu ve Avrupa ESCO meslek profili otomatik eşleme.',
-      step3Title: 'Yetkinlik & Karar Motoru',
-      step3Desc: '12 soruluk yetkinlik testi, gelişim açığı (gap) ve 8 kriterli KA121/KA122 karar motoru.',
-      step4Title: 'AB Ev Sahibi & Hareketlilik Planı',
-      step4Desc: '10 parametreli ağırlıklı Host skorlaması, partner arama hunisi ve rol bazlı kazanım üretimi.',
+      step3Title: 'Yetkinlik & Proje Yolu Öneri Aracı',
+      step3Desc: '12 soruluk yetkinlik testi, yetkinlik açığı ve 8 kriterli KA121/KA122 proje yolu öneri aracı.',
+      step4Title: 'Ev Sahibi Kuruluş ve Hareketlilik Planı',
+      step4Desc: '10 parametreli ağırlıklı ev sahibi kuruluş puanlaması, ortak ve ev sahibi kuruluş arama süreci ve rol bazlı kazanım üretimi.',
       disclaimer: 'Önemli Bilgilendirme: Bu platform Erasmus+ KA121-VET ve KA122-VET projeleri için tavsiye, eşleştirme ve planlama amaçlıdır. Nihai uygunluk, faaliyet türü, süre, bütçe ve başvuru kararları Erasmus+ Programme Guide ve Türkiye Ulusal Ajansı kurallarıyla doğrulanmalıdır.',
     },
     school: {
       title: '2. Kurum & Okul Profili',
       badgePrefix: 'Kurum Hazırlık',
-      nameLabel: 'Meslek Lisesi / VET Kuruluşu Tam Adı *',
+      nameLabel: 'Mesleki Eğitim Kuruluşunun Tam Yasal Adı *',
       namePlaceholder: 'Örn: Ankara Mesleki ve Teknik Anadolu Lisesi',
       cityLabel: 'İl / Şehir *',
       cityPlaceholder: 'Örn: Ankara',
-      accLabel: 'Erasmus VET Akreditasyonu',
+      accLabel: 'Erasmus Akreditasyonu KA120-VET Var mı? *',
       accUnknown: 'Bilinmiyor / Belirsiz',
-      accYes: 'Evet (Akredite Kurum - KA121)',
-      accNo: 'Hayır (Kısa Dönem Başvuru - KA122)',
-      oidLabel: 'Erasmus OID Kodu (E10XXXXXX)',
+      accYes: 'Evet – Erasmus Akreditasyonuna Sahip KA120-VET Kuruluşu',
+      accNo: 'Hayır – KA122-VET Kısa Dönemli Proje Başvurusu Planlanıyor',
+      oidLabel: 'Kuruluş Kimlik Numarası OID *',
       planLabel: 'Erasmus Plan Hedefi (Akredite İse Stratejik Hedefler)',
       planPlaceholder: 'Örn: Öğretmen ve öğrencilerin Endüstri 4.0 / dijital üretim ve robotik yetkinliklerini geliştirmek...',
-      needLabel: 'Kurumsal İhtiyaç / Somut Challenge *',
+      needLabel: 'Kurumsal İhtiyaçlar ve Belirlenen Eksiklikler *',
       needPlaceholder: 'Somut kurumsal ihtiyaç, laboratuvar donanım/eğitim eksikliği ve mevcut performans boşluğunu yazın...',
       readinessTitle: 'Kurumsal Profil Tamamlığı:',
       readyBadge: 'Hazır',
@@ -759,9 +894,9 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       title: '3. Katılımcı & Hareketlilik Profili',
       badge: 'Hedef Kitle',
       typeLabel: 'Katılımcı Türü *',
-      teacher: 'Teknik Öğretmen / Eğitici (Staff)',
-      student: 'Meslek Lisesi Öğrencisi / Çırak (VET Learner)',
-      goalLabel: 'Hareketlilik Tercihi / Faaliyet Türü',
+      teacher: 'Öğretmen / Eğitici / Personel Katılımcı',
+      student: 'Mesleki Eğitim Öğrenicisi / Çırak',
+      goalLabel: 'Erasmus+ Faaliyet Türü',
       nameLabel: 'Katılımcı Grubu / Kod / İsim',
       namePlaceholder: 'Örn: Bilişim Öğretmenleri veya ID-2026-VET-01',
       langLabel: 'İngilizce / Çalışma Dili Hazırlığı (0-100)',
@@ -772,57 +907,57 @@ const TRANSLATIONS: Record<Locale, Translations> = {
     },
     esco: {
       title: '4. ESCO – ISCED-F Eşleştirici',
-      badge: 'AB Taksonomi Standartları',
+      badge: 'Avrupa Birliği ESCO Sınıflandırması',
       info: 'ISCED-F eğitim alanını; ESCO ise meslek, beceri/yetkinlik ve mesleki profil eşleştirmesini destekler. ESCO\'da her meslek bir ISCO-08 koduna bağlıdır; tam ESCO kavram URI\'si resmi ESCO portalından doğrulanmalıdır.',
       fieldLabel: 'Mesleki Alan / Bölüm Seçiniz *',
       fieldDefault: '-- Alan Seçiniz (12 VET Alanı) --',
       iscedCodeLabel: 'ISCED-F Kodu',
       iscedNameLabel: 'ISCED-F Alanı',
-      escoTermLabel: 'Önerilen ESCO Arama Terimi / Meslek Ailesi',
+      escoTermLabel: 'Önerilen ESCO Meslek Arama Terimi / Meslek Profili',
       iscoLabel: 'ISCO-08 Kodu',
       escoUriLabel: 'ESCO Kavram URI',
       skillsLabel: 'Öncelikli ESCO Becerileri / Beceriler & Yetkinlikler',
       verifyBtn: 'ESCO\'da Doğrula',
       escoPortalBtn: 'ESCO Sınıflandırma Portalı',
-      iscedGuideBtn: 'ISCED-F 2013 Rehberi',
+      iscedGuideBtn: 'ISCED-F 2013 Kılavuzu',
     },
     assessment: {
-      title: '5. Yetkinlik Değerlendirme (Competence Assessment)',
+      title: '5. Yetkinlik Öz Değerlendirmesi',
       badgeSuffix: 'Yanıtlandı',
-      desc: 'Aşağıdaki 12 soruluk değerlendirme 1 (Temel) – 5 (İleri/Uzman) ölçeğini kullanır. CAPPINNO Competence4VET metodolojisine dayanır.',
-      scoreBtn: 'Testi Puanla',
+      desc: 'Aşağıdaki 12 soruluk değerlendirme 1 (Temel) – 5 (İleri/Uzman) ölçeğini kullanır. Erasmus+ VET metodolojisine dayanır.',
+      scoreBtn: 'Yetkinlik Puanını Hesapla',
       fullTestBtn: 'Tam Competence4VET Testini Aç',
     },
     gap: {
-      title: 'Yetkinlik Açığı Analizi (Competence Gap)',
+      title: 'Yetkinlik Açığı Analizi',
       badge: 'Açık & İhtiyaç',
       quickScore: 'Hızlı Değerlendirme Skoru',
-      targetLabel: 'Hedeflenen Seviye (0–100)',
+      targetLabel: 'Hedef Yetkinlik Düzeyi (0–100)',
       externalLabel: 'Harici Competence4VET Test Skoru',
       applyBtn: 'Uygula',
       disclaimer: 'Test sonucu tek başına katılımcı elemek için kullanılmamalıdır; ön hazırlık veya mentorluk ihtiyacını tespit etmek amacıyla değerlendirilir.',
     },
     eligibility: {
       title: '5. KA122-VET Başvuru Öncesi Zorunlu Uygunluk Kontrolü',
-      badge: 'Resmi Uygunluk Kapısı (Gatekeeper)',
+      badge: 'Ön Uygunluk Kontrolü',
       subtitle: 'Erasmus+ VET rehberine göre akreditasyon, katılımcı tavanı (30 kişi), proje süresi (6–18 ay) ve 36 aylık hibe kotası denetimi',
       accreditationLabel: 'Kurum Akreditasyon Durumu',
       participantCountLabel: 'Planlanan Katılımcı Sayısı (Maks. 30)',
       durationLabel: 'Planlanan Proje Süresi (6–18 Ay)',
-      pastGrantsLabel: 'Son 36 Ayda Alınan KA122 Hibesi (Maks. 3)',
+      pastGrantsLabel: 'Ardışık Beş Çağrı Yılı İçinde Alınan KA122-VET Hibesi (0-3)',
       strategyLabel: 'Hareketlilik Stratejisi & Vizyonu',
       strategyAdHoc: 'Kısa Dönemli / Tek Seferlik İhtiyaç (KA122)',
-      strategyRegular: 'Yıllık ve Düzenli Kurumsal Hareketlilik (KA120 Önerilir)',
+      strategyRegular: 'Yıllık ve Düzenli Kurumsal Hareketlilik (Erasmus Akreditasyonu KA120-VET Değerlendirilebilir)',
       checkButton: 'Uygunluk Kriterlerini Denetle',
       resultEligibleTitle: 'KA122-VET Başvurusuna Tam Uygun',
       resultIneligibleTitle: 'Kural İhlali Tespit Edildi',
       resultKa120Title: 'KA120-VET Erasmus Akreditasyonu Tavsiye Edilir',
-      resultKa121Title: 'Doğrudan KA121-VET Yıllık Hibe Tahsisatı Kullanılmalıdır',
+      resultKa121Title: 'Doğrudan KA121-VET Yıllık Hibe Başvurusu Yapılmalıdır',
     },
     host: {
-      title: '6. AB Ev Sahibi Kuruluş (Host) Eşleştirme & Skorlama',
+      title: '6. Ev Sahibi Kuruluş Eşleştirmesi',
       badge: '10 Kriter & Akıllı Eşleştirme',
-      modeLive: 'Akıllı AB Ev Sahibi Eşleştirme (Live Match)',
+      modeLive: 'Ev Sahibi Kuruluş Eşleştirmesi',
       modeManual: 'Manuel Değerlendirme (10 Kriter)',
       liveDesc: 'Okulunuzun hedef ülke, faaliyet türü, kontenjan ve lojistik taleplerini veritabanındaki kayıtlı ve doğrulanmış Avrupalı ev sahipleriyle anlık eşleştirir.',
       runMatchBtn: 'Okul Profiline Göre Ev Sahibi Eşleştir',
@@ -851,38 +986,38 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       calculatedScore: 'Hesaplanan Skor:',
     },
     decision: {
-      title: '7. KA120 / KA121 / KA122 Karar Motoru',
+      title: '7. Erasmus+ Proje Yolu Öneri Aracı',
       badge: '8 Faktörlü Karar Modeli',
-      calcBtn: 'Karar Motorunu Çalıştır (KA120 / KA121 / KA122)',
-      proposedPath: 'Önerilen Erasmus+ Başvuru Yolu:',
+      calcBtn: 'Proje Yolu Öneri Aracını Çalıştır (KA120 / KA121 / KA122)',
+      proposedPath: 'Önerilen Erasmus+ Proje Yolu:',
       scoreLabel: 'Hareketlilik Uygunluk Skoru:',
       rationaleTitle: 'Karar Gerekçesi:',
       emptyText: 'Karar üretmek için yukarıdaki "Karar Motorunu Çalıştır" butonuna tıklayınız.',
     },
     partners: {
-      title: '8. AB Partner & Host Arama Portalları',
+      title: '8. Ortak ve Ev Sahibi Kuruluş Arama Platformları',
       badge: 'Resmi Portallar & Arama Hunisi',
-      funnelTitle: 'Önerilen 5 Aşamalı Partner Arama Hunisi (Search Funnel)',
+      funnelTitle: 'Önerilen 5 Aşamalı Ortak Arama ve Kısa Liste Oluşturma Süreci',
       stageCol: 'Aşama',
       sourceCol: 'Kaynak Platform',
       queryCol: 'Arama Stratejisi',
       outputCol: 'Hedef Çıktı',
     },
     outcomes: {
-      title: '9. Öğrenme Kazanımları Üreteci (Learning Outcomes)',
+      title: '9. Öğrenme Çıktıları Oluşturma Aracı',
       badge: 'Rol Bazlı Dinamik Üretim',
-      gapLabel: 'Öncelikli Yetkinlik Açığı / Competence Gap',
-      technicalLabel: 'Hareketlilik Sonunda Beklenen Teknik Kazanım (Hard Skills)',
-      transversalLabel: 'Transversal / Yeşil / Dijital & Dil Kazanımı (Soft Skills)',
-      generateBtn: 'Rol ve Alana Göre Örnek Kazanımlar Üret',
+      gapLabel: 'Öncelikli Yetkinlik Açığı',
+      technicalLabel: 'Teknik ve Mesleki Öğrenme Çıktıları',
+      transversalLabel: 'Yatay Beceriler, Yeşil, Dijital ve Yabancı Dil Öğrenme Çıktıları',
+      generateBtn: 'Öğrenme Çıktılarını Yeniden Oluştur',
     },
     quality: {
       title: '10. Kalite & Sorumluluk Matrisi',
       badge: 'Erasmus Kalite Standartları',
       stageCol: 'Süreç / Alan',
-      sendingCol: 'Gönderen Kurum (Yararlanıcı VET)',
-      hostCol: 'Ev Sahibi (AB Partneri)',
-      disclaimer: 'Erasmus Temel İlkesi: Çekirdek proje görevleri (katılımcı seçimi, bütçe yönetimi, Ulusal Ajans raporlaması) mutlaka gönderen yararlanıcı kurumda (Beneficiary) kalmalıdır. Destekleyici aracı kuruluşlar sadece operasyonel kolaylaştırıcılık sağlayabilir.',
+      sendingCol: 'Gönderen Kuruluş / Yararlanıcı Kuruluş',
+      hostCol: 'Ev Sahibi Kuruluş',
+      disclaimer: 'Erasmus Temel İlkesi: Çekirdek proje görevleri (katılımcı seçimi, bütçe yönetimi, Ulusal Ajans raporlaması) mutlaka gönderen yararlanıcı kurumda (Beneficiary) kalmalıdır. Destekleyici Kuruluşlar sadece operasyonel kolaylaştırıcılık sağlayabilir.',
     },
     report: {
       title: '11. Kurum İçi Planlama ve Tavsiye Raporu – Erasmus+ Başvuru Formu Değildir',
@@ -893,8 +1028,8 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       loadBtn: 'Kaydı Yükle',
       exportBtn: 'JSON İndir',
       dossierTitle: 'Kurum İçi Planlama ve Tavsiye Raporu – Erasmus+ Başvuru Formu Değildir',
-      dossierSub: 'CAPPINNO Mobility Nexus • 2026 Projeleri: Uygulama Dönemi • 2027 Çağrısı: Resmi Duyuru Bekleniyor',
-      legalDisclaimer: 'Önemli Bilgilendirme: Bu belge kurum içi stratejik planlama ve hazırlık tavsiyesi niteliğindedir. Resmi Erasmus+ başvuru formu veya taahhüt yerine geçmez. Başvurular ilgili kurum tarafından doğrudan Ulusal Ajans resmi başvuru portalları üzerinden yürütülmelidir.',
+      dossierSub: 'ErasmusMobility • 2026 Projeleri: Uygulama Dönemi • 2027 Çağrısı: Resmi Duyuru Bekleniyor',
+      legalDisclaimer: 'Önemli Bilgilendirme: Bu belge kurum içi stratejik planlama ve hazırlık tavsiyesi niteliğindedir. Resmi Erasmus+ başvuru formu veya taahhüt yerine geçmez. Başvurular ilgili kurum tarafından doğrudan Türkiye Ulusal Ajansı resmi başvuru portalları üzerinden yürütülmelidir.',
       sendingOrg: 'Gönderen Kurum (Sending VET)',
       oid: 'OID Kodu',
       participant: 'Katılımcı Profili',
@@ -905,30 +1040,30 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       conceptUri: 'ISCO / Kavram URI',
       compScore: 'Yetkinlik Skoru',
       suitability: 'Hareketlilik Uygunluğu',
-      hostOrg: 'Ev Sahibi Kuruluş (EU Host)',
+      hostOrg: 'Ev Sahibi Kuruluş',
       hostScore: 'Ev Sahibi Kalite Skoru',
       formatDuration: 'Hareketlilik Formatı & Süre',
       needsAlignment: 'Kurumsal İhtiyaç & Erasmus Plan Uyumu',
       erasmusPlan: 'Erasmus Planı Hedefi:',
       escoSkills: 'Öncelikli ESCO Becerileri',
-      expectedOutcomes: 'Beklenen Öğrenme Kazanımları (Learning Outcomes)',
-      techOutcomes: 'Teknik Kazanım:',
-      transOutcomes: 'Transversal / Yeşil / Dijital:',
-      decisionSummary: 'Sonuç & Değerlendirme',
+      expectedOutcomes: 'Beklenen Öğrenme Çıktıları',
+      techOutcomes: 'Teknik ve Mesleki Öğrenme Çıktıları:',
+      transOutcomes: 'Yatay Beceriler, Yeşil, Dijital ve Yabancı Dil Öğrenme Çıktıları:',
+      decisionSummary: 'Karar Özeti ve Gerekçe',
       emptyText: 'Okul profili, yeterlilik testi ve host bilgilerini doldurduktan sonra yukarıdaki "Raporu Güncelle" butonuna basınız.',
       savedAlert: 'Tüm form ve değerlendirme verileri tarayıcınıza başarıyla kaydedildi.',
       loadedAlert: 'Kayıtlı profil verileri başarıyla yüklendi.',
       notFoundAlert: 'Kayıtlı bir profil verisi bulunamadı.',
     },
     official: {
-      title: '12. Resmi Kaynaklar ve Yasal Çerçeve',
+      title: '12. Resmi Kaynaklar ve Program Çerçevesi',
       badge: 'Yasal Sorumluluk',
-      info: 'KA121-VET akredite kuruluşlar için Erasmus Plan ile bağlantılı yıllık bütçe tahsisatına dayanır. KA122-VET kısa dönemli hareketlilik projelerinde ise kurumun kurumsal arkaplan, ihtiyaç/challenge, hedefler, faaliyetler, bütçe, kalite standartları ve yaygınlaştırma zincirini gerekçelendirmesi zorunludur.',
-      disclaimer: 'Değerlendirme Yasal Uyarısı (Assessment Disclaimer): Bu araçtaki yeterlilik testi ve Mobility Suitability skoru tavsiye ve planlama amaçlıdır. Sonuçlar tek başına öğrenci/öğretmen seçimi, dışlama, işe alım, notlandırma veya başka yüksek etkili kararlar için kullanılamaz. Katılımcı seçimi şeffaf, adil ve kapsayıcı ayrı bir resmi prosedürle yürütülmelidir.',
+      info: 'KA121-VET akredite kuruluşlar için Erasmus Planı ile bağlantılı yıllık hibe başvurusu yapma imkânına dayanır. KA122-VET kısa dönemli hareketlilik projelerinde ise kurumun kurumsal arka plan, ihtiyaçlar ve sorunlar, hedefler, faaliyetler, bütçe, kalite standartları ve yaygınlaştırma zincirini gerekçelendirmesi zorunludur.',
+      disclaimer: 'Değerlendirme Bilgilendirmesi: Bu araçtaki yeterlilik testi ve Hareketlilik Uygunluk Skoru tavsiye ve planlama amaçlıdır. Sonuçlar tek başına öğrenci/öğretmen seçimi, dışlama, işe alım, notlandırma veya başka yüksek etkili kararlar için kullanılamaz. Katılımcı seçimi şeffaf, adil ve kapsayıcı ayrı bir resmi prosedürle yürütülmelidir.',
     },
     footer: {
-      subtitle: 'Erasmus+ KA121-VET ve KA122-VET projeleri için akıllı eşleştirme, ESCO-ISCED sınıflandırması, yetkinlik ölçümü ve denetim izi yönetim platformu.',
-      copyright: '© 2026 CAPPINNO • Enterprise Multi-tenant SaaS Platform',
+      subtitle: 'Erasmus+ Mesleki Eğitim (VET) hareketlilik projeleri için karar, eşleştirme ve planlama platformu.',
+      copyright: '© 2026 ErasmusMobility.com • Tüm hakları saklıdır.',
     },
     legal: {
       title: 'KVKK Aydınlatma Metni',
@@ -1115,13 +1250,13 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       nextPage: 'Sonraki Sayfa',
     },
     guestBanner: {
-      badge: 'Erasmus+ VET Hareketlilik Ag Gecidi',
-      title: 'CAPPINNO Mobility Nexus\'a Hos Geldiniz!',
-      desc: 'Mesleki egitim (VET) hareketliliklerinizi planlamak, ESCO beceri analizini yapmak ve Avrupa genelindeki dogrulanmis ev sahipleriyle eslesmek icin giris yapmadan tum araclari canli test edebilir veya ucretsiz kayit olabilirsiniz.',
-      badge1: 'KA121 & KA122 Uyumlu',
+      badge: 'Erasmus+ Mesleki Eğitim Hareketlilik Platformu',
+      title: 'ErasmusMobility.com\'a Hoş Geldiniz!',
+      desc: 'Mesleki egitim (VET) hareketliliklerinizi planlamak, ESCO beceri analizini yapmak ve ErasmusMobility.com tarafından doğrulanmış ev sahibi kuruluşlarla eşleşmek icin giris yapmadan tum araclari canli test edebilir veya ucretsiz kayit olabilirsiniz.',
+      badge1: 'KA121-VET ve KA122-VET Planlamasını Destekler',
       badge2: 'Giris Sarti Olmadan Simulasyon',
       badge3: 'ESCO & ISCED-F Taksonomisi',
-      badge4: '15 Kriterli Guvenli Eslestirme',
+      badge4: '15 Kriterli Kuruluş Eşleştirmesi',
       btnTour: 'Hizli Baslangic Rehberi (3 dk)',
       btnDemo: 'Demo Verisiyle Dene',
       btnRegister: 'Ucretsiz Kayit Ol',
@@ -1208,7 +1343,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       loiModalSubtitle: 'Ev sahibi kuruluş tarafından onaylanmış ve staj kontenjanı ayrılmış resmi belge.',
     },
     guestOnboarding: {
-      modalTitle: 'CAPPINNO Mobility Nexus • Hizli Baslangic Rehberi',
+      modalTitle: 'ErasmusMobility • Hızlı Başlangıç Rehberi',
       stepIndicator: 'Asama',
       btnNext: 'Sonraki Asama',
       btnPrev: 'Onceki',
@@ -1222,7 +1357,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       guestNoticeBtn: 'Giris Yap / Kayit Ol',
       step1Tag: 'Platforma Genel Bakis',
       step1Title: 'Erasmus+ Mesleki Egitimde Yeni Nesil Dijital Altyapi',
-      step1Desc: 'CAPPINNO Mobility Nexus, meslek liseleri ve Avrupali ev sahibi kurumlar arasindaki KA121 akreditasyonu ve KA122 kisa donemli hareketlilik sureclerini uctan uca dijitallestiren resmi karar ve eslestirme motorudur.',
+      step1Desc: 'ErasmusMobility, meslek liseleri ve Avrupalı ev sahibi kurumlar arasındaki KA121 akreditasyonu ve KA122 kısa dönemli hareketlilik süreçlerini uçtan uca dijitalleştiren resmi karar ve eşleştirme motorudur.',
       step1Point1Title: 'Resmi OID & Akreditasyon Uyumu',
       step1Point1Desc: 'Ulusal Ajans ve Avrupa Komisyonu standartlarinda kurum kodu (OID) dogrulamasi ve hazirlik skoru.',
       step1Point2Title: 'ESCO & ISCED-F Beceri Analizi',
@@ -1269,16 +1404,114 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       btnSignIn: 'Zaten hesabiniz var mi? Giris Yapin',
       noticeNoCard: 'Kredi karti gerekmez • Tum temel Erasmus+ VET araclari ucretsizdir',
     },
+    chatbot: {
+      title: 'Erasmus Mobility',
+      badge: 'AI Asistan',
+      status: 'VET & Proje Danismani',
+      welcomeMsg: 'Merhaba! Ben Erasmus Mobility Asistanıyım. Erasmus+ mesleki egitim (VET) staj hareketlilikleri, KA122/KA121 hibe basvurulari, ogrenci secim kriterleri ve Avrupa ev sahibi kurum eslestirmeleri hakkinda size yardimci olabilirim. Nasil yardimci olabilirim?',
+      resetTooltip: 'Sohbeti Sıfırla',
+      closeTooltip: 'Pencereyi Kapat (Carpı)',
+      resetMsg: 'Sohbet sıfırlandı. Erasmus Mobility platformu, KA122/KA121 hibe basvurulari ve mesleki staj surecleriyle ilgili dilediginiz soruyu sorabilirsiniz!',
+      suggestedLabel: 'Onerilen Sorular:',
+      quick1: 'KA122 projesi nedir ve kimler basvurabilir?',
+      quick2: 'Ogrenci secim kriterleri nasil belirlenmeli?',
+      quick3: 'Avrupa\'da staj yeri (Host) nasil bulunur?',
+      quick4: 'Yesil Seyahat (Green Travel) hibesi nedir?',
+      inputPlaceholder: 'Erasmus+ ve staj hakkinda soru sorun...',
+      sendTooltip: 'Gonder',
+      thinking: 'Erasmus Mobility dusunuyor...',
+      errorMsg: 'Baglantida bir aksaklik olustu. Erasmus Mobility platformu ve basvuru surecleriniz hakkinda sorularinizi yanitlamak icin buradayim, lutfen tekrar deneyin.',
+      triggerSubtitle: 'Nasil yardimci olabilirim?',
+      triggerDismissTooltip: 'Balonu Gizle (Carpi)',
+      reopenBtn: 'Erasmus Asistani',
+      reopenTooltip: 'Erasmus Mobility Asistanini Yeniden Goster',
+      closeLink: 'Kapat',
+      version: 'Erasmus Mobility AI v1.0',
+    },
+    applicationDraft: {
+      sectionContextKa121: '1. Baglam Bilgileri',
+      sectionActivitiesKa121: '2. Faaliyet & Lojistik',
+      sectionDeclarationsKa121: '3. Beyan ve Onaylar',
+      sectionAiQuestionsKa121: '4. Resmi Soru & Cevaplar',
+      sectionContextKa122: '1. Baglam',
+      sectionOrgProfileKa122: '2. Kurulus Profili',
+      sectionNeedsObjectivesKa122: '3. İhtiyac & Hedef',
+      sectionActivitiesKa122: '4. Faaliyet & Lojistik',
+      sectionQualityTeamKa122: '5. Kalite & Ekip',
+      sectionDeclarationsKa122: '6. Beyan ve Onaylar',
+      sectionAiQuestionsKa122: '7. Resmi Soru & Cevaplar',
+      btnLoadPreset: 'Ornek Senaryo Yukle',
+      btnSyncPipeline: 'Pipeline\'dan Aktar',
+      btnResetDraft: 'Taslagi Sifirla',
+      btnUploadKa120: 'KA120 PDF Yukle',
+      uploadPdfOnly: 'Lutfen gecerli bir PDF formatinda dosya yukleyiniz.',
+      uploadSizeLimit: 'Dosya boyutu 8 MB\'dan buyuk olamaz. Lutfen 8 MB\'dan kucuk bir dosya seciniz.',
+      uploadParseError: 'KA120 VET formu taninamadi. Lutfen onaylanmis resmi Erasmus+ KA120 VET akreditasyon basvuru belgenizi yukleyiniz.',
+      uploadReadError: 'Dosya okunamadi. Lutfen tekrar deneyiniz.',
+      resetConfirm: 'Basvuru taslagini sifirlamak istediginize emin misiniz?',
+      resetToast: 'Taslak sifirlandi',
+      syncSuccessToast: 'Pipeline verileri taslaga aktarildi',
+      templateLoadedToast: 'form sablonu yuklendi',
+      completionRate: 'Tamamlanma Orani',
+      requiredFields: 'Zorunlu Alanlar',
+    },
   },
   en: {
     header: {
-      title: 'CAPPINNO Mobility Nexus',
-      subtitle: 'KA121-VET • KA122-VET • ESCO & ISCED-F • Competence Assessment • EU Host Matching',
+      title: 'ErasmusMobility.com',
+      subtitle: 'KA121-VET • KA122-VET • ESCO & ISCED-F • Competence Assessment • Hosting Organisation Matching',
       badge: 'EMaaS v1.0 • 2026',
       langToggle: 'Language',
       themeLabel: 'Color Theme',
       fontLabel: 'Typography',
       nav: {
+        home: 'Home',
+        about: 'About',
+        platform: {
+          label: 'Platform',
+          desc: 'EMaaS decision, matching and planning tools',
+          pipeline: '5-Step Mobility Planning Pipeline',
+          pipelineDesc: 'School profile, ESCO analysis and project path recommendation',
+          schoolDashboard: 'School Dashboard',
+          schoolDashboardDesc: 'Active mobilities, OID and application tracker',
+          hostPortal: 'Hosting Organisations and Services',
+          hostPortalDesc: 'Verified trainee capacities and Letter of Intent acceptance',
+          onboarding: 'Institutional Setup & Verification',
+          onboardingDesc: 'OID, school and host organization registration',
+        },
+        library: {
+          label: 'Library',
+          desc: 'Official guides, application forms and grant analytics',
+          ka121Guide: 'KA121 Official Application Form Guide',
+          ka121GuideDesc: 'Accredited institution annual budget and plan guide',
+          ka122Guide: 'KA122 Official Application Form Guide',
+          ka122GuideDesc: 'Short-term project application sections and standards',
+          programmeGuide: 'Erasmus+ Programme Guide 2026-2027',
+          programmeGuideDesc: 'Official grant rules, unit costs and priorities',
+          grantResults: '2026 Grant Allocations & Analysis',
+          grantResultsDesc: 'Nationwide accredited institution grant statistics',
+          mebAtlas: 'MEB Open Data Reference Directory',
+          mebAtlasDesc: '81 provinces official educational institution catalog',
+          legal: 'GDPR & Privacy Policy',
+          legalDesc: 'EU General Data Protection Regulation compliance',
+        },
+        newsAndEvents: {
+          label: 'News & Events',
+          desc: 'Call announcements, deadlines and international workshops',
+          calls2026: '2026-2027 Erasmus+ VET Call Calendar',
+          calls2026Desc: 'Key milestones, grant allocation and reporting phases',
+          events: 'Erasmus Days & VET Skills Week',
+          eventsDesc: 'International workshops and vocational events',
+          deadlines: 'Deadlines & Call Schedule',
+          deadlinesDesc: 'Consortium and individual school critical deadlines',
+        },
+        contact: {
+          label: 'Contact',
+          appointment: 'Book Appointment',
+          appointmentDesc: 'Schedule an online consultation & orientation meeting',
+          support: 'Support Desk & Get in Touch',
+          supportDesc: 'Direct messaging and institutional help desk',
+        },
         programmes: {
           label: 'Programmes',
           ka121: 'KA121-VET (Accredited)',
@@ -1289,7 +1522,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
           comparisonDesc: 'Eligibility rules, grant limits, and quality standards',
         },
         beneficiaries: {
-          label: 'Beneficiaries',
+          label: 'Sending Organisations',
           meslekLiseleri: 'Vocational High Schools',
           meslekLiseleriDesc: '3,700+ VET high school open-data directory',
           halkEgitim: 'Public Education Centers',
@@ -1306,7 +1539,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
           esnafDesc: 'TESK affiliated craftsmen associations',
         },
         opportunities: {
-          label: 'Opportunities & Hosts',
+          label: 'Hosting Organisations and Services',
           hostOrgs: 'Host Organisations Portfolio',
           hostOrgsDesc: 'Verified EU enterprises, VET providers and centres',
           internships: 'VET Internships & Job Shadowing',
@@ -1323,14 +1556,9 @@ const TRANSLATIONS: Record<Locale, Translations> = {
           legal: 'GDPR & Privacy Policy',
           legalDesc: 'EU General Data Protection Regulation compliance',
         },
-        contact: {
-          label: 'Contact',
-          appointment: 'Book Appointment',
-          appointmentDesc: 'Schedule an online consultation & orientation meeting',
-        },
       },
       beneficiaries: {
-        label: 'Beneficiaries',
+        label: 'Sending Organisations',
         meslekLiseleri: 'Vocational High Schools',
         halkEgitim: 'Public Education Centers',
         olgunlasma: 'Institutes of Traditional Arts and Crafts',
@@ -1358,30 +1586,30 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       title: '1. System Architecture & EMaaS Workflow',
       badge: 'Platform Guide',
       step1Title: 'Institution & Participant Profile',
-      step1Desc: 'Accreditation OID record, Erasmus Plan strategic goals, and participant language readiness.',
+      step1Desc: 'Organisation ID OID and Erasmus Accreditation details, Erasmus Plan goals, and target group definition.',
       step2Title: 'ESCO + ISCED-F Mapper',
       step2Desc: 'Automatic mapping of 12 VET sectors to ISCED-F codes and European ESCO occupational profiles.',
-      step3Title: 'Competence & Decision Engine',
-      step3Desc: '12-question competence assessment, gap calculation, and 8-factor KA121/KA122 decision engine.',
-      step4Title: 'EU Host & Mobility Plan',
-      step4Desc: '10-parameter weighted Host scoring, partner search funnel, and role-based learning outcomes.',
-      disclaimer: 'Important Notice: This platform is designed for recommendation, matching, and planning in Erasmus+ KA121-VET and KA122-VET projects. Final eligibility, activity types, duration, budget, and application decisions must be verified against the official Erasmus+ Programme Guide and National Agency rules.',
+      step3Title: 'Competence & Project Path Recommendation Tool',
+      step3Desc: '12-question competence test, competence gap assessment, and 8-rule KA121/KA122 project path recommendation tool.',
+      step4Title: 'Hosting Organisation and Mobility Plan',
+      step4Desc: '10-parameter weighted hosting organisation scoring, partner search and shortlisting process, and role-based learning outcomes.',
+      disclaimer: 'Important Notice: This platform is designed for recommendation, matching, and planning in Erasmus+ KA121-VET and KA122-VET projects. Final eligibility, activity types, duration, budget, and application decisions must be verified against the official Erasmus+ Programme Guide and Turkish National Agency rules.',
     },
     school: {
       title: '2. Institution & School Profile',
       badgePrefix: 'Institution Readiness',
-      nameLabel: 'VET School / Organization Legal Name *',
+      nameLabel: 'Legal Full Name of the VET Organisation *',
       namePlaceholder: 'E.g., Ankara Vocational and Technical High School',
       cityLabel: 'City / Region *',
       cityPlaceholder: 'E.g., Ankara',
-      accLabel: 'Erasmus VET Accreditation Status',
+      accLabel: 'Holds an Erasmus Accreditation KA120-VET? *',
       accUnknown: 'Unknown / Not Decided',
-      accYes: 'Yes (Accredited Institution - KA121)',
-      accNo: 'No (Short-term Mobility - KA122)',
-      oidLabel: 'Erasmus Organisation ID (OID: E10XXXXXX)',
+      accYes: 'Yes – Holds an Erasmus Accreditation KA120-VET',
+      accNo: 'No – Planning a KA122-VET Short-term Project',
+      oidLabel: 'Organisation ID OID *',
       planLabel: 'Erasmus Plan Strategic Objective (If Accredited)',
       planPlaceholder: 'E.g., Enhance staff and learner competence in Industry 4.0, PLC automation and robotics...',
-      needLabel: 'Institutional Need / Concrete Challenge *',
+      needLabel: 'Institutional Needs and Identified Gaps *',
       needPlaceholder: 'Describe concrete institutional needs, equipment/training gaps, and target performance improvements...',
       readinessTitle: 'Institutional Profile Completeness:',
       readyBadge: 'Ready',
@@ -1391,9 +1619,9 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       title: '3. Participant & Mobility Profile',
       badge: 'Target Audience',
       typeLabel: 'Participant Type *',
-      teacher: 'Vocational Teacher / Trainer (Staff)',
-      student: 'VET Student / Apprentice (VET Learner)',
-      goalLabel: 'Mobility Format / Activity Type',
+      teacher: 'Staff Participant – Teacher or Trainer',
+      student: 'VET Learner / Apprentice',
+      goalLabel: 'Erasmus+ Activity Type',
       nameLabel: 'Participant Group / Code / Name',
       namePlaceholder: 'E.g., Automation Teachers or ID-2026-VET-01',
       langLabel: 'Working Language Readiness (0-100)',
@@ -1404,7 +1632,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
     },
     esco: {
       title: '4. ESCO – ISCED-F Mapper',
-      badge: 'EU Taxonomy Standards',
+      badge: 'EU ESCO Classification',
       info: 'ISCED-F classifies educational fields, while ESCO supports occupational profiles, skills, and competences. In ESCO, occupations link to ISCO-08; verify exact concept URIs on the official portal.',
       fieldLabel: 'Select Vocational Field / Sector *',
       fieldDefault: '-- Select Field (12 VET Sectors) --',
@@ -1416,17 +1644,17 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       skillsLabel: 'Priority ESCO Skills & Competences',
       verifyBtn: 'Verify in ESCO',
       escoPortalBtn: 'ESCO Portal',
-      iscedGuideBtn: 'ISCED-F 2013 Guide',
+      iscedGuideBtn: 'ISCED-F 2013 Manual',
     },
     assessment: {
-      title: '5. Competence Assessment',
+      title: '5. Technical and Occupational Competence Assessment',
       badgeSuffix: 'Answered',
-      desc: 'The 12-question self-assessment uses a 1 (Basic) to 5 (Expert) scale based on the CAPPINNO Competence4VET methodology.',
+      desc: 'The 12-question self-assessment uses a 1 (Basic) to 5 (Expert) scale based on the Erasmus+ VET methodology.',
       scoreBtn: 'Calculate Score',
       fullTestBtn: 'Open Full Competence4VET Test',
     },
     gap: {
-      title: 'Competence Gap Analysis',
+      title: 'Assessment and Competence Gap',
       badge: 'Needs Analysis',
       quickScore: 'Assessment Score',
       targetLabel: 'Target Benchmark (0–100)',
@@ -1435,16 +1663,16 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       disclaimer: 'Assessment results should not be used as the sole basis for exclusion; low scores identify pre-departure preparation and mentoring needs.',
     },
     eligibility: {
-      title: '5. KA122-VET Pre-Application Mandatory Eligibility Gatekeeper',
-      badge: 'Official Eligibility Gatekeeper',
-      subtitle: 'Verifies accreditation status, participant cap (30 max), duration (6–18 months), and 36-month grant limits as per Erasmus+ VET Guide',
+      title: '5. KA122-VET Pre-application Eligibility Check',
+      badge: 'Preliminary Eligibility Check',
+      subtitle: 'Verifies accreditation status, participant cap (30 max), duration (6–18 months), and limit of three grants during five consecutive call years as per Erasmus+ VET Programme Guide',
       accreditationLabel: 'Accreditation Status',
       participantCountLabel: 'Planned Participants (Max 30 for KA122)',
       durationLabel: 'Planned Project Duration (6–18 Months)',
-      pastGrantsLabel: 'KA122 Grants in Past 36 Months (Max 3)',
+      pastGrantsLabel: 'KA122-VET Grants Received During Five Consecutive Call Years (0-3)',
       strategyLabel: 'Mobility Strategy & Vision',
       strategyAdHoc: 'Short-term / Single Project (KA122)',
-      strategyRegular: 'Annual / Regular Mobility (KA120 Recommended)',
+      strategyRegular: 'Annual and Regular Institutional Mobility (Erasmus Accreditation KA120-VET May Be Considered)',
       checkButton: 'Verify Eligibility Criteria',
       resultEligibleTitle: 'Fully Eligible for KA122-VET',
       resultIneligibleTitle: 'Eligibility Violation Detected',
@@ -1454,7 +1682,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
     host: {
       title: '6. EU Host Organisation Matching & Scoring',
       badge: '10 Criteria & Smart Matching',
-      modeLive: 'Smart EU Host Matching (Live Match)',
+      modeLive: 'Hosting Organisation Matching',
       modeManual: 'Manual Assessment (10 Criteria)',
       liveDesc: 'Instantly matches your school requirements, target countries, activities, and logistics against verified European host organisations.',
       runMatchBtn: 'Match Hosts by School Profile',
@@ -1483,18 +1711,18 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       calculatedScore: 'Calculated Score:',
     },
     decision: {
-      title: '7. KA120 / KA121 / KA122 Decision Engine',
+      title: '7. Erasmus+ Project Path Recommendation Tool',
       badge: '8-Factor Decision Model',
-      calcBtn: 'Run Decision Engine (KA120 / KA121 / KA122)',
-      proposedPath: 'Recommended Erasmus+ Action Pathway:',
+      calcBtn: 'Run Project Path Recommendation Tool (KA120 / KA121 / KA122)',
+      proposedPath: 'Recommended Erasmus+ Project Path:',
       scoreLabel: 'Mobility Suitability Score:',
       rationaleTitle: 'Decision Rationale:',
       emptyText: 'Click the button above to calculate the most suitable Erasmus+ mobility pathway.',
     },
     partners: {
-      title: '8. EU Partner & Host Finding Gateway',
+      title: '8. Partner and Hosting Organisation Search',
       badge: 'Official Portals & Search Funnel',
-      funnelTitle: 'Recommended 5-Step Partner Search Funnel',
+      funnelTitle: 'Recommended 5-Step Partner Search and Shortlisting Process',
       stageCol: 'Step',
       sourceCol: 'Platform',
       queryCol: 'Search Strategy',
@@ -1504,17 +1732,17 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       title: '9. Learning Outcomes Generator',
       badge: 'Role-Based Dynamic Generation',
       gapLabel: 'Primary Competence Gap',
-      technicalLabel: 'Expected Technical Learning Outcome (Hard Skills)',
-      transversalLabel: 'Transversal / Green / Digital & Language Outcome (Soft Skills)',
-      generateBtn: 'Generate Sample Learning Outcomes',
+      technicalLabel: 'Expected Technical and Occupational Learning Outcomes',
+      transversalLabel: 'Expected Transversal, Green, Digital and Language Learning Outcomes',
+      generateBtn: 'Regenerate Learning Outcomes',
     },
     quality: {
       title: '10. Quality & Responsibility Matrix',
       badge: 'Erasmus Quality Standards',
       stageCol: 'Process / Area',
-      sendingCol: 'Sending Institution (Beneficiary)',
-      hostCol: 'Host Organisation (EU Partner)',
-      disclaimer: 'Core Project Principle: Core project tasks (participant selection, budget management, NA reporting) must remain with the beneficiary. Supporting partner organizations only provide practical facilitation.',
+      sendingCol: 'Sending Organisation / Beneficiary Organisation',
+      hostCol: 'Hosting Organisation',
+      disclaimer: 'Core Project Principle: Core project tasks (participant selection, budget management, NA reporting) must remain with the beneficiary. Supporting Organisations only provide practical facilitation.',
     },
     report: {
       title: '11. Internal Planning and Recommendation Report – Not an Erasmus+ Application Form',
@@ -1525,10 +1753,10 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       loadBtn: 'Load Saved Record',
       exportBtn: 'Export JSON',
       dossierTitle: 'Internal Planning and Recommendation Report – Not an Erasmus+ Application Form',
-      dossierSub: 'CAPPINNO Mobility Nexus • 2026 Projects: Implementation Phase • 2027 Call: Awaiting Official Announcement',
+      dossierSub: 'ErasmusMobility.com • 2026 Projects: Implementation Phase • 2027 Call: Awaiting Official Announcement',
       legalDisclaimer: 'Important Note: This document is an internal strategic planning and recommendation report. It is not an official Erasmus+ application form. Official project submissions must be completed directly by the institution via the European Commission and National Agency application portals.',
-      sendingOrg: 'Sending Institution (VET)',
-      oid: 'OID Code',
+      sendingOrg: 'Sending Organisation',
+      oid: 'Organisation ID OID',
       participant: 'Participant Profile',
       proposedAction: 'Proposed Action',
       vetField: 'VET Field & Sector',
@@ -1536,31 +1764,31 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       escoProfile: 'ESCO Search Profile',
       conceptUri: 'ISCO / Concept URI',
       compScore: 'Competence Score',
-      suitability: 'Mobility Suitability',
-      hostOrg: 'Host Organisation (EU Partner)',
+      suitability: 'Mobility Suitability Score',
+      hostOrg: 'Hosting Organisation',
       hostScore: 'Host Quality Score',
       formatDuration: 'Mobility Format & Duration',
       needsAlignment: 'Institutional Needs & Erasmus Plan Alignment',
       erasmusPlan: 'Erasmus Plan:',
       escoSkills: 'Priority ESCO Skills',
       expectedOutcomes: 'Expected Learning Outcomes',
-      techOutcomes: 'Technical Outcome:',
+      techOutcomes: 'Technical Learning Outcome:',
       transOutcomes: 'Transversal Outcome:',
-      decisionSummary: 'Conclusion & Recommendations',
+      decisionSummary: 'Conclusion and Assessment',
       emptyText: 'Fill in the institution, assessment, and host sections, then click "Update Report".',
       savedAlert: 'All form data and evaluation metrics saved to browser storage.',
       loadedAlert: 'Saved profile data loaded successfully.',
       notFoundAlert: 'No saved profile data found in browser storage.',
     },
     official: {
-      title: '12. Official Resources & Legal Framework',
+      title: '12. Official Sources & Programme Framework',
       badge: 'Regulatory Framework',
-      info: 'KA121-VET relies on annual budget allocations tied to the approved Erasmus Plan for accredited bodies. KA122-VET short-term projects require justification across background, needs/challenges, objectives, activities, and impact.',
+      info: 'KA121-VET relies on the opportunity to apply for annual grant allocations tied to the approved Erasmus Plan for accredited bodies. KA122-VET short-term projects require organisations to justify their institutional background, needs and identified gaps, objectives, activities, budget, quality standards, and dissemination chain.',
       disclaimer: 'Assessment Disclaimer: Competence scores and mobility suitability metrics are advisory and intended for planning purposes. They must not be used as the sole basis for exclusion, selection, or formal grading.',
     },
     footer: {
-      subtitle: 'Intelligent matching, ESCO-ISCED taxonomy classification, competence assessment, and audit trail platform for Erasmus+ KA121-VET & KA122-VET.',
-      copyright: '© 2026 CAPPINNO • Enterprise Multi-tenant SaaS Platform',
+      subtitle: 'Mobility planning and matching platform for Erasmus+ Vocational Education and Training (VET) projects.',
+      copyright: '© 2026 ErasmusMobility.com • Tüm hakları saklıdır.',
     },
     legal: {
       title: 'GDPR Privacy Policy',
@@ -1582,7 +1810,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       email: 'Email Address',
       role: 'Access Level',
       roleAdmin: '🛡️ Platform Administrator',
-      roleSchool: '🏛️ School / Sending Institution Admin',
+      roleSchool: '🏛️ School / Sending Organisation Admin',
       roleHost: '🏢 Host Organization Representative',
       roleMember: '👤 Team Member',
       institutionInfo: 'Associated Institution Details',
@@ -1651,7 +1879,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       adminQueueBtn: 'Admin Verification Queue',
       goToHomeBtn: 'Go to Main Platform',
       schoolCardBadge: 'Learner & Staff Sending',
-      schoolCardTitle: 'School / Sending Institution',
+      schoolCardTitle: 'School / Sending Organisation',
       schoolCardDesc: 'Vocational high schools and institutes sending VET learners and staff to Europe under KA121 accreditation or KA122 short-term projects.',
       schoolFeature1: 'Official Erasmus OID & Accreditation Linkage',
       schoolFeature2: 'Live Institutional Readiness Scoring',
@@ -1687,7 +1915,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
     },
     simulation: {
       bannerTitle: 'Simulation Mode',
-      viewingAsSchool: 'Viewing as School / Sending Institution',
+      viewingAsSchool: 'Viewing as School / Sending Organisation',
       viewingAsHost: 'Viewing as Host Organisation',
       switchToHost: 'Switch to Host View',
       switchToSchool: 'Switch to School View',
@@ -1747,13 +1975,13 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       nextPage: 'Next Page',
     },
     guestBanner: {
-      badge: 'Erasmus+ VET Mobility Gateway',
-      title: 'Welcome to CAPPINNO Mobility Nexus!',
-      desc: 'Plan your vocational education (VET) mobilities, perform ESCO competence gap analysis, and match with verified European hosts. Test all tools live without signing in or create a free account.',
-      badge1: 'KA121 & KA122 Aligned',
+      badge: 'Erasmus+ Vocational Education and Training Mobility Platform',
+      title: 'Welcome to ErasmusMobility.com!',
+      desc: 'Plan your vocational education (VET) mobilities, perform ESCO competence gap analysis, and match with hosting organisations verified by ErasmusMobility.com. Test all tools live without signing in or create a free account.',
+      badge1: 'Supports KA121-VET and KA122-VET Planning',
       badge2: 'Live Simulation Without Login',
       badge3: 'ESCO & ISCED-F Taxonomy',
-      badge4: '15-Factor Verified Matching',
+      badge4: '15-Criteria Organisation Matching',
       btnTour: 'Quick Start Guide (3 min)',
       btnDemo: 'Try with Demo Data',
       btnRegister: 'Create Free Account',
@@ -1764,7 +1992,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       inquirySentBadge: 'Inquiry Sent (Pending)',
       modalTitle: 'Send Mobility Inquiry to Host',
       modalSubtitle: 'Initiate direct institutional communication with the hosting enterprise for VET mobility.',
-      senderOrgTitle: 'Sending Institution (Beneficiary)',
+      senderOrgTitle: 'Sending Organisation / Beneficiary Organisation',
       targetHostTitle: 'Target Host Enterprise (Partner)',
       mobilityDetailsTitle: 'Requested Mobility Parameters',
       fieldLabel: 'VET Field & Sector',
@@ -1806,19 +2034,19 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       templateDecline2: 'We are unable to provide mentor support for this specific occupational profile during this term.',
       undoSuccessMsg: 'Decision reverted. Inquiry returned to pending review.',
       statusPending: 'Under Review',
-      statusAccepted: 'Accepted (LoI Ready)',
+      statusAccepted: 'Pre-accepted / Letter of Intent Ready',
       statusRevised: 'Revision Requested',
       statusDeclined: 'Declined / Unavailable',
       mockBadge: 'Simulation / Mock School',
       emptyInquiriesMsg: 'No incoming mobility inquiries found in this view.',
     },
     sentInquiries: {
-      cardTitle: 'My Sent Mobility Inquiries & Application Status',
+      cardTitle: 'My Mobility Requests and Their Status',
       cardBadge: 'Sent Inquiries Pool',
       cardSubtitle: 'Live tracking of your vocational internship and job-shadowing requests sent to European host enterprises.',
       tabAll: 'All My Inquiries',
       tabPending: 'Under Review',
-      tabAccepted: 'Accepted (LoI Ready)',
+      tabAccepted: 'Pre-accepted / Letter of Intent Ready',
       tabRevised: 'Revision Requested',
       tabDeclined: 'Declined / Unavailable',
       viewLoIBtn: '📄 View Acceptance Letter (LoI) & Print',
@@ -1840,21 +2068,21 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       loiModalSubtitle: 'Official placement confirmation and capacity allocation issued by the host enterprise.',
     },
     guestOnboarding: {
-      modalTitle: 'CAPPINNO Mobility Nexus • Quick Start Guide',
+      modalTitle: 'ErasmusMobility • Quick Start Guide',
       stepIndicator: 'Stage',
       btnNext: 'Next Stage',
       btnPrev: 'Previous',
       btnComplete: 'Complete Tour',
       btnSkip: 'Skip & Close',
       dontShowAgain: 'Do not show automatically again',
-      howItWorksBtn: 'How It Works?',
+      howItWorksBtn: 'How It Works',
       guestNoticeBadge: 'Guest Mode',
       guestNoticeTitle: 'Save Your Institutional Profile',
       guestNoticeDesc: 'You can fill out the form and test your readiness score without logging in. Sign in for free to permanently save your records and export planning reports.',
       guestNoticeBtn: 'Sign In / Sign Up',
       step1Tag: 'Platform Overview',
       step1Title: 'Next-Generation Digital Infrastructure for Erasmus+ VET',
-      step1Desc: 'CAPPINNO Mobility Nexus is the official decision and matching gateway digitizing KA121 accreditation and KA122 short-term mobilities between vocational schools and European host enterprises end-to-end.',
+      step1Desc: 'ErasmusMobility.com is the official platform digitizing KA121 accreditation and KA122 short-term mobilities between vocational schools and European host organisations end-to-end.',
       step1Point1Title: 'Official OID & Accreditation Compliance',
       step1Point1Desc: 'Organisation ID (OID) verification and institutional readiness scoring compliant with National Agency standards.',
       step1Point2Title: 'ESCO & ISCED-F Competence Analysis',
@@ -1864,7 +2092,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       step2Tag: 'Your Institutional Role',
       step2Title: 'Which Role Fits Your Organisation?',
       step2Desc: 'The system offers dedicated workflows for both sending vocational schools and European host organisations.',
-      roleSchoolTitle: 'School / Sending Institution',
+      roleSchoolTitle: 'School / Sending Organisation',
       roleSchoolSubtitle: 'VET Schools, Directorates & Institutes',
       roleSchoolDesc: 'Advanced planning tools for institutions sending learners and staff to Europe for traineeships and courses.',
       roleSchoolPoint1: 'Live readiness scoring (0% to 100%)',
@@ -1883,7 +2111,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       stage1Desc: 'Define school OID, Erasmus Plan targets, learners, and accompanying staff.',
       stage2Name: '2. ESCO & Skill Gap',
       stage2Desc: 'Select field, ISCED-F code, and run 5-core competence diagnostics.',
-      stage3Name: '3. Host & Decision Engine',
+      stage3Name: '3. Hosting Organisation Matching and Project Path',
       stage3Desc: '8-factor KA120/KA121/KA122 decision matrix and verified host matching.',
       stage4Name: '4. Outcomes & Quality',
       stage4Desc: 'Bloom-aligned technical and transversal learning outcomes with OHS checklist.',
@@ -1901,6 +2129,57 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       btnSignIn: 'Already have an account? Sign In',
       noticeNoCard: 'No credit card required • All core Erasmus+ VET tools are free',
     },
+    chatbot: {
+      title: 'Erasmus Mobility',
+      badge: 'AI Assistant',
+      status: 'VET & Project Advisor',
+      welcomeMsg: 'Hello! I am the Erasmus Mobility Assistant. I can assist you with Erasmus+ VET traineeship mobilities, KA122/KA121 grant applications, participant selection criteria, and European host partner matching. How can I help you today?',
+      resetTooltip: 'Reset Chat',
+      closeTooltip: 'Close Window',
+      resetMsg: 'Chat has been reset. Feel free to ask any question regarding the Erasmus Mobility platform, KA122/KA121 grant applications, or vocational traineeship workflows!',
+      suggestedLabel: 'Suggested Questions:',
+      quick1: 'What is a KA122 project and who is eligible?',
+      quick2: 'How should participant selection criteria be defined?',
+      quick3: 'How to find a European host partner for traineeships?',
+      quick4: 'What is the Green Travel grant top-up?',
+      inputPlaceholder: 'Ask about Erasmus+, mobilities or applications...',
+      sendTooltip: 'Send',
+      thinking: 'Erasmus Mobility is thinking...',
+      errorMsg: 'A connection issue occurred. I am here to assist with the Erasmus Mobility platform and your application procedures, please try again.',
+      triggerSubtitle: 'How can I help you?',
+      triggerDismissTooltip: 'Hide Chat Bubble',
+      reopenBtn: 'Erasmus Assistant',
+      reopenTooltip: 'Show Erasmus Mobility Assistant',
+      closeLink: 'Close',
+      version: 'Erasmus Mobility AI v1.0',
+    },
+    applicationDraft: {
+      sectionContextKa121: '1. Context Information',
+      sectionActivitiesKa121: '2. Activities & Logistics',
+      sectionDeclarationsKa121: '3. Declarations & Consents',
+      sectionAiQuestionsKa121: '4. Official Questions & Answers',
+      sectionContextKa122: '1. Context',
+      sectionOrgProfileKa122: '2. Organisation Profile',
+      sectionNeedsObjectivesKa122: '3. Needs & Objectives',
+      sectionActivitiesKa122: '4. Activities & Logistics',
+      sectionQualityTeamKa122: '5. Quality & Team',
+      sectionDeclarationsKa122: '6. Declarations & Consents',
+      sectionAiQuestionsKa122: '7. Official Questions & Answers',
+      btnLoadPreset: 'Load Demo Preset',
+      btnSyncPipeline: 'Sync from Pipeline',
+      btnResetDraft: 'Reset Draft',
+      btnUploadKa120: 'Upload KA120 PDF',
+      uploadPdfOnly: 'Please upload a valid PDF file.',
+      uploadSizeLimit: 'File size cannot exceed 8 MB. Please select a smaller file.',
+      uploadParseError: 'KA120 VET form could not be parsed. Please upload an official Erasmus+ KA120 VET accreditation application document.',
+      uploadReadError: 'File could not be read. Please try again.',
+      resetConfirm: 'Are you sure you want to reset this application draft?',
+      resetToast: 'Application draft reset',
+      syncSuccessToast: 'Pipeline data synchronized into draft',
+      templateLoadedToast: 'form template loaded',
+      completionRate: 'Completion Rate',
+      requiredFields: 'Required Fields',
+    },
   },
 };
 
@@ -1916,7 +2195,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>('tr');
 
   useEffect(() => {
-    const saved = localStorage.getItem('cappinno_locale');
+    const saved =
+      localStorage.getItem('em_locale') || localStorage.getItem('cappinno_locale');
     if (saved === 'tr' || saved === 'en') {
       setLocaleState(saved);
     }
@@ -1924,7 +2204,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
-    localStorage.setItem('cappinno_locale', newLocale);
+    localStorage.setItem('em_locale', newLocale);
   };
 
   return (

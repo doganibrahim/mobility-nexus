@@ -30,7 +30,7 @@ export default function OfficialResourcesCard() {
             rel="noopener noreferrer"
             className="edu-btn-secondary text-xs"
           >
-            📘 Erasmus+ Program Rehberi ↗
+            {locale === 'en' ? '📘 Erasmus+ Programme Guide ↗' : '📘 Erasmus+ Program Rehberi ↗'}
           </a>
           <a
             href="https://www.ua.gov.tr/"
@@ -38,7 +38,7 @@ export default function OfficialResourcesCard() {
             rel="noopener noreferrer"
             className="edu-btn-secondary text-xs"
           >
-            🇹🇷 Türkiye Ulusal Ajansı ↗
+            {locale === 'en' ? '🇹🇷 Turkish National Agency ↗' : '🇹🇷 Türkiye Ulusal Ajansı ↗'}
           </a>
           <a
             href="https://esco.ec.europa.eu/"

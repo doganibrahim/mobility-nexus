@@ -37,7 +37,9 @@ export default function LegalModal({
       setActiveTab(initialTab);
       // Load saved preferences if available
       try {
-        const saved = localStorage.getItem('cappinno_cookie_prefs');
+        const saved =
+          localStorage.getItem('em_cookie_prefs') ||
+          localStorage.getItem('cappinno_cookie_prefs');
         if (saved) {
           setCookiePrefs(JSON.parse(saved));
         }
@@ -58,8 +60,8 @@ export default function LegalModal({
   if (!isOpen) return null;
 
   const handleSaveCookiePrefs = () => {
-    localStorage.setItem('cappinno_cookie_prefs', JSON.stringify(cookiePrefs));
-    localStorage.setItem('cappinno_cookie_consent', 'CUSTOM');
+    localStorage.setItem('em_cookie_prefs', JSON.stringify(cookiePrefs));
+    localStorage.setItem('em_cookie_consent', 'CUSTOM');
     setSaveToast(true);
     setTimeout(() => setSaveToast(false), 3000);
   };
@@ -67,8 +69,8 @@ export default function LegalModal({
   const handleAcceptAllCookies = () => {
     const allOn = { necessary: true, functional: true, analytics: true };
     setCookiePrefs(allOn);
-    localStorage.setItem('cappinno_cookie_prefs', JSON.stringify(allOn));
-    localStorage.setItem('cappinno_cookie_consent', 'ALL');
+    localStorage.setItem('em_cookie_prefs', JSON.stringify(allOn));
+    localStorage.setItem('em_cookie_consent', 'ALL');
     setSaveToast(true);
     setTimeout(() => setSaveToast(false), 3000);
   };
@@ -76,8 +78,8 @@ export default function LegalModal({
   const handleRejectAllCookies = () => {
     const onlyNec = { necessary: true, functional: false, analytics: false };
     setCookiePrefs(onlyNec);
-    localStorage.setItem('cappinno_cookie_prefs', JSON.stringify(onlyNec));
-    localStorage.setItem('cappinno_cookie_consent', 'NECESSARY');
+    localStorage.setItem('em_cookie_prefs', JSON.stringify(onlyNec));
+    localStorage.setItem('em_cookie_consent', 'NECESSARY');
     setSaveToast(true);
     setTimeout(() => setSaveToast(false), 3000);
   };
@@ -86,20 +88,20 @@ export default function LegalModal({
     const textMap: Record<LegalTabType, string> = {
       LEGAL:
         locale === 'tr'
-          ? 'KVKK Aydınlatma Metni - CAPPINNO Mobility Nexus (erasmusmobility.com)'
-          : 'GDPR Privacy & Data Protection Policy - CAPPINNO Mobility Nexus (erasmusmobility.com)',
+          ? 'KVKK Aydınlatma Metni - ErasmusMobility (erasmusmobility.com)'
+          : 'GDPR Privacy & Data Protection Policy - ErasmusMobility (erasmusmobility.com)',
       TERMS:
         locale === 'tr'
-          ? 'Kullanım Koşulları - CAPPINNO Mobility Nexus'
-          : 'Terms of Use - CAPPINNO Mobility Nexus',
+          ? 'Kullanım Koşulları - ErasmusMobility'
+          : 'Terms of Use - ErasmusMobility',
       COOKIES:
         locale === 'tr'
-          ? 'Çerez Politikası ve Tercihleri - CAPPINNO Mobility Nexus'
-          : 'Cookie Policy & Preferences - CAPPINNO Mobility Nexus',
+          ? 'Çerez Politikası ve Tercihleri - ErasmusMobility'
+          : 'Cookie Policy & Preferences - ErasmusMobility',
       RETENTION:
         locale === 'tr'
-          ? 'Veri Saklama ve İmha Politikası - CAPPINNO Mobility Nexus'
-          : 'Data Retention and Disposal Policy - CAPPINNO Mobility Nexus',
+          ? 'Veri Saklama ve İmha Politikası - ErasmusMobility'
+          : 'Data Retention and Disposal Policy - ErasmusMobility',
     };
     navigator.clipboard.writeText(textMap[activeTab]);
     setCopied(true);
@@ -148,8 +150,8 @@ export default function LegalModal({
                 </div>
                 <p className="text-xs text-slate-500 m-0 mt-0.5">
                   {locale === 'tr'
-                    ? 'CAPPINNO Mobility Nexus veri güvenliği, karar destek ilkeleri ve kullanım şartları'
-                    : 'CAPPINNO Mobility Nexus data governance, decision-support bounds and terms of service'}
+                    ? 'ErasmusMobility veri güvenliği, karar destek ilkeleri ve kullanım şartları'
+                    : 'ErasmusMobility data governance, decision-support bounds and terms of service'}
                 </p>
               </div>
             </div>
@@ -242,7 +244,7 @@ export default function LegalModal({
                       6698 SAYILI KİŞİSEL VERİLERİN KORUNMASI KANUNU (KVKK) MADDE 10 KAPSAMINDA AYDINLATMA METNİ
                     </div>
                     <div className="text-[11px] text-slate-600 font-medium">
-                      Platform: erasmusmobility.com • Sürüm: 1.0 (2026) • Veri Sorumlusu: CAPPINNO Bilişim ve Danışmanlık Hizmetleri (“CAPPINNO”)
+                      Platform: erasmusmobility.com • Sürüm: 1.0 (2026) • Veri Sorumlusu: ErasmusMobility
                     </div>
                   </div>
 
@@ -252,11 +254,11 @@ export default function LegalModal({
                       1. Veri Sorumlusu Sıfatı ve İletişim Kanalları
                     </h4>
                     <p className="m-0">
-                      6698 sayılı Kişisel Verilerin Korunması Kanunu (“Kanun”) uyarınca veri sorumlusu, merkezi Türkiye'de bulunan <strong>CAPPINNO Bilişim ve Danışmanlık Hizmetleri</strong>'dir. Şirketimiz, erasmusmobility.com platformu üzerinden sunulan Erasmus+ KA121/KA122 VET hareketlilik yönetimi, yetkinlik değerlendirme ve kurumsal eşleştirme (EMaaS) hizmetleri kapsamında verilerinizi Kanun'a uygun olarak işlemektedir.
+                      6698 sayılı Kişisel Verilerin Korunması Kanunu (“Kanun”) uyarınca veri sorumlusu, merkezi Türkiye'de bulunan <strong>ErasmusMobility</strong>'dir. Şirketimiz, erasmusmobility.com platformu üzerinden sunulan Erasmus+ KA121/KA122 VET hareketlilik yönetimi, yetkinlik değerlendirme ve kurumsal eşleştirme (EMaaS) hizmetleri kapsamında verilerinizi Kanun'a uygun olarak işlemektedir.
                     </p>
                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
                       <div><strong>İletişim & Destek:</strong> Platform Yönetim Paneli / Destek Masası</div>
-                      <div><strong>Veri Güvenliği Birimi:</strong> CAPPINNO Bilgi Güvenliği Masası</div>
+                      <div><strong>Veri Güvenliği Birimi:</strong> ErasmusMobility Bilgi Güvenliği Masası</div>
                     </div>
                   </div>
 
@@ -383,7 +385,7 @@ export default function LegalModal({
                       PRIVACY & PERSONAL DATA PROTECTION POLICY (REGULATION EU 2016/679 - GDPR)
                     </div>
                     <div className="text-[11px] text-slate-600 font-medium">
-                      Platform: erasmusmobility.com • Version: 1.0 (2026) • Data Controller: CAPPINNO Bilişim ve Danışmanlık Hizmetleri (“CAPPINNO”)
+                      Platform: erasmusmobility.com • Version: 1.0 (2026) • Data Controller: ErasmusMobility
                     </div>
                   </div>
 
@@ -392,7 +394,7 @@ export default function LegalModal({
                       1. Data Controller & Scope
                     </h4>
                     <p className="m-0">
-                      This Privacy Policy governs the processing of personal data on erasmusmobility.com, an Erasmus+ Mobility-as-a-Service (EMaaS) platform operated by CAPPINNO. We are committed to protecting the fundamental privacy rights of European and international VET schools, hosting enterprises, and mobility coordinators in full compliance with the General Data Protection Regulation (GDPR - EU 2016/679).
+                      This Privacy Policy governs the processing of personal data on erasmusmobility.com, an Erasmus+ Mobility-as-a-Service (EMaaS) platform operated by ErasmusMobility. We are committed to protecting the fundamental privacy rights of European and international VET schools, hosting enterprises, and mobility coordinators in full compliance with the General Data Protection Regulation (GDPR - EU 2016/679).
                     </p>
                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
                       <div><strong>Support & Communications:</strong> Platform Support Desk / User Dashboard</div>
@@ -458,7 +460,7 @@ export default function LegalModal({
               <div className="space-y-6">
                 <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
                   <div className="font-extrabold text-slate-950 text-sm">
-                    {locale === 'tr' ? 'CAPPINNO MOBILITY NEXUS KULLANIM KOŞULLARI' : 'CAPPINNO MOBILITY NEXUS TERMS OF USE'}
+                    {locale === 'tr' ? 'ERASMUSMOBILITY KULLANIM KOŞULLARI' : 'ERASMUSMOBILITY TERMS OF USE'}
                   </div>
                   <div className="text-[11px] text-slate-600 font-medium">
                     {locale === 'tr'
@@ -474,8 +476,8 @@ export default function LegalModal({
                   </h4>
                   <p className="m-0">
                     {locale === 'tr'
-                      ? 'CAPPINNO Mobility Nexus (erasmusmobility.com); Erasmus+ Mesleki Eğitim (VET) alanında KA121 Akredite ve KA122 Kısa Dönemli hareketlilikleri yöneten gönderen kurumlar (Yararlanıcılar) ile Avrupalı ev sahibi işletmeleri (Hosts) bir araya getiren B2B SaaS yapısında entegre bir hareketlilik yönetim araç setidir (toolset). Platform; kurumsal profil oluşturma, akıllı eşleştirme (matching engine), hareketlilik yaşam döngüsünün uçtan uca dijital takibi, ESCO/ISCED-F taksonomik yetkinlik analizi, evrak/dossier otomasyonu ve nihai raporlama araçlarını kapsar.'
-                      : 'CAPPINNO Mobility Nexus (erasmusmobility.com) is an enterprise B2B SaaS Erasmus Mobility-as-a-Service (EMaaS) toolset connecting sending educational institutions (Beneficiaries) with European hosting enterprises. The platform provides an integrated digital lifecycle workflow covering institutional profiling, intelligent partner matchmaking, end-to-end mobility monitoring, ESCO/ISCED-F competence analytics, dossier automation, and final reporting.'}
+                      ? 'ErasmusMobility (erasmusmobility.com); Erasmus+ Mesleki Eğitim (VET) alanında KA121 Akredite ve KA122 Kısa Dönemli hareketlilikleri yöneten gönderen kurumlar (Yararlanıcılar) ile Avrupalı ev sahibi işletmeleri (Hosts) bir araya getiren B2B SaaS yapısında entegre bir hareketlilik yönetim araç setidir (toolset). Platform; kurumsal profil oluşturma, akıllı eşleştirme (matching engine), hareketlilik yaşam döngüsünün uçtan uca dijital takibi, ESCO/ISCED-F taksonomik yetkinlik analizi, evrak/dossier otomasyonu ve nihai raporlama araçlarını kapsar.'
+                      : 'ErasmusMobility (erasmusmobility.com) is an enterprise B2B SaaS Erasmus Mobility-as-a-Service (EMaaS) toolset connecting sending educational institutions (Beneficiaries) with European hosting enterprises. The platform provides an integrated digital lifecycle workflow covering institutional profiling, intelligent partner matchmaking, end-to-end mobility monitoring, ESCO/ISCED-F competence analytics, dossier automation, and final reporting.'}
                   </p>
                 </div>
 
@@ -522,8 +524,8 @@ export default function LegalModal({
                   </div>
                   <p className="m-0 text-amber-900 text-[11px] leading-relaxed">
                     {locale === 'tr'
-                      ? 'Platform üzerinde sunulan eşleştirme skorları, ESCO yetkinlik analizleri, hibe simülasyonları ve doküman şablonları profesyonel karar destek araçlarıdır. CAPPINNO hiçbir koşulda hibe tahsisatı, Ulusal Ajans proje kabulü, ev sahibi işletmenin kesin stajyer onayı, vize/konsolosluk işlemleri veya projenin nihai finansal başarısı hususunda garanti taahhüt etmez.'
-                      : 'All matching scores, ESCO competence mappings, grant simulations, and automated document templates serve as advisory decision support. CAPPINNO makes no warranty regarding grant allocation, National Agency approvals, host placement confirmation, consular visa issuance, or final financial outcomes.'}
+                      ? 'Platform üzerinde sunulan eşleştirme skorları, ESCO yetkinlik analizleri, hibe simülasyonları ve doküman şablonları profesyonel karar destek araçlarıdır. ErasmusMobility hiçbir koşulda hibe tahsisatı, Ulusal Ajans proje kabulü, ev sahibi işletmenin kesin stajyer onayı, vize/konsolosluk işlemleri veya projenin nihai finansal başarısı hususunda garanti taahhüt etmez.'
+                      : 'All matching scores, ESCO competence mappings, grant simulations, and automated document templates serve as advisory decision support. ErasmusMobility makes no warranty regarding grant allocation, National Agency approvals, host placement confirmation, consular visa issuance, or final financial outcomes.'}
                   </p>
                 </div>
 
@@ -558,8 +560,8 @@ export default function LegalModal({
                   </h4>
                   <p className="m-0">
                     {locale === 'tr'
-                      ? 'Platformda listelenen veya önerilen Avrupa işletmeleri bağımsız üçüncü taraflardır. CAPPINNO, ev sahiplerinin resmi belgelerini (sicil, vergi levhası, acil durum irtibatı) çok adımlı KYC incelemesinden geçirir. Bununla birlikte gönderen yararlanıcı kurum; stajyer yerleşimi yapmadan önce staj ortamı güvenliğini, iş sağlığı ve güvenliği şartlarını, sigorta poliçesi kapsamını ve yerel koşulları teyit etmekle yükümlüdür.'
-                      : 'Hosting enterprises listed or matched through the Platform are independent third parties. While CAPPINNO conducts multi-step KYC verification (business registry, tax certificates, emergency contacts), sending beneficiary institutions remain responsible for verifying safety standards, insurance policies, and workplace compliance prior to participant placement.'}
+                      ? 'Platformda listelenen veya önerilen Avrupa işletmeleri bağımsız üçüncü taraflardır. ErasmusMobility, ev sahiplerinin resmi belgelerini (sicil, vergi levhası, acil durum irtibatı) çok adımlı KYC incelemesinden geçirir. Bununla birlikte gönderen yararlanıcı kurum; stajyer yerleşimi yapmadan önce staj ortamı güvenliğini, iş sağlığı ve güvenliği şartlarını, sigorta poliçesi kapsamını ve yerel koşulları teyit etmekle yükümlüdür.'
+                      : 'Hosting enterprises listed or matched through the Platform are independent third parties. While ErasmusMobility conducts multi-step KYC verification (business registry, tax certificates, emergency contacts), sending beneficiary institutions remain responsible for verifying safety standards, insurance policies, and workplace compliance prior to participant placement.'}
                   </p>
                 </div>
 
@@ -582,8 +584,8 @@ export default function LegalModal({
                   </h4>
                   <p className="m-0">
                     {locale === 'tr'
-                      ? 'Platform yazılımı, algoritmaları, eşleştirme motoru, arayüz tasarımları, veri modelleri ve özgün taksonomik içerikler CAPPINNO’nun mülkiyetindedir. Kullanıcının yüklediği kurumsal veriler üzerindeki mülkiyeti kullanıcıya ait olup, CAPPINNO’ya yalnızca hizmetin ifası ve süreç takibi için gerekli sınırlı barındırma ve işleme izni verilmiştir.'
-                      : 'Platform software, matching algorithms, UI architectures, and proprietary taxonomies belong to CAPPINNO. Institutional users retain full ownership of their uploaded project content, granting CAPPINNO a limited license solely to process and maintain requested dossiers.'}
+                      ? 'Platform yazılımı, algoritmaları, eşleştirme motoru, arayüz tasarımları, veri modelleri ve özgün taksonomik içerikler ErasmusMobility mülkiyetindedir. Kullanıcının yüklediği kurumsal veriler üzerindeki mülkiyeti kullanıcıya ait olup, ErasmusMobility tarafına yalnızca hizmetin ifası ve süreç takibi için gerekli sınırlı barındırma ve işleme izni verilmiştir.'
+                      : 'Platform software, matching algorithms, UI architectures, and proprietary taxonomies belong to ErasmusMobility. Institutional users retain full ownership of their uploaded project content, granting ErasmusMobility a limited license solely to process and maintain requested dossiers.'}
                   </p>
                 </div>
 
@@ -811,22 +813,22 @@ export default function LegalModal({
                           <td className="py-2 px-3 text-slate-600">Oturum / 30 Gün</td>
                         </tr>
                         <tr>
-                          <td className="py-2 px-3 font-mono font-bold text-slate-900">cappinno_lang</td>
-                          <td className="py-2 px-3 text-slate-700 font-semibold">CAPPINNO</td>
+                          <td className="py-2 px-3 font-mono font-bold text-slate-900">em_lang</td>
+                          <td className="py-2 px-3 text-slate-700 font-semibold">ErasmusMobility</td>
                           <td className="py-2 px-3"><span className="px-1.5 py-0.2 bg-slate-100 text-slate-800 rounded font-bold">İşlevsel</span></td>
                           <td className="py-2 px-3 text-slate-600">Aktif dil tercihinin (TR/EN) hatırlanması</td>
                           <td className="py-2 px-3 text-slate-600">1 Yıl (localStorage)</td>
                         </tr>
                         <tr>
-                          <td className="py-2 px-3 font-mono font-bold text-slate-900">cappinno_cookie_prefs</td>
-                          <td className="py-2 px-3 text-slate-700 font-semibold">CAPPINNO</td>
+                          <td className="py-2 px-3 font-mono font-bold text-slate-900">em_cookie_prefs</td>
+                          <td className="py-2 px-3 text-slate-700 font-semibold">ErasmusMobility</td>
                           <td className="py-2 px-3"><span className="px-1.5 py-0.2 bg-slate-100 text-slate-800 rounded font-bold">İşlevsel</span></td>
                           <td className="py-2 px-3 text-slate-600">Kullanıcı çerez onay ve kategori tercihlerinin saklanması</td>
                           <td className="py-2 px-3 text-slate-600">1 Yıl (localStorage)</td>
                         </tr>
                         <tr>
-                          <td className="py-2 px-3 font-mono font-bold text-slate-900">cappinno_onboarding_draft</td>
-                          <td className="py-2 px-3 text-slate-700 font-semibold">CAPPINNO</td>
+                          <td className="py-2 px-3 font-mono font-bold text-slate-900">em_onboarding_draft</td>
+                          <td className="py-2 px-3 text-slate-700 font-semibold">ErasmusMobility</td>
                           <td className="py-2 px-3"><span className="px-1.5 py-0.2 bg-slate-100 text-slate-800 rounded font-bold">İşlevsel</span></td>
                           <td className="py-2 px-3 text-slate-600">Form doldururken sayfa yenilenmesinde veri kaybını önleme</td>
                           <td className="py-2 px-3 text-slate-600">Yerel Oturum</td>
@@ -863,8 +865,8 @@ export default function LegalModal({
                   </h4>
                   <p className="m-0">
                     {locale === 'tr'
-                      ? 'CAPPINNO Mobility Nexus; Erasmus+ yararlanıcı okulları ile Avrupalı ev sahibi işletmelerin eşleştiği, hareketlilik yaşam döngüsünün uçtan uca takip edilip sonuçlandırıldığı ve kurumsal abonelik paketleriyle desteklenen entegre bir EMaaS (Mobility-as-a-Service) araç setidir. Platform üzerinde oluşturulan proje dosyaları, eşleşme kayıtları, katılımcı yetkinlik analizleri, ev sahibi doğrulama (KYC) evrakları ve abonelik/fatura verileri; Avrupa Komisyonu, Ulusal Ajans ve ilgili mevzuatın zorunlu kıldığı yasal denetim süreleri boyunca yüksek güvenlikli, şifrelenmiş bulut kasalarında (Cloudflare R2, izole çok kiracılı veritabanları) uluslararası standartlara uygun olarak saklanmaktadır.'
-                      : 'CAPPINNO Mobility Nexus is an integrated EMaaS (Mobility-as-a-Service) toolset connecting Erasmus+ beneficiary institutions with European hosts to manage and conclude mobility lifecycles under tiered subscription plans. Project dossiers, matching records, participant competence assessments, host KYC verification documents, and commercial billing records are securely stored in zero-egress encrypted cloud vaults (Cloudflare R2, multi-tenant databases) in strict compliance with statutory audit schedules.'}
+                      ? 'ErasmusMobility; Erasmus+ yararlanıcı okulları ile Avrupalı ev sahibi işletmelerin eşleştiği, hareketlilik yaşam döngüsünün uçtan uca takip edilip sonuçlandırıldığı ve kurumsal abonelik paketleriyle desteklenen entegre bir EMaaS (Mobility-as-a-Service) araç setidir. Platform üzerinde oluşturulan proje dosyaları, eşleşme kayıtları, katılımcı yetkinlik analizleri, ev sahibi doğrulama (KYC) evrakları ve abonelik/fatura verileri; Avrupa Komisyonu, Ulusal Ajans ve ilgili mevzuatın zorunlu kıldığı yasal denetim süreleri boyunca yüksek güvenlikli, şifrelenmiş bulut kasalarında (Cloudflare R2, izole çok kiracılı veritabanları) uluslararası standartlara uygun olarak saklanmaktadır.'
+                      : 'ErasmusMobility is an integrated EMaaS (Mobility-as-a-Service) toolset connecting Erasmus+ beneficiary institutions with European hosts to manage and conclude mobility lifecycles under tiered subscription plans. Project dossiers, matching records, participant competence assessments, host KYC verification documents, and commercial billing records are securely stored in zero-egress encrypted cloud vaults (Cloudflare R2, multi-tenant databases) in strict compliance with statutory audit schedules.'}
                   </p>
                 </div>
 

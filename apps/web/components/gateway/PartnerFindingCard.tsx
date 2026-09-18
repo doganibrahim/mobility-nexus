@@ -32,11 +32,13 @@ export default function PartnerFindingCard() {
                 <span className="text-xs text-slate-400 group-hover:text-blue-600">↗</span>
               </div>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                VET ve okul eğitimi kuruluşları için ortaklık ilanı verin ve aktif çağrıları tarayın.
+                {locale === 'en'
+                  ? 'Post partner search announcements and browse active calls for VET and school education institutions.'
+                  : 'VET ve okul eğitimi kuruluşları için ortaklık ilanı verin ve aktif çağrıları tarayın.'}
               </p>
             </div>
             <div className="mt-3 pt-2 border-t border-slate-100 text-[11px] font-medium text-blue-700">
-              Avrupa Komisyonu Portalı
+              {locale === 'en' ? 'European Commission Portal' : 'Avrupa Komisyonu Portalı'}
             </div>
           </a>
 
@@ -54,11 +56,13 @@ export default function PartnerFindingCard() {
                 <span className="text-xs text-slate-400 group-hover:text-blue-600">↗</span>
               </div>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                İletişim seminerleri, eğitim etkinlikleri ve Ulusal Ajans TCA işbirliği fırsatları.
+                {locale === 'en'
+                  ? 'Contact-making seminars, training events, and National Agency TCA cooperation opportunities.'
+                  : 'İletişim seminerleri, eğitim etkinlikleri ve Ulusal Ajans TCA işbirliği fırsatları.'}
               </p>
             </div>
             <div className="mt-3 pt-2 border-t border-slate-100 text-[11px] font-medium text-blue-700">
-              SALTO-ET TCA Portalı
+              {locale === 'en' ? 'SALTO-ET TCA Portal' : 'SALTO-ET TCA Portalı'}
             </div>
           </a>
 
@@ -71,16 +75,18 @@ export default function PartnerFindingCard() {
             <div>
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-slate-900 group-hover:text-blue-700">
-                  Erasmus+ Proje Veritabanı
+                  {locale === 'en' ? 'Erasmus+ Project Results' : 'Erasmus+ Proje Veritabanı'}
                 </span>
                 <span className="text-xs text-slate-400 group-hover:text-blue-600">↗</span>
               </div>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                Geçmişte hibe almış akredite kurumları ve başarılı VET projelerini inceleyin.
+                {locale === 'en'
+                  ? 'Inspect previously funded accredited organisations and successful European VET projects.'
+                  : 'Geçmişte hibe almış akredite kurumları ve başarılı VET projelerini inceleyin.'}
               </p>
             </div>
             <div className="mt-3 pt-2 border-t border-slate-100 text-[11px] font-medium text-blue-700">
-              Proje Sonuç Arşivi
+              {locale === 'en' ? 'Project Results Archive' : 'Proje Sonuç Arşivi'}
             </div>
           </a>
         </div>
@@ -107,16 +113,16 @@ export default function PartnerFindingCard() {
                     className="hover:bg-slate-50/60 transition-colors"
                   >
                     <td className="p-3 font-bold text-center text-blue-700">
-                      Adım {f.step}
+                      {locale === 'en' ? `Step ${f.step}` : `Adım ${f.step}`}
                     </td>
                     <td className="p-3 font-semibold text-slate-900">
                       {f.source}
                     </td>
                     <td className="p-3 text-slate-600">
-                      {f.query}
+                      {locale === 'en' ? f.queryEn : f.queryTr}
                     </td>
                     <td className="p-3 font-medium text-slate-800">
-                      {f.output}
+                      {locale === 'en' ? f.outputEn : f.outputTr}
                     </td>
                   </tr>
                 ))}

@@ -9,7 +9,7 @@
    ========================================================================== */
 
 :root, [data-theme="theme-02"] {
-  /* Palet 02 (CAPPINNO Logosu İlhamlı): #E56438 (Turuncu), #302C4F (Koyu Lacivert), #C6C6C6 (Gri) */
+  /* Palet 02: #E56438 (Turuncu), #302C4F (Koyu Lacivert), #C6C6C6 (Gri) */
   --theme-primary: #E56438;
   --theme-primary-hover: #CD4F26;
   --theme-primary-text: #FFFFFF;

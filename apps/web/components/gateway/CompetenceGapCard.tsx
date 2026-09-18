@@ -21,13 +21,13 @@ export default function CompetenceGapCard({
   onExternalScoreChange,
   onApplyExternalScore,
 }: CompetenceGapCardProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const gap = competenceScore !== null ? Math.max(0, targetScore - competenceScore) : null;
 
   return (
     <NeoCard
       title={t.gap.title}
-      badge="Analiz & Boşluk"
+      badge={locale === 'en' ? 'Assessment and Competence Gap' : 'Değerlendirme ve Yetkinlik Açığı'}
       badgeType="primary"
     >
       <div className="space-y-4">

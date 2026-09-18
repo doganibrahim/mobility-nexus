@@ -49,7 +49,7 @@ async function bootstrap() {
 
   // OpenAPI / Swagger Documentation
   const config = new DocumentBuilder()
-    .setTitle('CAPPINNO Mobility Nexus API')
+    .setTitle('ErasmusMobility API')
     .setDescription(
       'Erasmus Mobility Management as a Service (EMaaS) REST API (/api/v1). Multi-tenant, OIDC/OAuth2 & RBAC enabled.',
     )

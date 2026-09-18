@@ -6,6 +6,15 @@ import {
   Ka122EligibilityResult,
 } from '@mobility-nexus/types';
 import { DecisionEngineResult, HostScoreResult } from './calculations';
+import {
+  ApplicationDraftState,
+  DEFAULT_DRAFT_STATE,
+  FormType,
+  calculateDraftCompletion,
+  Ka120ExtractedData,
+} from './application-draft-schema';
+import { DRAFT_DEMO_PRESETS } from './application-draft-demo-presets';
+import { apiClient } from './api-client';
 
 export interface MobilityInquiry {
   id: string;
@@ -209,6 +218,7 @@ export interface AppState {
 
   // 9. Mobility Inquiries State (Sending & Receiving)
   inquiries: MobilityInquiry[];
+  fetchInquiriesFromServer: () => Promise<void>;
   sendInquiry: (inquiry: Omit<MobilityInquiry, 'id' | 'createdAt' | 'status'>) => MobilityInquiry;
   updateInquiryStatus: (
     inquiryId: string,
@@ -216,6 +226,18 @@ export interface AppState {
     replyNote?: string,
   ) => void;
   removeInquiry: (inquiryId: string) => void;
+
+  // 10. Application Draft State (KA121 / KA122)
+  applicationDraft: ApplicationDraftState;
+  setApplicationDraft: (
+    updater:
+      | Partial<ApplicationDraftState>
+      | ((prev: ApplicationDraftState) => ApplicationDraftState),
+  ) => void;
+  syncPipelineToDraft: (targetFormType?: FormType) => void;
+  resetDraft: (formType?: FormType) => void;
+  loadDraftDemoPreset: (presetId: string) => void;
+  applyKa120Data: (data: Partial<Ka120ExtractedData>) => void;
 
   // Actions
   initFromStorage: () => void;
@@ -226,6 +248,7 @@ export interface AppState {
 }
 
 const initialEmptyState = {
+  applicationDraft: DEFAULT_DRAFT_STATE,
   inquiries: [] as MobilityInquiry[],
   schoolProfile: {
     schoolName: '',
@@ -293,17 +316,17 @@ const initialEmptyState = {
   isOnboarded: false,
 };
 
-export const useAppStore = create<AppState>((set) => ({
+export const useAppStore = create<AppState>((set, get) => ({
   ...initialEmptyState,
 
   setCurrentOrg: (org, role = 'ORG_ADMIN') => {
     if (typeof window !== 'undefined') {
       try {
         localStorage.setItem(
-          'cappinno_current_org',
+          'em_current_org',
           JSON.stringify({ org, role }),
         );
-        localStorage.removeItem('cappinno_current_host');
+        localStorage.removeItem('em_current_host');
       } catch {}
     }
     return set((state) => ({
@@ -326,6 +349,19 @@ export const useAppStore = create<AppState>((set) => ({
         institutionNeed:
           org.institutionNeed || state.schoolProfile.institutionNeed,
       },
+      applicationDraft: {
+        ...state.applicationDraft,
+        context: {
+          ...state.applicationDraft.context,
+          applicantName: org.name || state.applicationDraft.context.applicantName,
+          applicantOid: org.oid || state.applicationDraft.context.applicantOid,
+          applicantCity: org.city || state.applicationDraft.context.applicantCity,
+          accreditationCode:
+            org.accreditationStatus === 'YES'
+              ? (state.applicationDraft.context.accreditationCode || '2021-1-TR01-KA120-VET-000000')
+              : state.applicationDraft.context.accreditationCode,
+        },
+      },
     }));
   },
 
@@ -333,10 +369,10 @@ export const useAppStore = create<AppState>((set) => ({
     if (typeof window !== 'undefined') {
       try {
         localStorage.setItem(
-          'cappinno_current_host',
+          'em_current_host',
           JSON.stringify({ host }),
         );
-        localStorage.removeItem('cappinno_current_org');
+        localStorage.removeItem('em_current_org');
       } catch {}
     }
     return set(() => ({
@@ -348,6 +384,24 @@ export const useAppStore = create<AppState>((set) => ({
     }));
   },
 
+  fetchInquiriesFromServer: async () => {
+    try {
+      const serverInquiries = await apiClient.getInquiries();
+      if (Array.isArray(serverInquiries) && serverInquiries.length > 0) {
+        set(() => {
+          if (typeof window !== 'undefined') {
+            try {
+              localStorage.setItem('em_inquiries', JSON.stringify(serverInquiries));
+            } catch {}
+          }
+          return { inquiries: serverInquiries };
+        });
+      }
+    } catch (err) {
+      console.warn('Sunucudan talepler getirilemedi:', err);
+    }
+  },
+
   sendInquiry: (inquiryData) => {
     const newInquiry: MobilityInquiry = {
       ...inquiryData,
@@ -356,13 +410,17 @@ export const useAppStore = create<AppState>((set) => ({
       status: 'PENDING',
     };
     set((state) => {
-      const updated = [newInquiry, ...state.inquiries];
+      const updated = [newInquiry, ...state.inquiries.filter((i) => i.id !== newInquiry.id)];
       if (typeof window !== 'undefined') {
         try {
-          localStorage.setItem('cappinno_inquiries', JSON.stringify(updated));
+          localStorage.setItem('em_inquiries', JSON.stringify(updated));
         } catch {}
       }
       return { inquiries: updated };
+    });
+    // Persist to server/database
+    apiClient.createInquiry(newInquiry).catch((err) => {
+      console.warn('Veritabanina talep kaydedilirken hata:', err);
     });
     return newInquiry;
   },
@@ -380,10 +438,14 @@ export const useAppStore = create<AppState>((set) => ({
       );
       if (typeof window !== 'undefined') {
         try {
-          localStorage.setItem('cappinno_inquiries', JSON.stringify(updated));
+          localStorage.setItem('em_inquiries', JSON.stringify(updated));
         } catch {}
       }
       return { inquiries: updated };
+    });
+    // Persist to server/database
+    apiClient.updateInquiryStatus(inquiryId, status, replyNote).catch((err) => {
+      console.warn('Veritabaninda talep guncellenirken hata:', err);
     });
   },
 
@@ -392,10 +454,13 @@ export const useAppStore = create<AppState>((set) => ({
       const updated = state.inquiries.filter((inq) => inq.id !== inquiryId);
       if (typeof window !== 'undefined') {
         try {
-          localStorage.setItem('cappinno_inquiries', JSON.stringify(updated));
+          localStorage.setItem('em_inquiries', JSON.stringify(updated));
         } catch {}
       }
       return { inquiries: updated };
+    });
+    apiClient.deleteInquiry(inquiryId).catch((err) => {
+      console.warn('Veritabanindan talep silinirken hata:', err);
     });
   },
 
@@ -403,15 +468,17 @@ export const useAppStore = create<AppState>((set) => ({
     if (typeof window !== 'undefined') {
       try {
         // Restore Inquiries
-        const storedInquiries = localStorage.getItem('cappinno_inquiries');
+        const storedInquiries = localStorage.getItem('em_inquiries') || localStorage.getItem('cappinno_inquiries');
         if (storedInquiries) {
           const parsedInquiries = JSON.parse(storedInquiries);
-          if (Array.isArray(parsedInquiries)) {
+          if (Array.isArray(parsedInquiries) && parsedInquiries.length > 0) {
             set(() => ({ inquiries: parsedInquiries }));
           }
         }
+        // Always sync latest inquiries from server/database
+        get().fetchInquiriesFromServer();
 
-        const storedHost = localStorage.getItem('cappinno_current_host');
+        const storedHost = localStorage.getItem('em_current_host') || localStorage.getItem('cappinno_current_host');
         if (storedHost) {
           const { host } = JSON.parse(storedHost);
           if (host && host.name) {
@@ -426,7 +493,7 @@ export const useAppStore = create<AppState>((set) => ({
           }
         }
 
-        const stored = localStorage.getItem('cappinno_current_org');
+        const stored = localStorage.getItem('em_current_org') || localStorage.getItem('cappinno_current_org');
         if (stored) {
           const { org, role } = JSON.parse(stored);
           if (org && org.name) {
@@ -453,6 +520,29 @@ export const useAppStore = create<AppState>((set) => ({
             }));
           }
         }
+
+        // Restore Application Draft
+        const storedDraft = localStorage.getItem('em_application_draft') || localStorage.getItem('cappinno_application_draft');
+        if (storedDraft) {
+          try {
+            const parsedDraft = JSON.parse(storedDraft);
+            if (parsedDraft && parsedDraft.context) {
+              set((state) => ({
+                applicationDraft: {
+                  ...parsedDraft,
+                  context: {
+                    ...parsedDraft.context,
+                    applicantName: parsedDraft.context.applicantName || state.schoolProfile.schoolName,
+                    applicantOid: parsedDraft.context.applicantOid || state.schoolProfile.oid,
+                    applicantCity: parsedDraft.context.applicantCity || state.schoolProfile.city,
+                  },
+                },
+              }));
+            }
+          } catch {}
+        } else {
+          get().syncPipelineToDraft();
+        }
       } catch {}
     }
   },
@@ -460,8 +550,8 @@ export const useAppStore = create<AppState>((set) => ({
   clearOrg: () => {
     if (typeof window !== 'undefined') {
       try {
-        localStorage.removeItem('cappinno_current_org');
-        localStorage.removeItem('cappinno_current_host');
+        localStorage.removeItem('em_current_org');
+        localStorage.removeItem('em_current_host');
       } catch {}
     }
     set({
@@ -499,12 +589,295 @@ export const useAppStore = create<AppState>((set) => ({
   setLearningOutcomes: (data) =>
     set((state) => ({ learningOutcomes: { ...state.learningOutcomes, ...data } })),
 
+  setApplicationDraft: (updater) => {
+    set((state) => {
+      const nextDraft =
+        typeof updater === 'function'
+          ? updater(state.applicationDraft)
+          : { ...state.applicationDraft, ...updater, lastUpdated: new Date().toISOString() };
+
+      const { overallPercentage } = calculateDraftCompletion(nextDraft);
+      nextDraft.isDraftCompleted = overallPercentage === 100;
+
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('em_application_draft', JSON.stringify(nextDraft));
+        } catch {}
+      }
+      return { applicationDraft: nextDraft };
+    });
+  },
+
+  syncPipelineToDraft: (targetFormType) => {
+    set((state) => {
+      const formType: FormType = targetFormType || state.applicationDraft.formType;
+      const isKa121 = formType === 'KA121';
+
+      const nextDraft: ApplicationDraftState = {
+        ...state.applicationDraft,
+        formType,
+        lastUpdated: new Date().toISOString(),
+        context: {
+          ...state.applicationDraft.context,
+          formType,
+          applicantName: state.schoolProfile.schoolName || state.applicationDraft.context.applicantName,
+          applicantOid: state.schoolProfile.oid || state.applicationDraft.context.applicantOid,
+          applicantCity: state.schoolProfile.city || state.applicationDraft.context.applicantCity,
+          accreditationCode: state.schoolProfile.accredited === 'yes' ? '2021-1-TR01-KA120-VET-000000' : state.applicationDraft.context.accreditationCode,
+          projectDurationMonths: state.eligibilityGatekeeper.projectDurationMonths || state.applicationDraft.context.projectDurationMonths,
+          pastKa122Count: state.eligibilityGatekeeper.pastKa122GrantsCount || state.applicationDraft.context.pastKa122Count,
+          projectTitle: state.applicationDraft.context.projectTitle || (state.schoolProfile.schoolName ? `${state.schoolProfile.schoolName} Mesleki Hareketlilik Projesi` : ''),
+        },
+        needs: state.schoolProfile.institutionNeed
+          ? [
+              {
+                id: 'need-1',
+                title: state.schoolProfile.institutionNeed,
+                evidence: 'Kurum oz degerlendirme raporu ve sektor istisareleri',
+                targetGroup: state.participantProfile.participantName || 'Mesleki egitim ogrenicileri ve ogretmenleri',
+              },
+            ]
+          : state.applicationDraft.needs,
+        objectives: state.schoolProfile.erasmusPlan
+          ? [
+              {
+                id: 'obj-1',
+                needIdRef: 'need-1',
+                title: state.schoolProfile.erasmusPlan,
+                targetIndicator: 'Europass Hareketlilik Belgesi ve beceri kazanim puani',
+                measurementTool: 'Gozlem kontrol listesi ve staj degerlendirme formu',
+              },
+            ]
+          : state.applicationDraft.objectives,
+        activityDetails: {
+          ...state.applicationDraft.activityDetails,
+          activityType:
+            state.participantProfile.participantType === 'teacher'
+              ? 'JOB_SHADOWING'
+              : 'VET_SHORT_TERM',
+          activityGoalSummary: state.schoolProfile.erasmusPlan || state.applicationDraft.activityDetails.activityGoalSummary,
+          targetCountries: state.participantProfile.targetCountries.length > 0
+            ? state.participantProfile.targetCountries
+            : state.applicationDraft.activityDetails.targetCountries,
+          hostKnown: !!state.hostMatching.hostName,
+          hostName: state.hostMatching.hostName || state.applicationDraft.activityDetails.hostName,
+          hostCountry: state.hostMatching.hostCountry || state.applicationDraft.activityDetails.hostCountry,
+          totalParticipants: state.participantProfile.participantCount || state.applicationDraft.activityDetails.totalParticipants,
+          accompanyingRequired: (state.participantProfile.accompanyingPersonsCount || 0) > 0,
+          accompanyingCount: state.participantProfile.accompanyingPersonsCount || 0,
+          accompanyingReason: state.participantProfile.ageGroup === 'under_18' ? 'UNDERAGE' : 'SAFETY_LOGISTICS',
+        },
+      };
+
+      const { overallPercentage } = calculateDraftCompletion(nextDraft);
+      nextDraft.isDraftCompleted = overallPercentage === 100;
+
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('em_application_draft', JSON.stringify(nextDraft));
+        } catch {}
+      }
+      return { applicationDraft: nextDraft };
+    });
+  },
+
+  resetDraft: (formType = 'KA122') => {
+    const freshDraft: ApplicationDraftState = {
+      ...DEFAULT_DRAFT_STATE,
+      formType,
+      context: {
+        ...DEFAULT_DRAFT_STATE.context,
+        formType,
+      },
+      lastUpdated: new Date().toISOString(),
+    };
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('em_application_draft', JSON.stringify(freshDraft));
+      } catch {}
+    }
+    set({ applicationDraft: freshDraft });
+  },
+
+  loadDraftDemoPreset: (presetId) => {
+    const preset = DRAFT_DEMO_PRESETS.find((p) => p.id === presetId);
+    if (!preset) return;
+
+    const currentSchoolOrg = {
+      id: `org-${preset.schoolProfile.oid}`,
+      name: preset.schoolProfile.schoolName,
+      city: preset.schoolProfile.city,
+      oid: preset.schoolProfile.oid,
+      accreditationStatus: preset.schoolProfile.accredited === 'yes' ? 'YES' : 'NO',
+      erasmusPlan: preset.schoolProfile.erasmusPlan,
+      institutionNeed: preset.schoolProfile.institutionNeed,
+    };
+
+    const draftWithTimestamp = {
+      ...preset.draftData,
+      lastUpdated: new Date().toISOString(),
+    };
+
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(
+          'em_current_org',
+          JSON.stringify({ org: currentSchoolOrg, role: 'ORG_ADMIN' }),
+        );
+        localStorage.setItem('em_application_draft', JSON.stringify(draftWithTimestamp));
+      } catch {}
+    }
+
+    set({
+      currentOrg: currentSchoolOrg,
+      currentHost: null,
+      orgType: 'SCHOOL',
+      userRole: 'ORG_ADMIN',
+      isOnboarded: true,
+      schoolProfile: {
+        ...preset.schoolProfile,
+      },
+      participantProfile: {
+        ...preset.participantProfile,
+      },
+      escoIsced: {
+        ...preset.escoIsced,
+      },
+      hostMatching: {
+        hostName: preset.hostMatching.hostName,
+        hostCountry: preset.hostMatching.hostCountry,
+        hostType: preset.hostMatching.hostType,
+        hostMetrics: { h1: 85, h2: 85, h3: 85, h4: 80, h5: 85, h6: 80, h7: 85, h8: 85, h9: 90, h10: 85 },
+        hostScoreResult: null,
+      },
+      applicationDraft: draftWithTimestamp,
+    });
+  },
+
+  applyKa120Data: (data: Partial<Ka120ExtractedData>) => {
+    set((state) => {
+      const current = state.applicationDraft;
+      const importedFlags: Record<string, boolean> = { ...(current.ka120ImportedFields || {}) };
+
+      const setFlagIfPresent = (key: string, val: any) => {
+        if (val !== undefined && val !== null && val !== '') {
+          importedFlags[key] = true;
+        }
+      };
+
+      setFlagIfPresent('context.applicantName', data.applicantName);
+      setFlagIfPresent('context.applicantOid', data.applicantOid);
+      setFlagIfPresent('context.applicantCity', data.applicantCity);
+      setFlagIfPresent('context.accreditationCode', data.accreditationCode);
+      setFlagIfPresent('context.projectTitle', data.projectTitle);
+      setFlagIfPresent('context.projectAcronym', data.projectAcronym);
+
+      setFlagIfPresent('orgProfile.mainActivityType', data.mainActivityType);
+      setFlagIfPresent('orgProfile.yearsOfVetExperience', data.yearsOfVetExperience);
+      setFlagIfPresent('orgProfile.learnerProfileSummary', data.learnerProfileSummary);
+      setFlagIfPresent('orgProfile.totalVetLearnersCount', data.totalVetLearnersCount);
+      setFlagIfPresent('orgProfile.teachingStaffCount', data.teachingStaffCount);
+      setFlagIfPresent('orgProfile.nonTeachingStaffCount', data.nonTeachingStaffCount);
+
+      if (data.qualityTeam) {
+        Object.entries(data.qualityTeam).forEach(([k, v]) => {
+          if (v !== undefined && v !== null && (Array.isArray(v) ? v.length > 0 : v !== '')) {
+            importedFlags[`qualityTeam.${k}`] = true;
+          }
+        });
+      }
+
+      if (data.needs && data.needs.length > 0) {
+        importedFlags['needs'] = true;
+      }
+      if (data.objectives && data.objectives.length > 0) {
+        importedFlags['objectives'] = true;
+      }
+
+      const nextDraft: ApplicationDraftState = {
+        ...current,
+        lastUpdated: new Date().toISOString(),
+        ka120ImportedFields: importedFlags,
+        context: {
+          ...current.context,
+          applicantName: data.applicantName?.trim() || current.context.applicantName,
+          applicantOid: data.applicantOid?.trim() || current.context.applicantOid,
+          applicantCity: data.applicantCity?.trim() || current.context.applicantCity,
+          accreditationCode: data.accreditationCode?.trim() || current.context.accreditationCode,
+          projectTitle: data.projectTitle?.trim() || current.context.projectTitle,
+          projectAcronym: data.projectAcronym?.trim() || current.context.projectAcronym,
+        },
+        orgProfile: {
+          ...current.orgProfile,
+          mainActivityType: data.mainActivityType || current.orgProfile.mainActivityType,
+          yearsOfVetExperience: data.yearsOfVetExperience ?? current.orgProfile.yearsOfVetExperience,
+          learnerProfileSummary: data.learnerProfileSummary?.trim() || current.orgProfile.learnerProfileSummary,
+          totalVetLearnersCount: data.totalVetLearnersCount ?? current.orgProfile.totalVetLearnersCount,
+          teachingStaffCount: data.teachingStaffCount ?? current.orgProfile.teachingStaffCount,
+          nonTeachingStaffCount: data.nonTeachingStaffCount ?? current.orgProfile.nonTeachingStaffCount,
+        },
+        qualityTeam: {
+          ...current.qualityTeam,
+          ...(data.qualityTeam ? {
+            inclusionApproach: data.qualityTeam.inclusionApproach?.trim() || current.qualityTeam.inclusionApproach,
+            greenPractices: data.qualityTeam.greenPractices?.trim() || current.qualityTeam.greenPractices,
+            digitalToolsUsage: data.qualityTeam.digitalToolsUsage?.trim() || current.qualityTeam.digitalToolsUsage,
+            democraticParticipation: data.qualityTeam.democraticParticipation?.trim() || current.qualityTeam.democraticParticipation,
+            selectionCriteriaSummary: data.qualityTeam.selectionCriteriaSummary?.trim() || current.qualityTeam.selectionCriteriaSummary,
+            preparationPlanSummary: data.qualityTeam.preparationPlanSummary?.trim() || current.qualityTeam.preparationPlanSummary,
+            monitoringMentorshipPlan: data.qualityTeam.monitoringMentorshipPlan?.trim() || current.qualityTeam.monitoringMentorshipPlan,
+            institutionalIntegrationPlan: data.qualityTeam.institutionalIntegrationPlan?.trim() || current.qualityTeam.institutionalIntegrationPlan,
+            internalDissemination: data.qualityTeam.internalDissemination?.trim() || current.qualityTeam.internalDissemination,
+            externalDissemination: data.qualityTeam.externalDissemination?.trim() || current.qualityTeam.externalDissemination,
+            euVisibilityMeasures: data.qualityTeam.euVisibilityMeasures?.trim() || current.qualityTeam.euVisibilityMeasures,
+            legalRepresentativeName: data.qualityTeam.legalRepresentativeName?.trim() || current.qualityTeam.legalRepresentativeName,
+            legalRepresentativeRole: data.qualityTeam.legalRepresentativeRole?.trim() || current.qualityTeam.legalRepresentativeRole,
+            legalRepresentativeEmail: data.qualityTeam.legalRepresentativeEmail?.trim() || current.qualityTeam.legalRepresentativeEmail,
+            coordinatorName: data.qualityTeam.coordinatorName?.trim() || current.qualityTeam.coordinatorName,
+            coordinatorRole: data.qualityTeam.coordinatorRole?.trim() || current.qualityTeam.coordinatorRole,
+            coordinatorEmail: data.qualityTeam.coordinatorEmail?.trim() || current.qualityTeam.coordinatorEmail,
+            priorityTopics: (data.qualityTeam.priorityTopics && data.qualityTeam.priorityTopics.length > 0)
+              ? data.qualityTeam.priorityTopics
+              : current.qualityTeam.priorityTopics,
+          } : {}),
+        },
+        needs: (data.needs && data.needs.length > 0)
+          ? data.needs.map((n, idx) => ({
+              id: n.id || `need-${idx + 1}`,
+              title: n.title || '',
+              evidence: n.evidence || '',
+              targetGroup: n.targetGroup || '',
+            }))
+          : current.needs,
+        objectives: (data.objectives && data.objectives.length > 0)
+          ? data.objectives.map((o, idx) => ({
+              id: o.id || `obj-${idx + 1}`,
+              needIdRef: current.needs[idx]?.id || current.needs[0]?.id || 'need-1',
+              title: o.title || '',
+              targetIndicator: o.targetIndicator || '',
+              measurementTool: o.measurementTool || '',
+            }))
+          : current.objectives,
+      };
+
+      const { overallPercentage } = calculateDraftCompletion(nextDraft);
+      nextDraft.isDraftCompleted = overallPercentage === 100;
+
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('em_application_draft', JSON.stringify(nextDraft));
+        } catch {}
+      }
+      return { applicationDraft: nextDraft };
+    });
+  },
+
   loadDemoData: (locale: string) => {
     const isEn = locale === 'en';
     
     if (typeof window !== 'undefined') {
       try {
-        localStorage.removeItem('cappinno_current_host');
+        localStorage.removeItem('em_current_host');
       } catch {}
     }
 
@@ -565,6 +938,9 @@ export const useAppStore = create<AppState>((set) => ({
         transversalOutcome: '',
       },
     });
+
+    // Also populate application draft for demo
+    get().syncPipelineToDraft('KA122');
   },
 
   loadHostDemoData: (locale: string) => {
@@ -603,9 +979,9 @@ export const useAppStore = create<AppState>((set) => ({
 
     if (typeof window !== 'undefined') {
       try {
-        localStorage.setItem('cappinno_current_host', JSON.stringify({ host: demoHost }));
-        localStorage.setItem('cappinno_inquiries', JSON.stringify(demoInquiries));
-        localStorage.removeItem('cappinno_current_org');
+        localStorage.setItem('em_current_host', JSON.stringify({ host: demoHost }));
+        localStorage.setItem('em_inquiries', JSON.stringify(demoInquiries));
+        localStorage.removeItem('em_current_org');
       } catch {}
     }
 

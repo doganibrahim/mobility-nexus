@@ -70,8 +70,8 @@ export default function AppointmentModal({ isOpen, onClose }: AppointmentModalPr
                 </h3>
                 <p className="text-xs text-slate-500 mt-0.5">
                   {locale === 'tr'
-                    ? 'CAPPINNO Mobility Nexus • Erasmus+ VET & Hareketlilik Danışmanlığı'
-                    : 'CAPPINNO Mobility Nexus • Erasmus+ VET & Mobility Advisory'}
+                    ? 'ErasmusMobility • Erasmus+ VET & Hareketlilik Danışmanlığı'
+                    : 'ErasmusMobility • Erasmus+ VET & Mobility Advisory'}
                 </p>
               </div>
             </div>

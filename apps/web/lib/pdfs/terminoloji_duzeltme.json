@@ -1,0 +1,882 @@
+[
+  [
+    "Mevcut ifade",
+    "Önerilen ifade",
+    "Bulunduğu link"
+  ],
+  [
+    "CAPPINNO Mobility Nexus",
+    "ErasmusMobility.com",
+    "Ana sayfa – üst menü ve alt bilgi"
+  ],
+  [
+    "Erasmus+ VET Hareketlilik Ağ Geçidi",
+    "Erasmus+ Mesleki Eğitim Hareketlilik Platformu",
+    "Ana sayfa"
+  ],
+  [
+    "Host & Karar",
+    "Ev Sahibi Eşleştirme ve Proje Yolu",
+    "Ana sayfa – aşama menüsü"
+  ],
+  [
+    "Host eşleştirme",
+    "Ev sahibi kuruluş eşleştirmesi",
+    "Ana sayfa – aşama menüsü"
+  ],
+  [
+    "Fırsatlar & Hostlar",
+    "Ev Sahibi Kuruluşlar ve Hizmetler",
+    "Ana sayfa – üst menü"
+  ],
+  [
+    "Yararlanıcılar",
+    "Gönderen Kuruluşlar",
+    "Ana sayfa – üst menü"
+  ],
+  [
+    "Avrupa genelindeki doğrulanmış ev sahipleri",
+    "ErasmusMobility.com tarafından doğrulanmış ev sahibi kuruluşlar",
+    "Ana sayfa – karşılama alanı"
+  ],
+  [
+    "KA121 & KA122 Uyumlu",
+    "KA121-VET ve KA122-VET Planlamasını Destekler",
+    "Ana sayfa – karşılama alanı"
+  ],
+  [
+    "15 Kriterli Güvenli Eşleştirme",
+    "15 Kriterli Kuruluş Eşleştirmesi",
+    "Ana sayfa – karşılama alanı"
+  ],
+  [
+    "Kurum akreditasyon OID kaydı",
+    "Kuruluş Kimlik Numarası OID ve Erasmus Akreditasyonu bilgileri",
+    "Ana sayfa – sistem iş akışı"
+  ],
+  [
+    "Gelişim açığı (gap)",
+    "Yetkinlik açığı",
+    "Ana sayfa – sistem iş akışı"
+  ],
+  [
+    "AB Ev Sahibi",
+    "Ev Sahibi Kuruluş",
+    "Ana sayfa – sistem iş akışı"
+  ],
+  [
+    "Host skorlaması",
+    "Ev sahibi kuruluş puanlaması",
+    "Ana sayfa – sistem iş akışı"
+  ],
+  [
+    "Partner arama hunisi",
+    "Ortak ve ev sahibi kuruluş arama süreci",
+    "Ana sayfa – sistem iş akışı"
+  ],
+  [
+    "Meslek Lisesi / VET Kuruluşu Tam Adı",
+    "Mesleki Eğitim Kuruluşunun Tam Yasal Adı",
+    "Aşama 1 – kuruluş profili"
+  ],
+  [
+    "Erasmus VET Akreditasyonu",
+    "Erasmus Akreditasyonu KA120-VET",
+    "Aşama 1 – kuruluş profili"
+  ],
+  [
+    "Evet (Akredite Kurum – KA121)",
+    "Evet – Erasmus Akreditasyonuna Sahip KA120-VET Kuruluşu",
+    "Aşama 1 – kuruluş profili"
+  ],
+  [
+    "Hayır (Kısa Dönem Başvuru – KA122)",
+    "Hayır – KA122-VET Kısa Dönemli Proje Başvurusu Planlanıyor",
+    "Aşama 1 – kuruluş profili"
+  ],
+  [
+    "Erasmus OID Kodu",
+    "Kuruluş Kimlik Numarası OID",
+    "Aşama 1 – kuruluş profili"
+  ],
+  [
+    "Kurumsal İhtiyaç / Somut Challenge",
+    "Kurumsal İhtiyaç veya Somut Sorun",
+    "Aşama 1 – kuruluş profili"
+  ],
+  [
+    "Meslek Lisesi Öğrencisi / Çırak",
+    "Mesleki Eğitim Öğrenicisi / Çırak",
+    "Aşama 1 – katılımcı profili"
+  ],
+  [
+    "Teknik Öğretmen / Eğitici (Staff)",
+    "Öğretmen / Eğitici / Personel Katılımcı",
+    "Aşama 1 – katılımcı profili"
+  ],
+  [
+    "Kuruma Gelen (Davetli Uzman / Eğitici)",
+    "Davetli Uzman",
+    "Aşama 1 – katılımcı profili"
+  ],
+  [
+    "Proje Ekibi (Hazırlık Ziyareti)",
+    "Hazırlık Ziyareti Katılımcısı",
+    "Aşama 1 – katılımcı profili"
+  ],
+  [
+    "Hareketlilik Tercihi / Faaliyet Türü",
+    "Erasmus+ Faaliyet Türü",
+    "Aşama 1 – katılımcı profili"
+  ],
+  [
+    "10 Resmî Erasmus+ Faaliyeti",
+    "Desteklenen Erasmus+ Faaliyet Türleri",
+    "Aşama 1 – faaliyet seçimi"
+  ],
+  [
+    "Öğrenici Grup Hareketliliği",
+    "Mesleki Eğitim Öğrenicilerinin Grup Hareketliliği",
+    "Aşama 1 – faaliyet seçimi"
+  ],
+  [
+    "Kısa Dönemli Bireysel Öğrenme / Staj",
+    "Mesleki Eğitim Öğrenicilerinin Kısa Dönemli Öğrenme Hareketliliği",
+    "Aşama 1 – faaliyet seçimi"
+  ],
+  [
+    "ErasmusPro Uzun Dönemli Staj",
+    "Mesleki Eğitim Öğrenicilerinin Uzun Dönemli Öğrenme Hareketliliği ErasmusPro",
+    "Aşama 1 – faaliyet seçimi"
+  ],
+  [
+    "İşbaşı Gözlem / Job Shadowing",
+    "İşbaşı Gözlem",
+    "Aşama 1 – faaliyet seçimi"
+  ],
+  [
+    "Öğretme veya Eğitim Görevlendirmesi",
+    "Öğretme veya Eğitim Verme Görevi",
+    "Aşama 1 – faaliyet seçimi"
+  ],
+  [
+    "Kurs ve Eğitim",
+    "Kurslar ve Eğitimler",
+    "Aşama 1 – faaliyet seçimi"
+  ],
+  [
+    "Davetli Uzman / Invited Expert",
+    "Davetli Uzman",
+    "Aşama 1 – faaliyet seçimi"
+  ],
+  [
+    "Öğretmen/Eğitimci Adayına Ev Sahipliği",
+    "Eğitimdeki Öğretmen ve Eğiticilere Ev Sahipliği Yapılması",
+    "Aşama 1 – faaliyet seçimi"
+  ],
+  [
+    "Farketmez / Tüm Ülkeler",
+    "Fark Etmez / Tüm Uygun Ülkeler",
+    "Aşama 1 – hedef ülkeler"
+  ],
+  [
+    "18 Yaş Altı (Reşit Değil)",
+    "18 Yaş Altı Reşit Olmayan Katılımcı",
+    "Aşama 1 – yaş grubu"
+  ],
+  [
+    "AB ESCO v1.1",
+    "Avrupa Birliği ESCO Sınıflandırması",
+    "Aşama 2 – ESCO eşleştirmesi"
+  ],
+  [
+    "ESCO Arama Terimi / Meslek Ailesi",
+    "ESCO Meslek Arama Terimi / Meslek Profili",
+    "Aşama 2 – ESCO eşleştirmesi"
+  ],
+  [
+    "Yetkinlik Değerlendirme",
+    "Yetkinlik Öz Değerlendirmesi",
+    "Aşama 2 – değerlendirme"
+  ],
+  [
+    "Hedeflenen Seviye",
+    "Hedef Yetkinlik Düzeyi",
+    "Aşama 2 – değerlendirme"
+  ],
+  [
+    "Resmî Uygunluk Kapısı (Gatekeeper)",
+    "Ön Uygunluk Kontrolü",
+    "Aşama 3 – KA122 kontrolü"
+  ],
+  [
+    "Zorunlu Uygunluk Denetimi",
+    "Ön Uygunluk Kontrolü",
+    "Aşama 3 – KA122 kontrolü"
+  ],
+  [
+    "Akreditasyon Yok (KA120 Belgesi Bulunmuyor)",
+    "Erasmus Akreditasyonu Bulunmuyor",
+    "Aşama 3 – KA122 kontrolü"
+  ],
+  [
+    "Akredite Kurum (KA120 Belgesi Mevcut)",
+    "Erasmus Akreditasyonuna Sahip Kuruluş KA120-VET",
+    "Aşama 3 – KA122 kontrolü"
+  ],
+  [
+    "Son 36 Ayda Alınan KA122 Hibesi",
+    "Ardışık Beş Çağrı Yılı İçinde Alınan KA122-VET Hibesi",
+    "Aşama 3 – KA122 kontrolü"
+  ],
+  [
+    "36 Ayda Maks. 3",
+    "Ardışık Beş Çağrı Yılında En Fazla 3 Hibe",
+    "Aşama 3 – KA122 kontrolü"
+  ],
+  [
+    "KA120 Zorunlu",
+    "KA122-VET Hibe Sınırına Ulaşıldı",
+    "Aşama 3 – KA122 kontrolü"
+  ],
+  [
+    "KA120 Önerilir",
+    "Erasmus Akreditasyonu KA120-VET Değerlendirilebilir",
+    "Aşama 3 – proje yolu"
+  ],
+  [
+    "Garantili yıllık bütçe tahsisatı",
+    "Yıllık hibe başvurusu yapma imkânı",
+    "Aşama 3 – proje yolu"
+  ],
+  [
+    "KA121 tahsisatı",
+    "KA121-VET Akredite Proje Hibe Başvurusu",
+    "Aşama 3 – proje yolu"
+  ],
+  [
+    "AB Ev Sahibi Kuruluş (Host)",
+    "Ev Sahibi Kuruluş",
+    "Aşama 3 – eşleştirme"
+  ],
+  [
+    "Akıllı AB Ev Sahibi Eşleştirme (Live Match)",
+    "Ev Sahibi Kuruluş Eşleştirmesi",
+    "Aşama 3 – eşleştirme"
+  ],
+  [
+    "5 Asil + 0 Refakatçi",
+    "5 Katılımcı + 0 Refakat Eden Kişi",
+    "Aşama 3 – eşleştirme özeti"
+  ],
+  [
+    "Yemek / İaşe Şartı",
+    "Yemek Hizmeti",
+    "Aşama 3 – lojistik talepleri"
+  ],
+  [
+    "Havalimanı / Yerel Transfer",
+    "Havalimanı Transferi ve Yerel Ulaşım",
+    "Aşama 3 – lojistik talepleri"
+  ],
+  [
+    "Karar Motoru",
+    "Proje Yolu Öneri Aracı",
+    "Aşama 3 – proje yolu"
+  ],
+  [
+    "Partner & Host Arama Portalları",
+    "Ortak ve Ev Sahibi Kuruluş Arama Platformları",
+    "Aşama 3 – arama platformları"
+  ],
+  [
+    "Partner Arama Hunisi",
+    "Ortak Arama ve Kısa Liste Oluşturma Süreci",
+    "Aşama 3 – arama platformları"
+  ],
+  [
+    "Ön Kabul Alındı (LoI Hazır)",
+    "Ön Kabul Alındı / Niyet Mektubu Hazır",
+    "Aşama 3 – talep durumları"
+  ],
+  [
+    "Öğrenme Kazanımları Üreteci",
+    "Öğrenme Çıktıları Oluşturma Aracı",
+    "Aşama 4 – öğrenme çıktıları"
+  ],
+  [
+    "ECVET & Europass Uyumlu",
+    "Öğrenme Çıktıları ve Europass Mobility ile Uyumlu",
+    "Aşama 4 ve alt bilgi"
+  ],
+  [
+    "Hard Skills",
+    "Teknik ve Mesleki Beceriler",
+    "Aşama 4 – öğrenme çıktıları"
+  ],
+  [
+    "Soft Skills",
+    "Aktarılabilir Beceriler",
+    "Aşama 4 – öğrenme çıktıları"
+  ],
+  [
+    "ECVET Standartlarında Kazanımları Yeniden Üret",
+    "Öğrenme Çıktılarını Yeniden Oluştur",
+    "Aşama 4 – öğrenme çıktıları"
+  ],
+  [
+    "Gönderen Kurum (Yararlanıcı VET)",
+    "Gönderen Kuruluş / Yararlanıcı Kuruluş",
+    "Aşama 4 – sorumluluk matrisi"
+  ],
+  [
+    "Ev Sahibi (AB Partneri)",
+    "Ev Sahibi Kuruluş",
+    "Aşama 4 – sorumluluk matrisi"
+  ],
+  [
+    "Destekleyici aracı kuruluşlar",
+    "Destekleyici Kuruluşlar",
+    "Aşama 4 – temel kural"
+  ],
+  [
+    "Gönderen Kurum (Sending VET)",
+    "Gönderen Kuruluş",
+    "Aşama 5 – planlama raporu"
+  ],
+  [
+    "OID Kodu",
+    "Kuruluş Kimlik Numarası OID",
+    "Aşama 5 – planlama raporu"
+  ],
+  [
+    "Ev Sahibi Kuruluş (EU Host)",
+    "Ev Sahibi Kuruluş",
+    "Aşama 5 – planlama raporu"
+  ],
+  [
+    "Format & Detaylar",
+    "Faaliyet Türü ve Ayrıntılar",
+    "Aşama 5 – planlama raporu"
+  ],
+  [
+    "Beklenen Öğrenme Kazanımları",
+    "Beklenen Öğrenme Çıktıları",
+    "Aşama 5 – planlama raporu"
+  ],
+  [
+    "Mobilite sonunda",
+    "Hareketlilik sonunda",
+    "Aşama 5 – oluşturulan metin"
+  ],
+  [
+    "Resmî Kaynaklar ve Yasal Çerçeve",
+    "Resmî Kaynaklar ve Program Çerçevesi",
+    "Aşama 5 – kaynaklar"
+  ],
+  [
+    "Kurumsal arkaplan",
+    "Kurumsal arka plan",
+    "Aşama 5 – kaynaklar"
+  ],
+  [
+    "İhtiyaç/challenge",
+    "İhtiyaçlar ve sorunlar",
+    "Aşama 5 – kaynaklar"
+  ],
+  [
+    "Mobility Suitability skoru",
+    "Hareketlilik Uygunluk Skoru",
+    "Aşama 5 – yasal uyarı"
+  ],
+  [
+    "Mevcut ifade",
+    "Önerilen ifade",
+    "Bulunduğu link"
+  ],
+  [
+    "Erasmus+ Mesleki Eğitim",
+    "Erasmus+ Vocational Education and Training",
+    "English interface – header"
+  ],
+  [
+    "CAPPINNO Mobility Nexus",
+    "ErasmusMobility.com",
+    "English interface – header and footer"
+  ],
+  [
+    "Beneficiaries",
+    "Sending Organisations",
+    "English interface – main menu"
+  ],
+  [
+    "Opportunities & Hosts",
+    "Hosting Organisations and Services",
+    "English interface – main menu"
+  ],
+  [
+    "How It Works?",
+    "How It Works",
+    "English interface – header"
+  ],
+  [
+    "Giriş Yap",
+    "Sign In",
+    "English interface – header"
+  ],
+  [
+    "KA121 & KA122 Aligned",
+    "Supports KA121-VET and KA122-VET Planning",
+    "English interface – welcome section"
+  ],
+  [
+    "Verified European hosts",
+    "Hosting organisations verified by ErasmusMobility.com",
+    "English interface – welcome section"
+  ],
+  [
+    "15-Factor Verified Matching",
+    "15-Criteria Organisation Matching",
+    "English interface – welcome section"
+  ],
+  [
+    "Erasmus+ VET Modeli",
+    "Erasmus+ VET Model",
+    "English interface – Stage 1"
+  ],
+  [
+    "Aşama 1/2/3/4",
+    "Stage 1/2/3/4",
+    "English interface – Stage 1 workflow"
+  ],
+  [
+    "Çıktı: Kurum Profili & OID",
+    "Output: Organisation Profile and OID",
+    "English interface – Stage 1 workflow"
+  ],
+  [
+    "Çıktı: ESCO Eşleştirmesi & Boşluk",
+    "Output: ESCO Mapping and Competence Gap",
+    "English interface – Stage 1 workflow"
+  ],
+  [
+    "Çıktı: KA121 / KA122 Kararı",
+    "Output: Recommended Project Path",
+    "English interface – Stage 1 workflow"
+  ],
+  [
+    "EU Host & Mobility Plan",
+    "Hosting Organisation and Mobility Plan",
+    "English interface – Stage 1 workflow"
+  ],
+  [
+    "Host scoring",
+    "Hosting Organisation Scoring",
+    "English interface – Stage 1 workflow"
+  ],
+  [
+    "Partner search funnel",
+    "Partner Search and Shortlisting Process",
+    "English interface – Stage 1 workflow"
+  ],
+  [
+    "Hazırlık Skoru",
+    "Readiness Score",
+    "English interface – Stage 1"
+  ],
+  [
+    "Yes (Accredited Institution – KA121)",
+    "Yes – Holds an Erasmus Accreditation KA120-VET",
+    "English interface – Stage 1"
+  ],
+  [
+    "No (Short-term Mobility – KA122)",
+    "No – Planning a KA122-VET Short-term Project",
+    "English interface – Stage 1"
+  ],
+  [
+    "Institutional Need / Concrete Challenge",
+    "Institutional Needs and Identified Gaps",
+    "English interface – Stage 1"
+  ],
+  [
+    "Hedef Kitle",
+    "Target Group",
+    "English interface – Stage 1"
+  ],
+  [
+    "VET Student / Apprentice (VET Learner)",
+    "VET Learner / Apprentice",
+    "English interface – Stage 1"
+  ],
+  [
+    "Vocational Teacher / Trainer (Staff)",
+    "Staff Participant – Teacher or Trainer",
+    "English interface – Stage 1"
+  ],
+  [
+    "Eğitici & Mesleki Personel",
+    "Trainer and Other VET Staff",
+    "English interface – Stage 1"
+  ],
+  [
+    "Kuruma Gelen (Davetli Uzman / Eğitici)",
+    "Invited Expert",
+    "English interface – Stage 1"
+  ],
+  [
+    "Proje Ekibi (Hazırlık Ziyareti)",
+    "Preparatory Visit Participant",
+    "English interface – Stage 1"
+  ],
+  [
+    "Mobility Format / Activity Type",
+    "Erasmus+ Activity Type",
+    "English interface – Stage 1"
+  ],
+  [
+    "10 Resmi Erasmus+ Faaliyeti",
+    "Supported Erasmus+ Activity Types",
+    "English interface – Stage 1"
+  ],
+  [
+    "Mesleki Beceri Yarışmasına Katılım",
+    "Participation in VET Skills Competitions",
+    "English interface – Stage 1"
+  ],
+  [
+    "Öğrenici Grup Hareketliliği",
+    "Group Mobility of VET Learners",
+    "English interface – Stage 1"
+  ],
+  [
+    "Kısa Dönemli Bireysel Öğrenme / Staj",
+    "Short-term Learning Mobility of VET Learners",
+    "English interface – Stage 1"
+  ],
+  [
+    "ErasmusPro Uzun Dönemli Staj",
+    "Long-term Learning Mobility of VET Learners ErasmusPro",
+    "English interface – Stage 1"
+  ],
+  [
+    "İşbaşı Gözlem / Job Shadowing",
+    "Job Shadowing",
+    "English interface – Stage 1"
+  ],
+  [
+    "Öğretme veya Eğitim Görevlendirmesi",
+    "Teaching or Training Assignment",
+    "English interface – Stage 1"
+  ],
+  [
+    "Kurs ve Eğitim",
+    "Courses and Training",
+    "English interface – Stage 1"
+  ],
+  [
+    "Davetli Uzman / Invited Expert",
+    "Invited Expert",
+    "English interface – Stage 1"
+  ],
+  [
+    "Öğretmen/Eğitimci Adayına Ev Sahipliği",
+    "Hosting Teachers and Educators in Training",
+    "English interface – Stage 1"
+  ],
+  [
+    "Hazırlık Ziyareti",
+    "Preparatory Visit",
+    "English interface – Stage 1"
+  ],
+  [
+    "Hedef Ülkeler",
+    "Preferred Hosting Countries",
+    "English interface – Stage 1"
+  ],
+  [
+    "Farketmez / Tüm Ülkeler",
+    "No Preference / All Eligible Countries",
+    "English interface – Stage 1"
+  ],
+  [
+    "Planlanan Başlangıç Tarihi",
+    "Planned Start Date",
+    "English interface – Stage 1"
+  ],
+  [
+    "Planlanan Bitiş Tarihi",
+    "Planned End Date",
+    "English interface – Stage 1"
+  ],
+  [
+    "Katılımcı Sayısı",
+    "Number of Participants",
+    "English interface – Stage 1"
+  ],
+  [
+    "Refakatçi Sayısı",
+    "Number of Accompanying Persons",
+    "English interface – Stage 1"
+  ],
+  [
+    "Yaş Grubu",
+    "Age Group",
+    "English interface – Stage 1"
+  ],
+  [
+    "AB ESCO v1.1",
+    "EU ESCO Classification",
+    "English interface – Stage 2"
+  ],
+  [
+    "Elektrik-Elektronik / Endüstriyel Otomasyon",
+    "Electrical and Electronic Engineering / Industrial Automation",
+    "English interface – Stage 2"
+  ],
+  [
+    "Bilişim / Yazılım Geliştirme",
+    "Information Technologies / Software Development",
+    "English interface – Stage 2"
+  ],
+  [
+    "Bilişim / Ağ Sistemleri & Siber Güvenlik",
+    "Information Technologies / Network Systems and Cybersecurity",
+    "English interface – Stage 2"
+  ],
+  [
+    "ESCO Doğrula",
+    "Verify on ESCO",
+    "English interface – Stage 2"
+  ],
+  [
+    "ISCED-F 2013 Rehberi",
+    "ISCED-F 2013 Manual",
+    "English interface – Stage 2"
+  ],
+  [
+    "12/12 Tamamlandı",
+    "12/12 Completed",
+    "English interface – Stage 2"
+  ],
+  [
+    "Mesleki Teknik Yetkinlik",
+    "Technical and Occupational Competence",
+    "English interface – Stage 2"
+  ],
+  [
+    "Yetkinlik Skorunu Hesapla",
+    "Calculate Competence Score",
+    "English interface – Stage 2"
+  ],
+  [
+    "Analiz & Boşluk",
+    "Assessment and Competence Gap",
+    "English interface – Stage 2"
+  ],
+  [
+    "KA122-VET Pre-Application Mandatory Eligibility Gatekeeper",
+    "KA122-VET Pre-application Eligibility Check",
+    "English interface – Stage 3"
+  ],
+  [
+    "Official Eligibility Gatekeeper",
+    "Preliminary Eligibility Check",
+    "English interface – Stage 3"
+  ],
+  [
+    "Mandatory Eligibility Verification",
+    "Preliminary Eligibility Assessment",
+    "English interface – Stage 3"
+  ],
+  [
+    "Not Accredited (No KA120)",
+    "Does Not Hold an Erasmus Accreditation",
+    "English interface – Stage 3"
+  ],
+  [
+    "Accredited (Holds KA120)",
+    "Holds an Erasmus Accreditation KA120-VET",
+    "English interface – Stage 3"
+  ],
+  [
+    "KA122 Grants in Past 36 Months",
+    "KA122-VET Grants Received During Five Consecutive Call Years",
+    "English interface – Stage 3"
+  ],
+  [
+    "36-month grant limits",
+    "Limit of Three Grants During Five Consecutive Call Years",
+    "English interface – Stage 3"
+  ],
+  [
+    "KA120 Recommended",
+    "Erasmus Accreditation KA120-VET May Be Considered",
+    "English interface – Stage 3"
+  ],
+  [
+    "Pax",
+    "Participants",
+    "English interface – Stage 3"
+  ],
+  [
+    "Smart EU Host Matching",
+    "Hosting Organisation Matching",
+    "English interface – Stage 3"
+  ],
+  [
+    "Eşleştirme Kriterleri Özeti",
+    "Summary of Matching Criteria",
+    "English interface – Stage 3"
+  ],
+  [
+    "5 Asil + 0 Refakatçi",
+    "5 Participants + 0 Accompanying Persons",
+    "English interface – Stage 3"
+  ],
+  [
+    "Lojistik Talepleri",
+    "Logistical Service Requirements",
+    "English interface – Stage 3"
+  ],
+  [
+    "Konaklama Şartı",
+    "Accommodation Required",
+    "English interface – Stage 3"
+  ],
+  [
+    "Yemek / İaşe Şartı",
+    "Meals Required",
+    "English interface – Stage 3"
+  ],
+  [
+    "Havalimanı / Yerel Transfer",
+    "Airport Transfer and Local Transport",
+    "English interface – Stage 3"
+  ],
+  [
+    "KA120 / KA121 / KA122 Decision Engine",
+    "Erasmus+ Project Path Recommendation Tool",
+    "English interface – Stage 3"
+  ],
+  [
+    "RECOMMENDED ERASMUS+ ACTİON PATHWAY",
+    "Recommended Erasmus+ Project Path",
+    "English interface – Stage 3"
+  ],
+  [
+    "EU Partner & Host Finding Gateway",
+    "Partner and Hosting Organisation Search",
+    "English interface – Stage 3"
+  ],
+  [
+    "My Sent Mobility Inquiries & Application Status",
+    "My Mobility Requests and Their Status",
+    "English interface – Stage 3"
+  ],
+  [
+    "Accepted (LoI Ready)",
+    "Pre-accepted / Letter of Intent Ready",
+    "English interface – Stage 3"
+  ],
+  [
+    "ECVET & Europass Uyumlu",
+    "Aligned with Learning Outcomes and Europass Mobility",
+    "English interface – Stage 4"
+  ],
+  [
+    "Expected Technical Learning Outcome (Hard Skills)",
+    "Expected Technical and Occupational Learning Outcomes",
+    "English interface – Stage 4"
+  ],
+  [
+    "Transversal / Green / Digital & Language Outcome (Soft Skills)",
+    "Expected Transversal, Green, Digital and Language Learning Outcomes",
+    "English interface – Stage 4"
+  ],
+  [
+    "ECVET Standartlarında Kazanımları Yeniden Üret",
+    "Regenerate Learning Outcomes",
+    "English interface – Stage 4"
+  ],
+  [
+    "Sending Institution (Beneficiary)",
+    "Sending Organisation / Beneficiary Organisation",
+    "English interface – Stage 4"
+  ],
+  [
+    "Host Organisation (EU Partner)",
+    "Hosting Organisation",
+    "English interface – Stage 4"
+  ],
+  [
+    "Supporting partner organizations",
+    "Supporting Organisations",
+    "English interface – Stage 4"
+  ],
+  [
+    "Sending Institution (VET)",
+    "Sending Organisation",
+    "English interface – Stage 5"
+  ],
+  [
+    "OID Code",
+    "Organisation ID OID",
+    "English interface – Stage 5"
+  ],
+  [
+    "Host Organisation (EU Partner)",
+    "Hosting Organisation",
+    "English interface – Stage 5"
+  ],
+  [
+    "Mobility Suitability",
+    "Mobility Suitability Score",
+    "English interface – Stage 5"
+  ],
+  [
+    "Format & Detaylar",
+    "Activity Type and Details",
+    "English interface – Stage 5"
+  ],
+  [
+    "Ülkeler / Tarih / Kişi / Yaş Grubu",
+    "Countries / Dates / Participants / Age Group",
+    "English interface – Stage 5"
+  ],
+  [
+    "Teknik Kazanım",
+    "Technical Learning Outcome",
+    "English interface – Stage 5"
+  ],
+  [
+    "Sonuç & Değerlendirme",
+    "Conclusion and Assessment",
+    "English interface – Stage 5"
+  ],
+  [
+    "Erasmus+ Program Rehberi",
+    "Erasmus+ Programme Guide",
+    "English interface – Stage 5"
+  ],
+  [
+    "Türkiye Ulusal Ajansı",
+    "Turkish National Agency",
+    "English interface – Stage 5"
+  ],
+  [
+    "ECVET & Europass Uyumlu",
+    "Aligned with Learning Outcomes and Europass Mobility",
+    "English interface – footer"
+  ],
+  [
+    "Tüm hakları saklıdır",
+    "All rights reserved",
+    "English interface – footer"
+  ],
+  [
+    "CAPPINNO Mobility Nexus • Erasmus+ EMaaS Platformu",
+    "ErasmusMobility.com • Mobility Planning and Matching Platform",
+    "English interface – footer"
+  ]
+]

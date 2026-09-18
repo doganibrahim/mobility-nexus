@@ -4,7 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTranslation } from '../../lib/i18n';
 import { apiClient } from '../../lib/api-client';
+import { useAppStore } from '../../lib/store';
 import AdminVerificationQueueModal from '../admin/AdminVerificationQueueModal';
+import AdminInquiriesSection from '../admin/AdminInquiriesSection';
 import ErasmusResultsWidget from '../ui/ErasmusResultsWidget';
 import MebSchoolsWidget from '../ui/MebSchoolsWidget';
 
@@ -24,6 +26,13 @@ export default function AdminDashboardView({
   const [pendingCount, setPendingCount] = useState<number>(0);
   const [recentQueue, setRecentQueue] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const store = useAppStore();
+  const inquiries = store.inquiries || [];
+  const pendingInquiriesCount = inquiries.filter((i) => i.status === 'PENDING').length;
+
+  useEffect(() => {
+    store.fetchInquiriesFromServer();
+  }, []);
 
   useEffect(() => {
     async function fetchQueueStats() {
@@ -92,9 +101,39 @@ export default function AdminDashboardView({
         </div>
       </div>
 
-      {/* 2. Platform KPI Metrics Grid (Flat, High-Contrast - 3 Columns) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {/* KPI 1 */}
+      {/* 2. Platform KPI Metrics Grid (Flat, High-Contrast - 4 Columns) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* KPI 1: Hareketlilik Talepleri & Mesaj Havuzu */}
+        <div className="bg-white border-2 border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              {locale === 'tr' ? 'Eşleşme Talepleri' : 'Mobility Inquiries'}
+            </span>
+            <span className="text-xl">📩</span>
+          </div>
+          <div className="mt-3">
+            <div className="text-3xl font-black text-slate-950">
+              {inquiries.length}
+            </div>
+            <p className="text-[11px] text-slate-500 mt-1 m-0">
+              {locale === 'tr'
+                ? `${pendingInquiriesCount} onay bekleyen okul talebi`
+                : `${pendingInquiriesCount} pending placement inquiries`}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              const el = document.getElementById('admin-inquiries-section');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="mt-4 w-full py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-colors shadow-xs"
+          >
+            {locale === 'tr' ? 'Talepleri & Mesajları Gör ↓' : 'View Inquiries & Messages ↓'}
+          </button>
+        </div>
+
+        {/* KPI 2: Bekleyen Kurum Evrakları */}
         <div className="bg-white border-2 border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -104,7 +143,7 @@ export default function AdminDashboardView({
           </div>
           <div className="mt-3">
             <div className="text-3xl font-black text-slate-950">
-              {isLoading ? '...' : pendingCount}
+              {pendingCount}
             </div>
             <p className="text-[11px] text-slate-500 mt-1 m-0">
               {t.adminDashboard.pendingSubtitle}
@@ -113,13 +152,13 @@ export default function AdminDashboardView({
           <button
             type="button"
             onClick={() => setIsAdminQueueOpen(true)}
-            className="mt-4 w-full py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-colors shadow-xs"
+            className="mt-4 w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-xl border border-slate-300 transition-colors"
           >
             {t.adminDashboard.openQueue} →
           </button>
         </div>
 
-        {/* KPI 2 */}
+        {/* KPI 3: Hibe Havuzu */}
         <div className="bg-white border-2 border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -132,7 +171,7 @@ export default function AdminDashboardView({
               €10.420.000
             </div>
             <p className="text-[11px] text-slate-500 mt-1 m-0">
-              {locale === 'tr' ? 'Türkiye geneli mesleki eğitim akredite kurum hibe dağılımı' : 'Turkey-wide vocational accredited institution grant distribution'}
+              {locale === 'tr' ? 'Türkiye geneli akredite kurum hibe dağılımı' : 'Accredited institution grant distribution'}
             </p>
           </div>
           <button
@@ -144,7 +183,7 @@ export default function AdminDashboardView({
           </button>
         </div>
 
-        {/* KPI 3 */}
+        {/* KPI 4: Yararlanıcı Kataloğu */}
         <div className="bg-white border-2 border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -168,6 +207,11 @@ export default function AdminDashboardView({
             {t.adminDashboard.exploreCatalog} →
           </button>
         </div>
+      </div>
+
+      {/* 3. Central Inquiries & Messages Management Section (Admin Hub) */}
+      <div id="admin-inquiries-section">
+        <AdminInquiriesSection />
       </div>
 
       {/* 3. Pending Verifications Quick List & Review Section */}

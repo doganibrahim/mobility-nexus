@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { SignInButton, SignUpButton, Show, useUser } from '@clerk/nextjs';
 import { useTranslation } from '../../lib/i18n';
 import { useTheme } from '../../lib/theme-context';
@@ -16,6 +17,7 @@ import GuestOnboardingModal from '../ui/GuestOnboardingModal';
 import AppointmentModal from '../ui/AppointmentModal';
 
 export default function AppHeader() {
+  const pathname = usePathname();
   const { locale, setLocale, t } = useTranslation();
   const { themeConfig } = useTheme();
   const { currentOrg, currentHost, orgType, userRole } = useAppStore();
@@ -36,9 +38,7 @@ export default function AppHeader() {
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
 
   // Active Dropdown
-  const [activeDropdown, setActiveDropdown] = useState<
-    'PROGRAMMES' | 'BENEFICIARIES' | 'OPPORTUNITIES' | 'RESOURCES' | 'CONTACT' | null
-  >(null);
+  const [activeDropdown, setActiveDropdown] = useState<'PLATFORM' | 'LIBRARY' | null>(null);
   const navContainerRef = useRef<HTMLDivElement>(null);
 
   // Language Dropdown
@@ -116,7 +116,9 @@ export default function AppHeader() {
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1.5 font-semibold text-slate-800">
             <span>🇪🇺</span>
-            <span className="truncate max-w-[210px] sm:max-w-none">Erasmus+ Mesleki Eğitim</span>
+            <span className="truncate max-w-[210px] sm:max-w-none">
+              {locale === 'en' ? 'Erasmus+ Vocational Education and Training' : 'Erasmus+ Mesleki Eğitim'}
+            </span>
           </span>
           <span className="text-slate-400 hidden sm:inline">•</span>
           <span className="text-slate-500 hidden md:inline">
@@ -151,7 +153,7 @@ export default function AppHeader() {
             className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-base text-white shadow-xs shrink-0"
             style={{ backgroundColor: themeConfig.primary }}
           >
-            C
+            E
           </div>
           <div className="flex items-center gap-2">
             <span className="text-base sm:text-lg font-black tracking-tight text-slate-950 group-hover:text-blue-900 transition-colors">
@@ -163,321 +165,154 @@ export default function AppHeader() {
           </div>
         </Link>
 
-        {/* 2. Center 4 Dropdown Menus (Single Line on Desktop) */}
+        {/* 2. Center 6 Core Nav Items (Single Line on Desktop) */}
         <nav
           ref={navContainerRef}
-          className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0"
+          className="hidden lg:flex items-center gap-1 xl:gap-1.5 shrink-0"
         >
-          {/* Menu 1: Programlar */}
+          {/* 1. Home */}
+          <Link
+            href="/"
+            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+              pathname === '/'
+                ? 'bg-slate-900 text-white shadow-xs'
+                : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
+            }`}
+          >
+            <span>🏠</span>
+            <span>{t.header.nav.home}</span>
+          </Link>
+
+          {/* 2. About */}
+          <Link
+            href="/about"
+            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+              pathname === '/about'
+                ? 'bg-slate-900 text-white shadow-xs'
+                : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
+            }`}
+          >
+            <span>ℹ️</span>
+            <span>{t.header.nav.about}</span>
+          </Link>
+
+          {/* 3. Platform (with Dropdown) */}
           <div className="relative">
-            <button
-              type="button"
-              onClick={() =>
-                setActiveDropdown(activeDropdown === 'PROGRAMMES' ? null : 'PROGRAMMES')
-              }
-              className={`px-3 py-1.5 text-xs font-extrabold rounded-lg border transition-all flex items-center gap-1.5 ${
-                activeDropdown === 'PROGRAMMES'
-                  ? 'bg-slate-900 text-white border-slate-900'
-                  : 'bg-white text-slate-700 border-transparent hover:bg-slate-100 hover:text-slate-950'
+            <div
+              className={`inline-flex items-stretch rounded-lg transition-all ${
+                pathname === '/platform' || pathname.startsWith('/school')
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
               }`}
             >
-              <span>{t.header.nav.programmes.label}</span>
-              <svg
-                className={`w-3 h-3 transition-transform ${
-                  activeDropdown === 'PROGRAMMES' ? 'rotate-180 text-white' : 'text-slate-400'
+              <Link
+                href="/platform"
+                className={`px-2.5 py-1.5 text-xs font-bold rounded-l-lg transition-colors flex items-center gap-1.5 ${
+                  pathname === '/platform' || pathname.startsWith('/school')
+                    ? 'hover:bg-slate-800 text-white'
+                    : 'hover:bg-slate-200/60'
                 }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2.5"
-                stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            </button>
-
-            {activeDropdown === 'PROGRAMMES' && (
-              <div className="absolute left-0 mt-2 w-72 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
-                <div className="px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
-                  {t.header.nav.programmes.label}
-                </div>
-                <div className="py-1">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setProgrammesTab('KA121');
-                      setIsProgrammesOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div>{t.header.nav.programmes.ka121}</div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.programmes.ka121Desc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setProgrammesTab('KA122');
-                      setIsProgrammesOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div>{t.header.nav.programmes.ka122}</div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.programmes.ka122Desc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setProgrammesTab('COMPARISON');
-                      setIsProgrammesOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div>{t.header.nav.programmes.comparison}</div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.programmes.comparisonDesc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Menu 2: Yararlanıcılar */}
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() =>
-                setActiveDropdown(activeDropdown === 'BENEFICIARIES' ? null : 'BENEFICIARIES')
-              }
-              className={`px-3 py-1.5 text-xs font-extrabold rounded-lg border transition-all flex items-center gap-1.5 ${
-                activeDropdown === 'BENEFICIARIES'
-                  ? 'bg-slate-900 text-white border-slate-900'
-                  : 'bg-white text-slate-700 border-transparent hover:bg-slate-100 hover:text-slate-950'
-              }`}
-            >
-              <span>{t.header.nav.beneficiaries.label}</span>
-              <svg
-                className={`w-3 h-3 transition-transform ${
-                  activeDropdown === 'BENEFICIARIES' ? 'rotate-180 text-white' : 'text-slate-400'
+                <span>⚡</span>
+                <span>{t.header.nav.platform.label}</span>
+              </Link>
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveDropdown(activeDropdown === 'PLATFORM' ? null : 'PLATFORM')
+                }
+                className={`px-2 flex items-center justify-center rounded-r-lg transition-colors border-l cursor-pointer ${
+                  pathname === '/platform' || pathname.startsWith('/school')
+                    ? 'border-slate-800 text-white hover:bg-slate-800'
+                    : 'border-slate-200 text-slate-500 hover:bg-slate-200/60 hover:text-slate-900'
                 }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2.5"
-                stroke="currentColor"
+                aria-label="Platform Alt Menü"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            </button>
+                <svg
+                  className={`w-3 h-3 transition-transform ${
+                    activeDropdown === 'PLATFORM' ? 'rotate-180' : ''
+                  }`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2.5"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </button>
+            </div>
 
-            {activeDropdown === 'BENEFICIARIES' && (
-              <div className="absolute left-0 mt-2 w-72 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
+            {activeDropdown === 'PLATFORM' && (
+              <div className="absolute left-0 mt-2 w-80 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
                 <div className="px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
-                  {t.header.nav.beneficiaries.label}
-                </div>
-                <div className="py-1">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setBeneficiariesCategory('MESLEK_LISELERI');
-                      setIsBeneficiariesOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div>{t.header.nav.beneficiaries.meslekLiseleri}</div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.beneficiaries.meslekLiseleriDesc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setBeneficiariesCategory('HALK_EGITIM');
-                      setIsBeneficiariesOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div>{t.header.nav.beneficiaries.halkEgitim}</div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.beneficiaries.halkEgitimDesc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setBeneficiariesCategory('OLGUNLASMA');
-                      setIsBeneficiariesOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div>{t.header.nav.beneficiaries.olgunlasma}</div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.beneficiaries.olgunlasmaDesc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setBeneficiariesCategory('MEM');
-                      setIsBeneficiariesOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div>{t.header.nav.beneficiaries.mem}</div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.beneficiaries.memDesc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setBeneficiariesCategory('OSB');
-                      setIsBeneficiariesOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div>{t.header.nav.beneficiaries.osb}</div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.beneficiaries.osbDesc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setBeneficiariesCategory('TTSO');
-                      setIsBeneficiariesOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div>{t.header.nav.beneficiaries.ttso}</div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.beneficiaries.ttsoDesc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setBeneficiariesCategory('ESNAF');
-                      setIsBeneficiariesOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div>{t.header.nav.beneficiaries.esnaf}</div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.beneficiaries.esnafDesc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Menu 3: Fırsatlar & Hostlar */}
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() =>
-                setActiveDropdown(activeDropdown === 'OPPORTUNITIES' ? null : 'OPPORTUNITIES')
-              }
-              className={`px-3 py-1.5 text-xs font-extrabold rounded-lg border transition-all flex items-center gap-1.5 ${
-                activeDropdown === 'OPPORTUNITIES'
-                  ? 'bg-slate-900 text-white border-slate-900'
-                  : 'bg-white text-slate-700 border-transparent hover:bg-slate-100 hover:text-slate-950'
-              }`}
-            >
-              <span>{t.header.nav.opportunities.label}</span>
-              <svg
-                className={`w-3 h-3 transition-transform ${
-                  activeDropdown === 'OPPORTUNITIES' ? 'rotate-180 text-white' : 'text-slate-400'
-                }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2.5"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            </button>
-
-            {activeDropdown === 'OPPORTUNITIES' && (
-              <div className="absolute left-0 mt-2 w-72 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
-                <div className="px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
-                  {t.header.nav.opportunities.label}
+                  {t.header.nav.platform.desc}
                 </div>
                 <div className="py-1">
                   <Link
-                    href="/#host-matching"
+                    href="/school/pipeline"
                     onClick={() => setActiveDropdown(null)}
                     className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors block"
                   >
                     <div>
-                      <div>{t.header.nav.opportunities.hostOrgs}</div>
+                      <div className="flex items-center gap-1.5 text-blue-900 font-extrabold">
+                        <span>🚀</span>
+                        <span>{t.header.nav.platform.pipeline}</span>
+                      </div>
                       <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.opportunities.hostOrgsDesc}
+                        {t.header.nav.platform.pipelineDesc}
                       </div>
                     </div>
                     <span className="text-slate-400 group-hover:text-slate-700">→</span>
                   </Link>
 
                   <Link
-                    href="/#competence"
+                    href="/school/application-draft"
                     onClick={() => setActiveDropdown(null)}
                     className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors block"
                   >
                     <div>
-                      <div>{t.header.nav.opportunities.internships}</div>
+                      <div className="flex items-center gap-1.5 text-emerald-900 font-extrabold">
+                        <span>📋</span>
+                        <span>{locale === 'tr' ? 'Başvuru Taslağı Modülü' : 'Application Draft Module'}</span>
+                      </div>
                       <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.opportunities.internshipsDesc}
+                        {locale === 'tr'
+                          ? 'Resmi KA121 & KA122 başvuru formu soru ve veri seti'
+                          : 'Official KA121 & KA122 application draft questionnaire'}
+                      </div>
+                    </div>
+                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
+                  </Link>
+
+                  <Link
+                    href="/"
+                    onClick={() => setActiveDropdown(null)}
+                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors block"
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5 text-slate-900">
+                        <span>🏛️</span>
+                        <span>{t.header.nav.platform.schoolDashboard}</span>
+                      </div>
+                      <div className="text-[10px] font-normal text-slate-500">
+                        {t.header.nav.platform.schoolDashboardDesc}
+                      </div>
+                    </div>
+                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
+                  </Link>
+
+                  <Link
+                    href="/"
+                    onClick={() => setActiveDropdown(null)}
+                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors block"
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5 text-slate-900">
+                        <span>🏢</span>
+                        <span>{t.header.nav.platform.hostPortal}</span>
+                      </div>
+                      <div className="text-[10px] font-normal text-slate-500">
+                        {t.header.nav.platform.hostPortalDesc}
                       </div>
                     </div>
                     <span className="text-slate-400 group-hover:text-slate-700">→</span>
@@ -489,9 +324,12 @@ export default function AppHeader() {
                     className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors block"
                   >
                     <div>
-                      <div>{t.header.nav.opportunities.becomePartner}</div>
+                      <div className="flex items-center gap-1.5 text-slate-900">
+                        <span>⚙️</span>
+                        <span>{t.header.nav.platform.onboarding}</span>
+                      </div>
                       <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.opportunities.becomePartnerDesc}
+                        {t.header.nav.platform.onboardingDesc}
                       </div>
                     </div>
                     <span className="text-slate-400 group-hover:text-slate-700">→</span>
@@ -501,39 +339,92 @@ export default function AppHeader() {
             )}
           </div>
 
-          {/* Menu 4: Kaynaklar (Dile Özel: TR'de KVKK, EN'de GDPR) */}
+          {/* 4. Library (with Dropdown) */}
           <div className="relative">
-            <button
-              type="button"
-              onClick={() =>
-                setActiveDropdown(activeDropdown === 'RESOURCES' ? null : 'RESOURCES')
-              }
-              className={`px-3 py-1.5 text-xs font-extrabold rounded-lg border transition-all flex items-center gap-1.5 ${
-                activeDropdown === 'RESOURCES'
-                  ? 'bg-slate-900 text-white border-slate-900'
-                  : 'bg-white text-slate-700 border-transparent hover:bg-slate-100 hover:text-slate-950'
+            <div
+              className={`inline-flex items-stretch rounded-lg transition-all ${
+                pathname === '/library'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
               }`}
             >
-              <span>{t.header.nav.resources.label}</span>
-              <svg
-                className={`w-3 h-3 transition-transform ${
-                  activeDropdown === 'RESOURCES' ? 'rotate-180 text-white' : 'text-slate-400'
+              <Link
+                href="/library"
+                className={`px-2.5 py-1.5 text-xs font-bold rounded-l-lg transition-colors flex items-center gap-1.5 ${
+                  pathname === '/library'
+                    ? 'hover:bg-slate-800 text-white'
+                    : 'hover:bg-slate-200/60'
                 }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2.5"
-                stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            </button>
+                <span>📚</span>
+                <span>{t.header.nav.library.label}</span>
+              </Link>
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveDropdown(activeDropdown === 'LIBRARY' ? null : 'LIBRARY')
+                }
+                className={`px-2 flex items-center justify-center rounded-r-lg transition-colors border-l cursor-pointer ${
+                  pathname === '/library'
+                    ? 'border-slate-800 text-white hover:bg-slate-800'
+                    : 'border-slate-200 text-slate-500 hover:bg-slate-200/60 hover:text-slate-900'
+                }`}
+                aria-label="Kütüphane Alt Menü"
+              >
+                <svg
+                  className={`w-3 h-3 transition-transform ${
+                    activeDropdown === 'LIBRARY' ? 'rotate-180' : ''
+                  }`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2.5"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </button>
+            </div>
 
-            {activeDropdown === 'RESOURCES' && (
-              <div className="absolute left-0 mt-2 w-72 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
+            {activeDropdown === 'LIBRARY' && (
+              <div className="absolute left-0 mt-2 w-80 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
                 <div className="px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
-                  {t.header.nav.resources.label}
+                  {t.header.nav.library.desc}
                 </div>
                 <div className="py-1">
+                  <Link
+                    href="/library"
+                    onClick={() => setActiveDropdown(null)}
+                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors block"
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5 text-blue-900">
+                        <span>📝</span>
+                        <span>{t.header.nav.library.ka121Guide}</span>
+                      </div>
+                      <div className="text-[10px] font-normal text-slate-500">
+                        {t.header.nav.library.ka121GuideDesc}
+                      </div>
+                    </div>
+                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
+                  </Link>
+
+                  <Link
+                    href="/library"
+                    onClick={() => setActiveDropdown(null)}
+                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors block"
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5 text-emerald-900">
+                        <span>📝</span>
+                        <span>{t.header.nav.library.ka122Guide}</span>
+                      </div>
+                      <div className="text-[10px] font-normal text-slate-500">
+                        {t.header.nav.library.ka122GuideDesc}
+                      </div>
+                    </div>
+                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
+                  </Link>
+
                   <button
                     type="button"
                     onClick={() => {
@@ -543,9 +434,12 @@ export default function AppHeader() {
                     className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
                   >
                     <div>
-                      <div>{t.header.nav.resources.grantResults}</div>
+                      <div className="flex items-center gap-1.5 text-slate-900">
+                        <span>📊</span>
+                        <span>{t.header.nav.library.grantResults}</span>
+                      </div>
                       <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.resources.grantResultsDesc}
+                        {t.header.nav.library.grantResultsDesc}
                       </div>
                     </div>
                     <span className="text-slate-400 group-hover:text-slate-700">→</span>
@@ -561,15 +455,17 @@ export default function AppHeader() {
                     className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
                   >
                     <div>
-                      <div>{t.header.nav.resources.mebAtlas}</div>
+                      <div className="flex items-center gap-1.5 text-slate-900">
+                        <span>🏛️</span>
+                        <span>{t.header.nav.library.mebAtlas}</span>
+                      </div>
                       <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.resources.mebAtlasDesc}
+                        {t.header.nav.library.mebAtlasDesc}
                       </div>
                     </div>
                     <span className="text-slate-400 group-hover:text-slate-700">→</span>
                   </button>
 
-                  {/* Strictly Language-Exclusive: TR -> KVKK, EN -> GDPR */}
                   <button
                     type="button"
                     onClick={() => {
@@ -580,9 +476,12 @@ export default function AppHeader() {
                     className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
                   >
                     <div>
-                      <div>{t.header.nav.resources.legal}</div>
+                      <div className="flex items-center gap-1.5 text-slate-900">
+                        <span>⚖️</span>
+                        <span>{t.header.nav.library.legal}</span>
+                      </div>
                       <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.resources.legalDesc}
+                        {t.header.nav.library.legalDesc}
                       </div>
                     </div>
                     <span className="text-slate-400 group-hover:text-slate-700">→</span>
@@ -592,61 +491,31 @@ export default function AppHeader() {
             )}
           </div>
 
-          {/* Menu 5: İletişim (Sadece Randevu Al içerir) */}
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() =>
-                setActiveDropdown(activeDropdown === 'CONTACT' ? null : 'CONTACT')
-              }
-              className={`px-3 py-1.5 text-xs font-extrabold rounded-lg border transition-all flex items-center gap-1.5 ${
-                activeDropdown === 'CONTACT'
-                  ? 'bg-slate-900 text-white border-slate-900'
-                  : 'bg-white text-slate-700 border-transparent hover:bg-slate-100 hover:text-slate-950'
-              }`}
-            >
-              <span>{t.header.nav.contact.label}</span>
-              <svg
-                className={`w-3 h-3 transition-transform ${
-                  activeDropdown === 'CONTACT' ? 'rotate-180 text-white' : 'text-slate-400'
-                }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2.5"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            </button>
+          {/* 5. News & Events */}
+          <Link
+            href="/news-and-events"
+            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+              pathname === '/news-and-events'
+                ? 'bg-slate-900 text-white shadow-xs'
+                : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
+            }`}
+          >
+            <span>📢</span>
+            <span>{t.header.nav.newsAndEvents.label}</span>
+          </Link>
 
-            {activeDropdown === 'CONTACT' && (
-              <div className="absolute right-0 mt-2 w-72 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
-                <div className="px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
-                  {t.header.nav.contact.label}
-                </div>
-                <div className="py-1">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsAppointmentOpen(true);
-                      setActiveDropdown(null);
-                    }}
-                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors"
-                  >
-                    <div>
-                      <div className="text-xs font-bold text-slate-800">
-                        {t.header.nav.contact.appointment}
-                      </div>
-                      <div className="text-[10px] font-normal text-slate-500">
-                        {t.header.nav.contact.appointmentDesc}
-                      </div>
-                    </div>
-                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+          {/* 6. Contact */}
+          <Link
+            href="/contact"
+            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+              pathname === '/contact'
+                ? 'bg-slate-900 text-white shadow-xs'
+                : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
+            }`}
+          >
+            <span>📬</span>
+            <span>{t.header.nav.contact.label}</span>
+          </Link>
         </nav>
 
         {/* 3. Right Utility Bar (Single Line: Language, Admin Badge, Profile Link, Mobile Toggle) */}
@@ -773,7 +642,7 @@ export default function AppHeader() {
                 type="button"
                 className="px-2.5 sm:px-3 py-1.5 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-2xs cursor-pointer"
               >
-                Giriş Yap
+                {locale === 'en' ? 'Sign In' : 'Giriş Yap'}
               </button>
             </SignInButton>
           </Show>
@@ -805,255 +674,128 @@ export default function AppHeader() {
           ref={mobileMenuRef}
           className="lg:hidden bg-white border-t border-slate-200 shadow-xl max-h-[calc(100vh-100px)] overflow-y-auto divide-y divide-slate-100 animate-fadeIn"
         >
-          {/* Guest Quick Tour Banner on Mobile */}
-          <Show when="signed-out">
-            <div className="p-3 bg-blue-50/60 border-b border-blue-100">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsGuestTourOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full py-2.5 px-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer"
-              >
-                <span>✨</span>
-                <span>{t.guestOnboarding.howItWorksBtn} (Platform Turu)</span>
-              </button>
-            </div>
-          </Show>
-          {/* 1. Programlar Section */}
-          <div className="p-3.5 space-y-1.5">
-            <div className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 flex items-center gap-1.5 px-2">
-              <span>🇪🇺</span>
-              <span>{t.header.nav.programmes.label}</span>
-            </div>
-            <div className="grid grid-cols-1 gap-1">
-              <button
-                type="button"
-                onClick={() => {
-                  setProgrammesTab('KA121');
-                  setIsProgrammesOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div>{t.header.nav.programmes.ka121}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.programmes.ka121Desc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setProgrammesTab('KA122');
-                  setIsProgrammesOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div>{t.header.nav.programmes.ka122}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.programmes.ka122Desc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setProgrammesTab('COMPARISON');
-                  setIsProgrammesOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div>{t.header.nav.programmes.comparison}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.programmes.comparisonDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
-              </button>
-            </div>
+          {/* Quick Action: 5 Adımlı Pipeline */}
+          <div className="p-3 bg-blue-50/60 border-b border-blue-100">
+            <Link
+              href="/school/pipeline"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full py-2.5 px-3 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-colors"
+            >
+              <span>🚀</span>
+              <span>{locale === 'tr' ? '5 Adımlı Hareketlilik Planı' : '5-Step Mobility Planning'}</span>
+              <span>→</span>
+            </Link>
           </div>
 
-          {/* 2. Yararlanıcılar Section */}
-          <div className="p-3.5 space-y-1.5">
-            <div className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 flex items-center gap-1.5 px-2">
-              <span>🏛️</span>
-              <span>{t.header.nav.beneficiaries.label}</span>
-            </div>
-            <div className="grid grid-cols-1 gap-1">
-              <button
-                type="button"
-                onClick={() => {
-                  setBeneficiariesCategory('MESLEK_LISELERI');
-                  setIsBeneficiariesOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div>{t.header.nav.beneficiaries.meslekLiseleri}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.beneficiaries.meslekLiseleriDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setBeneficiariesCategory('HALK_EGITIM');
-                  setIsBeneficiariesOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div>{t.header.nav.beneficiaries.halkEgitim}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.beneficiaries.halkEgitimDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setBeneficiariesCategory('OLGUNLASMA');
-                  setIsBeneficiariesOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div>{t.header.nav.beneficiaries.olgunlasma}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.beneficiaries.olgunlasmaDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setBeneficiariesCategory('MEM');
-                  setIsBeneficiariesOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div>{t.header.nav.beneficiaries.mem}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.beneficiaries.memDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setBeneficiariesCategory('OSB');
-                  setIsBeneficiariesOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div>{t.header.nav.beneficiaries.osb}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.beneficiaries.osbDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setBeneficiariesCategory('TTSO');
-                  setIsBeneficiariesOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div>{t.header.nav.beneficiaries.ttso}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.beneficiaries.ttsoDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setBeneficiariesCategory('ESNAF');
-                  setIsBeneficiariesOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div>{t.header.nav.beneficiaries.esnaf}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.beneficiaries.esnafDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
-              </button>
-            </div>
+          {/* 1. Home */}
+          <div className="p-2">
+            <Link
+              href="/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`w-full px-3 py-2 rounded-lg text-xs font-bold flex items-center justify-between transition-colors ${
+                pathname === '/' ? 'bg-slate-900 text-white' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <span>🏠</span>
+                <span>{t.header.nav.home}</span>
+              </span>
+              <span>→</span>
+            </Link>
           </div>
 
-          {/* 3. Fırsatlar Section */}
-          <div className="p-3.5 space-y-1.5">
+          {/* 2. About */}
+          <div className="p-2">
+            <Link
+              href="/about"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`w-full px-3 py-2 rounded-lg text-xs font-bold flex items-center justify-between transition-colors ${
+                pathname === '/about' ? 'bg-slate-900 text-white' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <span>ℹ️</span>
+                <span>{t.header.nav.about}</span>
+              </span>
+              <span>→</span>
+            </Link>
+          </div>
+
+          {/* 3. Platform */}
+          <div className="p-3 space-y-1.5">
             <div className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 flex items-center gap-1.5 px-2">
-              <span>🤝</span>
-              <span>{t.header.nav.opportunities.label}</span>
+              <span>⚡</span>
+              <span>{t.header.nav.platform.label}</span>
             </div>
             <div className="grid grid-cols-1 gap-1">
               <Link
-                href="/#host-matching"
+                href="/platform"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors block"
+                className="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between"
               >
-                <div>
-                  <div>{t.header.nav.opportunities.hostOrgs}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.opportunities.hostOrgsDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
+                <span>{locale === 'tr' ? 'Platform Genel Bakış' : 'Platform Overview'}</span>
+                <span className="text-slate-400">→</span>
               </Link>
               <Link
-                href="/#competence"
+                href="/school/pipeline"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors block"
+                className="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-blue-900 hover:bg-blue-50 flex items-center justify-between"
               >
-                <div>
-                  <div>{t.header.nav.opportunities.internships}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.opportunities.internshipsDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
+                <span>{t.header.nav.platform.pipeline}</span>
+                <span className="text-blue-600">→</span>
+              </Link>
+              <Link
+                href="/school/application-draft"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-emerald-900 hover:bg-emerald-50 flex items-center justify-between"
+              >
+                <span>📋 {locale === 'tr' ? 'Başvuru Taslağı Modülü' : 'Application Draft'}</span>
+                <span className="text-emerald-600">→</span>
+              </Link>
+              <Link
+                href="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between"
+              >
+                <span>{t.header.nav.platform.schoolDashboard}</span>
+                <span className="text-slate-400">→</span>
               </Link>
               <Link
                 href="/onboarding"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors block"
+                className="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between"
               >
-                <div>
-                  <div>{t.header.nav.opportunities.becomePartner}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.opportunities.becomePartnerDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
+                <span>{t.header.nav.platform.onboarding}</span>
+                <span className="text-slate-400">→</span>
               </Link>
             </div>
           </div>
 
-          {/* 4. Kaynaklar Section (Dile Özel KVKK vs. GDPR) */}
-          <div className="p-3.5 space-y-1.5">
+          {/* 4. Library */}
+          <div className="p-3 space-y-1.5">
             <div className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 flex items-center gap-1.5 px-2">
               <span>📚</span>
-              <span>{t.header.nav.resources.label}</span>
+              <span>{t.header.nav.library.label}</span>
             </div>
             <div className="grid grid-cols-1 gap-1">
+              <Link
+                href="/library"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between"
+              >
+                <span>{locale === 'tr' ? 'Kütüphane & Rehberler' : 'Library & Guides'}</span>
+                <span className="text-slate-400">→</span>
+              </Link>
               <button
                 type="button"
                 onClick={() => {
                   setIsHibeOpen(true);
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
+                className="w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between"
               >
-                <div>
-                  <div>{t.header.nav.resources.grantResults}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.resources.grantResultsDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
+                <span>{t.header.nav.library.grantResults}</span>
+                <span className="text-slate-400">→</span>
               </button>
               <button
                 type="button"
@@ -1062,13 +804,10 @@ export default function AppHeader() {
                   setIsBeneficiariesOpen(true);
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
+                className="w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between"
               >
-                <div>
-                  <div>{t.header.nav.resources.mebAtlas}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.resources.mebAtlasDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
+                <span>{t.header.nav.library.mebAtlas}</span>
+                <span className="text-slate-400">→</span>
               </button>
               <button
                 type="button"
@@ -1077,40 +816,57 @@ export default function AppHeader() {
                   setIsLegalOpen(true);
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between transition-colors"
+                className="w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between"
               >
-                <div>
-                  <div>{t.header.nav.resources.legal}</div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.resources.legalDesc}</div>
-                </div>
-                <span className="text-slate-400 font-bold">→</span>
+                <span>{t.header.nav.library.legal}</span>
+                <span className="text-slate-400">→</span>
               </button>
             </div>
           </div>
 
-          {/* 5. İletişim Section (Mobile) */}
-          <div className="p-3.5 space-y-1.5">
-            <div className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 px-2">
-              {t.header.nav.contact.label}
-            </div>
-            <div className="grid grid-cols-1 gap-1">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsAppointmentOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-3 py-2.5 rounded-lg text-xs font-bold text-slate-800 bg-blue-50/50 hover:bg-blue-100/70 border border-blue-200/60 flex items-center justify-between transition-colors"
-              >
-                <div>
-                  <div className="text-xs font-bold text-blue-900">
-                    {t.header.nav.contact.appointment}
-                  </div>
-                  <div className="text-[10px] font-normal text-slate-500">{t.header.nav.contact.appointmentDesc}</div>
-                </div>
-                <span className="text-blue-700 font-bold">→</span>
-              </button>
-            </div>
+          {/* 5. News & Events */}
+          <div className="p-2">
+            <Link
+              href="/news-and-events"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`w-full px-3 py-2 rounded-lg text-xs font-bold flex items-center justify-between transition-colors ${
+                pathname === '/news-and-events' ? 'bg-slate-900 text-white' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <span>📢</span>
+                <span>{t.header.nav.newsAndEvents.label}</span>
+              </span>
+              <span>→</span>
+            </Link>
+          </div>
+
+          {/* 6. Contact */}
+          <div className="p-3 space-y-2">
+            <Link
+              href="/contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`w-full px-3 py-2 rounded-lg text-xs font-bold flex items-center justify-between transition-colors ${
+                pathname === '/contact' ? 'bg-slate-900 text-white' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <span>📬</span>
+                <span>{t.header.nav.contact.label}</span>
+              </span>
+              <span>→</span>
+            </Link>
+            <button
+              type="button"
+              onClick={() => {
+                setIsAppointmentOpen(true);
+                setIsMobileMenuOpen(false);
+              }}
+              className="w-full py-2.5 px-3 rounded-lg text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center gap-1.5 shadow-xs"
+            >
+              <span>📅</span>
+              <span>{t.header.nav.contact.appointment}</span>
+            </button>
           </div>
         </div>
       )}

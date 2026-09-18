@@ -15,13 +15,13 @@ export default function DecisionEngineCard({
   decision,
   onMakeDecision,
 }: DecisionEngineCardProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   return (
     <NeoCard
       id="decision"
       title={t.decision.title}
-      badge="8 Faktörlü Model"
+      badge={locale === 'en' ? '8-Factor Decision Model' : '8 Faktörlü Model'}
       badgeType="primary"
       featured
     >
@@ -33,8 +33,8 @@ export default function DecisionEngineCard({
               key={idx}
               className="p-3 rounded-lg border border-slate-200/80 bg-slate-50/50 text-left flex flex-col justify-between"
             >
-              <div className="text-[11px] font-medium text-slate-500 truncate">
-                {item.label}
+              <div className="text-[11px] font-medium text-slate-500 truncate" title={locale === 'en' ? item.labelEn : item.labelTr}>
+                {locale === 'en' ? item.labelEn : item.labelTr}
               </div>
               <div className="text-sm font-bold text-slate-900 mt-1">
                 {item.weight}

@@ -9,6 +9,10 @@ export default function HostInquiriesSection() {
   const store = useAppStore();
   const isEn = locale === 'en';
 
+  React.useEffect(() => {
+    store.fetchInquiriesFromServer();
+  }, []);
+
   const [activeFilter, setActiveFilter] = useState<'ALL' | 'PENDING' | 'ACCEPTED' | 'DECLINED'>('ALL');
   const [selectedInquiryForLoI, setSelectedInquiryForLoI] = useState<MobilityInquiry | null>(null);
   const [selectedInquiryForDetails, setSelectedInquiryForDetails] = useState<MobilityInquiry | null>(null);

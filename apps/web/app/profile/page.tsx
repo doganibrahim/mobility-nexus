@@ -51,7 +51,7 @@ export default function ProfilePage() {
           </Link>
 
           <span className="text-xs font-bold text-slate-400">
-            CAPPINNO Mobility Nexus • EMaaS v1.0
+            ErasmusMobility • EMaaS v1.0
           </span>
         </div>
 

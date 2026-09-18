@@ -13,7 +13,9 @@ export default function CookieBanner({ onManagePreferences }: CookieBannerProps)
 
   useEffect(() => {
     // Check if user has already made a cookie choice
-    const saved = localStorage.getItem('cappinno_cookie_consent');
+    const saved =
+      localStorage.getItem('em_cookie_consent') ||
+      localStorage.getItem('cappinno_cookie_consent');
     if (!saved) {
       // Show banner after a slight hydration delay
       const timer = setTimeout(() => setIsVisible(true), 500);
@@ -22,18 +24,18 @@ export default function CookieBanner({ onManagePreferences }: CookieBannerProps)
   }, []);
 
   const handleAcceptAll = () => {
-    localStorage.setItem('cappinno_cookie_consent', 'ALL');
+    localStorage.setItem('em_cookie_consent', 'ALL');
     localStorage.setItem(
-      'cappinno_cookie_prefs',
+      'em_cookie_prefs',
       JSON.stringify({ necessary: true, functional: true, analytics: true })
     );
     setIsVisible(false);
   };
 
   const handleRejectAll = () => {
-    localStorage.setItem('cappinno_cookie_consent', 'NECESSARY');
+    localStorage.setItem('em_cookie_consent', 'NECESSARY');
     localStorage.setItem(
-      'cappinno_cookie_prefs',
+      'em_cookie_prefs',
       JSON.stringify({ necessary: true, functional: false, analytics: false })
     );
     setIsVisible(false);

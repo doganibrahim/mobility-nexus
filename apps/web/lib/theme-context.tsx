@@ -22,7 +22,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // 1. Load Color Theme
-    const savedTheme = localStorage.getItem('cappinno_theme');
+    const savedTheme = localStorage.getItem('em_theme') || localStorage.getItem('cappinno_theme');
     if (savedTheme && THEMES[savedTheme]) {
       setThemeState(savedTheme);
       document.documentElement.setAttribute('data-theme', savedTheme);
@@ -31,7 +31,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
 
     // 2. Load Font Preset
-    const savedFont = localStorage.getItem('cappinno_font');
+    const savedFont = localStorage.getItem('em_font') || localStorage.getItem('cappinno_font');
     if (savedFont && FONT_PRESETS[savedFont]) {
       setFontState(savedFont);
       document.documentElement.setAttribute('data-font', savedFont);
@@ -43,14 +43,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const setTheme = (themeId: string) => {
     if (!THEMES[themeId]) return;
     setThemeState(themeId);
-    localStorage.setItem('cappinno_theme', themeId);
+    localStorage.setItem('em_theme', themeId);
     document.documentElement.setAttribute('data-theme', themeId);
   };
 
   const setFont = (fontId: string) => {
     if (!FONT_PRESETS[fontId]) return;
     setFontState(fontId);
-    localStorage.setItem('cappinno_font', fontId);
+    localStorage.setItem('em_font', fontId);
     document.documentElement.setAttribute('data-font', fontId);
   };
 

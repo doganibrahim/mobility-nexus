@@ -36,7 +36,7 @@ export default function EscoIscedMapperCard({
     <NeoCard
       id="esco"
       title={t.esco.title}
-      badge="AB ESCO v1.1"
+      badge={locale === 'en' ? 'EU ESCO Classification' : 'Avrupa Birliği ESCO Sınıflandırması'}
       badgeType="primary"
     >
       <div className="space-y-4">
@@ -151,7 +151,7 @@ export default function EscoIscedMapperCard({
             rel="noopener noreferrer"
             className="edu-btn-primary text-xs"
           >
-            🔍 ESCO Doğrula ↗
+            {locale === 'en' ? '🔍 Verify on ESCO ↗' : '🔍 ESCO Doğrula ↗'}
           </a>
           <a
             href="https://esco.ec.europa.eu/en/classification"
@@ -167,7 +167,7 @@ export default function EscoIscedMapperCard({
             rel="noopener noreferrer"
             className="edu-btn-secondary text-xs"
           >
-            📄 ISCED-F 2013 Rehberi ↗
+            {locale === 'en' ? '📄 ISCED-F 2013 Manual ↗' : '📄 ISCED-F 2013 Kılavuzu ↗'}
           </a>
         </div>
       </div>

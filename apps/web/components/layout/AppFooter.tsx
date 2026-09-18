@@ -24,10 +24,12 @@ export default function AppFooter() {
             <div className="md:col-span-6 space-y-2.5">
               <div className="flex items-center gap-2.5">
                 <span className="w-6 h-6 rounded-lg bg-blue-700 text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                  C
+                  E
                 </span>
                 <span className="font-bold text-slate-900 text-sm">
-                  CAPPINNO Mobility Nexus • Erasmus+ EMaaS Platformu
+                  {locale === 'tr'
+                    ? 'ErasmusMobility.com • Erasmus+ Mesleki Eğitim Hareketlilik Platformu'
+                    : 'ErasmusMobility.com • Mobility Planning and Matching Platform'}
                 </span>
               </div>
               <p className="text-xs text-slate-500 leading-relaxed max-w-xl">
@@ -51,7 +53,11 @@ export default function AppFooter() {
               </div>
               <div>• Erasmus+ KA121/KA122 VET</div>
               <div>• ESCO v1.1.1 & ISCED-F 2013</div>
-              <div>• ECVET & Europass Uyumlu</div>
+              <div>
+                • {locale === 'tr'
+                    ? 'Öğrenme Çıktıları ve Europass Mobility ile Uyumlu'
+                    : 'Aligned with Learning Outcomes and Europass Mobility'}
+              </div>
             </div>
 
             <div className="md:col-span-3 text-xs space-y-1.5 text-slate-500">
@@ -71,7 +77,11 @@ export default function AppFooter() {
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400">
-            <div>© 2026 CAPPINNO • Tüm hakları saklıdır.</div>
+            <div>
+              {locale === 'tr'
+                ? '© 2026 ErasmusMobility.com • Tüm hakları saklıdır.'
+                : '© 2026 ErasmusMobility.com • All rights reserved.'}
+            </div>
             <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
               <button
                 type="button"

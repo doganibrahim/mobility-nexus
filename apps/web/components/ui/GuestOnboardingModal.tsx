@@ -65,7 +65,7 @@ export default function GuestOnboardingModal({
   const handleDismiss = () => {
     if (dontShowAgain && typeof window !== 'undefined') {
       try {
-        localStorage.setItem('cappinno_guest_onboarding_dismissed', 'true');
+        localStorage.setItem('em_guest_onboarding_dismissed', 'true');
       } catch (err) {
         console.warn('LocalStorage write failed:', err);
       }
@@ -76,7 +76,7 @@ export default function GuestOnboardingModal({
   const handleDemoLaunch = () => {
     if (dontShowAgain && typeof window !== 'undefined') {
       try {
-        localStorage.setItem('cappinno_guest_onboarding_dismissed', 'true');
+        localStorage.setItem('em_guest_onboarding_dismissed', 'true');
       } catch (err) {
         console.warn('LocalStorage write failed:', err);
       }
@@ -125,7 +125,7 @@ export default function GuestOnboardingModal({
                   id="guest-onboarding-title"
                   className="text-sm sm:text-base font-black tracking-tight text-white m-0"
                 >
-                  CAPPINNO Mobility Nexus
+                  ErasmusMobility
                 </h1>
                 <span className="hidden md:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-900/80 text-blue-200 border border-blue-700">
                   EMaaS v1.0

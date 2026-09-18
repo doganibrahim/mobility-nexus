@@ -201,23 +201,25 @@ export default function HostMatchingCard({
                 <div className="space-y-1">
                   <div className="text-xs font-bold text-slate-800 flex items-center gap-2">
                     <span>📋</span>
-                    <span>Eşleştirme Kriterleri Özeti (Okul Profilinden Alındı):</span>
+                    <span>{locale === 'en' ? 'Summary of Matching Criteria (From School Profile):' : 'Eşleştirme Kriterleri Özeti (Okul Profilinden Alındı):'}</span>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
                     <span className="px-2 py-0.5 rounded-md bg-white border border-slate-200 font-semibold text-blue-800">
                       {schoolProfile?.projectType || 'KA122'}
                     </span>
                     <span className="px-2 py-0.5 rounded-md bg-white border border-slate-200 font-medium">
-                      🌍 {schoolProfile?.targetCountries?.length ? schoolProfile.targetCountries.join(', ') : 'Tüm Ülkeler (ANY)'}
+                      🌍 {schoolProfile?.targetCountries?.length ? schoolProfile.targetCountries.join(', ') : (locale === 'tr' ? 'Fark Etmez / Tüm Uygun Ülkeler' : 'Any / All Eligible Countries')}
                     </span>
                     <span className="px-2 py-0.5 rounded-md bg-white border border-slate-200 font-medium truncate max-w-[220px]">
                       🎯 {activityTitle}
                     </span>
                     <span className="px-2 py-0.5 rounded-md bg-white border border-slate-200 font-medium">
-                      👥 {schoolProfile?.participantCount || 6} Asil + {schoolProfile?.accompanyingPersonsCount || 0} Refakatçi
+                      👥 {schoolProfile?.participantCount || 6} {locale === 'tr' ? 'Katılımcı' : 'Participants'} + {schoolProfile?.accompanyingPersonsCount || 0} {locale === 'tr' ? 'Refakat Eden Kişi' : 'Accompanying Persons'}
                     </span>
                     <span className="px-2 py-0.5 rounded-md bg-white border border-slate-200 font-medium">
-                      {schoolProfile?.ageGroup === 'under_18' ? '👶 18 Yaş Altı' : '🧑 18+ Yetişkin'}
+                      {schoolProfile?.ageGroup === 'under_18'
+                        ? (locale === 'tr' ? '👶 18 Yaş Altı Reşit Olmayan Katılımcı' : '👶 Participants Under 18 Years of Age')
+                        : (locale === 'tr' ? '🧑 18+ (Reşit)' : '🧑 18+ (Adult)')}
                     </span>
                   </div>
                 </div>
@@ -244,7 +246,7 @@ export default function HostMatchingCard({
 
               {/* Logistics & Accessibility Toggles */}
               <div className="mt-3 pt-3 border-t border-blue-100 flex flex-wrap items-center gap-4 text-xs">
-                <span className="font-semibold text-slate-700">Lojistik Talepleri:</span>
+                <span className="font-semibold text-slate-700">{locale === 'en' ? 'Logistical Service Requirements:' : 'Lojistik Hizmet Talepleri:'}</span>
                 <label className="flex items-center gap-1.5 cursor-pointer">
                   <input
                     type="checkbox"
@@ -252,7 +254,7 @@ export default function HostMatchingCard({
                     onChange={(e) => setReqAccommodation(e.target.checked)}
                     className="rounded text-blue-600 focus:ring-blue-500"
                   />
-                  <span>🏨 Konaklama Şartı</span>
+                  <span>🏨 {locale === 'en' ? 'Accommodation Required' : 'Konaklama Şartı'}</span>
                 </label>
                 <label className="flex items-center gap-1.5 cursor-pointer">
                   <input
@@ -261,7 +263,7 @@ export default function HostMatchingCard({
                     onChange={(e) => setReqMeals(e.target.checked)}
                     className="rounded text-blue-600 focus:ring-blue-500"
                   />
-                  <span>🍽️ Yemek / İaşe Şartı</span>
+                  <span>🍽️ {locale === 'en' ? 'Meals Required' : 'Yemek Hizmeti'}</span>
                 </label>
                 <label className="flex items-center gap-1.5 cursor-pointer">
                   <input
@@ -270,7 +272,7 @@ export default function HostMatchingCard({
                     onChange={(e) => setReqTransfers(e.target.checked)}
                     className="rounded text-blue-600 focus:ring-blue-500"
                   />
-                  <span>🚌 Havalimanı / Yerel Transfer</span>
+                  <span>🚌 {locale === 'en' ? 'Airport Transfer and Local Transport' : 'Havalimanı Transferi ve Yerel Ulaşım'}</span>
                 </label>
                 <label className="flex items-center gap-1.5 cursor-pointer">
                   <input

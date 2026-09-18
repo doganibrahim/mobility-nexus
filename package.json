@@ -7,7 +7,7 @@
     "@next/swc-linux-x64-gnu": "*",
     "@next/swc-linux-x64-musl": "*"
   },
-  "description": "CAPPINNO Mobility Nexus - Erasmus Mobility Management as a Service (EMaaS)",
+  "description": "ErasmusMobility - Erasmus Mobility Management as a Service (EMaaS)",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -33,6 +33,6 @@
     "saas",
     "multi-tenant"
   ],
-  "author": "CAPPINNO",
+  "author": "ErasmusMobility",
   "license": "UNLICENSED"
 }

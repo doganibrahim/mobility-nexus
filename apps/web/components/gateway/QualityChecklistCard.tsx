@@ -6,12 +6,12 @@ import { QUALITY_CHECKLIST } from '../../lib/constants';
 import { useTranslation } from '../../lib/i18n';
 
 export default function QualityChecklistCard() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   return (
     <NeoCard
       title={t.quality.title}
-      badge="Erasmus+ Kalite Standartları"
+      badge={locale === 'en' ? 'Erasmus+ Quality Standards' : 'Erasmus+ Kalite Standartları'}
       badgeType="primary"
     >
       <div className="space-y-4">
@@ -31,13 +31,13 @@ export default function QualityChecklistCard() {
                   className="hover:bg-slate-50/60 transition-colors"
                 >
                   <td className="p-3 font-bold text-slate-900">
-                    {item.area}
+                    {locale === 'en' ? item.areaEn : item.areaTr}
                   </td>
                   <td className="p-3 text-slate-700">
-                    {item.sending}
+                    {locale === 'en' ? item.sendingEn : item.sendingTr}
                   </td>
                   <td className="p-3 font-medium text-slate-800">
-                    {item.host}
+                    {locale === 'en' ? item.hostEn : item.hostTr}
                   </td>
                 </tr>
               ))}
@@ -46,8 +46,12 @@ export default function QualityChecklistCard() {
         </div>
 
         <div className="rounded-xl border border-amber-200 bg-amber-50/80 p-3.5 text-xs text-amber-900 leading-relaxed">
-          <strong className="font-bold">Temel Kural:</strong>{' '}
-          <span className="text-amber-800">{t.quality.disclaimer.split(':')[1]}</span>
+          <strong className="font-bold">{locale === 'en' ? 'Fundamental Rule:' : 'Temel Kural:'}</strong>{' '}
+          <span className="text-amber-800">
+            {t.quality.disclaimer.includes(':')
+              ? t.quality.disclaimer.split(':')[1]
+              : t.quality.disclaimer}
+          </span>
         </div>
       </div>
     </NeoCard>

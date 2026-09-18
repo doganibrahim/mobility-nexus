@@ -22,7 +22,7 @@ export default function SchoolProfileCard({
   data,
   onChange,
 }: SchoolProfileCardProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const { currentOrg, isOnboarded } = useAppStore();
   const { score: readinessScore } = calculateReadinessScore(data);
 
@@ -30,7 +30,7 @@ export default function SchoolProfileCard({
     <NeoCard
       id="school"
       title={t.school.title}
-      badge={`Hazırlık Skoru: %${readinessScore}`}
+      badge={locale === 'en' ? `Readiness Score: ${readinessScore}%` : `Hazırlık Skoru: %${readinessScore}`}
       badgeType={readinessScore >= 70 ? 'good' : 'warn'}
       featured
     >

@@ -2,7 +2,7 @@
   "name": "@mobility-nexus/database",
   "version": "1.0.0",
   "private": true,
-  "description": "Database migrations, schemas, and seeding for CAPPINNO Mobility Nexus",
+  "description": "Database migrations, schemas, and seeding for ErasmusMobility",
   "main": "index.js",
   "scripts": {
     "migrate:status": "echo 'Migrations stored in /migrations'",

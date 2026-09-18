@@ -13,6 +13,7 @@ export default function SentInquiriesCard() {
 
   useEffect(() => {
     setMounted(true);
+    store.fetchInquiriesFromServer();
   }, []);
 
   const [activeFilter, setActiveFilter] = useState<'ALL' | 'PENDING' | 'ACCEPTED' | 'REVISED' | 'DECLINED'>('ALL');

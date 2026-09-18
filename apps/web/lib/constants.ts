@@ -1,9 +1,9 @@
 /**
- * CAPPINNO Mobility Nexus - Constants & Configuration
+ * ErasmusMobility - Constants & Configuration
  * 
  * 4 Exact Designer Palettes:
  * - Palet 01: #FFCA41 (Sarı), #000000 (Siyah), #A6A6A6 (Gri)
- * - Palet 02 (CAPPINNO Logosu İlhamlı): #E56438 (Turuncu), #302C4F (Koyu Lacivert), #C6C6C6 (Gri)
+ * - Palet 02: #E56438 (Turuncu), #302C4F (Koyu Lacivert), #C6C6C6 (Gri)
  * - Palet 03: #863C6D (Mürdüm), #FFE5BC (Açık Sarı/Şampanya), #E8E8E8 (Açık Gri)
  * - Palet 04 (Erasmus+ Logosu İlhamlı): #013399 (Erasmus Mavisi), #F4CB1D (Erasmus Sarısı), #E8E8E8 (Açık Gri)
  */
@@ -30,12 +30,12 @@ export const THEMES: Record<string, ThemeConfig> = {
   },
   'theme-02': {
     id: 'theme-02',
-    name: 'Palet 02: CAPPINNO Turuncu & Lacivert',
+    name: 'Palet 02: Sunset Orange & Deep Navy',
     badge: '#E56438 • #302C4F',
     primary: '#E56438',
     secondary: '#302C4F',
     accent: '#C6C6C6',
-    description: 'CAPPINNO logosundan ilham alan Turuncu (#E56438), Koyu Lacivert (#302C4F) ve Gri (#C6C6C6).',
+    description: 'Canlı Turuncu (#E56438), Koyu Lacivert (#302C4F) ve Gri (#C6C6C6).',
   },
   'theme-03': {
     id: 'theme-03',
@@ -112,6 +112,7 @@ export const FONT_PRESETS: Record<string, FontPreset> = {
 export interface VetField {
   id: string;
   label: string;
+  labelEn?: string;
   isced: string;
   name: string;
   esco: string;
@@ -122,6 +123,7 @@ export const VET_FIELDS: Record<string, VetField> = {
   automation: {
     id: 'automation',
     label: 'Elektrik-Elektronik / Endüstriyel Otomasyon',
+    labelEn: 'Electrical and Electronic Engineering / Industrial Automation',
     isced: '0714',
     name: 'Electronics and automation',
     esco: 'automation technician / mechatronics technician / industrial electrician',
@@ -130,6 +132,7 @@ export const VET_FIELDS: Record<string, VetField> = {
   software: {
     id: 'software',
     label: 'Bilişim / Yazılım Geliştirme',
+    labelEn: 'Information Technologies / Software Development',
     isced: '0613',
     name: 'Software and applications development and analysis',
     esco: 'software developer / application programmer',
@@ -138,6 +141,7 @@ export const VET_FIELDS: Record<string, VetField> = {
   network: {
     id: 'network',
     label: 'Bilişim / Ağ Sistemleri & Siber Güvenlik',
+    labelEn: 'Information Technologies / Network Systems and Cybersecurity',
     isced: '0612',
     name: 'Database and network design and administration',
     esco: 'ICT network technician / network administrator',
@@ -220,6 +224,7 @@ export const VET_FIELDS: Record<string, VetField> = {
 export interface Question {
   id: number;
   title: string;
+  titleEn?: string;
   description: string;
 }
 
@@ -227,6 +232,7 @@ export const ASSESSMENT_QUESTIONS: Question[] = [
   {
     id: 1,
     title: 'Mesleki Teknik Yetkinlik',
+    titleEn: 'Technical and Occupational Competence',
     description: 'Mesleki alanımdaki temel araç, ekipman veya yazılımları güvenli ve doğru biçimde kullanabilirim.',
   },
   {
@@ -300,34 +306,169 @@ export const HOST_METRIC_CONFIG = [
 ] as const;
 
 export const DECISION_WEIGHTS = [
-  { label: 'Yetkinlik Açığı (Gap)', weight: '25%' },
-  { label: 'Kurumsal İhtiyaç', weight: '20%' },
-  { label: 'ESCO Eşleşmesi', weight: '15%' },
-  { label: 'ISCED-F Uyumu', weight: '10%' },
-  { label: 'Ev Sahibi Kapasitesi', weight: '15%' },
-  { label: 'Dil Seviyesi', weight: '5%' },
-  { label: 'Kapsayıcılık / İhtiyaç', weight: '5%' },
-  { label: 'Erasmus Planı Uyumu', weight: '5%' },
+  { label: 'Yetkinlik Açığı (Gap)', labelTr: 'Yetkinlik Açığı (Gap)', labelEn: 'Competence Gap', weight: '25%' },
+  { label: 'Kurumsal İhtiyaç', labelTr: 'Kurumsal İhtiyaç', labelEn: 'Institutional Need', weight: '20%' },
+  { label: 'ESCO Eşleşmesi', labelTr: 'ESCO Eşleşmesi', labelEn: 'ESCO Matching', weight: '15%' },
+  { label: 'ISCED-F Uyumu', labelTr: 'ISCED-F Uyumu', labelEn: 'ISCED-F Alignment', weight: '10%' },
+  { label: 'Ev Sahibi Kapasitesi', labelTr: 'Ev Sahibi Kapasitesi', labelEn: 'Host Capacity', weight: '15%' },
+  { label: 'Dil Seviyesi', labelTr: 'Dil Seviyesi', labelEn: 'Language Proficiency', weight: '5%' },
+  { label: 'Kapsayıcılık / İhtiyaç', labelTr: 'Kapsayıcılık / İhtiyaç', labelEn: 'Inclusion & Support', weight: '5%' },
+  { label: 'Erasmus Planı Uyumu', labelTr: 'Erasmus Planı Uyumu', labelEn: 'Erasmus Plan Alignment', weight: '5%' },
 ];
 
 export const QUALITY_CHECKLIST = [
-  { area: 'Katılımcı Seçimi (Selection)', sending: '✓ Sorumlu & Sahip (Yararlanıcı)', host: 'Girdi & Öneri' },
-  { area: 'Hazırlık (Dil, Pedagojik & Kültürel)', sending: '✓ Birincil Sorumlu', host: 'Destekleyici Materyal' },
-  { area: 'Öğrenme Programı & Müfredat', sending: '✓ Ortak Onay', host: '✓ Uygulama Programı' },
-  { area: 'Öğrenme Kazanımları (Outcomes)', sending: '✓ Tanımlama & Onay', host: '✓ Pratik Uygulama' },
-  { area: 'İşyeri Mentoru Ataması', sending: 'İletişim & Takip', host: '✓ Doğrudan Atama' },
-  { area: 'İzleme & Değerlendirme', sending: '✓ Düzenli Raporlama', host: '✓ Günlük Gözlem' },
-  { area: 'İSG & Acil Durum Protokolü', sending: '✓ Sigorta & Bilgilendirme', host: '✓ İşyeri Güvenliği' },
-  { area: 'Kazanımların Tanınması (Europass)', sending: '✓ Belge Düzenleme', host: 'Kanıt & İmza' },
-  { area: 'Ulusal Ajans Raporlaması & Bütçe', sending: '✓ Tek Sorumlu (Beneficiary)', host: '—' },
+  {
+    area: 'Katılımcı Seçimi (Selection)',
+    areaTr: 'Katılımcı Seçimi (Selection)',
+    areaEn: 'Participant Selection',
+    sending: '✓ Sorumlu & Sahip (Yararlanıcı)',
+    sendingTr: '✓ Sorumlu & Sahip (Yararlanıcı)',
+    sendingEn: '✓ Responsible & Owner (Beneficiary)',
+    host: 'Girdi & Öneri',
+    hostTr: 'Girdi & Öneri',
+    hostEn: 'Input & Recommendations',
+  },
+  {
+    area: 'Hazırlık (Dil, Pedagojik & Kültürel)',
+    areaTr: 'Hazırlık (Dil, Pedagojik & Kültürel)',
+    areaEn: 'Preparation (Language, Pedagogical & Intercultural)',
+    sending: '✓ Birincil Sorumlu',
+    sendingTr: '✓ Birincil Sorumlu',
+    sendingEn: '✓ Primary Responsible',
+    host: 'Destekleyici Materyal',
+    hostTr: 'Destekleyici Materyal',
+    hostEn: 'Supporting Materials',
+  },
+  {
+    area: 'Öğrenme Programı & Müfredat',
+    areaTr: 'Öğrenme Programı & Müfredat',
+    areaEn: 'Learning Programme & Curriculum',
+    sending: '✓ Ortak Onay',
+    sendingTr: '✓ Ortak Onay',
+    sendingEn: '✓ Joint Agreement',
+    host: '✓ Uygulama Programı',
+    hostTr: '✓ Uygulama Programı',
+    hostEn: '✓ Practical Training Implementation',
+  },
+  {
+    area: 'Öğrenme Kazanımları (Outcomes)',
+    areaTr: 'Öğrenme Kazanımları (Outcomes)',
+    areaEn: 'Learning Outcomes & Validation',
+    sending: '✓ Tanımlama & Onay',
+    sendingTr: '✓ Tanımlama & Onay',
+    sendingEn: '✓ Definition & Verification',
+    host: '✓ Pratik Uygulama',
+    hostTr: '✓ Pratik Uygulama',
+    hostEn: '✓ Workplace Practice',
+  },
+  {
+    area: 'İşyeri Mentoru Ataması',
+    areaTr: 'İşyeri Mentoru Ataması',
+    areaEn: 'In-Company Mentor Assignment',
+    sending: 'İletişim & Takip',
+    sendingTr: 'İletişim & Takip',
+    sendingEn: 'Communication & Monitoring',
+    host: '✓ Doğrudan Atama',
+    hostTr: '✓ Doğrudan Atama',
+    hostEn: '✓ Direct Designation',
+  },
+  {
+    area: 'İzleme & Değerlendirme',
+    areaTr: 'İzleme & Değerlendirme',
+    areaEn: 'Monitoring & Continuous Assessment',
+    sending: '✓ Düzenli Raporlama',
+    sendingTr: '✓ Düzenli Raporlama',
+    sendingEn: '✓ Regular Reporting',
+    host: '✓ Günlük Gözlem',
+    hostTr: '✓ Günlük Gözlem',
+    hostEn: '✓ Daily Workplace Tutoring',
+  },
+  {
+    area: 'İSG & Acil Durum Protokolü',
+    areaTr: 'İSG & Acil Durum Protokolü',
+    areaEn: 'OHS & Emergency Protocol',
+    sending: '✓ Sigorta & Bilgilendirme',
+    sendingTr: '✓ Sigorta & Bilgilendirme',
+    sendingEn: '✓ Insurance & Orientation',
+    host: '✓ İşyeri Güvenliği',
+    hostTr: '✓ İşyeri Güvenliği',
+    hostEn: '✓ Workplace Safety & Equipment',
+  },
+  {
+    area: 'Kazanımların Tanınması (Europass)',
+    areaTr: 'Kazanımların Tanınması (Europass)',
+    areaEn: 'Recognition of Learning (Europass Mobility)',
+    sending: '✓ Belge Düzenleme',
+    sendingTr: '✓ Belge Düzenleme',
+    sendingEn: '✓ Issuing & Validation',
+    host: 'Kanıt & İmza',
+    hostTr: 'Kanıt & İmza',
+    hostEn: 'Evidence Verification & Signature',
+  },
+  {
+    area: 'Ulusal Ajans Raporlaması & Bütçe',
+    areaTr: 'Ulusal Ajans Raporlaması & Bütçe',
+    areaEn: 'National Agency Reporting & Budget',
+    sending: '✓ Tek Sorumlu (Beneficiary)',
+    sendingTr: '✓ Tek Sorumlu (Beneficiary)',
+    sendingEn: '✓ Sole Responsible (Beneficiary)',
+    host: '—',
+    hostTr: '—',
+    hostEn: '—',
+  },
 ];
 
 export const PARTNER_FUNNEL = [
-  { step: '1', source: 'Erasmus+ Results Platform', query: 'Geçmiş KA121/KA122 VET projeleri + mesleki alan', output: '30–50 deneyimli kuruluş havuzu' },
-  { step: '2', source: 'ESEP (European School Education Platform)', query: 'Aktif partner & ev sahibi arama ilanları', output: '15–20 potansiyel aday' },
-  { step: '3', source: 'SALTO Education & Training / TCA', query: 'İletişim seminerleri & uluslararası ağlar', output: '5–10 doğrudan temas' },
-  { step: '4', source: 'Kuruluş Web Sitesi & Doğrulama', query: 'Teknik kapasite, mentor varlığı, dil, İSG', output: 'Kısa Liste (Shortlist)' },
-  { step: '5', source: 'Mutabakat & Görev Dağılımı', query: 'Öğrenme programı ve kalite taahhüdü', output: '1–2 kesinleşmiş Ev Sahibi' },
+  {
+    step: '1',
+    source: 'Erasmus+ Results Platform',
+    query: 'Geçmiş KA121/KA122 VET projeleri + mesleki alan',
+    queryTr: 'Geçmiş KA121/KA122 VET projeleri + mesleki alan',
+    queryEn: 'Past KA121/KA122 VET projects + vocational field',
+    output: '30–50 deneyimli kuruluş havuzu',
+    outputTr: '30–50 deneyimli kuruluş havuzu',
+    outputEn: '30–50 experienced host institution pool',
+  },
+  {
+    step: '2',
+    source: 'ESEP (European School Education Platform)',
+    query: 'Aktif partner & ev sahibi arama ilanları',
+    queryTr: 'Aktif partner & ev sahibi arama ilanları',
+    queryEn: 'Active partner finding & host announcements',
+    output: '15–20 potansiyel aday',
+    outputTr: '15–20 potansiyel aday',
+    outputEn: '15–20 prospective candidates',
+  },
+  {
+    step: '3',
+    source: 'SALTO Education & Training / TCA',
+    query: 'İletişim seminerleri & uluslararası ağlar',
+    queryTr: 'İletişim seminerleri & uluslararası ağlar',
+    queryEn: 'Contact-making seminars & international networking',
+    output: '5–10 doğrudan temas',
+    outputTr: '5–10 doğrudan temas',
+    outputEn: '5–10 direct partner contacts',
+  },
+  {
+    step: '4',
+    source: 'Kuruluş Web Sitesi & Doğrulama',
+    query: 'Teknik kapasite, mentor varlığı, dil, İSG',
+    queryTr: 'Teknik kapasite, mentor varlığı, dil, İSG',
+    queryEn: 'Technical capacity, mentor availability, language, OHS',
+    output: 'Kısa Liste (Shortlist)',
+    outputTr: 'Kısa Liste (Shortlist)',
+    outputEn: 'Verified Shortlist',
+  },
+  {
+    step: '5',
+    source: 'Mutabakat & Görev Dağılımı',
+    query: 'Öğrenme programı ve kalite taahhüdü',
+    queryTr: 'Öğrenme programı ve kalite taahhüdü',
+    queryEn: 'Learning programme agreement & quality commitment',
+    output: '1–2 kesinleşmiş Ev Sahibi',
+    outputTr: '1–2 kesinleşmiş Ev Sahibi',
+    outputEn: '1–2 confirmed Host Organisations',
+  },
 ];
 
 export interface OfficialActivityConfig {
@@ -363,11 +504,11 @@ export const OFFICIAL_VET_ACTIVITIES: Record<string, OfficialActivityConfig> = {
   VET_GROUP_MOBILITY: {
     code: 'VET_GROUP_MOBILITY',
     category: 'VET_LEARNER',
-    categoryLabelTr: 'VET Öğrenici Hareketliliği',
-    categoryLabelEn: 'VET Learner Mobility',
-    participantRoleTr: 'VET Öğrencileri',
-    participantRoleEn: 'VET Learners (Group)',
-    nameTr: 'Grup Hareketliliği (2–30 gün)',
+    categoryLabelTr: 'Mesleki Eğitim Öğrenici Hareketliliği',
+    categoryLabelEn: 'Mobility of VET Learners',
+    participantRoleTr: 'Mesleki Eğitim Öğrenicisi',
+    participantRoleEn: 'VET Learner',
+    nameTr: 'Mesleki Eğitim Öğrenicilerinin Grup Hareketliliği (2–30 gün)',
     nameEn: 'Group mobility of VET learners (2–30 days)',
     minDays: 2,
     maxDays: 30,
@@ -377,11 +518,11 @@ export const OFFICIAL_VET_ACTIVITIES: Record<string, OfficialActivityConfig> = {
   VET_SHORT_TERM: {
     code: 'VET_SHORT_TERM',
     category: 'VET_LEARNER',
-    categoryLabelTr: 'VET Öğrenici Hareketliliği',
-    categoryLabelEn: 'VET Learner Mobility',
-    participantRoleTr: 'VET Öğrencisi',
+    categoryLabelTr: 'Mesleki Eğitim Öğrenici Hareketliliği',
+    categoryLabelEn: 'Mobility of VET Learners',
+    participantRoleTr: 'Mesleki Eğitim Öğrenicisi',
     participantRoleEn: 'VET Learner',
-    nameTr: 'Kısa Dönemli Bireysel Öğrenme Hareketliliği (10–89 gün)',
+    nameTr: 'Mesleki Eğitim Öğrenicilerinin Kısa Dönemli Öğrenme Hareketliliği (10–89 gün)',
     nameEn: 'Short-term learning mobility of VET learners (10–89 days)',
     minDays: 10,
     maxDays: 89,
@@ -391,12 +532,12 @@ export const OFFICIAL_VET_ACTIVITIES: Record<string, OfficialActivityConfig> = {
   VET_LONG_TERM_PRO: {
     code: 'VET_LONG_TERM_PRO',
     category: 'VET_LEARNER',
-    categoryLabelTr: 'VET Öğrenici Hareketliliği',
-    categoryLabelEn: 'VET Learner Mobility',
-    participantRoleTr: 'VET Öğrencisi',
+    categoryLabelTr: 'Mesleki Eğitim Öğrenici Hareketliliği',
+    categoryLabelEn: 'Mobility of VET Learners',
+    participantRoleTr: 'Mesleki Eğitim Öğrenicisi',
     participantRoleEn: 'VET Learner (ErasmusPro)',
-    nameTr: 'ErasmusPro Uzun Dönemli Hareketlilik (90–365 gün)',
-    nameEn: 'ErasmusPro long-term mobility of VET learners (90–365 days)',
+    nameTr: 'Mesleki Eğitim Öğrenicilerinin Uzun Dönemli Öğrenme Hareketliliği – ErasmusPro (90–365 gün)',
+    nameEn: 'Long-term learning mobility of VET learners – ErasmusPro (90–365 days)',
     minDays: 90,
     maxDays: 365,
     ruleDescriptionTr: 'VET öğrenicileri ve yeni mezunlar için kapsamlı işbaşı staj (90–365 gün).',
@@ -407,9 +548,9 @@ export const OFFICIAL_VET_ACTIVITIES: Record<string, OfficialActivityConfig> = {
     category: 'STAFF',
     categoryLabelTr: 'Personel Hareketliliği',
     categoryLabelEn: 'Staff Mobility',
-    participantRoleTr: 'Personel / Öğretmen',
-    participantRoleEn: 'Staff / Teacher',
-    nameTr: 'İşbaşı Gözlem / Job Shadowing (2–60 gün)',
+    participantRoleTr: 'Öğretmen / Eğitici / Personel Katılımcı',
+    participantRoleEn: 'Staff Participant – Teacher or Trainer',
+    nameTr: 'İşbaşı Gözlem (2–60 gün)',
     nameEn: 'Job shadowing (2–60 days)',
     minDays: 2,
     maxDays: 60,
@@ -421,9 +562,9 @@ export const OFFICIAL_VET_ACTIVITIES: Record<string, OfficialActivityConfig> = {
     category: 'STAFF',
     categoryLabelTr: 'Personel Hareketliliği',
     categoryLabelEn: 'Staff Mobility',
-    participantRoleTr: 'Personel / Öğretmen',
-    participantRoleEn: 'Staff / Teacher',
-    nameTr: 'Öğretme veya Eğitim Görevlendirmesi (2–365 gün)',
+    participantRoleTr: 'Öğretmen / Eğitici / Personel Katılımcı',
+    participantRoleEn: 'Staff Participant – Teacher or Trainer',
+    nameTr: 'Öğretme veya Eğitim Verme Görevi (2–365 gün)',
     nameEn: 'Teaching or training assignments (2–365 days)',
     minDays: 2,
     maxDays: 365,
@@ -435,9 +576,9 @@ export const OFFICIAL_VET_ACTIVITIES: Record<string, OfficialActivityConfig> = {
     category: 'STAFF',
     categoryLabelTr: 'Personel Hareketliliği',
     categoryLabelEn: 'Staff Mobility',
-    participantRoleTr: 'Personel / Öğretmen',
-    participantRoleEn: 'Staff / Teacher',
-    nameTr: 'Kurs ve Eğitim (2–10 gün)',
+    participantRoleTr: 'Öğretmen / Eğitici / Personel Katılımcı',
+    participantRoleEn: 'Staff Participant – Teacher or Trainer',
+    nameTr: 'Kurslar ve Eğitimler (2–10 gün)',
     nameEn: 'Courses and training (2–10 days)',
     minDays: 2,
     maxDays: 10,
@@ -449,9 +590,9 @@ export const OFFICIAL_VET_ACTIVITIES: Record<string, OfficialActivityConfig> = {
     category: 'HOSTED',
     categoryLabelTr: 'Kuruma Gelen Katılımcılar',
     categoryLabelEn: 'Hosted Participants',
-    participantRoleTr: 'Kuruma Gelen',
-    participantRoleEn: 'Hosted Expert',
-    nameTr: 'Davetli Uzman / Invited Expert (2–60 gün)',
+    participantRoleTr: 'Davetli Uzman',
+    participantRoleEn: 'Invited Expert',
+    nameTr: 'Davetli Uzman (2–60 gün)',
     nameEn: 'Invited experts (2–60 days)',
     minDays: 2,
     maxDays: 60,
@@ -463,9 +604,9 @@ export const OFFICIAL_VET_ACTIVITIES: Record<string, OfficialActivityConfig> = {
     category: 'HOSTED',
     categoryLabelTr: 'Kuruma Gelen Katılımcılar',
     categoryLabelEn: 'Hosted Participants',
-    participantRoleTr: 'Kuruma Gelen',
+    participantRoleTr: 'Eğitimdeki Öğretmen / Eğitici',
     participantRoleEn: 'Hosted Teacher-in-Training',
-    nameTr: 'Öğretmen/Eğitimci Adayına Ev Sahipliği (10–365 gün)',
+    nameTr: 'Eğitimdeki Öğretmen ve Eğiticilere Ev Sahipliği Yapılması (10–365 gün)',
     nameEn: 'Hosting teachers and educators in training (10–365 days)',
     minDays: 10,
     maxDays: 365,
@@ -477,8 +618,8 @@ export const OFFICIAL_VET_ACTIVITIES: Record<string, OfficialActivityConfig> = {
     category: 'PROJECT_TEAM',
     categoryLabelTr: 'Proje Ekibi',
     categoryLabelEn: 'Project Team',
-    participantRoleTr: 'Proje Ekibi',
-    participantRoleEn: 'Project Team',
+    participantRoleTr: 'Hazırlık Ziyareti Katılımcısı',
+    participantRoleEn: 'Preparatory Visit Participant',
     nameTr: 'Hazırlık Ziyareti (Maks. 3 kişi)',
     nameEn: 'Preparatory visit (Max 3 persons)',
     minDays: 1,

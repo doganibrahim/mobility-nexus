@@ -581,5 +581,86 @@ export const apiClient = {
       return { data: fallbackData, isFallback: true };
     }
   },
+
+  /**
+   * Fetches all mobility inquiries from server/database
+   */
+  async getInquiries(params?: { status?: string; hostId?: string; schoolOid?: string }): Promise<any[]> {
+    try {
+      const query = new URLSearchParams();
+      if (params?.status) query.set('status', params.status);
+      if (params?.hostId) query.set('hostId', params.hostId);
+      if (params?.schoolOid) query.set('schoolOid', params.schoolOid);
+
+      const qs = query.toString() ? `?${query.toString()}` : '';
+      const response = await fetch(`/api/inquiries${qs}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const result = await response.json();
+      return result.data || [];
+    } catch (err: any) {
+      console.warn('API getInquiries hatası:', err.message);
+      return [];
+    }
+  },
+
+  /**
+   * Submits a new school inquiry to the server/database
+   */
+  async createInquiry(inquiry: any): Promise<{ data: any; success: boolean }> {
+    try {
+      const response = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(inquiry),
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const result = await response.json();
+      return { data: result.data || inquiry, success: true };
+    } catch (err: any) {
+      console.warn('API createInquiry hatası:', err.message);
+      return { data: inquiry, success: false };
+    }
+  },
+
+  /**
+   * Updates inquiry status and reply note on the server/database
+   */
+  async updateInquiryStatus(
+    id: string,
+    status: 'PENDING' | 'ACCEPTED' | 'REVISED' | 'DECLINED',
+    hostReplyNote?: string,
+  ): Promise<{ data: any; success: boolean }> {
+    try {
+      const response = await fetch(`/api/inquiries/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status, hostReplyNote }),
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const result = await response.json();
+      return { data: result.data, success: true };
+    } catch (err: any) {
+      console.warn('API updateInquiryStatus hatası:', err.message);
+      return { data: null, success: false };
+    }
+  },
+
+  /**
+   * Deletes an inquiry on the server/database
+   */
+  async deleteInquiry(id: string): Promise<boolean> {
+    try {
+      const response = await fetch(`/api/inquiries/${id}`, {
+        method: 'DELETE',
+      });
+      return response.ok;
+    } catch (err: any) {
+      console.warn('API deleteInquiry hatası:', err.message);
+      return false;
+    }
+  },
 };
 

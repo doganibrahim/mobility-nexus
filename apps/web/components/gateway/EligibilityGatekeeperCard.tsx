@@ -38,7 +38,7 @@ export default function EligibilityGatekeeperCard({
             <span className="text-base shrink-0">🛡️</span>
             <div>
               <strong className="text-slate-900 font-semibold">
-                {locale === 'tr' ? 'Zorunlu Uygunluk Denetimi:' : 'Mandatory Eligibility Verification:'}
+                {locale === 'tr' ? 'Ön Uygunluk Kontrolü:' : 'Preliminary Eligibility Assessment:'}
               </strong>{' '}
               {t.eligibility.subtitle}
             </div>
@@ -58,10 +58,10 @@ export default function EligibilityGatekeeperCard({
               onChange={(e) => onChange('accredited', e.target.value)}
             >
               <option value="no">
-                {locale === 'tr' ? 'Akreditasyon Yok (KA120 Belgesi Bulunmuyor)' : 'Not Accredited (No KA120)'}
+                {locale === 'tr' ? 'Erasmus Akreditasyonu Bulunmuyor' : 'Does Not Hold an Erasmus Accreditation'}
               </option>
               <option value="yes">
-                {locale === 'tr' ? 'Akredite Kurum (KA120 Belgesi Mevcut)' : 'Accredited (Holds KA120)'}
+                {locale === 'tr' ? 'Erasmus Akreditasyonuna Sahip Kuruluş KA120-VET' : 'Holds an Erasmus Accreditation KA120-VET'}
               </option>
               <option value="unknown">
                 {locale === 'tr' ? 'Bilinmiyor / Teyit Edilecek' : 'Unknown / To Be Verified'}
@@ -86,12 +86,12 @@ export default function EligibilityGatekeeperCard({
                 onChange={(e) => onChange('participantCount', Math.max(1, parseInt(e.target.value, 10) || 1))}
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium text-slate-400 pointer-events-none">
-                {locale === 'tr' ? 'Kişi' : 'Pax'}
+                {locale === 'tr' ? 'Kişi' : 'Participants'}
               </span>
             </div>
             {data.participantCount > 30 && (
               <span className="text-[11px] text-amber-700 font-medium mt-1 block">
-                ⚠️ KA122 için azami sınır 30 kişidir.
+                ⚠️ {locale === 'tr' ? 'KA122 için azami sınır 30 kişidir.' : 'Maximum participant limit for KA122 is 30.'}
               </span>
             )}
           </div>
@@ -120,12 +120,12 @@ export default function EligibilityGatekeeperCard({
             </div>
             {(data.projectDurationMonths < 6 || data.projectDurationMonths > 18) && (
               <span className="text-[11px] text-red-600 font-medium mt-1 block">
-                ❌ Süre 6–18 ay aralığında olmalıdır.
+                ❌ {locale === 'tr' ? 'Süre 6–18 ay aralığında olmalıdır.' : 'Duration must be between 6 and 18 months.'}
               </span>
             )}
           </div>
 
-          {/* Past Grants in 36 Months */}
+          {/* Past Grants in 5 Call Years */}
           <div className="md:col-span-6">
             <label className="block text-xs font-semibold text-slate-700 mb-1">
               {t.eligibility.pastGrantsLabel}
@@ -137,11 +137,21 @@ export default function EligibilityGatekeeperCard({
               value={data.pastKa122GrantsCount}
               onChange={(e) => onChange('pastKa122GrantsCount', parseInt(e.target.value, 10) || 0)}
             >
-              <option value={0}>0 (İlk Kez Başvuruyor / Hiç Hibe Alınmadı)</option>
-              <option value={1}>1 Proje (Son 36 ayda 1 hibe alındı)</option>
-              <option value={2}>2 Proje (Son 36 ayda 2 hibe alındı)</option>
-              <option value={3}>3 Proje (Azami Hibe Sınırı Doldu - KA120 Zorunlu)</option>
-              <option value={4}>4+ Proje (Kota Aşımı)</option>
+              <option value={0}>
+                {locale === 'tr' ? '0 (İlk Kez Başvuruyor / Hiç Hibe Alınmadı)' : '0 (First Time Applicant / No Past Grants)'}
+              </option>
+              <option value={1}>
+                {locale === 'tr' ? '1 Proje (Ardışık 5 çağrı yılında 1 hibe alındı)' : '1 Project (1 grant received in 5 call years)'}
+              </option>
+              <option value={2}>
+                {locale === 'tr' ? '2 Proje (Ardışık 5 çağrı yılında 2 hibe alındı)' : '2 Projects (2 grants received in 5 call years)'}
+              </option>
+              <option value={3}>
+                {locale === 'tr' ? '3 Proje (KA122-VET Hibe Sınırına Ulaşıldı - KA120 Zorunlu)' : '3 Projects (Three Grant Limit Reached - KA120 Required)'}
+              </option>
+              <option value={4}>
+                {locale === 'tr' ? '4+ Proje (Kota Aşımı)' : '4+ Projects (Quota Exceeded)'}
+              </option>
             </select>
           </div>
 

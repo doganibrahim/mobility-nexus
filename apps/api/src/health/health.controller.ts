@@ -10,7 +10,7 @@ export class HealthController {
   checkHealth() {
     return {
       status: 'ok',
-      service: 'CAPPINNO Mobility Nexus API',
+      service: 'ErasmusMobility API',
       version: '1.0.0-phase1',
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),

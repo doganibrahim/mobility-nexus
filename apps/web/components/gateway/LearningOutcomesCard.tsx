@@ -23,13 +23,13 @@ export default function LearningOutcomesCard({
   onTransversalOutcomeChange,
   onGenerateClick,
 }: LearningOutcomesCardProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   return (
     <NeoCard
       id="outcomes"
       title={t.outcomes.title}
-      badge="ECVET & Europass Uyumlu"
+      badge={t.outcomes.badge || (locale === 'en' ? 'Aligned with Learning Outcomes and Europass Mobility' : 'Öğrenme Çıktıları ve Europass Mobility ile Uyumlu')}
       badgeType="primary"
     >
       <div className="space-y-4">
@@ -41,7 +41,7 @@ export default function LearningOutcomesCard({
           <input
             type="text"
             className="edu-input font-medium"
-            placeholder="Örn: PLC Programlama / CNC / Endüstriyel Robotik / Mesleki Yabancı Dil"
+            placeholder={locale === 'en' ? 'e.g., PLC Programming / CNC / Industrial Robotics / Vocational English' : 'Örn: PLC Programlama / CNC / Endüstriyel Robotik / Mesleki Yabancı Dil'}
             value={primaryGap}
             onChange={(e) => onPrimaryGapChange(e.target.value)}
           />
@@ -54,7 +54,7 @@ export default function LearningOutcomesCard({
           </label>
           <textarea
             className="edu-input min-h-[90px] resize-y text-xs leading-relaxed"
-            placeholder="Katılımcı ... yapabilecektir."
+            placeholder={locale === 'en' ? 'The participant will be able to...' : 'Katılımcı ... yapabilecektir.'}
             value={technicalOutcome}
             onChange={(e) => onTechnicalOutcomeChange(e.target.value)}
           />
@@ -67,7 +67,7 @@ export default function LearningOutcomesCard({
           </label>
           <textarea
             className="edu-input min-h-[90px] resize-y text-xs leading-relaxed"
-            placeholder="Takım çalışması, İSG kuralları, yeşil uygulamalar ve kültürlerarası uyum..."
+            placeholder={locale === 'en' ? 'Teamwork, OHS safety standards, green practices, and intercultural collaboration...' : 'Takım çalışması, İSG kuralları, yeşil uygulamalar ve kültürlerarası uyum...'}
             value={transversalOutcome}
             onChange={(e) => onTransversalOutcomeChange(e.target.value)}
           />
@@ -80,7 +80,7 @@ export default function LearningOutcomesCard({
             onClick={onGenerateClick}
             className="edu-btn-secondary text-xs w-full sm:w-auto"
           >
-            ✨ ECVET Standartlarında Kazanımları Yeniden Üret
+            {t.outcomes.generateBtn || (locale === 'en' ? '✨ Regenerate Learning Outcomes' : '✨ Öğrenme Çıktılarını Yeniden Oluştur')}
           </button>
         </div>
       </div>

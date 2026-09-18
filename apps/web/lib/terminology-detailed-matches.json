@@ -1,0 +1,3226 @@
+[
+  {
+    "id": 1,
+    "current": "CAPPINNO Mobility Nexus",
+    "proposed": "ErasmusMobility.com",
+    "location": "Ana sayfa – üst menü ve alt bilgi",
+    "match_count": 0,
+    "matches": []
+  },
+  {
+    "id": 2,
+    "current": "Erasmus+ VET Hareketlilik Ağ Geçidi",
+    "proposed": "Erasmus+ Mesleki Eğitim Hareketlilik Platformu",
+    "location": "Ana sayfa",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1202,
+        "type": "normalized",
+        "lineContent": "badge: 'Erasmus+ VET Hareketlilik Ag Gecidi',"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "current": "Host & Karar",
+    "proposed": "Ev Sahibi Eşleştirme ve Proje Yolu",
+    "location": "Ana sayfa – aşama menüsü",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 799,
+        "type": "exact",
+        "lineContent": "matching: { label: '3. Host & Karar', desc: 'Host eşleştirme ve KA120/121/122' },"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "current": "Host eşleştirme",
+    "proposed": "Ev sahibi kuruluş eşleştirmesi",
+    "location": "Ana sayfa – aşama menüsü",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 799,
+        "type": "exact",
+        "lineContent": "matching: { label: '3. Host & Karar', desc: 'Host eşleştirme ve KA120/121/122' },"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "current": "Fırsatlar & Hostlar",
+    "proposed": "Ev Sahibi Kuruluşlar ve Hizmetler",
+    "location": "Ana sayfa – üst menü",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 766,
+        "type": "exact",
+        "lineContent": "label: 'Fırsatlar & Hostlar',"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "current": "Yararlanıcılar",
+    "proposed": "Gönderen Kuruluşlar",
+    "location": "Ana sayfa – üst menü",
+    "match_count": 5,
+    "matches": [
+      {
+        "file": "components/ui/BeneficiariesModal.tsx",
+        "line": 258,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Yararlanıcılar Referans Kataloğu' : 'Beneficiaries Reference Catalog'}"
+      },
+      {
+        "file": "components/ui/LegalModal.tsx",
+        "line": 479,
+        "type": "exact",
+        "lineContent": "? 'ErasmusMobility (erasmusmobility.com); Erasmus+ Mesleki Eğitim (VET) alanında KA121 Akredite ve KA122 Kısa Dönemli hareketlilikleri yöneten gönderen kurumlar (Yararlanıcılar) ile Avrupalı ev sahibi işletmeleri (Hosts) bir araya getiren B2B SaaS yapısında entegre bir hareketlilik yönetim araç setidir (toolset). Platform; kurumsal profil oluşturma, akıllı eşleştirme (matching engine), hareketlilik yaşam döngüsünün uçtan uca dijital takibi, ESCO/ISCED-F taksonomik yetkinlik analizi, evrak/dossier otomasyonu ve nihai raporlama araçlarını kapsar.'"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 749,
+        "type": "exact",
+        "lineContent": "label: 'Yararlanıcılar',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 785,
+        "type": "exact",
+        "lineContent": "label: 'Yararlanıcılar',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1059,
+        "type": "exact",
+        "lineContent": "beneficiariesCatalog: 'Yararlanıcılar Referans Kataloğu (4.800+)',"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "current": "Avrupa genelindeki doğrulanmış ev sahipleri",
+    "proposed": "ErasmusMobility.com tarafından doğrulanmış ev sahibi kuruluşlar",
+    "location": "Ana sayfa – karşılama alanı",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1204,
+        "type": "normalized",
+        "lineContent": "desc: 'Mesleki egitim (VET) hareketliliklerinizi planlamak, ESCO beceri analizini yapmak ve Avrupa genelindeki dogrulanmis ev sahipleriyle eslesmek icin giris yapmadan tum araclari canli test edebilir veya ucretsiz kayit olabilirsiniz.',"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "current": "KA121 & KA122 Uyumlu",
+    "proposed": "KA121-VET ve KA122-VET Planlamasını Destekler",
+    "location": "Ana sayfa – karşılama alanı",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1205,
+        "type": "exact",
+        "lineContent": "badge1: 'KA121 & KA122 Uyumlu',"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "current": "15 Kriterli Güvenli Eşleştirme",
+    "proposed": "15 Kriterli Kuruluş Eşleştirmesi",
+    "location": "Ana sayfa – karşılama alanı",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1208,
+        "type": "normalized",
+        "lineContent": "badge4: '15 Kriterli Guvenli Eslestirme',"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "current": "Kurum akreditasyon OID kaydı",
+    "proposed": "Kuruluş Kimlik Numarası OID ve Erasmus Akreditasyonu bilgileri",
+    "location": "Ana sayfa – sistem iş akışı",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 813,
+        "type": "exact",
+        "lineContent": "step1Desc: 'Kurum akreditasyon OID kaydı, Erasmus Plan hedefleri ve katılımcı dil/profil verileri.',"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "current": "Gelişim açığı (gap)",
+    "proposed": "Yetkinlik açığı",
+    "location": "Ana sayfa – sistem iş akışı",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 817,
+        "type": "normalized",
+        "lineContent": "step3Desc: '12 soruluk yetkinlik testi, gelişim açığı (gap) ve 8 kriterli KA121/KA122 karar motoru.',"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "current": "AB Ev Sahibi",
+    "proposed": "Ev Sahibi Kuruluş",
+    "location": "Ana sayfa – sistem iş akışı",
+    "match_count": 4,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 686,
+        "type": "exact",
+        "lineContent": "subtitle: 'KA121-VET • KA122-VET • ESCO & ISCED-F • Yetkinlik Ölçümü • AB Ev Sahibi Eşleştirme',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 818,
+        "type": "exact",
+        "lineContent": "step4Title: 'AB Ev Sahibi & Hareketlilik Planı',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 907,
+        "type": "exact",
+        "lineContent": "title: '6. AB Ev Sahibi Kuruluş (Host) Eşleştirme & Skorlama',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 909,
+        "type": "exact",
+        "lineContent": "modeLive: 'Akıllı AB Ev Sahibi Eşleştirme (Live Match)',"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "current": "Host skorlaması",
+    "proposed": "Ev sahibi kuruluş puanlaması",
+    "location": "Ana sayfa – sistem iş akışı",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 819,
+        "type": "exact",
+        "lineContent": "step4Desc: '10 parametreli ağırlıklı Host skorlaması, partner arama hunisi ve rol bazlı kazanım üretimi.',"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "current": "Partner arama hunisi",
+    "proposed": "Ortak ve ev sahibi kuruluş arama süreci",
+    "location": "Ana sayfa – sistem iş akışı",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 819,
+        "type": "normalized",
+        "lineContent": "step4Desc: '10 parametreli ağırlıklı Host skorlaması, partner arama hunisi ve rol bazlı kazanım üretimi.',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 949,
+        "type": "normalized",
+        "lineContent": "funnelTitle: 'Önerilen 5 Aşamalı Partner Arama Hunisi (Search Funnel)',"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "current": "Meslek Lisesi / VET Kuruluşu Tam Adı",
+    "proposed": "Mesleki Eğitim Kuruluşunun Tam Yasal Adı",
+    "location": "Aşama 1 – kuruluş profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 825,
+        "type": "exact",
+        "lineContent": "nameLabel: 'Meslek Lisesi / VET Kuruluşu Tam Adı *',"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "current": "Erasmus VET Akreditasyonu",
+    "proposed": "Erasmus Akreditasyonu KA120-VET",
+    "location": "Aşama 1 – kuruluş profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 829,
+        "type": "exact",
+        "lineContent": "accLabel: 'Erasmus VET Akreditasyonu',"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "current": "Evet (Akredite Kurum – KA121)",
+    "proposed": "Evet – Erasmus Akreditasyonuna Sahip KA120-VET Kuruluşu",
+    "location": "Aşama 1 – kuruluş profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 831,
+        "type": "normalized",
+        "lineContent": "accYes: 'Evet (Akredite Kurum - KA121)',"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "current": "Hayır (Kısa Dönem Başvuru – KA122)",
+    "proposed": "Hayır – KA122-VET Kısa Dönemli Proje Başvurusu Planlanıyor",
+    "location": "Aşama 1 – kuruluş profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 832,
+        "type": "normalized",
+        "lineContent": "accNo: 'Hayır (Kısa Dönem Başvuru - KA122)',"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "current": "Erasmus OID Kodu",
+    "proposed": "Kuruluş Kimlik Numarası OID",
+    "location": "Aşama 1 – kuruluş profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 833,
+        "type": "exact",
+        "lineContent": "oidLabel: 'Erasmus OID Kodu (E10XXXXXX)',"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "current": "Kurumsal İhtiyaç / Somut Challenge",
+    "proposed": "Kurumsal İhtiyaç veya Somut Sorun",
+    "location": "Aşama 1 – kuruluş profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 836,
+        "type": "exact",
+        "lineContent": "needLabel: 'Kurumsal İhtiyaç / Somut Challenge *',"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "current": "Meslek Lisesi Öğrencisi / Çırak",
+    "proposed": "Mesleki Eğitim Öğrenicisi / Çırak",
+    "location": "Aşama 1 – katılımcı profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 847,
+        "type": "exact",
+        "lineContent": "student: 'Meslek Lisesi Öğrencisi / Çırak (VET Learner)',"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "current": "Teknik Öğretmen / Eğitici (Staff)",
+    "proposed": "Öğretmen / Eğitici / Personel Katılımcı",
+    "location": "Aşama 1 – katılımcı profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 846,
+        "type": "exact",
+        "lineContent": "teacher: 'Teknik Öğretmen / Eğitici (Staff)',"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "current": "Kuruma Gelen (Davetli Uzman / Eğitici)",
+    "proposed": "Davetli Uzman",
+    "location": "Aşama 1 – katılımcı profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 93,
+        "type": "exact",
+        "lineContent": "<option value=\"incoming\">Kuruma Gelen (Davetli Uzman / Eğitici)</option>"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "current": "Proje Ekibi (Hazırlık Ziyareti)",
+    "proposed": "Hazırlık Ziyareti Katılımcısı",
+    "location": "Aşama 1 – katılımcı profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 94,
+        "type": "exact",
+        "lineContent": "<option value=\"project_team\">Proje Ekibi (Hazırlık Ziyareti)</option>"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "current": "Hareketlilik Tercihi / Faaliyet Türü",
+    "proposed": "Erasmus+ Faaliyet Türü",
+    "location": "Aşama 1 – katılımcı profili",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 848,
+        "type": "exact",
+        "lineContent": "goalLabel: 'Hareketlilik Tercihi / Faaliyet Türü',"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "current": "10 Resmî Erasmus+ Faaliyeti",
+    "proposed": "Desteklenen Erasmus+ Faaliyet Türleri",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 99,
+        "type": "normalized",
+        "lineContent": "{t.participant.goalLabel} (10 Resmi Erasmus+ Faaliyeti)"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "current": "Öğrenici Grup Hareketliliği",
+    "proposed": "Mesleki Eğitim Öğrenicilerinin Grup Hareketliliği",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 108,
+        "type": "exact",
+        "lineContent": "<option value=\"VET_GROUP_MOBILITY\">Öğrenici Grup Hareketliliği (2–30 gün)</option>"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "current": "Kısa Dönemli Bireysel Öğrenme / Staj",
+    "proposed": "Mesleki Eğitim Öğrenicilerinin Kısa Dönemli Öğrenme Hareketliliği",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 109,
+        "type": "exact",
+        "lineContent": "<option value=\"VET_SHORT_TERM\">Kısa Dönemli Bireysel Öğrenme / Staj (10–89 gün)</option>"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "current": "ErasmusPro Uzun Dönemli Staj",
+    "proposed": "Mesleki Eğitim Öğrenicilerinin Uzun Dönemli Öğrenme Hareketliliği ErasmusPro",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 110,
+        "type": "exact",
+        "lineContent": "<option value=\"VET_LONG_TERM_PRO\">ErasmusPro Uzun Dönemli Staj (90–365 gün)</option>"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "current": "İşbaşı Gözlem / Job Shadowing",
+    "proposed": "İşbaşı Gözlem",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 113,
+        "type": "exact",
+        "lineContent": "<option value=\"JOB_SHADOWING\">İşbaşı Gözlem / Job Shadowing (2–60 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 412,
+        "type": "exact",
+        "lineContent": "nameTr: 'İşbaşı Gözlem / Job Shadowing (2–60 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "current": "Öğretme veya Eğitim Görevlendirmesi",
+    "proposed": "Öğretme veya Eğitim Verme Görevi",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 114,
+        "type": "exact",
+        "lineContent": "<option value=\"TEACHING_ASSIGNMENT\">Öğretme veya Eğitim Görevlendirmesi (2–365 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 426,
+        "type": "exact",
+        "lineContent": "nameTr: 'Öğretme veya Eğitim Görevlendirmesi (2–365 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "current": "Kurs ve Eğitim",
+    "proposed": "Kurslar ve Eğitimler",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 115,
+        "type": "exact",
+        "lineContent": "<option value=\"STAFF_COURSE_TRAINING\">Kurs ve Eğitim (2–10 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 440,
+        "type": "exact",
+        "lineContent": "nameTr: 'Kurs ve Eğitim (2–10 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "current": "Davetli Uzman / Invited Expert",
+    "proposed": "Davetli Uzman",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 118,
+        "type": "exact",
+        "lineContent": "<option value=\"INVITED_EXPERT\">Davetli Uzman / Invited Expert (2–60 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 454,
+        "type": "exact",
+        "lineContent": "nameTr: 'Davetli Uzman / Invited Expert (2–60 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "current": "Öğretmen/Eğitimci Adayına Ev Sahipliği",
+    "proposed": "Eğitimdeki Öğretmen ve Eğiticilere Ev Sahipliği Yapılması",
+    "location": "Aşama 1 – faaliyet seçimi",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 119,
+        "type": "exact",
+        "lineContent": "<option value=\"HOSTING_TEACHERS\">Öğretmen/Eğitimci Adayına Ev Sahipliği (10–365 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 468,
+        "type": "exact",
+        "lineContent": "nameTr: 'Öğretmen/Eğitimci Adayına Ev Sahipliği (10–365 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "current": "Farketmez / Tüm Ülkeler",
+    "proposed": "Fark Etmez / Tüm Uygun Ülkeler",
+    "location": "Aşama 1 – hedef ülkeler",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 60,
+        "type": "exact",
+        "lineContent": "{ code: 'ANY', label: 'Farketmez / Tüm Ülkeler' },"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "current": "18 Yaş Altı (Reşit Değil)",
+    "proposed": "18 Yaş Altı Reşit Olmayan Katılımcı",
+    "location": "Aşama 1 – yaş grubu",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 257,
+        "type": "exact",
+        "lineContent": "<option value=\"under_18\">18 Yaş Altı (Reşit Değil)</option>"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "current": "AB ESCO v1.1",
+    "proposed": "Avrupa Birliği ESCO Sınıflandırması",
+    "location": "Aşama 2 – ESCO eşleştirmesi",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EscoIscedMapperCard.tsx",
+        "line": 39,
+        "type": "exact",
+        "lineContent": "badge=\"AB ESCO v1.1\""
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "current": "ESCO Arama Terimi / Meslek Ailesi",
+    "proposed": "ESCO Meslek Arama Terimi / Meslek Profili",
+    "location": "Aşama 2 – ESCO eşleştirmesi",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 865,
+        "type": "exact",
+        "lineContent": "escoTermLabel: 'Önerilen ESCO Arama Terimi / Meslek Ailesi',"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "current": "Yetkinlik Değerlendirme",
+    "proposed": "Yetkinlik Öz Değerlendirmesi",
+    "location": "Aşama 2 – değerlendirme",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/ui/LegalModal.tsx",
+        "line": 1012,
+        "type": "exact",
+        "lineContent": "<strong>{locale === 'tr' ? 'Yetkinlik Değerlendirmelerinin Anonimleştirilmesi:' : 'Competence Anonymization:'}</strong>{' '}"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 874,
+        "type": "exact",
+        "lineContent": "title: '5. Yetkinlik Değerlendirme (Competence Assessment)',"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "current": "Hedeflenen Seviye",
+    "proposed": "Hedef Yetkinlik Düzeyi",
+    "location": "Aşama 2 – değerlendirme",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 884,
+        "type": "exact",
+        "lineContent": "targetLabel: 'Hedeflenen Seviye (0–100)',"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "current": "Resmî Uygunluk Kapısı (Gatekeeper)",
+    "proposed": "Ön Uygunluk Kontrolü",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 891,
+        "type": "normalized",
+        "lineContent": "badge: 'Resmi Uygunluk Kapısı (Gatekeeper)',"
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "current": "Zorunlu Uygunluk Denetimi",
+    "proposed": "Ön Uygunluk Kontrolü",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EligibilityGatekeeperCard.tsx",
+        "line": 41,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Zorunlu Uygunluk Denetimi:' : 'Mandatory Eligibility Verification:'}"
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "current": "Akreditasyon Yok (KA120 Belgesi Bulunmuyor)",
+    "proposed": "Erasmus Akreditasyonu Bulunmuyor",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EligibilityGatekeeperCard.tsx",
+        "line": 61,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Akreditasyon Yok (KA120 Belgesi Bulunmuyor)' : 'Not Accredited (No KA120)'}"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "current": "Akredite Kurum (KA120 Belgesi Mevcut)",
+    "proposed": "Erasmus Akreditasyonuna Sahip Kuruluş KA120-VET",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EligibilityGatekeeperCard.tsx",
+        "line": 64,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Akredite Kurum (KA120 Belgesi Mevcut)' : 'Accredited (Holds KA120)'}"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "current": "Son 36 Ayda Alınan KA122 Hibesi",
+    "proposed": "Ardışık Beş Çağrı Yılı İçinde Alınan KA122-VET Hibesi",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 896,
+        "type": "exact",
+        "lineContent": "pastGrantsLabel: 'Son 36 Ayda Alınan KA122 Hibesi (Maks. 3)',"
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "current": "36 Ayda Maks. 3",
+    "proposed": "Ardışık Beş Çağrı Yılında En Fazla 3 Hibe",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/calculations.ts",
+        "line": 297,
+        "type": "exact",
+        "lineContent": "title: 'Önceki Hibe Sayısı (36 Ayda Maks. 3)',"
+      },
+      {
+        "file": "lib/calculations.ts",
+        "line": 305,
+        "type": "exact",
+        "lineContent": "title: 'Önceki Hibe Sayısı (36 Ayda Maks. 3)',"
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "current": "KA120 Zorunlu",
+    "proposed": "KA122-VET Hibe Sınırına Ulaşıldı",
+    "location": "Aşama 3 – KA122 kontrolü",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EligibilityGatekeeperCard.tsx",
+        "line": 143,
+        "type": "exact",
+        "lineContent": "<option value={3}>3 Proje (Azami Hibe Sınırı Doldu - KA120 Zorunlu)</option>"
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "current": "KA120 Önerilir",
+    "proposed": "Erasmus Akreditasyonu KA120-VET Değerlendirilebilir",
+    "location": "Aşama 3 – proje yolu",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 899,
+        "type": "exact",
+        "lineContent": "strategyRegular: 'Yıllık ve Düzenli Kurumsal Hareketlilik (KA120 Önerilir)',"
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "current": "Garantili yıllık bütçe tahsisatı",
+    "proposed": "Yıllık hibe başvurusu yapma imkânı",
+    "location": "Aşama 3 – proje yolu",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/ui/ProgrammesModal.tsx",
+        "line": 170,
+        "type": "normalized",
+        "lineContent": "<td className=\"py-2.5 px-4 text-slate-700\">Her yıl garantili yıllık bütçe tahsisatı (Erasmus Planı hedeflerine göre)</td>"
+      },
+      {
+        "file": "lib/calculations.ts",
+        "line": 230,
+        "type": "normalized",
+        "lineContent": "'Kurumunuz zaten Erasmus Akreditasyonuna (KA120) sahiptir. KA122 başvurusu yapamazsınız; garantili yıllık bütçe tahsisatı için doğrudan KA121-VET başvurusunda bulunmalısınız.',"
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "current": "KA121 tahsisatı",
+    "proposed": "KA121-VET Akredite Proje Hibe Başvurusu",
+    "location": "Aşama 3 – proje yolu",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/calculations.ts",
+        "line": 339,
+        "type": "exact",
+        "lineContent": "'Kurumunuz akredite olduğundan KA122 yarışmalı teklif çağrısına katılamaz; garantili yıllık bütçe için KA121 tahsisatı kullanmalıdır.',"
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "current": "AB Ev Sahibi Kuruluş (Host)",
+    "proposed": "Ev Sahibi Kuruluş",
+    "location": "Aşama 3 – eşleştirme",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 907,
+        "type": "exact",
+        "lineContent": "title: '6. AB Ev Sahibi Kuruluş (Host) Eşleştirme & Skorlama',"
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "current": "Akıllı AB Ev Sahibi Eşleştirme (Live Match)",
+    "proposed": "Ev Sahibi Kuruluş Eşleştirmesi",
+    "location": "Aşama 3 – eşleştirme",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 909,
+        "type": "exact",
+        "lineContent": "modeLive: 'Akıllı AB Ev Sahibi Eşleştirme (Live Match)',"
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "current": "5 Asil + 0 Refakatçi",
+    "proposed": "5 Katılımcı + 0 Refakat Eden Kişi",
+    "location": "Aşama 3 – eşleştirme özeti",
+    "match_count": 0,
+    "matches": []
+  },
+  {
+    "id": 54,
+    "current": "Yemek / İaşe Şartı",
+    "proposed": "Yemek Hizmeti",
+    "location": "Aşama 3 – lojistik talepleri",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/HostMatchingCard.tsx",
+        "line": 264,
+        "type": "exact",
+        "lineContent": "<span>🍽️ Yemek / İaşe Şartı</span>"
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "current": "Havalimanı / Yerel Transfer",
+    "proposed": "Havalimanı Transferi ve Yerel Ulaşım",
+    "location": "Aşama 3 – lojistik talepleri",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/HostMatchingCard.tsx",
+        "line": 273,
+        "type": "exact",
+        "lineContent": "<span>🚌 Havalimanı / Yerel Transfer</span>"
+      },
+      {
+        "file": "components/inquiry/MobilityInquiryModal.tsx",
+        "line": 376,
+        "type": "exact",
+        "lineContent": "<span>🚗 {locale === 'tr' ? 'Havalimanı / Yerel Transfer' : 'Local Transfers'}</span>"
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "current": "Karar Motoru",
+    "proposed": "Proje Yolu Öneri Aracı",
+    "location": "Aşama 3 – proje yolu",
+    "match_count": 9,
+    "matches": [
+      {
+        "file": "app/platform/page.tsx",
+        "line": 198,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? '8 Faktörlü Karar Motoru' : '8-Factor Decision Engine'}"
+      },
+      {
+        "file": "app/platform/page.tsx",
+        "line": 210,
+        "type": "exact",
+        "lineContent": "<span>{locale === 'tr' ? 'Karar Motorunu Dene' : 'Test Decision Engine'}</span>"
+      },
+      {
+        "file": "app/school/pipeline/page.tsx",
+        "line": 647,
+        "type": "exact",
+        "lineContent": "{/* TAB 3: Host Eslestirme & Karar Motoru */}"
+      },
+      {
+        "file": "components/layout/NavSticky.tsx",
+        "line": 12,
+        "type": "exact",
+        "lineContent": "{ href: '#decision', label: '7. KA120/121/122 Karar Motoru' },"
+      },
+      {
+        "file": "components/ui/GuestOnboardingModal.tsx",
+        "line": 761,
+        "type": "exact",
+        "lineContent": ": locale === 'tr' ? 'Okul Karar Motorunu Aç' : 'Launch School Pipeline'}"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 816,
+        "type": "exact",
+        "lineContent": "step3Title: 'Yetkinlik & Karar Motoru',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 938,
+        "type": "exact",
+        "lineContent": "title: '7. KA120 / KA121 / KA122 Karar Motoru',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 940,
+        "type": "exact",
+        "lineContent": "calcBtn: 'Karar Motorunu Çalıştır (KA120 / KA121 / KA122)',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 944,
+        "type": "exact",
+        "lineContent": "emptyText: 'Karar üretmek için yukarıdaki \"Karar Motorunu Çalıştır\" butonuna tıklayınız.',"
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "current": "Partner & Host Arama Portalları",
+    "proposed": "Ortak ve Ev Sahibi Kuruluş Arama Platformları",
+    "location": "Aşama 3 – arama platformları",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 947,
+        "type": "exact",
+        "lineContent": "title: '8. AB Partner & Host Arama Portalları',"
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "current": "Partner Arama Hunisi",
+    "proposed": "Ortak Arama ve Kısa Liste Oluşturma Süreci",
+    "location": "Aşama 3 – arama platformları",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 949,
+        "type": "exact",
+        "lineContent": "funnelTitle: 'Önerilen 5 Aşamalı Partner Arama Hunisi (Search Funnel)',"
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "current": "Ön Kabul Alındı (LoI Hazır)",
+    "proposed": "Ön Kabul Alındı / Niyet Mektubu Hazır",
+    "location": "Aşama 3 – talep durumları",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1273,
+        "type": "exact",
+        "lineContent": "tabAccepted: 'Ön Kabul Alındı (LoI Hazır)',"
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "current": "Öğrenme Kazanımları Üreteci",
+    "proposed": "Öğrenme Çıktıları Oluşturma Aracı",
+    "location": "Aşama 4 – öğrenme çıktıları",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 956,
+        "type": "exact",
+        "lineContent": "title: '9. Öğrenme Kazanımları Üreteci (Learning Outcomes)',"
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "current": "ECVET & Europass Uyumlu",
+    "proposed": "Öğrenme Çıktıları ve Europass Mobility ile Uyumlu",
+    "location": "Aşama 4 ve alt bilgi",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/LearningOutcomesCard.tsx",
+        "line": 32,
+        "type": "exact",
+        "lineContent": "badge=\"ECVET & Europass Uyumlu\""
+      },
+      {
+        "file": "components/layout/AppFooter.tsx",
+        "line": 54,
+        "type": "exact",
+        "lineContent": "<div>• ECVET & Europass Uyumlu</div>"
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "current": "Hard Skills",
+    "proposed": "Teknik ve Mesleki Beceriler",
+    "location": "Aşama 4 – öğrenme çıktıları",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 959,
+        "type": "exact",
+        "lineContent": "technicalLabel: 'Hareketlilik Sonunda Beklenen Teknik Kazanım (Hard Skills)',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1633,
+        "type": "exact",
+        "lineContent": "technicalLabel: 'Expected Technical Learning Outcome (Hard Skills)',"
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "current": "Soft Skills",
+    "proposed": "Aktarılabilir Beceriler",
+    "location": "Aşama 4 – öğrenme çıktıları",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 960,
+        "type": "exact",
+        "lineContent": "transversalLabel: 'Transversal / Yeşil / Dijital & Dil Kazanımı (Soft Skills)',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1634,
+        "type": "exact",
+        "lineContent": "transversalLabel: 'Transversal / Green / Digital & Language Outcome (Soft Skills)',"
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "current": "ECVET Standartlarında Kazanımları Yeniden Üret",
+    "proposed": "Öğrenme Çıktılarını Yeniden Oluştur",
+    "location": "Aşama 4 – öğrenme çıktıları",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/LearningOutcomesCard.tsx",
+        "line": 83,
+        "type": "exact",
+        "lineContent": "✨ ECVET Standartlarında Kazanımları Yeniden Üret"
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "current": "Gönderen Kurum (Yararlanıcı VET)",
+    "proposed": "Gönderen Kuruluş / Yararlanıcı Kuruluş",
+    "location": "Aşama 4 – sorumluluk matrisi",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 967,
+        "type": "exact",
+        "lineContent": "sendingCol: 'Gönderen Kurum (Yararlanıcı VET)',"
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "current": "Ev Sahibi (AB Partneri)",
+    "proposed": "Ev Sahibi Kuruluş",
+    "location": "Aşama 4 – sorumluluk matrisi",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 968,
+        "type": "exact",
+        "lineContent": "hostCol: 'Ev Sahibi (AB Partneri)',"
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "current": "Destekleyici aracı kuruluşlar",
+    "proposed": "Destekleyici Kuruluşlar",
+    "location": "Aşama 4 – temel kural",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 969,
+        "type": "exact",
+        "lineContent": "disclaimer: 'Erasmus Temel İlkesi: Çekirdek proje görevleri (katılımcı seçimi, bütçe yönetimi, Ulusal Ajans raporlaması) mutlaka gönderen yararlanıcı kurumda (Beneficiary) kalmalıdır. Destekleyici aracı kuruluşlar sadece operasyonel kolaylaştırıcılık sağlayabilir.',"
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "current": "Gönderen Kurum (Sending VET)",
+    "proposed": "Gönderen Kuruluş",
+    "location": "Aşama 5 – planlama raporu",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 982,
+        "type": "exact",
+        "lineContent": "sendingOrg: 'Gönderen Kurum (Sending VET)',"
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "current": "OID Kodu",
+    "proposed": "Kuruluş Kimlik Numarası OID",
+    "location": "Aşama 5 – planlama raporu",
+    "match_count": 3,
+    "matches": [
+      {
+        "file": "components/application-draft/sections/OrgProfileSection.tsx",
+        "line": 314,
+        "type": "exact",
+        "lineContent": "Destek Kuruluşu OID Kodu"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 833,
+        "type": "exact",
+        "lineContent": "oidLabel: 'Erasmus OID Kodu (E10XXXXXX)',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 983,
+        "type": "exact",
+        "lineContent": "oid: 'OID Kodu',"
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "current": "Ev Sahibi Kuruluş (EU Host)",
+    "proposed": "Ev Sahibi Kuruluş",
+    "location": "Aşama 5 – planlama raporu",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 992,
+        "type": "exact",
+        "lineContent": "hostOrg: 'Ev Sahibi Kuruluş (EU Host)',"
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "current": "Format & Detaylar",
+    "proposed": "Faaliyet Türü ve Ayrıntılar",
+    "location": "Aşama 5 – planlama raporu",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/RecommendationReportCard.tsx",
+        "line": 363,
+        "type": "exact",
+        "lineContent": "Format & Detaylar"
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "current": "Beklenen Öğrenme Kazanımları",
+    "proposed": "Beklenen Öğrenme Çıktıları",
+    "location": "Aşama 5 – planlama raporu",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 998,
+        "type": "exact",
+        "lineContent": "expectedOutcomes: 'Beklenen Öğrenme Kazanımları (Learning Outcomes)',"
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "current": "Mobilite sonunda",
+    "proposed": "Hareketlilik sonunda",
+    "location": "Aşama 5 – oluşturulan metin",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/calculations.ts",
+        "line": 495,
+        "type": "exact",
+        "lineContent": "technicalOutcome = `Mobilite sonunda teknik eğitici; ${gap} alanındaki güncel Avrupa iyi uygulamalarını ve endüstri standartlarını doğrudan gözlemleyebilecek, edindiği en az iki yenilikçi pedagojik/teknik yöntemi okulundaki atölye/laboratuvar ortamına entegre edebilecek ve sonuçları meslektaşlarıyla kurumsal yaygınlaştırma çalıştayında paylaşabilecektir.`;"
+      },
+      {
+        "file": "lib/calculations.ts",
+        "line": 502,
+        "type": "exact",
+        "lineContent": "technicalOutcome = `Mobilite sonunda meslek lisesi öğrencisi; ${gap} ile ilgili tanımlanmış gerçek iş görevlerini ev sahibi kurumdaki mentor gözetiminde iş sağlığı ve güvenliği kurallarına uygun biçimde icra edebilecek, edindiği pratik becerileri kanıtlayan somut bir iş/ürün çıktısı sunabilecek ve kazanımlarını Europass Hareketlilik Belgesi ile belgelendirecektir.`;"
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "current": "Resmî Kaynaklar ve Yasal Çerçeve",
+    "proposed": "Resmî Kaynaklar ve Program Çerçevesi",
+    "location": "Aşama 5 – kaynaklar",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1008,
+        "type": "normalized",
+        "lineContent": "title: '12. Resmi Kaynaklar ve Yasal Çerçeve',"
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "current": "Kurumsal arkaplan",
+    "proposed": "Kurumsal arka plan",
+    "location": "Aşama 5 – kaynaklar",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1010,
+        "type": "normalized",
+        "lineContent": "info: 'KA121-VET akredite kuruluşlar için Erasmus Plan ile bağlantılı yıllık bütçe tahsisatına dayanır. KA122-VET kısa dönemli hareketlilik projelerinde ise kurumun kurumsal arkaplan, ihtiyaç/challenge, hedefler, faaliyetler, bütçe, kalite standartları ve yaygınlaştırma zincirini gerekçelendirmesi zorunludur.',"
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "current": "İhtiyaç/challenge",
+    "proposed": "İhtiyaçlar ve sorunlar",
+    "location": "Aşama 5 – kaynaklar",
+    "match_count": 0,
+    "matches": []
+  },
+  {
+    "id": 77,
+    "current": "Mobility Suitability skoru",
+    "proposed": "Hareketlilik Uygunluk Skoru",
+    "location": "Aşama 5 – yasal uyarı",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1011,
+        "type": "exact",
+        "lineContent": "disclaimer: 'Değerlendirme Yasal Uyarısı (Assessment Disclaimer): Bu araçtaki yeterlilik testi ve Mobility Suitability skoru tavsiye ve planlama amaçlıdır. Sonuçlar tek başına öğrenci/öğretmen seçimi, dışlama, işe alım, notlandırma veya başka yüksek etkili kararlar için kullanılamaz. Katılımcı seçimi şeffaf, adil ve kapsayıcı ayrı bir resmi prosedürle yürütülmelidir.',"
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "current": "Erasmus+ Mesleki Eğitim",
+    "proposed": "Erasmus+ Vocational Education and Training",
+    "location": "English interface – header",
+    "match_count": 7,
+    "matches": [
+      {
+        "file": "app/about/page.tsx",
+        "line": 101,
+        "type": "exact",
+        "lineContent": "? 'Erasmus+ Mesleki Eğitim Kalite Standartlarına tam uyumlu 3 ana sütun'"
+      },
+      {
+        "file": "app/news-and-events/page.tsx",
+        "line": 36,
+        "type": "exact",
+        "lineContent": "titleTr: '2026 Yılı Erasmus+ Mesleki Eğitim Akreditasyonu ve Hibe Tahsisatı Sonuçları Açıklandı',"
+      },
+      {
+        "file": "app/news-and-events/page.tsx",
+        "line": 156,
+        "type": "exact",
+        "lineContent": "? 'Erasmus+ Mesleki Eğitim Haber ve Çağrı Takvimi'"
+      },
+      {
+        "file": "app/onboarding/page.tsx",
+        "line": 971,
+        "type": "exact",
+        "lineContent": "Kurumumuz Erasmus+ Mesleki Eğitim Akreditasyonuna sahiptir."
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 119,
+        "type": "exact",
+        "lineContent": "<span className=\"truncate max-w-[210px] sm:max-w-none\">Erasmus+ Mesleki Eğitim</span>"
+      },
+      {
+        "file": "components/ui/LegalModal.tsx",
+        "line": 479,
+        "type": "exact",
+        "lineContent": "? 'ErasmusMobility (erasmusmobility.com); Erasmus+ Mesleki Eğitim (VET) alanında KA121 Akredite ve KA122 Kısa Dönemli hareketlilikleri yöneten gönderen kurumlar (Yararlanıcılar) ile Avrupalı ev sahibi işletmeleri (Hosts) bir araya getiren B2B SaaS yapısında entegre bir hareketlilik yönetim araç setidir (toolset). Platform; kurumsal profil oluşturma, akıllı eşleştirme (matching engine), hareketlilik yaşam döngüsünün uçtan uca dijital takibi, ESCO/ISCED-F taksonomik yetkinlik analizi, evrak/dossier otomasyonu ve nihai raporlama araçlarını kapsar.'"
+      },
+      {
+        "file": "components/ui/ProgrammesModal.tsx",
+        "line": 63,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Erasmus+ Mesleki Eğitim (VET) Programları' : 'Erasmus+ VET Programmes'}"
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "current": "CAPPINNO Mobility Nexus",
+    "proposed": "ErasmusMobility.com",
+    "location": "English interface – header and footer",
+    "match_count": 0,
+    "matches": []
+  },
+  {
+    "id": 80,
+    "current": "Beneficiaries",
+    "proposed": "Sending Organisations",
+    "location": "English interface – main menu",
+    "match_count": 21,
+    "matches": [
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 12,
+        "type": "exact",
+        "lineContent": "import BeneficiariesModal, { BeneficiaryCategory } from '../ui/BeneficiariesModal';"
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 30,
+        "type": "exact",
+        "lineContent": "const [isBeneficiariesOpen, setIsBeneficiariesOpen] = useState(false);"
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 31,
+        "type": "exact",
+        "lineContent": "const [beneficiariesCategory, setBeneficiariesCategory] = useState<BeneficiaryCategory>('MESLEK_LISELERI');"
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 449,
+        "type": "exact",
+        "lineContent": "setBeneficiariesCategory('MESLEK_LISELERI');"
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 450,
+        "type": "exact",
+        "lineContent": "setIsBeneficiariesOpen(true);"
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 801,
+        "type": "exact",
+        "lineContent": "setBeneficiariesCategory('MESLEK_LISELERI');"
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 802,
+        "type": "exact",
+        "lineContent": "setIsBeneficiariesOpen(true);"
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 879,
+        "type": "exact",
+        "lineContent": "<BeneficiariesModal"
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 880,
+        "type": "exact",
+        "lineContent": "isOpen={isBeneficiariesOpen}"
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 881,
+        "type": "exact",
+        "lineContent": "onClose={() => setIsBeneficiariesOpen(false)}"
+      },
+      {
+        "file": "components/ui/BeneficiariesModal.tsx",
+        "line": 27,
+        "type": "exact",
+        "lineContent": "export interface BeneficiariesModalProps {"
+      },
+      {
+        "file": "components/ui/BeneficiariesModal.tsx",
+        "line": 33,
+        "type": "exact",
+        "lineContent": "export default function BeneficiariesModal({"
+      },
+      {
+        "file": "components/ui/BeneficiariesModal.tsx",
+        "line": 37,
+        "type": "exact",
+        "lineContent": "}: BeneficiariesModalProps) {"
+      },
+      {
+        "file": "components/ui/BeneficiariesModal.tsx",
+        "line": 258,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Yararlanıcılar Referans Kataloğu' : 'Beneficiaries Reference Catalog'}"
+      },
+      {
+        "file": "components/ui/LegalModal.tsx",
+        "line": 480,
+        "type": "exact",
+        "lineContent": ": 'ErasmusMobility (erasmusmobility.com) is an enterprise B2B SaaS Erasmus Mobility-as-a-Service (EMaaS) toolset connecting sending educational institutions (Beneficiaries) with European hosting enterprises. The platform provides an integrated digital lifecycle workflow covering institutional profiling, intelligent partner matchmaking, end-to-end mobility monitoring, ESCO/ISCED-F competence analytics, dossier automation, and final reporting.'}"
+      },
+      {
+        "file": "components/ui/MebSchoolsWidget.tsx",
+        "line": 4,
+        "type": "exact",
+        "lineContent": "import BeneficiariesModal, { BeneficiaryCategory } from './BeneficiariesModal';"
+      },
+      {
+        "file": "components/ui/MebSchoolsWidget.tsx",
+        "line": 13,
+        "type": "exact",
+        "lineContent": "* Backward compatibility wrapper forwarding to unified BeneficiariesModal"
+      },
+      {
+        "file": "components/ui/MebSchoolsWidget.tsx",
+        "line": 21,
+        "type": "exact",
+        "lineContent": "<BeneficiariesModal"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1423,
+        "type": "exact",
+        "lineContent": "label: 'Beneficiaries',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1459,
+        "type": "exact",
+        "lineContent": "label: 'Beneficiaries',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1733,
+        "type": "exact",
+        "lineContent": "beneficiariesCatalog: 'Beneficiaries Reference Directory (4,800+)',"
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "current": "Opportunities & Hosts",
+    "proposed": "Hosting Organisations and Services",
+    "location": "English interface – main menu",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1440,
+        "type": "exact",
+        "lineContent": "label: 'Opportunities & Hosts',"
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "current": "How It Works?",
+    "proposed": "How It Works",
+    "location": "English interface – header",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1976,
+        "type": "exact",
+        "lineContent": "howItWorksBtn: 'How It Works?',"
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "current": "Giriş Yap",
+    "proposed": "Sign In",
+    "location": "English interface – header",
+    "match_count": 4,
+    "matches": [
+      {
+        "file": "app/onboarding/page.tsx",
+        "line": 389,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Giriş Yap' : 'Sign In'}"
+      },
+      {
+        "file": "app/school/application-draft/page.tsx",
+        "line": 244,
+        "type": "exact",
+        "lineContent": "{/* 1. Aktif Giriş Yapmış Okul Bildirim Paneli */}"
+      },
+      {
+        "file": "app/school/application-draft/page.tsx",
+        "line": 252,
+        "type": "exact",
+        "lineContent": "Aktif Giriş Yapan Okul"
+      },
+      {
+        "file": "components/layout/AppHeader.tsx",
+        "line": 643,
+        "type": "exact",
+        "lineContent": "Giriş Yap"
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "current": "KA121 & KA122 Aligned",
+    "proposed": "Supports KA121-VET and KA122-VET Planning",
+    "location": "English interface – welcome section",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1879,
+        "type": "exact",
+        "lineContent": "badge1: 'KA121 & KA122 Aligned',"
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "current": "Verified European hosts",
+    "proposed": "Hosting organisations verified by ErasmusMobility.com",
+    "location": "English interface – welcome section",
+    "match_count": 3,
+    "matches": [
+      {
+        "file": "app/platform/page.tsx",
+        "line": 69,
+        "type": "normalized",
+        "lineContent": ": 'ErasmusMobility brings together school leaders, project coordinators, and European host enterprises on a single institutional gateway. Elevate your Erasmus+ journey through a 5-step pipeline, verified European hosts, and official web application guidance.'}"
+      },
+      {
+        "file": "app/platform/page.tsx",
+        "line": 176,
+        "type": "normalized",
+        "lineContent": ": 'Enterprise space where verified European hosts publish trainee capacities, offer mentoring, and confirm student mobility requests.'}"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1878,
+        "type": "normalized",
+        "lineContent": "desc: 'Plan your vocational education (VET) mobilities, perform ESCO competence gap analysis, and match with verified European hosts. Test all tools live without signing in or create a free account.',"
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "current": "15-Factor Verified Matching",
+    "proposed": "15-Criteria Organisation Matching",
+    "location": "English interface – welcome section",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1882,
+        "type": "exact",
+        "lineContent": "badge4: '15-Factor Verified Matching',"
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "current": "Erasmus+ VET Modeli",
+    "proposed": "Erasmus+ VET Model",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/SystemKpiCard.tsx",
+        "line": 14,
+        "type": "exact",
+        "lineContent": "badge=\"Erasmus+ VET Modeli\""
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "current": "Aşama 1/2/3/4",
+    "proposed": "Stage 1/2/3/4",
+    "location": "English interface – Stage 1 workflow",
+    "match_count": 0,
+    "matches": []
+  },
+  {
+    "id": 89,
+    "current": "Çıktı: Kurum Profili & OID",
+    "proposed": "Output: Organisation Profile and OID",
+    "location": "English interface – Stage 1 workflow",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/SystemKpiCard.tsx",
+        "line": 39,
+        "type": "exact",
+        "lineContent": "Çıktı: Kurum Profili & OID"
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "current": "Çıktı: ESCO Eşleştirmesi & Boşluk",
+    "proposed": "Output: ESCO Mapping and Competence Gap",
+    "location": "English interface – Stage 1 workflow",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/SystemKpiCard.tsx",
+        "line": 62,
+        "type": "exact",
+        "lineContent": "Çıktı: ESCO Eşleştirmesi & Boşluk"
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "current": "Çıktı: KA121 / KA122 Kararı",
+    "proposed": "Output: Recommended Project Path",
+    "location": "English interface – Stage 1 workflow",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/SystemKpiCard.tsx",
+        "line": 85,
+        "type": "exact",
+        "lineContent": "Çıktı: KA121 / KA122 Kararı"
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "current": "EU Host & Mobility Plan",
+    "proposed": "Hosting Organisation and Mobility Plan",
+    "location": "English interface – Stage 1 workflow",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1492,
+        "type": "exact",
+        "lineContent": "step4Title: 'EU Host & Mobility Plan',"
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "current": "Host scoring",
+    "proposed": "Hosting Organisation Scoring",
+    "location": "English interface – Stage 1 workflow",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1493,
+        "type": "exact",
+        "lineContent": "step4Desc: '10-parameter weighted Host scoring, partner search funnel, and role-based learning outcomes.',"
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "current": "Partner search funnel",
+    "proposed": "Partner Search and Shortlisting Process",
+    "location": "English interface – Stage 1 workflow",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1493,
+        "type": "normalized",
+        "lineContent": "step4Desc: '10-parameter weighted Host scoring, partner search funnel, and role-based learning outcomes.',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1623,
+        "type": "normalized",
+        "lineContent": "funnelTitle: 'Recommended 5-Step Partner Search Funnel',"
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "current": "Hazırlık Skoru",
+    "proposed": "Readiness Score",
+    "location": "English interface – Stage 1",
+    "match_count": 5,
+    "matches": [
+      {
+        "file": "app/onboarding/page.tsx",
+        "line": 221,
+        "type": "exact",
+        "lineContent": "// Live Hazırlık Skoru Calculation (School)"
+      },
+      {
+        "file": "app/onboarding/page.tsx",
+        "line": 1006,
+        "type": "exact",
+        "lineContent": "<span className=\"font-semibold text-slate-700\">Tahmini Başlangıç Hazırlık Skoru:</span>"
+      },
+      {
+        "file": "components/gateway/SchoolProfileCard.tsx",
+        "line": 33,
+        "type": "exact",
+        "lineContent": "badge={`Hazırlık Skoru: %${readinessScore}`}"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1043,
+        "type": "exact",
+        "lineContent": "readinessScore: 'Erasmus+ Başvuru Hazırlık Skoru',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1109,
+        "type": "exact",
+        "lineContent": "schoolFeature2: 'Canlı Kurumsal Hazırlık Skoru',"
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "current": "Yes (Accredited Institution – KA121)",
+    "proposed": "Yes – Holds an Erasmus Accreditation KA120-VET",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1505,
+        "type": "normalized",
+        "lineContent": "accYes: 'Yes (Accredited Institution - KA121)',"
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "current": "No (Short-term Mobility – KA122)",
+    "proposed": "No – Planning a KA122-VET Short-term Project",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1506,
+        "type": "normalized",
+        "lineContent": "accNo: 'No (Short-term Mobility - KA122)',"
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "current": "Institutional Need / Concrete Challenge",
+    "proposed": "Institutional Needs and Identified Gaps",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1510,
+        "type": "exact",
+        "lineContent": "needLabel: 'Institutional Need / Concrete Challenge *',"
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "current": "Hedef Kitle",
+    "proposed": "Target Group",
+    "location": "English interface – Stage 1",
+    "match_count": 3,
+    "matches": [
+      {
+        "file": "components/application-draft/Ka120ImportPreviewModal.tsx",
+        "line": 522,
+        "type": "exact",
+        "lineContent": "<label className=\"block text-[11px] font-semibold text-slate-600 mb-0.5\">Hedef Kitle</label>"
+      },
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 75,
+        "type": "exact",
+        "lineContent": "badge=\"Hedef Kitle\""
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 844,
+        "type": "exact",
+        "lineContent": "badge: 'Hedef Kitle',"
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "current": "VET Student / Apprentice (VET Learner)",
+    "proposed": "VET Learner / Apprentice",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1521,
+        "type": "exact",
+        "lineContent": "student: 'VET Student / Apprentice (VET Learner)',"
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "current": "Vocational Teacher / Trainer (Staff)",
+    "proposed": "Staff Participant – Teacher or Trainer",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1520,
+        "type": "exact",
+        "lineContent": "teacher: 'Vocational Teacher / Trainer (Staff)',"
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "current": "Eğitici & Mesleki Personel",
+    "proposed": "Trainer and Other VET Staff",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 92,
+        "type": "exact",
+        "lineContent": "<option value=\"staff\">Eğitici & Mesleki Personel</option>"
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "current": "Kuruma Gelen (Davetli Uzman / Eğitici)",
+    "proposed": "Invited Expert",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 93,
+        "type": "exact",
+        "lineContent": "<option value=\"incoming\">Kuruma Gelen (Davetli Uzman / Eğitici)</option>"
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "current": "Proje Ekibi (Hazırlık Ziyareti)",
+    "proposed": "Preparatory Visit Participant",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 94,
+        "type": "exact",
+        "lineContent": "<option value=\"project_team\">Proje Ekibi (Hazırlık Ziyareti)</option>"
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "current": "Mobility Format / Activity Type",
+    "proposed": "Erasmus+ Activity Type",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1522,
+        "type": "exact",
+        "lineContent": "goalLabel: 'Mobility Format / Activity Type',"
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "current": "10 Resmi Erasmus+ Faaliyeti",
+    "proposed": "Supported Erasmus+ Activity Types",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 99,
+        "type": "exact",
+        "lineContent": "{t.participant.goalLabel} (10 Resmi Erasmus+ Faaliyeti)"
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "current": "Mesleki Beceri Yarışmasına Katılım",
+    "proposed": "Participation in VET Skills Competitions",
+    "location": "English interface – Stage 1",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 107,
+        "type": "exact",
+        "lineContent": "<option value=\"VET_SKILLS_COMPETITION\">Mesleki Beceri Yarışmasına Katılım (1–10 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 356,
+        "type": "exact",
+        "lineContent": "nameTr: 'Mesleki Beceri Yarışmasına Katılım (1–10 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "current": "Öğrenici Grup Hareketliliği",
+    "proposed": "Group Mobility of VET Learners",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 108,
+        "type": "exact",
+        "lineContent": "<option value=\"VET_GROUP_MOBILITY\">Öğrenici Grup Hareketliliği (2–30 gün)</option>"
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "current": "Kısa Dönemli Bireysel Öğrenme / Staj",
+    "proposed": "Short-term Learning Mobility of VET Learners",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 109,
+        "type": "exact",
+        "lineContent": "<option value=\"VET_SHORT_TERM\">Kısa Dönemli Bireysel Öğrenme / Staj (10–89 gün)</option>"
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "current": "ErasmusPro Uzun Dönemli Staj",
+    "proposed": "Long-term Learning Mobility of VET Learners ErasmusPro",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 110,
+        "type": "exact",
+        "lineContent": "<option value=\"VET_LONG_TERM_PRO\">ErasmusPro Uzun Dönemli Staj (90–365 gün)</option>"
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "current": "İşbaşı Gözlem / Job Shadowing",
+    "proposed": "Job Shadowing",
+    "location": "English interface – Stage 1",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 113,
+        "type": "exact",
+        "lineContent": "<option value=\"JOB_SHADOWING\">İşbaşı Gözlem / Job Shadowing (2–60 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 412,
+        "type": "exact",
+        "lineContent": "nameTr: 'İşbaşı Gözlem / Job Shadowing (2–60 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "current": "Öğretme veya Eğitim Görevlendirmesi",
+    "proposed": "Teaching or Training Assignment",
+    "location": "English interface – Stage 1",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 114,
+        "type": "exact",
+        "lineContent": "<option value=\"TEACHING_ASSIGNMENT\">Öğretme veya Eğitim Görevlendirmesi (2–365 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 426,
+        "type": "exact",
+        "lineContent": "nameTr: 'Öğretme veya Eğitim Görevlendirmesi (2–365 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "current": "Kurs ve Eğitim",
+    "proposed": "Courses and Training",
+    "location": "English interface – Stage 1",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 115,
+        "type": "exact",
+        "lineContent": "<option value=\"STAFF_COURSE_TRAINING\">Kurs ve Eğitim (2–10 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 440,
+        "type": "exact",
+        "lineContent": "nameTr: 'Kurs ve Eğitim (2–10 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "current": "Davetli Uzman / Invited Expert",
+    "proposed": "Invited Expert",
+    "location": "English interface – Stage 1",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 118,
+        "type": "exact",
+        "lineContent": "<option value=\"INVITED_EXPERT\">Davetli Uzman / Invited Expert (2–60 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 454,
+        "type": "exact",
+        "lineContent": "nameTr: 'Davetli Uzman / Invited Expert (2–60 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 115,
+    "current": "Öğretmen/Eğitimci Adayına Ev Sahipliği",
+    "proposed": "Hosting Teachers and Educators in Training",
+    "location": "English interface – Stage 1",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 119,
+        "type": "exact",
+        "lineContent": "<option value=\"HOSTING_TEACHERS\">Öğretmen/Eğitimci Adayına Ev Sahipliği (10–365 gün)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 468,
+        "type": "exact",
+        "lineContent": "nameTr: 'Öğretmen/Eğitimci Adayına Ev Sahipliği (10–365 gün)',"
+      }
+    ]
+  },
+  {
+    "id": 116,
+    "current": "Hazırlık Ziyareti",
+    "proposed": "Preparatory Visit",
+    "location": "English interface – Stage 1",
+    "match_count": 6,
+    "matches": [
+      {
+        "file": "components/application-draft/sections/ActivityDetailsSection.tsx",
+        "line": 490,
+        "type": "exact",
+        "lineContent": "{/* 7. İstisnai Maliyetler (EXC-01 ~ EXC-04) & Hazırlık Ziyareti (PRE-01) */}"
+      },
+      {
+        "file": "components/application-draft/sections/ActivityDetailsSection.tsx",
+        "line": 534,
+        "type": "exact",
+        "lineContent": "{/* Hazırlık Ziyareti */}"
+      },
+      {
+        "file": "components/application-draft/sections/ActivityDetailsSection.tsx",
+        "line": 538,
+        "type": "exact",
+        "lineContent": "<span>✈️</span> Hazırlık Ziyareti (PRE-01)"
+      },
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 94,
+        "type": "exact",
+        "lineContent": "<option value=\"project_team\">Proje Ekibi (Hazırlık Ziyareti)</option>"
+      },
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 122,
+        "type": "exact",
+        "lineContent": "<option value=\"PREPARATORY_VISIT\">Hazırlık Ziyareti (Maks. 3 kişi)</option>"
+      },
+      {
+        "file": "lib/constants.ts",
+        "line": 482,
+        "type": "exact",
+        "lineContent": "nameTr: 'Hazırlık Ziyareti (Maks. 3 kişi)',"
+      }
+    ]
+  },
+  {
+    "id": 117,
+    "current": "Hedef Ülkeler",
+    "proposed": "Preferred Hosting Countries",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 131,
+        "type": "exact",
+        "lineContent": "Hedef Ülkeler"
+      }
+    ]
+  },
+  {
+    "id": 118,
+    "current": "Farketmez / Tüm Ülkeler",
+    "proposed": "No Preference / All Eligible Countries",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 60,
+        "type": "exact",
+        "lineContent": "{ code: 'ANY', label: 'Farketmez / Tüm Ülkeler' },"
+      }
+    ]
+  },
+  {
+    "id": 119,
+    "current": "Planlanan Başlangıç Tarihi",
+    "proposed": "Planned Start Date",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 159,
+        "type": "exact",
+        "lineContent": "Planlanan Başlangıç Tarihi"
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "current": "Planlanan Bitiş Tarihi",
+    "proposed": "Planned End Date",
+    "location": "English interface – Stage 1",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 170,
+        "type": "exact",
+        "lineContent": "Planlanan Bitiş Tarihi"
+      }
+    ]
+  },
+  {
+    "id": 121,
+    "current": "Katılımcı Sayısı",
+    "proposed": "Number of Participants",
+    "location": "English interface – Stage 1",
+    "match_count": 10,
+    "matches": [
+      {
+        "file": "components/application-draft/sections/ActivityDetailsSection.tsx",
+        "line": 150,
+        "type": "exact",
+        "lineContent": "{/* 3. Katılımcı Sayısı, Süre ve Süre Grupları */}"
+      },
+      {
+        "file": "components/application-draft/sections/ActivityDetailsSection.tsx",
+        "line": 153,
+        "type": "exact",
+        "lineContent": "<span>⏱️</span> Katılımcı Sayısı ve Faaliyet Süresi"
+      },
+      {
+        "file": "components/application-draft/sections/ActivityDetailsSection.tsx",
+        "line": 159,
+        "type": "exact",
+        "lineContent": "Toplam Katılımcı Sayısı (ACT-06) *"
+      },
+      {
+        "file": "components/application-draft/sections/ActivityDetailsSection.tsx",
+        "line": 258,
+        "type": "exact",
+        "lineContent": "Yeşil Ulaşım Katılımcı Sayısı (TRV-02) *"
+      },
+      {
+        "file": "components/application-draft/sections/AiOfficialQuestionsSection.tsx",
+        "line": 103,
+        "type": "exact",
+        "lineContent": "label: 'Öğrenici / Katılımcı Sayısı (Learners Count)',"
+      },
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 226,
+        "type": "exact",
+        "lineContent": "Katılımcı Sayısı"
+      },
+      {
+        "file": "components/host/HostPortfolioModal.tsx",
+        "line": 376,
+        "type": "exact",
+        "lineContent": "Türkiye'den Katılımcı Sayısı"
+      },
+      {
+        "file": "components/host/HostVerificationModal.tsx",
+        "line": 333,
+        "type": "exact",
+        "lineContent": "3. Katılımcı Sayısı Kanıt Evrakları"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 894,
+        "type": "exact",
+        "lineContent": "participantCountLabel: 'Planlanan Katılımcı Sayısı (Maks. 30)',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1223,
+        "type": "exact",
+        "lineContent": "participantsLabel: 'Katılımcı Sayısı',"
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "current": "Refakatçi Sayısı",
+    "proposed": "Number of Accompanying Persons",
+    "location": "English interface – Stage 1",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/application-draft/sections/ActivityDetailsSection.tsx",
+        "line": 339,
+        "type": "exact",
+        "lineContent": "Refakatçi Sayısı (ACC-02) *"
+      },
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 238,
+        "type": "exact",
+        "lineContent": "Refakatçi Sayısı"
+      }
+    ]
+  },
+  {
+    "id": 123,
+    "current": "Yaş Grubu",
+    "proposed": "Age Group",
+    "location": "English interface – Stage 1",
+    "match_count": 5,
+    "matches": [
+      {
+        "file": "components/application-draft/Ka120ImportPreviewModal.tsx",
+        "line": 355,
+        "type": "exact",
+        "lineContent": "Öğrenici Profili ve Yaş Grubu Özeti"
+      },
+      {
+        "file": "components/application-draft/sections/OrgProfileSection.tsx",
+        "line": 121,
+        "type": "exact",
+        "lineContent": "Hedef Öğrenici Profili ve Yaş Grubu (ORG-03) *"
+      },
+      {
+        "file": "components/dashboard/SchoolDashboardView.tsx",
+        "line": 162,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Yaş Grubu: 16-18 Karma' : 'Age Group: 16-18 Mixed'}"
+      },
+      {
+        "file": "components/gateway/ParticipantProfileCard.tsx",
+        "line": 250,
+        "type": "exact",
+        "lineContent": "Yaş Grubu"
+      },
+      {
+        "file": "components/gateway/RecommendationReportCard.tsx",
+        "line": 371,
+        "type": "exact",
+        "lineContent": "<span><strong>Yaş Grubu:</strong> {data.ageGroup === 'under_18' ? '18 Yaş Altı' : data.ageGroup === '18_plus' ? '18 Yaş ve Üstü' : 'Karma'}</span>"
+      }
+    ]
+  },
+  {
+    "id": 124,
+    "current": "AB ESCO v1.1",
+    "proposed": "EU ESCO Classification",
+    "location": "English interface – Stage 2",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EscoIscedMapperCard.tsx",
+        "line": 39,
+        "type": "exact",
+        "lineContent": "badge=\"AB ESCO v1.1\""
+      }
+    ]
+  },
+  {
+    "id": 125,
+    "current": "Elektrik-Elektronik / Endüstriyel Otomasyon",
+    "proposed": "Electrical and Electronic Engineering / Industrial Automation",
+    "location": "English interface – Stage 2",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/constants.ts",
+        "line": 124,
+        "type": "exact",
+        "lineContent": "label: 'Elektrik-Elektronik / Endüstriyel Otomasyon',"
+      }
+    ]
+  },
+  {
+    "id": 126,
+    "current": "Bilişim / Yazılım Geliştirme",
+    "proposed": "Information Technologies / Software Development",
+    "location": "English interface – Stage 2",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/constants.ts",
+        "line": 132,
+        "type": "exact",
+        "lineContent": "label: 'Bilişim / Yazılım Geliştirme',"
+      }
+    ]
+  },
+  {
+    "id": 127,
+    "current": "Bilişim / Ağ Sistemleri & Siber Güvenlik",
+    "proposed": "Information Technologies / Network Systems and Cybersecurity",
+    "location": "English interface – Stage 2",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/constants.ts",
+        "line": 140,
+        "type": "exact",
+        "lineContent": "label: 'Bilişim / Ağ Sistemleri & Siber Güvenlik',"
+      }
+    ]
+  },
+  {
+    "id": 128,
+    "current": "ESCO Doğrula",
+    "proposed": "Verify on ESCO",
+    "location": "English interface – Stage 2",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EscoIscedMapperCard.tsx",
+        "line": 154,
+        "type": "exact",
+        "lineContent": "🔍 ESCO Doğrula ↗"
+      }
+    ]
+  },
+  {
+    "id": 129,
+    "current": "ISCED-F 2013 Rehberi",
+    "proposed": "ISCED-F 2013 Manual",
+    "location": "English interface – Stage 2",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/EscoIscedMapperCard.tsx",
+        "line": 170,
+        "type": "exact",
+        "lineContent": "📄 ISCED-F 2013 Rehberi ↗"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 871,
+        "type": "exact",
+        "lineContent": "iscedGuideBtn: 'ISCED-F 2013 Rehberi',"
+      }
+    ]
+  },
+  {
+    "id": 130,
+    "current": "12/12 Tamamlandı",
+    "proposed": "12/12 Completed",
+    "location": "English interface – Stage 2",
+    "match_count": 0,
+    "matches": []
+  },
+  {
+    "id": 131,
+    "current": "Mesleki Teknik Yetkinlik",
+    "proposed": "Technical and Occupational Competence",
+    "location": "English interface – Stage 2",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/constants.ts",
+        "line": 229,
+        "type": "exact",
+        "lineContent": "title: 'Mesleki Teknik Yetkinlik',"
+      }
+    ]
+  },
+  {
+    "id": 132,
+    "current": "Yetkinlik Skorunu Hesapla",
+    "proposed": "Calculate Competence Score",
+    "location": "English interface – Stage 2",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/CompetenceAssessmentCard.tsx",
+        "line": 99,
+        "type": "exact",
+        "lineContent": "📊 Yetkinlik Skorunu Hesapla"
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "current": "Analiz & Boşluk",
+    "proposed": "Assessment and Competence Gap",
+    "location": "English interface – Stage 2",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/CompetenceGapCard.tsx",
+        "line": 30,
+        "type": "exact",
+        "lineContent": "badge=\"Analiz & Boşluk\""
+      }
+    ]
+  },
+  {
+    "id": 134,
+    "current": "KA122-VET Pre-Application Mandatory Eligibility Gatekeeper",
+    "proposed": "KA122-VET Pre-application Eligibility Check",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1564,
+        "type": "exact",
+        "lineContent": "title: '5. KA122-VET Pre-Application Mandatory Eligibility Gatekeeper',"
+      }
+    ]
+  },
+  {
+    "id": 135,
+    "current": "Official Eligibility Gatekeeper",
+    "proposed": "Preliminary Eligibility Check",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1565,
+        "type": "exact",
+        "lineContent": "badge: 'Official Eligibility Gatekeeper',"
+      }
+    ]
+  },
+  {
+    "id": 136,
+    "current": "Mandatory Eligibility Verification",
+    "proposed": "Preliminary Eligibility Assessment",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EligibilityGatekeeperCard.tsx",
+        "line": 41,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Zorunlu Uygunluk Denetimi:' : 'Mandatory Eligibility Verification:'}"
+      }
+    ]
+  },
+  {
+    "id": 137,
+    "current": "Not Accredited (No KA120)",
+    "proposed": "Does Not Hold an Erasmus Accreditation",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EligibilityGatekeeperCard.tsx",
+        "line": 61,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Akreditasyon Yok (KA120 Belgesi Bulunmuyor)' : 'Not Accredited (No KA120)'}"
+      }
+    ]
+  },
+  {
+    "id": 138,
+    "current": "Accredited (Holds KA120)",
+    "proposed": "Holds an Erasmus Accreditation KA120-VET",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EligibilityGatekeeperCard.tsx",
+        "line": 64,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Akredite Kurum (KA120 Belgesi Mevcut)' : 'Accredited (Holds KA120)'}"
+      }
+    ]
+  },
+  {
+    "id": 139,
+    "current": "KA122 Grants in Past 36 Months",
+    "proposed": "KA122-VET Grants Received During Five Consecutive Call Years",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1570,
+        "type": "exact",
+        "lineContent": "pastGrantsLabel: 'KA122 Grants in Past 36 Months (Max 3)',"
+      }
+    ]
+  },
+  {
+    "id": 140,
+    "current": "36-month grant limits",
+    "proposed": "Limit of Three Grants During Five Consecutive Call Years",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1566,
+        "type": "exact",
+        "lineContent": "subtitle: 'Verifies accreditation status, participant cap (30 max), duration (6–18 months), and 36-month grant limits as per Erasmus+ VET Guide',"
+      }
+    ]
+  },
+  {
+    "id": 141,
+    "current": "KA120 Recommended",
+    "proposed": "Erasmus Accreditation KA120-VET May Be Considered",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1573,
+        "type": "exact",
+        "lineContent": "strategyRegular: 'Annual / Regular Mobility (KA120 Recommended)',"
+      }
+    ]
+  },
+  {
+    "id": 142,
+    "current": "Pax",
+    "proposed": "Participants",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/EligibilityGatekeeperCard.tsx",
+        "line": 89,
+        "type": "exact",
+        "lineContent": "{locale === 'tr' ? 'Kişi' : 'Pax'}"
+      }
+    ]
+  },
+  {
+    "id": 143,
+    "current": "Smart EU Host Matching",
+    "proposed": "Hosting Organisation Matching",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1583,
+        "type": "exact",
+        "lineContent": "modeLive: 'Smart EU Host Matching (Live Match)',"
+      }
+    ]
+  },
+  {
+    "id": 144,
+    "current": "Eşleştirme Kriterleri Özeti",
+    "proposed": "Summary of Matching Criteria",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/HostMatchingCard.tsx",
+        "line": 204,
+        "type": "exact",
+        "lineContent": "<span>Eşleştirme Kriterleri Özeti (Okul Profilinden Alındı):</span>"
+      }
+    ]
+  },
+  {
+    "id": 145,
+    "current": "5 Asil + 0 Refakatçi",
+    "proposed": "5 Participants + 0 Accompanying Persons",
+    "location": "English interface – Stage 3",
+    "match_count": 0,
+    "matches": []
+  },
+  {
+    "id": 146,
+    "current": "Lojistik Talepleri",
+    "proposed": "Logistical Service Requirements",
+    "location": "English interface – Stage 3",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/admin/AdminInquiryDetailModal.tsx",
+        "line": 286,
+        "type": "exact",
+        "lineContent": "<span>{isEn ? 'Mobility Specifications & Logistics' : 'Hareketlilik Kapsami ve Lojistik Talepleri'}</span>"
+      },
+      {
+        "file": "components/gateway/HostMatchingCard.tsx",
+        "line": 247,
+        "type": "exact",
+        "lineContent": "<span className=\"font-semibold text-slate-700\">Lojistik Talepleri:</span>"
+      }
+    ]
+  },
+  {
+    "id": 147,
+    "current": "Konaklama Şartı",
+    "proposed": "Accommodation Required",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/HostMatchingCard.tsx",
+        "line": 255,
+        "type": "exact",
+        "lineContent": "<span>🏨 Konaklama Şartı</span>"
+      }
+    ]
+  },
+  {
+    "id": 148,
+    "current": "Yemek / İaşe Şartı",
+    "proposed": "Meals Required",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/HostMatchingCard.tsx",
+        "line": 264,
+        "type": "exact",
+        "lineContent": "<span>🍽️ Yemek / İaşe Şartı</span>"
+      }
+    ]
+  },
+  {
+    "id": 149,
+    "current": "Havalimanı / Yerel Transfer",
+    "proposed": "Airport Transfer and Local Transport",
+    "location": "English interface – Stage 3",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/HostMatchingCard.tsx",
+        "line": 273,
+        "type": "exact",
+        "lineContent": "<span>🚌 Havalimanı / Yerel Transfer</span>"
+      },
+      {
+        "file": "components/inquiry/MobilityInquiryModal.tsx",
+        "line": 376,
+        "type": "exact",
+        "lineContent": "<span>🚗 {locale === 'tr' ? 'Havalimanı / Yerel Transfer' : 'Local Transfers'}</span>"
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "current": "KA120 / KA121 / KA122 Decision Engine",
+    "proposed": "Erasmus+ Project Path Recommendation Tool",
+    "location": "English interface – Stage 3",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "app/school/pipeline/page.tsx",
+        "line": 702,
+        "type": "exact",
+        "lineContent": "{/* Step 7: 8-Factor KA120 / KA121 / KA122 Decision Engine */}"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1612,
+        "type": "exact",
+        "lineContent": "title: '7. KA120 / KA121 / KA122 Decision Engine',"
+      }
+    ]
+  },
+  {
+    "id": 151,
+    "current": "RECOMMENDED ERASMUS+ ACTİON PATHWAY",
+    "proposed": "Recommended Erasmus+ Project Path",
+    "location": "English interface – Stage 3",
+    "match_count": 0,
+    "matches": []
+  },
+  {
+    "id": 152,
+    "current": "EU Partner & Host Finding Gateway",
+    "proposed": "Partner and Hosting Organisation Search",
+    "location": "English interface – Stage 3",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "app/school/pipeline/page.tsx",
+        "line": 708,
+        "type": "exact",
+        "lineContent": "{/* Step 8: EU Partner & Host Finding Gateway */}"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1621,
+        "type": "exact",
+        "lineContent": "title: '8. EU Partner & Host Finding Gateway',"
+      }
+    ]
+  },
+  {
+    "id": 153,
+    "current": "My Sent Mobility Inquiries & Application Status",
+    "proposed": "My Mobility Requests and Their Status",
+    "location": "English interface – Stage 3",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1942,
+        "type": "exact",
+        "lineContent": "cardTitle: 'My Sent Mobility Inquiries & Application Status',"
+      }
+    ]
+  },
+  {
+    "id": 154,
+    "current": "Accepted (LoI Ready)",
+    "proposed": "Pre-accepted / Letter of Intent Ready",
+    "location": "English interface – Stage 3",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1935,
+        "type": "exact",
+        "lineContent": "statusAccepted: 'Accepted (LoI Ready)',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1947,
+        "type": "exact",
+        "lineContent": "tabAccepted: 'Accepted (LoI Ready)',"
+      }
+    ]
+  },
+  {
+    "id": 155,
+    "current": "ECVET & Europass Uyumlu",
+    "proposed": "Aligned with Learning Outcomes and Europass Mobility",
+    "location": "English interface – Stage 4",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/LearningOutcomesCard.tsx",
+        "line": 32,
+        "type": "exact",
+        "lineContent": "badge=\"ECVET & Europass Uyumlu\""
+      },
+      {
+        "file": "components/layout/AppFooter.tsx",
+        "line": 54,
+        "type": "exact",
+        "lineContent": "<div>• ECVET & Europass Uyumlu</div>"
+      }
+    ]
+  },
+  {
+    "id": 156,
+    "current": "Expected Technical Learning Outcome (Hard Skills)",
+    "proposed": "Expected Technical and Occupational Learning Outcomes",
+    "location": "English interface – Stage 4",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1633,
+        "type": "exact",
+        "lineContent": "technicalLabel: 'Expected Technical Learning Outcome (Hard Skills)',"
+      }
+    ]
+  },
+  {
+    "id": 157,
+    "current": "Transversal / Green / Digital & Language Outcome (Soft Skills)",
+    "proposed": "Expected Transversal, Green, Digital and Language Learning Outcomes",
+    "location": "English interface – Stage 4",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1634,
+        "type": "exact",
+        "lineContent": "transversalLabel: 'Transversal / Green / Digital & Language Outcome (Soft Skills)',"
+      }
+    ]
+  },
+  {
+    "id": 158,
+    "current": "ECVET Standartlarında Kazanımları Yeniden Üret",
+    "proposed": "Regenerate Learning Outcomes",
+    "location": "English interface – Stage 4",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/LearningOutcomesCard.tsx",
+        "line": 83,
+        "type": "exact",
+        "lineContent": "✨ ECVET Standartlarında Kazanımları Yeniden Üret"
+      }
+    ]
+  },
+  {
+    "id": 159,
+    "current": "Sending Institution (Beneficiary)",
+    "proposed": "Sending Organisation / Beneficiary Organisation",
+    "location": "English interface – Stage 4",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1641,
+        "type": "exact",
+        "lineContent": "sendingCol: 'Sending Institution (Beneficiary)',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1893,
+        "type": "exact",
+        "lineContent": "senderOrgTitle: 'Sending Institution (Beneficiary)',"
+      }
+    ]
+  },
+  {
+    "id": 160,
+    "current": "Host Organisation (EU Partner)",
+    "proposed": "Hosting Organisation",
+    "location": "English interface – Stage 4",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1642,
+        "type": "exact",
+        "lineContent": "hostCol: 'Host Organisation (EU Partner)',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1666,
+        "type": "exact",
+        "lineContent": "hostOrg: 'Host Organisation (EU Partner)',"
+      }
+    ]
+  },
+  {
+    "id": 161,
+    "current": "Supporting partner organizations",
+    "proposed": "Supporting Organisations",
+    "location": "English interface – Stage 4",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1643,
+        "type": "exact",
+        "lineContent": "disclaimer: 'Core Project Principle: Core project tasks (participant selection, budget management, NA reporting) must remain with the beneficiary. Supporting partner organizations only provide practical facilitation.',"
+      }
+    ]
+  },
+  {
+    "id": 162,
+    "current": "Sending Institution (VET)",
+    "proposed": "Sending Organisation",
+    "location": "English interface – Stage 5",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1656,
+        "type": "exact",
+        "lineContent": "sendingOrg: 'Sending Institution (VET)',"
+      }
+    ]
+  },
+  {
+    "id": 163,
+    "current": "OID Code",
+    "proposed": "Organisation ID OID",
+    "location": "English interface – Stage 5",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/SchoolProfileCard.tsx",
+        "line": 77,
+        "type": "exact",
+        "lineContent": "{/* Row 2: Accreditation Status & OID Code */}"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1657,
+        "type": "exact",
+        "lineContent": "oid: 'OID Code',"
+      }
+    ]
+  },
+  {
+    "id": 164,
+    "current": "Host Organisation (EU Partner)",
+    "proposed": "Hosting Organisation",
+    "location": "English interface – Stage 5",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1642,
+        "type": "exact",
+        "lineContent": "hostCol: 'Host Organisation (EU Partner)',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1666,
+        "type": "exact",
+        "lineContent": "hostOrg: 'Host Organisation (EU Partner)',"
+      }
+    ]
+  },
+  {
+    "id": 165,
+    "current": "Mobility Suitability",
+    "proposed": "Mobility Suitability Score",
+    "location": "English interface – Stage 5",
+    "match_count": 3,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1011,
+        "type": "exact",
+        "lineContent": "disclaimer: 'Değerlendirme Yasal Uyarısı (Assessment Disclaimer): Bu araçtaki yeterlilik testi ve Mobility Suitability skoru tavsiye ve planlama amaçlıdır. Sonuçlar tek başına öğrenci/öğretmen seçimi, dışlama, işe alım, notlandırma veya başka yüksek etkili kararlar için kullanılamaz. Katılımcı seçimi şeffaf, adil ve kapsayıcı ayrı bir resmi prosedürle yürütülmelidir.',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1616,
+        "type": "exact",
+        "lineContent": "scoreLabel: 'Mobility Suitability Score:',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1665,
+        "type": "exact",
+        "lineContent": "suitability: 'Mobility Suitability',"
+      }
+    ]
+  },
+  {
+    "id": 166,
+    "current": "Format & Detaylar",
+    "proposed": "Activity Type and Details",
+    "location": "English interface – Stage 5",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/gateway/RecommendationReportCard.tsx",
+        "line": 363,
+        "type": "exact",
+        "lineContent": "Format & Detaylar"
+      }
+    ]
+  },
+  {
+    "id": 167,
+    "current": "Ülkeler / Tarih / Kişi / Yaş Grubu",
+    "proposed": "Countries / Dates / Participants / Age Group",
+    "location": "English interface – Stage 5",
+    "match_count": 0,
+    "matches": []
+  },
+  {
+    "id": 168,
+    "current": "Teknik Kazanım",
+    "proposed": "Technical Learning Outcome",
+    "location": "English interface – Stage 5",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 959,
+        "type": "exact",
+        "lineContent": "technicalLabel: 'Hareketlilik Sonunda Beklenen Teknik Kazanım (Hard Skills)',"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 999,
+        "type": "exact",
+        "lineContent": "techOutcomes: 'Teknik Kazanım:',"
+      }
+    ]
+  },
+  {
+    "id": 169,
+    "current": "Sonuç & Değerlendirme",
+    "proposed": "Conclusion and Assessment",
+    "location": "English interface – Stage 5",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "lib/i18n.tsx",
+        "line": 1001,
+        "type": "exact",
+        "lineContent": "decisionSummary: 'Sonuç & Değerlendirme',"
+      }
+    ]
+  },
+  {
+    "id": 170,
+    "current": "Erasmus+ Program Rehberi",
+    "proposed": "Erasmus+ Programme Guide",
+    "location": "English interface – Stage 5",
+    "match_count": 3,
+    "matches": [
+      {
+        "file": "components/application-draft/sections/DeclarationsSection.tsx",
+        "line": 28,
+        "type": "exact",
+        "lineContent": "Erasmus+ Program Rehberi ve Ulusal Ajans resmi başvuru kuralları doğrultusunda taahhütler"
+      },
+      {
+        "file": "components/gateway/OfficialResourcesCard.tsx",
+        "line": 33,
+        "type": "exact",
+        "lineContent": "📘 Erasmus+ Program Rehberi ↗"
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 713,
+        "type": "exact",
+        "lineContent": "programmeGuide: 'Erasmus+ Program Rehberi 2026-2027',"
+      }
+    ]
+  },
+  {
+    "id": 171,
+    "current": "Türkiye Ulusal Ajansı",
+    "proposed": "Turkish National Agency",
+    "location": "English interface – Stage 5",
+    "match_count": 4,
+    "matches": [
+      {
+        "file": "app/news-and-events/page.tsx",
+        "line": 38,
+        "type": "exact",
+        "lineContent": "descTr: 'Türkiye Ulusal Ajansı tarafından 2026 çağrısı kapsamında akredite mesleki eğitim kurumlarına tahsis edilen yıllık hibe miktarları ve uygulama takvimi yayımlandı.',"
+      },
+      {
+        "file": "components/gateway/OfficialResourcesCard.tsx",
+        "line": 41,
+        "type": "exact",
+        "lineContent": "🇹🇷 Türkiye Ulusal Ajansı ↗"
+      },
+      {
+        "file": "components/host/HostPortfolioModal.tsx",
+        "line": 465,
+        "type": "exact",
+        "lineContent": "placeholder=\"Örn: Türkiye Ulusal Ajansı, DAAD, SEPIE\""
+      },
+      {
+        "file": "lib/i18n.tsx",
+        "line": 820,
+        "type": "exact",
+        "lineContent": "disclaimer: 'Önemli Bilgilendirme: Bu platform Erasmus+ KA121-VET ve KA122-VET projeleri için tavsiye, eşleştirme ve planlama amaçlıdır. Nihai uygunluk, faaliyet türü, süre, bütçe ve başvuru kararları Erasmus+ Programme Guide ve Türkiye Ulusal Ajansı kurallarıyla doğrulanmalıdır.',"
+      }
+    ]
+  },
+  {
+    "id": 172,
+    "current": "ECVET & Europass Uyumlu",
+    "proposed": "Aligned with Learning Outcomes and Europass Mobility",
+    "location": "English interface – footer",
+    "match_count": 2,
+    "matches": [
+      {
+        "file": "components/gateway/LearningOutcomesCard.tsx",
+        "line": 32,
+        "type": "exact",
+        "lineContent": "badge=\"ECVET & Europass Uyumlu\""
+      },
+      {
+        "file": "components/layout/AppFooter.tsx",
+        "line": 54,
+        "type": "exact",
+        "lineContent": "<div>• ECVET & Europass Uyumlu</div>"
+      }
+    ]
+  },
+  {
+    "id": 173,
+    "current": "Tüm hakları saklıdır",
+    "proposed": "All rights reserved",
+    "location": "English interface – footer",
+    "match_count": 1,
+    "matches": [
+      {
+        "file": "components/layout/AppFooter.tsx",
+        "line": 74,
+        "type": "exact",
+        "lineContent": "<div>© 2026 ErasmusMobility • Tüm hakları saklıdır.</div>"
+      }
+    ]
+  },
+  {
+    "id": 174,
+    "current": "CAPPINNO Mobility Nexus • Erasmus+ EMaaS Platformu",
+    "proposed": "ErasmusMobility.com • Mobility Planning and Matching Platform",
+    "location": "English interface – footer",
+    "match_count": 0,
+    "matches": []
+  }
+]

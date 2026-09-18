@@ -2,7 +2,7 @@
   "name": "@mobility-nexus/types",
   "version": "1.0.0",
   "private": true,
-  "description": "Shared TypeScript types, DTOs, and enums for CAPPINNO Mobility Nexus",
+  "description": "Shared TypeScript types, DTOs, and enums for ErasmusMobility",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
