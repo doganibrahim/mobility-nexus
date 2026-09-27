@@ -9,6 +9,7 @@ import { useTranslation } from '../../lib/i18n';
 import { apiClient } from '../../lib/api-client';
 import MobilityInquiryModal from '../inquiry/MobilityInquiryModal';
 import { useAppStore } from '../../lib/store';
+import { ERASMUS_COUNTRIES, getCountryFlagLabel } from '../../lib/countries';
 
 interface HostMatchingCardProps {
   data: {
@@ -208,7 +209,7 @@ export default function HostMatchingCard({
                       {schoolProfile?.projectType || 'KA122'}
                     </span>
                     <span className="px-2 py-0.5 rounded-md bg-white border border-slate-200 font-medium">
-                      🌍 {schoolProfile?.targetCountries?.length ? schoolProfile.targetCountries.join(', ') : (locale === 'tr' ? 'Fark Etmez / Tüm Uygun Ülkeler' : 'Any / All Eligible Countries')}
+                      🌍 {schoolProfile?.targetCountries?.length ? schoolProfile.targetCountries.map((c) => getCountryFlagLabel(c, locale as 'tr' | 'en')).join(', ') : (locale === 'tr' ? 'Fark Etmez / Tüm Uygun Ülkeler' : 'Any / All Eligible Countries')}
                     </span>
                     <span className="px-2 py-0.5 rounded-md bg-white border border-slate-200 font-medium truncate max-w-[220px]">
                       🎯 {activityTitle}
@@ -332,7 +333,7 @@ export default function HostMatchingCard({
                               <div>
                                 <div className="flex items-center gap-2">
                                   <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700">
-                                    {candidate.countryCode} • {candidate.city}
+                                    {getCountryFlagLabel(candidate.countryCode, locale as 'tr' | 'en') || candidate.countryCode} • {candidate.city}
                                   </span>
                                   {candidate.verificationStatus === 'VERIFIED' && (
                                     <span className="px-2 py-0.5 rounded text-[10px] font-extrabold bg-emerald-100 text-emerald-800 flex items-center gap-1">
@@ -556,7 +557,7 @@ export default function HostMatchingCard({
                           className="p-2.5 rounded-lg border border-slate-200 bg-white text-xs space-y-1"
                         >
                           <div className="flex items-center justify-between font-bold text-slate-800">
-                            <span>{dq.hostName} ({dq.countryCode})</span>
+                            <span>{dq.hostName} ({getCountryFlagLabel(dq.countryCode, locale as 'tr' | 'en') || dq.countryCode})</span>
                             <span className="text-[10px] text-rose-600 font-bold uppercase">
                               Ön Elemede Elendi
                             </span>
@@ -600,13 +601,21 @@ export default function HostMatchingCard({
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
                   {t.host.countryLabel}
                 </label>
-                <input
-                  type="text"
-                  className="edu-input"
-                  placeholder="Örn: Almanya"
-                  value={data.hostCountry}
+                <select
+                  className="edu-input bg-white cursor-pointer font-medium"
+                  value={
+                    ERASMUS_COUNTRIES.some((c) => c.code === data.hostCountry)
+                      ? data.hostCountry
+                      : (ERASMUS_COUNTRIES.find((c) => c.nameTr === data.hostCountry || c.nameEn === data.hostCountry)?.code || data.hostCountry || 'DE')
+                  }
                   onChange={(e) => onChangeHostInfo('hostCountry', e.target.value)}
-                />
+                >
+                  {ERASMUS_COUNTRIES.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.flagEmoji} {locale === 'en' ? c.nameEn : c.nameTr} ({c.code})
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="md:col-span-3">
                 <label className="block text-xs font-semibold text-slate-700 mb-1">

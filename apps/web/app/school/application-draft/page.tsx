@@ -213,22 +213,25 @@ export default function ApplicationDraftPage() {
             <div>
               <div className="flex items-center gap-2 text-xs text-slate-400 mb-1">
                 <Link href="/" className="hover:text-white transition-colors">
-                  Anasayfa
+                  {locale === 'tr' ? 'Anasayfa' : 'Home'}
                 </Link>
                 <span>/</span>
                 <Link href="/school/pipeline" className="hover:text-white transition-colors">
-                  Hareket Planı (Pipeline)
+                  {locale === 'tr' ? 'Hareket Planı (Pipeline)' : 'Mobility Pipeline'}
                 </Link>
                 <span>/</span>
-                <span className="text-blue-400 font-semibold">Başvuru Taslağı Modülü</span>
+                <span className="text-blue-400 font-semibold">
+                  {locale === 'tr' ? 'Başvuru Taslağı Modülü' : 'Application Draft Assistant'}
+                </span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-2">
                 <span>📋</span>
-                <span>Hizmet Alan Kuruluş Başvuru Taslağı</span>
+                <span>{locale === 'tr' ? 'Hizmet Alan Kuruluş Başvuru Taslağı' : 'Sending School Application Draft Assistant'}</span>
               </h1>
               <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-3xl">
-                Resmi KA121-VET ve KA122-VET soru ve karar matrislerine dayalı, hızlı seçenekli ve
-                otomatik eşleştirmeli veri seti hazırlama ekranı.
+                {locale === 'tr'
+                  ? 'Resmi KA121-VET ve KA122-VET soru ve karar matrislerine dayalı, hızlı seçenekli ve otomatik eşleştirmeli veri seti hazırlama ekranı.'
+                  : 'Official KA121-VET and KA122-VET aligned drafting workspace with automated data synthesis and guidance.'}
               </p>
             </div>
 
@@ -237,7 +240,7 @@ export default function ApplicationDraftPage() {
                 href="/school/pipeline"
                 className="px-3.5 py-2 text-xs font-bold rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white transition-all border border-slate-700 flex items-center gap-1.5"
               >
-                <span>←</span> Pipeline'a Dön
+                <span>←</span> {locale === 'tr' ? "Pipeline'a Dön" : 'Back to Pipeline'}
               </Link>
             </div>
           </div>
@@ -245,7 +248,7 @@ export default function ApplicationDraftPage() {
       </section>
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <main id="main-content" tabIndex={-1} className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 focus:outline-none">
         {/* 1. Aktif Giriş Yapmış Okul Bildirim Paneli */}
         {mounted && (store.currentOrg?.name || store.schoolProfile?.schoolName) && (
           <div className="bg-emerald-50/90 border border-emerald-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-emerald-950 shadow-xs">
@@ -254,7 +257,7 @@ export default function ApplicationDraftPage() {
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">
-                    Aktif Giriş Yapan Okul
+                    {locale === 'tr' ? 'Aktif Giriş Yapan Okul' : 'Active Logged-in School'}
                   </span>
                   <strong className="text-sm font-bold text-emerald-950">
                     {store.currentOrg?.name || store.schoolProfile?.schoolName}
@@ -267,17 +270,19 @@ export default function ApplicationDraftPage() {
                   </span>
                   <span>•</span>
                   <span>
-                    <strong>Şehir:</strong> {store.currentOrg?.city || store.schoolProfile?.city}
+                    <strong>{locale === 'tr' ? 'Şehir:' : 'City:'}</strong> {store.currentOrg?.city || store.schoolProfile?.city}
                   </span>
                   <span>•</span>
                   <span>
-                    <strong>Akreditasyon:</strong>{' '}
+                    <strong>{locale === 'tr' ? 'Akreditasyon:' : 'Accreditation:'}</strong>{' '}
                     {(store.currentOrg?.accreditationStatus === 'YES' || store.schoolProfile?.accredited === 'yes')
-                      ? 'KA120 Akredite'
-                      : 'Akreditasyonsuz'}
+                      ? (locale === 'tr' ? 'KA120 Akredite' : 'KA120 Accredited')
+                      : (locale === 'tr' ? 'Akreditasyonsuz' : 'Non-accredited')}
                   </span>
                   <span>•</span>
-                  <span className="text-emerald-700 font-semibold">✓ Bilgiler taslağa otomatik aktarıldı</span>
+                  <span className="text-emerald-700 font-semibold">
+                    {locale === 'tr' ? '✓ Bilgiler taslağa otomatik aktarıldı' : '✓ Details synced to draft'}
+                  </span>
                 </div>
               </div>
             </div>
@@ -286,9 +291,9 @@ export default function ApplicationDraftPage() {
               type="button"
               onClick={handleSyncPipeline}
               className="self-start sm:self-auto px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white transition-colors whitespace-nowrap shadow-xs flex items-center gap-1.5"
-              title="Giriş yapılan okulun ve pipeline'ın güncel verilerini taslağa aktarır"
+              title={locale === 'tr' ? "Giriş yapılan okulun ve pipeline'ın güncel verilerini taslağa aktarır" : 'Syncs active school and pipeline details to draft'}
             >
-              <span>🔄</span> Okul Bilgilerini Yenile
+              <span>🔄</span> {locale === 'tr' ? 'Okul Bilgilerini Yenile' : 'Refresh School Data'}
             </button>
           </div>
         )}
@@ -299,11 +304,13 @@ export default function ApplicationDraftPage() {
             <div className="flex items-center gap-2">
               <span className="text-base">⚡</span>
               <h3 className="text-xs font-black uppercase tracking-wider text-slate-800">
-                Test İçin Otomatik Doldurma (3 Farklı Okul Senaryosu)
+                {locale === 'tr' ? 'Test İçin Otomatik Doldurma (3 Farklı Okul Senaryosu)' : 'Quick-Fill Demo Scenarios (3 School Profiles)'}
               </h3>
             </div>
             <span className="text-[11px] text-slate-500">
-              Tek tıkla tüm soruları ve okul profilini gerçekçi Erasmus+ verileriyle doldurun
+              {locale === 'tr'
+                ? 'Tek tıkla tüm soruları ve okul profilini gerçekçi Erasmus+ verileriyle doldurun'
+                : 'Populate all questions and profiles with realistic Erasmus+ sample datasets'}
             </span>
           </div>
 
@@ -326,7 +333,7 @@ export default function ApplicationDraftPage() {
                 >
                   <div className="flex items-center justify-between gap-1 mb-1.5">
                     <span className="text-[10px] font-bold text-slate-500 uppercase">
-                      Senaryo {idx + 1}
+                      {locale === 'tr' ? 'Senaryo' : 'Scenario'} {idx + 1}
                     </span>
                     <span
                       className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${
@@ -349,13 +356,17 @@ export default function ApplicationDraftPage() {
                   <div className="text-[10px] text-slate-400 mt-1.5 flex items-center gap-1.5 font-medium">
                     <span>📍 {preset.schoolProfile.city}</span>
                     <span>•</span>
-                    <span>{preset.participantProfile.participantCount} Katılımcı</span>
+                    <span>{preset.participantProfile.participantCount} {locale === 'tr' ? 'Katılımcı' : 'Pax'}</span>
                     <span>•</span>
                     <span>{preset.draftData.activityDetails.hostCountry}</span>
                   </div>
 
                   <div className="mt-2.5 pt-2 border-t border-slate-200/70 flex items-center justify-between text-[11px] font-bold text-blue-700 group-hover:text-blue-800">
-                    <span>{isSelected ? '✓ Aktif Senaryo' : 'Bu Senaryoyu Yükle'}</span>
+                    <span>
+                      {isSelected
+                        ? (locale === 'tr' ? '✓ Aktif Senaryo' : '✓ Active Scenario')
+                        : (locale === 'tr' ? 'Bu Senaryoyu Yükle' : 'Load This Scenario')}
+                    </span>
                     <span>→</span>
                   </div>
                 </button>
@@ -370,10 +381,10 @@ export default function ApplicationDraftPage() {
           <div className="lg:col-span-5 bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex flex-col justify-between h-full">
             <div>
               <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block mb-1">
-                HEDEF ERASMUS+ HİBE FORMU
+                {locale === 'tr' ? 'HEDEF ERASMUS+ HİBE FORMU' : 'TARGET ERASMUS+ GRANT CALL'}
               </span>
               <h2 className="text-sm font-bold text-slate-900 mb-3">
-                Hangi resmi hibe formu için taslak hazırlıyorsunuz?
+                {locale === 'tr' ? 'Hangi resmi hibe formu için taslak hazırlıyorsunuz?' : 'Which official grant application are you preparing?'}
               </h2>
 
               <div className="grid grid-cols-2 gap-3">
@@ -432,20 +443,22 @@ export default function ApplicationDraftPage() {
                       <span className="text-base">📄</span>
                       <div>
                         <div className="text-xs font-bold text-slate-900">
-                          KA120 VET Akreditasyon Belgesi (İsteğe Bağlı)
+                          {locale === 'tr' ? 'KA120 VET Akreditasyon Belgesi (İsteğe Bağlı)' : 'KA120 VET Accreditation Document (Optional)'}
                         </div>
                         <div className="text-[11px] text-slate-500">
-                          Maks. 8 MB • PDF formatı
+                          {locale === 'tr' ? 'Maks. 8 MB • PDF formatı' : 'Max 8 MB • PDF format'}
                         </div>
                       </div>
                     </div>
                     <span className="text-[10px] font-bold text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded uppercase">
-                      AI Aktarım
+                      {locale === 'tr' ? 'AI Aktarım' : 'AI Extract'}
                     </span>
                   </div>
 
                   <p className="text-[11px] text-slate-600 leading-relaxed">
-                    Daha önce onaylanan KA120 VET formunuzu yüklerseniz; kurum bilgileriniz, kalite taahhütleriniz ve hedefleriniz taslağa otomatik aktarılır.
+                    {locale === 'tr'
+                      ? 'Daha önce onaylanan KA120 VET formunuzu yüklerseniz; kurum bilgileriniz, kalite taahhütleriniz ve hedefleriniz taslağa otomatik aktarılır.'
+                      : 'Uploading your approved KA120 VET form automatically populates your organisation details, quality commitments, and strategic objectives.'}
                   </p>
 
                   <input
@@ -478,7 +491,7 @@ export default function ApplicationDraftPage() {
                           d="M4 12a8 8 0 018-8v8H4z"
                         ></path>
                       </svg>
-                      <span>KA120 VET belgesi taranıyor ve veriler çıkarılıyor...</span>
+                      <span>{locale === 'tr' ? 'KA120 VET belgesi taranıyor ve veriler çıkarılıyor...' : 'Analyzing KA120 VET document and extracting data...'}</span>
                     </div>
                   ) : uploadError ? (
                     <div className="p-3 bg-rose-50 border border-rose-200 rounded-lg space-y-2">
@@ -491,7 +504,7 @@ export default function ApplicationDraftPage() {
                         onClick={() => fileInputRef.current?.click()}
                         className="w-full py-1.5 px-3 bg-white hover:bg-rose-100/50 text-rose-800 border border-rose-300 rounded text-xs font-bold transition cursor-pointer"
                       >
-                        Farklı Bir Dosya Seç
+                        {locale === 'tr' ? 'Farklı Bir Dosya Seç' : 'Choose a Different File'}
                       </button>
                     </div>
                   ) : uploadedFileName ? (
@@ -501,7 +514,7 @@ export default function ApplicationDraftPage() {
                           <span>✓</span> {uploadedFileName}
                         </span>
                         <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                          Aktarıldı
+                          {locale === 'tr' ? 'Aktarıldı' : 'Extracted'}
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-2 pt-1">
@@ -510,14 +523,14 @@ export default function ApplicationDraftPage() {
                           onClick={() => setIsKa120ModalOpen(true)}
                           className="py-1.5 px-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-[11px] font-bold transition text-center shadow-xs cursor-pointer"
                         >
-                          Önizle ve Düzenle
+                          {locale === 'tr' ? 'Önizle ve Düzenle' : 'Preview & Edit'}
                         </button>
                         <button
                           type="button"
                           onClick={() => fileInputRef.current?.click()}
                           className="py-1.5 px-2 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded text-[11px] font-semibold transition text-center cursor-pointer"
                         >
-                          Yeniden Yükle
+                          {locale === 'tr' ? 'Yeniden Yükle' : 'Re-upload'}
                         </button>
                       </div>
                     </div>
@@ -528,7 +541,7 @@ export default function ApplicationDraftPage() {
                       className="w-full py-2.5 px-3 border border-dashed border-blue-400 hover:border-blue-600 bg-white hover:bg-blue-50/70 rounded-lg text-xs font-bold text-blue-700 transition flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <span>📤</span>
-                      <span>KA120 VET PDF Belgesi Yükle (Maks. 8 MB)</span>
+                      <span>{locale === 'tr' ? 'KA120 VET PDF Belgesi Yükle (Maks. 8 MB)' : 'Upload KA120 VET PDF Document (Max 8 MB)'}</span>
                     </button>
                   )}
                 </div>
@@ -537,15 +550,17 @@ export default function ApplicationDraftPage() {
 
             <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 flex items-center justify-between">
               <span suppressHydrationWarning>
-                Son Değişiklik:{' '}
+                {locale === 'tr' ? 'Son Değişiklik:' : 'Last Modified:'}{' '}
                 {mounted && draft.lastUpdated
-                  ? new Date(draft.lastUpdated).toLocaleTimeString('tr-TR', {
+                  ? new Date(draft.lastUpdated).toLocaleTimeString(locale === 'tr' ? 'tr-TR' : 'en-US', {
                       hour: '2-digit',
                       minute: '2-digit',
                     })
-                  : 'Otomatik'}
+                  : (locale === 'tr' ? 'Otomatik' : 'Auto')}
               </span>
-              <span className="text-emerald-700 font-semibold">✓ Otomatik Kayıt Açık</span>
+              <span className="text-emerald-700 font-semibold">
+                {locale === 'tr' ? '✓ Otomatik Kayıt Açık' : '✓ Auto-Save Active'}
+              </span>
             </div>
           </div>
 
@@ -692,11 +707,11 @@ export default function ApplicationDraftPage() {
                   : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
               }`}
             >
-              ← Önceki Bölüm
+              ← {locale === 'tr' ? 'Önceki Bölüm' : 'Previous Section'}
             </button>
 
             <span className="text-xs text-slate-500 font-semibold" suppressHydrationWarning>
-              Bölüm {currentSectionIndex + 1} / {SECTIONS.length}
+              {locale === 'tr' ? 'Bölüm' : 'Section'} {currentSectionIndex + 1} / {SECTIONS.length}
             </span>
 
             {currentSectionIndex < SECTIONS.length - 1 ? (
@@ -709,7 +724,7 @@ export default function ApplicationDraftPage() {
                 }}
                 className="px-5 py-2 rounded-lg text-xs font-bold bg-blue-700 text-white hover:bg-blue-800 transition-all shadow-xs"
               >
-                Sonraki Bölüm →
+                {locale === 'tr' ? 'Sonraki Bölüm →' : 'Next Section →'}
               </button>
             ) : (
               <button
@@ -717,11 +732,11 @@ export default function ApplicationDraftPage() {
                 suppressHydrationWarning
                 onClick={() => {
                   window.scrollTo({ top: 300, behavior: 'smooth' });
-                  triggerToast('Tüm taslak bölümleri hazır. Resmi form sorularını yukarıdan inceleyebilirsiniz.');
+                  triggerToast(locale === 'tr' ? 'Tüm taslak bölümleri hazır. Resmi form sorularını yukarıdan inceleyebilirsiniz.' : 'All draft sections are prepared. You can review official form answers above.');
                 }}
                 className="px-5 py-2 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition-all shadow-xs flex items-center gap-1.5"
               >
-                <span>✓</span> Taslak Tamamlandı
+                <span>✓</span> {locale === 'tr' ? 'Taslak Tamamlandı' : 'Draft Completed'}
               </button>
             )}
           </div>
@@ -741,7 +756,7 @@ export default function ApplicationDraftPage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
+        initialTab="TERMS"
       />
 
       {/* KA120 Preview & Edit Modal */}

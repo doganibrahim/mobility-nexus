@@ -12,7 +12,7 @@ import HostPortfolioModal from '../../components/host/HostPortfolioModal';
 import HostVerificationModal from '../../components/host/HostVerificationModal';
 import AdminVerificationQueueModal from '../../components/admin/AdminVerificationQueueModal';
 import { useTranslation } from '../../lib/i18n';
-import LegalModal from '../../components/ui/LegalModal';
+import LegalModal, { LegalTabType } from '../../components/ui/LegalModal';
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -58,7 +58,7 @@ export default function OnboardingPage() {
   const [schoolCity, setSchoolCity] = useState('');
   const [schoolCountryCode, setSchoolCountryCode] = useState('TR');
   const [accreditationStatus, setAccreditationStatus] =
-    useState<AccreditationStatus>('YES');
+    useState<AccreditationStatus | null>(null);
   const [role, setRole] = useState<'ORG_ADMIN' | 'MEMBER'>('ORG_ADMIN');
 
   // 2. Host Form State (Tier 1: Onboarding Quick Setup)
@@ -79,7 +79,7 @@ export default function OnboardingPage() {
   const [hostContactPerson, setHostContactPerson] = useState('');
   const [hostContactTitle, setHostContactTitle] = useState('');
   const [hostContactEmail, setHostContactEmail] = useState('');
-  const [hostConsentPublicDisplay, setHostConsentPublicDisplay] = useState(true);
+  const [hostConsentPublicDisplay, setHostConsentPublicDisplay] = useState(false);
   const [hostMaxLearners, setHostMaxLearners] = useState(4);
   const [hostActivities, setHostActivities] = useState<string[]>([
     'VET_INTERNSHIP',
@@ -110,10 +110,12 @@ export default function OnboardingPage() {
   const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
   const [isAdminQueueModalOpen, setIsAdminQueueModalOpen] = useState(false);
 
-  // Legal & i18n State
+  // Legal & i18n State (Kutular varsayılan olarak boştur / false)
   const { t, locale } = useTranslation();
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
-  const [legalConsentAccepted, setLegalConsentAccepted] = useState(true);
+  const [legalTab, setLegalTab] = useState<LegalTabType>('LEGAL');
+  const [legalConsentAccepted, setLegalConsentAccepted] = useState(false);
+  const [schoolConsentPublicDisplay, setSchoolConsentPublicDisplay] = useState(false);
 
   // Fetch Reference Data on mount
   useEffect(() => {
@@ -149,7 +151,7 @@ export default function OnboardingPage() {
           setSchoolName(currentOrg.name || '');
           setSchoolOid(currentOrg.oid || '');
           setSchoolCity(currentOrg.city || '');
-          setAccreditationStatus(currentOrg.accreditationStatus || 'YES');
+          setAccreditationStatus(currentOrg.accreditationStatus || null);
           setIsCheckingOrg(false);
           return;
         }
@@ -167,7 +169,7 @@ export default function OnboardingPage() {
             setSchoolName(orgData.name || '');
             setSchoolOid(orgData.oid || '');
             setSchoolCity(orgData.city || '');
-            setAccreditationStatus(orgData.accreditationStatus || 'YES');
+            setAccreditationStatus(orgData.accreditationStatus || null);
             setIsCheckingOrg(false);
             return;
           }
@@ -178,17 +180,17 @@ export default function OnboardingPage() {
             setCurrentHost(hostData);
             setSubmittedHost(hostData);
             setSelectedRole('HOST');
+            setHostName(hostData.name || '');
+            setHostCity(hostData.city || '');
             setIsCheckingOrg(false);
             return;
           }
         } catch (err) {
-          console.warn('[Onboarding] Error checking user institutions:', err);
+          // No organisation found, proceed to onboarding
         }
       }
 
-      if (isMounted) {
-        setIsCheckingOrg(false);
-      }
+      setIsCheckingOrg(false);
     }
 
     checkExistingOrg();
@@ -199,37 +201,106 @@ export default function OnboardingPage() {
   }, [isUserLoaded, user?.id, isOnboarded, orgType, currentOrg, currentHost, setCurrentOrg, setCurrentHost]);
 
   // Validation - School
-  const isSchoolOidValid = !schoolOid || /^E10[0-9]{5,7}$/i.test(schoolOid.trim());
+  const isSchoolOidEntered = schoolOid.trim().length > 0;
+  const isSchoolOidFormatValid = /^E10[0-9]{5,7}$/i.test(schoolOid.trim());
+  const isSchoolOidValid = !isSchoolOidEntered || isSchoolOidFormatValid;
   const canSubmitSchool =
-    schoolName.trim().length >= 3 && schoolCity.trim().length >= 2 && isSchoolOidValid;
+    schoolName.trim().length >= 3 &&
+    schoolCity.trim().length >= 2 &&
+    isSchoolOidValid &&
+    (accreditationStatus === 'YES' || accreditationStatus === 'NO') &&
+    legalConsentAccepted;
 
   // Validation - Host (Tier 1 Quick Onboarding)
-  const isHostOidValid = !hostOid || /^E10[0-9]{5,7}$/i.test(hostOid.trim());
+  const isHostOidEntered = hostOid.trim().length > 0;
+  const isHostOidFormatValid = /^E10[0-9]{5,7}$/i.test(hostOid.trim());
+  const isHostOidValid = !isHostOidEntered || isHostOidFormatValid;
   const canSubmitHost =
     hostName.trim().length >= 3 &&
     hostCity.trim().length >= 2 &&
     hostRegisteredAddress.trim().length >= 5 &&
     hostOid.trim().length >= 8 &&
-    isHostOidValid &&
+    isHostOidFormatValid &&
     hostWebsite.trim().length >= 4 &&
     hostGeneralEmail.includes('@') &&
     hostTelephone.trim().length >= 5 &&
     hostContactPerson.trim().length >= 3 &&
     hostContactTitle.trim().length >= 2 &&
-    hostContactEmail.includes('@');
+    hostContactEmail.includes('@') &&
+    legalConsentAccepted;
 
-  // Live Hazırlık Skoru Calculation (School)
-  const calculatePreviewScore = () => {
-    let score = 20; // base
-    if (schoolName.trim().length > 3) score += 20;
-    if (schoolCity.trim().length > 2) score += 15;
-    if (schoolOid.trim() && isSchoolOidValid) score += 25;
-    if (accreditationStatus === 'YES') score += 20;
-    else if (accreditationStatus === 'NO') score += 15;
+  // 1. Okul Form Doluluk Oranı (%0 - %100)
+  // Yalnızca geçerli ve eksiksiz doldurulan alanlara puan verilir; geçersiz OID puanı artırmaz!
+  const calculateSchoolFormCompletion = () => {
+    if (!schoolName.trim() && !schoolCity.trim() && !schoolOid.trim() && !accreditationStatus && !legalConsentAccepted) {
+      return 0;
+    }
+    let completion = 0;
+    if (schoolName.trim().length >= 3) completion += 25;
+    if (schoolCity.trim().length >= 2) completion += 20;
+    if (schoolCountryCode.trim().length >= 2 && schoolName.trim().length >= 3) completion += 15;
+    if (accreditationStatus === 'YES' || accreditationStatus === 'NO') completion += 20;
+    // YALNIZCA geçerli OID girildiğinde doluluk puanı eklenir. Geçersiz OID kesinlikle 0 puan!
+    if (isSchoolOidEntered && isSchoolOidFormatValid) {
+      completion += 20;
+    }
+    return Math.min(100, completion);
+  };
+
+  // 2. Okul Erasmus+ Proje Hazırlık Puanı (%0 - %100)
+  // Kurumun resmi OID tescili ve akreditasyon gibi mevzuat kriterlerine dayalı başvuru gücüdür.
+  // Boş formda başlangıç puanı KESİNLİKLE %0'dır. Geçersiz alanlara veya OID'ye puan verilmez!
+  const calculateSchoolReadinessScore = () => {
+    if (!schoolName.trim() && !schoolCity.trim() && !schoolOid.trim() && !accreditationStatus) {
+      return 0;
+    }
+    let score = 0;
+    if (schoolName.trim().length >= 3 && schoolCity.trim().length >= 2) {
+      score += 30;
+    }
+    if (accreditationStatus === 'YES') {
+      score += 35;
+    } else if (accreditationStatus === 'NO') {
+      score += 20;
+    }
+    // YALNIZCA geçerli OID girildiğinde puan verilir; geçersiz format ise 0 puan
+    if (isSchoolOidEntered && isSchoolOidFormatValid) {
+      score += 35;
+    }
     return Math.min(100, score);
   };
 
-  const previewScore = calculatePreviewScore();
+  const schoolFormCompletionRate = calculateSchoolFormCompletion();
+  const schoolReadinessScore = calculateSchoolReadinessScore();
+
+  // 1. Host Form Doluluk Oranı (%0 - %100)
+  const calculateHostFormCompletion = () => {
+    if (!hostName.trim() && !hostCity.trim() && !hostOid.trim() && !hostWebsite.trim()) {
+      return 0;
+    }
+    let completion = 0;
+    if (hostName.trim().length >= 3) completion += 15;
+    if (hostCity.trim().length >= 2 && hostRegisteredAddress.trim().length >= 5) completion += 15;
+    if (hostWebsite.trim().length >= 4) completion += 10;
+    if (hostGeneralEmail.includes('@')) completion += 10;
+    if (hostTelephone.trim().length >= 5) completion += 10;
+    if (hostContactPerson.trim().length >= 3 && hostContactEmail.includes('@')) completion += 20;
+    if (isHostOidEntered && isHostOidFormatValid) completion += 20;
+    return Math.min(100, completion);
+  };
+
+  // 2. Host Güven & Doğrulama Hazırlık Puanı (%0 - %100)
+  const calculateHostTrustScore = () => {
+    if (!hostName.trim() && !hostCity.trim() && !hostOid.trim()) return 0;
+    let score = 0;
+    if (hostName.trim().length >= 3 && hostCity.trim().length >= 2) score += 35;
+    if (hostContactPerson.trim().length >= 3 && hostContactEmail.includes('@')) score += 35;
+    if (isHostOidEntered && isHostOidFormatValid) score += 30;
+    return Math.min(100, score);
+  };
+
+  const hostFormCompletionRate = calculateHostFormCompletion();
+  const hostTrustScore = calculateHostTrustScore();
 
   // Handle School Form Submit
   const handleSchoolSubmit = async (e: React.FormEvent) => {
@@ -253,7 +324,7 @@ export default function OnboardingPage() {
           oid: formattedOid,
           city: schoolCity.trim(),
           countryCode: schoolCountryCode,
-          accreditationStatus,
+          accreditationStatus: accreditationStatus || 'UNKNOWN',
           userId: user?.id,
           userEmail,
           userFullName,
@@ -265,7 +336,7 @@ export default function OnboardingPage() {
           oid: formattedOid,
           city: schoolCity.trim(),
           countryCode: schoolCountryCode,
-          accreditationStatus,
+          accreditationStatus: accreditationStatus || 'UNKNOWN',
           userId: user?.id,
           userEmail,
           userFullName,
@@ -401,7 +472,7 @@ export default function OnboardingPage() {
       </header>
 
       {/* Main Content Area */}
-      <main className="max-w-3xl mx-auto w-full px-4 py-8 sm:py-12 flex-1">
+      <main id="main-content" tabIndex={-1} className="max-w-3xl mx-auto w-full px-4 py-8 sm:py-12 flex-1 focus:outline-none">
         {/* ========================================================================= */}
         {/* DURUM 1: OKUL ÖZET KARTI (Gönderen Kurum Kayıtlı)                          */}
         {/* ========================================================================= */}
@@ -478,7 +549,9 @@ export default function OnboardingPage() {
                     </span>
                   </div>
                   <div className="mt-2 text-[11px] text-slate-500">
-                    Kurum profili ve hareketlilik yönetimi yetkisi
+                    {locale === 'tr'
+                      ? 'Kurum profili ve hareketlilik yönetimi yetkisi'
+                      : 'Institutional profile and mobility management authorization'}
                   </div>
                 </div>
               </div>
@@ -488,20 +561,22 @@ export default function OnboardingPage() {
                 <div className="flex items-center justify-between mb-2">
                   <div>
                     <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                      BAŞLANGIÇ HAZIRLIK SKORU
+                      {locale === 'tr' ? 'BAŞLANGIÇ HAZIRLIK SKORU' : 'INITIAL READINESS SCORE'}
                     </span>
                     <p className="text-xs text-slate-500 m-0 mt-0.5">
-                      Sabit kimlik verilerinize göre hesaplanan kurumsal hazırlık puanı
+                      {locale === 'tr'
+                        ? 'Sabit kimlik verilerinize göre hesaplanan kurumsal hazırlık puanı'
+                        : 'Institutional readiness score calculated from baseline verified data'}
                     </p>
                   </div>
                   <span className="text-2xl font-black text-slate-900">
-                    %{submittedOrg.readinessScore || previewScore}
+                    %{submittedOrg.readinessScore ?? schoolReadinessScore}
                   </span>
                 </div>
                 <div className="w-full h-3 rounded-full bg-slate-200 overflow-hidden">
                   <div
                     className="h-full bg-emerald-500 rounded-full transition-all duration-700"
-                    style={{ width: `${submittedOrg.readinessScore || previewScore}%` }}
+                    style={{ width: `${submittedOrg.readinessScore ?? schoolReadinessScore}%` }}
                   ></div>
                 </div>
               </div>
@@ -518,16 +593,16 @@ export default function OnboardingPage() {
                     setSchoolCountryCode(submittedOrg.countryCode || 'TR');
                     setAccreditationStatus(submittedOrg.accreditationStatus || 'YES');
                   }}
-                  className="px-4 py-2.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200 shadow-2xs"
+                  className="px-4 py-2.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200 shadow-2xs cursor-pointer"
                 >
-                  Bilgileri Düzenle
+                  {locale === 'tr' ? 'Bilgileri Düzenle' : 'Edit Information'}
                 </button>
 
                 <Link
                   href="/"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-all shadow-md hover:shadow-lg"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-all shadow-md hover:shadow-lg cursor-pointer"
                 >
-                  <span>Hareketlilik Gateway'ine Başla</span>
+                  <span>{locale === 'tr' ? "Hareketlilik Gateway'ine Başla" : 'Launch Mobility Gateway'}</span>
                   <span>→</span>
                 </Link>
               </div>
@@ -542,7 +617,7 @@ export default function OnboardingPage() {
               <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold tracking-wide uppercase">
                   <span>✓</span>
-                  <span>Aşama 1: Temel Kurum Kurulumu Tamamlandı</span>
+                  <span>{locale === 'tr' ? 'Aşama 1: Temel Kurum Kurulumu Tamamlandı' : 'Stage 1: Core Setup Completed'}</span>
                 </div>
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-bold font-mono">
                   <span>OID: {submittedHost.oid || 'E10XXXXXX'}</span>
@@ -553,7 +628,11 @@ export default function OnboardingPage() {
                 {submittedHost.name}
               </h2>
               <p className="text-white/80 text-sm mt-2 max-w-xl leading-relaxed">
-                Avrupa ev sahibi kurumunuz sisteme başarıyla tanımlandı. Okullarla güvenle eşleşmek ve <strong>"Doğrulanmış Partner"</strong> rozeti almak için aşağıdaki adımları tamamlayabilirsiniz.
+                {locale === 'tr' ? (
+                  <>Avrupa ev sahibi kurumunuz sisteme başarıyla tanımlandı. Okullarla güvenle eşleşmek ve <strong>&quot;Doğrulanmış Partner&quot;</strong> rozeti almak için aşağıdaki adımları tamamlayabilirsiniz.</>
+                ) : (
+                  <>Your European host organisation has been registered. You can complete the following steps to match securely with schools and earn the <strong>&quot;Verified Partner&quot;</strong> badge.</>
+                )}
               </p>
             </div>
 
@@ -563,10 +642,12 @@ export default function OnboardingPage() {
                 <div className="flex items-center justify-between mb-2">
                   <div>
                     <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                      Kurumsal Profil Doluluk Oranı
+                      {locale === 'tr' ? 'Kurumsal Profil Doluluk Oranı' : 'Institutional Profile Completeness'}
                     </span>
                     <p className="text-xs text-slate-500 m-0 mt-0.5">
-                      Portföy ve doğrulama evraklarınızı ekledikçe okulların arama sonuçlarında üst sıralara çıkarsınız.
+                      {locale === 'tr'
+                        ? 'Portföy ve doğrulama evraklarınızı ekledikçe okulların arama sonuçlarında üst sıralara çıkarsınız.'
+                        : 'Adding portfolio items and verification documents boosts your ranking in school searches.'}
                     </p>
                   </div>
                   <span className="text-2xl font-black text-slate-900">
@@ -585,37 +666,37 @@ export default function OnboardingPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5">
                   <span className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider block">
-                    Konum & Ülke
+                    {locale === 'tr' ? 'Konum & Ülke' : 'Location & Country'}
                   </span>
                   <span className="text-sm font-bold text-slate-900 mt-1 block">
                     {submittedHost.city}, {submittedHost.countryCode}
                   </span>
                   <span className="text-[11px] text-slate-500 mt-0.5 block truncate">
-                    {submittedHost.registeredAddress || 'Resmi Adres'}
+                    {submittedHost.registeredAddress || (locale === 'tr' ? 'Resmi Adres' : 'Registered Address')}
                   </span>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5">
                   <span className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider block">
-                    Kurum Türü & Sektör
+                    {locale === 'tr' ? 'Kurum Türü & Sektör' : 'Type & Sector'}
                   </span>
                   <span className="text-sm font-bold text-slate-900 mt-1 block capitalize">
                     {submittedHost.organisationType || 'Company'}
                   </span>
                   <span className="text-[11px] text-slate-500 mt-0.5 block capitalize">
-                    Sektör: {submittedHost.primarySector}
+                    {locale === 'tr' ? `Sektör: ${submittedHost.primarySector}` : `Sector: ${submittedHost.primarySector}`}
                   </span>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5">
                   <span className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider block">
-                    İrtibat Yetkilisi & İzin
+                    {locale === 'tr' ? 'İrtibat Yetkilisi & İzin' : 'Contact Person & Consent'}
                   </span>
                   <span className="text-sm font-bold text-slate-900 mt-1 block truncate">
-                    {submittedHost.contactPerson} ({submittedHost.contactTitle || 'Yetkili'})
+                    {submittedHost.contactPerson} ({submittedHost.contactTitle || (locale === 'tr' ? 'Yetkili' : 'Officer')})
                   </span>
                   <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded-sm inline-block mt-0.5">
-                    ✓ Kamusal Profilde Gösterim Onaylı
+                    {locale === 'tr' ? '✓ Kamusal Profilde Gösterim Onaylı' : '✓ Public Visibility Approved'}
                   </span>
                 </div>
               </div>
@@ -626,21 +707,23 @@ export default function OnboardingPage() {
                 <div className="border border-blue-200 bg-blue-50/40 rounded-xl p-5 flex flex-col justify-between space-y-3">
                   <div>
                     <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800 mb-2">
-                      Aşama 2: Vitrin & Portföy
+                      {locale === 'tr' ? 'Aşama 2: Vitrin & Portföy' : 'Stage 2: Showcase & Portfolio'}
                     </div>
                     <h4 className="text-sm font-bold text-slate-900 m-0">
-                      Erasmus+ Portföyünü ve Detayları Ekle
+                      {locale === 'tr' ? 'Erasmus+ Portföyünü ve Detayları Ekle' : 'Add Erasmus+ Portfolio & Details'}
                     </h4>
                     <p className="text-xs text-slate-600 mt-1 leading-relaxed m-0">
-                      Örnek hareketlilik programı, 150 kelimelik kısa açıklama, logo, LinkedIn ve geçmiş Türkiye deneyimlerinizi ekleyerek okulların sizi keşfetmesini sağlayın.
+                      {locale === 'tr'
+                        ? 'Örnek hareketlilik programı, 150 kelimelik kısa açıklama, logo, LinkedIn ve geçmiş Türkiye deneyimlerinizi ekleyerek okulların sizi keşfetmesini sağlayın.'
+                        : 'Upload sample syllabi, 150-word overview, company logo, and track record to make your profile stand out.'}
                     </p>
                   </div>
                   <button
                     type="button"
                     onClick={() => setIsPortfolioModalOpen(true)}
-                    className="w-full py-2.5 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition-colors text-center"
+                    className="w-full py-2.5 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition-colors text-center cursor-pointer"
                   >
-                    🎨 Portföyü Düzenle (%75-80 Doluluk)
+                    {locale === 'tr' ? '🎨 Portföyü Düzenle (%75-80 Doluluk)' : '🎨 Edit Portfolio (75-80% Progress)'}
                   </button>
                 </div>
 
@@ -648,21 +731,25 @@ export default function OnboardingPage() {
                 <div className="border border-emerald-200 bg-emerald-50/40 rounded-xl p-5 flex flex-col justify-between space-y-3">
                   <div>
                     <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 mb-2">
-                      Aşama 3: Kurumsal Doğrulama
+                      {locale === 'tr' ? 'Aşama 3: Kurumsal Doğrulama' : 'Stage 3: Institutional Verification'}
                     </div>
                     <h4 className="text-sm font-bold text-slate-900 m-0">
-                      Kurumsal Doğrulama & Rozet Başvurusu
+                      {locale === 'tr' ? 'Kurumsal Doğrulama & Rozet Başvurusu' : 'Corporate Verification & Badge Request'}
                     </h4>
                     <p className="text-xs text-slate-600 mt-1 leading-relaxed m-0">
-                      Şirket sicil belgesi, vergi numarası, 7/24 acil durum kontağı ve katılımcı kanıt evraklarını yükleyerek <strong>"Verified Partner"</strong> rozeti kazanın.
+                      {locale === 'tr' ? (
+                        <>Şirket sicil belgesi, vergi numarası, 7/24 acil durum kontağı ve katılımcı kanıt evraklarını yükleyerek <strong>&quot;Verified Partner&quot;</strong> rozeti kazanın.</>
+                      ) : (
+                        <>Upload registration documents, VAT identification, 24/7 emergency coordinates, and workshop photos to earn the <strong>&quot;Verified Partner&quot;</strong> badge.</>
+                      )}
                     </p>
                   </div>
                   <button
                     type="button"
                     onClick={() => setIsVerificationModalOpen(true)}
-                    className="w-full py-2.5 px-4 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition-colors text-center"
+                    className="w-full py-2.5 px-4 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition-colors text-center cursor-pointer"
                   >
-                    🛡️ Doğrulama Evrakları & Rozet Başvurusu
+                    {locale === 'tr' ? '🛡️ Doğrulama Evrakları & Rozet Başvurusu' : '🛡️ Verification Documents & Badge Request'}
                   </button>
                 </div>
               </div>
@@ -673,10 +760,10 @@ export default function OnboardingPage() {
                   <button
                     type="button"
                     onClick={() => setIsAdminQueueModalOpen(true)}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 p-2 rounded-lg hover:bg-slate-100 transition-colors border border-slate-200/80"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 p-2 rounded-lg hover:bg-slate-100 transition-colors border border-slate-200/80 cursor-pointer"
                   >
                     <span>👁️</span>
-                    <span>Yönetici Doğrulama Havuzunu İncele (Admin View)</span>
+                    <span>{locale === 'tr' ? 'Yönetici Doğrulama Havuzunu İncele (Admin View)' : 'Review Admin Verification Queue (Admin View)'}</span>
                   </button>
                 ) : (
                   <div />
@@ -684,9 +771,9 @@ export default function OnboardingPage() {
 
                 <Link
                   href="/"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white font-bold text-sm bg-slate-900 hover:bg-slate-800 transition-all shadow-md"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white font-bold text-sm bg-slate-900 hover:bg-slate-800 transition-all shadow-md cursor-pointer"
                 >
-                  <span>Platform Ana Sayfasına Git</span>
+                  <span>{locale === 'tr' ? 'Platform Ana Sayfasına Git' : 'Go to Platform Home'}</span>
                   <span>→</span>
                 </Link>
               </div>
@@ -897,45 +984,86 @@ export default function OnboardingPage() {
             <form onSubmit={handleSchoolSubmit} className="space-y-6">
               <div>
                 <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                  Kurumun Yasal Tam Adı <span className="text-rose-500">*</span>
+                  {locale === 'tr' ? 'Kurumun Yasal Tam Adı' : 'Legal Name of Organisation'} <span className="text-rose-500">*</span>
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Örn: Nevşehir Mesleki ve Teknik Anadolu Lisesi"
+                  placeholder={locale === 'tr' ? 'Örn: Nevşehir Mesleki ve Teknik Anadolu Lisesi' : 'e.g. Helsinki Vocational College'}
                   value={schoolName}
                   onChange={(e) => setSchoolName(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                    Erasmus Kurum Kodu (OID)
+                    {locale === 'tr' ? 'Erasmus Kurum Kodu (OID)' : 'Erasmus Organisation ID (OID)'}
+                    <span className="text-slate-400 font-normal lowercase ml-1">
+                      ({locale === 'tr' ? 'varsa' : 'optional'})
+                    </span>
                   </label>
                   <input
                     type="text"
                     placeholder="E10XXXXXX"
                     value={schoolOid}
-                    onChange={(e) => setSchoolOid(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-all uppercase"
+                    onChange={(e) => setSchoolOid(e.target.value.toUpperCase())}
+                    className={`w-full px-4 py-3 rounded-xl border text-sm font-mono focus:outline-hidden focus:ring-2 transition-all uppercase ${
+                      isSchoolOidEntered && !isSchoolOidFormatValid
+                        ? 'border-rose-300 bg-rose-50/40 text-rose-900 focus:ring-rose-500'
+                        : isSchoolOidEntered && isSchoolOidFormatValid
+                        ? 'border-emerald-300 bg-emerald-50/20 text-emerald-900 focus:ring-emerald-500'
+                        : 'border-slate-200 focus:ring-blue-600'
+                    }`}
                   />
-                  {!isSchoolOidValid && (
-                    <p className="text-xs text-rose-600 mt-1 font-medium">
-                      Geçerli bir Erasmus OID formatı giriniz (Örn: E10123456).
+                  {isSchoolOidEntered && !isSchoolOidFormatValid && (
+                    <p className="text-xs text-rose-600 mt-1.5 font-medium flex items-center gap-1">
+                      <span>⚠️</span>
+                      <span>
+                        {locale === 'tr'
+                          ? 'Geçersiz OID formatı! "E10" ile başlayıp 5-7 basamaklı olmalıdır (Örn: E10123456). Geçersiz alanlara puan verilmez.'
+                          : 'Invalid OID format! Must begin with "E10" followed by 5 to 7 digits (e.g. E10123456).'}
+                      </span>
+                    </p>
+                  )}
+                  {isSchoolOidEntered && isSchoolOidFormatValid && (
+                    <p className="text-xs text-emerald-600 mt-1.5 font-medium flex items-center gap-1">
+                      <span>✓</span>
+                      <span>
+                        {locale === 'tr'
+                          ? 'Geçerli Erasmus OID formatı (+35 Proje Hazırlık Puanı).'
+                          : 'Valid Erasmus OID format (+35 Project Readiness Points).'}
+                      </span>
                     </p>
                   )}
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                    Bulunduğu Şehir <span className="text-rose-500">*</span>
+                    {locale === 'tr' ? 'Kayıtlı Ülke' : 'Country of Registration'} <span className="text-rose-500">*</span>
+                  </label>
+                  <select
+                    value={schoolCountryCode}
+                    onChange={(e) => setSchoolCountryCode(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-all bg-white"
+                  >
+                    {countries.map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {c.flagEmoji || '🇪🇺'} {locale === 'tr' ? (c.nameTr || c.nameEn) : (c.nameEn || c.nameTr)} ({c.code})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                    {locale === 'tr' ? 'Bulunduğu Şehir' : 'City / Location'} <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="Örn: Nevşehir"
+                    placeholder={locale === 'tr' ? 'Örn: Nevşehir' : 'e.g. Helsinki'}
                     value={schoolCity}
                     onChange={(e) => setSchoolCity(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-all"
@@ -945,13 +1073,13 @@ export default function OnboardingPage() {
 
               <div>
                 <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                  Erasmus VET Akreditasyon Durumu <span className="text-rose-500">*</span>
+                  {locale === 'tr' ? 'Erasmus VET Akreditasyon Durumu' : 'Erasmus VET Accreditation Status'} <span className="text-rose-500">*</span>
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <label
                     className={`flex items-start gap-3 p-3.5 rounded-xl border cursor-pointer transition-all ${
                       accreditationStatus === 'YES'
-                        ? 'border-blue-600 bg-blue-50/50 shadow-xs'
+                        ? 'border-blue-600 bg-blue-50/60 shadow-xs ring-2 ring-blue-500/10'
                         : 'border-slate-200 hover:bg-slate-50'
                     }`}
                   >
@@ -961,14 +1089,16 @@ export default function OnboardingPage() {
                       value="YES"
                       checked={accreditationStatus === 'YES'}
                       onChange={() => setAccreditationStatus('YES')}
-                      className="mt-1"
+                      className="mt-1 text-blue-600 focus:ring-blue-500"
                     />
                     <div>
                       <div className="text-xs font-bold text-slate-900">
-                        Akredite Kurum (KA121-VET)
+                        {locale === 'tr' ? 'Akredite Kurum (KA121-VET)' : 'Accredited Organisation (KA121-VET)'}
                       </div>
                       <div className="text-[11px] text-slate-500 mt-0.5">
-                        Kurumumuz Erasmus+ Mesleki Eğitim Akreditasyonuna sahiptir.
+                        {locale === 'tr'
+                          ? 'Kurumumuz Erasmus+ Mesleki Eğitim Akreditasyonuna sahiptir (+35 Proje Hazırlık Puanı).'
+                          : 'Our organisation holds an Erasmus+ VET Accreditation (+35 Readiness Points).'}
                       </div>
                     </div>
                   </label>
@@ -976,7 +1106,7 @@ export default function OnboardingPage() {
                   <label
                     className={`flex items-start gap-3 p-3.5 rounded-xl border cursor-pointer transition-all ${
                       accreditationStatus === 'NO'
-                        ? 'border-blue-600 bg-blue-50/50 shadow-xs'
+                        ? 'border-blue-600 bg-blue-50/60 shadow-xs ring-2 ring-blue-500/10'
                         : 'border-slate-200 hover:bg-slate-50'
                     }`}
                   >
@@ -986,75 +1116,196 @@ export default function OnboardingPage() {
                       value="NO"
                       checked={accreditationStatus === 'NO'}
                       onChange={() => setAccreditationStatus('NO')}
-                      className="mt-1"
+                      className="mt-1 text-blue-600 focus:ring-blue-500"
                     />
                     <div>
                       <div className="text-xs font-bold text-slate-900">
-                        Kısa Dönem Proje (KA122-VET)
+                        {locale === 'tr' ? 'Kısa Dönem Proje (KA122-VET)' : 'Short-term Mobility Project (KA122-VET)'}
                       </div>
                       <div className="text-[11px] text-slate-500 mt-0.5">
-                        Akreditasyonumuz bulunmamakta, standart çağrılara başvurmaktayız.
+                        {locale === 'tr'
+                          ? 'Akreditasyonumuz bulunmamakta, standart çağrılara başvurmaktayız (+20 Proje Hazırlık Puanı).'
+                          : 'No accreditation; we apply through standard competitive calls (+20 Readiness Points).'}
                       </div>
                     </div>
                   </label>
                 </div>
               </div>
 
-              {/* Canlı Skor Önizlemesi */}
-              <div className="p-4 rounded-xl border border-slate-200 bg-slate-50">
-                <div className="flex items-center justify-between text-xs mb-2">
-                  <span className="font-semibold text-slate-700">Tahmini Başlangıç Hazırlık Skoru:</span>
-                  <span className="font-bold text-slate-900">%{previewScore}</span>
+              {/* İKİ AYRI NET METRİK: FORM DOLULUK ORANI & PROJE HAZIRLIK PUANI */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl border border-slate-200 bg-slate-50/80">
+                {/* METRİK 1: Form Doluluk Oranı */}
+                <div className="p-3.5 rounded-xl border border-slate-200 bg-white shadow-2xs space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-bold text-slate-700 flex items-center gap-1.5">
+                      <span>📋</span>
+                      <span>{locale === 'tr' ? 'Form Doluluk Oranı' : 'Form Completeness'}:</span>
+                    </span>
+                    <span className="font-extrabold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md text-xs font-mono">
+                      %{schoolFormCompletionRate}
+                    </span>
+                  </div>
+                  <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden border border-slate-200/60">
+                    <div
+                      className="h-full rounded-full bg-blue-600 transition-all duration-300"
+                      style={{ width: `${schoolFormCompletionRate}%` }}
+                    />
+                  </div>
+                  <div className="text-[11px] text-slate-500 leading-snug">
+                    {isSchoolOidEntered && !isSchoolOidFormatValid ? (
+                      <span className="text-rose-600 font-semibold flex items-center gap-1">
+                        <span>⚠️</span>
+                        <span>{locale === 'tr' ? 'Geçersiz OID girildi, doluluk puanına eklenmedi.' : 'Invalid OID entered, not counted in completeness.'}</span>
+                      </span>
+                    ) : (
+                      <span>{locale === 'tr' ? 'Zorunlu ve geçerli alanların eksiksizlik düzeyi.' : 'Completeness level of required and valid fields.'}</span>
+                    )}
+                  </div>
                 </div>
-                <div className="w-full h-2 rounded-full bg-slate-200 overflow-hidden">
-                  <div
-                    className="h-full rounded-full bg-emerald-500 transition-all duration-300"
-                    style={{ width: `${previewScore}%` }}
-                  ></div>
+
+                {/* METRİK 2: Proje Hazırlık Puanı */}
+                <div className="p-3.5 rounded-xl border border-slate-200 bg-white shadow-2xs space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-bold text-slate-700 flex items-center gap-1.5">
+                      <span>🎯</span>
+                      <span>{locale === 'tr' ? 'Proje Hazırlık Puanı' : 'Project Readiness Score'}:</span>
+                    </span>
+                    <span className="font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md text-xs font-mono">
+                      %{schoolReadinessScore}
+                    </span>
+                  </div>
+                  <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden border border-slate-200/60">
+                    <div
+                      className="h-full rounded-full bg-emerald-500 transition-all duration-300"
+                      style={{ width: `${schoolReadinessScore}%` }}
+                    />
+                  </div>
+                  <div className="text-[11px] text-slate-500 leading-snug">
+                    {locale === 'tr'
+                      ? 'Resmi OID ve akreditasyon gücüne dayalı mevzuat hazırlığı. Geçersiz alanlara puan verilmez.'
+                      : 'Readiness calculated from verified OID and accreditation standing. Invalid fields receive zero points.'}
+                  </div>
                 </div>
               </div>
 
-              {/* KVKK / GDPR Rıza Onayı (Dile Göre Ayrık) */}
-              <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-xs flex items-start gap-3">
-                <input
-                  type="checkbox"
-                  id="schoolLegalConsent"
-                  checked={legalConsentAccepted}
-                  onChange={(e) => setLegalConsentAccepted(e.target.checked)}
-                  className="mt-0.5 rounded text-blue-600 focus:ring-blue-500"
-                />
-                <label htmlFor="schoolLegalConsent" className="text-slate-600 leading-relaxed cursor-pointer select-none">
-                  {locale === 'tr' ? (
-                    <>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setIsLegalModalOpen(true);
-                        }}
-                        className="font-bold text-blue-700 hover:underline inline p-0 m-0 bg-transparent border-none text-xs"
-                      >
-                        6698 sayılı KVKK Aydınlatma Metni
-                      </button>
-                      &apos;ni okudum, kişisel ve kurumsal verilerimin bu kapsamda işlenmesini onaylıyorum.
-                    </>
-                  ) : (
-                    <>
-                      I have read and agree to the{' '}
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setIsLegalModalOpen(true);
-                        }}
-                        className="font-bold text-blue-700 hover:underline inline p-0 m-0 bg-transparent border-none text-xs"
-                      >
-                        GDPR Privacy Policy (Regulation EU 2016/679)
-                      </button>
-                      .
-                    </>
-                  )}
-                </label>
+              {/* 3 KATMANLI HUKUKİ BİLGİLENDİRME, KOŞULLARIN KABULÜ VE İSTEĞE BAĞLI İZİNLER */}
+              <div className="space-y-3 p-4 rounded-2xl border border-slate-200 bg-slate-50/70">
+                {/* 1. KATMAN: HUKUKİ BİLGİLENDİRME (AYDINLATMA METNİ) - Bilgilendirme Notu, Kutusuz */}
+                <div className="bg-blue-50/70 border border-blue-200/80 rounded-xl p-3 text-xs text-blue-900 flex items-start gap-2.5">
+                  <span className="text-base shrink-0 mt-0.5">ℹ️</span>
+                  <div className="leading-relaxed">
+                    <span className="font-bold block text-blue-950 mb-0.5">
+                      {locale === 'tr' ? 'Veri Güvenliği & Aydınlatma Bilgilendirmesi' : 'Data Protection Notice'}
+                    </span>
+                    <span>
+                      {locale === 'tr' ? (
+                        <>
+                          6698 sayılı KVKK ve EU GDPR (2016/679) uyarınca kurumsal ve yetkili verilerinizin işlenme detayları hakkında{' '}
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setLegalTab('LEGAL');
+                              setIsLegalModalOpen(true);
+                            }}
+                            className="font-bold text-blue-700 underline cursor-pointer p-0 bg-transparent border-none text-xs inline"
+                          >
+                            KVKK & GDPR Aydınlatma Metni
+                          </button>
+                          &apos;nden bilgi edinebilirsiniz.
+                        </>
+                      ) : (
+                        <>
+                          Read our{' '}
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setLegalTab('LEGAL');
+                              setIsLegalModalOpen(true);
+                            }}
+                            className="font-bold text-blue-700 underline cursor-pointer p-0 bg-transparent border-none text-xs inline"
+                          >
+                            Privacy Policy & Information Notice
+                          </button>
+                          {' '}for data processing statutory rights.
+                        </>
+                      )}
+                    </span>
+                  </div>
+                </div>
+
+                {/* 2. KATMAN: ZORUNLU PLATFORM KOŞULLARI KABULÜ - Varsayılan: Boş (false) */}
+                <div className="bg-white border border-slate-200 rounded-xl p-3.5 text-xs flex items-start gap-3 shadow-2xs">
+                  <input
+                    type="checkbox"
+                    id="schoolLegalConsent"
+                    checked={legalConsentAccepted}
+                    onChange={(e) => setLegalConsentAccepted(e.target.checked)}
+                    className="mt-0.5 rounded text-blue-600 focus:ring-blue-500 cursor-pointer"
+                    required
+                  />
+                  <label htmlFor="schoolLegalConsent" className="text-slate-700 leading-relaxed cursor-pointer select-none">
+                    <span className="font-bold text-slate-900 block mb-0.5">
+                      {locale === 'tr' ? 'Platform Katılım ve Kullanım Koşulları Onayı (Zorunlu) *' : 'Platform Participation & Terms Acceptance (Mandatory) *'}
+                    </span>
+                    <span>
+                      {locale === 'tr' ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setLegalTab('TERMS');
+                              setIsLegalModalOpen(true);
+                            }}
+                            className="font-bold text-blue-700 underline cursor-pointer p-0 bg-transparent border-none text-xs inline"
+                          >
+                            Platform Katılım Koşulları ve Hizmet Şartları
+                          </button>
+                          &apos;nı okudum, temsil ettiğim kurum adına tüm koşulları kabul ve beyan ederim.
+                        </>
+                      ) : (
+                        <>
+                          I have read and agree on behalf of my organisation to the{' '}
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setLegalTab('TERMS');
+                              setIsLegalModalOpen(true);
+                            }}
+                            className="font-bold text-blue-700 underline cursor-pointer p-0 bg-transparent border-none text-xs inline"
+                          >
+                            Platform Participation Terms & Conditions
+                          </button>
+                          .
+                        </>
+                      )}
+                    </span>
+                  </label>
+                </div>
+
+                {/* 3. KATMAN: İSTEĞE BAĞLI İZİNLER (KAMUSAL PROFİL İLETİŞİM GÖSTERİMİ) - Varsayılan: Boş (false) */}
+                <div className="bg-white border border-slate-200 rounded-xl p-3.5 text-xs flex items-start gap-3 shadow-2xs">
+                  <input
+                    type="checkbox"
+                    id="schoolPublicConsent"
+                    checked={schoolConsentPublicDisplay}
+                    onChange={(e) => setSchoolConsentPublicDisplay(e.target.checked)}
+                    className="mt-0.5 rounded text-blue-600 focus:ring-blue-500 cursor-pointer"
+                  />
+                  <label htmlFor="schoolPublicConsent" className="text-slate-600 leading-relaxed cursor-pointer select-none">
+                    <span className="font-bold text-slate-900 block mb-0.5">
+                      {locale === 'tr' ? 'Kamusal Profilde İletişim Bilgilerinin Sergilenmesi (İsteğe Bağlı)' : 'Public Directory Contact Details Display (Optional)'}
+                    </span>
+                    <span>
+                      {locale === 'tr'
+                        ? 'Ortak arayan diğer meslek liseleri ve Avrupalı ev sahibi işletmelerin kurumumuzla doğrudan iletişime geçebilmesi için irtibat yetkilisi ve kurumsal e-posta bilgilerimizin platform dizininde sergilenmesine açık rıza gösteriyorum. (İşaretlenmezse iletişim bilgileri gizli kalır).'
+                        : 'I give explicit consent for our primary contact details to be publicly displayed in the directory for mobility coordinators. (If unchecked, details remain private).'}
+                    </span>
+                  </label>
+                </div>
               </div>
 
               <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
@@ -1145,12 +1396,12 @@ export default function OnboardingPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Kurumun Yasal Tam Adı (Legal Name) <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Kurumun Yasal Tam Adı (Legal Name)' : 'Legal Name of Organisation'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="Örn: TechNordic Solutions GmbH"
+                        placeholder={locale === 'tr' ? 'Örn: TechNordic Solutions GmbH' : 'e.g. TechNordic Solutions GmbH'}
                         value={hostName}
                         onChange={(e) => setHostName(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -1159,11 +1410,11 @@ export default function OnboardingPage() {
 
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Ticari / Marka Adı (Varsa)
+                        {locale === 'tr' ? 'Ticari / Marka Adı (Varsa)' : 'Trading / Brand Name (Optional)'}
                       </label>
                       <input
                         type="text"
-                        placeholder="Örn: TechNordic"
+                        placeholder={locale === 'tr' ? 'Örn: TechNordic' : 'e.g. TechNordic'}
                         value={hostTradingName}
                         onChange={(e) => setHostTradingName(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -1174,26 +1425,29 @@ export default function OnboardingPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Kurum Türü <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Kurum Türü' : 'Organisation Type'} <span className="text-rose-500">*</span>
                       </label>
                       <select
                         value={hostOrgType}
                         onChange={(e) => setHostOrgType(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all bg-white"
                       >
-                        <option value="Company">Şirket / İşletme (SME / Company)</option>
-                        <option value="NGO">STK / Dernek / Vakıf (NGO)</option>
-                        <option value="VET School">Meslek Okulu / Kolej (VET School)</option>
-                        <option value="University">Üniversite (University)</option>
-                        <option value="Training Centre">Eğitim Merkezi (Training Centre)</option>
-                        <option value="Public Institution">Kamu Kurumu (Public Institution)</option>
+                        <option value="Company">{locale === 'tr' ? 'Şirket / İşletme (SME / Company)' : 'Enterprise / SME (Company)'}</option>
+                        <option value="NGO">{locale === 'tr' ? 'STK / Dernek / Vakıf (NGO)' : 'Non-Governmental Organisation (NGO)'}</option>
+                        <option value="VET School">{locale === 'tr' ? 'Meslek Okulu / Kolej (VET School)' : 'VET School / College'}</option>
+                        <option value="University">{locale === 'tr' ? 'Üniversite (University)' : 'Higher Education Institution (University)'}</option>
+                        <option value="Training Centre">{locale === 'tr' ? 'Eğitim Merkezi (Training Centre)' : 'Vocational Training Centre'}</option>
+                        <option value="Public Institution">{locale === 'tr' ? 'Kamu Kurumu (Public Institution)' : 'Public Institution / Regional Authority'}</option>
                       </select>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Kayıtlı Ülke <span className="text-rose-500">*</span>
-                      </label>
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider m-0">
+                          {locale === 'tr' ? 'Kayıtlı Ülke (Erasmus+ Program Ülkesi)' : 'Country of Registration'} <span className="text-rose-500">*</span>
+                        </label>
+                        <span className="text-[11px] text-slate-500 font-semibold">{locale === 'tr' ? '33 Program Ülkesi' : '33 Programme Countries'}</span>
+                      </div>
                       <select
                         value={hostCountryCode}
                         onChange={(e) => setHostCountryCode(e.target.value)}
@@ -1201,7 +1455,7 @@ export default function OnboardingPage() {
                       >
                         {countries.map((c) => (
                           <option key={c.code} value={c.code}>
-                            {c.flagEmoji || '🇪🇺'} {c.nameTr} ({c.code})
+                            {c.flagEmoji || '🇪🇺'} {locale === 'tr' ? (c.nameTr || c.nameEn) : (c.nameEn || c.nameTr)} ({c.code})
                           </option>
                         ))}
                       </select>
@@ -1209,12 +1463,12 @@ export default function OnboardingPage() {
 
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Şehir / Bölge <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Şehir / Bölge' : 'City / Region'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="Örn: Berlin"
+                        placeholder={locale === 'tr' ? 'Örn: Berlin' : 'e.g. Berlin'}
                         value={hostCity}
                         onChange={(e) => setHostCity(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -1225,12 +1479,12 @@ export default function OnboardingPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="sm:col-span-2">
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Resmi Kayıtlı Adres (Registered Address) <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Resmi Kayıtlı Adres (Registered Address)' : 'Official Registered Address'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="Örn: Friedrichstraße 120, 10117 Berlin"
+                        placeholder={locale === 'tr' ? 'Örn: Friedrichstraße 120, 10117 Berlin' : 'e.g. Friedrichstraße 120, 10117 Berlin'}
                         value={hostRegisteredAddress}
                         onChange={(e) => setHostRegisteredAddress(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -1239,7 +1493,7 @@ export default function OnboardingPage() {
 
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Kuruluş Yılı <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Kuruluş Yılı' : 'Year Established'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="number"
@@ -1255,11 +1509,11 @@ export default function OnboardingPage() {
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Operasyonel Hizmet Adresi (Resmi adresten farklıysa)
+                      {locale === 'tr' ? 'Operasyonel Hizmet Adresi (Resmi adresten farklıysa)' : 'Operational Premises Address (If different from registered)'}
                     </label>
                     <input
                       type="text"
-                      placeholder="Örn: Alexanderplatz 5, 10178 Berlin"
+                      placeholder={locale === 'tr' ? 'Örn: Alexanderplatz 5, 10178 Berlin' : 'e.g. Alexanderplatz 5, 10178 Berlin'}
                       value={hostOperationalAddress}
                       onChange={(e) => setHostOperationalAddress(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -1273,7 +1527,7 @@ export default function OnboardingPage() {
                 <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                   <span className="text-base">🇪🇺</span>
                   <h3 className="text-sm font-bold text-slate-900 tracking-tight uppercase">
-                    2. Erasmus+ Kimliği ve Kurumsal İletişim
+                    {locale === 'tr' ? '2. Erasmus+ Kimliği ve Kurumsal İletişim' : '2. Erasmus+ Identity & Institutional Contact'}
                   </h3>
                 </div>
 
@@ -1281,7 +1535,7 @@ export default function OnboardingPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Erasmus+ OID Numarası <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Erasmus+ OID Numarası' : 'Erasmus+ OID Number'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -1293,18 +1547,20 @@ export default function OnboardingPage() {
                       />
                       {!isHostOidValid && hostOid.length > 0 && (
                         <p className="text-xs text-rose-600 mt-1 font-medium">
-                          Geçerli bir Erasmus OID formatı giriniz (Örn: E10123456).
+                          {locale === 'tr'
+                            ? 'Geçerli bir Erasmus OID formatı giriniz (Örn: E10123456).'
+                            : 'Please enter a valid Erasmus OID format (e.g. E10123456).'}
                         </p>
                       )}
                     </div>
 
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        PIC Numarası (Varsa)
+                        {locale === 'tr' ? 'PIC Numarası (Varsa)' : 'PIC Number (Optional)'}
                       </label>
                       <input
                         type="text"
-                        placeholder="Örn: 987654321"
+                        placeholder={locale === 'tr' ? 'Örn: 987654321' : 'e.g. 987654321'}
                         value={hostPicNumber}
                         onChange={(e) => setHostPicNumber(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -1315,7 +1571,7 @@ export default function OnboardingPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Resmi Web Sitesi <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Resmi Web Sitesi' : 'Official Website'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="url"
@@ -1329,7 +1585,7 @@ export default function OnboardingPage() {
 
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Genel E-Posta Adresi <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Genel E-Posta Adresi' : 'General Email Address'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="email"
@@ -1343,7 +1599,7 @@ export default function OnboardingPage() {
 
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Telefon Numarası <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Telefon Numarası' : 'Telephone Number'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="tel"
@@ -1358,9 +1614,12 @@ export default function OnboardingPage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Faaliyet Sektörü <span className="text-rose-500">*</span>
-                      </label>
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider m-0">
+                          {locale === 'tr' ? 'Kurumsal Faaliyet Sektörü (8 Ana Sektör Kümesi)' : 'Vocational Sector Cluster'} <span className="text-rose-500">*</span>
+                        </label>
+                        <span className="text-[11px] text-slate-500 font-semibold">{locale === 'tr' ? '8 Sektör' : '8 Sectors'}</span>
+                      </div>
                       <select
                         value={hostSector}
                         onChange={(e) => setHostSector(e.target.value)}
@@ -1368,7 +1627,7 @@ export default function OnboardingPage() {
                       >
                         {sectors.map((s) => (
                           <option key={s.code} value={s.code}>
-                            {s.nameTr}
+                            {locale === 'tr' ? (s.nameTr || s.nameEn) : (s.nameEn || s.nameTr)}
                           </option>
                         ))}
                       </select>
@@ -1376,7 +1635,7 @@ export default function OnboardingPage() {
 
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Dönemlik Stajyer Kapasitesi
+                        {locale === 'tr' ? 'Dönemlik Stajyer Kapasitesi' : 'Internship Capacity Per Term'}
                       </label>
                       <input
                         type="number"
@@ -1396,7 +1655,7 @@ export default function OnboardingPage() {
                 <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                   <span className="text-base">👤</span>
                   <h3 className="text-sm font-bold text-slate-900 tracking-tight uppercase">
-                    3. Hareketlilik İrtibat Yetkilisi
+                    {locale === 'tr' ? '3. Hareketlilik İrtibat Yetkilisi' : '3. Primary Mobility Contact Person'}
                   </h3>
                 </div>
 
@@ -1404,12 +1663,12 @@ export default function OnboardingPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Yetkili Adı Soyadı <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Yetkili Adı Soyadı' : 'Contact Person Full Name'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="Örn: Markus Schmidt"
+                        placeholder={locale === 'tr' ? 'Örn: Markus Schmidt' : 'e.g. Markus Schmidt'}
                         value={hostContactPerson}
                         onChange={(e) => setHostContactPerson(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -1418,12 +1677,12 @@ export default function OnboardingPage() {
 
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Unvan / Görevi <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Unvan / Görevi' : 'Job Title / Role'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="Örn: Mobility Coordinator"
+                        placeholder={locale === 'tr' ? 'Örn: Mobility Coordinator' : 'e.g. Mobility Coordinator'}
                         value={hostContactTitle}
                         onChange={(e) => setHostContactTitle(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -1432,12 +1691,12 @@ export default function OnboardingPage() {
 
                     <div>
                       <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        Yetkili Kurumsal E-Posta <span className="text-rose-500">*</span>
+                        {locale === 'tr' ? 'Yetkili Kurumsal E-Posta' : 'Corporate Email Address'} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="email"
                         required
-                        placeholder="schmidt@technordic.de"
+                        placeholder={locale === 'tr' ? 'schmidt@technordic.de' : 'schmidt@technordic.de'}
                         value={hostContactEmail}
                         onChange={(e) => setHostContactEmail(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -1445,83 +1704,196 @@ export default function OnboardingPage() {
                     </div>
                   </div>
 
-                  {/* Açık Rıza / Consent Checkbox (Kamusal Profil Gösterimi) */}
-                  <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/40 text-xs">
-                    <label className="flex items-start gap-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={hostConsentPublicDisplay}
-                        onChange={(e) => setHostConsentPublicDisplay(e.target.checked)}
-                        className="mt-0.5 rounded-md text-emerald-600 focus:ring-emerald-500"
-                      />
-                      <div className="text-slate-700 leading-relaxed">
-                        <span className="font-bold text-slate-900 block mb-0.5">
-                          Kamusal Profilde İletişim Bilgilerinin Sergilenmesi Açık Rıza Onayı
+                  {/* 3 KATMANLI HUKUKİ BİLGİLENDİRME, KOŞULLARIN KABULÜ VE İSTEĞE BAĞLI İZİNLER (HOST) */}
+                  <div className="space-y-3 p-4 rounded-2xl border border-slate-200 bg-slate-50/70">
+                    {/* 1. KATMAN: HUKUKİ BİLGİLENDİRME (AYDINLATMA METNİ) - Bilgilendirme Notu, Kutusuz */}
+                    <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-xl p-3 text-xs text-emerald-950 flex items-start gap-2.5">
+                      <span className="text-base shrink-0 mt-0.5">ℹ️</span>
+                      <div className="leading-relaxed">
+                        <span className="font-bold block text-emerald-950 mb-0.5">
+                          {locale === 'tr' ? 'Hukuki Aydınlatma & Veri Koruma Bildirimi' : 'Statutory Data Protection Notice'}
                         </span>
                         <span>
-                          İrtibat yetkilisinin adı, unvanı ve kurumsal e-posta adresinin, hareketlilik planlayan okullar tarafından görülebilmesi için kurum profilimizde sergilenmesini onaylıyorum.
+                          {locale === 'tr' ? (
+                            <>
+                              6698 sayılı KVKK ve EU GDPR (2016/679) uyarınca ticari ve irtibat verilerinizin işlenmesine ilişkin detaylara{' '}
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setLegalTab('LEGAL');
+                                  setIsLegalModalOpen(true);
+                                }}
+                                className="font-bold text-emerald-800 underline cursor-pointer p-0 bg-transparent border-none text-xs inline"
+                              >
+                                KVKK & GDPR Aydınlatma Metni
+                              </button>
+                              &apos;nden ulaşabilirsiniz.
+                            </>
+                          ) : (
+                            <>
+                              Please read our{' '}
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setLegalTab('LEGAL');
+                                  setIsLegalModalOpen(true);
+                                }}
+                                className="font-bold text-emerald-800 underline cursor-pointer p-0 bg-transparent border-none text-xs inline"
+                              >
+                                Statutory Privacy & Data Protection Notice
+                              </button>
+                              {' '}pursuant to EU GDPR 2016/679.
+                            </>
+                          )}
                         </span>
                       </div>
-                    </label>
-                  </div>
+                    </div>
 
-                  {/* KVKK / GDPR Hukuki Aydınlatma (Dile Göre Ayrık) */}
-                  <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-xs flex items-start gap-3">
-                    <input
-                      type="checkbox"
-                      id="hostLegalConsent"
-                      checked={legalConsentAccepted}
-                      onChange={(e) => setLegalConsentAccepted(e.target.checked)}
-                      className="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500"
-                    />
-                    <label htmlFor="hostLegalConsent" className="text-slate-600 leading-relaxed cursor-pointer select-none">
-                      {locale === 'tr' ? (
-                        <>
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              setIsLegalModalOpen(true);
-                            }}
-                            className="font-bold text-emerald-700 hover:underline inline p-0 m-0 bg-transparent border-none text-xs"
-                          >
-                            6698 sayılı KVKK Aydınlatma Metni
-                          </button>
-                          &apos;ni okudum, ev sahibi kurum ve yetkili verilerimizin bu kapsamda işlenmesini onaylıyorum.
-                        </>
-                      ) : (
-                        <>
-                          I confirm that I have read and agree to the{' '}
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              setIsLegalModalOpen(true);
-                            }}
-                            className="font-bold text-emerald-700 hover:underline inline p-0 m-0 bg-transparent border-none text-xs"
-                          >
-                            EU GDPR 2016/679 Privacy Policy
-                          </button>
-                          .
-                        </>
-                      )}
-                    </label>
+                    {/* 2. KATMAN: ZORUNLU PLATFORM KATILIM KOŞULLARI - Varsayılan: Boş (false) */}
+                    <div className="bg-white border border-slate-200 rounded-xl p-3.5 text-xs flex items-start gap-3 shadow-2xs">
+                      <input
+                        type="checkbox"
+                        id="hostLegalConsent"
+                        checked={legalConsentAccepted}
+                        onChange={(e) => setLegalConsentAccepted(e.target.checked)}
+                        className="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+                        required
+                      />
+                      <label htmlFor="hostLegalConsent" className="text-slate-700 leading-relaxed cursor-pointer select-none">
+                        <span className="font-bold text-slate-900 block mb-0.5">
+                          {locale === 'tr' ? 'Platform Katılım ve Hizmet Koşulları Onayı (Zorunlu) *' : 'Platform Terms & Participation Acceptance (Mandatory) *'}
+                        </span>
+                        <span>
+                          {locale === 'tr' ? (
+                            <>
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setLegalTab('TERMS');
+                                  setIsLegalModalOpen(true);
+                                }}
+                                className="font-bold text-emerald-700 underline cursor-pointer p-0 bg-transparent border-none text-xs inline"
+                              >
+                                Platform Katılım Koşulları ve Hizmet Şartları
+                              </button>
+                              &apos;nı okudum, temsil ettiğim ev sahibi kurum adına kabul ve taahhüt ederim.
+                            </>
+                          ) : (
+                            <>
+                              I have read and agree on behalf of my organisation to the{' '}
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setLegalTab('TERMS');
+                                  setIsLegalModalOpen(true);
+                                }}
+                                className="font-bold text-emerald-700 underline cursor-pointer p-0 bg-transparent border-none text-xs inline"
+                              >
+                                Platform Participation Terms & Conditions
+                              </button>
+                              .
+                            </>
+                          )}
+                        </span>
+                      </label>
+                    </div>
+
+                    {/* 3. KATMAN: İSTEĞE BAĞLI İZİNLER (KAMUSAL PROFİLDE İLETİŞİM BİLGİSİ GÖSTERİMİ) - Varsayılan: Boş (false) */}
+                    <div className="bg-white border border-slate-200 rounded-xl p-3.5 text-xs flex items-start gap-3 shadow-2xs">
+                      <input
+                        type="checkbox"
+                        id="hostConsentPublicDisplay"
+                        checked={hostConsentPublicDisplay}
+                        onChange={(e) => setHostConsentPublicDisplay(e.target.checked)}
+                        className="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+                      />
+                      <label htmlFor="hostConsentPublicDisplay" className="text-slate-600 leading-relaxed cursor-pointer select-none">
+                        <span className="font-bold text-slate-900 block mb-0.5">
+                          {locale === 'tr' ? 'Kamusal Profilde İletişim Bilgilerinin Sergilenmesi (İsteğe Bağlı)' : 'Public Profile Contact Details Display (Optional)'}
+                        </span>
+                        <span>
+                          {locale === 'tr'
+                            ? 'İrtibat yetkilisinin adı, unvanı ve kurumsal e-posta adresinin, hareketlilik planlayan okullar ve kurumlar tarafından görülebilmesi için kurum profilimizde sergilenmesine açık rıza onayımı veriyorum. (İşaretlenmezse bilgiler yalnızca doğrulanmış eşleşmelerde paylaşılır).'
+                            : 'I authorize the public display of the primary contact person’s name, title, and institutional email on our profile for mobility coordinators. (If unchecked, contact details remain private until a confirmed partnership).'}
+                        </span>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Bilgilendirme Notu */}
-              <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 text-xs text-slate-600 flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <span className="text-base">💡</span>
-                  <span>
-                    {t.onboarding.kycNotice}
+                {/* İKİ AYRI CANLI METRİK: FORM DOLULUK ORANI & DOĞRULAMA / GÜVEN PUANI */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl border border-slate-200 bg-slate-50/80">
+                  {/* METRİK 1: Form Doluluk Oranı */}
+                  <div className="p-3.5 rounded-xl border border-slate-200 bg-white shadow-2xs space-y-2">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-bold text-slate-700 flex items-center gap-1.5">
+                        <span>📋</span>
+                        <span>{locale === 'tr' ? 'Form Doluluk Oranı' : 'Form Completeness'}:</span>
+                      </span>
+                      <span className="font-extrabold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md text-xs font-mono">
+                        %{hostFormCompletionRate}
+                      </span>
+                    </div>
+                    <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden border border-slate-200/60">
+                      <div
+                        className="h-full rounded-full bg-blue-600 transition-all duration-300"
+                        style={{ width: `${hostFormCompletionRate}%` }}
+                      />
+                    </div>
+                    <div className="text-[11px] text-slate-500 leading-snug">
+                      {isHostOidEntered && !isHostOidFormatValid ? (
+                        <span className="text-rose-600 font-semibold flex items-center gap-1">
+                          <span>⚠️</span>
+                          <span>{locale === 'tr' ? 'Geçersiz OID girildi, doluluk puanına eklenmedi.' : 'Invalid OID entered, not counted in completeness.'}</span>
+                        </span>
+                      ) : (
+                        <span>{locale === 'tr' ? 'Kurumsal iletişim ve faaliyet alanlarının geçerlilik oranı.' : 'Completion rate of verified institutional details.'}</span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* METRİK 2: Doğrulama & Güven Puanı */}
+                  <div className="p-3.5 rounded-xl border border-slate-200 bg-white shadow-2xs space-y-2">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-bold text-slate-700 flex items-center gap-1.5">
+                        <span>🛡️</span>
+                        <span>{locale === 'tr' ? 'Doğrulama & Güven Puanı' : 'Trust & Verification Score'}:</span>
+                      </span>
+                      <span className="font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md text-xs font-mono">
+                        %{hostTrustScore}
+                      </span>
+                    </div>
+                    <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden border border-slate-200/60">
+                      <div
+                        className="h-full rounded-full bg-emerald-500 transition-all duration-300"
+                        style={{ width: `${hostTrustScore}%` }}
+                      />
+                    </div>
+                    <div className="text-[11px] text-slate-500 leading-snug">
+                      {locale === 'tr'
+                        ? 'Resmi OID ve iletişim teyidine dayalı güven skoru. Boş formda başlangıç puanı %0\'dır.'
+                        : 'Trust score based on verified OID and registered contact points. Initial empty score is 0%.'}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bilgilendirme Notu */}
+                <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 text-xs text-slate-600 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-base">💡</span>
+                    <span>
+                      {t.onboarding.kycNotice}
+                    </span>
+                  </div>
+                  <span className="font-bold text-slate-800 text-[11px] bg-slate-200 border border-slate-300/80 px-2 py-0.5 rounded-md">
+                    {locale === 'tr' ? 'Kayıt Sonrası Portföy & KYC ile %100 Doğrulama' : 'Post-registration KYC for 100% Verification'}
                   </span>
                 </div>
-                <span className="font-bold text-slate-900 text-[11px] bg-slate-200 px-2 py-0.5 rounded-md">
-                  {locale === 'tr' ? 'Başlangıç Puanı: %40' : 'Initial Score: 40%'}
-                </span>
-              </div>
 
               <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
                 <button
@@ -1563,13 +1935,25 @@ export default function OnboardingPage() {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              onClick={() => setIsLegalModalOpen(true)}
-              className="text-slate-500 hover:text-blue-700 hover:underline transition-colors font-medium"
+              onClick={() => {
+                setLegalTab('LEGAL');
+                setIsLegalModalOpen(true);
+              }}
+              className="text-slate-500 hover:text-blue-700 hover:underline transition-colors font-medium cursor-pointer"
             >
               {locale === 'tr' ? 'KVKK Aydınlatma Metni' : 'GDPR Privacy Policy'}
             </button>
             <span>•</span>
-            <span className="text-slate-400">{locale === 'tr' ? 'Gizlilik & Güvenlik' : 'Privacy & Security'}</span>
+            <button
+              type="button"
+              onClick={() => {
+                setLegalTab('TERMS');
+                setIsLegalModalOpen(true);
+              }}
+              className="text-slate-500 hover:text-blue-700 hover:underline transition-colors font-medium cursor-pointer"
+            >
+              {locale === 'tr' ? 'Kullanım Koşulları ve Açık Rıza' : 'Platform Participation Terms & Consent'}
+            </button>
           </div>
         </div>
       </footer>
@@ -1610,6 +1994,7 @@ export default function OnboardingPage() {
       <LegalModal
         isOpen={isLegalModalOpen}
         onClose={() => setIsLegalModalOpen(false)}
+        initialTab={legalTab}
       />
     </div>
   );

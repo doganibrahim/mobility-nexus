@@ -63,9 +63,43 @@ export default function UserOrgSync() {
           return;
         }
 
-        // User has neither school nor host in DB yet
+        // If backend does not have it yet, check if client already has a saved organisation in store/localStorage
+        const storeState = useAppStore.getState();
+        if (storeState.currentOrg && storeState.currentOrg.name) {
+          // Re-sync local organisation to backend database so it becomes permanently stored
+          try {
+            await apiClient.createOrganisation({
+              name: storeState.currentOrg.name,
+              oid: storeState.currentOrg.oid || undefined,
+              city: storeState.currentOrg.city || undefined,
+              countryCode: storeState.currentOrg.countryCode || 'TR',
+              accreditationStatus: storeState.currentOrg.accreditationStatus,
+              erasmusPlan: storeState.currentOrg.erasmusPlan || undefined,
+              institutionNeed: storeState.currentOrg.institutionNeed || undefined,
+              userId: currentUserId,
+              userEmail: user?.primaryEmailAddress?.emailAddress,
+              userFullName: user?.fullName || undefined,
+            });
+          } catch {}
+          lastCheckedUserId.current = currentUserId;
+          return;
+        }
+
+        if (storeState.currentHost && storeState.currentHost.name) {
+          try {
+            await apiClient.registerHost({
+              ...storeState.currentHost,
+              userId: currentUserId,
+              userEmail: user?.primaryEmailAddress?.emailAddress,
+              userFullName: user?.fullName || undefined,
+            });
+          } catch {}
+          lastCheckedUserId.current = currentUserId;
+          return;
+        }
+
+        // Only mark checked; do not clear store unless explicitly signed out
         lastCheckedUserId.current = currentUserId;
-        clearOrg();
       } catch (err) {
         console.warn('[UserOrgSync] Backend sync error:', err);
       }

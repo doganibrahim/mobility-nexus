@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { apiClient } from '../../lib/api-client';
+import { useTranslation } from '../../lib/i18n';
 
 interface HostVerificationModalProps {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export default function HostVerificationModal({
   host,
   onSuccess,
 }: HostVerificationModalProps) {
+  const { locale } = useTranslation();
   const [registrationNumber, setRegistrationNumber] = useState(host?.registrationNumber || '');
   const [registrationDocumentUrl, setRegistrationDocumentUrl] = useState(
     host?.registrationDocumentUrl || '',
@@ -122,19 +124,22 @@ export default function HostVerificationModal({
         <div className="px-6 py-5 bg-slate-950 text-white flex items-center justify-between border-b border-slate-800">
           <div>
             <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold mb-1">
-              <span>Aşama 3</span>
+              <span>{locale === 'tr' ? 'Aşama 3' : 'Stage 3'}</span>
               <span>•</span>
-              <span>Admin Only & Resmi Doğrulama</span>
+              <span>{locale === 'tr' ? 'Admin Only & Resmi Doğrulama' : 'Admin Only & Official Verification'}</span>
             </div>
             <h2 className="text-xl font-bold tracking-tight m-0 text-white">
-              Kurumsal Doğrulama & KYC Başvurusu
+              {locale === 'tr' ? 'Kurumsal Doğrulama & KYC Başvurusu' : 'Institutional Verification & KYC Application'}
             </h2>
             <p className="text-slate-400 text-xs mt-0.5 m-0">
-              "Onaylı Ev Sahibi (Verified Partner)" rozeti almak ve okullarla resmi anlaşma yapabilmek için evraklarınızı iletin.
+              {locale === 'tr'
+                ? '"Onaylı Ev Sahibi (Verified Partner)" rozeti almak ve okullarla resmi anlaşma yapabilmek için evraklarınızı iletin.'
+                : 'Submit official institutional verification documents to attain the "Verified Partner" badge and execute partnerships.'}
             </p>
           </div>
           <button
             onClick={onClose}
+            title={locale === 'tr' ? 'Kapat' : 'Close'}
             className="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition-colors text-lg"
           >
             ✕
@@ -147,23 +152,29 @@ export default function HostVerificationModal({
           <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-3">
             <span className="text-lg leading-none mt-0.5">🔒</span>
             <div className="leading-relaxed">
-              <span className="font-bold block mb-0.5">Admin Only Gizlilik Güvencesi</span>
-              Bu bölümde yükleyeceğiniz sicil, vergi ve acil durum irtibat bilgileri yalnızca platform denetçileri tarafından incelenir. Kamusal profilinizde veya üçüncü taraflarla kesinlikle paylaşılmaz.
+              <span className="font-bold block mb-0.5">
+                {locale === 'tr' ? 'Admin Only Gizlilik Güvencesi' : 'Strict Admin-Only Confidentiality Guarantee'}
+              </span>
+              {locale === 'tr'
+                ? 'Bu bölümde yükleyeceğiniz sicil, vergi ve acil durum irtibat bilgileri yalnızca platform denetçileri tarafından incelenir. Kamusal profilinizde veya üçüncü taraflarla kesinlikle paylaşılmaz.'
+                : 'All corporate registry, tax identification, and emergency contact details submitted here are strictly reviewed by platform administrators only and never shared publicly.'}
             </div>
           </div>
 
           {/* Mevcut Durum Kartı */}
           <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
             <div>
-              <span className="text-xs text-slate-500 font-semibold block">Mevcut Doğrulama Durumu</span>
+              <span className="text-xs text-slate-500 font-semibold block">
+                {locale === 'tr' ? 'Mevcut Doğrulama Durumu' : 'Current Verification Status'}
+              </span>
               <span className="text-sm font-bold text-slate-900 mt-0.5 block">
                 {currentStatus === 'VERIFIED'
-                  ? '🟢 Doğrulanmış Partner (Verified Partner)'
+                  ? (locale === 'tr' ? '🟢 Doğrulanmış Partner (Verified Partner)' : '🟢 Verified Partner')
                   : currentStatus === 'UNDER_REVIEW'
-                    ? '🟡 İnceleme Aşamasında (Under Review)'
+                    ? (locale === 'tr' ? '🟡 İnceleme Aşamasında (Under Review)' : '🟡 Under Review')
                     : currentStatus === 'NEEDS_UPDATE'
-                      ? '🟠 Eksik Belge / Güncelleme İsteniyor'
-                      : '⚪ Başvuru Bekleniyor (Pending)'}
+                      ? (locale === 'tr' ? '🟠 Eksik Belge / Güncelleme İsteniyor' : '🟠 Update / Additional Documents Required')
+                      : (locale === 'tr' ? '⚪ Başvuru Bekleniyor (Pending)' : '⚪ Application Pending')}
               </span>
             </div>
             <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-white border border-slate-200 shadow-2xs">
@@ -382,7 +393,11 @@ export default function HostVerificationModal({
         {/* Modal Footer */}
         <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
           <div className="text-xs text-slate-500">
-            Evraklarınız yüklendiğinde kurum statünüz <strong>"İncelemede"</strong> olarak işaretlenir.
+            {locale === 'tr' ? (
+              <>Evraklarınız yüklendiğinde kurum statünüz <strong>&quot;İncelemede&quot;</strong> olarak işaretlenir.</>
+            ) : (
+              <>Once documents are uploaded, your status will be set to <strong>&quot;Under Review&quot;</strong>.</>
+            )}
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -390,7 +405,7 @@ export default function HostVerificationModal({
               onClick={onClose}
               className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 border border-slate-200 rounded-lg hover:bg-white transition-colors"
             >
-              Kapat
+              {locale === 'tr' ? 'Kapat' : 'Close'}
             </button>
             <button
               type="submit"
@@ -398,7 +413,7 @@ export default function HostVerificationModal({
               disabled={isSaving}
               className="px-6 py-2 text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 rounded-lg shadow-sm transition-all"
             >
-              {isSaving ? 'Gönderiliyor...' : 'Doğrulamaya Gönder'}
+              {isSaving ? (locale === 'tr' ? 'Gönderiliyor...' : 'Submitting...') : (locale === 'tr' ? 'Doğrulamaya Gönder' : 'Submit for Verification')}
             </button>
           </div>
         </div>

@@ -43,7 +43,7 @@ export default function PlatformPage() {
       </div>
 
       {/* 3. Main Content Canvas */}
-      <main className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-1 w-full space-y-12">
+      <main id="main-content" tabIndex={-1} className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-1 w-full space-y-12 focus:outline-hidden">
         {/* Hero Section */}
         <section className="bg-white border-2 border-slate-300 rounded-2xl p-6 sm:p-10 shadow-xs space-y-5">
           <div className="flex items-center gap-2 flex-wrap">
@@ -336,7 +336,7 @@ export default function PlatformPage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
+        initialTab="TERMS"
       />
     </div>
   );

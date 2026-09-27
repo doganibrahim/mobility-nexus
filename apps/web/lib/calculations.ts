@@ -235,7 +235,7 @@ export function checkKa122Eligibility(
       passed: false,
       status: 'recommend_ka121',
       message:
-        'Kurumunuz zaten Erasmus Akreditasyonuna (KA120) sahiptir. KA122 başvurusu yapamazsınız; garantili yıllık bütçe tahsisatı için doğrudan KA121-VET başvurusunda bulunmalısınız.',
+        'Kurumunuz zaten Erasmus Akreditasyonuna (KA120) sahiptir. KA122 yarışmalı başvurusuna katılamaz; akreditasyon kapsamındaki yıllık bütçe tahsisatı için doğrudan KA121-VET başvurusunda bulunmalıdır.',
     });
   } else if (params.accredited === 'unknown') {
     checks.push({
@@ -244,7 +244,7 @@ export function checkKa122Eligibility(
       passed: true,
       status: 'warning',
       message:
-        'Akreditasyon durumu teyit edilmemiştir. Akredite değilseniz KA122 uygundur.',
+        'Kurumunuzun OID kaydı ve akreditasyon durumu teyit edilmelidir. Akredite kurumlar KA122 yerine KA121 yıllık bütçe tahsisatı kullanır.',
     });
   } else {
     checks.push({
@@ -253,7 +253,7 @@ export function checkKa122Eligibility(
       passed: true,
       status: 'eligible',
       message:
-        'Kurumun akreditasyonu bulunmamaktadır. KA122 kısa dönemli hareketlilik için uygundur.',
+        'Kurumunuz akredite değildir; KA122 kısa dönemli projeye başvuru hakkına sahiptir.',
     });
   }
 
@@ -293,27 +293,27 @@ export function checkKa122Eligibility(
       title: 'Proje Süresi (6–18 Ay)',
       passed: true,
       status: 'eligible',
-      message: `Proje süresi (${duration} ay), resmî 6 ila 18 ay uygunluk aralığındadır.`,
+      message: `Proje süresi (${duration} ay), resmi 6 ila 18 ay uygunluk aralığındadır.`,
     });
   }
 
-  // Check 4: Past grants in consecutive 36 months (max 3 grants for KA122)
+  // Check 4: Past grants in consecutive 5 call years (max 3 grants for KA122)
   const pastGrants = params.pastKa122GrantsCount || 0;
   if (pastGrants >= 3) {
     checks.push({
       id: 'past_grants',
-      title: 'Önceki Hibe Sayısı (36 Ayda Maks. 3)',
+      title: 'Önceki Hibe Sayısı (5 Ardışık Çağrı Yılında Maks. 3)',
       passed: false,
       status: 'recommend_ka120',
-      message: `Kurumunuz son 36 ayda azami 3 KA122 hibesi hakkına (${pastGrants} hibe) ulaşmıştır. Yeni KA122 başvurusu kural gereği elenir; doğrudan KA120 Akreditasyonu önerilir.`,
+      message: `Kurumunuz 5 ardışık çağrı yılı içinde azami 3 KA122 hibesi hakkına (${pastGrants} hibe) ulaşmıştır. Yeni KA122 başvurusu kural gereği elenir; doğrudan KA120 Akreditasyonu önerilir.`,
     });
   } else {
     checks.push({
       id: 'past_grants',
-      title: 'Önceki Hibe Sayısı (36 Ayda Maks. 3)',
+      title: 'Önceki Hibe Sayısı (5 Ardışık Çağrı Yılında Maks. 3)',
       passed: true,
       status: 'eligible',
-      message: `Son 36 aydaki hibe sayısı (${pastGrants}), kural gereği 3 hakkı doldurmamıştır.`,
+      message: `5 ardışık çağrı yılı içindeki hibe sayısı (${pastGrants}), kural gereği 3 hakkı doldurmamıştır.`,
     });
   }
 
@@ -325,7 +325,7 @@ export function checkKa122Eligibility(
       passed: true,
       status: 'recommend_ka120',
       message:
-        'Kurumunuz her yıl düzenli ve garantili bütçeyle hareketlilik hedeflemektedir. Tek seferlik KA122 yerine KA120 Erasmus Akreditasyonu tavsiye edilir.',
+        'Kurumunuz her yıl düzenli ve sürdürülebilir bir bütçe tahsisatıyla hareketlilik hedeflemektedir. Tek seferlik KA122 yerine KA120 Erasmus Akreditasyonu tavsiye edilir.',
     });
   } else {
     checks.push({
@@ -344,7 +344,7 @@ export function checkKa122Eligibility(
       recommendedPathway: 'KA121-VET',
       summaryTitle: 'KA121-VET Başvuru Yolu Önerilir',
       summaryMessage:
-        'Kurumunuz akredite olduğundan KA122 yarışmalı teklif çağrısına katılamaz; garantili yıllık bütçe için KA121 tahsisatı kullanmalıdır.',
+        'Kurumunuz akredite olduğundan KA122 yarışmalı teklif çağrısına katılamaz; akredite kurumlara yönelik yıllık bütçe tahsisatı için KA121 başvuru yolunu kullanmalıdır.',
       checks,
     };
   }
@@ -360,7 +360,7 @@ export function checkKa122Eligibility(
       recommendedPathway: 'KA120-VET',
       summaryTitle: 'KA120-VET Erasmus Akreditasyonu Önerilir',
       summaryMessage:
-        'Yıllık düzenli hareketlilik vizyonu, katılımcı sayısı kotası veya 36 aylık hibe limiti nedeniyle kurumunuz için en stratejik yol KA120-VET Akreditasyonudur.',
+        'Yıllık düzenli hareketlilik vizyonu, katılımcı sayısı kotası veya 5 ardışık çağrı yılı hibe kotası (maks. 3 hibe) nedeniyle kurumunuz için en stratejik yol KA120-VET Akreditasyonudur.',
       checks,
     };
   }
@@ -460,7 +460,7 @@ export function makeDecision(params: {
     if (wantsRegular || hitCap || overParticipants) {
       action = 'KA120-VET Erasmus Accreditation Recommended';
       rationale =
-        'Kurumun düzenli/yıllık hareketlilik planı, 30 kişiyi aşan katılımcı talebi veya 36 aylık KA122 hibe kotasını doldurması nedeniyle, tek seferlik KA122 yerine kurumsal KA120-VET Erasmus Akreditasyonuna başvurması şiddetle tavsiye edilir.';
+        'Kurumun düzenli/yıllık hareketlilik planı, 30 kişiyi aşan katılımcı talebi veya 5 ardışık çağrı yılındaki KA122 hibe kotasını doldurması nedeniyle, tek seferlik KA122 yerine kurumsal KA120-VET Erasmus Akreditasyonuna başvurması şiddetle tavsiye edilir.';
     } else {
       action = 'KA122-VET';
       rationale =

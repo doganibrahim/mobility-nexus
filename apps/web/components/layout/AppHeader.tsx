@@ -13,8 +13,8 @@ import BeneficiariesModal, { BeneficiaryCategory } from '../ui/BeneficiariesModa
 import ErasmusResultsWidget from '../ui/ErasmusResultsWidget';
 import LegalModal, { LegalTabType } from '../ui/LegalModal';
 import AdminVerificationQueueModal from '../admin/AdminVerificationQueueModal';
-import GuestOnboardingModal from '../ui/GuestOnboardingModal';
 import AppointmentModal from '../ui/AppointmentModal';
+import { DisplaySettingsDropdown } from './DisplaySettingsDropdown';
 
 export default function AppHeader() {
   const pathname = usePathname();
@@ -110,7 +110,7 @@ export default function AppHeader() {
   );
 
   return (
-    <header className="bg-white text-slate-900 border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <header role="banner" className="bg-white text-slate-900 border-b border-slate-200 sticky top-0 z-30 shadow-xs">
       {/* Top Official EU Strip (Light & Crisp, Responsive) */}
       <div className="bg-slate-100/80 border-b border-slate-200 px-3 py-1 sm:px-6 text-[11px] sm:text-xs text-slate-600 flex items-center justify-between flex-wrap gap-1.5">
         <div className="flex items-center gap-2">
@@ -159,44 +159,32 @@ export default function AppHeader() {
             <span className="text-base sm:text-lg font-black tracking-tight text-slate-950 group-hover:text-blue-900 transition-colors">
               {t.header.title}
             </span>
-            <span className="hidden xl:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-300">
+            <span className="hidden 2xl:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-300">
               {t.header.badge}
             </span>
           </div>
         </Link>
 
-        {/* 2. Center 6 Core Nav Items (Single Line on Desktop) */}
+        {/* 2. Center Nav Items (Single Line on Desktop, Fits 1024px+) */}
         <nav
           ref={navContainerRef}
+          role="navigation"
+          aria-label={locale === 'tr' ? 'Ana Menü' : 'Main Menu'}
           className="hidden lg:flex items-center gap-1 xl:gap-1.5 shrink-0"
         >
           {/* 1. Home */}
           <Link
             href="/"
-            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+            className={`px-2.5 py-1.5 text-xs font-bold rounded-lg transition-all ${
               pathname === '/'
                 ? 'bg-slate-900 text-white shadow-xs'
                 : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
             }`}
           >
-            <span>🏠</span>
             <span>{t.header.nav.home}</span>
           </Link>
 
-          {/* 2. About */}
-          <Link
-            href="/about"
-            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
-              pathname === '/about'
-                ? 'bg-slate-900 text-white shadow-xs'
-                : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
-            }`}
-          >
-            <span>ℹ️</span>
-            <span>{t.header.nav.about}</span>
-          </Link>
-
-          {/* 3. Platform (with Dropdown) */}
+          {/* 2. Platform (with Dropdown) */}
           <div className="relative">
             <div
               className={`inline-flex items-stretch rounded-lg transition-all ${
@@ -207,13 +195,12 @@ export default function AppHeader() {
             >
               <Link
                 href="/platform"
-                className={`px-2.5 py-1.5 text-xs font-bold rounded-l-lg transition-colors flex items-center gap-1.5 ${
+                className={`px-2.5 py-1.5 text-xs font-bold rounded-l-lg transition-colors ${
                   pathname === '/platform' || pathname.startsWith('/school')
                     ? 'hover:bg-slate-800 text-white'
                     : 'hover:bg-slate-200/60'
                 }`}
               >
-                <span>⚡</span>
                 <span>{t.header.nav.platform.label}</span>
               </Link>
               <button
@@ -285,6 +272,25 @@ export default function AppHeader() {
                   </Link>
 
                   <Link
+                    href="/marketplace"
+                    onClick={() => setActiveDropdown(null)}
+                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors block"
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5 text-indigo-900 font-extrabold">
+                        <span>🎓</span>
+                        <span>{locale === 'tr' ? 'Eğitim & Fırsat Pazar Yeri' : 'Training & Opportunity Marketplace'}</span>
+                      </div>
+                      <div className="text-[10px] font-normal text-slate-500">
+                        {locale === 'tr'
+                          ? 'Kurslar, işbaşı gözlem ve karşılıklı başvuru yönetimi'
+                          : 'Courses, job shadowing slots & application management'}
+                      </div>
+                    </div>
+                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
+                  </Link>
+
+                  <Link
                     href="/"
                     onClick={() => setActiveDropdown(null)}
                     className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors block"
@@ -313,6 +319,25 @@ export default function AppHeader() {
                       </div>
                       <div className="text-[10px] font-normal text-slate-500">
                         {t.header.nav.platform.hostPortalDesc}
+                      </div>
+                    </div>
+                    <span className="text-slate-400 group-hover:text-slate-700">→</span>
+                  </Link>
+
+                  <Link
+                    href="/admin/content-manager"
+                    onClick={() => setActiveDropdown(null)}
+                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between group transition-colors block border-t border-slate-100"
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5 text-purple-900 font-extrabold">
+                        <span>⚙️</span>
+                        <span>{locale === 'tr' ? 'Admin CMS & İçerik Konsolu' : 'Admin CMS Console'}</span>
+                      </div>
+                      <div className="text-[10px] font-normal text-slate-500">
+                        {locale === 'tr'
+                          ? 'Kurslar, işbaşı gözlem ve kütüphane doküman yönetimi'
+                          : 'Manage courses, job offers and library documents'}
                       </div>
                     </div>
                     <span className="text-slate-400 group-hover:text-slate-700">→</span>
@@ -350,13 +375,12 @@ export default function AppHeader() {
             >
               <Link
                 href="/library"
-                className={`px-2.5 py-1.5 text-xs font-bold rounded-l-lg transition-colors flex items-center gap-1.5 ${
+                className={`px-2.5 py-1.5 text-xs font-bold rounded-l-lg transition-colors ${
                   pathname === '/library'
                     ? 'hover:bg-slate-800 text-white'
                     : 'hover:bg-slate-200/60'
                 }`}
               >
-                <span>📚</span>
                 <span>{t.header.nav.library.label}</span>
               </Link>
               <button
@@ -391,6 +415,26 @@ export default function AppHeader() {
                   {t.header.nav.library.desc}
                 </div>
                 <div className="py-1">
+                  <Link
+                    href="/guide"
+                    onClick={() => setActiveDropdown(null)}
+                    className="w-full px-3 py-2 text-left text-xs font-bold text-slate-800 hover:bg-blue-50/80 flex items-center justify-between group transition-colors cursor-pointer bg-blue-50/40 border-b border-slate-100 block"
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5 text-blue-900 font-extrabold">
+                        <span>📖</span>
+                        <span>{t.header.nav.library.userManual}</span>
+                        <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-blue-100 text-blue-800">
+                          {locale === 'en' ? 'NEW' : 'YENİ'}
+                        </span>
+                      </div>
+                      <div className="text-[10px] font-normal text-slate-500">
+                        {t.header.nav.library.userManualDesc}
+                      </div>
+                    </div>
+                    <span className="text-blue-600 group-hover:translate-x-0.5 transition-transform">→</span>
+                  </Link>
+
                   <Link
                     href="/library"
                     onClick={() => setActiveDropdown(null)}
@@ -491,35 +535,60 @@ export default function AppHeader() {
             )}
           </div>
 
-          {/* 5. News & Events */}
+          {/* 4. Guide (Standalone User Manual) */}
           <Link
-            href="/news-and-events"
-            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
-              pathname === '/news-and-events'
+            href="/guide"
+            className={`px-2.5 py-1.5 text-xs font-bold rounded-lg transition-all ${
+              pathname === '/guide'
+                ? 'bg-blue-700 text-white shadow-xs'
+                : 'text-slate-700 hover:text-blue-900 hover:bg-blue-50'
+            }`}
+          >
+            <span>{locale === 'tr' ? 'Kılavuz' : 'User Guide'}</span>
+          </Link>
+
+          {/* 5. About */}
+          <Link
+            href="/about"
+            className={`px-2.5 py-1.5 text-xs font-bold rounded-lg transition-all ${
+              pathname === '/about'
                 ? 'bg-slate-900 text-white shadow-xs'
                 : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
             }`}
           >
-            <span>📢</span>
-            <span>{t.header.nav.newsAndEvents.label}</span>
+            <span>{t.header.nav.about}</span>
           </Link>
 
           {/* 6. Contact */}
           <Link
             href="/contact"
-            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+            className={`px-2.5 py-1.5 text-xs font-bold rounded-lg transition-all ${
               pathname === '/contact'
                 ? 'bg-slate-900 text-white shadow-xs'
                 : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
             }`}
           >
-            <span>📬</span>
             <span>{t.header.nav.contact.label}</span>
+          </Link>
+
+          {/* 7. News & Events (Visible on xl+ screens) */}
+          <Link
+            href="/news-and-events"
+            className={`hidden xl:inline-flex px-2.5 py-1.5 text-xs font-bold rounded-lg transition-all ${
+              pathname === '/news-and-events'
+                ? 'bg-slate-900 text-white shadow-xs'
+                : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
+            }`}
+          >
+            <span>{t.header.nav.newsAndEvents.label}</span>
           </Link>
         </nav>
 
-        {/* 3. Right Utility Bar (Single Line: Language, Admin Badge, Profile Link, Mobile Toggle) */}
+        {/* 3. Right Utility Bar (Single Line: Accessibility, Language, Admin Badge, Profile Link, Mobile Toggle) */}
         <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          {/* Görünüm & Okuma Ayarları (Accessibility Preferences) */}
+          <DisplaySettingsDropdown />
+
           {/* TR / EN Language Dropdown List */}
           <div className="relative" ref={langDropdownRef}>
             <button
@@ -628,19 +697,10 @@ export default function AppHeader() {
           </Show>
 
           <Show when="signed-out">
-            <button
-              type="button"
-              onClick={() => setIsGuestTourOpen(true)}
-              className="px-2.5 sm:px-3 py-1.5 text-xs font-bold text-blue-900 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
-              title={t.guestOnboarding.howItWorksBtn}
-            >
-              <span>✨</span>
-              <span className="hidden sm:inline">{t.guestOnboarding.howItWorksBtn}</span>
-            </button>
             <SignInButton mode="modal">
               <button
                 type="button"
-                className="px-2.5 sm:px-3 py-1.5 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-2xs cursor-pointer"
+                className="px-3 py-1.5 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-2xs cursor-pointer"
               >
                 {locale === 'en' ? 'Sign In' : 'Giriş Yap'}
               </button>
@@ -753,6 +813,14 @@ export default function AppHeader() {
                 <span className="text-emerald-600">→</span>
               </Link>
               <Link
+                href="/marketplace"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-indigo-900 hover:bg-indigo-50 flex items-center justify-between"
+              >
+                <span>🎓 {locale === 'tr' ? 'Eğitim & Fırsat Pazar Yeri' : 'Training & Opportunity Marketplace'}</span>
+                <span className="text-indigo-600">→</span>
+              </Link>
+              <Link
                 href="/"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-between"
@@ -778,6 +846,18 @@ export default function AppHeader() {
               <span>{t.header.nav.library.label}</span>
             </div>
             <div className="grid grid-cols-1 gap-1">
+              <Link
+                href="/guide"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold text-blue-900 bg-blue-50/80 hover:bg-blue-100 flex items-center justify-between"
+              >
+                <div className="flex items-center gap-1.5">
+                  <span>📖</span>
+                  <span>{t.header.nav.library.userManual}</span>
+                </div>
+                <span className="text-blue-600 font-bold">→</span>
+              </Link>
+
               <Link
                 href="/library"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -898,11 +978,6 @@ export default function AppHeader() {
       <AdminVerificationQueueModal
         isOpen={isAdminQueueOpen}
         onClose={() => setIsAdminQueueOpen(false)}
-      />
-
-      <GuestOnboardingModal
-        isOpen={isGuestTourOpen}
-        onClose={() => setIsGuestTourOpen(false)}
       />
 
       <AppointmentModal

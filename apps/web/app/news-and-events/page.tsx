@@ -362,7 +362,7 @@ export default function NewsAndEventsPage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
+        initialTab="TERMS"
       />
     </div>
   );

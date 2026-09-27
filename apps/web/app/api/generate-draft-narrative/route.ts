@@ -200,35 +200,64 @@ Return strictly a valid JSON array of objects with id and answer:
   }
 ]`;
 
-      const vertexUrl = `https://${location}-aiplatform.googleapis.com/v1beta1/projects/${project}/locations/${location}/publishers/google/models/${model}:generateContent?key=${apiKey}`;
+      const isGoogleAiStudioKey = apiKey.startsWith('AIza') || apiKey.startsWith('AQ.');
 
-      const vertexResponse = await fetch(vertexUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              role: 'user',
-              parts: [{ text: promptSystem }],
-            },
-          ],
-          generationConfig: {
-            temperature: 0.3,
-            maxOutputTokens: 8192,
-            responseMimeType: 'application/json',
+      const requestPayload = {
+        contents: [
+          {
+            role: 'user',
+            parts: [{ text: promptSystem }],
           },
-        }),
-      });
+        ],
+        generationConfig: {
+          temperature: 0.3,
+          maxOutputTokens: 8192,
+          responseMimeType: 'application/json',
+        },
+      };
 
-      if (!vertexResponse.ok) {
-        const errBody = await vertexResponse.text();
-        console.error('Vertex AI error response:', vertexResponse.status, errBody);
-        throw new Error(`Vertex AI API hatası (${vertexResponse.status}): ${errBody.slice(0, 150)}`);
+      let aiResponse: Response;
+
+      if (isGoogleAiStudioKey) {
+        // Direct Google AI Studio call
+        const aiStudioUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        aiResponse = await fetch(aiStudioUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestPayload),
+        });
+
+        // Fallback model if preview model name isn't found
+        if (!aiResponse.ok && model !== 'gemini-2.0-flash') {
+          const fallbackUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+          const fallbackRes = await fetch(fallbackUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestPayload),
+          });
+          if (fallbackRes.ok) {
+            aiResponse = fallbackRes;
+          }
+        }
+      } else {
+        // Vertex AI endpoint (Google Cloud project)
+        const vertexUrl = `https://${location}-aiplatform.googleapis.com/v1beta1/projects/${project}/locations/${location}/publishers/google/models/${model}:generateContent?key=${apiKey}`;
+        aiResponse = await fetch(vertexUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestPayload),
+        });
       }
 
-      const vertexData = await vertexResponse.json();
+      if (!aiResponse.ok) {
+        const errBody = await aiResponse.text();
+        console.error('Gemini API error response:', aiResponse.status, errBody);
+        throw new Error(`Gemini API hatası (${aiResponse.status}): ${errBody.slice(0, 150)}`);
+      }
+
+      const vertexData = await aiResponse.json();
       const candidateText = vertexData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
       if (!candidateText) {
         throw new Error('Yapay zeka modelinden boş yanıt döndü.');

@@ -43,7 +43,7 @@ export default function AboutPage() {
       </div>
 
       {/* 3. Main Content Canvas */}
-      <main className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-1 w-full space-y-12">
+      <main id="main-content" tabIndex={-1} className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-1 w-full space-y-12 focus:outline-none">
         {/* Hero Section (Flat, Zero Gradient, Authoritative) */}
         <section className="bg-white border-2 border-slate-300 rounded-2xl p-6 sm:p-10 shadow-xs space-y-5">
           <div className="flex items-center gap-2 flex-wrap">
@@ -65,7 +65,7 @@ export default function AboutPage() {
             </h1>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed m-0">
               {locale === 'tr'
-                ? 'ErasmusMobility; Türkiye ve Avrupa genelindeki mesleki ve teknik eğitim kurumlarının (MTAL, ÇPAL, HEM) KA121 akredite bütçe taleplerini ve KA122 kısa dönemli hareketlilik projelerini uçtan uca planlamalarını, ESCO taksonomisiyle beceri açıklarını analiz etmelerini ve 33 AB ülkesindeki doğrulanmış işletmelerle doğrudan eşleşmelerini sağlayan kurumsal bir karar platformudur.'
+                ? 'ErasmusMobility; Türkiye ve Avrupa genelindeki mesleki ve teknik eğitim kurumlarının (MTAL, ÇPAL, HEM) KA121 akredite bütçe taleplerini ve KA122 kısa dönemli hareketlilik projelerini uçtan uca planlamalarını, ESCO taksonomisiyle beceri açıklarını analiz etmelerini ve 33 Erasmus+ program ülkesindeki doğrulanmış işletmelerle doğrudan eşleşmelerini sağlayan kurumsal bir karar platformudur.'
                 : 'ErasmusMobility is an institutional decision gateway enabling vocational education institutions across Turkey and Europe to plan KA121 and KA122 Erasmus+ mobilities, evaluate competence gaps via the ESCO taxonomy, and match directly with verified European enterprises across 33 Erasmus+ programme countries.'}
             </p>
           </div>
@@ -137,12 +137,88 @@ export default function AboutPage() {
                 📊
               </div>
               <h3 className="text-base font-bold text-slate-900 m-0">
-                {locale === 'tr' ? '3. ESCO & ISCED-F Beceri Eşleştirmesi' : '3. ESCO & ISCED-F Taxonomy Matching'}
+                {locale === 'tr' ? '3. Çok Katmanlı Mesleki Eşleştirme & ESCO Taksonomisi' : '3. Multi-Tier VET Taxonomy & ESCO Matching'}
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed m-0">
                 {locale === 'tr'
-                  ? 'Milli Eğitim Bakanlığı 27 meslek alanını Avrupa Birliği ESCO meslek profilleri ve ISCED kodlarıyla birebir haritalandırarak ölçülebilir teknik ve transversal öğrenme çıktıları üretir.'
-                  : 'Maps national vocational curricula directly to European ESCO occupational skills and ISCED codes, generating transparent, measurable technical and transversal learning outcomes.'}
+                  ? 'Milli Eğitim Bakanlığı müfredatındaki 27 ulusal meslek alanını kapsar; platform üzerinde 12 öncelikli ESCO uzmanlık profili ve ev sahibi işletmeler için 8 temel sektör kümesi olarak yapılandırılmıştır.'
+                  : 'Encompasses the 27 national VET curriculum fields, structured into 12 priority ESCO competence profiles and 8 enterprise sector clusters for seamless matching.'}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Meslek Alanı Sınıflandırma Mimarisi (27 / 12 / 8) */}
+        <section className="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[11px] font-extrabold bg-blue-100 text-blue-900 border border-blue-200">
+              <span>🎯</span>
+              <span>{locale === 'tr' ? 'Sınıflandırma Mimarisi' : 'Taxonomy Architecture'}</span>
+            </div>
+            <h2 className="text-lg sm:text-xl font-black text-slate-950 m-0">
+              {locale === 'tr'
+                ? 'Meslek Alanı ve Sektör Kapsamı (27 Alan • 12 ESCO Profili • 8 Sektör Kümesi)'
+                : 'VET Fields & Sector Scope (27 Fields • 12 ESCO Profiles • 8 Sector Clusters)'}
+            </h2>
+            <p className="text-xs text-slate-600 m-0 leading-relaxed max-w-3xl">
+              {locale === 'tr'
+                ? 'Platformumuzda kullanılan sayılar çelişkili olmayıp üç farklı işlevsel sınıflandırma düzeyini ifade eder:'
+                : 'The numbers used across the platform represent three distinct, interconnected tiers of classification:'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Katman 1: 27 Alan */}
+            <div className="p-5 rounded-xl border border-blue-200 bg-blue-50/30 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl font-black text-blue-900">27</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 border border-blue-200 uppercase">
+                  {locale === 'tr' ? 'Ulusal Kapsam' : 'National Scope'}
+                </span>
+              </div>
+              <h3 className="text-sm font-bold text-slate-900 m-0">
+                {locale === 'tr' ? '27 Ulusal Meslek Alanı (MEB Müfredatı)' : '27 National VET Fields (Curriculum)'}
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed m-0">
+                {locale === 'tr'
+                  ? 'Türkiye genelindeki MTAL, ÇPAL ve HEM mesleki eğitim kurumlarının resmi müfredatında yer alan temel meslek alanlarının tümünü kapsayan çerçeve sınıflandırmadır.'
+                  : 'The comprehensive framework covering all official vocational education fields taught across Turkish vocational high schools and institutes.'}
+              </p>
+            </div>
+
+            {/* Katman 2: 12 ESCO */}
+            <div className="p-5 rounded-xl border border-indigo-200 bg-indigo-50/30 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl font-black text-indigo-900">12</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-800 border border-indigo-200 uppercase">
+                  {locale === 'tr' ? 'Yetkinlik Eşleştirme' : 'Skill Assessment'}
+                </span>
+              </div>
+              <h3 className="text-sm font-bold text-slate-900 m-0">
+                {locale === 'tr' ? '12 Öncelikli ESCO Uzmanlık Profili' : '12 Priority ESCO Competence Profiles'}
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed m-0">
+                {locale === 'tr'
+                  ? 'Platform içi öğrenci beceri testi, yetkinlik açığı tespiti ve ISCED-F eşleştirmesinde kullanılan 12 odak meslek dalıdır (Otomasyon, Yazılım, Siber Güvenlik, Mekanik, EV, vb.).'
+                  : 'The 12 focused occupational profiles used for candidate skill gap analysis, ISCED-F mapping, and European learning outcome formulation.'}
+              </p>
+            </div>
+
+            {/* Katman 3: 8 Sektör */}
+            <div className="p-5 rounded-xl border border-emerald-200 bg-emerald-50/30 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl font-black text-emerald-900">8</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 border border-emerald-200 uppercase">
+                  {locale === 'tr' ? 'Host & Pazar Yeri' : 'Host & Marketplace'}
+                </span>
+              </div>
+              <h3 className="text-sm font-bold text-slate-900 m-0">
+                {locale === 'tr' ? '8 Kurumsal Sektör Kümesi' : '8 Enterprise Sector Clusters'}
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed m-0">
+                {locale === 'tr'
+                  ? 'Avrupa genelindeki ev sahibi işletmelerin ve staj ilanlarının kaydedildiği, filtrelendiği ve arandığı 8 ana ekonomik kümedir (Bilişim, Otomotiv, Makine, Sağlık, Lojistik, vb.).'
+                  : 'The 8 core economic clusters used by European host enterprises to register capacities, publish opportunities, and filter institutional matches.'}
               </p>
             </div>
           </div>
@@ -244,7 +320,7 @@ export default function AboutPage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
+        initialTab="TERMS"
       />
     </div>
   );

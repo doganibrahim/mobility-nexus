@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { apiClient } from '../../lib/api-client';
+import { useTranslation } from '../../lib/i18n';
 
 interface AdminVerificationQueueModalProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ export default function AdminVerificationQueueModal({
   isOpen,
   onClose,
 }: AdminVerificationQueueModalProps) {
+  const { locale } = useTranslation();
   const { user } = useUser();
   const userEmail = user?.primaryEmailAddress?.emailAddress;
 
@@ -95,10 +97,14 @@ export default function AdminVerificationQueueModal({
             </div>
             <div>
               <h2 className="text-base font-bold text-white m-0">
-                Platform Yönetici Paneli • Ev Sahibi Doğrulama Havuzu (Admin Verification Queue)
+                {locale === 'tr'
+                  ? 'Platform Yönetici Paneli • Ev Sahibi Doğrulama Havuzu'
+                  : 'Platform Admin Panel • Host Verification Queue'}
               </h2>
               <p className="text-slate-400 text-xs mt-0.5 m-0">
-                Yüklenen resmi belgeleri inceleyin ve 15 kriterli kalite kontrol listesini onaylayın.
+                {locale === 'tr'
+                  ? 'Yüklenen belgeleri inceleyin ve 15 kriterli kalite kontrol listesini onaylayın.'
+                  : 'Review submitted documents and verify the 15-criteria quality checklist.'}
               </p>
             </div>
           </div>
@@ -115,15 +121,19 @@ export default function AdminVerificationQueueModal({
           {/* Sol Panel: Liste (Mobilde max-h-48 ve border-b, Masaüstünde md:w-80 ve md:border-r) */}
           <div className="w-full md:w-80 max-h-44 md:max-h-none shrink-0 border-b md:border-b-0 md:border-r border-slate-200 bg-slate-50 overflow-y-auto p-4 space-y-2">
             <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 md:mb-3 flex items-center justify-between">
-              <span>Talepler ({queue.length})</span>
-              <span className="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-sm">Canlı</span>
+              <span>{locale === 'tr' ? `Talepler (${queue.length})` : `Requests (${queue.length})`}</span>
+              <span className="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-sm">
+                {locale === 'tr' ? 'Canlı' : 'Live'}
+              </span>
             </div>
 
             {isLoading ? (
-              <div className="text-xs text-slate-500 p-4 text-center">Yükleniyor...</div>
+              <div className="text-xs text-slate-500 p-4 text-center">
+                {locale === 'tr' ? 'Yükleniyor...' : 'Loading...'}
+              </div>
             ) : queue.length === 0 ? (
               <div className="text-xs text-slate-500 p-4 text-center bg-white rounded-xl border border-slate-200">
-                Bekleyen başvuru bulunmuyor.
+                {locale === 'tr' ? 'Bekleyen başvuru bulunmuyor.' : 'No pending applications.'}
               </div>
             ) : (
               queue.map((h) => {
@@ -161,7 +171,7 @@ export default function AdminVerificationQueueModal({
                     <div className="text-[11px] text-slate-500 flex items-center gap-1.5 font-mono">
                       <span>{h.countryCode}</span>
                       <span>•</span>
-                      <span>{h.oid || 'OID Yok'}</span>
+                      <span>{h.oid || (locale === 'tr' ? 'OID Yok' : 'No OID')}</span>
                     </div>
                   </div>
                 );
@@ -188,13 +198,13 @@ export default function AdminVerificationQueueModal({
                     <div className="text-xs text-slate-600 mt-1 flex items-center gap-3">
                       <span><strong>OID:</strong> {selectedHost.oid}</span>
                       <span>•</span>
-                      <span><strong>Tür:</strong> {selectedHost.organisationType}</span>
+                      <span><strong>{locale === 'tr' ? 'Tür:' : 'Type:'}</strong> {selectedHost.organisationType}</span>
                       <span>•</span>
-                      <span><strong>Konum:</strong> {selectedHost.city}, {selectedHost.countryCode}</span>
+                      <span><strong>{locale === 'tr' ? 'Konum:' : 'Location:'}</strong> {selectedHost.city}, {selectedHost.countryCode}</span>
                     </div>
                   </div>
                   <span className="text-xs font-bold px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs">
-                    Durum: {selectedHost.verificationStatus}
+                    {locale === 'tr' ? 'Durum:' : 'Status:'} {selectedHost.verificationStatus}
                   </span>
                 </div>
 
@@ -202,28 +212,38 @@ export default function AdminVerificationQueueModal({
                 <div className="border border-slate-200 rounded-xl p-5 bg-white space-y-4">
                   <div className="text-xs font-bold uppercase tracking-wider text-slate-800 border-b border-slate-100 pb-2 flex items-center gap-2">
                     <span>📑</span>
-                    <span>Admin Only Resmi Bilgiler & Evraklar</span>
+                    <span>
+                      {locale === 'tr'
+                        ? 'Yöneticiye Özel Resmi Bilgiler & Evraklar'
+                        : 'Admin Only Official Info & Documents'}
+                    </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                     <div className="bg-slate-50 p-3 rounded-lg border border-slate-200/80">
-                      <span className="text-slate-500 font-semibold block">Sicil Numarası:</span>
+                      <span className="text-slate-500 font-semibold block">
+                        {locale === 'tr' ? 'Sicil Numarası:' : 'Registration Number:'}
+                      </span>
                       <span className="font-mono text-slate-900 font-bold text-sm mt-0.5 block">
-                        {selectedHost.registrationNumber || 'Henüz Girilmedi'}
+                        {selectedHost.registrationNumber || (locale === 'tr' ? 'Henüz Girilmedi' : 'Not Provided')}
                       </span>
                     </div>
 
                     <div className="bg-slate-50 p-3 rounded-lg border border-slate-200/80">
-                      <span className="text-slate-500 font-semibold block">Vergi / KDV Numarası:</span>
+                      <span className="text-slate-500 font-semibold block">
+                        {locale === 'tr' ? 'Vergi / KDV Numarası:' : 'Tax / VAT Number:'}
+                      </span>
                       <span className="font-mono text-slate-900 font-bold text-sm mt-0.5 block">
-                        {selectedHost.taxVatNumber || 'Henüz Girilmedi'}
+                        {selectedHost.taxVatNumber || (locale === 'tr' ? 'Henüz Girilmedi' : 'Not Provided')}
                       </span>
                     </div>
 
                     <div className="bg-slate-50 p-3 rounded-lg border border-slate-200/80">
-                      <span className="text-slate-500 font-semibold block">7/24 Acil Durum Kontağı:</span>
+                      <span className="text-slate-500 font-semibold block">
+                        {locale === 'tr' ? '7/24 Acil Durum Kontağı:' : '24/7 Emergency Contact:'}
+                      </span>
                       <span className="text-slate-900 font-bold mt-0.5 block">
-                        {selectedHost.emergencyContactPerson || 'Belirtilmedi'}
+                        {selectedHost.emergencyContactPerson || (locale === 'tr' ? 'Belirtilmedi' : 'Not Specified')}
                       </span>
                       <span className="font-mono text-slate-600 block">
                         {selectedHost.emergencyContactPhone || '-'}
@@ -231,7 +251,9 @@ export default function AdminVerificationQueueModal({
                     </div>
 
                     <div className="bg-slate-50 p-3 rounded-lg border border-slate-200/80">
-                      <span className="text-slate-500 font-semibold block">İrtibat Yetkilisi:</span>
+                      <span className="text-slate-500 font-semibold block">
+                        {locale === 'tr' ? 'İrtibat Yetkilisi:' : 'Contact Person:'}
+                      </span>
                       <span className="text-slate-900 font-bold mt-0.5 block">
                         {selectedHost.contactPerson}
                       </span>
@@ -243,7 +265,9 @@ export default function AdminVerificationQueueModal({
 
                   {/* Yüklenen PDF Evraklar */}
                   <div className="space-y-2 pt-2">
-                    <span className="text-xs font-bold text-slate-700 block">Yüklenen Resmi Dosyalar:</span>
+                    <span className="text-xs font-bold text-slate-700 block">
+                      {locale === 'tr' ? 'Yüklenen Dosyalar:' : 'Uploaded Files:'}
+                    </span>
                     <div className="flex flex-wrap gap-2">
                       {selectedHost.registrationDocumentUrl && (
                         <a
@@ -252,7 +276,7 @@ export default function AdminVerificationQueueModal({
                           rel="noreferrer"
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold hover:bg-blue-100 transition-colors"
                         >
-                          <span>📄 Kuruluş Sicil Belgesi</span>
+                          <span>{locale === 'tr' ? '📄 Kuruluş Sicil Belgesi' : '📄 Organisation Registration'}</span>
                           <span>↗</span>
                         </a>
                       )}
@@ -265,7 +289,7 @@ export default function AdminVerificationQueueModal({
                           rel="noreferrer"
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold hover:bg-emerald-100 transition-colors"
                         >
-                          <span>📜 Katılımcı Kanıtı #{idx + 1}</span>
+                          <span>{locale === 'tr' ? `📜 Katılımcı Kanıtı #${idx + 1}` : `📜 Participant Evidence #${idx + 1}`}</span>
                           <span>↗</span>
                         </a>
                       ))}
@@ -277,17 +301,37 @@ export default function AdminVerificationQueueModal({
                 <div className="border border-slate-200 rounded-xl p-5 bg-white space-y-3">
                   <div className="text-xs font-bold uppercase tracking-wider text-slate-800 border-b border-slate-100 pb-2 flex items-center gap-2">
                     <span>🛡️</span>
-                    <span>15+ Kalite Kriteri Kontrol Listesi</span>
+                    <span>
+                      {locale === 'tr' ? '15+ Kalite Kriteri Kontrol Listesi' : '15+ Quality Criteria Checklist'}
+                    </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
                     {[
-                      { key: 'taxRegistrationVerified', label: 'Vergi ve Yasal Tüzel Kuruluş Doğrulandı' },
-                      { key: 'physicalWorkplaceVerified', label: 'Fiziksel İşyeri / Eğitim Alanı Uygun' },
-                      { key: 'occupationalSafetyStandards', label: 'İş Sağlığı ve Güvenliği (OHS) Standartları' },
-                      { key: 'mentorAssigned', label: 'İngilizce Bilen Mesleki Mentor Atandı' },
-                      { key: 'emergencyProtocolInPlace', label: '7/24 Acil Durum Protokolü Hazır' },
-                      { key: 'insuranceCoverageConfirmed', label: 'Sigorta Kapsamı ve Prosedürleri Teyit Edildi' },
+                      {
+                        key: 'taxRegistrationVerified',
+                        label: locale === 'tr' ? 'Vergi ve Yasal Tüzel Kuruluş Doğrulandı' : 'Tax and Legal Entity Status Verified',
+                      },
+                      {
+                        key: 'physicalWorkplaceVerified',
+                        label: locale === 'tr' ? 'Fiziksel İşyeri / Eğitim Alanı Uygun' : 'Physical Workplace / Training Facility Suitable',
+                      },
+                      {
+                        key: 'occupationalSafetyStandards',
+                        label: locale === 'tr' ? 'İş Sağlığı ve Güvenliği (OHS) Standartları' : 'Occupational Health and Safety (OHS) Standards',
+                      },
+                      {
+                        key: 'mentorAssigned',
+                        label: locale === 'tr' ? 'İngilizce Bilen Mesleki Mentor Atandı' : 'English-speaking Vocational Mentor Assigned',
+                      },
+                      {
+                        key: 'emergencyProtocolInPlace',
+                        label: locale === 'tr' ? '7/24 Acil Durum Protokolü Hazır' : '24/7 Emergency Protocol in Place',
+                      },
+                      {
+                        key: 'insuranceCoverageConfirmed',
+                        label: locale === 'tr' ? 'Sigorta Kapsamı ve Prosedürleri Teyit Edildi' : 'Insurance Coverage & Procedures Confirmed',
+                      },
                     ].map((item) => (
                       <label
                         key={item.key}
@@ -311,11 +355,15 @@ export default function AdminVerificationQueueModal({
                 <div className="border border-slate-200 rounded-xl p-5 bg-slate-50 space-y-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">
-                      Yönetici İnceleme Notu (Kuruma iletilir veya kayıt altına alınır)
+                      {locale === 'tr'
+                        ? 'Yönetici İnceleme Notu (Kuruma iletilir veya kayıt altına alınır)'
+                        : 'Reviewer Note (Sent to organisation or archived)'}
                     </label>
                     <textarea
                       rows={2}
-                      placeholder="Örn: Sicil gazetesi ve vergi levhası teyit edildi. Türkiye grubu referansları olumlu."
+                      placeholder={locale === 'tr'
+                        ? 'Örn: Sicil belgesi ve vergi levhası teyit edildi. Referanslar olumlu.'
+                        : 'e.g. Registration document and tax sheet confirmed. References positive.'}
                       value={reviewerNotes}
                       onChange={(e) => setReviewerNotes(e.target.value)}
                       className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-all"
@@ -330,7 +378,7 @@ export default function AdminVerificationQueueModal({
                       onClick={() => handleDecision('REJECTED')}
                       className="px-4 py-2.5 rounded-lg text-xs font-bold text-rose-700 bg-rose-50 border border-rose-200 hover:bg-rose-100 transition-colors text-center"
                     >
-                      Reddet
+                      {locale === 'tr' ? 'Reddet' : 'Reject'}
                     </button>
 
                     <button
@@ -339,7 +387,7 @@ export default function AdminVerificationQueueModal({
                       onClick={() => handleDecision('NEEDS_UPDATE')}
                       className="px-4 py-2.5 rounded-lg text-xs font-bold text-amber-800 bg-amber-50 border border-amber-200 hover:bg-amber-100 transition-colors text-center"
                     >
-                      Eksik Evrak İste (NEEDS_UPDATE)
+                      {locale === 'tr' ? 'Eksik Evrak İste' : 'Request Update'}
                     </button>
 
                     <button
@@ -348,14 +396,18 @@ export default function AdminVerificationQueueModal({
                       onClick={() => handleDecision('VERIFIED')}
                       className="px-6 py-2.5 rounded-lg text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 shadow-sm transition-all text-center"
                     >
-                      {isProcessing ? 'İşleniyor...' : '✓ Onayla & "Verified Partner" Rozeti Ver'}
+                      {isProcessing
+                        ? (locale === 'tr' ? 'İşleniyor...' : 'Processing...')
+                        : (locale === 'tr' ? '✓ Onayla & "Doğrulanmış Partner" Rozeti Ver' : '✓ Approve & Grant "Verified Partner" Badge')}
                     </button>
                   </div>
                 </div>
               </div>
             ) : (
               <div className="h-full flex items-center justify-center text-xs text-slate-500">
-                Lütfen incelemek için soldaki listeden bir kurum seçiniz.
+                {locale === 'tr'
+                  ? 'Lütfen incelemek için soldaki listeden bir kurum seçiniz.'
+                  : 'Please select an organisation from the left list to review.'}
               </div>
             )}
           </div>

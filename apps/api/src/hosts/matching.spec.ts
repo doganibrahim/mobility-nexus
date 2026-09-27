@@ -193,8 +193,7 @@ describe('Hosts Matching Engine (Akıllı Eşleştirme Motoru)', () => {
   });
 
   describe('İki Kademeli Bağımsız Puanlama (Two-Tier Scoring)', () => {
-    it('Eğitim Kalitesi Skoru ve Lojistik Skoru birbirinden bağımsız hesaplanmalıdır', async () => {
-      // Rotterdam: Eğitim kalitesi yüksek (90+), fakat lojistik desteği yok (providesAccommodation: false)
+    it('Zorunlu konaklama ve yemek seçildiğinde bu hizmetleri sunmayan Rotterdam elenmelidir', async () => {
       const query: MatchHostsDto = {
         projectType: 'KA121',
         targetCountries: ['NL'],
@@ -211,16 +210,40 @@ describe('Hosts Matching Engine (Akıllı Eşleştirme Motoru)', () => {
       };
 
       const result = await service.matchHosts(query);
-      const rotterdam = result.matches.find((m) => m.countryCode === 'NL');
-      expect(rotterdam).toBeDefined();
+      const rotterdamEligible = result.matches.find((m) => m.countryCode === 'NL');
+      const rotterdamDisqualified = result.disqualified.find((m) => m.countryCode === 'NL');
 
-      if (rotterdam) {
-        // Eğitim skoru yüksek olmalı (sektör ve ErasmusPro tam uyumu)
-        expect(rotterdam.educationScore).toBeGreaterThanOrEqual(75);
-        // Lojistik skoru düşük olmalı (hizmet sağlamadığı için)
-        expect(rotterdam.logisticsScore).toBeLessThan(rotterdam.educationScore);
-        // İki skor birbirinden farklı bağımsız sayılar olmalı
-        expect(rotterdam.educationScore).not.toEqual(rotterdam.logisticsScore);
+      expect(rotterdamEligible).toBeUndefined();
+      expect(rotterdamDisqualified).toBeDefined();
+      expect(rotterdamDisqualified?.disqualificationReasons).toContain(
+        'Zorunlu konaklama şartı karşılanmıyor: Ev sahibi konaklama hizmeti sunmamaktadır.',
+      );
+    });
+
+    it('Eğitim Kalitesi Skoru ve Lojistik Skoru birbirinden bağımsız hesaplanmalıdır', async () => {
+      // Leipzig: Hem eğitim hem de lojistik desteği olan kurum
+      const query: MatchHostsDto = {
+        projectType: 'KA121',
+        targetCountries: ['DE'],
+        mobilityGoal: 'VET_SHORT_TERM',
+        participantType: 'student',
+        participantCount: 4,
+        ageGroup: '18_plus',
+        vetField: 'software_dev',
+        logisticsRequired: {
+          accommodation: true,
+          meals: true,
+          transfers: true,
+        },
+      };
+
+      const result = await service.matchHosts(query);
+      const leipzig = result.matches.find((m) => m.countryCode === 'DE');
+      expect(leipzig).toBeDefined();
+
+      if (leipzig) {
+        expect(leipzig.educationScore).toBeGreaterThanOrEqual(75);
+        expect(leipzig.logisticsScore).toBeGreaterThanOrEqual(75);
       }
     });
 

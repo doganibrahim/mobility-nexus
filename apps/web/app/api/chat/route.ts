@@ -118,12 +118,15 @@ export async function POST(req: NextRequest) {
 
     let aiReplyText = '';
 
-    if (apiKey) {
-      // 1. Try Vertex AI endpoint (matching project setup)
-      const vertexUrl = `https://${location}-aiplatform.googleapis.com/v1beta1/projects/${project}/locations/${location}/publishers/google/models/${model}:generateContent?key=${apiKey}`;
+    if (!apiKey) {
+      console.warn('[ErasmusChat] GEMINI_API_KEY is not defined in environment variables. Offline rule-based fallback will be used.');
+    } else {
+      const isGoogleAiStudioKey = apiKey.startsWith('AIza') || apiKey.startsWith('AQ.');
 
-      try {
-        const vertexRes = await fetch(vertexUrl, {
+      // Helper for Generative Language API
+      const callGenerativeLanguage = async (modelName: string) => {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+        const res = await fetch(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -134,15 +137,21 @@ export async function POST(req: NextRequest) {
             },
           }),
         });
+        if (!res.ok) return null;
+        const data = await res.json();
+        return data?.candidates?.[0]?.content?.parts?.[0]?.text || null;
+      };
 
-        if (vertexRes.ok) {
-          const vertexData = await vertexRes.json();
-          aiReplyText = vertexData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      try {
+        if (isGoogleAiStudioKey) {
+          // Direct Google AI Studio call
+          aiReplyText = (await callGenerativeLanguage(model)) ||
+            (await callGenerativeLanguage('gemini-2.0-flash')) ||
+            (await callGenerativeLanguage('gemini-1.5-flash')) || '';
         } else {
-          console.warn('Vertex AI error status:', vertexRes.status);
-          // Fallback to Google Generative Language API
-          const standardUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-          const stdRes = await fetch(standardUrl, {
+          // Vertex AI endpoint (Google Cloud project)
+          const vertexUrl = `https://${location}-aiplatform.googleapis.com/v1beta1/projects/${project}/locations/${location}/publishers/google/models/${model}:generateContent?key=${apiKey}`;
+          const vertexRes = await fetch(vertexUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -154,13 +163,18 @@ export async function POST(req: NextRequest) {
             }),
           });
 
-          if (stdRes.ok) {
-            const stdData = await stdRes.json();
-            aiReplyText = stdData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          if (vertexRes.ok) {
+            const vertexData = await vertexRes.json();
+            aiReplyText = vertexData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          } else {
+            console.warn('[ErasmusChat] Vertex AI status:', vertexRes.status, 'trying Generative Language fallback');
+            aiReplyText = (await callGenerativeLanguage(model)) ||
+              (await callGenerativeLanguage('gemini-2.0-flash')) ||
+              (await callGenerativeLanguage('gemini-1.5-flash')) || '';
           }
         }
       } catch (callErr) {
-        console.error('AI call error:', callErr);
+        console.error('[ErasmusChat] AI call error:', callErr);
       }
     }
 

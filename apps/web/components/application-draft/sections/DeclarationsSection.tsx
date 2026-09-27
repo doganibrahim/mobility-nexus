@@ -51,7 +51,7 @@ export default function DeclarationsSection({
             <p className="text-slate-600 mt-0.5">
               {isKa121
                 ? 'Kurumumuzun onaylı Erasmus Akreditasyonundaki hedeflere uygun hareket ettiğimizi ve katılımcı sayılarının kurumsal kapasitemizle orantılı olduğunu onaylıyorum.'
-                : 'Kurumumuzun son 36 ayda en fazla 2 KA122 hibesi kuralına uyduğunu, talep edilen katılımcı ve gün sayısının kurumsal kapasitemizle örtüştüğünü beyan ederim.'}
+                : 'Kurumumuzun 5 ardışık çağrı yılı içinde en fazla 3 KA122 hibesi kuralına uyduğunu, talep edilen katılımcı ve gün sayısının kurumsal kapasitemizle örtüştüğünü beyan ederim.'}
             </p>
           </div>
         </label>

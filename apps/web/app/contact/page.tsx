@@ -60,7 +60,7 @@ export default function ContactPage() {
       </div>
 
       {/* 3. Main Content Canvas */}
-      <main className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-1 w-full space-y-10">
+      <main id="main-content" tabIndex={-1} className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-1 w-full space-y-10 focus:outline-none">
         {/* Hero Section */}
         <section className="bg-white border-2 border-slate-300 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
           <div className="flex items-center gap-2 flex-wrap">
@@ -355,7 +355,7 @@ export default function ContactPage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
+        initialTab="TERMS"
       />
       <AppointmentModal
         isOpen={isAppointmentOpen}

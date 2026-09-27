@@ -134,7 +134,7 @@ export default function ContextSection({
           <>
             <div>
               <label className="block text-xs font-bold text-slate-700 mb-1">
-                Son 36 Ayda Alınan KA122 Sayısı *
+                5 Ardışık Çağrı Yılında Alınan KA122 Sayısı *
               </label>
               <select
                 value={data.pastKa122Count}
@@ -143,10 +143,11 @@ export default function ContextSection({
               >
                 <option value={0}>0 (İlk başvuru veya geçmiş hibe yok)</option>
                 <option value={1}>1 (Daha önce 1 hibe alındı)</option>
-                <option value={2}>2 (Daha önce 2 hibe alındı - Sınırda)</option>
+                <option value={2}>2 (Daha önce 2 hibe alındı)</option>
+                <option value={3}>3 (Daha önce 3 hibe alındı - Kotayı Doldurdu)</option>
               </select>
               <p className="text-[11px] text-slate-500 mt-1">
-                Resmi kural: Bir kurum son 36 ayda en fazla 2 KA122 hibesi alabilir.
+                Resmi kural: Bir kurum 5 ardışık çağrı yılı içinde aynı alanda (VET) en fazla 3 KA122 hibesi alabilir.
               </p>
             </div>
 

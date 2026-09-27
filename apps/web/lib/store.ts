@@ -225,6 +225,10 @@ export interface AppState {
     status: MobilityInquiry['status'],
     replyNote?: string,
   ) => void;
+  resubmitInquiry: (
+    inquiryId: string,
+    updates: Partial<MobilityInquiry>,
+  ) => void;
   removeInquiry: (inquiryId: string) => void;
 
   // 10. Application Draft State (KA121 / KA122)
@@ -266,7 +270,7 @@ const initialEmptyState = {
     targetCountries: [],
     startDate: '',
     endDate: '',
-    participantCount: 1,
+    participantCount: 5,
     accompanyingPersonsCount: 0,
     ageGroup: 'mixed' as const,
   },
@@ -291,7 +295,7 @@ const initialEmptyState = {
     decisionResult: null,
   },
   eligibilityGatekeeper: {
-    participantCount: 15,
+    participantCount: 5,
     projectDurationMonths: 12,
     pastKa122GrantsCount: 0,
     mobilityStrategy: 'ad_hoc' as const,
@@ -449,6 +453,29 @@ export const useAppStore = create<AppState>((set, get) => ({
     });
   },
 
+  resubmitInquiry: (inquiryId, updates) => {
+    set((state) => {
+      const updated = state.inquiries.map((inq) =>
+        inq.id === inquiryId
+          ? {
+              ...inq,
+              ...updates,
+              status: 'PENDING' as const,
+            }
+          : inq,
+      );
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('em_inquiries', JSON.stringify(updated));
+        } catch {}
+      }
+      return { inquiries: updated };
+    });
+    apiClient.updateInquiry(inquiryId, { ...updates, status: 'PENDING' }).catch((err) => {
+      console.warn('Veritabaninda talep revize edilirken hata:', err);
+    });
+  },
+
   removeInquiry: (inquiryId) => {
     set((state) => {
       const updated = state.inquiries.filter((inq) => inq.id !== inquiryId);
@@ -567,7 +594,17 @@ export const useAppStore = create<AppState>((set, get) => ({
     set((state) => ({ schoolProfile: { ...state.schoolProfile, ...data } })),
 
   setParticipantProfile: (data) =>
-    set((state) => ({ participantProfile: { ...state.participantProfile, ...data } })),
+    set((state) => {
+      const nextProfile = { ...state.participantProfile, ...data };
+      const nextEligibility =
+        data.participantCount !== undefined
+          ? { ...state.eligibilityGatekeeper, participantCount: data.participantCount }
+          : state.eligibilityGatekeeper;
+      return {
+        participantProfile: nextProfile,
+        eligibilityGatekeeper: nextEligibility,
+      };
+    }),
 
   setEscoIsced: (data) =>
     set((state) => ({ escoIsced: { ...state.escoIsced, ...data } })),
@@ -579,9 +616,17 @@ export const useAppStore = create<AppState>((set, get) => ({
     set((state) => ({ decisionEngine: { ...state.decisionEngine, ...data } })),
 
   setEligibilityGatekeeper: (data) =>
-    set((state) => ({
-      eligibilityGatekeeper: { ...state.eligibilityGatekeeper, ...data },
-    })),
+    set((state) => {
+      const nextEligibility = { ...state.eligibilityGatekeeper, ...data };
+      const nextProfile =
+        data.participantCount !== undefined
+          ? { ...state.participantProfile, participantCount: data.participantCount }
+          : state.participantProfile;
+      return {
+        eligibilityGatekeeper: nextEligibility,
+        participantProfile: nextProfile,
+      };
+    }),
 
   setHostMatching: (data) =>
     set((state) => ({ hostMatching: { ...state.hostMatching, ...data } })),
@@ -924,6 +969,13 @@ export const useAppStore = create<AppState>((set, get) => ({
       },
       decisionEngine: {
         decisionResult: null, // Will be computed
+      },
+      eligibilityGatekeeper: {
+        participantCount: 5,
+        projectDurationMonths: 12,
+        pastKa122GrantsCount: 0,
+        mobilityStrategy: 'ad_hoc',
+        eligibilityResult: null,
       },
       hostMatching: {
         hostName: 'Leipzig Vocational Training Center (BSZ 7)',

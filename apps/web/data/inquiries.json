@@ -29,6 +29,35 @@
     "hostReplyNote": "Berlin ofisimiz ve laboratuvarımız belirtilen tarihlerde stajyer grubunuz için uygundur. Talep kabul edilmiş olup niyet mektubu (LoI) hazırlanabilir."
   },
   {
+    "id": "inq-mock-ankara",
+    "createdAt": "2026-09-15T11:00:00.000Z",
+    "isMock": true,
+    "schoolName": "Ankara Yenimahalle Mesleki ve Teknik Anadolu Lisesi",
+    "schoolCity": "Ankara / Yenimahalle",
+    "schoolOid": "E10667788",
+    "schoolContactName": "Selim Arslan",
+    "schoolContactEmail": "erasmus@yenimahallemtal.k12.tr",
+    "projectType": "KA122",
+    "hostId": "demo-host-berlin",
+    "hostName": "Berlin VET Training Solutions GmbH",
+    "hostCountry": "DE",
+    "vetField": "Bilişim Teknolojileri & Bulut Bilişim",
+    "iscedCode": "0613",
+    "participantCount": 4,
+    "accompanyingPersonsCount": 1,
+    "durationDays": 14,
+    "targetStartDate": "2026-11-09",
+    "targetEndDate": "2026-11-22",
+    "logisticsRequired": {
+      "accommodation": true,
+      "meals": true,
+      "transfers": false
+    },
+    "notes": "Bulut bilişim sistemleri ve Linux sunucu yönetimi alanında 4 öğrencimiz ve 1 öğretmenimiz için Berlin işletme laboratuvarınızda 14 günlük staj talep ediyoruz.",
+    "status": "PENDING",
+    "hostReplyNote": null
+  },
+  {
     "id": "inq-mock-izmir",
     "createdAt": "2026-09-12T14:15:00.000Z",
     "isMock": true,

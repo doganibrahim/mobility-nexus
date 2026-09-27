@@ -18,6 +18,7 @@ export default function SentInquiriesCard() {
 
   const [activeFilter, setActiveFilter] = useState<'ALL' | 'PENDING' | 'ACCEPTED' | 'REVISED' | 'DECLINED'>('ALL');
   const [selectedInquiryForLoI, setSelectedInquiryForLoI] = useState<MobilityInquiry | null>(null);
+  const [selectedInquiryForRevision, setSelectedInquiryForRevision] = useState<MobilityInquiry | null>(null);
   const [actionAlert, setActionAlert] = useState<string | null>(null);
 
   const inquiries = store.inquiries || [];
@@ -54,6 +55,11 @@ export default function SentInquiriesCard() {
 
     store.removeInquiry(inquiryId);
     triggerAlert(t.sentInquiries.withdrawConfirmMsg);
+  };
+
+  const handleResubmit = (inquiryId: string, updates: Partial<MobilityInquiry>) => {
+    store.resubmitInquiry(inquiryId, updates);
+    triggerAlert(t.sentInquiries.resubmitSuccessMsg);
   };
 
   const scrollToMatching = () => {
@@ -328,6 +334,28 @@ export default function SentInquiriesCard() {
                           </button>
                         )}
 
+                        {/* REVISED: Edit and Resubmit Button */}
+                        {isRevised && (
+                          <div className="flex flex-wrap sm:flex-col items-center sm:items-end gap-1.5">
+                            <button
+                              type="button"
+                              onClick={() => setSelectedInquiryForRevision(inq)}
+                              className="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors cursor-pointer flex items-center gap-1.5"
+                            >
+                              <span>✏️</span>
+                              <span>{t.sentInquiries.editAndResubmitBtn}</span>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleWithdraw(inq.id)}
+                              className="px-2.5 py-1 text-slate-500 hover:text-rose-600 font-semibold text-[11px] transition-colors cursor-pointer"
+                              title={locale === 'tr' ? 'Talebi iptal et ve sistemden kaldır' : 'Cancel and withdraw inquiry'}
+                            >
+                              <span>↩️</span> {t.sentInquiries.withdrawBtn}
+                            </button>
+                          </div>
+                        )}
+
                         {/* PENDING: Withdraw / Cancel Button */}
                         {isPending && (
                           <button
@@ -429,6 +457,259 @@ export default function SentInquiriesCard() {
         </div>,
         document.body,
       )}
+
+      {/* ============================================================ */}
+      {/* REVISION & RESUBMIT MODAL (Portaled to document.body)        */}
+      {/* ============================================================ */}
+      {mounted && selectedInquiryForRevision && createPortal(
+        <RevisionResubmitModal
+          inquiry={selectedInquiryForRevision}
+          onClose={() => setSelectedInquiryForRevision(null)}
+          onSubmit={handleResubmit}
+          locale={locale}
+          t={t}
+        />,
+        document.body,
+      )}
     </NeoCard>
   );
 }
+
+interface RevisionResubmitModalProps {
+  inquiry: MobilityInquiry;
+  onClose: () => void;
+  onSubmit: (inquiryId: string, updates: Partial<MobilityInquiry>) => void;
+  locale: string;
+  t: any;
+}
+
+function RevisionResubmitModal({
+  inquiry,
+  onClose,
+  onSubmit,
+  locale,
+  t,
+}: RevisionResubmitModalProps) {
+  const [participantCount, setParticipantCount] = useState(inquiry.participantCount || 5);
+  const [accompanyingCount, setAccompanyingCount] = useState(inquiry.accompanyingPersonsCount || 0);
+  const [durationDays, setDurationDays] = useState(inquiry.durationDays || 14);
+  const [startDate, setStartDate] = useState(inquiry.targetStartDate || '');
+  const [endDate, setEndDate] = useState(inquiry.targetEndDate || '');
+  const [reqAccommodation, setReqAccommodation] = useState(inquiry.logisticsRequired?.accommodation ?? true);
+  const [reqMeals, setReqMeals] = useState(inquiry.logisticsRequired?.meals ?? true);
+  const [reqTransfers, setReqTransfers] = useState(inquiry.logisticsRequired?.transfers ?? false);
+  const [notes, setNotes] = useState(inquiry.notes || '');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      onSubmit(inquiry.id, {
+        participantCount: Number(participantCount),
+        accompanyingPersonsCount: Number(accompanyingCount),
+        durationDays: Number(durationDays),
+        targetStartDate: startDate,
+        targetEndDate: endDate,
+        logisticsRequired: {
+          accommodation: reqAccommodation,
+          meals: reqMeals,
+          transfers: reqTransfers,
+        },
+        notes,
+      });
+      onClose();
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs animate-fadeIn">
+      <div className="relative w-full max-w-xl bg-white border-2 border-slate-300 rounded-2xl shadow-2xl p-6 space-y-5 text-xs max-h-[90vh] overflow-y-auto">
+        <div className="flex justify-between items-start border-b border-slate-200 pb-3">
+          <div>
+            <span className="text-[10px] font-bold text-blue-700 uppercase tracking-wider">
+              {locale === 'tr' ? 'Revizyon İşlemi' : 'Revision Action'}
+            </span>
+            <h3 className="text-base font-black text-slate-950 m-0">
+              {t.sentInquiries.revisionModalTitle}
+            </h3>
+            <p className="text-[11px] text-slate-500 m-0 mt-0.5">
+              {t.sentInquiries.revisionModalSubtitle}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-slate-400 hover:text-slate-900 font-bold text-lg p-1 cursor-pointer"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Host Request Callout */}
+        {inquiry.hostReplyNote && (
+          <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl space-y-1">
+            <div className="flex items-center gap-1.5 text-blue-900 font-extrabold text-[11px] uppercase tracking-wider">
+              <span>✏️</span>
+              <span>{inquiry.hostName} — {locale === 'tr' ? 'Revizyon Talebi & Önerisi' : 'Revision Proposal'}</span>
+            </div>
+            <p className="text-xs text-blue-950 font-medium leading-relaxed m-0">
+              &ldquo;{inquiry.hostReplyNote}&rdquo;
+            </p>
+          </div>
+        )}
+
+        {/* Edit Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">
+                👥 {locale === 'tr' ? 'Öğrenci / Katılımcı Sayısı' : 'Participant Count'} *
+              </label>
+              <input
+                type="number"
+                min={1}
+                max={100}
+                value={participantCount}
+                onChange={(e) => setParticipantCount(Number(e.target.value))}
+                className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">
+                🧑‍🏫 {locale === 'tr' ? 'Refakatçi / Öğretmen Sayısı' : 'Accompanying Staff'}
+              </label>
+              <input
+                type="number"
+                min={0}
+                max={20}
+                value={accompanyingCount}
+                onChange={(e) => setAccompanyingCount(Number(e.target.value))}
+                className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">
+                ⏱️ {locale === 'tr' ? 'Faaliyet Süresi (Gün)' : 'Duration (Days)'} *
+              </label>
+              <input
+                type="number"
+                min={1}
+                max={365}
+                value={durationDays}
+                onChange={(e) => setDurationDays(Number(e.target.value))}
+                className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">
+                📅 {locale === 'tr' ? 'Başlangıç Tarihi' : 'Start Date'} *
+              </label>
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">
+                📅 {locale === 'tr' ? 'Bitiş Tarihi' : 'End Date'} *
+              </label>
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1.5">
+              📦 {locale === 'tr' ? 'Lojistik İhtiyaçları' : 'Logistics Requirements'}
+            </label>
+            <div className="flex flex-wrap gap-4 text-xs p-3 bg-slate-50 border border-slate-200 rounded-xl">
+              <label className="inline-flex items-center gap-2 cursor-pointer font-medium text-slate-800">
+                <input
+                  type="checkbox"
+                  checked={reqAccommodation}
+                  onChange={(e) => setReqAccommodation(e.target.checked)}
+                  className="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                />
+                <span>🏨 {locale === 'tr' ? 'Konaklama' : 'Accommodation'}</span>
+              </label>
+              <label className="inline-flex items-center gap-2 cursor-pointer font-medium text-slate-800">
+                <input
+                  type="checkbox"
+                  checked={reqMeals}
+                  onChange={(e) => setReqMeals(e.target.checked)}
+                  className="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                />
+                <span>🍽️ {locale === 'tr' ? 'Yemek' : 'Meals'}</span>
+              </label>
+              <label className="inline-flex items-center gap-2 cursor-pointer font-medium text-slate-800">
+                <input
+                  type="checkbox"
+                  checked={reqTransfers}
+                  onChange={(e) => setReqTransfers(e.target.checked)}
+                  className="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                />
+                <span>🚗 {locale === 'tr' ? 'Yerel Transfer' : 'Local Transfers'}</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">
+              📝 {locale === 'tr' ? 'Okul Yanıt Notu / Revizyon Açıklaması' : 'School Note / Revision Explanation'}
+            </label>
+            <textarea
+              rows={3}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
+              placeholder={
+                locale === 'tr'
+                  ? 'Ev sahibine iletmek istediğiniz yanıt veya yaptığınız değişiklikleri açıklayın...'
+                  : 'Explain the adjustments made according to the host suggestions...'
+              }
+            />
+          </div>
+
+          <div className="flex justify-end gap-2 pt-3 border-t border-slate-200">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-xl cursor-pointer transition-colors"
+            >
+              {locale === 'tr' ? 'Vazgeç' : 'Cancel'}
+            </button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="px-5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold text-xs rounded-xl shadow-xs cursor-pointer flex items-center gap-1.5 transition-colors"
+            >
+              <span>🚀</span>
+              <span>
+                {isSubmitting
+                  ? (locale === 'tr' ? 'Gönderiliyor...' : 'Submitting...')
+                  : (locale === 'tr' ? 'Değişiklikleri Kaydet & Yeniden Gönder' : 'Save Changes & Resubmit')}
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+

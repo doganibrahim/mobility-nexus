@@ -258,7 +258,7 @@ export default function ErasmusChatWidget() {
     return (
       <button
         onClick={() => setIsDismissed(false)}
-        className="fixed bottom-4 right-4 z-50 bg-slate-900 text-white hover:bg-slate-800 text-xs px-3 py-1.5 rounded-full shadow-lg border border-slate-700 flex items-center gap-1.5 transition-all opacity-80 hover:opacity-100 cursor-pointer"
+        className="fixed bottom-4 right-4 z-40 bg-slate-900 text-white hover:bg-slate-800 text-xs px-3 py-1.5 rounded-full shadow-lg border border-slate-700 flex items-center gap-1.5 transition-all opacity-80 hover:opacity-100 cursor-pointer"
         title={cb.reopenTooltip}
       >
         <Sparkles className="w-3.5 h-3.5 text-amber-400" />
@@ -268,7 +268,7 @@ export default function ErasmusChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end print:hidden">
+    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end print:hidden">
       {/* CHAT WINDOW */}
       {isOpen && (
         <div className="mb-3 w-[92vw] sm:w-[400px] h-[540px] max-h-[82vh] bg-white rounded-2xl shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">

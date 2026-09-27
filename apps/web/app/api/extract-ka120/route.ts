@@ -140,42 +140,71 @@ Respond strictly with valid JSON conforming to this structure:
   }
 }`;
 
-    const vertexUrl = `https://${location}-aiplatform.googleapis.com/v1beta1/projects/${project}/locations/${location}/publishers/google/models/${model}:generateContent?key=${apiKey}`;
+    const isGoogleAiStudioKey = apiKey.startsWith('AIza') || apiKey.startsWith('AQ.');
 
-    const vertexResponse = await fetch(vertexUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        contents: [
-          {
-            role: 'user',
-            parts: [
-              {
-                inlineData: {
-                  mimeType: 'application/pdf',
-                  data: cleanBase64,
-                },
+    const requestPayload = {
+      contents: [
+        {
+          role: 'user',
+          parts: [
+            {
+              inlineData: {
+                mimeType: 'application/pdf',
+                data: cleanBase64,
               },
-              {
-                text: systemPrompt,
-              },
-            ],
-          },
-        ],
-        generationConfig: {
-          temperature: 0.1,
-          maxOutputTokens: 8192,
-          responseMimeType: 'application/json',
+            },
+            {
+              text: systemPrompt,
+            },
+          ],
         },
-      }),
-    });
+      ],
+      generationConfig: {
+        temperature: 0.1,
+        maxOutputTokens: 8192,
+        responseMimeType: 'application/json',
+      },
+    };
 
-    if (!vertexResponse.ok) {
-      const errBody = await vertexResponse.text();
-      console.error('Vertex AI error response during KA120 extraction:', vertexResponse.status, errBody);
-      let userFriendlyMsg = `Yapay zeka analiz servisi hatası (${vertexResponse.status})`;
+    let aiResponse: Response;
+
+    if (isGoogleAiStudioKey) {
+      // Direct Google AI Studio call
+      const aiStudioUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      aiResponse = await fetch(aiStudioUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestPayload),
+      });
+
+      // If initial model fails (e.g. 404 on preview model name), try standard gemini-2.0-flash
+      if (!aiResponse.ok && model !== 'gemini-2.0-flash') {
+        const fallbackUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        const fallbackRes = await fetch(fallbackUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestPayload),
+        });
+        if (fallbackRes.ok) {
+          aiResponse = fallbackRes;
+        }
+      }
+    } else {
+      // Vertex AI endpoint (Google Cloud project)
+      const vertexUrl = `https://${location}-aiplatform.googleapis.com/v1beta1/projects/${project}/locations/${location}/publishers/google/models/${model}:generateContent?key=${apiKey}`;
+      aiResponse = await fetch(vertexUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestPayload),
+      });
+    }
+
+    if (!aiResponse.ok) {
+      const errBody = await aiResponse.text();
+      console.error('Gemini API error response during KA120 extraction:', aiResponse.status, errBody);
+      let userFriendlyMsg = `Yapay zeka analiz servisi hatası (${aiResponse.status})`;
       if (errBody.includes('INVALID_ARGUMENT') || errBody.includes('no pages') || errBody.includes('corrupted')) {
         userFriendlyMsg = 'Yüklenen dosya geçerli veya okunabilir bir PDF belgesi değil. Lütfen orijinal resmi KA120 PDF dosyanızı yükleyiniz.';
       }
@@ -188,7 +217,7 @@ Respond strictly with valid JSON conforming to this structure:
       );
     }
 
-    const vertexData = await vertexResponse.json();
+    const vertexData = await aiResponse.json();
     const rawText = vertexData.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!rawText) {

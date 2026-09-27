@@ -318,3 +318,106 @@ h1, h2, h3, h4, h5, h6 {
     break-inside: avoid;
   }
 }
+
+/* ==========================================================================
+   EAA & WCAG 2.1/2.2 AA Accessibility Tokens & High Contrast Overrides
+   ========================================================================== */
+
+/* 1. Visible, High-Contrast Focus Ring */
+:focus-visible {
+  outline: 2px solid #1d4ed8 !important;
+  outline-offset: 2px !important;
+}
+
+/* 2. Dynamic Font Scaling */
+html[data-a11y-font-size="large"] {
+  font-size: 112.5% !important;
+}
+
+html[data-a11y-font-size="xlarge"] {
+  font-size: 125% !important;
+}
+
+/* 3. High Contrast Mode (WCAG AAA) */
+html[data-a11y-contrast="true"] {
+  filter: contrast(1.15);
+}
+
+html[data-a11y-contrast="true"] body {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+html[data-a11y-contrast="true"] .bg-slate-50,
+html[data-a11y-contrast="true"] .bg-slate-100 {
+  background-color: #f1f5f9 !important;
+  border-color: #0f172a !important;
+}
+
+html[data-a11y-contrast="true"] button,
+html[data-a11y-contrast="true"] a {
+  border-color: #0f172a !important;
+}
+
+/* 4. Underline All Interactive Links */
+html[data-a11y-underline="true"] a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+}
+
+/* 5. Reduced Motion Enforcement */
+html[data-a11y-motion="true"] *,
+html[data-a11y-motion="true"] *::before,
+html[data-a11y-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Legibility & De-cluttering Typography Utilities
+   ========================================================================== */
+.text-metric {
+  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+.heading-display {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: 1.25;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.text-body-clean {
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: #334155;
+}
+
+/* ==========================================================================
+   Language-specific Typography & Casing Rules
+   Ensures English text transformed to uppercase does not render with Turkish dotted 'İ'
+   ========================================================================== */
+html[lang="en"] {
+  font-language-override: "ENG";
+}
+html[lang="tr"] {
+  font-language-override: "TRK";
+}
+
+

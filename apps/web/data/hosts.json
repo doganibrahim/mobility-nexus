@@ -1,0 +1,31 @@
+[
+  {
+    "host": {
+      "id": "host-mu87yrf5-l3vv",
+      "name": "Bavaria VET Academy",
+      "tradingName": "Bavaria VET Academy",
+      "organisationType": "Company",
+      "countryCode": "DE",
+      "city": "Munich",
+      "address": null,
+      "websiteUrl": null,
+      "generalEmail": null,
+      "verificationStatus": "PENDING",
+      "contactEmail": "info@bavariavet.de",
+      "contactPhone": null,
+      "languages": [
+        "EN"
+      ],
+      "maxLearnersPerTerm": 4,
+      "totalAnnualCapacity": 12,
+      "activities": [
+        "VET_INTERNSHIP"
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-19T10:03:08.753Z",
+      "updatedAt": "2026-09-19T10:03:08.753Z"
+    },
+    "userId": "user_host_456",
+    "userEmail": "info@bavariavet.de"
+  }
+]

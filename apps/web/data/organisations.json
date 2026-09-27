@@ -1,0 +1,50 @@
+[
+  {
+    "org": {
+      "id": "org-muit3f68-l8cn",
+      "name": "şlksdfşlsd",
+      "slug": "lksdf-lsd",
+      "oid": "E102948219",
+      "city": "asflkaslf",
+      "countryCode": "TR",
+      "accreditationStatus": "YES",
+      "erasmusPlan": null,
+      "institutionNeed": null,
+      "readinessScore": 100,
+      "isActive": true,
+      "settings": {
+        "userId": null,
+        "userEmail": null,
+        "userFullName": null
+      },
+      "createdAt": "2026-09-26T19:52:19.857Z",
+      "updatedAt": "2026-09-26T19:52:19.857Z"
+    },
+    "role": "ORG_ADMIN"
+  },
+  {
+    "org": {
+      "id": "org-mu87yggg-6fdk",
+      "name": "Istanbul Pendik MTAL",
+      "slug": "istanbul-pendik-mtal",
+      "oid": "E10384729",
+      "city": "Istanbul",
+      "countryCode": "TR",
+      "accreditationStatus": "YES",
+      "erasmusPlan": null,
+      "institutionNeed": null,
+      "readinessScore": 85,
+      "isActive": true,
+      "settings": {
+        "userId": "user_test_123",
+        "userEmail": "test@pendikmtal.k12.tr",
+        "userFullName": null
+      },
+      "createdAt": "2026-09-19T10:02:54.545Z",
+      "updatedAt": "2026-09-19T10:02:54.545Z"
+    },
+    "userId": "user_test_123",
+    "userEmail": "test@pendikmtal.k12.tr",
+    "role": "ORG_ADMIN"
+  }
+]

@@ -30,6 +30,8 @@ export interface Translations {
       library: {
         label: string;
         desc: string;
+        userManual: string;
+        userManualDesc: string;
         ka121Guide: string;
         ka121GuideDesc: string;
         ka122Guide: string;
@@ -601,6 +603,10 @@ export interface Translations {
     withdrawBtn: string;
     withdrawConfirmMsg: string;
     findAlternativeBtn: string;
+    editAndResubmitBtn: string;
+    revisionModalTitle: string;
+    revisionModalSubtitle: string;
+    resubmitSuccessMsg: string;
     emptyTitle: string;
     emptyDesc: string;
     emptyCtaBtn: string;
@@ -757,6 +763,8 @@ const TRANSLATIONS: Record<Locale, Translations> = {
         library: {
           label: 'Kütüphane',
           desc: 'Resmi rehberler, başvuru formları ve hibe analizleri',
+          userManual: 'Platform Kullanım Kılavuzu',
+          userManualDesc: 'Okul ve hostlar için adım adım modüler ekran akışları ve süreç rehberi',
           ka121Guide: 'KA121 Resmi Başvuru Form Rehberi',
           ka121GuideDesc: 'Akredite kurum yıllık bütçe ve hedef planlama',
           ka122Guide: 'KA122 Resmi Başvuru Form Rehberi',
@@ -810,8 +818,8 @@ const TRANSLATIONS: Record<Locale, Translations> = {
           osbDesc: 'Türkiye geneli OSB müdürlükleri',
           ttso: 'Ticaret ve Sanayi Odaları',
           ttsoDesc: 'TOBB il bazlı ticaret ve sanayi odaları',
-          esnaf: 'Esnaf ve Sanatkârlar Odaları',
-          esnafDesc: 'TESK il esnaf ve sanatkârlar birlikleri',
+          esnaf: 'Esnaf ve Sanatkarlar Odaları',
+          esnafDesc: 'TESK il esnaf ve sanatkarlar birlikleri',
         },
         opportunities: {
           label: 'Ev Sahibi Kuruluşlar ve Hizmetler',
@@ -841,7 +849,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
         diger: 'Diğer',
         osb: 'Organize Sanayi Bölgeleri',
         ttso: 'Ticaret ve Sanayi Odaları',
-        esnaf: 'Esnaf ve Sanatkârlar Odaları Birlikleri',
+        esnaf: 'Esnaf ve Sanatkarlar Odaları Birlikleri',
       },
     },
     tabs: {
@@ -863,7 +871,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       step1Title: 'Kurum & Katılımcı Profili',
       step1Desc: 'Kuruluş Kimlik Numarası OID ve Erasmus Akreditasyonu bilgileri, Erasmus Planı hedefleri ve hedef kitle profili.',
       step2Title: 'ESCO + ISCED-F Eşleştirici',
-      step2Desc: '12 Mesleki alan için ISCED-F eğitim kodu ve Avrupa ESCO meslek profili otomatik eşleme.',
+      step2Desc: '12 Öncelikli ESCO meslek profili (27 ulusal meslek alanını kapsayan) için ISCED-F eğitim kodu ve Avrupa ESCO meslek profili otomatik eşleme.',
       step3Title: 'Yetkinlik & Proje Yolu Öneri Aracı',
       step3Desc: '12 soruluk yetkinlik testi, yetkinlik açığı ve 8 kriterli KA121/KA122 proje yolu öneri aracı.',
       step4Title: 'Ev Sahibi Kuruluş ve Hareketlilik Planı',
@@ -940,7 +948,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
     eligibility: {
       title: '5. KA122-VET Başvuru Öncesi Zorunlu Uygunluk Kontrolü',
       badge: 'Ön Uygunluk Kontrolü',
-      subtitle: 'Erasmus+ VET rehberine göre akreditasyon, katılımcı tavanı (30 kişi), proje süresi (6–18 ay) ve 36 aylık hibe kotası denetimi',
+      subtitle: 'Erasmus+ VET rehberine göre akreditasyon, katılımcı tavanı (30 kişi), proje süresi (6–18 ay) ve 5 ardışık çağrı yılı hibe kotası denetimi',
       accreditationLabel: 'Kurum Akreditasyon Durumu',
       participantCountLabel: 'Planlanan Katılımcı Sayısı (Maks. 30)',
       durationLabel: 'Planlanan Proje Süresi (6–18 Ay)',
@@ -992,7 +1000,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       proposedPath: 'Önerilen Erasmus+ Proje Yolu:',
       scoreLabel: 'Hareketlilik Uygunluk Skoru:',
       rationaleTitle: 'Karar Gerekçesi:',
-      emptyText: 'Karar üretmek için yukarıdaki "Karar Motorunu Çalıştır" butonuna tıklayınız.',
+      emptyText: 'Öneri üretmek için yukarıdaki "Proje Yolu Öneri Aracını Çalıştır" butonuna tıklayınız.',
     },
     partners: {
       title: '8. Ortak ve Ev Sahibi Kuruluş Arama Platformları',
@@ -1058,7 +1066,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
     official: {
       title: '12. Resmi Kaynaklar ve Program Çerçevesi',
       badge: 'Yasal Sorumluluk',
-      info: 'KA121-VET akredite kuruluşlar için Erasmus Planı ile bağlantılı yıllık hibe başvurusu yapma imkânına dayanır. KA122-VET kısa dönemli hareketlilik projelerinde ise kurumun kurumsal arka plan, ihtiyaçlar ve sorunlar, hedefler, faaliyetler, bütçe, kalite standartları ve yaygınlaştırma zincirini gerekçelendirmesi zorunludur.',
+      info: 'KA121-VET akredite kuruluşlar için Erasmus Planı ile bağlantılı yıllık hibe başvurusu yapma imkanına dayanır. KA122-VET kısa dönemli hareketlilik projelerinde ise kurumun kurumsal arka plan, ihtiyaçlar ve sorunlar, hedefler, faaliyetler, bütçe, kalite standartları ve yaygınlaştırma zincirini gerekçelendirmesi zorunludur.',
       disclaimer: 'Değerlendirme Bilgilendirmesi: Bu araçtaki yeterlilik testi ve Hareketlilik Uygunluk Skoru tavsiye ve planlama amaçlıdır. Sonuçlar tek başına öğrenci/öğretmen seçimi, dışlama, işe alım, notlandırma veya başka yüksek etkili kararlar için kullanılamaz. Katılımcı seçimi şeffaf, adil ve kapsayıcı ayrı bir resmi prosedürle yürütülmelidir.',
     },
     footer: {
@@ -1067,8 +1075,8 @@ const TRANSLATIONS: Record<Locale, Translations> = {
     },
     legal: {
       title: 'KVKK Aydınlatma Metni',
-      termsTitle: 'Kullanım Koşulları',
-      cookiesTitle: 'Çerez Politikası',
+      termsTitle: 'Kullanım Koşulları ve Açık Rıza',
+      cookiesTitle: 'Çerez Tercihleri',
       retentionTitle: 'Veri Saklama & İmha',
       cookiePreferences: 'Çerez Tercihleri',
       close: 'Kapat',
@@ -1257,7 +1265,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       badge2: 'Giris Sarti Olmadan Simulasyon',
       badge3: 'ESCO & ISCED-F Taksonomisi',
       badge4: '15 Kriterli Kuruluş Eşleştirmesi',
-      btnTour: 'Hizli Baslangic Rehberi (3 dk)',
+      btnTour: 'Kullanım Kılavuzu & Platform Rehberi',
       btnDemo: 'Demo Verisiyle Dene',
       btnRegister: 'Ucretsiz Kayit Ol',
       dismiss: 'Kapat',
@@ -1328,6 +1336,10 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       withdrawBtn: '↩️ Talebi İptal Et / Geri Çek',
       withdrawConfirmMsg: 'Talebiniz başarıyla iptal edildi ve sistemden kaldırıldı.',
       findAlternativeBtn: '🔍 Yeni Ev Sahibi Ara',
+      editAndResubmitBtn: '✏️ Düzenle ve Yeniden Gönder',
+      revisionModalTitle: 'Revizyon Talebini Yanıtla & Yeniden Gönder',
+      revisionModalSubtitle: 'Ev sahibi kurumun önerilerine göre detayları güncelleyin ve talebinizi revize edilmiş olarak tekrar iletin.',
+      resubmitSuccessMsg: 'Talebiniz güncellendi ve ev sahibi kuruma yeniden iletildi.',
       emptyTitle: 'Henüz Gönderilmiş Bir Hareketlilik Talebiniz Yok',
       emptyDesc: '3. Aşamada yer alan Eşleştirme Motorundan uygun bir Avrupa ev sahibi kuruluşu seçerek "Ev Sahibine Talep İlet" butonuna tıklayabilirsiniz.',
       emptyCtaBtn: '🚀 Ev Sahibi Eşleştirmeyi Başlat',
@@ -1339,8 +1351,8 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       logisticsLabel: 'Talep Edilen Lojistik:',
       schoolNoteLabel: 'İlettiğiniz Kurumsal Not:',
       hostResponseLabel: 'Ev Sahibi Resmi Yanıtı:',
-      loiModalTitle: 'Erasmus+ VET Letter of Intent (Ön Kabul Belgesi)',
-      loiModalSubtitle: 'Ev sahibi kuruluş tarafından onaylanmış ve staj kontenjanı ayrılmış resmi belge.',
+      loiModalTitle: 'Erasmus+ VET Letter of Intent (Ön Kabul Taslağı)',
+      loiModalSubtitle: 'Ev sahibi kuruluş tarafından ön onay verilmiş, kurumların referans alabileceği örnek ön kabul taslağı.',
     },
     guestOnboarding: {
       modalTitle: 'ErasmusMobility • Hızlı Başlangıç Rehberi',
@@ -1349,21 +1361,21 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       btnPrev: 'Onceki',
       btnComplete: 'Turu Tamamla',
       btnSkip: 'Gec ve Kapat',
-      dontShowAgain: 'Bir daha otomatik gosterme',
-      howItWorksBtn: 'Nasil Calisir?',
+      dontShowAgain: 'Bir daha otomatik gösterme',
+      howItWorksBtn: 'Kullanım Kılavuzu',
       guestNoticeBadge: 'Ziyaretci Modu',
       guestNoticeTitle: 'Kurum Bilgilerinizi Kaydedin',
       guestNoticeDesc: 'Giris yapmadan formu doldurabilir ve on hazirlik skorunuzu test edebilirsiniz. Bilgilerinizi kalici olarak kaydetmek ve resmi basvuru raporu olusturmak icin ucretsiz giris yapabilirsiniz.',
       guestNoticeBtn: 'Giris Yap / Kayit Ol',
       step1Tag: 'Platforma Genel Bakis',
       step1Title: 'Erasmus+ Mesleki Egitimde Yeni Nesil Dijital Altyapi',
-      step1Desc: 'ErasmusMobility, meslek liseleri ve Avrupalı ev sahibi kurumlar arasındaki KA121 akreditasyonu ve KA122 kısa dönemli hareketlilik süreçlerini uçtan uca dijitalleştiren resmi karar ve eşleştirme motorudur.',
+      step1Desc: 'ErasmusMobility, meslek liseleri ve Avrupalı ev sahibi kurumlar arasındaki KA121 akreditasyonu ve KA122 kısa dönemli hareketlilik süreçlerini destekleyen kurumsal planlama ve öneri aracıdır.',
       step1Point1Title: 'Resmi OID & Akreditasyon Uyumu',
       step1Point1Desc: 'Ulusal Ajans ve Avrupa Komisyonu standartlarinda kurum kodu (OID) dogrulamasi ve hazirlik skoru.',
       step1Point2Title: 'ESCO & ISCED-F Beceri Analizi',
-      step1Point2Desc: 'Avrupa Beceri ve Yeterlilikler Taksonomisi ile 27 meslek alaninda canli yetkinlik acigi tespiti.',
-      step1Point3Title: '33 Ulkede Guvenli Eslestirme',
-      step1Point3Desc: '15 kriterli kurumsal dogrulamadan gecmis staj ve isbasi gozlem partnerleriyle dogrudan iletisim.',
+      step1Point2Desc: 'Avrupa Beceri ve Yeterlilikler Taksonomisi ile 27 ulusal meslek alanını kapsayan 12 ESCO uzmanlık profilinde canlı yetkinlik açığı tespiti.',
+      step1Point3Title: '33 Erasmus+ Program Ülkesinde Güvenli Eşleştirme',
+      step1Point3Desc: '15 kriterli kurumsal doğrulamadan geçmiş staj ve işbaşı gözlem partnerleriyle doğrudan iletişim.',
       step2Tag: 'Kurumsal Rolunuz',
       step2Title: 'Platformda Hangi Rolle Yer Alacaksiniz?',
       step2Desc: 'Sistem hem Turkiye\'deki gonderen meslek liselerine hem de Avrupa\'daki ev sahibi isletmelere ozel fonksiyonlar sunar.',
@@ -1380,14 +1392,14 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       roleHostPoint2: '15 kriterli KYC ile Dogrulanmis Partner rozeti',
       roleHostPoint3: 'Akredite okullarin arama sonuclarinda one cikma',
       step3Tag: '5 Asamali Dongu',
-      step3Title: 'Akilli Erasmus+ Karar ve Eslestirme Motoru',
+      step3Title: 'Akıllı Erasmus+ Planlama ve Öneri Aracı',
       step3Desc: 'Adim adim ilerleyerek basvurunuzu veya staj programinizi saniyeler icinde hazirlayin.',
       stage1Name: '1. Kurum & Katilimci',
       stage1Desc: 'Okul OID, Erasmus Plani hedefleri, ogrenci ve refakatci profili tanimlama.',
       stage2Name: '2. ESCO & Beceri Acigi',
       stage2Desc: 'Meslek alani, ISCED kodu ve 5 temel yeterlilik uzerinden yetkinlik testi.',
-      stage3Name: '3. Ev Sahibi & Karar',
-      stage3Desc: '8 faktorlu KA120 / KA121 / KA122 karar motoru ve partner eslestirme.',
+      stage3Name: '3. Ev Sahibi & Planlama',
+      stage3Desc: '8 faktörlü KA120 / KA121 / KA122 planlama ve öneri modeli ile partner eşleştirme.',
       stage4Name: '4. Ogrenme Kazanimlari',
       stage4Desc: 'Bloom taksonomisine uygun teknik ve transversal ogrenme ciktilari.',
       stage5Name: '5. Planlama Raporu',
@@ -1482,6 +1494,8 @@ const TRANSLATIONS: Record<Locale, Translations> = {
         library: {
           label: 'Library',
           desc: 'Official guides, application forms and grant analytics',
+          userManual: 'Platform User Guide & Manual',
+          userManualDesc: 'Step-by-step modular workflows & interactive manual for schools & hosts',
           ka121Guide: 'KA121 Official Application Form Guide',
           ka121GuideDesc: 'Accredited institution annual budget and plan guide',
           ka122Guide: 'KA122 Official Application Form Guide',
@@ -1588,7 +1602,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       step1Title: 'Institution & Participant Profile',
       step1Desc: 'Organisation ID OID and Erasmus Accreditation details, Erasmus Plan goals, and target group definition.',
       step2Title: 'ESCO + ISCED-F Mapper',
-      step2Desc: 'Automatic mapping of 12 VET sectors to ISCED-F codes and European ESCO occupational profiles.',
+      step2Desc: 'Automatic mapping of 12 priority ESCO occupational profiles (encompassing 27 national VET fields) to ISCED-F codes and European competencies.',
       step3Title: 'Competence & Project Path Recommendation Tool',
       step3Desc: '12-question competence test, competence gap assessment, and 8-rule KA121/KA122 project path recommendation tool.',
       step4Title: 'Hosting Organisation and Mobility Plan',
@@ -1788,12 +1802,12 @@ const TRANSLATIONS: Record<Locale, Translations> = {
     },
     footer: {
       subtitle: 'Mobility planning and matching platform for Erasmus+ Vocational Education and Training (VET) projects.',
-      copyright: '© 2026 ErasmusMobility.com • Tüm hakları saklıdır.',
+      copyright: '© 2026 ErasmusMobility.com • All rights reserved.',
     },
     legal: {
       title: 'GDPR Privacy Policy',
-      termsTitle: 'Terms of Use',
-      cookiesTitle: 'Cookie Policy',
+      termsTitle: 'Platform Participation Terms & Consent',
+      cookiesTitle: 'Cookie Preferences',
       retentionTitle: 'Data Retention & Disposal',
       cookiePreferences: 'Cookie Preferences',
       close: 'Close',
@@ -1982,7 +1996,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       badge2: 'Live Simulation Without Login',
       badge3: 'ESCO & ISCED-F Taxonomy',
       badge4: '15-Criteria Organisation Matching',
-      btnTour: 'Quick Start Guide (3 min)',
+      btnTour: 'Platform User Guide & Manual',
       btnDemo: 'Try with Demo Data',
       btnRegister: 'Create Free Account',
       dismiss: 'Dismiss',
@@ -2053,6 +2067,10 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       withdrawBtn: '↩️ Withdraw / Cancel Inquiry',
       withdrawConfirmMsg: 'Your inquiry has been successfully withdrawn.',
       findAlternativeBtn: '🔍 Find Alternative Host',
+      editAndResubmitBtn: '✏️ Edit & Resubmit',
+      revisionModalTitle: 'Respond to Revision & Resubmit',
+      revisionModalSubtitle: 'Update dates, participant count or logistics according to host suggestions and resubmit your inquiry.',
+      resubmitSuccessMsg: 'Your inquiry was updated and resubmitted to the host.',
       emptyTitle: 'No Mobility Inquiries Sent Yet',
       emptyDesc: 'Select a suitable European host organisation in Stage 3 Matching Engine and click "Send Mobility Inquiry" to get started.',
       emptyCtaBtn: '🚀 Launch Host Matching',
@@ -2064,8 +2082,8 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       logisticsLabel: 'Requested Logistics:',
       schoolNoteLabel: 'Your Institutional Note:',
       hostResponseLabel: 'Official Host Reply:',
-      loiModalTitle: 'Erasmus+ VET Letter of Intent (LoI)',
-      loiModalSubtitle: 'Official placement confirmation and capacity allocation issued by the host enterprise.',
+      loiModalTitle: 'Erasmus+ VET Letter of Intent (Sample Draft)',
+      loiModalSubtitle: 'Preliminary confirmation template and reference draft issued by the host enterprise.',
     },
     guestOnboarding: {
       modalTitle: 'ErasmusMobility • Quick Start Guide',
@@ -2075,19 +2093,19 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       btnComplete: 'Complete Tour',
       btnSkip: 'Skip & Close',
       dontShowAgain: 'Do not show automatically again',
-      howItWorksBtn: 'How It Works',
+      howItWorksBtn: 'User Guide',
       guestNoticeBadge: 'Guest Mode',
       guestNoticeTitle: 'Save Your Institutional Profile',
       guestNoticeDesc: 'You can fill out the form and test your readiness score without logging in. Sign in for free to permanently save your records and export planning reports.',
       guestNoticeBtn: 'Sign In / Sign Up',
       step1Tag: 'Platform Overview',
       step1Title: 'Next-Generation Digital Infrastructure for Erasmus+ VET',
-      step1Desc: 'ErasmusMobility.com is the official platform digitizing KA121 accreditation and KA122 short-term mobilities between vocational schools and European host organisations end-to-end.',
+      step1Desc: 'ErasmusMobility is a comprehensive planning and recommendation tool digitizing KA121 accreditation and KA122 short-term mobility workflows between vocational schools and European host organisations.',
       step1Point1Title: 'Official OID & Accreditation Compliance',
       step1Point1Desc: 'Organisation ID (OID) verification and institutional readiness scoring compliant with National Agency standards.',
       step1Point2Title: 'ESCO & ISCED-F Competence Analysis',
-      step1Point2Desc: 'Live skill gap detection across 27 vocational fields powered by the European Skills and Qualifications Taxonomy.',
-      step1Point3Title: 'Verified Matching Across 33 Countries',
+      step1Point2Desc: 'Live skill gap detection across 12 priority ESCO profiles (encompassing 27 national VET fields) powered by the European Skills Taxonomy.',
+      step1Point3Title: 'Verified Matching Across 33 Erasmus+ Programme Countries',
       step1Point3Desc: 'Direct contact with internship and job shadowing providers vetted through a 15-point institutional verification framework.',
       step2Tag: 'Your Institutional Role',
       step2Title: 'Which Role Fits Your Organisation?',
@@ -2105,14 +2123,14 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       roleHostPoint2: 'Verified Partner badge via 15-point KYC audit',
       roleHostPoint3: 'Top visibility in accredited school search results',
       step3Tag: '5-Stage Workflow',
-      step3Title: 'Smart Erasmus+ Decision & Matching Engine',
+      step3Title: 'Smart Erasmus+ Planning & Recommendation Tool',
       step3Desc: 'Follow the streamlined 5-stage pipeline to prepare your mobility application in minutes.',
       stage1Name: '1. Institution & Profile',
       stage1Desc: 'Define school OID, Erasmus Plan targets, learners, and accompanying staff.',
       stage2Name: '2. ESCO & Skill Gap',
       stage2Desc: 'Select field, ISCED-F code, and run 5-core competence diagnostics.',
       stage3Name: '3. Hosting Organisation Matching and Project Path',
-      stage3Desc: '8-factor KA120/KA121/KA122 decision matrix and verified host matching.',
+      stage3Desc: '8-factor KA120/KA121/KA122 recommendation framework and verified host matching.',
       stage4Name: '4. Outcomes & Quality',
       stage4Desc: 'Bloom-aligned technical and transversal learning outcomes with OHS checklist.',
       stage5Name: '5. Planning Report',
@@ -2197,14 +2215,23 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const saved =
       localStorage.getItem('em_locale') || localStorage.getItem('cappinno_locale');
+    const activeLocale: Locale = saved === 'tr' || saved === 'en' ? saved : 'tr';
     if (saved === 'tr' || saved === 'en') {
       setLocaleState(saved);
+    }
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = activeLocale;
+      document.documentElement.setAttribute('dir', 'ltr');
     }
   }, []);
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
     localStorage.setItem('em_locale', newLocale);
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = newLocale;
+      document.documentElement.setAttribute('dir', 'ltr');
+    }
   };
 
   return (

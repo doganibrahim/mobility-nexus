@@ -1,10 +1,13 @@
 'use client';
 
 import React, { useMemo } from 'react';
+import Link from 'next/link';
 import NeoCard from '../ui/NeoCard';
 import { ParticipantType, MobilityGoal } from '@mobility-nexus/types';
 import { useTranslation } from '../../lib/i18n';
 import { validateActivityDuration } from '../../lib/calculations';
+import { ERASMUS_COUNTRIES } from '../../lib/countries';
+import { Sparkles, ArrowUpRight } from 'lucide-react';
 
 interface ParticipantProfileCardProps {
   data: {
@@ -57,15 +60,17 @@ export default function ParticipantProfileCard({
   };
 
   const EU_COUNTRIES = [
-    { code: 'ANY', label: locale === 'en' ? 'Any / All Eligible Countries' : 'Fark Etmez / Tüm Uygun Ülkeler' },
-    { code: 'DE', label: locale === 'en' ? 'Germany' : 'Almanya' },
-    { code: 'IT', label: locale === 'en' ? 'Italy' : 'İtalya' },
-    { code: 'ES', label: locale === 'en' ? 'Spain' : 'İspanya' },
-    { code: 'FR', label: locale === 'en' ? 'France' : 'Fransa' },
-    { code: 'NL', label: locale === 'en' ? 'Netherlands' : 'Hollanda' },
-    { code: 'SE', label: locale === 'en' ? 'Sweden' : 'İsveç' },
-    { code: 'PT', label: locale === 'en' ? 'Portugal' : 'Portekiz' },
-    { code: 'AT', label: locale === 'en' ? 'Austria' : 'Avusturya' },
+    {
+      code: 'ANY',
+      label:
+        locale === 'en'
+          ? '🌍 Any / All Eligible Countries'
+          : '🌍 Fark Etmez / Tüm Uygun Ülkeler',
+    },
+    ...ERASMUS_COUNTRIES.map((c) => ({
+      code: c.code,
+      label: `${c.flagEmoji} ${locale === 'en' ? c.nameEn : c.nameTr}`,
+    })),
   ];
 
   return (
@@ -155,12 +160,56 @@ export default function ParticipantProfileCard({
           </div>
         </div>
 
+        {/* Staff Mobility Marketplace Bridge */}
+        {(data.mobilityGoal === 'JOB_SHADOWING' || data.mobilityGoal === 'STAFF_COURSE_TRAINING') && (
+          <div className="p-3 rounded-xl bg-blue-50/90 border border-blue-200/90 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 animate-in fade-in duration-200">
+            <div className="flex items-center gap-2">
+              <span className="p-1 rounded-md bg-blue-600 text-white shrink-0">
+                <Sparkles className="w-3.5 h-3.5" />
+              </span>
+              <p className="text-xs text-blue-950 font-medium">
+                {data.mobilityGoal === 'JOB_SHADOWING'
+                  ? (locale === 'en'
+                      ? 'European host organizations have open Job Shadowing slots in the Marketplace.'
+                      : 'Avrupa ev sahibi kurumların aktif İşbaşı Gözlem kontenjanları Pazar Yeri’nde açık.')
+                  : (locale === 'en'
+                      ? 'Structured teacher training courses are available in the Marketplace.'
+                      : 'Akredite mesleki eğitimci kursları Pazar Yeri kataloğunda listelenmektedir.')}
+              </p>
+            </div>
+            <Link
+              href={`/marketplace?tab=${data.mobilityGoal === 'JOB_SHADOWING' ? 'JOB_SHADOWING' : 'COURSES'}`}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold shrink-0 transition-colors shadow-2xs"
+            >
+              <span>{locale === 'en' ? 'Explore Opportunities' : 'Fırsatları İncele'}</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        )}
+
         {/* Row 2: Target Countries (Multi-select UI) */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1">
-            {locale === 'en' ? 'Preferred Hosting Countries' : 'Hedef Ülkeler'}
-          </label>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex items-center justify-between mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700">
+              {locale === 'en' ? 'Preferred Hosting Countries' : 'Hedef Ülkeler'}
+            </label>
+            <span className="text-[11px] text-slate-500 font-medium">
+              {data.targetCountries?.length ? (
+                <span className="text-blue-600 font-semibold">
+                  {locale === 'en'
+                    ? `${data.targetCountries.length} country selected`
+                    : `${data.targetCountries.length} ülke seçildi`}
+                </span>
+              ) : (
+                <span>
+                  {locale === 'en'
+                    ? '35 Erasmus+ eligible countries available'
+                    : '35 Erasmus+ program ülkesi mevcut'}
+                </span>
+              )}
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-1.5 max-h-44 overflow-y-auto p-2 bg-slate-50 border border-slate-200 rounded-xl">
             {EU_COUNTRIES.map(country => {
               const isSelected = (data.targetCountries || []).includes(country.code);
               return (
@@ -168,10 +217,10 @@ export default function ParticipantProfileCard({
                   key={country.code}
                   type="button"
                   onClick={() => handleCountryToggle(country.code)}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-colors ${
+                  className={`px-2.5 py-1 text-xs font-medium rounded-lg border transition-all ${
                     isSelected
-                      ? 'bg-blue-50 border-blue-600 text-blue-700'
-                      : 'bg-white border-slate-200 text-slate-600 hover:border-blue-300'
+                      ? 'bg-blue-600 border-blue-600 text-white font-semibold shadow-2xs'
+                      : 'bg-white border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-slate-100/70'
                   }`}
                 >
                   {country.label}

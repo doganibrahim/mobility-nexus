@@ -154,8 +154,8 @@ export default function DecisionEngineCard({
                 </div>
                 <ul className="list-disc pl-5 space-y-1 text-[11px] text-purple-200">
                   <li><strong>Erasmus Planı:</strong> Okulunuzun uluslararasılaşma ve pedagojik gelişim hedeflerini 3–5 yıllık periyot için belirleyin.</li>
-                  <li><strong>Yıllık Çağrı:</strong> Her yıl sonbaharda (genellikle Ekim) yayımlanan resmî KA120-VET akreditasyon çağrısına başvurun.</li>
-                  <li><strong>Garantili Bütçe:</strong> Akreditasyon onaylandığında, her yıl yeni proje yazmadan doğrudan KA121 yıllık bütçe tahsisatı alırsınız.</li>
+                  <li><strong>Yıllık Çağrı:</strong> Her yıl sonbaharda (genellikle Ekim) yayımlanan resmi KA120-VET akreditasyon çağrısına başvurun.</li>
+                  <li><strong>Yıllık Bütçe Tahsisatı (KA121):</strong> Akreditasyon onaylandığında, her yıl yeniden yarışmalı proje yazmadan doğrudan Erasmus Planı hedeflerinize uygun olarak yıllık bütçe tahsisatına başvurabilirsiniz.</li>
                 </ul>
               </div>
             )}

@@ -18,7 +18,7 @@ export default function AppFooter() {
 
   return (
     <>
-      <footer className="border-t border-slate-200 bg-white mt-16 py-10 text-slate-600 no-print">
+      <footer role="contentinfo" className="border-t border-slate-200 bg-white mt-16 pt-10 pb-20 sm:pb-12 text-slate-600 no-print">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 border-b border-slate-100 pb-8 mb-6">
             <div className="md:col-span-6 space-y-2.5">
@@ -76,7 +76,7 @@ export default function AppFooter() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-slate-400 sm:pr-48">
             <div>
               {locale === 'tr'
                 ? '© 2026 ErasmusMobility.com • Tüm hakları saklıdır.'
@@ -86,7 +86,7 @@ export default function AppFooter() {
               <button
                 type="button"
                 onClick={() => openLegal('LEGAL')}
-                className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500"
+                className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500 cursor-pointer"
               >
                 {locale === 'tr' ? 'KVKK Aydınlatma Metni' : 'GDPR Privacy Policy'}
               </button>
@@ -94,25 +94,9 @@ export default function AppFooter() {
               <button
                 type="button"
                 onClick={() => openLegal('TERMS')}
-                className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500"
+                className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500 cursor-pointer"
               >
-                {locale === 'tr' ? 'Kullanım Koşulları' : 'Terms of Use'}
-              </button>
-              <span>•</span>
-              <button
-                type="button"
-                onClick={() => openLegal('COOKIES')}
-                className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500"
-              >
-                {locale === 'tr' ? 'Çerez Tercihleri' : 'Cookie Preferences'}
-              </button>
-              <span>•</span>
-              <button
-                type="button"
-                onClick={() => openLegal('RETENTION')}
-                className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500"
-              >
-                {locale === 'tr' ? 'Veri Saklama & İmha' : 'Data Retention'}
+                {locale === 'tr' ? 'Kullanım Koşulları ve Açık Rıza' : 'Platform Participation Terms & Consent'}
               </button>
               <span>•</span>
               <button

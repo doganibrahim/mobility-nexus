@@ -1,4 +1,5 @@
 import { Organisation, AccreditationStatus } from '@mobility-nexus/types';
+import { ERASMUS_COUNTRIES } from './countries';
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
@@ -63,133 +64,95 @@ export interface InviteResponse {
 
 export const apiClient = {
   /**
-   * Updates an existing organisation on the NestJS backend via PATCH.
-   * Gracefully updates local state if the backend is unreachable.
+   * Updates an existing organisation.
    */
   async updateOrganisation(
     orgId: string,
     payload: Partial<CreateOrgPayload>,
   ): Promise<{ data: Organisation; isFallback: boolean }> {
-    const correlationId = `web-upd-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
-
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3500);
-
-      const response = await fetch(`${API_BASE_URL}/organisations/${orgId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Correlation-Id': correlationId,
-        },
-        body: JSON.stringify(payload),
-        signal: controller.signal,
+      const response = await fetch('/api/organisations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...payload, id: orgId }),
       });
-
-      clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(
-          errorData.message || `Sunucu hatası: HTTP ${response.status}`,
-        );
+      if (response.ok) {
+        const org = await response.json();
+        return { data: org, isFallback: false };
       }
+    } catch {}
 
-      const updatedOrg: Organisation = await response.json();
-      return { data: updatedOrg, isFallback: false };
-    } catch (err: any) {
-      console.warn(
-        'Backend API güncelleme sırasında ulaşılamadı. Yerel fallback uygulanıyor.',
-        err.message,
-      );
-
-      const fallbackOrg: Organisation = {
-        id: orgId,
-        name: payload.name || 'Kurum',
-        slug: 'kurum',
-        oid: payload.oid || null,
-        city: payload.city || null,
-        countryCode: payload.countryCode || 'TR',
-        accreditationStatus: payload.accreditationStatus || 'UNKNOWN',
-        erasmusPlan: payload.erasmusPlan || null,
-        institutionNeed: payload.institutionNeed || null,
-        readinessScore: payload.oid ? 75 : 45,
-        isActive: true,
-        settings: { isFallback: true },
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
-
-      return { data: fallbackOrg, isFallback: true };
-    }
+    // Fallback local organisation
+    const fallbackOrg: Organisation = {
+      id: orgId,
+      name: payload.name || 'Kurum',
+      slug: 'kurum',
+      oid: payload.oid || null,
+      city: payload.city || null,
+      countryCode: payload.countryCode || 'TR',
+      accreditationStatus: payload.accreditationStatus || 'UNKNOWN',
+      erasmusPlan: payload.erasmusPlan || null,
+      institutionNeed: payload.institutionNeed || null,
+      readinessScore: payload.oid ? 75 : 45,
+      isActive: true,
+      settings: { isFallback: true },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    return { data: fallbackOrg, isFallback: true };
   },
 
   /**
-   * Creates a new accredited/VET organisation on the NestJS backend.
-   * If the backend is offline/unreachable, gracefully falls back to a locally generated record.
+   * Creates a new accredited/VET organisation.
    */
   async createOrganisation(
     payload: CreateOrgPayload,
   ): Promise<{ data: Organisation; isFallback: boolean }> {
-    const correlationId = `web-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
-
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3500);
-
-      const response = await fetch(`${API_BASE_URL}/organisations`, {
+      const response = await fetch('/api/organisations', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Correlation-Id': correlationId,
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-        signal: controller.signal,
       });
 
-      clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(
-          errorData.message || `Sunucu hatası: HTTP ${response.status}`,
-        );
+      if (response.ok) {
+        const createdOrg: Organisation = await response.json();
+        return { data: createdOrg, isFallback: false };
       }
+    } catch {}
 
-      const createdOrg: Organisation = await response.json();
-      return { data: createdOrg, isFallback: false };
-    } catch (err: any) {
-      console.warn(
-        'Backend API bağlantısı kurulamadı veya zaman aşımına uğradı. Güvenli yerel fallback modu kullanılıyor.',
-        err.message,
-      );
+    // Fallback local organisation generator
+    const fallbackId = `org-loc-${Date.now()}`;
+    const slug = payload.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)+/g, '');
 
-      // Fallback local organisation generator
-      const fallbackId = `org-loc-${Date.now()}`;
-      const slug = payload.name
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)+/g, '');
+    const isValidOid = Boolean(payload.oid && /^E10[0-9]{5,7}$/i.test(payload.oid.trim()));
+    let calculatedReadiness = 0;
+    if (payload.name && payload.name.trim().length >= 3 && payload.city && payload.city.trim().length >= 2) calculatedReadiness += 30;
+    if (payload.accreditationStatus === 'YES') calculatedReadiness += 35;
+    else if (payload.accreditationStatus === 'NO') calculatedReadiness += 20;
+    if (isValidOid) calculatedReadiness += 35;
 
-      const fallbackOrg: Organisation = {
-        id: fallbackId,
-        name: payload.name,
-        slug: slug || 'kurum',
-        oid: payload.oid || null,
-        city: payload.city || null,
-        countryCode: payload.countryCode || 'TR',
-        accreditationStatus: payload.accreditationStatus || 'UNKNOWN',
-        erasmusPlan: payload.erasmusPlan || null,
-        institutionNeed: payload.institutionNeed || null,
-        readinessScore: payload.oid ? 75 : 45,
-        isActive: true,
-        settings: { isFallback: true },
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
+    const fallbackOrg: Organisation = {
+      id: fallbackId,
+      name: payload.name,
+      slug: slug || 'kurum',
+      oid: payload.oid || null,
+      city: payload.city || null,
+      countryCode: payload.countryCode || 'TR',
+      accreditationStatus: payload.accreditationStatus || 'UNKNOWN',
+      erasmusPlan: payload.erasmusPlan || null,
+      institutionNeed: payload.institutionNeed || null,
+      readinessScore: calculatedReadiness,
+      isActive: true,
+      settings: { isFallback: true },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
 
-      return { data: fallbackOrg, isFallback: true };
-    }
+    return { data: fallbackOrg, isFallback: true };
   },
 
   /**
@@ -263,50 +226,29 @@ export const apiClient = {
     userId: string,
   ): Promise<{ data: any | null }> {
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      const response = await fetch(`/api/organisations/user/${encodeURIComponent(userId)}`);
+      if (response.ok) {
+        const org = await response.json();
+        return { data: org };
+      }
+    } catch {}
 
-      const response = await fetch(
-        `${API_BASE_URL}/organisations/user/${encodeURIComponent(userId)}`,
-        {
-          headers: { 'Content-Type': 'application/json' },
-          signal: controller.signal,
-        },
-      );
-
-      clearTimeout(timeoutId);
-
-      if (!response.ok) return { data: null };
-      const org = await response.json();
-      return { data: org };
-    } catch {
-      return { data: null };
-    }
+    return { data: null };
   },
 
   /**
-   * Fetches the list of EU & Erasmus+ program countries.
+   * Fetches the list of all EU & Erasmus+ program countries.
    */
   async getCountries(): Promise<Array<{ code: string; nameTr: string; nameEn: string; flagEmoji?: string }>> {
     try {
       const response = await fetch(`${API_BASE_URL}/reference/countries`);
-      if (!response.ok) throw new Error();
-      return await response.json();
-    } catch {
-      return [
-        { code: 'DE', nameTr: 'Almanya', nameEn: 'Germany', flagEmoji: '🇩🇪' },
-        { code: 'TR', nameTr: 'Türkiye', nameEn: 'Turkey', flagEmoji: '🇹🇷' },
-        { code: 'NL', nameTr: 'Hollanda', nameEn: 'Netherlands', flagEmoji: '🇳🇱' },
-        { code: 'IT', nameTr: 'İtalya', nameEn: 'Italy', flagEmoji: '🇮🇹' },
-        { code: 'ES', nameTr: 'İspanya', nameEn: 'Spain', flagEmoji: '🇪🇸' },
-        { code: 'FR', nameTr: 'Fransa', nameEn: 'France', flagEmoji: '🇫🇷' },
-        { code: 'BE', nameTr: 'Belçika', nameEn: 'Belgium', flagEmoji: '🇧🇪' },
-        { code: 'AT', nameTr: 'Avusturya', nameEn: 'Austria', flagEmoji: '🇦🇹' },
-        { code: 'PL', nameTr: 'Polonya', nameEn: 'Poland', flagEmoji: '🇵🇱' },
-        { code: 'PT', nameTr: 'Portekiz', nameEn: 'Portugal', flagEmoji: '🇵🇹' },
-        { code: 'CZ', nameTr: 'Çekya', nameEn: 'Czech Republic', flagEmoji: '🇨🇿' },
-      ];
-    }
+      if (response.ok) {
+        const data = await response.json();
+        if (Array.isArray(data) && data.length > 0) return data;
+      }
+    } catch {}
+
+    return ERASMUS_COUNTRIES;
   },
 
   /**
@@ -337,60 +279,43 @@ export const apiClient = {
   async registerHost(
     payload: RegisterHostPayload,
   ): Promise<{ data: any; isFallback: boolean }> {
-    const correlationId = `web-host-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
-
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 4000);
-
-      const response = await fetch(`${API_BASE_URL}/hosts/register`, {
+      const response = await fetch('/api/hosts/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Correlation-Id': correlationId,
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-        signal: controller.signal,
       });
 
-      clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(
-          errorData.message || `Sunucu hatası: HTTP ${response.status}`,
-        );
+      if (response.ok) {
+        const host = await response.json();
+        return { data: host, isFallback: false };
       }
+    } catch {}
 
-      const host = await response.json();
-      return { data: host, isFallback: false };
-    } catch (err: any) {
-      console.warn('Host kaydı yerel fallback modu kullanılıyor:', err.message);
+    const fallbackHost = {
+      id: `host-loc-${Date.now()}`,
+      name: payload.name,
+      tradingName: payload.tradingName || payload.name,
+      organisationType: payload.organisationType || 'Company',
+      countryCode: payload.countryCode || 'DE',
+      city: payload.city,
+      address: payload.registeredAddress || payload.address || null,
+      websiteUrl: payload.websiteUrl || null,
+      primarySector: payload.primarySector,
+      verificationStatus: 'PENDING',
+      contactPerson: payload.contactPerson,
+      contactEmail: payload.contactEmail,
+      contactPhone: payload.telephone || payload.contactPhone || null,
+      languages: payload.languages || payload.workingLanguages || ['EN'],
+      maxLearnersPerTerm: payload.maxLearnersPerTerm || 4,
+      totalAnnualCapacity: payload.totalAnnualCapacity || 12,
+      activities: payload.activities || ['VET_INTERNSHIP'],
+      isActive: true,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
 
-      const fallbackHost = {
-        id: `host-loc-${Date.now()}`,
-        name: payload.name,
-        slug: payload.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        countryCode: payload.countryCode || 'DE',
-        city: payload.city,
-        address: payload.registeredAddress || payload.address || null,
-        websiteUrl: payload.websiteUrl || null,
-        primarySector: payload.primarySector,
-        verificationStatus: 'PENDING',
-        contactPerson: payload.contactPerson,
-        contactEmail: payload.contactEmail,
-        contactPhone: payload.telephone || payload.contactPhone || null,
-        languages: payload.languages || payload.workingLanguages || ['EN'],
-        maxLearnersPerTerm: payload.maxLearnersPerTerm || 4,
-        totalAnnualCapacity: payload.totalAnnualCapacity || 12,
-        activities: payload.activities || ['VET_INTERNSHIP'],
-        isActive: true,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
-
-      return { data: fallbackHost, isFallback: true };
-    }
+    return { data: fallbackHost, isFallback: true };
   },
 
   /**
@@ -400,25 +325,14 @@ export const apiClient = {
     userId: string,
   ): Promise<{ data: any | null }> {
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      const response = await fetch(`/api/hosts/user/${encodeURIComponent(userId)}`);
+      if (response.ok) {
+        const host = await response.json();
+        return { data: host };
+      }
+    } catch {}
 
-      const response = await fetch(
-        `${API_BASE_URL}/hosts/user/${encodeURIComponent(userId)}`,
-        {
-          headers: { 'Content-Type': 'application/json' },
-          signal: controller.signal,
-        },
-      );
-
-      clearTimeout(timeoutId);
-
-      if (!response.ok) return { data: null };
-      const host = await response.json();
-      return { data: host };
-    } catch {
-      return { data: null };
-    }
+    return { data: null };
   },
 
   /**
@@ -633,17 +547,27 @@ export const apiClient = {
     status: 'PENDING' | 'ACCEPTED' | 'REVISED' | 'DECLINED',
     hostReplyNote?: string,
   ): Promise<{ data: any; success: boolean }> {
+    return this.updateInquiry(id, { status, hostReplyNote });
+  },
+
+  /**
+   * Updates inquiry with partial data (e.g. resubmitting a revised inquiry)
+   */
+  async updateInquiry(
+    id: string,
+    updates: Record<string, any>,
+  ): Promise<{ data: any; success: boolean }> {
     try {
       const response = await fetch(`/api/inquiries/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status, hostReplyNote }),
+        body: JSON.stringify(updates),
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const result = await response.json();
       return { data: result.data, success: true };
     } catch (err: any) {
-      console.warn('API updateInquiryStatus hatası:', err.message);
+      console.warn('API updateInquiry hatası:', err.message);
       return { data: null, success: false };
     }
   },

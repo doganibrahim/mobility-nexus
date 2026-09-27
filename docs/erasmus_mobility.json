@@ -1,0 +1,1120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "project_metadata": {
+    "name": "ErasmusMobility",
+    "brand_title": "ErasmusMobility",
+    "system_architecture": "Erasmus Mobility Management as a Service (EMaaS)",
+    "version": "1.0.0",
+    "model_context_year": "2026",
+    "target_erasmus_call_cycles": [
+      "2026 Projects (Implementation)",
+      "2027 Call (Preparation)"
+    ],
+    "supported_erasmus_actions": [
+      {
+        "code": "KA121-VET",
+        "title": "Erasmus+ Akredite Kurumlar İçin Öğrenici ve Personel Hareketliliği",
+        "title_en": "Mobility for Accredited Organisations in Vocational Education and Training",
+        "mechanism": "Doğrudan yıllık bütçe tahsisatı (Annual Grant Allocation)",
+        "questionnaire_size": "46 resmi soru ve bütçe matrisi"
+      },
+      {
+        "code": "KA122-VET",
+        "title": "Mesleki Eğitimde Öğrenici ve Personel Hareketliliği İçin Kısa Dönemli Projeler",
+        "title_en": "Short-term Projects for Mobility of Learners and Staff in Vocational Education and Training",
+        "mechanism": "Yıllık yarışmalı teklif çağrısı (Competitive Call for Proposals)",
+        "questionnaire_size": "74 resmi soru ve detaylı proje gerekçelendirme matrisi"
+      },
+      {
+        "code": "KA120-VET",
+        "title": "Erasmus+ Mesleki Eğitim Akreditasyonu",
+        "title_en": "Erasmus Accreditation in Vocational Education and Training",
+        "mechanism": "Kurumsal Erasmus Planı ve Kalite Standartları Taahhüdü",
+        "integration": "PDF tarama ve yapay zeka ile otomatik veri aktarımı (/api/extract-ka120)"
+      }
+    ],
+    "tech_stack": {
+      "framework": "Next.js (App Router, TypeScript, React Server/Client Components)",
+      "state_management": "Zustand Global Store (with LocalStorage & SessionStorage sync)",
+      "authentication": "Clerk Multi-tenant Authentication & RBAC",
+      "ai_engine": "Google Cloud Gemini (gemini-2.5-flash / gemini-2.0-flash) with RAG and Rule-based Fallback",
+      "styling": "TailwindCSS + Dynamic CSS Variables (4 Theme Palettes & 4 Font Pairings)",
+      "i18n": "Bilingual Engine (Turkish TR & English EN)"
+    }
+  },
+  "general_platform_features": {
+    "authentication_and_tenancy": {
+      "provider": "Clerk",
+      "multi_tenant_isolation": "Tüm veriler kurum (organisation_id) ve ev sahibi (host_id) bazında izole edilir. Hiçbir kurum bir diğerinin taslaklarına veya özel iletişimlerine yetkisiz erişemez.",
+      "supported_roles": [
+        {
+          "role": "SUPER_ADMIN / PLATFORM_ADMIN",
+          "description": "Tüm platformu, kurumları, onay bekleyen ev sahibi belgelerini (KYC Queue) ve tüm hareketlilik taleplerini denetleme yetkisine sahip yönetici."
+        },
+        {
+          "role": "ORG_ADMIN",
+          "description": "Kendi kurumunun (Okul veya Host) profilini, üyelerini, hareketlilik pipeline'ını ve resmi başvuru taslaklarını yöneten tam yetkili yönetici."
+        },
+        {
+          "role": "MEMBER",
+          "description": "Kurum adına hareketlilik planlarını inceleyen, form alanlarını dolduran ve talep durumlarını izleyen ekip üyesi/öğretmen."
+        },
+        {
+          "role": "VIEWER",
+          "description": "Yalnızca okuma yetkisine sahip izleyici kullanıcı."
+        },
+        {
+          "role": "GUEST",
+          "description": "Giriş yapmamış ziyaretçi; demo keşif modu ve yerel simülasyon verileri ile sistemi tam fonksiyonel deneyimleyebilir."
+        }
+      ]
+    },
+    "role_simulation_and_demo_modes": {
+      "admin_simulation_mode": {
+        "description": "Platform yöneticileri (Admin), yönetim panelinden tek tıkla 'Okul Görünümüne Geç' (School View) veya 'Host Görünümüne Geç' (Host View) yaparak sistemi son kullanıcının gözünden canlı olarak test edebilir.",
+        "ui_element": "Ekranın üstünde sabitlenen (sticky) koyu renkli Admin Simülasyon Çubuğu (Persistent Simulation Banner).",
+        "actions": [
+          "Okul Moduna Geç (Switch to School)",
+          "Host Moduna Geç (Switch to Host)",
+          "Yönetici Paneline Dön (Back to Admin)"
+        ]
+      },
+      "guest_demo_mode": {
+        "description": "Giriş yapmamış ziyaretçilerin sistemi sıfır kurulumla test edebilmesi için ana sayfada sunulan hızlı rol değiştirici bar.",
+        "buttons": [
+          {
+            "label_tr": "🏛️ Okul Paneli",
+            "label_en": "🏛️ School View",
+            "action": "Zustand mağazasına gerçekçi KA121/KA122 okul demo verisini yükler ve okul gösterge panelini açar."
+          },
+          {
+            "label_tr": "🏢 Host Paneli",
+            "label_en": "🏢 Host View",
+            "action": "Zustand mağazasına Berlin VET Training Solutions GmbH ev sahibi verisini yükler ve host gösterge panelini açar."
+          },
+          {
+            "label_tr": "🚀 5 Adımlı Pipeline",
+            "label_en": "🚀 5-Step Pipeline",
+            "action": "Kullanıcıyı doğrudan /school/pipeline rotasına yönlendirir."
+          }
+        ]
+      }
+    },
+    "interactive_guest_onboarding": {
+      "component": "GuestOnboardingModal",
+      "trigger": "İlk kez gelen ziyaretçiler için otomatik açılır veya 'Nasıl Çalışır?' / '✨ Keşfet' butonuna basılarak tetiklenir.",
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "5 Adımlı Hareketlilik Planlama Pipeline'ı",
+          "desc": "Okul profili, katılımcı analizi, ESCO/ISCED taksonomi eşleştirmesi, 10 kriterli ev sahibi skorlaması ve hibe tavsiye raporu."
+        },
+        {
+          "step_number": 2,
+          "title": "Doğrulanmış Avrupa Ev Sahibi Ağı (Verified Hosts)",
+          "desc": "Almanya, İspanya, İtalya vb. ülkelerde 15 kriterli resmi sicil denetiminden (KYC) geçmiş onaylı staj işletmeleri."
+        },
+        {
+          "step_number": 3,
+          "title": "Resmi Web Başvuru Form Taslak Asistanı (KA121 / KA122)",
+          "desc": "KA120 akreditasyon PDF'inden AI ile veri çıkarma, otomatik bütçe/harcırah hesaplama ve resmi soru anlatıları."
+        },
+        {
+          "step_number": 4,
+          "title": "Gerçek Zamanlı Ön Kabul Mektubu (Letter of Intent - LoI)",
+          "desc": "Ev sahiplerine doğrudan staj talebi gönderme, kontenjan ayırtma ve resmi hibe başvurusuna eklenecek LoI belgesini PDF olarak indirme."
+        }
+      ]
+    },
+    "internationalization_i18n": {
+      "supported_locales": [
+        "tr",
+        "en"
+      ],
+      "default_locale": "tr",
+      "mechanism": "useTranslation hook ve LocaleContext üzerinden tüm sayfa, buton, modal ve uyarı metinlerinin anlık reaktif çevirisi.",
+      "ui_element": "Header sağ üst köşesinde bayraklı dil seçim açılır menüsü (🇹🇷 TR / 🇬🇧 EN)."
+    },
+    "theming_and_typography": {
+      "themes": [
+        {
+          "id": "theme-01",
+          "name": "Akademi Klasik",
+          "primary": "#FFCA41",
+          "secondary": "#000000",
+          "neutral": "#A6A6A6"
+        },
+        {
+          "id": "theme-02",
+          "name": "Modern Slate & Terracotta",
+          "primary": "#E56438",
+          "secondary": "#302C4F",
+          "neutral": "#C6C6C6"
+        },
+        {
+          "id": "theme-03",
+          "name": "Kurumsal Sıcak Vurgulu",
+          "primary": "#863C6D",
+          "secondary": "#FFE5BC",
+          "neutral": "#E8E8E8"
+        },
+        {
+          "id": "theme-04",
+          "name": "Resmi Erasmus AB Mavisi",
+          "primary": "#013399",
+          "secondary": "#F4CB1D",
+          "neutral": "#E8E8E8"
+        }
+      ],
+      "font_pairings": [
+        {
+          "id": "font-01",
+          "heading": "Playfair Display",
+          "body": "Source Sans 3"
+        },
+        {
+          "id": "font-02",
+          "heading": "Montserrat",
+          "body": "Open Sans"
+        },
+        {
+          "id": "font-03",
+          "heading": "Merriweather",
+          "body": "Lato"
+        },
+        {
+          "id": "font-04",
+          "heading": "Poppins",
+          "body": "Roboto"
+        }
+      ]
+    },
+    "ai_erasmus_assistant": {
+      "component": "ErasmusChatWidget",
+      "location": "Ekranın sağ alt köşesinde yüzen interaktif yapay zeka asistan butonu (Floating Widget).",
+      "model": "Google Cloud Gemini 2.5 Flash / 2.0 Flash (with Vertex AI & Generative Language fallback)",
+      "knowledge_base": "Erasmus+ Programme Guide 2026, KA121/KA122 Mesleki Eğitim Kuralları, ESCO ve ISCED-F Taksonomileri, Yeşil Seyahat ve Dahil Etme Destekleri.",
+      "guardrails": "Human-in-the-Loop ilkesi: Yapay zeka tavsiye verir ve taslak metin üretir, ancak resmi nihai onay insan koordinatördedir.",
+      "quick_prompts": [
+        "KA121 ile KA122 arasındaki fark nedir?",
+        "Öğrenci stajı için hibe kuralları nelerdir?",
+        "Yeşil seyahat ek hibesi nasıl alınır?",
+        "Host işletme nasıl doğrulanır?"
+      ]
+    },
+    "official_data_registries": {
+      "meb_vocational_atlas": {
+        "dataset": "54.000+ Türkiye Mesleki ve Teknik Anadolu Lisesi, Halk Eğitimi Merkezi, OSB ve Ticaret/Sanayi Odası veritabanı.",
+        "use_case": "Okul onboarding formunda il/okul adı yazılırken anında otomatik tamamlama (autocomplete) ve OID doğrulaması."
+      },
+      "erasmus_results_platform": {
+        "dataset": "Türkiye Ulusal Ajansı 2021-2027 KA121 ve KA122 kabul edilen proje listeleri, hibe miktarları ve kurum isimleri.",
+        "use_case": "Kurumların geçmiş hibe performanslarını ve emsal projeleri incelemesi."
+      },
+      "esco_isced_taxonomy": {
+        "dataset": "Avrupa Standart Sınıflandırması (ESCO Occupations & Skills) ile UNESCO ISCED-F 2013 eğitim kodları.",
+        "use_case": "Mesleki alan seçildiğinde (ör: Mekatronik) ISCED kodunun (0714), standart ESCO meslek teriminin ve kazanılması gereken temel becerilerin otomatik doldurulması."
+      }
+    },
+    "legal_and_compliance": {
+      "component": "LegalModal & CookieBanner",
+      "covered_regulations": [
+        "KVKK (6698 sayılı kanun)",
+        "GDPR (Genel Veri Koruma Tüzüğü)",
+        "AB Yapay Zeka Yasası (AI Act)"
+      ],
+      "modal_tabs": [
+        {
+          "tab_id": "LEGAL",
+          "title": "Kullanım Şartları & Hizmet Sözleşmesi"
+        },
+        {
+          "tab_id": "PRIVACY",
+          "title": "Gizlilik Politikası"
+        },
+        {
+          "tab_id": "KVKK",
+          "title": "KVKK Aydınlatma Metni"
+        },
+        {
+          "tab_id": "COOKIES",
+          "title": "Çerez Politikası"
+        },
+        {
+          "tab_id": "AI_DISCLAIMER",
+          "title": "Yapay Zeka ve Yasal Sorumluluk Reddi (Human-in-the-Loop)"
+        }
+      ]
+    }
+  },
+  "user_roles": {
+    "service_beneficiary_school": {
+      "role_code": "SCHOOL",
+      "role_title_tr": "Hizmet Alıcı (Mesleki Eğitim Kurumu / Gönderen Okul / Beneficiary)",
+      "role_title_en": "Service Beneficiary (Vocational High School / Sending Organisation)",
+      "target_audience": "Mesleki ve Teknik Anadolu Liseleri, Mesleki Eğitim Merkezleri, Halk Eğitimi Merkezleri, Erasmus Koordinatörleri, Okul Müdürleri ve Proje Ekipleri.",
+      "core_capabilities": [
+        "Kurumsal profil ve resmi OID numarası tanımlama",
+        "5 adımlı hareketlilik planlama pipeline'ı üzerinden katılımcı ve yetkinlik analizi yapma",
+        "ESCO ve ISCED-F standartlarıyla mesleki alan eşleştirmesi yapma",
+        "12 soruluk likert yetkinlik testi ve yetkinlik boşluğu (Competence Gap) hesaplama",
+        "8 faktörlü Karar Motoru ile KA121 mi KA122 mi başvurusu yapılacağını tespit etme",
+        "Kısa dönemli projeler için KA122 Kurallar Kapısı (Eligibility Gatekeeper - max 30 kişi, 6-24 ay) uygunluğunu doğrulama",
+        "Avrupa genelinde onaylı ev sahibi işletmeleri (Host) 10 parametreli ağırlıklı skorla arama ve filtreleme",
+        "Ev sahibi kuruluşlara doğrudan resmi staj/işbaşı talebi (Inquiry) gönderme",
+        "Gelen yanıtları takip etme ve resmi Ön Kabul Belgesi (Letter of Intent - LoI) indirme",
+        "Rol bazlı (Öğrenci / Öğretmen) teknik, dijital ve yeşil öğrenme çıktıları üretme",
+        "Tek tıkla resmi Erasmus+ Web Başvuru Form Taslağı (KA121 / KA122) oluşturma",
+        "Eski KA120 Akreditasyon PDF belgesini yapay zeka ile yükleyip hedefleri otomatik taslağa aktarma",
+        "Avrupa Komisyonu resmi soru anlatılarını yapay zekaya yazdırıp denetleme",
+        "Otomatik hibe bütçesi, mesafe bantları ve yeşil seyahat harcırahlarını hesaplama",
+        "Tüm proje taslağını resmi JSON formatında dışa aktarma ve PDF olarak yazdırma"
+      ],
+      "step_by_step_workflows": [
+        {
+          "workflow_id": "school_workflow_01_onboarding",
+          "title_tr": "Kurumsal Onboarding & OID Doğrulaması",
+          "title_en": "Institutional Onboarding & OID Setup",
+          "goal": "Okulun sisteme kaydolması, OID numarasının tanımlanması ve akreditasyon statüsünün seçilmesi.",
+          "start_route": "/onboarding",
+          "action_steps": [
+            {
+              "step": 1,
+              "action": "Sayfaya girildiğinde rol seçim kartlarından '🏛️ Meslek Lisesi / VET Okulu' (SCHOOL) seçeneğine tıklanır.",
+              "ui_target": "Rol Seçim Butonları (SCHOOL / HOST)",
+              "expected_state": "Okul kayıt formu aktifleşir."
+            },
+            {
+              "step": 2,
+              "action": "Okul Adı (schoolName) alanına kurum adı yazılır. MEB veritabanından 54.000+ okul arasından otomatik tamamlama listesinden seçim yapılabilir.",
+              "ui_target": "Input: schoolName (Mesleki Eğitim Kurumu Adı)",
+              "expected_state": "Okul seçildiğinde Şehir ve OID otomatik dolabilir."
+            },
+            {
+              "step": 3,
+              "action": "Kurumun Avrupa Komisyonu OID numarası (E ile başlayan 8 haneli benzersiz kimlik) girilir.",
+              "ui_target": "Input: schoolOid (Örn: E10389241)",
+              "validation": "E harfi ile başlamalı ve 8 rakam içermelidir (Regex: ^E[0-9]{8}$)."
+            },
+            {
+              "step": 4,
+              "action": "İl (city) ve Ülke (Varsayılan: TR) seçilir.",
+              "ui_target": "Input / Select: city & countryCode"
+            },
+            {
+              "step": 5,
+              "action": "Kurumun Erasmus+ VET Akreditasyonu (KA120) olup olmadığı seçilir.",
+              "ui_target": "Select: accreditationStatus ('YES' = KA120 Akredite / 'NO' = Akreditasyonsuz)",
+              "impact": "YES seçilirse sistem varsayılan olarak KA121 akredite hibe rotasını önerir; NO seçilirse KA122 kısa dönemli proje rotasını önerir."
+            },
+            {
+              "step": 6,
+              "action": "Kullanıcı kurumsal yetki seviyesini seçer ('ORG_ADMIN' = Kurum Yöneticisi / 'MEMBER' = Proje Ekip Üyesi).",
+              "ui_target": "Select: role"
+            },
+            {
+              "step": 7,
+              "action": "'KVKK Aydınlatma Metnini ve Kullanım Şartlarını Okudum, Kabul Ediyorum' kutucuğu işaretlenir.",
+              "ui_target": "Checkbox: legalConsentAccepted"
+            },
+            {
+              "step": 8,
+              "action": "'Kurulumu Tamamla ve Panele Geç' butonuna tıklanır.",
+              "ui_target": "Button: primary (Kurulumu Tamamla)",
+              "result": "Kurum verileri veritabanına ve Zustand store'a yazılır, kullanıcı doğrudan School Dashboard'a yönlendirilir."
+            }
+          ]
+        },
+        {
+          "workflow_id": "school_workflow_02_dashboard_navigation",
+          "title_tr": "Okul Gösterge Paneli ve Hızlı Eylemler",
+          "title_en": "School Dashboard Management & Quick Actions",
+          "goal": "Okulun mevcut hareketlilik özetini, gönderilen staj taleplerini ve aktif akreditasyon durumunu tek merkezden izlemesi.",
+          "start_route": "/",
+          "action_steps": [
+            {
+              "step": 1,
+              "action": "Kullanıcı giriş yaptığında (veya demo modunda) ana sayfadaki '🏛️ Okul / Gönderen Kurum Portalı' paneli açılır.",
+              "ui_target": "Component: SchoolDashboardView",
+              "displayed_information": [
+                "Kurum Adı, Şehir, OID Numarası ve Seçili Mesleki Alan rozetleri",
+                "Akreditasyon Durumu Rozeti (KA121 Akredite / KA122 Standart Başvuru Modu)",
+                "Proje Formatı & Hibe Yolu Kartı",
+                "Katılımcı Havuzu Kartı (Öğrenci stajı veya personel işbaşı izleme sayıları)",
+                "Host & Ortaklık Durumu Kartı (Gönderilen talep sayısı, onaylanan LoI sayısı)",
+                "Yetkinlik & Karar Skoru Kartı (0-100 hazırbulunuşluk puanı)"
+              ]
+            },
+            {
+              "step": 2,
+              "action": "Kullanıcı profili güncellemek isterse '✏️ Profili Düzenle' butonuna basarak /onboarding sayfasına geçer.",
+              "ui_target": "Button: Profili Düzenle"
+            },
+            {
+              "step": 3,
+              "action": "Kullanıcı hareketlilik planını başlatmak için '🚀 5 Adımlı Planlama Başlat' butonuna basarak /school/pipeline sayfasına geçer.",
+              "ui_target": "Button: 5 Adımlı Planlama Başlat"
+            },
+            {
+              "step": 4,
+              "action": "Sayfanın altındaki 'Son Hareketlilik Talepleri & Ortaklıklar' tablosundan gönderilen taleplerin durumu (Ön Kabul Onaylandı / Yanıt Bekleniyor / Kapasite Yetersiz) incelenir.",
+              "ui_target": "Table: Mobility Inquiries Tracker",
+              "actions_available": "Tablodaki 'Detay →' bağlantısına tıklanarak ilgili talep pipeline'da açılır."
+            }
+          ]
+        },
+        {
+          "workflow_id": "school_workflow_03_5_step_pipeline",
+          "title_tr": "5 Adımlı Hareketlilik Planlama Pipeline'ı",
+          "title_en": "5-Step Mobility Planning Pipeline Workflow",
+          "goal": "Uçtan uca bir Erasmus+ mesleki eğitim hareketliliğinin pedagojik, teknik ve lojistik gereksinimlerini belirlemek, uygun ev sahibiyle eşleşmek ve hibe tavsiye raporu almak.",
+          "start_route": "/school/pipeline",
+          "pipeline_stages": [
+            {
+              "stage_index": 1,
+              "tab_id": "profile",
+              "tab_label_tr": "1. Kurum & Katılımcı",
+              "tab_label_en": "1. School & Participant",
+              "components_used": [
+                "SchoolProfileCard",
+                "ParticipantProfileCard",
+                "SentInquiriesCard"
+              ],
+              "detailed_actions": [
+                "SchoolProfileCard: Okul adı, şehir, OID girilir veya düzenlenir.",
+                "Akreditasyon Durumu seçilir (Bilinmiyor / Evet KA121 / Hayır KA122).",
+                "Erasmus Planı Hedefi metin alanına akredite hedefler girilir (Örn: 'Öğrencilerin Endüstri 4.0 PLC otomasyon yetkinliklerini geliştirmek').",
+                "Kurumsal İhtiyaç / Challenge metin alanına mevcut atölye donanım veya yetkinlik eksikliği yazılır.",
+                "ParticipantProfileCard: Katılımcı türü seçilir ('Öğrenci' / 'Teknik Öğretmen').",
+                "Hareketlilik Türü seçilir (İşbaşı İzleme / Staj / Beceri Eğitimi / Öğretim Görevi).",
+                "Katılımcı Sayısı (Örn: 6 öğrenci) ve Refakatçi Öğretmen Sayısı (Örn: 1 öğretmen) girilir.",
+                "Yabancı Dil Hazırlığı kaydırıcısı (0-100 ölçeği) ayarlanır.",
+                "Planlanan Başlangıç ve Bitiş tarihleri seçilir.",
+                "SentInquiriesCard: Bu okulun daha önce gönderdiği staj talepleri listelenir; kabul edilenler için 'LoI Belgesi Görüntüle' butonu yer alır.",
+                "Sekme altındaki 'Sonraki Aşama: Yetkinlik & Hibe Yolu →' butonuna basılarak 2. sekmeye geçilir."
+              ]
+            },
+            {
+              "stage_index": 2,
+              "tab_id": "competence",
+              "tab_label_tr": "2. Yetkinlik & Hibe Yolu",
+              "tab_label_en": "2. Competence & Decision",
+              "components_used": [
+                "EscoIscedMapperCard",
+                "CompetenceAssessmentCard",
+                "CompetenceGapCard",
+                "DecisionEngineCard",
+                "EligibilityGatekeeperCard"
+              ],
+              "detailed_actions": [
+                "EscoIscedMapperCard: 'Mesleki Alan / Bölüm' açılır menüsünden alan seçilir (Örn: 'Elektrik-Elektronik / Endüstriyel Otomasyon', 'Bilişim / Yazılım', 'Makine / CNC', 'Motorlu Araçlar / Otomotiv', 'Yenilenebilir Enerji').",
+                "Alan seçildiği anda ISCED-F Kodu (Örn: 0714), ISCED-F Alanı ('Electronics and automation'), ESCO Meslek Terimi ve Öncelikli ESCO Becerileri otomatik yüklenir.",
+                "Kullanıcı isterse 'ESCO'da Doğrula' butonuna basarak resmi AB ESCO portalında meslek kavramını inceler.",
+                "CompetenceAssessmentCard: Katılımcıların hazırbulunuşluğunu ölçmek için 12 adet Likert (1-5) ölçekli soru cevaplanır (Teknik yetkinlik, problem çözme, dijital araçlar, İSG, yeşil yetkinlikler, takım çalışması, mesleki İngilizce, kültürel uyum vb.).",
+                "'Testi Puanla' butonuna basılır. Sistem 0-100 arasında Yetkinlik Skoru (Competence Score) üretir.",
+                "CompetenceGapCard: Katılımcının mevcut skoru ile Hedef Seviye (varsayılan 80) arasındaki yetkinlik açığı (Gap) renkli göstergede sunulur.",
+                "DecisionEngineCard: 8 faktörlü karar motoru ağırlıkları gösterilir (Yetkinlik açığı %25, Kurumsal ihtiyaç %20, ESCO uyumu %15, ISCED uyumu %10, Host kapasitesi %15, Dil %5, Kapsayıcılık %5, Erasmus Plan uyumu %5).",
+                "'Karar Oluştur' butonuna basılır. Karar Motoru kuruma özel tavsiye eylemini (Örn: 'KA121-VET Akredite Bütçe Talebi' veya 'KA122-VET Kısa Dönemli Proje') ve 0-100 Hareketlilik Uygunluk Skorunu (Mobility Suitability Score) üretir.",
+                "EligibilityGatekeeperCard: KA122 kuralları doğrulanır (Maksimum 30 katılımcı kuralı, 6-24 ay proje süresi, son 5 yılda en fazla 2 KA122 hibesi alma kısıtı). Kriterler aşılıyorsa sistem KA120 akreditasyonuna başvurulmasını önerir.",
+                "Sekme altındaki 'Sonraki Aşama: Host Eşleştirme →' butonuna basılarak 3. sekmeye geçilir."
+              ]
+            },
+            {
+              "stage_index": 3,
+              "tab_id": "matching",
+              "tab_label_tr": "3. Ev Sahibi Eşleştirme",
+              "tab_label_en": "3. Host Matching",
+              "components_used": [
+                "HostMatchingCard",
+                "PartnerFindingCard",
+                "HostPortfolioModal",
+                "MobilityInquiryModal"
+              ],
+              "detailed_actions": [
+                "HostMatchingCard: Ev sahibi kurum değerlendirme parametreleri (10 kriter) incelenir (Mesleki alan uyumu, öğrenme çıktıları kapasitesi, teknik altyapı, Erasmus deneyimi, İngilizce iletişim, kontenjan, mentor desteği, İSG güvenliği, uzun dönem işbirliği).",
+                "'Host Score Hesapla' butonuna basılarak aday kurumun 0-100 uygunluk puanı hesaplanır (>=85 Mükemmel Eşleşme, >=70 Uygun Host, >=55 Şartlı Kısa Liste).",
+                "Doğrulanmış Avrupa Host Listesi taranır (Berlin VET Training Solutions GmbH, Barcelona Green Tech Institute, Milan Automation Hub vb.).",
+                "Filtreler kullanılır: Ülke (Almanya, İspanya, İtalya vb.), Sektör, Çalışma Dili, Onaylı Rozet (Verified Badge).",
+                "Host kartı üzerindeki '📁 Portföyü İncele' butonuna basılır -> HostPortfolioModal açılır: İşletmenin fotoğrafları, atölye teçhizatları, mentor özgeçmişi ve örnek haftalık staj müfredatı (Syllabus PDF) incelenir.",
+                "Host kartı üzerindeki '✉️ Staj / İşbaşı Talebi Gönder' butonuna basılır -> MobilityInquiryModal açılır.",
+                "MobilityInquiryModal Formu doldurulur: Katılımcı sayısı, refakatçi sayısı, hedeflenen tarihler, talep edilen lojistik imkanlar (Konaklama, yemek, havalimanı transferi) ve okula özel not yazılır.",
+                "'Resmi Talebi Gönder' butonuna basılır. Talep anında sunucuya kaydedilir, host paneline düşer ve okulun 'Sent Inquiries' listesine eklenir.",
+                "PartnerFindingCard: ESEP (European School Education Platform), SALTO TCA ve Erasmus Results platformu bağlantıları ile 5 aşamalı ortak arama hunisi incelenir.",
+                "Sekme altındaki 'Sonraki Aşama: Öğrenme Kazanımları →' butonuna basılarak 4. sekmeye geçilir."
+              ]
+            },
+            {
+              "stage_index": 4,
+              "tab_id": "outcomes",
+              "tab_label_tr": "4. Kazanımlar & Kalite",
+              "tab_label_en": "4. Learning Outcomes",
+              "components_used": [
+                "LearningOutcomesCard",
+                "QualityChecklistCard"
+              ],
+              "detailed_actions": [
+                "LearningOutcomesCard: Öncelikli yetkinlik açığı belirlenir (Örn: 'PLC Programlama ve Endüstriyel Robotik Hücreler').",
+                "'Örnek Learning Outcomes Üret' butonuna tıklanır.",
+                "Sistem, katılımcı türüne göre (Öğretmen ise işbaşı gözlem ve eğitim metodolojisi aktarımı; Öğrenci ise iş güvenliği altında uygulamalı üretim ve ürün çıktısı) resmi ECVET / Europass uyumlu Teknik Kazanım ve Çapraz/Yeşil/Dijital Kazanım metinlerini otomatik üretir.",
+                "QualityChecklistCard: Gönderen Okul (Sending School) ile Ev Sahibi İşletme (EU Host) arasındaki görev ve yasal sorumluluk paylaşımı matrisi incelenir (Katılımcı seçimi, mentor ataması, kriz protokolü, Europass sertifikalandırması vb.).",
+                "Sekme altındaki 'Sonraki Aşama: Resmi Tavsiye Raporu →' butonuna basılarak 5. sekmeye geçilir."
+              ]
+            },
+            {
+              "stage_index": 5,
+              "tab_id": "report",
+              "tab_label_tr": "5. Rapor & Form Taslağı",
+              "tab_label_en": "5. Dossier & Actions",
+              "components_used": [
+                "RecommendationReportCard",
+                "OfficialResourcesCard"
+              ],
+              "detailed_actions": [
+                "RecommendationReportCard: İlk 4 adımda üretilen tüm veriler resmi bir Kurumsal Hareketlilik Dosyası (Dossier) tablosunda toplanır.",
+                "Dosyada Gönderen Kurum, OID, Katılımcı Bilgisi, Önerilen Hibe Formatı (KA121/KA122), ISCED ve ESCO kodları, Yetkinlik Skoru, Eşleşen Host ve Beklenen Öğrenme Kazanımları yer alır.",
+                "Araç Çubuğu Butonları:",
+                "- 'Raporu Güncelle': Pipeline'daki son değişiklikleri rapora yansıtır.",
+                "- '🖨️ PDF / Yazdır': Tarayıcının resmi baskı önizlemesini açarak dosyayı PDF olarak dışa aktarır.",
+                "- '💾 Tarayıcıya Kaydet': Tüm pipeline durumunu yerel tarayıcı hafızasına (LocalStorage) kaydeder.",
+                "- '📂 Kaydı Yükle': Daha önce kaydedilmiş pipeline çalışmasını geri yükler.",
+                "- '⬇️ JSON Dışa Aktar': Pipeline verisini yapılandırılmış bir JSON dosyası olarak bilgisayara indirir.",
+                "- '📋 Resmi Başvuru Form Taslağına Aktar': Pipeline verilerini tek tıkla /school/application-draft modülüne kopyalar ve kullanıcıyı doğrudan resmi başvuru taslağı ekranına taşır."
+              ]
+            }
+          ]
+        },
+        {
+          "workflow_id": "school_workflow_04_application_draft_module",
+          "title_tr": "Resmi Başvuru Form Taslak Modülü (KA121 / KA122)",
+          "title_en": "Official Erasmus+ Application Form Draft Assistant",
+          "goal": "Avrupa Komisyonu resmi başvuru formları için soru bazlı veri seti hazırlamak, KA120 PDF'inden veri çekmek ve AI ile resmi proje anlatılarını üretmek.",
+          "start_route": "/school/application-draft",
+          "action_steps": [
+            {
+              "step": 1,
+              "action": "Sayfa açıldığında okul giriş yapmışsa 'Aktif Giriş Yapan Okul' bildirim kutusu görünür. '🔄 Okul Bilgilerini Yenile' butonuna basılarak pipeline'daki son veriler taslağa senkronize edilir.",
+              "ui_target": "Banner: Aktif Giriş Yapan Okul & Button: Okul Bilgilerini Yenile"
+            },
+            {
+              "step": 2,
+              "action": "Hızlı test için 'Test İçin Otomatik Doldurma' bölümünden 3 hazır okul senaryosundan biri seçilebilir:",
+              "presets": [
+                {
+                  "name": "Kapadokya Siber Güvenlik MTAL",
+                  "form": "KA121",
+                  "details": "6 Öğrenci • Almanya • Bilişim"
+                },
+                {
+                  "name": "Seyrek Otomasyon MTAL",
+                  "form": "KA122",
+                  "details": "4 Öğrenci • Almanya • Mekatronik"
+                },
+                {
+                  "name": "Ankara Yenilenebilir Enerji MTAL",
+                  "form": "KA122",
+                  "details": "8 Öğrenci • İspanya • Güneş Enerjisi"
+                }
+              ]
+            },
+            {
+              "step": 3,
+              "action": "Hedef Erasmus+ Hibe Formu seçilir: 'KA122-VET (Kısa Dönemli Projeler - 74 Soru)' veya 'KA121-VET (Akredite Kurum Hibe Talebi - 46 Soru)'.",
+              "ui_target": "Form Type Toggle Butonları (KA122 / KA121)"
+            },
+            {
+              "step": 4,
+              "action": "KA121 seçildiğinde beliren 'KA120 VET Akreditasyon Belgesi Yükleme' kutusuna kurumun eski onaylı akreditasyon PDF'i sürüklenip bırakılır.",
+              "ui_target": "Input: file (PDF Upload /api/extract-ka120)",
+              "ai_processing": "PDF sunucuda taranır, kurum OID'si, akreditasyon hedefleri ve kalite taahhütleri çıkarılarak 'Ka120ImportPreviewModal' penceresinde önizlenir ve tek tıkla taslağa aktarılır."
+            },
+            {
+              "step": 5,
+              "action": "Sol taraftaki Bölüm Menüsünden sırayla resmi başvuru bölümleri doldurulur:",
+              "sections_walkthrough": [
+                {
+                  "section_id": "context",
+                  "label": "1. Genel Bilgiler & Bağlam (Context)",
+                  "fields": [
+                    "Proje Başlığı",
+                    "Proje Kısaltması (Acronym)",
+                    "Ulusal Ajans (TR01)",
+                    "Proje Süresi (Ay)",
+                    "Başlangıç ve Bitiş Tarihleri",
+                    "Çalışma Dili"
+                  ]
+                },
+                {
+                  "section_id": "orgProfile",
+                  "label": "2. Başvuran Kurum Profili (Organisation Profile - Yalnızca KA122)",
+                  "fields": [
+                    "Kurum Yasal Adı",
+                    "OID",
+                    "Kurum Türü",
+                    "Yasal Temsilci Bilgileri",
+                    "İrtibat Kişisi",
+                    "Mesleki Eğitim Alanları",
+                    "Geçmiş Proje Deneyimleri"
+                  ]
+                },
+                {
+                  "section_id": "needsObjectives",
+                  "label": "3. İhtiyaçlar ve Hedefler (Needs & Objectives - Yalnızca KA122)",
+                  "fields": [
+                    "Somut Kurumsal İhtiyaçlar Listesi (Gerekçe & Hedef Kitle)",
+                    "SMART Proje Hedefleri (Göstergeler & Ölçüm Araçları)",
+                    "Avrupa Gelişim Planı ile Bağlantı"
+                  ]
+                },
+                {
+                  "section_id": "activityDetails",
+                  "label": "4. Faaliyet Detayları & Bütçe Hesaplama (Activity Details)",
+                  "fields": [
+                    "Faaliyet Türü (Öğrenici Kısa Dönemli Stajı / Personel İşbaşı İzleme)",
+                    "Ev Sahibi Kurum ve Ülke Seçimi",
+                    "Katılımcı Sayısı ve Gün Sayısı",
+                    "Mesafe Bandı Seçimi (Örn: 2000-2999 km - 360 € standart seyahat)",
+                    "Yeşil Seyahat (Green Travel) Seçeneği: İşaretlendiğinde seyahat hibesi artar (+30-50 €) ve yolculuk için +4 güne kadar ek bireysel destek (harcırah) hesaplanır.",
+                    "İmkanları Kısıtlı Katılımcı (Inclusion Support) Sayısı: Kişi başı 100 € ek kurumsal destek hesaplanır.",
+                    "Otomatik Bütçe Matrisi: Bireysel Destek + Seyahat + Yeşil Bonus + Organizasyon Desteği toplam hibe tutarı canlı hesaplanır."
+                  ]
+                },
+                {
+                  "section_id": "qualityTeam",
+                  "label": "5. Kalite Standartları ve Yönetim Ekibi (Quality & Team - Yalnızca KA122)",
+                  "fields": [
+                    "Yürütme ve İzleme Komitesi Üyeleri",
+                    "Katılımcı Seçim Kriterleri",
+                    "İSG ve Acil Durum Eylem Planı",
+                    "Kazanımların Tanınması ve Europass Süreci"
+                  ]
+                },
+                {
+                  "section_id": "declarations",
+                  "label": "6. Doğruluk Beyanı ve Yasal Taahhütler (Declarations of Honour)",
+                  "fields": [
+                    "Mükerrer Finansman Olmadığı Taahhüdü",
+                    "Operasyonel ve Mali Kapasite Beyanı",
+                    "Yetkili İmza Onayı"
+                  ]
+                },
+                {
+                  "section_id": "aiQuestions",
+                  "label": "7. Resmi Form Soru Anlatıları (AI Narrative Generator)",
+                  "features": [
+                    "Ulusal Ajans değerlendiricilerinin puanladığı resmi sorular listelenir.",
+                    "'✨ Tüm Cevapları AI ile Oluştur' butonuna basılarak tüm form soruları kurumun OID, ihtiyaç ve aktivite verileri harmanlanarak tek seferde yazdırılır.",
+                    "Her sorunun altındaki '✨ Bu Soruyu AI ile Yazdır' butonuyla tekil soru üretimi yapılabilir.",
+                    "İstem Özelleştirme (Custom Prompt Input) kutusuyla AI'ya ek talimatlar verilebilir.",
+                    "Canlı karakter sayacı ile resmi Komisyon karakter limitleri izlenir.",
+                    "Üretilen tüm metinlerde 'AI Taslak' ibaresi bulunur, kullanıcı metni dilediği gibi düzenleyebilir (Human-in-the-loop)."
+                  ]
+                }
+              ]
+            },
+            {
+              "step": 6,
+              "action": "Sağ taraftaki 'Taslak Özeti Kartı'ndan (DraftSummaryCard) genel doluluk yüzdesi (%0-100) ve bölüm bazlı ilerleme takip edilir.",
+              "ui_target": "Component: DraftSummaryCard"
+            },
+            {
+              "step": 7,
+              "action": "Taslak tamamlandığında '⬇️ JSON İndir' butonuna basılarak ErasmusMobility_[Format]_Draft.json dosyası indirilir veya '🖨️ Yazdır / PDF' butonuna basılarak resmi dosya çıktısı alınır.",
+              "ui_target": "Buttons: JSON İndir & Yazdır / PDF"
+            }
+          ]
+        },
+        {
+          "workflow_id": "school_workflow_05_inquiry_tracking_and_loi",
+          "title_tr": "Staj Talebi Takibi ve Letter of Intent (LoI) İndirme",
+          "title_en": "Mobility Inquiry Tracking and Letter of Intent (LoI) Retrieval",
+          "goal": "Avrupa'daki ev sahibine gönderilen staj talebinin onaylanmasının ardından resmi Ön Kabul Mektubunu (LoI) alarak hibe başvurusuna eklemek.",
+          "start_route": "/school/pipeline (Tab: profile) veya /",
+          "action_steps": [
+            {
+              "step": 1,
+              "action": "School Dashboard veya Pipeline 1. sekmede yer alan 'Son Hareketlilik Talepleri' tablosu açılır.",
+              "ui_target": "Table: Sent Inquiries"
+            },
+            {
+              "step": 2,
+              "action": "Durumu '✓ Ön Kabul Onaylandı' (ACCEPTED) olan satır bulunur.",
+              "status_indicator": "Yeşil renkli rozet: ACCEPTED (LoI Aktif)"
+            },
+            {
+              "step": 3,
+              "action": "'Detay →' veya 'LoI Belgesi Görüntüle' butonuna tıklanır.",
+              "ui_target": "Button: LoI Belgesi Görüntüle",
+              "result": "Letter of Intent Önizleme Modalı açılır."
+            },
+            {
+              "step": 4,
+              "action": "Modalda ev sahibi kurumun yasal OID numarası, okul OID numarası, ayrılan stajyer kontenjanı, onaylanan tarihler ve ev sahibi irtibat kişisi incelenir.",
+              "ui_target": "Modal: Letter of Intent Preview"
+            },
+            {
+              "step": 5,
+              "action": "'🖨️ Yazdır / PDF Olarak Kaydet' butonuna tıklanarak resmi niyet mektubu PDF olarak indirilir ve Ulusal Ajans başvuru eklerine dahil edilir.",
+              "ui_target": "Button: Yazdır / PDF Olarak Kaydet"
+            }
+          ]
+        }
+      ]
+    },
+    "service_provider_host": {
+      "role_code": "HOST",
+      "role_title_tr": "Hizmet Sağlayıcı (Avrupa Ev Sahibi Kuruluş / Host Organisation / İşletme)",
+      "role_title_en": "Service Provider (European Host Organisation / Enterprise / VET Provider)",
+      "target_audience": "Almanya, İspanya, İtalya, Avusturya vb. AB ülkelerinde faaliyet gösteren KOBİ'ler, Sanayi Fabrikaları, Mesleki Eğitim Merkezleri ve Ara Kuruluşlar.",
+      "core_capabilities": [
+        "Avrupa işletme profili ve staj kontenjanı tanımlama",
+        "3 Kademeli Güvenilirlik & Doğrulama Akışı (Tier 1: Hızlı Kayıt, Tier 2: Vitrin Portföyü, Tier 3: 15 Kriterli Kurumsal KYC)",
+        "Stajyer kontenjanı (dönemlik ve yıllık) ve kabul edilen teknik alanları yönetme",
+        "Çalışma dilleri (İngilizce, Almanca, İspanyolca vb.) ve mentorluk kapasitesini ilan etme",
+        "Lojistik imkanları (Konaklama, yemek, havalimanı transferi) tanımlama",
+        "İşletme atölye teçhizatı, yazılım ortamları ve fotoğraflarını yükleme",
+        "Haftalık örnek staj müfredatı / program taslağı (Syllabus PDF) yükleme",
+        "Ticaret sicil belgesi (Company Registration PDF) ve vergi/VAT numarası yükleme",
+        "7/24 acil durum kontağı ve İSG (OHS) taahhütlerini sisteme kaydetme",
+        "Admin onayından geçerek 'Onaylı Partner' (Verified Partner Badge) rozeti kazanma",
+        "Türkiye'deki akredite ve başvuru yapan okullardan gelen staj taleplerini (Inquiries) anlık karşılama",
+        "Talepleri inceleme: Katılımcı sayısı, tarihler, istenen lojistik ve özel okul notları",
+        "Taleplere 'Ön Kabul Ver', 'Revizyon İste' veya 'Reddet' aksiyonları alma",
+        "Hızlı yanıt şablonları (Templates) veya özel ev sahibi notu ekleme",
+        "Resmi Erasmus+ Ön Kabul ve Kontenjan Belgesi (Letter of Intent - LoI) düzenleme"
+      ],
+      "step_by_step_workflows": [
+        {
+          "workflow_id": "host_workflow_01_onboarding_tier1",
+          "title_tr": "Host Hızlı Kayıt (Tier 1 Onboarding)",
+          "title_en": "Host Quick Setup & Registration",
+          "goal": "Avrupa işletmesinin sisteme temel kurumsal kimlik ve kapasite verileriyle hızlıca kaydolması.",
+          "start_route": "/onboarding",
+          "action_steps": [
+            {
+              "step": 1,
+              "action": "Rol seçim kartlarından '🏢 Ev Sahibi Kuruluş (Host)' (HOST) seçeneğine tıklanır.",
+              "ui_target": "Rol Seçim Butonları (SCHOOL / HOST)",
+              "expected_state": "Host Tier 1 kayıt formu aktifleşir."
+            },
+            {
+              "step": 2,
+              "action": "Yasal Şirket Adı (hostName) ve Ticari Unvan (tradingName) girilir (Örn: 'Berlin VET Training Solutions GmbH').",
+              "ui_target": "Input: hostName & hostTradingName"
+            },
+            {
+              "step": 3,
+              "action": "Kurum Türü seçilir (Company / SME, Training Centre, VET School, Sectoral Organisation, NGO).",
+              "ui_target": "Select: hostOrgType"
+            },
+            {
+              "step": 4,
+              "action": "Ülke (DE, ES, IT, FR vb.), Şehir ve Resmi Kayıtlı Adres girilir.",
+              "ui_target": "Select / Input: hostCountryCode, hostCity, hostRegisteredAddress"
+            },
+            {
+              "step": 5,
+              "action": "Kuruluş Yılı, varsa OID numarası ve PIC numarası girilir.",
+              "ui_target": "Input: hostYearEstablished, hostOid, hostPicNumber"
+            },
+            {
+              "step": 6,
+              "action": "Web sitesi, genel kurumsal e-posta ve santral telefon numarası girilir.",
+              "ui_target": "Input: hostWebsite, hostGeneralEmail, hostTelephone"
+            },
+            {
+              "step": 7,
+              "action": "Ana Sektör seçilir (Bilişim & Yazılım, Mekatronik & Otomasyon, Yeşil Enerji, Otomotiv vb.).",
+              "ui_target": "Select: hostSector"
+            },
+            {
+              "step": 8,
+              "action": "Dönem Başına Kabul Edilebilecek Maksimum Öğrenci Sayısı (Örn: 4-6 öğrenci) ve Yıllık Toplam Kapasite girilir.",
+              "ui_target": "Input: hostMaxLearners"
+            },
+            {
+              "step": 9,
+              "action": "Sunulan Faaliyet Türleri işaretlenir (VET_INTERNSHIP, JOB_SHADOWING, TRAINING_COURSE).",
+              "ui_target": "Checkboxes: hostActivities"
+            },
+            {
+              "step": 10,
+              "action": "İşletmede İletişim Kurulabilecek Çalışma Dilleri seçilir (EN, DE, ES, IT vb.).",
+              "ui_target": "Checkboxes: hostLanguages"
+            },
+            {
+              "step": 11,
+              "action": "Yetkili İrtibat Kişisi adı, unvanı ve doğrudan e-posta adresi yazılır.",
+              "ui_target": "Input: hostContactPerson, hostContactTitle, hostContactEmail"
+            },
+            {
+              "step": 12,
+              "action": "'Bilgilerimin okul arama sonuçlarında herkese açık görüntülenmesine izin veriyorum' kutucuğu işaretlenir.",
+              "ui_target": "Checkbox: hostConsentPublicDisplay"
+            },
+            {
+              "step": 13,
+              "action": "'Host Kaydını Tamamla' butonuna tıklanır.",
+              "ui_target": "Button: primary (Host Kaydını Tamamla)",
+              "result": "Kurum veritabanına ve Zustand store'a 'HOST' olarak kaydedilir; kullanıcı doğrudan Host Dashboard ekranına yönlendirilir."
+            }
+          ]
+        },
+        {
+          "workflow_id": "host_workflow_02_dashboard_overview",
+          "title_tr": "Host Gösterge Paneli ve Doğrulama Durumu",
+          "title_en": "Host Dashboard & Verification Status",
+          "goal": "Ev sahibinin kurumsal profil doluluğunu, doğrulama durumunu ve gelen staj taleplerini takip etmesi.",
+          "start_route": "/",
+          "action_steps": [
+            {
+              "step": 1,
+              "action": "Host kullanıcısı ana sayfaya girdiğinde 'HostDashboardView' ekranı açılır.",
+              "ui_target": "Component: HostDashboardView",
+              "displayed_information": [
+                "İşletme Adı, Şehir, Ülke Kodu, OID ve Ana Sektör bilgisi",
+                "Doğrulama Statüsü Rozeti (✓ Doğrulanmış Partner / ⏳ İncelemede / ⚠️ Güncelleme Gerekiyor / ℹ️ Doğrulama Bekliyor)",
+                "Profil Doluluk Oranı İlerleme Çubuğu (%40 - %100)",
+                "3 Yönetim Kartı: Tier 2 Vitrin Portföyü, Tier 3 Kurumsal KYC, Staj Kontenjanı & Kapasite",
+                "Türkiye'deki Okullarla Eşleşme İpuçları Kutusu",
+                "Gelen Hareketlilik Talepleri Yönetim Alanı (HostInquiriesSection)"
+              ]
+            },
+            {
+              "step": 2,
+              "action": "Hızlı butonlar kullanılır:",
+              "buttons": [
+                {
+                  "label": "📁 Portföy & Tanıtım",
+                  "action": "HostPortfolioModal penceresini açar."
+                },
+                {
+                  "label": "🛡️ Resmi Evrak & KYC",
+                  "action": "HostVerificationModal penceresini açar."
+                },
+                {
+                  "label": "🏛️ Okul Moduna Geç",
+                  "action": "Test amaçlı olarak sistemi okul görünümüne çevirir."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "workflow_id": "host_workflow_03_portfolio_showcase_tier2",
+          "title_tr": "Vitrin Portföyü ve Staj Müfredatı (Tier 2)",
+          "title_en": "Public Showcase Portfolio & Sample Syllabus",
+          "goal": "Okulların arama motorunda işletmeyi tercih etmesini sağlayacak detaylı vitrin bilgilerini ve haftalık staj programını sisteme eklemek.",
+          "start_modal": "HostPortfolioModal",
+          "action_steps": [
+            {
+              "step": 1,
+              "action": "Host Dashboard üzerindeki 'Portföy & Tanıtım' veya 'Vitrin Portföyünü Düzenle →' butonuna tıklanır.",
+              "ui_target": "Button: stage2Btn (Vitrin Portföyünü Düzenle)"
+            },
+            {
+              "step": 2,
+              "action": "Erasmus+ Deneyim Yılı (Örn: 5 yıl) ve Bugüne Kadar Ağırlanan Katılımcı Sayısı (Örn: 64 öğrenci) girilir.",
+              "ui_target": "Inputs: yearsOfExperience & totalParticipantsHosted"
+            },
+            {
+              "step": 3,
+              "action": "İşletme Logo URL'si veya görseli girilir.",
+              "ui_target": "Input: logoUrl"
+            },
+            {
+              "step": 4,
+              "action": "İşletme Tanıtımı ve Atölye Olanakları (150-200 kelime) yazılır (Hangi CNC tezgahları, robotik hücreler, yazılım dilleri veya laboratuvarların stajyerlere sunulduğu).",
+              "ui_target": "Textarea: description"
+            },
+            {
+              "step": 5,
+              "action": "Örnek Haftalık Staj Programı / Müfredat Taslağı (Sample Mobility Syllabus PDF) bağlantısı veya dosyası eklenir.",
+              "ui_target": "Input: sampleMobilityProgrammeUrl",
+              "impact": "Örnek program ekleyen hostlar okul koordinatörlerinin arama listelerinde %80 daha hızlı tercih edilir."
+            },
+            {
+              "step": 6,
+              "action": "'Portföy Bilgilerini Kaydet' butonuna basılır.",
+              "ui_target": "Button: primary (Kaydet)",
+              "result": "Profil doluluk oranı artar (%75'e yükselir) ve host kartında logoyla birlikte yayınlanır."
+            }
+          ]
+        },
+        {
+          "workflow_id": "host_workflow_04_kyc_verification_tier3",
+          "title_tr": "15 Kriterli Resmi KYC & Güvenilirlik Rozeti (Tier 3)",
+          "title_en": "15-Point Institutional KYC Verification & Verified Badge",
+          "goal": "İşletmenin resmi sicil belgesi, vergi numarası ve 7/24 acil durum kontağını yükleyerek platform yöneticisinden 'Verified Partner' rozeti alması.",
+          "start_modal": "HostVerificationModal",
+          "action_steps": [
+            {
+              "step": 1,
+              "action": "Host Dashboard üzerindeki 'Resmi Evrak & KYC' veya 'KYC Doğrulamasını Tamamla →' butonuna basılır.",
+              "ui_target": "Button: stage3Btn (KYC Doğrulamasını Tamamla)"
+            },
+            {
+              "step": 2,
+              "action": "Resmi Ticaret Sicil Belgesi (Company Registration Document) PDF dosyası yüklenir veya URL'si girilir.",
+              "ui_target": "Input: registrationDocumentUrl"
+            },
+            {
+              "step": 3,
+              "action": "Resmi Vergi / VAT / KDV Numarası girilir (Örn: DE312456789).",
+              "ui_target": "Input: taxVatNumber"
+            },
+            {
+              "step": 4,
+              "action": "7/24 Acil Durum Telefon Numarası (Emergency Phone) ve Kriz Sorumlusu Adı girilir.",
+              "ui_target": "Inputs: emergencyContactPhone & emergencyContactName"
+            },
+            {
+              "step": 5,
+              "action": "İş Sağlığı ve Güvenliği (OHS) Uygunluk Beyanı kutucuğu onaylanır ('İşletmemiz ulusal İSG standartlarına tam uyumludur ve stajyerlere koruyucu donanım sağlar').",
+              "ui_target": "Checkbox: ohsComplianceConfirmed"
+            },
+            {
+              "step": 6,
+              "action": "'Doğrulama Belgelerini İncelemeye Gönder' butonuna basılır.",
+              "ui_target": "Button: primary (İncelemeye Gönder)",
+              "result": "Doğrulama durumu 'UNDER_REVIEW' (İncelemede) olarak güncellenir ve admin paneli havuzuna (AdminVerificationQueueModal) düşer. Admin onayladığında 'VERIFIED' rozeti verilir ve doluluk %100 olur."
+            }
+          ]
+        },
+        {
+          "workflow_id": "host_workflow_05_inquiry_management_and_loi",
+          "title_tr": "Gelen Staj Taleplerini Yönetme ve Letter of Intent (LoI) Düzenleme",
+          "title_en": "Incoming Inquiry Processing & Letter of Intent (LoI) Issuance",
+          "goal": "Okullardan gelen staj taleplerini incelemek, tarihler ve kontenjan için ön kabul vermek ve resmi Letter of Intent belgesi üretmek.",
+          "start_route": "/",
+          "component": "HostInquiriesSection",
+          "action_steps": [
+            {
+              "step": 1,
+              "action": "Host Dashboard altındaki 'Gelen Hareketlilik Talepleri & Staj Başvuruları' bölümüne inilir.",
+              "ui_target": "Component: HostInquiriesSection",
+              "filter_tabs": [
+                {
+                  "id": "ALL",
+                  "label": "Tüm Talepler"
+                },
+                {
+                  "id": "PENDING",
+                  "label": "Yanıt Bekleyenler (⏳)"
+                },
+                {
+                  "id": "ACCEPTED",
+                  "label": "Ön Kabul Verilenler (✓)"
+                },
+                {
+                  "id": "DECLINED",
+                  "label": "Reddedilenler (✕)"
+                }
+              ]
+            },
+            {
+              "step": 2,
+              "action": "Gelen talep kartı incelenir: Gönderen Okul Adı, Şehir, OID Numarası, Proje Türü (KA121/KA122), Katılımcı Sayısı, Hedef Tarihler ve Talep Edilen Lojistik (Konaklama/Yemek/Transfer).",
+              "ui_target": "Inquiry Card"
+            },
+            {
+              "step": 3,
+              "action": "Okulun irtibat kişisini görmek için 'ℹ️ Okul İrtibat' butonuna basılır -> School Contact Details modalı açılır.",
+              "ui_target": "Button: Okul İrtibat"
+            },
+            {
+              "step": 4,
+              "action": "Talebe yanıt vermek için 'Yanıtla / Karar Ver' butonuna tıklanır -> Yanıt Karar Modalı açılır.",
+              "ui_target": "Button: Yanıtla / Karar Ver",
+              "modal_actions": [
+                {
+                  "action_type": "ACCEPTED",
+                  "button_label": "✓ Ön Kabul Ver (LoI)",
+                  "templates": [
+                    "Kontenjanımız uygundur, kurumunuzu ağırlamaktan memnuniyet duyarız. Ön kabul belgeniz (LoI) oluşturulmuştur.",
+                    "Talep edilen tarihler atölye takvimimize uygundur. İngilizce/Almanca mentor desteği sağlanacaktır."
+                  ]
+                },
+                {
+                  "action_type": "REVISED",
+                  "button_label": "✏️ Revizyon İste",
+                  "templates": [
+                    "Talep edilen tarihlerde yoğunluk bulunmaktadır. Tarihleri 2 hafta öne/sonraya alabilir miyiz?",
+                    "Maksimum stajyer kapasitemiz 4 öğrencidir, katılımcı sayısını revize edebilir misiniz?"
+                  ]
+                },
+                {
+                  "action_type": "DECLINED",
+                  "button_label": "✕ Reddet",
+                  "templates": [
+                    "İlgili dönemde atölye kapasitemiz doludur. Bir sonraki çağrıda işbirliği yapmaktan memnuniyet duyarız.",
+                    "Talep edilen teknik alan işletmemizin mevcut üretim hattıyla uyuşmamaktadır."
+                  ]
+                }
+              ]
+            },
+            {
+              "step": 5,
+              "action": "Ev sahibi hazır şablon butonuna basar veya özel açıklama metnini textarea alanına yazar.",
+              "ui_target": "Textarea: note (Ev Sahibi Yanıt Notu)"
+            },
+            {
+              "step": 6,
+              "action": "'💾 Kararı Kaydet ve Okula Bildir' butonuna basılır.",
+              "ui_target": "Button: replyModalSaveBtn",
+              "result": "Talep durumu sunucuda güncellenir, okula anında bildirim yansır."
+            },
+            {
+              "step": 7,
+              "action": "Ön kabul verilen talep için '📄 LoI Belgesi (Ön Kabul Mektubu)' butonuna tıklanır.",
+              "ui_target": "Button: LoI Belgesi",
+              "result": "Resmi Erasmus+ VET Letter of Intent önizleme penceresi açılır."
+            },
+            {
+              "step": 8,
+              "action": "'🖨️ Yazdır / PDF Olarak Kaydet' butonuna basılarak işletmenin antetli niyet mektubu PDF olarak kaydedilir.",
+              "ui_target": "Button: Yazdır / PDF Olarak Kaydet"
+            }
+          ]
+        }
+      ]
+    },
+    "platform_administrator": {
+      "role_code": "ADMIN",
+      "role_title_tr": "Platform Yöneticisi (Platform Admin)",
+      "core_capabilities": [
+        "Sistem genelindeki tüm kayıtlı okulları, hostları ve talepleri izleme",
+        "Ev sahibi kuruluşların yüklediği ticaret sicil belgelerini ve vergi numaralarını inceleme (AdminVerificationQueueModal)",
+        "Ev sahibine 'VERIFIED' statüsü verme veya eksik belge için 'NEEDS_UPDATE' bildirimi iletme",
+        "Sistemdeki tüm hareketlilik taleplerinin detaylarını denetleme (AdminInquiriesSection)",
+        "Canlı simülasyon çubuğu ile Okul ve Host görünümleri arasında anında geçiş yaparak kullanıcı deneyimini test etme"
+      ]
+    }
+  },
+  "ui_page_and_component_dictionary": {
+    "pages": [
+      {
+        "route": "/",
+        "file": "apps/web/app/page.tsx",
+        "title": "Ana Sayfa & Rol Tabanlı Gösterge Paneli",
+        "description": "Giriş yapan kullanıcının rolüne göre SchoolDashboardView, HostDashboardView veya AdminDashboardView bileşenlerini reaktif olarak yükler. Giriş yapmamış ziyaretçiler için Demo Keşif Barı ve Hoş Geldiniz Banner'ı sunar."
+      },
+      {
+        "route": "/onboarding",
+        "file": "apps/web/app/onboarding/page.tsx",
+        "title": "Kurumsal Kayıt & OID Kurulumu",
+        "description": "Okullar için MEB veritabanı destekli OID ve akreditasyon kurulumu; Hostlar için Tier 1 temel kurumsal kimlik, sektör ve kontenjan kayıt ekranı."
+      },
+      {
+        "route": "/school/pipeline",
+        "file": "apps/web/app/school/pipeline/page.tsx",
+        "title": "5 Adımlı Hareketlilik Planlama Pipeline'ı",
+        "description": "Profil, yetkinlik analizi, ESCO/ISCED taksonomisi, 8 faktörlü karar motoru, 10 parametreli host eşleştirme, öğrenme çıktıları ve hibe tavsiye dosyasını içeren ana planlama omurgası."
+      },
+      {
+        "route": "/school/application-draft",
+        "file": "apps/web/app/school/application-draft/page.tsx",
+        "title": "Resmi Başvuru Form Taslak Modülü",
+        "description": "KA121 ve KA122 resmi Komisyon web formları için soru bazlı veri seti hazırlama, KA120 PDF tarama, bütçe/harcırah hesaplama ve Gemini AI resmi soru anlatısı üreticisi."
+      },
+      {
+        "route": "/platform",
+        "file": "apps/web/app/platform/page.tsx",
+        "title": "Platform Mimarisi & Modüller",
+        "description": "6 temel platform modülünün (Pipeline, Okul Portalı, Host Portföyü, Karar Motoru, Form Rehberleri, 15 Kriterli KYC) kurumsal tanıtım ve erişim sayfası."
+      },
+      {
+        "route": "/library",
+        "file": "apps/web/app/library/page.tsx",
+        "title": "Kütüphane & Resmi Başvuru Rehberleri",
+        "description": "KA121/KA122 rehberleri, Ulusal Ajans hibe istatistikleri ve mevzuat kaynakları."
+      },
+      {
+        "route": "/about",
+        "file": "apps/web/app/about/page.tsx",
+        "title": "Hakkımızda",
+        "description": "proje hakkında bilgiler."
+      },
+      {
+        "route": "/contact",
+        "file": "apps/web/app/contact/page.tsx",
+        "title": "İletişim & Randevu",
+        "description": "Uzman danışmanlık randevusu alma (AppointmentModal) ve iletişim formu."
+      },
+      {
+        "route": "/news-and-events",
+        "file": "apps/web/app/news-and-events/page.tsx",
+        "title": "Haberler ve Etkinlikler",
+        "description": "Erasmus+ teklif çağrıları, TCA seminerleri ve duyurular."
+      },
+      {
+        "route": "/profile",
+        "file": "apps/web/app/profile/page.tsx",
+        "title": "Kullanıcı ve Kurum Profili",
+        "description": "Aktif kullanıcı hesabı, bağlı kurum bilgileri, rol yönetimi ve çıkış yapma ekranı."
+      }
+    ],
+    "key_modals": [
+      {
+        "modal_name": "HostPortfolioModal",
+        "component_path": "apps/web/components/host/HostPortfolioModal.tsx",
+        "purpose": "Host işletmelerin vitrin bilgilerini, atölye tanıtımını ve örnek haftalık staj müfredatı (Syllabus PDF) yüklemesini sağlar."
+      },
+      {
+        "modal_name": "HostVerificationModal",
+        "component_path": "apps/web/components/host/HostVerificationModal.tsx",
+        "purpose": "Host işletmelerin ticaret sicil belgesi (PDF), vergi/VAT numarası ve 7/24 acil durum kontağını yükleyip admin onayına göndermesini sağlar."
+      },
+      {
+        "modal_name": "MobilityInquiryModal",
+        "component_path": "apps/web/components/inquiry/MobilityInquiryModal.tsx",
+        "purpose": "Okulların ev sahibi işletmeye katılımcı sayısı, tarihler, lojistik ihtiyaçlar ve özel notlarla resmi staj talebi göndermesini sağlar."
+      },
+      {
+        "modal_name": "Ka120ImportPreviewModal",
+        "component_path": "apps/web/components/application-draft/Ka120ImportPreviewModal.tsx",
+        "purpose": "Yüklenen KA120 akreditasyon PDF'inden AI ile çıkarılan kurum OID'si, hedefleri ve kalite taahhütlerini önizleyip onaylatır."
+      },
+      {
+        "modal_name": "AdminVerificationQueueModal",
+        "component_path": "apps/web/components/admin/AdminVerificationQueueModal.tsx",
+        "purpose": "Platform yöneticisinin onay bekleyen ev sahibi evraklarını inceleyip 'Doğrulanmış Rozet' (Verified Badge) vermesini sağlar."
+      },
+      {
+        "modal_name": "GuestOnboardingModal",
+        "component_path": "apps/web/components/ui/GuestOnboardingModal.tsx",
+        "purpose": "İlk kez gelen ziyaretçilere platformun 4 temel sütununu görsel ve interaktif olarak anlatan rehber tur."
+      },
+      {
+        "modal_name": "LegalModal",
+        "component_path": "apps/web/components/ui/LegalModal.tsx",
+        "purpose": "KVKK, GDPR, Kullanım Şartları ve Human-in-the-Loop Yapay Zeka yasal uyarılarını içeren 5 sekmeli resmi sözleşme penceresi."
+      }
+    ],
+    "backend_api_endpoints": [
+      {
+        "endpoint": "/api/chat",
+        "method": "POST",
+        "description": "ErasmusChatWidget için 2026 Program Rehberi RAG destekli akıllı sohbet yanıtları üretir (Google Gemini 2.5 Flash)."
+      },
+      {
+        "endpoint": "/api/extract-ka120",
+        "method": "POST",
+        "description": "Kullanıcının yüklediği KA120 akreditasyon PDF belgesini OCR/Text analizinden geçirip yapılandırılmış JSON verisine dönüştürür."
+      },
+      {
+        "endpoint": "/api/generate-draft-narrative",
+        "method": "POST",
+        "description": "KA121 ve KA122 resmi başvuru form soruları için okul profili ve faaliyet verilerine dayalı resmi proje anlatıları üretir."
+      },
+      {
+        "endpoint": "/api/inquiries",
+        "method": "GET, POST, PATCH",
+        "description": "Okullar ile ev sahipleri arasındaki staj taleplerini (Inquiries) oluşturur, listeler ve onay/red durumlarını günceller."
+      }
+    ]
+  },
+  "chatgpt_prompt_generation_instructions": {
+    "suggested_prompt_to_feed_chatgpt": "Aşağıda ErasmusMobility platformuna ait tüm teknik mimari, kullanıcı rolleri (Hizmet Alıcı Okul vs. Hizmet Sağlayıcı Host İşletme), 5 adımlı planlama pipeline'ı, resmi başvuru taslak asistanı ve buton/ekran akışlarını içeren eksiksiz JSON veri seti yer almaktadır.\n\nLütfen bu veriyi temel alarak; okul yöneticileri, proje koordinatörleri ve Avrupa ev sahibi işletmeler için hazırlanmış, son derece profesyonel, anlaşılır, adım adım ekran ekran yönlendiren, ekran butonlarının isimlerini ve işlevlerini içeren kapsamlı bir 'KULLANIM KILAVUZU' (User Manual) hazırla.\n\nKılavuzda şu ana bölümler mutlaka yer almalıdır:\n1. Giriş ve Platform Vizyonu (EMaaS nedir, KA121 ve KA122 farkı nedir?)\n2. Hizmet Alıcılar (Okullar) İçin Adım Adım Kullanım Rehberi (Onboarding, 5 Adımlı Pipeline, Ev Sahibi Arama, Staj Talebi Gönderme, LoI Alma, Başvuru Taslağı Doldurma, KA120 PDF Aktarma, AI Anlatı Üretme)\n3. Hizmet Sağlayıcılar (Avrupa Ev Sahipleri) İçin Adım Adım Kullanım Rehberi (Tier 1 Kayıt, Tier 2 Vitrin Portföyü, Tier 3 15 Kriterli Sicil/KYC Doğrulaması, Gelen Staj Taleplerini Onaylama/Reddetme, Ön Kabul Mektubu LoI Düzenleme)\n4. Genel Platform Özellikleri (Dil değiştirme, Temalar, AI Erasmus Asistanı Chatbot, Hibe Atlası, Güvenlik ve KVKK)\n5. Sıkça Sorulan Sorular ve Hata Çözüm Tablosu.",
+    "key_tone_guidelines": "Resmi, kurumsal, güven verici, Erasmus+ terminolojisine (OID, KA121, KA122, KA120, ESCO, ISCED, Letter of Intent) tam sadık, anlaşılır ve eylem odaklı bir dil kullanılmalıdır."
+  }
+}

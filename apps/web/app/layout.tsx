@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '../lib/theme-context';
 import { LanguageProvider } from '../lib/i18n';
+import { AccessibilityProvider } from '../lib/accessibility-context';
+import { SkipToContent } from '../components/ui/SkipToContent';
 import UserOrgSync from '../components/auth/UserOrgSync';
 import ErasmusChatWidget from '../components/chat/ErasmusChatWidget';
 
@@ -30,13 +32,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" data-theme="theme-01" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var loc = localStorage.getItem('em_locale') || localStorage.getItem('cappinno_locale');
+                if (loc === 'en' || loc === 'tr') {
+                  document.documentElement.lang = loc;
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body className="antialiased selection:bg-black selection:text-white" suppressHydrationWarning>
         <ClerkProvider>
           <UserOrgSync />
           <ThemeProvider>
             <LanguageProvider>
-              {children}
-              <ErasmusChatWidget />
+              <AccessibilityProvider>
+                <SkipToContent />
+                {children}
+                <ErasmusChatWidget />
+              </AccessibilityProvider>
             </LanguageProvider>
           </ThemeProvider>
         </ClerkProvider>

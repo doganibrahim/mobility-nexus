@@ -223,6 +223,66 @@ export const InquiriesDb = {
   },
 
   /**
+   * Updates an inquiry with partial fields (e.g. revision resubmission)
+   */
+  async updateInquiry(
+    id: string,
+    updates: Partial<MobilityInquiry>,
+  ): Promise<MobilityInquiry | null> {
+    const list = await readInquiriesFromFile();
+    let updatedInquiry: MobilityInquiry | null = null;
+
+    const updatedList = list.map((item) => {
+      if (item.id === id) {
+        updatedInquiry = {
+          ...item,
+          ...updates,
+          id,
+        };
+        return updatedInquiry;
+      }
+      return item;
+    });
+
+    if (updatedInquiry) {
+      await writeInquiriesToFile(updatedList);
+    }
+
+    try {
+      const pool = await getPgPool();
+      if (pool && updatedInquiry) {
+        const u = updatedInquiry as MobilityInquiry;
+        await pool.query(
+          `UPDATE mobility_inquiries 
+           SET status = COALESCE($1, status),
+               participant_count = COALESCE($2, participant_count),
+               duration_days = COALESCE($3, duration_days),
+               target_start_date = COALESCE($4, target_start_date),
+               target_end_date = COALESCE($5, target_end_date),
+               notes = COALESCE($6, notes),
+               host_reply_note = $7,
+               updated_at = CURRENT_TIMESTAMP
+           WHERE id = $8`,
+          [
+            u.status,
+            u.participantCount,
+            u.durationDays,
+            u.targetStartDate || null,
+            u.targetEndDate || null,
+            u.notes,
+            u.hostReplyNote || null,
+            id,
+          ],
+        );
+      }
+    } catch {
+      // Suppress Postgres errors
+    }
+
+    return updatedInquiry;
+  },
+
+  /**
    * Deletes an inquiry
    */
   async delete(id: string): Promise<boolean> {

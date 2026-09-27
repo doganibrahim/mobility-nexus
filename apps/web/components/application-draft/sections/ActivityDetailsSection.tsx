@@ -6,6 +6,7 @@ import {
   FormType,
   INCLUSION_CATEGORY_OPTIONS,
 } from '../../../lib/application-draft-schema';
+import { ERASMUS_COUNTRIES } from '../../../lib/countries';
 
 interface ActivityDetailsSectionProps {
   data: ApplicationDraftActivityDetails;
@@ -122,13 +123,17 @@ export default function ActivityDetailsSection({
             <label className="block text-xs font-semibold text-slate-700 mb-1">
               Hedef Ülke *
             </label>
-            <input
-              type="text"
+            <select
               value={data.hostCountry || 'DE'}
               onChange={(e) => onChange({ hostCountry: e.target.value })}
-              placeholder="Örn: Almanya (DE)"
               className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
-            />
+            >
+              {ERASMUS_COUNTRIES.map((c) => (
+                <option key={c.code} value={c.code}>
+                  {c.flagEmoji} {c.nameTr} ({c.code})
+                </option>
+              ))}
+            </select>
           </div>
 
           <div>

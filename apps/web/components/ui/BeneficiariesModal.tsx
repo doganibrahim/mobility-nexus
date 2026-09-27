@@ -258,7 +258,7 @@ export default function BeneficiariesModal({
                     {locale === 'tr' ? 'Yararlanıcılar Referans Kataloğu' : 'Beneficiaries Reference Catalog'}
                   </h2>
                   <span className="px-2.5 py-0.5 text-xs font-bold rounded-full bg-slate-100 text-slate-800 border border-slate-300">
-                    MEB Açık Veri Referansı
+                    {locale === 'tr' ? 'MEB Açık Veri Referansı' : 'MoNE Open Data Reference'}
                   </span>
                 </div>
                 <p className="text-xs font-medium text-slate-600 mt-1 m-0">
@@ -273,7 +273,7 @@ export default function BeneficiariesModal({
               type="button"
               className="rounded-xl bg-white p-2.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors border border-slate-200"
               onClick={onClose}
-              title="Kapat"
+              title={locale === 'tr' ? 'Kapat' : 'Close'}
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -419,7 +419,7 @@ export default function BeneficiariesModal({
                   {/* Filter Toggle & Quick Info */}
                   <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
                     <span className="text-xs font-semibold text-slate-600">
-                      {filteredAndSortedData.length} <span className="font-normal text-slate-500">kayıt</span>
+                      {filteredAndSortedData.length} <span className="font-normal text-slate-500">{locale === 'tr' ? 'kayıt' : 'records'}</span>
                     </span>
 
                     <button
@@ -445,7 +445,7 @@ export default function BeneficiariesModal({
                   <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-3 animate-fadeIn">
                     {/* City Select */}
                     <div className="flex flex-col gap-1">
-                      <label className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">İl</label>
+                      <label className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">{locale === 'tr' ? 'İl' : 'Province / City'}</label>
                       <select
                         className="rounded-lg border border-slate-300 py-1.5 px-2.5 text-xs text-slate-900 font-medium bg-white"
                         value={selectedCity}
@@ -454,7 +454,7 @@ export default function BeneficiariesModal({
                           setSelectedDistrict('');
                         }}
                       >
-                        <option value="">Tüm İller</option>
+                        <option value="">{locale === 'tr' ? 'Tüm İller' : 'All Provinces'}</option>
                         {uniqueCities.map((city: any) => (
                           <option key={city} value={city}>
                             {city}
@@ -465,14 +465,14 @@ export default function BeneficiariesModal({
 
                     {/* District Select */}
                     <div className="flex flex-col gap-1">
-                      <label className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">İlçe</label>
+                      <label className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">{locale === 'tr' ? 'İlçe' : 'District'}</label>
                       <select
                         className="rounded-lg border border-slate-300 py-1.5 px-2.5 text-xs text-slate-900 font-medium bg-white disabled:opacity-50"
                         value={selectedDistrict}
                         onChange={(e) => setSelectedDistrict(e.target.value)}
                         disabled={!selectedCity}
                       >
-                        <option value="">{selectedCity ? 'Tüm İlçeler' : 'Önce İl Seçin'}</option>
+                        <option value="">{selectedCity ? (locale === 'tr' ? 'Tüm İlçeler' : 'All Districts') : (locale === 'tr' ? 'Önce İl Seçin' : 'Select Province First')}</option>
                         {uniqueDistricts.map((dist: any) => (
                           <option key={dist} value={dist}>
                             {dist}
@@ -483,13 +483,13 @@ export default function BeneficiariesModal({
 
                     {/* Type Select */}
                     <div className="flex flex-col gap-1">
-                      <label className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">Tür</label>
+                      <label className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">{locale === 'tr' ? 'Tür' : 'Institution Type'}</label>
                       <select
                         className="rounded-lg border border-slate-300 py-1.5 px-2.5 text-xs text-slate-900 font-medium bg-white"
                         value={selectedType}
                         onChange={(e) => setSelectedType(e.target.value)}
                       >
-                        <option value="all">Tüm Türler</option>
+                        <option value="all">{locale === 'tr' ? 'Tüm Türler' : 'All Types'}</option>
                         {uniqueTypes.map((t: any) => (
                           <option key={t} value={t}>
                             {t}
@@ -513,33 +513,33 @@ export default function BeneficiariesModal({
                             className="py-3 pl-5 pr-2 text-left text-[11px] font-extrabold text-slate-600 uppercase tracking-wider cursor-pointer hover:bg-slate-100"
                             onClick={() => handleSort('kurumKodu')}
                           >
-                            Kurum Kodu {sortConfig?.key === 'kurumKodu' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                            {locale === 'tr' ? 'Kurum Kodu' : 'Institution Code'} {sortConfig?.key === 'kurumKodu' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                           </th>
                           <th
                             scope="col"
                             className="px-4 py-3 text-left text-[11px] font-extrabold text-slate-600 uppercase tracking-wider cursor-pointer hover:bg-slate-100"
                             onClick={() => handleSort('kurumAdi')}
                           >
-                            Kurum Adı {sortConfig?.key === 'kurumAdi' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                            {locale === 'tr' ? 'Kurum Adı' : 'Institution Name'} {sortConfig?.key === 'kurumAdi' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                           </th>
                           <th
                             scope="col"
                             className="px-4 py-3 text-left text-[11px] font-extrabold text-slate-600 uppercase tracking-wider cursor-pointer hover:bg-slate-100"
                             onClick={() => handleSort('il')}
                           >
-                            İl / İlçe {sortConfig?.key === 'il' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                            {locale === 'tr' ? 'İl / İlçe' : 'City / District'} {sortConfig?.key === 'il' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                           </th>
                           <th
                             scope="col"
                             className="px-4 py-3 text-left text-[11px] font-extrabold text-slate-600 uppercase tracking-wider"
                           >
-                            İletişim & Web
+                            {locale === 'tr' ? 'İletişim & Web' : 'Contact & Web'}
                           </th>
                           <th
                             scope="col"
                             className="py-3 pr-5 pl-3 text-right text-[11px] font-extrabold text-slate-600 uppercase tracking-wider"
                           >
-                            Kurum Türü
+                            {locale === 'tr' ? 'Kurum Türü' : 'Type'}
                           </th>
                         </tr>
                       </thead>
@@ -573,10 +573,10 @@ export default function BeneficiariesModal({
                                     type="button"
                                     onClick={() => handleCopyEmail(item.eposta)}
                                     className="px-2 py-0.5 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-medium border border-slate-200 flex items-center gap-1 transition-colors"
-                                    title="E-postayı kopyala"
+                                    title={locale === 'tr' ? 'E-postayı kopyala' : 'Copy email'}
                                   >
                                     <span>✉️</span>
-                                    <span>{copiedEmail === item.eposta ? 'Kopyalandı!' : item.eposta}</span>
+                                    <span>{copiedEmail === item.eposta ? (locale === 'tr' ? 'Kopyalandı!' : 'Copied!') : item.eposta}</span>
                                   </button>
                                 )}
 
@@ -606,14 +606,18 @@ export default function BeneficiariesModal({
                           <tr>
                             <td colSpan={5} className="py-12 text-center text-slate-500">
                               <div className="text-2xl mb-2">🔍</div>
-                              <p className="text-xs font-bold text-slate-900 m-0">Aramanıza uygun kurum bulunamadı.</p>
-                              <p className="text-[11px] text-slate-500 mt-1 m-0">Farklı bir arama terimi veya il seçebilirsiniz.</p>
+                              <p className="text-xs font-bold text-slate-900 m-0">
+                                {locale === 'tr' ? 'Aramanıza uygun kurum bulunamadı.' : 'No institutions found matching your criteria.'}
+                              </p>
+                              <p className="text-[11px] text-slate-500 mt-1 m-0">
+                                {locale === 'tr' ? 'Farklı bir arama terimi veya il seçebilirsiniz.' : 'Try adjusting your search terms or province filter.'}
+                              </p>
                               <button
                                 type="button"
                                 onClick={resetFilters}
                                 className="mt-3 px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-lg border border-slate-300"
                               >
-                                Filtreleri Sıfırla
+                                {locale === 'tr' ? 'Filtreleri Sıfırla' : 'Reset Filters'}
                               </button>
                             </td>
                           </tr>
@@ -627,9 +631,19 @@ export default function BeneficiariesModal({
               {/* Footer Pagination */}
               <div className="bg-slate-50 px-4 sm:px-6 py-3 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-3">
                 <div className="text-xs text-slate-600 font-medium">
-                  Toplam <span className="font-bold text-slate-900">{filteredAndSortedData.length}</span> kayıttan{' '}
-                  <span className="font-bold text-slate-900">{startIndex}</span> -{' '}
-                  <span className="font-bold text-slate-900">{endIndex}</span> arası gösteriliyor
+                  {locale === 'tr' ? (
+                    <>
+                      Toplam <span className="font-bold text-slate-900">{filteredAndSortedData.length}</span> kayıttan{' '}
+                      <span className="font-bold text-slate-900">{startIndex}</span> -{' '}
+                      <span className="font-bold text-slate-900">{endIndex}</span> arası gösteriliyor
+                    </>
+                  ) : (
+                    <>
+                      Showing <span className="font-bold text-slate-900">{startIndex}</span> to{' '}
+                      <span className="font-bold text-slate-900">{endIndex}</span> of{' '}
+                      <span className="font-bold text-slate-900">{filteredAndSortedData.length}</span> entries
+                    </>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -641,10 +655,10 @@ export default function BeneficiariesModal({
                       setCurrentPage(1);
                     }}
                   >
-                    <option value={10}>10 / sayfa</option>
-                    <option value={25}>25 / sayfa</option>
-                    <option value={50}>50 / sayfa</option>
-                    <option value={-1}>Tümünü Göster</option>
+                    <option value={10}>10 / {locale === 'tr' ? 'sayfa' : 'page'}</option>
+                    <option value={25}>25 / {locale === 'tr' ? 'sayfa' : 'page'}</option>
+                    <option value={50}>50 / {locale === 'tr' ? 'sayfa' : 'page'}</option>
+                    <option value={-1}>{locale === 'tr' ? 'Tümünü Göster' : 'Show All'}</option>
                   </select>
 
                   <div className="flex items-center gap-1">

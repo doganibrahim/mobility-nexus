@@ -198,7 +198,11 @@ export default function SchoolPipelinePage() {
     const s = parseInt(externalScore, 10);
     if (!isNaN(s) && s >= 0 && s <= 100) {
       setCompetenceScore(s);
-      setAssessmentResultMsg(`Competence4VET Dış Test Skoru Uygulandı: ${s}/100`);
+      setAssessmentResultMsg(
+        locale === 'tr'
+          ? `Competence4VET Dış Test Skoru Uygulandı: ${s}/100`
+          : `Competence4VET External Test Score Applied: ${s}/100`
+      );
       setAssessmentResultType('good');
     } else {
       alert(
@@ -216,12 +220,12 @@ export default function SchoolPipelinePage() {
         customScore >= 70 ? 'good' : customScore >= 55 ? 'warn' : 'bad';
       const label =
         customScore >= 85
-          ? 'Mükemmel Eşleşme (Excellent)'
+          ? (locale === 'tr' ? 'Mükemmel Eşleşme' : 'Excellent Match')
           : customScore >= 70
-          ? 'Uygun Kuruluş (Suitable)'
+          ? (locale === 'tr' ? 'Uygun Kuruluş' : 'Suitable Institution')
           : customScore >= 55
-          ? 'Şartlı Kısa Liste (Conditional)'
-          : 'Yetersiz Uyum (Weak match)';
+          ? (locale === 'tr' ? 'Şartlı Kısa Liste' : 'Conditional Shortlist')
+          : (locale === 'tr' ? 'Yetersiz Uyum' : 'Weak Match');
       setHostScoreResult({ score: customScore, label, level });
     } else {
       const res = scoreHost(hostMetrics);
@@ -245,7 +249,7 @@ export default function SchoolPipelinePage() {
       competenceScore: currentCompScore,
       targetScore,
       hostScore: currentHostScore,
-      participantCount: eligibilityParticipantCount,
+      participantCount: participantCount,
       projectDurationMonths: eligibilityDurationMonths,
       pastKa122GrantsCount: eligibilityPastGrants,
       mobilityStrategy: eligibilityStrategy,
@@ -535,7 +539,7 @@ export default function SchoolPipelinePage() {
       </div>
 
       {/* 3. Main Content Container */}
-      <main className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-8">
+      <main id="main-content" tabIndex={-1} className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-8 focus:outline-none">
         {/* TAB 1: Kurum & Katilimci Profili */}
         {activeTab === 'profile' && (
           <div className="space-y-8 animate-in fade-in duration-150">
@@ -651,7 +655,7 @@ export default function SchoolPipelinePage() {
             <EligibilityGatekeeperCard
               data={{
                 accredited,
-                participantCount: eligibilityParticipantCount,
+                participantCount: participantCount,
                 projectDurationMonths: eligibilityDurationMonths,
                 pastKa122GrantsCount: eligibilityPastGrants,
                 mobilityStrategy: eligibilityStrategy,
@@ -887,7 +891,7 @@ export default function SchoolPipelinePage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
+        initialTab="TERMS"
       />
     </div>
   );

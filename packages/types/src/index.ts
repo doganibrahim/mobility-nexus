@@ -528,3 +528,404 @@ export interface MatchHostsResponseDto {
 export * from './ka121-form-schema';
 export * from './ka122-form-schema';
 
+// ==============================================================================
+// 7. Training & Job Shadowing Marketplace Types (PKG-01)
+// ==============================================================================
+
+export type CourseSessionStatus = 'OPEN' | 'LIMITED' | 'FULL' | 'CANCELLED';
+export type JobShadowingStatus = 'ACTIVE' | 'PAUSED' | 'FILLED';
+export type MarketplaceApplicationType = 'COURSE' | 'JOB_SHADOWING';
+export type MarketplaceApplicationStatus = 'PENDING' | 'CONFIRMED' | 'DECLINED' | 'CANCELLED';
+export type MarketplaceProjectType = 'KA121' | 'KA122' | 'NOT_YET_APPLIED';
+
+export interface CourseLearningOutcome {
+  id: string;
+  courseId: string;
+  outcomeTr: string;
+  outcomeEn: string;
+  escoSkillCode?: string | null;
+  escoSkillLabel?: string | null;
+  orderIndex: number;
+}
+
+export interface CourseSession {
+  id: string;
+  courseId: string;
+  startDate: string; // YYYY-MM-DD
+  endDate: string;   // YYYY-MM-DD
+  city: string;
+  country: string;
+  capacity: number;
+  enrolledCount: number;
+  status: CourseSessionStatus;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface Course {
+  id: string;
+  hostId: string;
+  hostName: string;
+  hostCountry: string;
+  hostCity: string;
+  hostOid?: string | null;
+  titleTr: string;
+  titleEn: string;
+  slug: string;
+  descriptionTr: string;
+  descriptionEn: string;
+  iscedCode: string;
+  iscedName?: string | null;
+  targetAudience: 'TEACHERS' | 'VET_STAFF' | 'TRAINERS' | 'MIXED';
+  durationDays: number;
+  dailyFeeEur: number; // Erasmus+ standard: 80 EUR/day
+  language: string;
+  minLanguageLevel: 'A2' | 'B1' | 'B2' | 'C1';
+  isPublished: boolean;
+  rating: number;
+  reviewsCount: number;
+  tags: string[];
+  sessions?: CourseSession[];
+  learningOutcomes?: CourseLearningOutcome[];
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface JobShadowingOffer {
+  id: string;
+  hostId: string;
+  hostName: string;
+  country: string;
+  city: string;
+  vetField: string;
+  iscedCode?: string | null;
+  titleTr: string;
+  titleEn: string;
+  descriptionTr: string;
+  descriptionEn: string;
+  eligibleStaffTypes: string[];
+  durationDays: number;
+  maxCapacityPerSlot: number;
+  languages: string[];
+  workingEnvironmentDetails?: string | null;
+  status: JobShadowingStatus;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface MarketplaceApplication {
+  id: string;
+  applicationType: MarketplaceApplicationType;
+  courseId?: string | null;
+  sessionId?: string | null;
+  jobShadowingId?: string | null;
+  hostId: string;
+  hostName: string;
+  // Beneficiary details
+  schoolId?: string | null;
+  schoolName: string;
+  schoolOid: string;
+  schoolCity?: string | null;
+  contactName: string;
+  contactEmail: string;
+  contactPhone?: string | null;
+  projectType: MarketplaceProjectType;
+  participantCount: number;
+  durationDays: number;
+  totalGrantEur: number; // participantCount * durationDays * 80 (capped at 800 EUR/participant)
+  specialNotes?: string | null;
+  // Host review & decision
+  status: MarketplaceApplicationStatus;
+  hostDecisionNote?: string | null;
+  // Associated references (populated in query)
+  courseTitle?: string | null;
+  sessionDates?: string | null;
+  sessionLocation?: string | null;
+  jobShadowingTitle?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CourseFilterQuery {
+  country?: string;
+  iscedCode?: string;
+  targetAudience?: string;
+  minLanguageLevel?: string;
+  search?: string;
+}
+
+export interface CreateCourseDto {
+  hostId: string;
+  hostName: string;
+  hostCountry: string;
+  hostCity: string;
+  hostOid?: string;
+  titleTr: string;
+  titleEn: string;
+  descriptionTr: string;
+  descriptionEn: string;
+  iscedCode: string;
+  iscedName?: string;
+  targetAudience?: 'TEACHERS' | 'VET_STAFF' | 'TRAINERS' | 'MIXED';
+  durationDays?: number;
+  dailyFeeEur?: number;
+  language?: string;
+  minLanguageLevel?: 'A2' | 'B1' | 'B2' | 'C1';
+  tags?: string[];
+  learningOutcomesTr?: string[];
+  learningOutcomesEn?: string[];
+}
+
+export interface CreateCourseSessionDto {
+  courseId: string;
+  startDate: string;
+  endDate: string;
+  city: string;
+  country: string;
+  capacity: number;
+}
+
+export interface CreateJobShadowingOfferDto {
+  hostId: string;
+  hostName: string;
+  country: string;
+  city: string;
+  vetField: string;
+  iscedCode?: string;
+  titleTr: string;
+  titleEn: string;
+  descriptionTr: string;
+  descriptionEn: string;
+  eligibleStaffTypes?: string[];
+  durationDays?: number;
+  maxCapacityPerSlot?: number;
+  languages?: string[];
+  workingEnvironmentDetails?: string;
+}
+
+export interface CreateMarketplaceApplicationDto {
+  applicationType: MarketplaceApplicationType;
+  courseId?: string;
+  sessionId?: string;
+  jobShadowingId?: string;
+  hostId: string;
+  hostName: string;
+  schoolId?: string;
+  schoolName: string;
+  schoolOid: string;
+  schoolCity?: string;
+  contactName: string;
+  contactEmail: string;
+  contactPhone?: string;
+  projectType: MarketplaceProjectType;
+  participantCount: number;
+  durationDays?: number;
+  specialNotes?: string;
+}
+
+export interface UpdateApplicationStatusDto {
+  status: 'CONFIRMED' | 'DECLINED' | 'CANCELLED';
+  hostDecisionNote?: string;
+}
+
+// ==============================================================================
+// 7. Admin CMS & Dynamic Content Console Types (PKG-02)
+// ==============================================================================
+
+export type LibraryCategoryCode = 'FORMS' | 'GUIDES' | 'TEMPLATES' | 'LEGAL' | 'OFFICIAL' | string;
+export type LibraryFileFormat = 'PDF' | 'DOCX' | 'XLSX' | 'ZIP' | 'LINK';
+
+export interface LibraryCategory {
+  id: string;
+  code: LibraryCategoryCode;
+  nameTr: string;
+  nameEn: string;
+  slug: string;
+  descriptionTr?: string | null;
+  descriptionEn?: string | null;
+  icon: string;
+  colorBadge: string;
+  orderIndex: number;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateLibraryCategoryDto {
+  code: string;
+  nameTr: string;
+  nameEn: string;
+  slug: string;
+  descriptionTr?: string;
+  descriptionEn?: string;
+  icon?: string;
+  colorBadge?: string;
+  orderIndex?: number;
+  isActive?: boolean;
+}
+
+export interface LibraryResource {
+  id: string;
+  categoryId?: string | null;
+  categoryCode: LibraryCategoryCode;
+  titleTr: string;
+  titleEn: string;
+  slug?: string | null;
+  descriptionTr: string;
+  descriptionEn: string;
+  fileFormat: LibraryFileFormat;
+  fileSize: string;
+  downloadUrl: string;
+  tags: string[];
+  isFeatured: boolean;
+  isPublished: boolean;
+  downloadCount: number;
+  createdBy: string;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateLibraryResourceDto {
+  categoryCode: LibraryCategoryCode;
+  titleTr: string;
+  titleEn?: string;
+  descriptionTr: string;
+  descriptionEn?: string;
+  fileFormat: LibraryFileFormat;
+  fileSize?: string;
+  downloadUrl: string;
+  tags?: string[];
+  isFeatured?: boolean;
+  isPublished?: boolean;
+}
+
+export type CmsEntityType = 'COURSE' | 'COURSE_SESSION' | 'JOB_SHADOWING' | 'LIBRARY_RESOURCE' | 'CATEGORY';
+export type CmsActionType = 'CREATE' | 'UPDATE' | 'DELETE' | 'PUBLISH' | 'ARCHIVE';
+
+export interface CmsContentRevision {
+  id: string;
+  entityType: CmsEntityType;
+  entityId: string;
+  entityTitle: string;
+  action: CmsActionType;
+  authorId: string;
+  authorName: string;
+  authorRole: string;
+  changesSummary: string;
+  payloadBefore?: Record<string, unknown> | null;
+  payloadAfter?: Record<string, unknown> | null;
+  createdAt: string;
+}
+
+export interface CreateCmsRevisionDto {
+  entityType: CmsEntityType;
+  entityId: string;
+  entityTitle: string;
+  action: CmsActionType;
+  authorId?: string;
+  authorName?: string;
+  authorRole?: string;
+  changesSummary: string;
+  payloadBefore?: Record<string, unknown> | null;
+  payloadAfter?: Record<string, unknown> | null;
+}
+
+export interface AdminCreateCourseWithSessionsDto extends CreateCourseDto {
+  sessions?: Array<{
+    startDate: string;
+    endDate: string;
+    city: string;
+    country: string;
+    capacity: number;
+  }>;
+}
+
+// ==============================================================================
+// 8. School Support, Inquiry Tracking & Need Coordination Types (PKG-03)
+// ==============================================================================
+
+export type SchoolCoordinationStatusType =
+  | 'NEW_REGISTRATION'
+  | 'IN_REVIEW'
+  | 'MEETING_SCHEDULED'
+  | 'CONSORTIUM_MATCHED'
+  | 'APPLICATION_READY'
+  | 'MOBILITY_ACTIVE';
+
+export interface NeedAssessmentScores {
+  s1AccreditationAlignment: number; // 0 - 100
+  s2HostMatchingGap: number;        // 0 - 100
+  s3GrantBudgetCapacity: number;    // 0 - 100
+  s4ParticipantPrepLevel: number;   // 0 - 100
+  s5LearningAgreementQuality: number;// 0 - 100
+  s6RiskAndInclusion: number;       // 0 - 100
+  s7ConsortiumSynergy: number;      // 0 - 100
+  s8GreenAndDigitalShift: number;   // 0 - 100
+  overallReadinessScore: number;    // 0 - 100
+  recommendedPath: string;          // e.g. KA121_BUDGET_REQUEST, KA122_SHORT_TERM, CONSORTIUM_PARTNER
+  evaluationSummary: string;
+}
+
+export interface CoordinationActivityLog {
+  id: string;
+  schoolId: string;
+  inquiryId?: string | null;
+  coordinatorId: string;
+  coordinatorName: string;
+  activityType: 'PHONE_CALL' | 'ONLINE_MEETING' | 'NOTE' | 'CONSORTIUM_ASSIGNMENT' | 'STATUS_CHANGE';
+  title: string;
+  content: string;
+  previousStatus?: SchoolCoordinationStatusType | null;
+  newStatus?: SchoolCoordinationStatusType | null;
+  followUpDate?: string | null;
+  createdAt: string;
+}
+
+export interface SchoolCoordinationRecord {
+  id: string;
+  schoolId: string;
+  schoolName: string;
+  schoolOid?: string | null;
+  schoolCity?: string | null;
+  contactName?: string | null;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  accreditationStatus: 'YES' | 'NO' | 'UNKNOWN' | 'PENDING';
+  status: SchoolCoordinationStatusType;
+  assignedCoordinatorName: string;
+  lastContactedAt?: string | null;
+  needAssessment: NeedAssessmentScores;
+  recentActivities: CoordinationActivityLog[];
+  inquiriesCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AddCoordinationNoteDto {
+  schoolId: string;
+  inquiryId?: string;
+  activityType?: 'PHONE_CALL' | 'ONLINE_MEETING' | 'NOTE' | 'CONSORTIUM_ASSIGNMENT' | 'STATUS_CHANGE';
+  title: string;
+  content: string;
+  newStatus?: SchoolCoordinationStatusType;
+  followUpDate?: string;
+}
+
+export interface SchoolGuidanceRecommendation {
+  schoolId: string;
+  schoolName: string;
+  accreditationStatus: string;
+  overallScore: number;
+  recommendedPath: string;
+  primaryActionTitle: string;
+  guidanceNotes: string[];
+  recommendedHosts: Array<{
+    country: string;
+    field: string;
+    matchReason: string;
+  }>;
+  eligibleConsortia: string[];
+}
+
+

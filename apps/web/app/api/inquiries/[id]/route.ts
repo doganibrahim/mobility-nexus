@@ -22,16 +22,8 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
     }
 
     const body = await request.json();
-    const { status, hostReplyNote } = body;
 
-    if (!status && hostReplyNote === undefined) {
-      return NextResponse.json(
-        { success: false, message: 'En az bir güncellenecek alan (status veya hostReplyNote) girilmelidir' },
-        { status: 400 },
-      );
-    }
-
-    const updated = await InquiriesDb.updateStatus(id, status, hostReplyNote);
+    const updated = await InquiriesDb.updateInquiry(id, body);
     if (!updated) {
       return NextResponse.json(
         { success: false, message: 'Belirtilen ID ile talep bulunamadı' },
@@ -41,7 +33,7 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
 
     return NextResponse.json({
       success: true,
-      message: 'Talep durumu ve yanıt mesajı başarıyla güncellendi.',
+      message: 'Talep başarıyla güncellendi.',
       data: updated,
     });
   } catch (error: any) {

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { SignUpButton, SignInButton } from '@clerk/nextjs';
 import { useTranslation } from '../../lib/i18n';
 
@@ -64,14 +65,14 @@ export default function GuestWelcomeBanner({
 
         {/* Right CTA Actions Block */}
         <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0 justify-center">
-          <button
-            type="button"
-            onClick={onOpenTour}
+          <Link
+            href="/guide"
             className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
           >
-            <span>🚀</span>
+            <span>📖</span>
             <span>{t.guestBanner.btnTour}</span>
-          </button>
+            <span>→</span>
+          </Link>
 
           <button
             type="button"

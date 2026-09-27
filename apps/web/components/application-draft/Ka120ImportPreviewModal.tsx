@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Ka120ExtractedData } from '../../lib/application-draft-schema';
+import { useTranslation } from '../../lib/i18n';
 
 interface Ka120ImportPreviewModalProps {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export default function Ka120ImportPreviewModal({
   onClose,
   onConfirm,
 }: Ka120ImportPreviewModalProps) {
+  const { locale } = useTranslation();
   const [activeTab, setActiveTab] = useState<'context' | 'team' | 'org' | 'quality' | 'objectives'>('context');
   const [formData, setFormData] = useState<Ka120ExtractedData | null>(null);
 
@@ -87,17 +89,19 @@ export default function Ka120ImportPreviewModal({
           <div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-semibold px-2 py-0.5 rounded bg-blue-600 text-white uppercase tracking-wider">
-                KA120 VET Akreditasyon
+                {locale === 'tr' ? 'KA120 Mesleki Akreditasyon' : 'KA120 VET Accreditation'}
               </span>
               <span className="text-xs text-slate-300">
-                {detectedFieldsCount} alan tespit edildi
+                {locale === 'tr' ? `${detectedFieldsCount} alan tespit edildi` : `${detectedFieldsCount} fields detected`}
               </span>
             </div>
             <h2 className="text-base font-bold text-white mt-1">
-              KA120 Akreditasyon Verileri Önizleme ve Düzenleme
+              {locale === 'tr' ? 'KA120 Akreditasyon Verileri Önizleme ve Düzenleme' : 'KA120 Accreditation Data Preview & Edit'}
             </h2>
             <p className="text-xs text-slate-300 mt-0.5">
-              Yüklediğiniz resmi KA120 belgesinden çıkarılan verileri inceleyebilir ve taslağa aktarmadan önce düzenleyebilirsiniz.
+              {locale === 'tr'
+                ? 'Yüklediğiniz KA120 belgesinden çıkarılan verileri inceleyebilir ve taslağa aktarmadan önce düzenleyebilirsiniz.'
+                : 'You can review data extracted from your KA120 document and edit them before transferring to the draft.'}
             </p>
           </div>
           <button
@@ -112,11 +116,11 @@ export default function Ka120ImportPreviewModal({
         {/* Tab Navigation */}
         <div className="flex border-b border-slate-200 bg-slate-50 px-6 gap-2 pt-2 overflow-x-auto">
           {[
-            { id: 'context', label: '1. Kurum & Bağlam' },
-            { id: 'team', label: '2. Yasal Temsilci & Ekip' },
-            { id: 'org', label: '3. Profil & İstatistikler' },
-            { id: 'quality', label: '4. Kalite Standartları' },
-            { id: 'objectives', label: '5. Hedefler & İhtiyaçlar' },
+            { id: 'context', label: locale === 'tr' ? '1. Kurum & Bağlam' : '1. Institution & Context' },
+            { id: 'team', label: locale === 'tr' ? '2. Yasal Temsilci & Ekip' : '2. Legal Rep & Team' },
+            { id: 'org', label: locale === 'tr' ? '3. Profil & İstatistikler' : '3. Profile & Stats' },
+            { id: 'quality', label: locale === 'tr' ? '4. Kalite Standartları' : '4. Quality Standards' },
+            { id: 'objectives', label: locale === 'tr' ? '5. Hedefler & İhtiyaçlar' : '5. Objectives & Needs' },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -139,26 +143,28 @@ export default function Ka120ImportPreviewModal({
           {activeTab === 'context' && (
             <div className="space-y-4">
               <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl text-xs text-blue-900 leading-relaxed">
-                Belgeden çekilen kurum adı, OID ve akreditasyon kodu resmi KA121 başvuru formunuzun bağlam alanlarına aktarılacaktır.
+                {locale === 'tr'
+                  ? 'Belgeden çekilen kurum adı, OID ve akreditasyon kodu resmi KA121 başvuru formunuzun bağlam alanlarına aktarılacaktır.'
+                  : 'Institution name, OID, and accreditation code extracted from the document will be transferred to your KA121 application form context fields.'}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Kuruluş Resmi Adı (Applicant Name)
+                    {locale === 'tr' ? 'Kuruluş Resmi Adı (Applicant Name)' : 'Legal Name of Organisation (Applicant Name)'}
                   </label>
                   <input
                     type="text"
                     value={formData.applicantName || ''}
                     onChange={(e) => handleTextChange('applicantName', e.target.value)}
-                    placeholder="Örn: Kapadokya Mesleki ve Teknik Anadolu Lisesi"
+                    placeholder={locale === 'tr' ? 'Örn: Kapadokya Mesleki ve Teknik Anadolu Lisesi' : 'e.g. Cappadocia Vocational and Technical High School'}
                     className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Kuruluş Kimlik Kodu (OID)
+                    {locale === 'tr' ? 'Kuruluş Kimlik Kodu (OID)' : 'Organisation ID (OID)'}
                   </label>
                   <input
                     type="text"
@@ -171,20 +177,20 @@ export default function Ka120ImportPreviewModal({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Şehir (City)
+                    {locale === 'tr' ? 'Şehir (City)' : 'City'}
                   </label>
                   <input
                     type="text"
                     value={formData.applicantCity || ''}
                     onChange={(e) => handleTextChange('applicantCity', e.target.value)}
-                    placeholder="Örn: Nevşehir"
+                    placeholder={locale === 'tr' ? 'Örn: Nevşehir' : 'e.g. Nevsehir'}
                     className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Erasmus Akreditasyon Kodu (Accreditation Code)
+                    {locale === 'tr' ? 'Erasmus Akreditasyon Kodu (Accreditation Code)' : 'Erasmus Accreditation Code'}
                   </label>
                   <input
                     type="text"
@@ -197,20 +203,20 @@ export default function Ka120ImportPreviewModal({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Erasmus Planı / Proje Başlığı
+                    {locale === 'tr' ? 'Erasmus Planı / Proje Başlığı' : 'Erasmus Plan / Project Title'}
                   </label>
                   <input
                     type="text"
                     value={formData.projectTitle || ''}
                     onChange={(e) => handleTextChange('projectTitle', e.target.value)}
-                    placeholder="Örn: Mesleki Eğitimde Dijitalleşme ve Endüstri 4.0 Planı"
+                    placeholder={locale === 'tr' ? 'Örn: Mesleki Eğitimde Dijitalleşme ve Endüstri 4.0 Planı' : 'e.g. Digitalisation and Industry 4.0 in VET Plan'}
                     className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Proje Kısaltması (Acronym)
+                    {locale === 'tr' ? 'Proje Kısaltması (Acronym)' : 'Project Acronym'}
                   </label>
                   <input
                     type="text"
@@ -228,36 +234,44 @@ export default function Ka120ImportPreviewModal({
           {activeTab === 'team' && (
             <div className="space-y-4">
               <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
-                KA120 başvurusunda yer alan Yasal Temsilci (Legal Representative) ve İlgili Kişi / Proje Koordinatörü bilgileri.
+                {locale === 'tr'
+                  ? 'KA120 başvurusunda yer alan Yasal Temsilci (Legal Representative) ve İlgili Kişi / Proje Koordinatörü bilgileri.'
+                  : 'Legal Representative and Contact Person / Project Coordinator details from the KA120 application.'}
               </div>
 
               <div className="border border-slate-200 rounded-xl p-4 space-y-3">
                 <h3 className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                  <span>👔</span> Yasal Temsilci (Legal Representative)
+                  <span>👔</span> {locale === 'tr' ? 'Yasal Temsilci (Legal Representative)' : 'Legal Representative'}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">Ad Soyad</label>
+                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                      {locale === 'tr' ? 'Ad Soyad' : 'Full Name'}
+                    </label>
                     <input
                       type="text"
                       value={formData.qualityTeam?.legalRepresentativeName || ''}
                       onChange={(e) => handleQualityChange('legalRepresentativeName', e.target.value)}
-                      placeholder="Örn: Ahmet Yılmaz"
+                      placeholder={locale === 'tr' ? 'Örn: Ahmet Yılmaz' : 'e.g. John Doe'}
                       className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">Görevi</label>
+                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                      {locale === 'tr' ? 'Görevi' : 'Role / Position'}
+                    </label>
                     <input
                       type="text"
                       value={formData.qualityTeam?.legalRepresentativeRole || ''}
                       onChange={(e) => handleQualityChange('legalRepresentativeRole', e.target.value)}
-                      placeholder="Örn: Okul Müdürü"
+                      placeholder={locale === 'tr' ? 'Örn: Okul Müdürü' : 'e.g. School Principal'}
                       className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">E-Posta</label>
+                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                      {locale === 'tr' ? 'E-Posta' : 'Email'}
+                    </label>
                     <input
                       type="email"
                       value={formData.qualityTeam?.legalRepresentativeEmail || ''}
@@ -271,31 +285,37 @@ export default function Ka120ImportPreviewModal({
 
               <div className="border border-slate-200 rounded-xl p-4 space-y-3">
                 <h3 className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                  <span>📋</span> Erasmus Koordinatörü / Temas Kişisi
+                  <span>📋</span> {locale === 'tr' ? 'Erasmus Koordinatörü / Temas Kişisi' : 'Erasmus Coordinator / Contact Person'}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">Ad Soyad</label>
+                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                      {locale === 'tr' ? 'Ad Soyad' : 'Full Name'}
+                    </label>
                     <input
                       type="text"
                       value={formData.qualityTeam?.coordinatorName || ''}
                       onChange={(e) => handleQualityChange('coordinatorName', e.target.value)}
-                      placeholder="Örn: Zeynep Kaya"
+                      placeholder={locale === 'tr' ? 'Örn: Zeynep Kaya' : 'e.g. Jane Smith'}
                       className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">Görevi</label>
+                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                      {locale === 'tr' ? 'Görevi' : 'Role / Position'}
+                    </label>
                     <input
                       type="text"
                       value={formData.qualityTeam?.coordinatorRole || ''}
                       onChange={(e) => handleQualityChange('coordinatorRole', e.target.value)}
-                      placeholder="Örn: Proje Koordinatörü"
+                      placeholder={locale === 'tr' ? 'Örn: Proje Koordinatörü' : 'e.g. Project Coordinator'}
                       className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">E-Posta</label>
+                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                      {locale === 'tr' ? 'E-Posta' : 'Email'}
+                    </label>
                     <input
                       type="email"
                       value={formData.qualityTeam?.coordinatorEmail || ''}
@@ -315,7 +335,7 @@ export default function Ka120ImportPreviewModal({
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Toplam Mesleki Öğrenci Sayısı
+                    {locale === 'tr' ? 'Toplam Mesleki Öğrenci Sayısı' : 'Total VET Learners Count'}
                   </label>
                   <input
                     type="number"
@@ -327,7 +347,7 @@ export default function Ka120ImportPreviewModal({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Öğretici Personel Sayısı
+                    {locale === 'tr' ? 'Öğretici Personel Sayısı' : 'Teaching Staff Count'}
                   </label>
                   <input
                     type="number"
@@ -339,7 +359,7 @@ export default function Ka120ImportPreviewModal({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Mesleki Eğitim Deneyimi (Yıl)
+                    {locale === 'tr' ? 'Mesleki Eğitim Deneyimi (Yıl)' : 'VET Experience (Years)'}
                   </label>
                   <input
                     type="number"
@@ -352,13 +372,13 @@ export default function Ka120ImportPreviewModal({
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Öğrenici Profili ve Yaş Grubu Özeti
+                  {locale === 'tr' ? 'Öğrenici Profili ve Yaş Grubu Özeti' : 'Learner Profile & Age Group Summary'}
                 </label>
                 <textarea
                   rows={3}
                   value={formData.learnerProfileSummary || ''}
                   onChange={(e) => handleTextChange('learnerProfileSummary', e.target.value)}
-                  placeholder="Örn: 15-18 yaş arası mesleki ve teknik lise bilişim/otomasyon öğrencileri"
+                  placeholder={locale === 'tr' ? 'Örn: 15-18 yaş arası mesleki ve teknik lise bilişim/otomasyon öğrencileri' : 'e.g. 15-18 age group vocational high school IT / automation students'}
                   className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600 leading-relaxed"
                 />
               </div>
@@ -369,12 +389,14 @@ export default function Ka120ImportPreviewModal({
           {activeTab === 'quality' && (
             <div className="space-y-4">
               <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
-                KA120 akreditasyonunda taahhüt ettiğiniz Erasmus Kalite Standartları ve ilkeleri. Bu içerikler KA121 hibe talebi metinlerinde doğrudan referans alınacaktır.
+                {locale === 'tr'
+                  ? 'KA120 akreditasyonunda taahhüt ettiğiniz Erasmus Kalite Standartları ve ilkeleri. Bu içerikler KA121 hibe talebi metinlerinde doğrudan referans alınacaktır.'
+                  : 'Erasmus Quality Standards and principles committed in your KA120 accreditation. These will be referenced in KA121 grant request narratives.'}
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Kapsayıcılık ve Fırsat Eşitliği Yaklaşımı (Inclusion)
+                  {locale === 'tr' ? 'Kapsayıcılık ve Fırsat Eşitliği Yaklaşımı (Inclusion)' : 'Inclusion & Opportunity Equality Approach'}
                 </label>
                 <textarea
                   rows={2}
@@ -386,7 +408,7 @@ export default function Ka120ImportPreviewModal({
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Yeşil ve Çevresel Sürdürülebilirlik (Environmental Sustainability)
+                  {locale === 'tr' ? 'Yeşil ve Çevresel Sürdürülebilirlik (Environmental Sustainability)' : 'Green & Environmental Sustainability'}
                 </label>
                 <textarea
                   rows={2}
@@ -398,7 +420,7 @@ export default function Ka120ImportPreviewModal({
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Dijital Eğitim ve Çevrim İçi Araçlar (Digital Tools)
+                  {locale === 'tr' ? 'Dijital Eğitim ve Çevrim İçi Araçlar (Digital Tools)' : 'Digital Education & Online Tools'}
                 </label>
                 <textarea
                   rows={2}
@@ -410,7 +432,7 @@ export default function Ka120ImportPreviewModal({
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  İzleme, Mentörlük ve Faaliyet Yönetimi
+                  {locale === 'tr' ? 'İzleme, Mentörlük ve Faaliyet Yönetimi' : 'Monitoring, Mentorship & Activity Management'}
                 </label>
                 <textarea
                   rows={2}
@@ -422,7 +444,7 @@ export default function Ka120ImportPreviewModal({
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Sonuçların Kurum Müfredatına ve Atölyelere Entegrasyonu
+                  {locale === 'tr' ? 'Sonuçların Kurum Müfredatına ve Atölyelere Entegrasyonu' : 'Integration of Results into Curriculum & Workshops'}
                 </label>
                 <textarea
                   rows={2}
@@ -438,23 +460,35 @@ export default function Ka120ImportPreviewModal({
           {activeTab === 'objectives' && (
             <div className="space-y-4">
               <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl text-xs text-blue-900">
-                KA120 Erasmus Planınızda yer alan onaylı hedefler ve kurumsal ihtiyaçlar.
+                {locale === 'tr'
+                  ? 'KA120 Erasmus Planınızda yer alan onaylı hedefler ve kurumsal ihtiyaçlar.'
+                  : 'Approved objectives and institutional needs in your KA120 Erasmus Plan.'}
               </div>
 
               {/* Objectives */}
               <div className="space-y-3">
                 <h3 className="text-xs font-bold text-slate-900 flex items-center justify-between">
-                  <span>🎯 Erasmus Planı Hedefleri ({formData.objectives?.length || 0})</span>
+                  <span>
+                    {locale === 'tr'
+                      ? `🎯 Erasmus Planı Hedefleri (${formData.objectives?.length || 0})`
+                      : `🎯 Erasmus Plan Objectives (${formData.objectives?.length || 0})`}
+                  </span>
                 </h3>
 
                 {(!formData.objectives || formData.objectives.length === 0) ? (
-                  <p className="text-xs text-slate-500 italic">Belgeden özel bir hedef listesi okunamadı.</p>
+                  <p className="text-xs text-slate-500 italic">
+                    {locale === 'tr' ? 'Belgeden özel bir hedef listesi okunamadı.' : 'No specific objectives list could be read from document.'}
+                  </p>
                 ) : (
                   formData.objectives.map((obj, idx) => (
                     <div key={idx} className="border border-slate-200 rounded-xl p-3 bg-slate-50 space-y-2">
-                      <div className="text-[11px] font-bold text-blue-700">Hedef #{idx + 1}</div>
+                      <div className="text-[11px] font-bold text-blue-700">
+                        {locale === 'tr' ? `Hedef #${idx + 1}` : `Objective #${idx + 1}`}
+                      </div>
                       <div>
-                        <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">Hedef Başlığı</label>
+                        <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">
+                          {locale === 'tr' ? 'Hedef Başlığı' : 'Objective Title'}
+                        </label>
                         <input
                           type="text"
                           value={obj.title || ''}
@@ -464,7 +498,9 @@ export default function Ka120ImportPreviewModal({
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <div>
-                          <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">Başarı Göstergesi</label>
+                          <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">
+                            {locale === 'tr' ? 'Başarı Göstergesi' : 'Target Indicator'}
+                          </label>
                           <input
                             type="text"
                             value={obj.targetIndicator || ''}
@@ -473,7 +509,9 @@ export default function Ka120ImportPreviewModal({
                           />
                         </div>
                         <div>
-                          <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">Ölçme Aracı</label>
+                          <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">
+                            {locale === 'tr' ? 'Ölçme Aracı' : 'Measurement Tool'}
+                          </label>
                           <input
                             type="text"
                             value={obj.measurementTool || ''}
@@ -490,17 +528,25 @@ export default function Ka120ImportPreviewModal({
               {/* Needs */}
               <div className="space-y-3 pt-3 border-t border-slate-200">
                 <h3 className="text-xs font-bold text-slate-900">
-                  🔍 Kurumsal İhtiyaçlar ve Zorluklar ({formData.needs?.length || 0})
+                  {locale === 'tr'
+                    ? `🔍 Kurumsal İhtiyaçlar ve Zorluklar (${formData.needs?.length || 0})`
+                    : `🔍 Institutional Needs & Challenges (${formData.needs?.length || 0})`}
                 </h3>
 
                 {(!formData.needs || formData.needs.length === 0) ? (
-                  <p className="text-xs text-slate-500 italic">Belgeden özel bir ihtiyaç listesi okunamadı.</p>
+                  <p className="text-xs text-slate-500 italic">
+                    {locale === 'tr' ? 'Belgeden özel bir ihtiyaç listesi okunamadı.' : 'No specific needs list could be read from document.'}
+                  </p>
                 ) : (
                   formData.needs.map((need, idx) => (
                     <div key={idx} className="border border-slate-200 rounded-xl p-3 bg-slate-50 space-y-2">
-                      <div className="text-[11px] font-bold text-slate-700">İhtiyaç #{idx + 1}</div>
+                      <div className="text-[11px] font-bold text-slate-700">
+                        {locale === 'tr' ? `İhtiyaç #${idx + 1}` : `Need #${idx + 1}`}
+                      </div>
                       <div>
-                        <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">İhtiyaç Başlığı</label>
+                        <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">
+                          {locale === 'tr' ? 'İhtiyaç Başlığı' : 'Need Title'}
+                        </label>
                         <input
                           type="text"
                           value={need.title || ''}
@@ -510,7 +556,9 @@ export default function Ka120ImportPreviewModal({
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <div>
-                          <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">Dayanak / Kanıt</label>
+                          <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">
+                            {locale === 'tr' ? 'Dayanak / Kanıt' : 'Evidence / Justification'}
+                          </label>
                           <input
                             type="text"
                             value={need.evidence || ''}
@@ -519,7 +567,9 @@ export default function Ka120ImportPreviewModal({
                           />
                         </div>
                         <div>
-                          <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">Hedef Kitle</label>
+                          <label className="block text-[11px] font-semibold text-slate-600 mb-0.5">
+                            {locale === 'tr' ? 'Hedef Kitle' : 'Target Group'}
+                          </label>
                           <input
                             type="text"
                             value={need.targetGroup || ''}
@@ -543,19 +593,21 @@ export default function Ka120ImportPreviewModal({
             onClick={onClose}
             className="px-4 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition"
           >
-            İptal
+            {locale === 'tr' ? 'İptal' : 'Cancel'}
           </button>
 
           <div className="flex items-center gap-3">
             <span className="text-[11px] text-slate-500 hidden sm:inline">
-              Değişiklikleriniz onayladığınızda taslağa işlenecektir.
+              {locale === 'tr'
+                ? 'Değişiklikleriniz onayladığınızda taslağa işlenecektir.'
+                : 'Changes will be applied to the draft upon confirmation.'}
             </span>
             <button
               type="button"
               onClick={() => onConfirm(formData)}
               className="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm hover:shadow transition flex items-center gap-1.5"
             >
-              <span>✓</span> Onayla ve Taslağa Aktar
+              <span>✓</span> {locale === 'tr' ? 'Onayla ve Taslağa Aktar' : 'Confirm and Transfer to Draft'}
             </button>
           </div>
         </div>

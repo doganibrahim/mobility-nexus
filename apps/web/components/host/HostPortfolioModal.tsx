@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { apiClient } from '../../lib/api-client';
+import { useTranslation } from '../../lib/i18n';
 
 interface HostPortfolioModalProps {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export default function HostPortfolioModal({
   host,
   onSuccess,
 }: HostPortfolioModalProps) {
+  const { locale } = useTranslation();
   const [operationalAddress, setOperationalAddress] = useState(host?.operationalAddress || '');
   const [shortDescription, setShortDescription] = useState(host?.shortDescription || '');
   const [logoUrl, setLogoUrl] = useState(host?.logoUrl || '');
@@ -141,19 +143,22 @@ export default function HostPortfolioModal({
         <div className="px-6 py-5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
           <div>
             <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-xs font-semibold mb-1">
-              <span>Aşama 2</span>
+              <span>{locale === 'tr' ? 'Aşama 2' : 'Stage 2'}</span>
               <span>•</span>
-              <span>Kamusal Vitrin & Portföy</span>
+              <span>{locale === 'tr' ? 'Kamusal Vitrin & Portföy' : 'Public Showcase & Portfolio'}</span>
             </div>
             <h2 className="text-xl font-bold tracking-tight m-0 text-white">
-              Erasmus+ Deneyimi & Kurum Vitrini
+              {locale === 'tr' ? 'Erasmus+ Deneyimi & Kurum Vitrini' : 'Erasmus+ Experience & Showcase'}
             </h2>
             <p className="text-slate-400 text-xs mt-0.5 m-0">
-              Okulların kurumunuzu arama sonuçlarında filtrelemesi ve güvenle seçmesi için bilgilerinizi zenginleştirin.
+              {locale === 'tr'
+                ? 'Okulların kurumunuzu arama sonuçlarında filtrelemesi ve güvenle seçmesi için bilgilerinizi zenginleştirin.'
+                : 'Enrich your profile to be discovered and chosen with confidence by sending schools.'}
             </p>
           </div>
           <button
             onClick={onClose}
+            title={locale === 'tr' ? 'Kapat' : 'Close'}
             className="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition-colors text-lg"
           >
             ✕
@@ -508,7 +513,11 @@ export default function HostPortfolioModal({
         {/* Modal Footer */}
         <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
           <div className="text-xs text-slate-500">
-            Aşama 2 tamamlandığında profil doluluğunuz <strong>%75-80</strong> seviyesine ulaşır.
+            {locale === 'tr' ? (
+              <>Aşama 2 tamamlandığında profil doluluğunuz <strong>%75-80</strong> seviyesine ulaşır.</>
+            ) : (
+              <>Completing Stage 2 brings profile completeness to <strong>75-80%</strong>.</>
+            )}
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -516,7 +525,7 @@ export default function HostPortfolioModal({
               onClick={onClose}
               className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 border border-slate-200 rounded-lg hover:bg-white transition-colors"
             >
-              Vazgeç
+              {locale === 'tr' ? 'Vazgeç' : 'Cancel'}
             </button>
             <button
               type="submit"
@@ -524,7 +533,7 @@ export default function HostPortfolioModal({
               disabled={isSaving || isWordCountExceeded}
               className="px-6 py-2 text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 rounded-lg shadow-sm transition-all"
             >
-              {isSaving ? 'Kaydediliyor...' : 'Portföyü Kaydet & Güncelle'}
+              {isSaving ? (locale === 'tr' ? 'Kaydediliyor...' : 'Saving...') : (locale === 'tr' ? 'Portföyü Kaydet & Güncelle' : 'Save & Update Portfolio')}
             </button>
           </div>
         </div>

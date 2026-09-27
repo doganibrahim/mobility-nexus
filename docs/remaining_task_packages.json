@@ -1,0 +1,387 @@
+{
+  "project": "ErasmusMobility (CAPPINNO Mobility Nexus)",
+  "version": "1.0.0",
+  "last_updated": "2026-09-27",
+  "status_summary": {
+    "total_packages": 13,
+    "completed_packages_count": 10,
+    "pending_packages_count": 3,
+    "completion_percentage": 77,
+    "completed_phases": [
+      "Phase 1: Temel Kurulum, Okul/Host Onboarding ve Multi-tenant Mimari",
+      "Phase 2: 5 Adımlı Hareketlilik Pipeline, Karar Motoru, KA120 PDF Parser ve KA121/KA122 Başvuru Taslak Sihirbazı",
+      "Hukuki Konsolidasyon: KVKK Aydınlatma Metni, GDPR Privacy Notice ve Tekil Katılım Koşulları & Açık Rıza Beyanı",
+      "PKG-01: İki Rol Odaklı (HOST & BENEFICIARY) Eğitim ve İşbaşı Gözlem Pazar Yeri",
+      "PKG-02: Admin CMS & Dinamik İçerik Yönetim Konsolu",
+      "PKG-03: Okul Destek, Randevu Takibi ve İhtiyaç Koordinasyon Paneli (İlk Yıl 100% Ücretsiz)",
+      "PKG-X-0: Platform Kılavuzunun Ana Sayfadan Ayrılması ve Çift Odaklı Giriş Kapısı (Okul & Host)",
+      "PKG-X-1: Tipografi Hiyerarşisi, Okunabilirlik ve Bilgi Yoğunluğu Sadeleştirmesi (De-cluttering)",
+      "PKG-X-2: Fonksiyonel Renk Kodlaması ve Bölgesel Kontrast Mimarisi (Color-Blocking)",
+      "PKG-X-3: Veriden Bağımsız İnteraktif Süreç Adımları ve Vektörel Rota Görseli",
+      "PKG-L-1: Core i18n Mimarisi, Dinamik HTML lang ve CSS/JS Büyük İ Düzeltmesi",
+      "PKG-L-2: Kamusal Alan, Onboarding, Navigasyon ve Modallar Çift Dilli Tamamlama",
+      "PKG-L-3: Başvuru Taslak Sihirbazı, Pazaryeri ve Yönetici Koordinasyonu Çift Dilli Tamamlama"
+    ],
+    "out_of_scope_operational": [
+      "Avrupa Ev Sahibi (Host) kurumlarla fiziksel temas kurularak veritabanının doldurulması (CAPPINNO iş geliştirme ve ağ operasyonudur)",
+      "Canlıya alım sonrası gerçek kullanıcı AI token/API faturaları (Kullandıkça öde mantığıyla doğrudan CAPPINNO tarafından karşılanacaktır)",
+      "Geçmiş Proje Verileri Entegrasyonu (API) - Avrupa Komisyonu açık API sağlamadığı için Kütüphane altındaki Erasmus Results Widget açık veri çözümüyle karşılanmış olup opsiyoneldir",
+      "Fikri Mülkiyet Devri ve 30 Günlük Ücretsiz Bakım - Proje teslimi ve canlıya alım sonrası garanti sürecidir"
+    ]
+  },
+  "task_packages": [
+    {
+      "package_id": "PKG-01",
+      "status": "COMPLETED",
+      "phase": "3. Ay - Eğitim Pazar Yeri",
+      "title_tr": "Eğitim ve İşbaşı Gözlem Pazar Yeri (Marketplace - İki Rol: HOST & BENEFICIARY)",
+      "title_en": "Training & Job Shadowing Marketplace (Dual Role: HOST & BENEFICIARY)",
+      "priority": "YÜKSEK",
+      "category": "Eğitim & Fırsat Pazar Yeri",
+      "summary_tr": "Okul ve öğretmenlerin Avrupa'daki yapılandırılmış eğitim kurslarını ve işbaşı gözlem (job shadowing) ilanlarını filtreleyip inceleyebildiği, seans seçerek kurumsal başvuru/talep oluşturduğu pazar yeri vitrini.",
+      "database_tables": [
+        "course",
+        "course_session",
+        "course_learning_outcome",
+        "job_shadowing_offer",
+        "marketplace_application"
+      ],
+      "api_endpoints": [
+        "GET /courses - Kurs kataloğu arama, filtreleme (ülke, ISCED alanı, süre, dil)",
+        "GET /courses/:id - Kurs detayları, müfredat ve oturum takvimi",
+        "GET /job-shadowing-offers - İşbaşı gözlem ilanları ve sektör eşleştirmesi",
+        "POST /marketplace/applications - Okul adına seans seçimi ve ön başvuru talebi oluşturma"
+      ],
+      "frontend_components": [
+        "apps/web/app/marketplace/courses/page.tsx (Kurs Kataloğu ve Kartları)",
+        "apps/web/app/marketplace/job-shadowing/page.tsx (İşbaşı Gözlem Havuzu)",
+        "apps/web/components/marketplace/CourseSessionPickerModal.tsx",
+        "apps/web/components/marketplace/ApplicationDrawer.tsx"
+      ],
+      "acceptance_criteria": [
+        "Kullanıcılar ISCED meslek alanına, hedef AB ülkesine ve bütçeye göre kurs filtreleyebilmeli.",
+        "Kurs seanslarının kontenjan durumu (açık/dolu) anlık görülebilmeli.",
+        "Okul koordinatörü katılım talebi oluşturduğunda kurum OID'si ve katılımcı sayısı otomatik bağlanmalı."
+      ]
+    },
+    {
+      "package_id": "PKG-02",
+      "status": "COMPLETED",
+      "phase": "Yönetim & CMS",
+      "title_tr": "Admin CMS & Dinamik İçerik Yönetim Konsolu",
+      "title_en": "Admin CMS & Dynamic Content Management Console",
+      "priority": "YÜKSEK",
+      "category": "Yönetim ve İçerik Altyapısı",
+      "summary_tr": "Platform yöneticisinin kod bağımlılığı olmadan yeni eğitim kursları, job shadowing kontenjanları ve Kütüphane altına yeni form/rehber belgeleri ekleyip güncelleyebileceği merkezi içerik yönetim ekranı.",
+      "database_tables": [
+        "library_resource",
+        "library_category",
+        "cms_content_revision"
+      ],
+      "api_endpoints": [
+        "POST /admin/courses - Yeni kurs ve seans tanımı oluşturma",
+        "PUT /admin/courses/:id - Kurs bilgilerini, fiyatını ve öğrenme çıktılarını güncelleme",
+        "DELETE /admin/courses/:id - Kurs veya seansı arşivleme/kaldırma",
+        "POST /admin/library/documents - Kütüphaneye PDF/Word/Excel şablonu yükleme ve yayına alma",
+        "DELETE /admin/library/documents/:id - Kütüphane dokümanını yayından kaldırma"
+      ],
+      "frontend_components": [
+        "apps/web/app/admin/content-manager/page.tsx (Admin CMS Ana Paneli)",
+        "apps/web/components/admin/cms/CourseEditorModal.tsx",
+        "apps/web/components/admin/cms/DocumentUploadModal.tsx",
+        "apps/web/components/admin/cms/CategoryTagManager.tsx"
+      ],
+      "acceptance_criteria": [
+        "Yalnızca Platform Admin rolündeki kullanıcılar bu yönetim araçlarına erişebilmeli.",
+        "Eklenen yeni bir kurs anında /marketplace ekranında listelenebilmeli.",
+        "Yüklenen yeni bir kılavuz veya resmi şablon anında /library sayfasında indirilebilir olmalı."
+      ]
+    },
+    {
+      "package_id": "PKG-03",
+      "status": "COMPLETED",
+      "phase": "3. Ay - Okul Destek ve Koordinasyon Masası",
+      "title_tr": "Okul Destek, Randevu Takibi ve İhtiyaç Koordinasyon Paneli (İlk Yıl 100% Ücretsiz)",
+      "title_en": "School Support, Inquiry Tracking & Need Coordination Console (100% Free First Year)",
+      "priority": "ORTA",
+      "category": "Okul Destek & Operasyon",
+      "summary_tr": "İlk yıl okullara tamamen ücretsiz olarak sunulan platformda, kayıtlı meslek liselerinin S1-S8 kurumsal ihtiyaç analiziyle değerlendirildiği, randevu ve eşleştirme taleplerinin (inquiries) yönetildiği, okulların KA121/KA122 akreditasyon durumuna göre doğru konsorsiyuma ve ev sahibine yönlendirildiği iç operasyon koordinasyon paneli.",
+      "database_tables": [
+        "school_coordination_status",
+        "school_need_assessment",
+        "coordination_activity_log"
+      ],
+      "api_endpoints": [
+        "GET /admin/coordination/schools - Kayıtlı okul ve kurumların destek durumları ve talepleri",
+        "GET /admin/coordination/schools/:id/need-profile - S1-S8 radar ihtiyaç analizi ve hazırlık karnesi",
+        "POST /admin/coordination/inquiries/:id/note - Koordinatör görüşme notu ve süreç güncellemesi (İncelendi, Randevu Yapıldı, Konsorsiyuma Yönlendirildi)",
+        "GET /admin/coordination/guidance/:id - Okulun durumuna göre otomatik hareketlilik ve konsorsiyum öneri rehberi"
+      ],
+      "frontend_components": [
+        "apps/web/app/admin/coordination/page.tsx (Okul Destek ve Süreç Takip Paneli)",
+        "apps/web/components/coordination/NeedRadarChart.tsx (S1-S8 Kurumsal İhtiyaç Radar Grafiği)",
+        "apps/web/components/coordination/SchoolReadinessCard.tsx",
+        "apps/web/components/coordination/MobilityGuidanceBadge.tsx"
+      ],
+      "acceptance_criteria": [
+        "Sistem ilk yıl 100% ücretsiz modelle çalışmalı; okullara hiçbir ödeme veya paket kısıtı uygulanmamalıdır.",
+        "Okul profilindeki kurumsal ihtiyaçlar ve eksiklikler S1-S8 radar grafiğiyle net şekilde görselleştirilmelidir.",
+        "Operasyon ekibi gelen randevu/danışmanlık taleplerini (`inquiries`) doğrudan koordinasyon masasında yönetebilmelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-X-0",
+      "status": "COMPLETED",
+      "phase": "Arayüz & UX Dönüşümü (UI Overhaul)",
+      "title_tr": "Platform Kılavuzunun Ana Sayfadan Ayrılması ve Çift Odaklı Giriş Kapısı (Okul & Host)",
+      "title_en": "Decoupling Platform Guide from Landing & Dual Entry Gateway (School vs. Host)",
+      "priority": "KRİTİK",
+      "category": "Landing & Navigasyon Mimarisi",
+      "summary_tr": "Ziyaretçiyi ilk açılışta dev metin bloklarıyla boğan PlatformGuideView bileşeninin ana sayfadan (/) kaldırılarak bağımsız /guide sayfasına ve menüye taşınması; ana sayfada ziyaretçiyi demo veriye ihtiyaç duymadan doğrudan karşılayan iki net fonksiyonel kapının ('Okul & Koordinatör Masası' ve 'Avrupa Ev Sahibi Masası') konumlandırılması.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/app/page.tsx (Ana Sayfa Görünüm Seçici ve Giriş Kapısı Mimarisi)",
+        "apps/web/app/guide/page.tsx (Bağımsız Tam Ekran Platform Kullanım Kılavuzu)",
+        "apps/web/components/gateway/DualActionGateways.tsx (Okul ve Host Karşılama Kartları)",
+        "apps/web/components/layout/AppHeader.tsx (Kılavuz ve Giriş Butonları Navigasyonu)"
+      ],
+      "acceptance_criteria": [
+        "Ziyaretçi ana sayfaya (/) girdiğinde devasa kılavuz metinleriyle değil, temiz ve odaklı çift kapılı (Okul / Host) arayüzle karşılaşmalıdır.",
+        "Kullanım Kılavuzu (/guide) adresinde tüm rehber bölümleriyle eksiksiz ve bağımsız olarak erişilebilir olmalıdır.",
+        "Ziyaretçi sisteme giriş yapmadan da her iki kurumsal kapının sunduğu imkanları tek bakışta anlayabilmelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-X-1",
+      "status": "COMPLETED",
+      "phase": "Arayüz & UX Dönüşümü (UI Overhaul)",
+      "title_tr": "Tipografi Hiyerarşisi, Okunabilirlik ve Bilgi Yoğunluğu Sadeleştirmesi (De-cluttering)",
+      "title_en": "Typography Hierarchy, Legibility & Information Density Reduction (De-cluttering)",
+      "priority": "YÜKSEK",
+      "category": "Tipografi & Bilgi Mimarisi",
+      "summary_tr": "Sayfalardaki mikro-metinlerin (10px-11px), aşırı bürokratik sıkışıklığın ve uzun paragrafların temizlenmesi; büyük, net başlıklar (text-2xl/3xl font-black), sade alt açıklamalar, yüksek okunabilirlikli istatistik rozetleri ve ferah padding/whitespace düzeninin getirilmesi.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/components/ui/StatHighlightBadge.tsx (Büyük Rakamlı Temiz İstatistik Rozetleri)",
+        "apps/web/components/dashboard/SchoolDashboardView.tsx (Metin Yoğunluğunun Sadeleştirilmesi)",
+        "apps/web/components/dashboard/HostDashboardView.tsx (Ferah Kart ve Başlık Düzeni)",
+        "apps/web/app/globals.css (Tipografi ve Okunabilirlik Yardımcı Sınıfları)"
+      ],
+      "acceptance_criteria": [
+        "Kritik olmayan hiçbir metin 12px altında (text-[10px] veya text-[11px]) sunulmamalı; standart gövde metinleri okunaklı ve ferah olmalıdır.",
+        "Ana metrik ve göstergeler dev metinler yerine büyük sayısal istatistik rozetleriyle (4xl/3xl font-black) vurgulanmalıdır.",
+        "Sayfalardaki aşırı bürokratik metin yükü %40 oranında sadeleştirilerek görsel ferahlık sağlanmalıdır."
+      ]
+    },
+    {
+      "package_id": "PKG-X-2",
+      "status": "COMPLETED",
+      "phase": "Arayüz & UX Dönüşümü (UI Overhaul)",
+      "title_tr": "Fonksiyonel Renk Kodlaması ve Bölgesel Kontrast Mimarisi (Color-Blocking)",
+      "title_en": "Functional Color Coding & Regional High-Contrast Architecture (Color-Blocking)",
+      "priority": "YÜKSEK",
+      "category": "Görsel Tasarım & Renk Mimarisi",
+      "summary_tr": "Sitenin her yerinde kullanılan tekdüze gri ve soluk slate-50/border-slate-200 görünümünün kırılarak; yapay zeka gradient veya bulanıklık (blur glow) klişelerine kaçmadan, rollere ve işlevlere göre net, yüksek kontrastlı renk kodlamasının (Okul: Canlı Kobalt Mavi, Ev Sahibi: Zümrüt Yeşili, Bütçe/Hibe: Sıcak Amber/Turuncu) ve koyu/açık zemin kontrastının uygulanması.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/components/ui/RoleThemedCard.tsx (Rol Tabanlı Kenarlık ve Rozet Renk Sistemi)",
+        "apps/web/components/gateway/HeroContrastSection.tsx (Koyu Lacivert / Yüksek Kontrastlı Karşılama Alanı)",
+        "apps/web/components/ui/StatusAccentBadge.tsx (Durum ve Aşama Vurgu Rozetleri)"
+      ],
+      "acceptance_criteria": [
+        "Monoton gri/beyaz kutu yığını yerine her kurumsal işlevin (Okul, Host, Hibe) belirgin bir kimlik rengi ve kenarlık kontrastı olmalıdır.",
+        "Yapay zeka tarzı anlamsız mesh gradient veya neon blur efektleri kesinlikle kullanılmamalı; kurumsal ve ciddi ama canlı renk blokları tercih edilmelidir.",
+        "Koyu lacivert zemin ile açık kart alanları arasındaki kontrast oranı WCAG AAA standartlarında olmalıdır."
+      ]
+    },
+    {
+      "package_id": "PKG-X-3",
+      "status": "COMPLETED",
+      "phase": "Arayüz & UX Dönüşümü (UI Overhaul)",
+      "title_tr": "Veriden Bağımsız İnteraktif Süreç Adımları ve Vektörel Rota Görseli",
+      "title_en": "Data-Independent Interactive Process Stepper & Vector Mobility Route Component",
+      "priority": "YÜKSEK",
+      "category": "İnteraktif Bileşenler & Görselleştirme",
+      "summary_tr": "Veritabanında kayıtlı tek bir demo veri veya sahte kullanıcı olmasa dahi sitenin dinamik, canlı ve modern görünmesini sağlayan; CSS/SVG tabanlı 3 adımlı interaktif süreç akış bileşeni (1. Hazırlık & OID -> 2. Eşleşme & Hareketlilik -> 3. Resmi İhraç) ve Türkiye'den Avrupa'ya hareketlilik rotalarını sembolize eden vektörel akış ağı.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/components/gateway/InteractiveProcessStepper.tsx (3 Adımlı İnteraktif Akış Kartı)",
+        "apps/web/components/gateway/EuropeanRouteNetwork.tsx (Saf CSS/SVG Hareketlilik Rota ve Düğüm Grafiği)"
+      ],
+      "acceptance_criteria": [
+        "Görsel canlılık ve dinamizm hiçbir demo veriye, sahte fotoğrafa veya stok görsele bağımlı olmamalıdır.",
+        "Kullanıcı süreç adımlarına tıkladığında veya hover ettiğinde ilgili aşamanın kazanımlarını dinamik olarak görebilmelidir.",
+        "SVG tabanlı Avrupa hareketlilik rota düğümleri hafif, responsive ve saf vektörel olmalıdır."
+      ]
+    },
+    {
+      "package_id": "PKG-L-1",
+      "status": "COMPLETED",
+      "phase": "Lokalizasyon & Çift Dilli Altyapı (i18n Overhaul)",
+      "title_tr": "Lokalizasyon Çekirdeği, Dinamik HTML lang ve CSS/JS Büyük İ Sorununun Kökten Çözümü",
+      "title_en": "Core i18n Architecture, Dynamic HTML Lang & CSS/JS Uppercase Dotted 'İ' Fix",
+      "priority": "YÜKSEK",
+      "category": "Lokalizasyon & i18n",
+      "summary_tr": "Platformda İngilizce seçildiğinde dahi tarayıcıların Türkçe harf dönüşüm tablosunu uygulayarak 'INQUIRY' yerine 'İNQUİRY', 'ID' yerine 'İD', 'MOBILITY' yerine 'MOBİLİTY' yazmasına yol açan kök nedenin (sabit <html lang=\"tr\"> ve senkronize edilmeyen LanguageProvider) giderilmesi; 214 adet CSS 'uppercase' kullanımının ve JS toUpperCase/toLowerCase fonksiyonlarının locale-aware hale getirilmesi; i18n.tsx sözlüğündeki çevrilmemiş kısımların (copyright vb.) ve şapkalı harflerin temizlenmesi.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/app/layout.tsx (Dinamik <html lang={locale}> entegrasyonu)",
+        "apps/web/lib/i18n.tsx (LanguageProvider içinde document.documentElement.lang güncellemesi ve eksik EN çevirileri)",
+        "apps/web/lib/locale-case.ts (İngilizce ve Türkçe için güvenli toLocaleUpperCase / toLocaleLowerCase yardımcı fonksiyonları)",
+        "apps/web/components/layout/AppHeader.tsx (Dil değiştirici senkronizasyonu)"
+      ],
+      "acceptance_criteria": [
+        "İngilizce diline geçildiğinde <html lang=\"en\"> anında güncellenmeli ve tarayıcı hiçbir İngilizce metne noktalı 'İ' (İNQUİRY, İD, MOBİLİTY vb.) uygulamamalıdır.",
+        "i18n.tsx dosyasındaki İngilizce sözlükte hiçbir Türkçe karakter (ğ, ü, ş, ı, ö, ç, İ) veya çevrilmemiş satır kalmamalıdır.",
+        "Metinlerde gereksiz şapkalı harf (î, â, û) kullanılmamalı, standart Türkçe imla korunmalıdır.",
+        "npm run build hatasız ve 0 uyarı ile derlenmelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-L-2",
+      "status": "COMPLETED",
+      "phase": "Lokalizasyon & Çift Dilli Altyapı (i18n Overhaul)",
+      "title_tr": "Kamusal Alan, Navigasyon, Onboarding & Okul/Host Paneli Tam Çift Dilli Lokalizasyonu",
+      "title_en": "Public Gateway, Navigation, Onboarding & User Dashboards Full Bilingual Localization",
+      "priority": "YÜKSEK",
+      "category": "Lokalizasyon & i18n",
+      "summary_tr": "Kullanıcıların ilk karşılaştığı 123 satırlık sabit Türkçe içeren Onboarding sihirbazı (apps/web/app/onboarding/page.tsx), 3 adımlı süreç akışı (InteractiveProcessStepper), Avrupa hareketlilik rotası (EuropeanRouteNetwork), yapışkan navigasyon (NavSticky) ve yasal/program açılır pencerelerinin (LegalModal, ProgrammesModal, BeneficiariesModal) eksiksiz İngilizce ve Türkçe desteğine kavuşturulması.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/app/onboarding/page.tsx (123 satırlık sabit Türkçe metnin locale duyarlı hale getirilmesi)",
+        "apps/web/components/gateway/InteractiveProcessStepper.tsx (3 Adımlı Süreç Akışının EN/TR çift dilli yapılması)",
+        "apps/web/components/gateway/EuropeanRouteNetwork.tsx (Rota ağı etiket ve açıklamalarının lokalizasyonu)",
+        "apps/web/components/layout/NavSticky.tsx (Eksik useTranslation kancasının eklenmesi)",
+        "apps/web/components/ui/LegalModal.tsx (67 satırlık GDPR/KVKK yasal metninin EN/TR çift dilli yapılması)",
+        "apps/web/components/ui/ProgrammesModal.tsx (44 satırlık program detaylarının lokalizasyonu)",
+        "apps/web/components/dashboard/SchoolDashboardView.tsx & HostDashboardView.tsx (Kontrol paneli aksiyonlarının tam çevirisi)"
+      ],
+      "acceptance_criteria": [
+        "Onboarding sürecinde okul veya host kaydı yapan yabancı bir kullanıcı tek bir satır dahi Türkçe ile karşılaşmamalıdır.",
+        "Anasayfa, süreç kartları ve harita/rota bileşenleri dil değiştiğinde anında akıcı İngilizceye geçmelidir.",
+        "Yasal metinler ve modal içerikleri her iki dilde de kurumsal terminolojiye tam uyumlu olmalıdır."
+      ]
+    },
+    {
+      "package_id": "PKG-L-3",
+      "status": "COMPLETED",
+      "phase": "Lokalizasyon & Çift Dilli Altyapı (i18n Overhaul)",
+      "title_tr": "Başvuru Taslak Sihirbazı, Pazaryeri ve Yönetici Koordinasyonu Çift Dilli Tamamlama",
+      "title_en": "Application Draft Assistant, Marketplace & Admin Coordination Bilingual Completion",
+      "priority": "YÜKSEK",
+      "category": "Lokalizasyon & i18n",
+      "summary_tr": "Platformun en kapsamlı modülleri olan Başvuru Taslak Sihirbazı'ndaki 5 ana form kesitinde bulunan 300+ satırlık sabit Türkçe alanın (ActivityDetails, AiOfficialQuestions, QualityTeam, OrgProfile, NeedsObjectives, Ka120Import), Pazaryeri kurs ve işbaşı ilan pencerelerinin (MarketplaceApplicationModal, HostCreateCourseModal, HostCreateJobShadowingModal) ve Yönetici Doğrulama/Koordinasyon Masası'nın tam çift dilli çalışır hale getirilmesi.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/components/application-draft/sections/* (Tüm başvuru formu alanları ve AI soru kompozisyonları)",
+        "apps/web/components/application-draft/Ka120ImportPreviewModal.tsx (PDF içe aktarım önizleme penceresi)",
+        "apps/web/components/marketplace/MarketplaceApplicationModal.tsx & HostCreateCourseModal.tsx",
+        "apps/web/components/marketplace/CourseSessionPickerModal.tsx & JobShadowingCard.tsx",
+        "apps/web/components/marketplace/CourseCard.tsx, HostCreateSessionModal.tsx, HostCreateJobShadowingModal.tsx & HostApplicationReviewModal.tsx",
+        "apps/web/app/marketplace/page.tsx (Pazar Yeri ve Ev Sahibi Konsolu Çift Dilli Tamamlama)",
+        "apps/web/components/admin/AdminVerificationQueueModal.tsx & CategoryTagManager.tsx",
+        "apps/web/components/coordination/NeedRadarChart.tsx & MobilityGuidanceBadge.tsx"
+      ],
+      "acceptance_criteria": [
+        "Başvuru taslak sihirbazında KA121 ve KA122 form alanları dil seçimine göre kusursuz İngilizce/Türkçe olarak doldurulup indirilebilmelidir.",
+        "Pazaryerindeki Avrupa ev sahibi işletmeleri kurs veya işbaşı ilanı oluştururken formu tamamen İngilizce kullanabilmelidir.",
+        "Yönetici onay kuyruğu ve koordinasyon araçlarında tüm kriterler ve bildirimler iki dilde de net anlaşılır olmalıdır."
+      ]
+    },
+    {
+      "package_id": "PKG-04",
+      "status": "BEKLEMEDE",
+      "phase": "3. Ay - Öğrenci Hazırlık Portalı",
+      "title_tr": "Katılımcı Hazırlık Portalı (Öğrenci & Personel LMS)",
+      "title_en": "Participant Mobility Preparation Portal (LMS)",
+      "priority": "ORTA",
+      "category": "Öğrenci / Katılımcı Yönetimi",
+      "summary_tr": "Hareketliliğe seçilen öğrencilerin ve öğretmenlerin seyahat öncesi kültürel uyum, dilsel hazırlık, iş sağlığı ve güvenlik mikro-eğitimlerini tamamlayabildiği ve koordinatörün süreci izlediği portal.",
+      "database_tables": [
+        "prep_module",
+        "prep_assignment",
+        "prep_completion"
+      ],
+      "api_endpoints": [
+        "GET /preparation/modules - 10 mikro-öğrenme modül listesi ve içerikleri",
+        "POST /preparation/complete-step - Katılımcı modül tamamlama ve mini test kaydı",
+        "GET /preparation/progress/:participantId - İlerleme yüzdesi ve hazırlık karnesi"
+      ],
+      "frontend_components": [
+        "apps/web/app/preparation/page.tsx (Katılımcı Hazırlık Portalı)",
+        "apps/web/components/preparation/MicroLearningCard.tsx",
+        "apps/web/components/preparation/ProgressOverviewBar.tsx"
+      ],
+      "acceptance_criteria": [
+        "Katılımcılar interaktif hazırlık adımlarını tamamladıkça ilerleme çubukları güncellenmeli.",
+        "Okul koordinatörü hangi öğrencinin hareketlilik hazırlığını tamamladığını tek ekranda görebilmeli."
+      ]
+    },
+    {
+      "package_id": "PKG-05",
+      "phase": "4. Ay - Resmi Evrak & Dosya İhracı",
+      "title_tr": "Resmi Hareketlilik Evrak İhracı ve Otomasyon Motoru",
+      "title_en": "Official Mobility Dossier & Formal Document Export Engine",
+      "priority": "YÜKSEK",
+      "category": "Resmi Dokümantasyon & Raporlama",
+      "summary_tr": "İlk yıl ücretsiz model kapsamında tüm onaylanan ve eşleşen hareketlilikler için resmi Avrupa Komisyonu Learning Agreement, Europass Mobility ve Kurumlararası Sözleşme evraklarının doldurulmuş Word/PDF olarak tek tıkla dışa aktarılması.",
+      "database_tables": [
+        "mobility_dossier",
+        "dossier_document",
+        "export_log"
+      ],
+      "api_endpoints": [
+        "GET /dossiers/mobility/:id - Hareketlilik dosya durumu ve evrak listesi",
+        "POST /documents/export-learning-agreement - Doldurulmuş resmi Learning Agreement belgesi (Word/PDF)",
+        "POST /documents/export-europass - Resmi Europass Mobility yetkinlik belgesi çıktısı",
+        "POST /documents/export-inter-institutional-agreement - Kurumlararası resmi ortaklık protokolü"
+      ],
+      "frontend_components": [
+        "apps/web/app/dossier/page.tsx (Resmi Hareketlilik Dosya ve Evrak İhraç Masası)",
+        "apps/web/components/export/LearningAgreementExportModal.tsx",
+        "apps/web/components/export/EuropassExportModal.tsx",
+        "apps/web/components/export/DossierDownloadCard.tsx"
+      ],
+      "acceptance_criteria": [
+        "Learning Agreement çıktısı resmi Avrupa Komisyonu VET şablonuna birebir uyumlu olmalıdır.",
+        "Europass Mobility çıktısı katılımcının ESCO kazanımları ve ev sahibi işletme bilgileriyle otomatik doldurulmalıdır.",
+        "Tüm resmi ihracat araçları kayıtlı okullara ilk yıl 100% ücretsiz ve sınırsız sunulmalıdır."
+      ]
+    },
+    {
+      "package_id": "PKG-06",
+      "phase": "4. Ay - Canlıya Alım & Kalite Kontrol",
+      "title_tr": "Sistem Kalite Metrikleri (QA), Canlıya Alım ve Stabilizasyon",
+      "title_en": "System QA Metrics, Production Deployment & Hardening",
+      "priority": "YÜKSEK",
+      "category": "Canlıya Alım & Güvenlik",
+      "summary_tr": "Sistemin canlı sunucularda yüksek erişilebilirlik ve sıfır veri sızıntısıyla çalışması için yük testleri, hata loglama, performans metrikleri paneli ve canlı ortam devreye alımı.",
+      "database_tables": [
+        "qa_test_run",
+        "system_metric",
+        "commercial_metric_snapshot"
+      ],
+      "api_endpoints": [
+        "GET /admin/qa - Sistem yük ve güvenlik test sonuçları",
+        "GET /admin/metrics - API yanıt süreleri ve veritabanı sağlık göstergeleri",
+        "GET /analytics/commercial - Kayıtlı kurum, aktif eşleşme ve dönüşüm metrikleri"
+      ],
+      "frontend_components": [
+        "apps/web/app/admin/qa-dashboard/page.tsx (Sistem Sağlık ve Hata Takip Ekranı)",
+        "apps/web/components/admin/SystemHealthIndicator.tsx"
+      ],
+      "acceptance_criteria": [
+        "API yanıt süreleri p95 bazında 500ms altında kalmalı.",
+        "Tüm ortam değişkenleri (.env.production) canlı güvenlik kriterlerine göre kilitlenmeli.",
+        "Sistem canlıya alındıktan sonraki ilk 30 günlük ücretsiz bakım ve hata giderme döngüsü başlatılmalı."
+      ]
+    }
+  ]
+}

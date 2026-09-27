@@ -7,6 +7,7 @@ import { ParticipantType, MobilityGoal } from '@mobility-nexus/types';
 import { useTranslation } from '../../lib/i18n';
 import MobilityInquiryModal from '../inquiry/MobilityInquiryModal';
 import { useAppStore } from '../../lib/store';
+import { getCountryFlagLabel } from '../../lib/countries';
 
 interface RecommendationReportCardProps {
   data: {
@@ -305,7 +306,7 @@ export default function RecommendationReportCard({
                     </th>
                     <td className="p-3 text-slate-900 font-medium border-r border-slate-200">
                       <div className="flex items-center justify-between gap-2 flex-wrap">
-                        <span>{data.hostName || '—'} {data.hostCountry ? `(${data.hostCountry})` : ''}</span>
+                        <span>{data.hostName || '—'} {data.hostCountry ? `(${getCountryFlagLabel(data.hostCountry, locale as 'tr' | 'en') || data.hostCountry})` : ''}</span>
                         {data.hostName && !hasExistingInquiry && (
                           <button
                             type="button"
@@ -365,7 +366,7 @@ export default function RecommendationReportCard({
                     <td colSpan={3} className="p-3 text-slate-800">
                       <div className="flex flex-wrap gap-x-6 gap-y-2">
                         <span><strong>{locale === 'tr' ? 'Faaliyet:' : 'Activity:'}</strong> {data.mobilityGoal}</span>
-                        <span><strong>{locale === 'tr' ? 'Ülkeler:' : 'Countries:'}</strong> {data.targetCountries?.length > 0 ? data.targetCountries.join(', ') : (locale === 'tr' ? 'Fark Etmez / Tüm Uygun Ülkeler' : 'No Preference / All Eligible Countries')}</span>
+                        <span><strong>{locale === 'tr' ? 'Ülkeler:' : 'Countries:'}</strong> {data.targetCountries?.length > 0 ? data.targetCountries.map(c => getCountryFlagLabel(c, locale as 'tr' | 'en')).join(', ') : (locale === 'tr' ? 'Fark Etmez / Tüm Uygun Ülkeler' : 'No Preference / All Eligible Countries')}</span>
                         <span><strong>{locale === 'tr' ? 'Tarih:' : 'Dates:'}</strong> {data.startDate || '—'} / {data.endDate || '—'}</span>
                         <span><strong>{locale === 'tr' ? 'Katılımcı:' : 'Participants:'}</strong> {data.participantCount} {locale === 'tr' ? 'Katılımcı' : 'Participants'} (+{data.accompanyingPersonsCount} {locale === 'tr' ? 'Refakat Eden Kişi' : 'Accompanying Persons'})</span>
                         <span><strong>{locale === 'tr' ? 'Yaş Grubu:' : 'Age Group:'}</strong> {data.ageGroup === 'under_18' ? (locale === 'tr' ? '18 Yaş Altı Reşit Olmayan Katılımcı' : 'Under 18 Minor Participant') : data.ageGroup === '18_plus' ? (locale === 'tr' ? '18+ Yetişkin' : '18+ Adult') : (locale === 'tr' ? 'Karma' : 'Mixed')}</span>

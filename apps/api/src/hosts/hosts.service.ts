@@ -1313,6 +1313,25 @@ export class HostsService implements OnModuleInit {
       passedFilters.push('special_needs');
     }
 
+    // 10. Mandatory Logistics Requirements (Strict Hard Filter)
+    if (dto.logisticsRequired?.accommodation && !host.providesAccommodation) {
+      disqualificationReasons.push('Zorunlu konaklama şartı karşılanmıyor: Ev sahibi konaklama hizmeti sunmamaktadır.');
+    } else {
+      passedFilters.push('logistics_accommodation');
+    }
+
+    if (dto.logisticsRequired?.meals && !host.providesMeals) {
+      disqualificationReasons.push('Zorunlu yemek şartı karşılanmıyor: Ev sahibi yemek hizmeti sunmamaktadır.');
+    } else {
+      passedFilters.push('logistics_meals');
+    }
+
+    if (dto.logisticsRequired?.transfers && !host.providesTransfers) {
+      disqualificationReasons.push('Zorunlu transfer şartı karşılanmıyor: Ev sahibi transfer hizmeti sunmamaktadır.');
+    } else {
+      passedFilters.push('logistics_transfers');
+    }
+
     return {
       isEligible: disqualificationReasons.length === 0,
       disqualificationReasons,

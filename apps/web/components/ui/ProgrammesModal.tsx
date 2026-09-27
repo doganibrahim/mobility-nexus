@@ -154,111 +154,247 @@ export default function ProgrammesModal({
                   <table className="min-w-[520px] w-full divide-y divide-slate-200 text-left">
                     <thead className="bg-slate-50">
                       <tr>
-                        <th className="py-3 px-4 font-bold text-slate-900 text-xs">Özellik / Kriter</th>
-                        <th className="py-3 px-4 font-bold text-blue-900 text-xs bg-blue-50/50">KA121-VET (Akredite)</th>
-                        <th className="py-3 px-4 font-bold text-amber-900 text-xs bg-amber-50/50">KA122-VET (Kısa Dönem)</th>
+                        <th className="py-3 px-4 font-bold text-slate-900 text-xs">
+                          {locale === 'tr' ? 'Özellik / Kriter' : 'Feature / Criteria'}
+                        </th>
+                        <th className="py-3 px-4 font-bold text-blue-900 text-xs bg-blue-50/50">
+                          KA121-VET ({locale === 'tr' ? 'Akredite' : 'Accredited'})
+                        </th>
+                        <th className="py-3 px-4 font-bold text-amber-900 text-xs bg-amber-50/50">
+                          KA122-VET ({locale === 'tr' ? 'Kısa Dönem' : 'Short-term'})
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100 text-xs">
                       <tr>
-                        <td className="py-2.5 px-4 font-semibold text-slate-900">Kimler Başvurabilir?</td>
-                        <td className="py-2.5 px-4 text-slate-700">Erasmus Akreditasyon belgesi olan kurumlar & konsorsiyum liderleri</td>
-                        <td className="py-2.5 px-4 text-slate-700">Akredite olmayan tüm mesleki eğitim kurumları (MTAL, ÇPAL, HEM)</td>
+                        <td className="py-2.5 px-4 font-semibold text-slate-900">
+                          {locale === 'tr' ? 'Kimler Başvurabilir?' : 'Eligible Applicants'}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700">
+                          {locale === 'tr'
+                            ? 'Erasmus Akreditasyon belgesi olan kurumlar & konsorsiyum liderleri'
+                            : 'Organisations holding Erasmus Accreditation & consortium coordinators'}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700">
+                          {locale === 'tr'
+                            ? 'Akredite olmayan tüm mesleki eğitim kurumları (MTAL, ÇPAL, HEM)'
+                            : 'All non-accredited vocational training schools and VET institutions'}
+                        </td>
                       </tr>
                       <tr>
-                        <td className="py-2.5 px-4 font-semibold text-slate-900">Hibe Alma Garantisi</td>
-                        <td className="py-2.5 px-4 text-slate-700">Her yıl garantili yıllık bütçe tahsisatı (Erasmus Planı hedeflerine göre)</td>
-                        <td className="py-2.5 px-4 text-slate-700">Yarışmalı teklif çağrısı (Puanlama usulüyle ilk sıralara hibe verilir)</td>
+                        <td className="py-2.5 px-4 font-semibold text-slate-900">
+                          {locale === 'tr' ? 'Hibe Alma Süreci' : 'Grant Allocation Flow'}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700">
+                          {locale === 'tr'
+                            ? 'Erasmus Planı hedeflerine ve performansa dayalı yıllık bütçe tahsisatı'
+                            : 'Annual budget allocation based on Erasmus Plan goals and track record'}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700">
+                          {locale === 'tr'
+                            ? 'Yarışmalı teklif çağrısı (Puanlama usulüyle ilk sıralara hibe verilir)'
+                            : 'Competitive call for proposals (Assessed and ranked by quality score)'}
+                        </td>
                       </tr>
                       <tr>
-                        <td className="py-2.5 px-4 font-semibold text-slate-900">Katılımcı Kotası</td>
-                        <td className="py-2.5 px-4 text-slate-700">Kurumsal kapasiteye göre esnek ve yüksek kontenjan</td>
-                        <td className="py-2.5 px-4 text-slate-700">Proje başına maksimum 30 katılımcı sınırı</td>
+                        <td className="py-2.5 px-4 font-semibold text-slate-900">
+                          {locale === 'tr' ? 'Katılımcı Kotası' : 'Participant Quota'}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700">
+                          {locale === 'tr'
+                            ? 'Kurumsal kapasiteye göre esnek ve yüksek kontenjan'
+                            : 'Flexible and high volume aligned with institutional capacity'}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700">
+                          {locale === 'tr'
+                            ? 'Proje başına maksimum 30 katılımcı sınırı'
+                            : 'Capped at a maximum of 30 participants per project'}
+                        </td>
                       </tr>
                       <tr>
-                        <td className="py-2.5 px-4 font-semibold text-slate-900">Başvuru Sıklığı</td>
-                        <td className="py-2.5 px-4 text-slate-700">Yılda 1 kez standart talep formu doldurulur</td>
-                        <td className="py-2.5 px-4 text-slate-700">Her 36 aylık döngüde en fazla 3 proje hakkı</td>
+                        <td className="py-2.5 px-4 font-semibold text-slate-900">
+                          {locale === 'tr' ? 'Başvuru Sıklığı' : 'Application Frequency'}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700">
+                          {locale === 'tr'
+                            ? 'Yılda 1 kez standart talep formu doldurulur'
+                            : 'Once annually via simplified grant request form'}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700">
+                          {locale === 'tr'
+                            ? '5 ardışık çağrı yılı içinde en fazla 3 proje hakkı'
+                            : 'Maximum 3 approved projects within 5 consecutive call years'}
+                        </td>
                       </tr>
                       <tr>
-                        <td className="py-2.5 px-4 font-semibold text-slate-900">Staj & Öğrenme Çıktıları</td>
-                        <td className="py-2.5 px-4 text-slate-700">ESCO ve ECVET standartlarında kurumsal stratejik entegrasyon</td>
-                        <td className="py-2.5 px-4 text-slate-700">Kısa vadeli somut beceri açığı kapatma odaklı</td>
+                        <td className="py-2.5 px-4 font-semibold text-slate-900">
+                          {locale === 'tr' ? 'Staj & Öğrenme Çıktıları' : 'Internship & Outcomes'}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700">
+                          {locale === 'tr'
+                            ? 'ESCO ve ECVET standartlarında kurumsal stratejik entegrasyon'
+                            : 'Strategic curriculum integration with ESCO skill taxonomies'}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700">
+                          {locale === 'tr'
+                            ? 'Kısa vadeli somut beceri açığı kapatma odaklı'
+                            : 'Targeted short-term competence gap closure and skill acquisition'}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
 
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                  <div className="font-bold text-slate-900 mb-1">💡 Hangi Program Kurumunuz İçin Uygun?</div>
+                  <div className="font-bold text-slate-900 mb-1">
+                    {locale === 'tr' ? '💡 Hangi Program Kurumunuz İçin Uygun?' : '💡 Which Programme Best Fits Your School?'}
+                  </div>
                   <p className="m-0 text-slate-600 text-xs">
-                    Kurumunuzun OID numarası ve Erasmus Akreditasyonu varsa <strong>KA121</strong> yıllık tahsisatından faydalanabilirsiniz. Eğer henüz akreditasyon almadıysanız ve tek seferlik/küçük ölçekli başlayacaksanız <strong>KA122</strong>, düzenli ve sürekli hareketlilik hedefliyorsanız ya da 30 kişi sınırını aşıyorsanız <strong>KA120 Akreditasyonu</strong> sizin için en doğru yoldur.
+                    {locale === 'tr'
+                      ? 'Kurumunuzun OID numarası ve Erasmus Akreditasyonu varsa KA121 yıllık tahsisatından faydalanabilirsiniz. Eğer henüz akreditasyon almadıysanız ve tek seferlik/küçük ölçekli başlayacaksanız KA122, düzenli ve sürekli hareketlilik hedefliyorsanız ya da 30 kişi sınırını aşıyorsanız KA120 Akreditasyonu sizin için en doğru yoldur.'
+                      : 'If your organisation has an active OID and holds Erasmus Accreditation, you can access the KA121 annual budget allocation. If you are starting fresh with short-term cohorts, choose KA122. For long-term continuous mobilities exceeding 30 participants, KA120 Accreditation is the recommended pathway.'}
                   </p>
                 </div>
               </div>
             ) : activeTab === 'KA120' ? (
               <div className="space-y-4">
                 <div className="p-4 bg-purple-50 border border-purple-200 rounded-xl space-y-1">
-                  <div className="font-bold text-purple-950 text-sm">⭐ KA120-VET: Erasmus Mesleki Eğitim Akreditasyonu</div>
-                  <div className="text-[11px] text-purple-900">Kurumsal uluslararasılaşma pasaportu: Yıllık garantili bütçe tahsisatına açılan kapı</div>
+                  <div className="font-bold text-purple-950 text-sm">
+                    {locale === 'tr' ? '⭐ KA120-VET: Erasmus Mesleki Eğitim Akreditasyonu' : '⭐ KA120-VET: Erasmus VET Accreditation'}
+                  </div>
+                  <div className="text-[11px] text-purple-900">
+                    {locale === 'tr'
+                      ? 'Kurumsal uluslararasılaşma pasaportu: Yıllık bütçe tahsisatına açılan stratejik kapı'
+                      : 'Strategic internationalisation passport: Direct gateway to yearly grant allocations'}
+                  </div>
                 </div>
                 <p className="m-0">
-                  Erasmus Akreditasyonu, mesleki eğitim kurumlarının (MTAL, MEM, ÇPAL) uzun vadeli stratejik hedefler doğrultusunda yüksek kaliteli öğrenici ve personel hareketliliklerini düzenli olarak organize edebileceğini belgeleyen resmî bir kurumsal üyeliktir.
+                  {locale === 'tr'
+                    ? 'Erasmus Akreditasyonu, mesleki eğitim kurumlarının (MTAL, MEM, ÇPAL) uzun vadeli stratejik hedefler doğrultusunda yüksek kaliteli öğrenici ve personel hareketliliklerini düzenli olarak organize edebileceğini belgeleyen resmi bir kurumsal üyeliktir.'
+                    : 'Erasmus Accreditation is a formal membership confirming that a VET organisation possesses the operational capacity to manage high-quality learner and staff mobilities on an ongoing, strategic basis.'}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   <div className="p-3 bg-white border border-slate-200 rounded-xl">
-                    <div className="font-bold text-slate-900 mb-0.5">🎯 3–5 Yıllık Erasmus Planı</div>
-                    <div className="text-slate-500 text-[11px]">Kurumun ihtiyaç analizi, hedefleri, beklenen etkileri ve kalite taahhütlerini içeren stratejik yol haritası.</div>
+                    <div className="font-bold text-slate-900 mb-0.5">
+                      {locale === 'tr' ? '🎯 3–5 Yıllık Erasmus Planı' : '🎯 3–5 Year Erasmus Plan'}
+                    </div>
+                    <div className="text-slate-500 text-[11px]">
+                      {locale === 'tr'
+                        ? 'Kurumun ihtiyaç analizi, hedefleri, beklenen etkileri ve kalite taahhütlerini içeren stratejik yol haritası.'
+                        : 'Strategic roadmap outlining institutional needs, objectives, target impacts, and quality standards.'}
+                    </div>
                   </div>
                   <div className="p-3 bg-white border border-slate-200 rounded-xl">
-                    <div className="font-bold text-slate-900 mb-0.5">💰 Yarışmasız Yıllık Hibe Garantisi</div>
-                    <div className="text-slate-500 text-[11px]">Bir kez akredite olduktan sonra her yıl karmaşık proje yazmadan doğrudan KA121 yıllık tahsisatı alınır.</div>
+                    <div className="font-bold text-slate-900 mb-0.5">
+                      {locale === 'tr' ? '💰 Yıllık Hibe Tahsisatı' : '💰 Annual Budget Allocation'}
+                    </div>
+                    <div className="text-slate-500 text-[11px]">
+                      {locale === 'tr'
+                        ? 'Bir kez akredite olduktan sonra her yıl yeniden karmaşık teklif yazmadan doğrudan KA121 yıllık tahsisatı talep edilir.'
+                        : 'Once accredited, schools request annual funds directly via KA121 without competing in annual project drafting.'}
+                    </div>
                   </div>
                 </div>
                 <div className="p-3 bg-purple-50/60 border border-purple-200 rounded-xl">
-                  <div className="font-bold text-purple-950 mb-1">Kimler KA120 Akreditasyonuna Başvurmalı?</div>
+                  <div className="font-bold text-purple-950 mb-1">
+                    {locale === 'tr' ? 'Kimler KA120 Akreditasyonuna Başvurmalı?' : 'Who Should Apply for KA120 Accreditation?'}
+                  </div>
                   <ul className="list-disc pl-5 space-y-1 text-slate-700 text-[11px]">
-                    <li>Son 36 ayda azami 3 KA122 hibesi hakkını dolduran veya doldurmak üzere olan okullar.</li>
-                    <li>Her yıl düzenli olarak öğrenci ve personelini Avrupa stajına göndermek isteyen kurumlar.</li>
-                    <li>Tek bir çağrı döneminde 30 katılımcı sınırından daha yüksek kontenjan hedefleyen kurumlar.</li>
+                    <li>
+                      {locale === 'tr'
+                        ? '5 ardışık çağrı yılında azami 3 KA122 hibesi hakkını dolduran veya doldurmak üzere olan okullar.'
+                        : 'Schools that have reached or are nearing the 3-grant limit within 5 consecutive KA122 call years.'}
+                    </li>
+                    <li>
+                      {locale === 'tr'
+                        ? 'Her yıl düzenli olarak öğrenci ve personelini Avrupa stajına göndermek isteyen kurumlar.'
+                        : 'Institutions seeking regular, recurring European internship placements for trainees and trainers.'}
+                    </li>
+                    <li>
+                      {locale === 'tr'
+                        ? 'Tek bir çağrı döneminde 30 katılımcı sınırından daha yüksek kontenjan hedefleyen kurumlar.'
+                        : 'Organisations requiring mobility quotas higher than the 30-participant single-project ceiling.'}
+                    </li>
                   </ul>
                 </div>
               </div>
             ) : activeTab === 'KA121' ? (
               <div className="space-y-4">
                 <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl space-y-1">
-                  <div className="font-bold text-blue-950 text-sm">KA121-VET: Akredite Kuruluşlar İçin Hareketlilik Projeleri</div>
-                  <div className="text-[11px] text-blue-800">Erasmus Plan ile bağlantılı stratejik, sürekli ve garantili uluslararasılaşma</div>
+                  <div className="font-bold text-blue-950 text-sm">
+                    {locale === 'tr'
+                      ? 'KA121-VET: Akredite Kuruluşlar İçin Hareketlilik Projeleri'
+                      : 'KA121-VET: Mobility Projects for Accredited Organisations'}
+                  </div>
+                  <div className="text-[11px] text-blue-800">
+                    {locale === 'tr'
+                      ? 'Erasmus Planı ile bağlantılı stratejik, sürdürülebilir ve sürekli uluslararasılaşma'
+                      : 'Strategic, sustainable, and continuous internationalisation tied to the Erasmus Plan'}
+                  </div>
                 </div>
                 <p className="m-0">
-                  Erasmus Akreditasyonu, mesleki eğitim alanında yüksek kaliteli hareketlilik faaliyetlerini düzenli olarak organize etme kapasitesini kanıtlamış kurumlara verilir. Akredite kurumlar her yıl karmaşık ve yarışmalı proje yazma süreçlerine girmeden, doğrudan yıllık hibe talep formu ile bütçelerini alırlar.
+                  {locale === 'tr'
+                    ? 'Erasmus Akreditasyonu, mesleki eğitim alanında yüksek kaliteli hareketlilik faaliyetlerini düzenli olarak organize etme kapasitesini kanıtlamış kurumlara verilir. Akredite kurumlar her yıl karmaşık ve yarışmalı proje yazma süreçlerine girmeden, doğrudan yıllık hibe talep formu ile bütçelerini alırlar.'
+                    : 'Accredited organisations bypass competitive selection rounds each year and request funding directly through a simplified annual grant agreement based on their institutional milestones.'}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   <div className="p-3 bg-white border border-slate-200 rounded-xl">
-                    <div className="font-bold text-slate-900 mb-0.5">✓ Öğrenci Hareketliliği (VET Learners)</div>
-                    <div className="text-slate-500 text-[11px]">Kısa dönemli staj (10-89 gün) veya ErasmusPro uzun dönemli staj (90-365 gün).</div>
+                    <div className="font-bold text-slate-900 mb-0.5">
+                      {locale === 'tr' ? '✓ Öğrenci Hareketliliği (VET Learners)' : '✓ Learner Mobilities (VET Learners)'}
+                    </div>
+                    <div className="text-slate-500 text-[11px]">
+                      {locale === 'tr'
+                        ? 'Kısa dönemli staj (10-89 gün) veya ErasmusPro uzun dönemli staj (90-365 gün).'
+                        : 'Short-term training (10-89 days) or ErasmusPro long-term internships (90-365 days).'}
+                    </div>
                   </div>
                   <div className="p-3 bg-white border border-slate-200 rounded-xl">
-                    <div className="font-bold text-slate-900 mb-0.5">✓ Personel Hareketliliği (VET Staff)</div>
-                    <div className="text-slate-500 text-[11px]">İşbaşı izleme (Job Shadowing) veya eğitim/öğretim görevlendirmeleri.</div>
+                    <div className="font-bold text-slate-900 mb-0.5">
+                      {locale === 'tr' ? '✓ Personel Hareketliliği (VET Staff)' : '✓ Staff Mobilities (VET Staff)'}
+                    </div>
+                    <div className="text-slate-500 text-[11px]">
+                      {locale === 'tr'
+                        ? 'İşbaşı izleme (Job Shadowing) veya eğitim/öğretim görevlendirmeleri.'
+                        : 'Job shadowing, teaching assignments, or professional training visits.'}
+                    </div>
                   </div>
                 </div>
               </div>
             ) : (
               <div className="space-y-4">
                 <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl space-y-1">
-                  <div className="font-bold text-amber-950 text-sm">KA122-VET: Mesleki Eğitimde Kısa Dönemli Hareketlilik Projeleri</div>
-                  <div className="text-[11px] text-amber-900">Uluslararasılaşmaya ilk adım atan kurumlar için yalın başvuru yolu</div>
+                  <div className="font-bold text-amber-950 text-sm">
+                    {locale === 'tr'
+                      ? 'KA122-VET: Mesleki Eğitimde Kısa Dönemli Hareketlilik Projeleri'
+                      : 'KA122-VET: Short-Term Projects for Mobility of VET Learners and Staff'}
+                  </div>
+                  <div className="text-[11px] text-amber-900">
+                    {locale === 'tr'
+                      ? 'Uluslararasılaşmaya ilk adım atan kurumlar için yalın başvuru yolu'
+                      : 'Straightforward entry path for schools initiating international mobilities'}
+                  </div>
                 </div>
                 <p className="m-0">
-                  KA122 projeleri, henüz akreditasyona sahip olmayan okulların küçük ölçekli ve yüksek etkili hareketlilikler gerçekleştirmesini hedefler. Başvuruda okulun mevcut ihtiyaçları, katılımcı profili, ev sahibi işletmeyle planlanan iş takvimi ve beklenen somut mesleki kazanımlar detaylandırılır.
+                  {locale === 'tr'
+                    ? 'KA122 projeleri, henüz akreditasyona sahip olmayan okulların küçük ölçekli ve yüksek etkili hareketlilikler gerçekleştirmesini hedefler. Başvuruda okulun mevcut ihtiyaçları, katılımcı profili, ev sahibi işletmeyle planlanan iş takvimi ve beklenen somut mesleki kazanımlar detaylandırılır.'
+                    : 'KA122 empowers non-accredited schools to carry out high-impact, small-scale mobilities. Applications detail institutional needs, participant profiles, workplace learning programmes, and tangible ESCO competencies.'}
                 </p>
                 <div className="p-3 bg-white border border-slate-200 rounded-xl">
-                  <div className="font-bold text-slate-900 mb-1">Kurallar & Kısıtlamalar</div>
+                  <div className="font-bold text-slate-900 mb-1">
+                    {locale === 'tr' ? 'Kurallar & Kısıtlamalar' : 'Eligibility Rules & Constraints'}
+                  </div>
                   <ul className="list-disc pl-5 space-y-1 text-slate-600 text-[11px]">
-                    <li>Maksimum katılımcı sayısı: 30 kişi</li>
-                    <li>Proje süresi: 6 ila 18 ay</li>
-                    <li>Ardışık başvuru limiti: 36 ay içinde en fazla 3 proje</li>
+                    <li>
+                      {locale === 'tr' ? 'Maksimum katılımcı sayısı: 30 kişi' : 'Maximum participants: 30 individuals per project'}
+                    </li>
+                    <li>
+                      {locale === 'tr' ? 'Proje süresi: 6 ila 18 ay' : 'Project duration: 6 to 18 months'}
+                    </li>
+                    <li>
+                      {locale === 'tr'
+                        ? 'Ardışık başvuru limiti: 5 ardışık çağrı yılı içinde en fazla 3 proje'
+                        : 'Application cap: Maximum 3 approved projects within 5 consecutive call years'}
+                    </li>
                   </ul>
                 </div>
               </div>

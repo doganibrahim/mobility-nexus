@@ -4,7 +4,11 @@ import React, { useState } from 'react';
 import { useTranslation } from '../../lib/i18n';
 import { useAppStore, MobilityInquiry } from '../../lib/store';
 
-export default function HostInquiriesSection() {
+interface HostInquiriesSectionProps {
+  hostId?: string;
+}
+
+export default function HostInquiriesSection({ hostId }: HostInquiriesSectionProps) {
   const { t, locale } = useTranslation();
   const store = useAppStore();
   const isEn = locale === 'en';
@@ -33,7 +37,10 @@ export default function HostInquiriesSection() {
   // Action toast / alert message
   const [actionAlert, setActionAlert] = useState<string | null>(null);
 
-  const inquiries = store.inquiries || [];
+  // Filter inquiries strictly for this active host organisation
+  const targetHostId = hostId || store.currentHost?.id || 'demo-host-berlin';
+  const allInquiries = store.inquiries || [];
+  const inquiries = allInquiries.filter((inq) => inq.hostId === targetHostId);
 
   const filteredInquiries = inquiries.filter((inq) => {
     if (activeFilter === 'PENDING') return inq.status === 'PENDING';
