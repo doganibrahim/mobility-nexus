@@ -49,7 +49,7 @@ export default function GuidePage() {
               href="/school/pipeline"
               className="text-xs font-bold text-blue-700 hover:text-blue-900 bg-blue-50 px-3 py-1 rounded-lg border border-blue-200 transition-colors"
             >
-              <span>🚀</span> {locale === 'tr' ? '5 Adımlı Pipeline' : '5-Step Pipeline'}
+              <span>🚀</span> {locale === 'tr' ? '5 Adımlı Süreç Akışı' : '5-Step Pipeline'}
             </Link>
             <Link
               href="/marketplace"

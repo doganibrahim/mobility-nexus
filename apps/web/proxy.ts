@@ -1,37 +1,22 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-
-const isPublicRoute = createRouteMatcher([
-  '/',
-  '/sign-in(.*)',
-  '/sign-up(.*)',
-  '/onboarding(.*)',
-  '/about(.*)',
-  '/platform(.*)',
-  '/library(.*)',
-  '/news-and-events(.*)',
-  '/contact(.*)',
-  '/guide(.*)',
-  '/school(.*)',
-  '/marketplace(.*)',
-  '/api/public(.*)',
-  '/api/marketplace(.*)',
-  '/api/organisations(.*)',
-  '/api/hosts(.*)',
-  '/api/generate-draft-narrative(.*)',
-  '/api/extract-ka120(.*)',
-  '/api/inquiries(.*)',
-]);
+import { clerkMiddleware } from '@clerk/nextjs/server';
 
 export default clerkMiddleware(async (auth, request) => {
-  if (!isPublicRoute(request)) {
+  const { pathname } = request.nextUrl;
+
+  // Explicit resource-based protection: only protect authenticated private panels
+  const isProtectedArea =
+    pathname.startsWith('/admin') ||
+    pathname.startsWith('/profile');
+
+  if (isProtectedArea) {
     await auth.protect();
   }
 });
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Skip Next.js internals and all static files (including txt, xml)
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest|txt|xml)).*)',
     // Always run for API routes
     '/(api|trpc)(.*)',
     '/__clerk/:path*',

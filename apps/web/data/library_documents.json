@@ -1,0 +1,120 @@
+[
+  {
+    "id": "doc-ka121-guide",
+    "titleTr": "KA121-VET Akredite Kurumlar Yıllık Hibe ve Bütçe Talep Formu Kılavuzu",
+    "titleEn": "KA121-VET Annual Grant Allocation Form & Budget Rules Official Guide",
+    "category": "FORMS",
+    "fileFormat": "PDF",
+    "fileSize": "2.4 MB",
+    "downloadUrl": "/guides/ka121-vet-guide-2026.pdf",
+    "descriptionTr": "Erasmus Akreditasyonu sahibi mesleki eğitim kurumlarının her çağrı yılında resmi form üzerinde doldurduğu alanlar, hibe hesaplama ve seyahat matrisleri.",
+    "descriptionEn": "Official section-by-section guidelines for accredited VET organisations requesting annual mobility budget allocations.",
+    "tags": [
+      "KA121",
+      "VET",
+      "Akreditasyon",
+      "Bütçe"
+    ],
+    "isFeatured": true,
+    "publishedAt": "2026-01-10T10:00:00.000Z",
+    "updatedAt": "2026-03-01T10:00:00.000Z"
+  },
+  {
+    "id": "doc-ka122-guide",
+    "titleTr": "KA122-VET Kısa Dönemli Öğrenici ve Personel Hareketliliği Başvuru Kılavuzu",
+    "titleEn": "KA122-VET Short-Term Mobility of Learners and Staff Application Guidelines",
+    "category": "FORMS",
+    "fileFormat": "PDF",
+    "fileSize": "3.1 MB",
+    "downloadUrl": "/guides/ka122-vet-guide-2026.pdf",
+    "descriptionTr": "İlk kez veya münferit başvuru yapacak okullar için proje hedefleri, ihtiyaç analizi, seçim kriterleri ve risk yönetimi rehberi.",
+    "descriptionEn": "Comprehensive guide for schools applying for short-term European learner internships and staff training.",
+    "tags": [
+      "KA122",
+      "VET",
+      "Başvuru",
+      "İlk Başvuru"
+    ],
+    "isFeatured": true,
+    "publishedAt": "2026-01-15T10:00:00.000Z",
+    "updatedAt": "2026-03-05T10:00:00.000Z"
+  },
+  {
+    "id": "doc-learning-agreement-template",
+    "titleTr": "Resmi Avrupa Komisyonu VET Learning Agreement (Öğrenme Anlaşması) Şablonu",
+    "titleEn": "Official European Commission VET Learning Agreement Master Template",
+    "category": "TEMPLATES",
+    "fileFormat": "DOCX",
+    "fileSize": "480 KB",
+    "downloadUrl": "/templates/erasmus-vet-learning-agreement-template.docx",
+    "descriptionTr": "Gönderen okul, ev sahibi işletme ve öğrenici arasında imzalanması zorunlu olan EQF ve ECVET uyumlu resmi öğrenme sözleşmesi şablonu.",
+    "descriptionEn": "Standard tripartite learning agreement required for all VET work-based learning and internships abroad.",
+    "tags": [
+      "Learning Agreement",
+      "ECVET",
+      "EQF",
+      "Staj Sözleşmesi"
+    ],
+    "isFeatured": true,
+    "publishedAt": "2026-02-01T10:00:00.000Z",
+    "updatedAt": "2026-02-01T10:00:00.000Z"
+  },
+  {
+    "id": "doc-europass-mobility-sample",
+    "titleTr": "Europass Mobility Belgesi Doldurma ve Yetkinlik Doğrulama Rehberi",
+    "titleEn": "Europass Mobility Document Issuance and Skills Validation Guide",
+    "category": "TEMPLATES",
+    "fileFormat": "PDF",
+    "fileSize": "1.2 MB",
+    "downloadUrl": "/templates/europass-mobility-sample-guide.pdf",
+    "descriptionTr": "Yurtdışı stajı tamamlayan öğrencilerin mesleki becerilerini Avrupa düzeyinde belgeleyen Europass hareketlilik kayıt rehberi.",
+    "descriptionEn": "Field-level guide for issuing official Europass Mobility certificates recognizing European internship outcomes.",
+    "tags": [
+      "Europass",
+      "Sertifika",
+      "Kazanım Doğrulama"
+    ],
+    "isFeatured": false,
+    "publishedAt": "2026-02-10T10:00:00.000Z",
+    "updatedAt": "2026-02-10T10:00:00.000Z"
+  },
+  {
+    "id": "doc-erasmus-programme-guide",
+    "titleTr": "2026-2027 Erasmus+ Resmi Program Rehberi (Avrupa Komisyonu)",
+    "titleEn": "2026-2027 Official Erasmus+ Programme Guide (European Commission)",
+    "category": "OFFICIAL",
+    "fileFormat": "PDF",
+    "fileSize": "6.8 MB",
+    "downloadUrl": "https://erasmus-plus.ec.europa.eu/programme-guide/erasmusplus-programme-guide",
+    "descriptionTr": "Tüm Erasmus+ sektörlerini kapsayan resmi kurallar, öncelikler, hibe oranları ve uygunluk kriterleri ana el kitabı.",
+    "descriptionEn": "The definitive European Commission rulebook covering all key actions, grant unit costs, and accreditation criteria.",
+    "tags": [
+      "Program Rehberi",
+      "Resmi",
+      "Avrupa Komisyonu"
+    ],
+    "isFeatured": true,
+    "publishedAt": "2025-11-20T10:00:00.000Z",
+    "updatedAt": "2026-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "doc-budget-calculator-matrix",
+    "titleTr": "2026 Erasmus+ Mesleki Eğitim Birim Maliyet & Seyahat Bütçesi Hesaplayıcı",
+    "titleEn": "2026 Erasmus+ VET Unit Cost & Travel Distance Budget Calculator Matrix",
+    "category": "TEMPLATES",
+    "fileFormat": "XLSX",
+    "fileSize": "320 KB",
+    "downloadUrl": "/templates/erasmus-vet-budget-calculator-2026.xlsx",
+    "descriptionTr": "Mesafe bandı, yeşil seyahat ek hibesi ve bireysel destek harcırahlarını otomatik hesaplayan resmi formül tablosu.",
+    "descriptionEn": "Pre-formulated Excel spreadsheet calculating travel distances, individual daily allowances, and green travel top-ups.",
+    "tags": [
+      "Bütçe",
+      "Mesafe Bandı",
+      "Harcırah",
+      "Yeşil Seyahat"
+    ],
+    "isFeatured": false,
+    "publishedAt": "2026-01-20T10:00:00.000Z",
+    "updatedAt": "2026-02-15T10:00:00.000Z"
+  }
+]

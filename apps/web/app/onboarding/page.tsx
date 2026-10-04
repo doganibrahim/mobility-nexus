@@ -349,7 +349,10 @@ export default function OnboardingPage() {
       setIsEditing(false);
     } catch (err: any) {
       setErrorMessage(
-        err.message || 'Kurum işlemi sırasında bir hata oluştu. Lütfen tekrar deneyin.',
+        err.message ||
+          (locale === 'tr'
+            ? 'Kurum işlemi sırasında bir hata oluştu. Lütfen tekrar deneyin.'
+            : 'An error occurred during organisation action. Please try again.'),
       );
     } finally {
       setIsSubmitting(false);
@@ -401,7 +404,10 @@ export default function OnboardingPage() {
       setIsEditing(false);
     } catch (err: any) {
       setErrorMessage(
-        err.message || 'Ev sahibi kurum kaydı sırasında bir hata oluştu. Lütfen tekrar deneyin.',
+        err.message ||
+          (locale === 'tr'
+            ? 'Ev sahibi kurum kaydı sırasında bir hata oluştu. Lütfen tekrar deneyin.'
+            : 'An error occurred during host registration. Please try again.'),
       );
     } finally {
       setIsSubmitting(false);
@@ -413,7 +419,11 @@ export default function OnboardingPage() {
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="flex items-center gap-3 text-slate-600 font-medium text-sm">
           <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-          <span>Kurumsal yetkiler ve profil durumu kontrol ediliyor...</span>
+          <span>
+            {locale === 'tr'
+              ? 'Kurumsal yetkiler ve profil durumu kontrol ediliyor...'
+              : 'Verifying institutional authorizations and profile status...'}
+          </span>
         </div>
       </div>
     );
@@ -482,13 +492,19 @@ export default function OnboardingPage() {
             <div className="p-6 sm:p-8 text-white" style={{ backgroundColor: primaryColor }}>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-xs font-semibold tracking-wide uppercase mb-3">
                 <span>✓</span>
-                <span>Okul / Gönderen Kurum Kaydı Tamamlandı</span>
+                <span>
+                  {locale === 'tr'
+                    ? 'Okul / Gönderen Kurum Kaydı Tamamlandı'
+                    : 'School / Sending Institution Registration Complete'}
+                </span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight m-0 text-white">
                 {submittedOrg.name}
               </h2>
               <p className="text-white/80 text-sm mt-2 max-w-xl leading-relaxed">
-                Kurumunuz sisteme başarıyla tanımlandı. Artık KA121 / KA122 hareketlilik süreçlerinizi planlayabilir ve başvuru hazırlıklarına geçebilirsiniz.
+                {locale === 'tr'
+                  ? 'Kurumunuz sisteme başarıyla tanımlandı. Artık KA121 / KA122 hareketlilik süreçlerinizi planlayabilir ve başvuru hazırlıklarına geçebilirsiniz.'
+                  : 'Your institution has been successfully registered. You can now plan your KA121 / KA122 mobility cycles and proceed to application preparation.'}
               </p>
             </div>
 
@@ -497,55 +513,59 @@ export default function OnboardingPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
                   <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
-                    Erasmus Kurum Kodu (OID)
+                    {locale === 'tr' ? 'Erasmus Kurum Kodu (OID)' : 'Erasmus Organisation ID (OID)'}
                   </div>
                   <div className="text-lg font-bold font-mono text-slate-900 mt-1">
-                    {submittedOrg.oid || 'Belirtilmedi'}
+                    {submittedOrg.oid || (locale === 'tr' ? 'Belirtilmedi' : 'Not specified')}
                   </div>
                   <div className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
                     <span>🇪🇺</span>
-                    <span>Resmi Format Doğrulandı</span>
+                    <span>{locale === 'tr' ? 'Resmi Format Doğrulandı' : 'Official Format Verified'}</span>
                   </div>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
                   <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
-                    Akreditasyon Durumu
+                    {locale === 'tr' ? 'Akreditasyon Durumu' : 'Accreditation Status'}
                   </div>
                   <div className="text-lg font-bold text-slate-900 mt-1">
                     {submittedOrg.accreditationStatus === 'YES'
-                      ? 'Erasmus+ Akredite Kurum (KA121)'
+                      ? (locale === 'tr' ? 'Erasmus+ Akredite Kurum (KA121)' : 'Erasmus+ Accredited Organisation (KA121)')
                       : submittedOrg.accreditationStatus === 'NO'
-                        ? 'Kısa Dönem Hareketlilik (KA122)'
-                        : 'Doğrulanacak'}
+                        ? (locale === 'tr' ? 'Kısa Dönem Hareketlilik (KA122)' : 'Short-term Mobility (KA122)')
+                        : (locale === 'tr' ? 'Doğrulanacak' : 'To be verified')}
                   </div>
                   <div className="mt-2 text-[11px] text-slate-600">
                     {submittedOrg.accreditationStatus === 'YES'
-                      ? 'Yıllık bütçe talebi ve Erasmus Planı ile uyumlu'
-                      : 'Standart başvuru ve ihtiyaç analizi döngüsü'}
+                      ? (locale === 'tr'
+                          ? 'Yıllık bütçe talebi ve Erasmus Planı ile uyumlu'
+                          : 'Aligned with annual budget allocation and Erasmus Plan')
+                      : (locale === 'tr'
+                          ? 'Standart başvuru ve ihtiyaç analizi döngüsü'
+                          : 'Standard competitive call and needs analysis cycle')}
                   </div>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
                   <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
-                    Konum ve Ülke
+                    {locale === 'tr' ? 'Konum ve Ülke' : 'Location & Country'}
                   </div>
                   <div className="text-base font-bold text-slate-900 mt-1">
-                    {submittedOrg.city || 'Belirtilmedi'}, {submittedOrg.countryCode || 'TR'}
+                    {submittedOrg.city || (locale === 'tr' ? 'Belirtilmedi' : 'Not specified')}, {submittedOrg.countryCode || 'TR'}
                   </div>
                   <div className="mt-2 text-[11px] text-slate-500">
-                    Ulusal Ajans koordinasyonu
+                    {locale === 'tr' ? 'Ulusal Ajans koordinasyonu' : 'National Agency coordination'}
                   </div>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
                   <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
-                    Sistem Yetki Rolü
+                    {locale === 'tr' ? 'Sistem Yetki Rolü' : 'System Role'}
                   </div>
                   <div className="text-base font-bold text-slate-900 mt-1 flex items-center gap-2">
                     <span className="font-mono text-sm">{userRole || 'ORG_ADMIN'}</span>
                     <span className="text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200 px-2.5 py-0.5 rounded-full">
-                      Kurum Yöneticisi
+                      {locale === 'tr' ? 'Kurum Yöneticisi' : 'Organisation Administrator'}
                     </span>
                   </div>
                   <div className="mt-2 text-[11px] text-slate-500">

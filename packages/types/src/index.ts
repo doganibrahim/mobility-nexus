@@ -334,6 +334,13 @@ export interface HostOrganisationFull {
   participantEvidenceUrls?: string[];
   sampleDocumentsUrls?: string[];
 
+  // PKG-IMP-05: Comprehensive Provider Profiles & Policies
+  cancellationPolicy?: HostCancellationPolicy;
+  accessibilityFeatures?: HostAccessibilityFeatures;
+  targetGroups?: TargetGroupType[];
+  reviewsBreakdown?: HostReviewsBreakdownResponse;
+  lastUpdatedAt?: string;
+
   // Status & Metrics
   verificationStatus: HostVerificationStatus;
   profileCompletenessScore: number;
@@ -397,6 +404,11 @@ export interface UpdateHostPortfolioDto {
   projectResultsLinks?: string[];
   nationalAgencyExperience?: string;
   sampleMobilityProgrammeUrl?: string;
+
+  // PKG-IMP-05 Form Fields
+  cancellationPolicy?: HostCancellationPolicy;
+  accessibilityFeatures?: HostAccessibilityFeatures;
+  targetGroups?: TargetGroupType[];
 }
 
 // Tier 3: Verification & KYC DTO (Admin Only Documents)
@@ -459,6 +471,48 @@ export interface MatchScoreBreakdown {
   emergencySupport: number; // 0-100
 }
 
+export type MatchingCriterionKey =
+  | 'country'
+  | 'activityType'
+  | 'targetGroup'
+  | 'dates'
+  | 'duration'
+  | 'capacity'
+  | 'logistics';
+
+export type CriterionMatchStatus = 'MATCH' | 'PARTIAL' | 'MISMATCH';
+
+export interface CriterionEvaluation {
+  key: MatchingCriterionKey;
+  labelTr: string;
+  labelEn: string;
+  weightPercent: number; // e.g. 15, 20, 15, 10, 10, 15, 15
+  status: CriterionMatchStatus;
+  scoreContribution: number; // 0-100
+  weightedScore: number; // points contributed to total 100
+  schoolRequested: string;
+  hostProvided: string;
+  messageTr: string;
+  messageEn: string;
+  actionableHintTr?: string;
+  actionableHintEn?: string;
+}
+
+export interface SevenCriteriaDiagnostics {
+  overallSuitabilityScore: number;
+  grade: 'EXCELLENT' | 'HIGH' | 'MODERATE' | 'LOW';
+  formulaExplanationTr: string;
+  formulaExplanationEn: string;
+  criteria: CriterionEvaluation[];
+  matchedCount: number;
+  partialCount: number;
+  mismatchCount: number;
+  primaryBlockersTr: string[];
+  primaryBlockersEn: string[];
+  actionableRecommendationsTr: string[];
+  actionableRecommendationsEn: string[];
+}
+
 export interface HostMatchCandidate {
   hostId: string;
   hostName: string;
@@ -502,6 +556,9 @@ export interface HostMatchCandidate {
   matchGrade: 'EXCELLENT' | 'HIGH' | 'MODERATE' | 'LOW';
 
   scoreBreakdown: MatchScoreBreakdown;
+
+  // 7-criteria transparent diagnostics breakdown (PKG-IMP-03)
+  sevenCriteria?: SevenCriteriaDiagnostics;
 }
 
 export interface MatchHostsResponseDto {
@@ -519,6 +576,32 @@ export interface MatchHostsResponseDto {
     ageGroup: string;
     vetField?: string;
   };
+}
+
+export interface EvaluateCriteriaRequestDto {
+  criteria: MatchHostsRequestDto;
+  hostId?: string;
+  hostData?: Partial<HostMatchCandidate>;
+}
+
+export interface EvaluateCriteriaItemResult {
+  hostId: string;
+  hostName: string;
+  countryCode: string;
+  city: string;
+  isEligible: boolean;
+  suitabilityScore: number;
+  educationScore: number;
+  logisticsScore: number;
+  compositeScore: number;
+  matchGrade: 'EXCELLENT' | 'HIGH' | 'MODERATE' | 'LOW';
+  diagnostics: SevenCriteriaDiagnostics;
+}
+
+export interface EvaluateCriteriaResponseDto {
+  totalEvaluated: number;
+  queryCriteria: MatchHostsRequestDto;
+  results: EvaluateCriteriaItemResult[];
 }
 
 // ==============================================================================
@@ -587,6 +670,11 @@ export interface Course {
   tags: string[];
   sessions?: CourseSession[];
   learningOutcomes?: CourseLearningOutcome[];
+  // PKG-IMP-05 Additions
+  cancellationPolicy?: HostCancellationPolicy | CancellationPolicyType;
+  accessibilityFeatures?: HostAccessibilityFeatures;
+  targetGroups?: TargetGroupType[];
+  lastUpdatedAt?: string;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -609,6 +697,11 @@ export interface JobShadowingOffer {
   languages: string[];
   workingEnvironmentDetails?: string | null;
   status: JobShadowingStatus;
+  // PKG-IMP-05 Additions
+  cancellationPolicy?: HostCancellationPolicy | CancellationPolicyType;
+  accessibilityFeatures?: HostAccessibilityFeatures;
+  targetGroups?: TargetGroupType[];
+  lastUpdatedAt?: string;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -927,5 +1020,460 @@ export interface SchoolGuidanceRecommendation {
   }>;
   eligibleConsortia: string[];
 }
+
+// ==============================================================================
+// 9. Participant Mobility Preparation Portal Types (PKG-04 LMS)
+// ==============================================================================
+
+export type PrepModuleCategory =
+  | 'CULTURAL_ADAPTATION'
+  | 'LANGUAGE_PREP'
+  | 'OHS_SAFETY'
+  | 'TRAVEL_LOGISTICS'
+  | 'ERASMUS_RIGHTS'
+  | 'GREEN_DIGITAL'
+  | 'ESCO_LEARNING'
+  | 'CRISIS_INSURANCE'
+  | 'MENTORSHIP_WORKPLACE'
+  | 'DISSEMINATION';
+
+export interface PrepModuleContentBlock {
+  titleTr: string;
+  titleEn: string;
+  contentTr: string;
+  contentEn: string;
+  checklistTr?: string[];
+  checklistEn?: string[];
+}
+
+export interface PrepQuizQuestion {
+  id: string;
+  questionTr: string;
+  questionEn: string;
+  optionsTr: string[];
+  optionsEn: string[];
+  correctOptionIndex: number;
+  explanationTr: string;
+  explanationEn: string;
+}
+
+export interface PrepModule {
+  id: string;
+  slug: string;
+  titleTr?: string;
+  titleEn?: string;
+  title_tr?: string;
+  title_en?: string;
+  descriptionTr?: string;
+  descriptionEn?: string;
+  description_tr?: string;
+  description_en?: string;
+  category: PrepModuleCategory;
+  estimatedDurationMinutes: number;
+  orderIndex: number;
+  requiredRole: 'STUDENT' | 'STAFF' | 'ALL';
+  badgeName: string;
+  badgeIcon: string;
+  contentBlocks: PrepModuleContentBlock[];
+  quizQuestions: PrepQuizQuestion[];
+  isMandatory: boolean;
+  isActive: boolean;
+}
+
+export type ParticipantRoleType = 'STUDENT' | 'TEACHER' | 'STAFF';
+
+export type PrepAssignmentStatus = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED' | 'OVERDUE';
+
+export interface PrepAssignment {
+  id: string;
+  participantId: string;
+  participantName: string;
+  participantEmail: string;
+  participantRole: ParticipantRoleType;
+  schoolId: string;
+  schoolName: string;
+  destinationCountry: string;
+  destinationCity?: string;
+  mobilityProjectCode: string;
+  deadlineDate?: string;
+  status: PrepAssignmentStatus;
+  completionPercentage: number;
+  completedModulesCount: number;
+  totalModulesCount: number;
+  certificateIssuedAt?: string;
+  certificateNumber?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PrepCompletion {
+  id: string;
+  assignmentId: string;
+  participantId: string;
+  moduleId: string;
+  isCompleted: boolean;
+  quizScore: number;
+  completedAt: string;
+  timeSpentMinutes?: number;
+  notes?: string;
+}
+
+export interface ParticipantBadge {
+  badgeName: string;
+  badgeIcon: string;
+  earnedAt: string;
+  titleTr: string;
+  titleEn: string;
+}
+
+export interface ParticipantProgressReport {
+  assignment: PrepAssignment;
+  completions: PrepCompletion[];
+  completedModuleIds: string[];
+  missingMandatoryModuleIds: string[];
+  isReadyForMobility: boolean;
+  badges: ParticipantBadge[];
+  averageQuizScore: number;
+}
+
+export interface CompleteStepDto {
+  assignmentId: string;
+  participantId: string;
+  moduleId: string;
+  quizScore: number;
+  timeSpentMinutes?: number;
+  notes?: string;
+}
+
+// ==============================================================================
+// 10. Official Mobility Dossier & Formal Document Export Types (PKG-05)
+// ==============================================================================
+
+export type DossierDocumentType =
+  | 'LEARNING_AGREEMENT'
+  | 'EUROPASS_MOBILITY'
+  | 'INTER_INSTITUTIONAL_AGREEMENT'
+  | 'QUALITY_COMMITMENT';
+
+export type DossierDocumentStatus = 'DRAFT' | 'READY' | 'GENERATED' | 'SIGNED';
+
+export interface MobilityDossier {
+  id: string;
+  schoolId: string;
+  schoolName: string;
+  schoolOid?: string;
+  schoolCity?: string;
+  hostId?: string;
+  hostName: string;
+  hostCountry: string;
+  hostCity?: string;
+  hostContactEmail?: string;
+  mobilityCode: string;
+  mobilityType: string;
+  vetFieldName: string;
+  iscedCode: string;
+  escoSkills: string[];
+  participantCount: number;
+  startDate: string;
+  endDate: string;
+  durationDays: number;
+  status: 'ACTIVE' | 'EXPORTED' | 'ARCHIVED';
+  documents?: DossierDocument[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type DossierDocumentPayload =
+  | LearningAgreementPayload
+  | EuropassMobilityPayload
+  | InterInstitutionalAgreementPayload
+  | Record<string, any>;
+
+export interface DossierDocument {
+  id: string;
+  dossierId: string;
+  documentType: DossierDocumentType;
+  titleTr: string;
+  titleEn: string;
+  status: DossierDocumentStatus;
+  templateVersion: string;
+  fileFormat: 'PDF' | 'DOCX' | 'JSON';
+  documentPayload: DossierDocumentPayload;
+  lastExportedAt?: string;
+  downloadCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ExportLogRecord {
+  id: string;
+  dossierId: string;
+  documentType: DossierDocumentType;
+  exporterUserId?: string;
+  exporterName: string;
+  exportFormat: string;
+  fileName: string;
+  fileSizeKb: number;
+  exportedAt: string;
+}
+
+export interface LearningAgreementPayload {
+  studentName: string;
+  studentEmail: string;
+  sendingInstitution: {
+    name: string;
+    oid: string;
+    address: string;
+    city: string;
+    contactPerson: string;
+    contactEmail: string;
+  };
+  hostOrganisation: {
+    name: string;
+    country: string;
+    city: string;
+    address: string;
+    mentorName: string;
+    mentorRole: string;
+    mentorEmail: string;
+  };
+  mobilityProgramme: {
+    field: string;
+    isced: string;
+    startDate: string;
+    endDate: string;
+    durationDays: number;
+    workingHoursPerWeek: number;
+  };
+  learningOutcomes: {
+    knowledge: string[];
+    skills: string[];
+    competencies: string[];
+  };
+  monitoringPlan: string;
+  assessmentCriteria: string;
+}
+
+export interface EuropassMobilityPayload {
+  europassId: string;
+  certificateHolder: {
+    fullName: string;
+    dateOfBirth: string;
+    nationality: string;
+  };
+  sendingPartner: {
+    name: string;
+    city: string;
+    country: string;
+  };
+  hostPartner: {
+    name: string;
+    city: string;
+    country: string;
+  };
+  mobilityDetails: {
+    startDate: string;
+    endDate: string;
+    durationDays: number;
+    titleOfTraining: string;
+  };
+  acquiredSkills: {
+    jobRelatedSkills: string[];
+    languageSkills: string[];
+    digitalSkills: string[];
+    organizationalSkills: string[];
+  };
+}
+
+export interface InterInstitutionalAgreementPayload {
+  agreementNumber: string;
+  partnerA: {
+    name: string;
+    oid: string;
+    country: string;
+    address: string;
+    legalRep: string;
+    legalRepTitle: string;
+  };
+  partnerB: {
+    name: string;
+    country: string;
+    city: string;
+    address: string;
+    legalRep: string;
+    legalRepTitle: string;
+  };
+  durationYears: string;
+  studentQuotaPerYear: number;
+  commitments: string[];
+  financialRules: string;
+  signedDate: string;
+}
+
+export interface ExportDocumentDto {
+  dossierId: string;
+  documentType: DossierDocumentType;
+  format?: 'PDF' | 'DOCX' | 'JSON';
+  customPayload?: Record<string, unknown>;
+  exporterName?: string;
+}
+
+// ==============================================================================
+// 11. System QA Metrics, Production Deployment & Hardening Types (PKG-06)
+// ==============================================================================
+
+export type QaTestCategory =
+  | 'SECURITY_AUDIT'
+  | 'LOAD_PERFORMANCE'
+  | 'DATA_INTEGRITY'
+  | 'E2E_WORKFLOW'
+  | 'ACCESSIBILITY';
+
+export type QaTestStatus = 'PASSED' | 'WARNING' | 'FAILED' | 'RUNNING';
+
+export interface QaTestAssertion {
+  id: string;
+  name: string;
+  status: 'PASSED' | 'FAILED';
+  latencyMs?: number;
+  message?: string;
+}
+
+export interface QaTestRun {
+  id: string;
+  testSuiteName: string;
+  testCategory: QaTestCategory;
+  environment: string;
+  status: QaTestStatus;
+  durationMs: number;
+  totalAssertions: number;
+  passedAssertions: number;
+  failedAssertions: number;
+  p95LatencyMs: number;
+  errorRatePercent: number;
+  summaryReport: string;
+  detailedResults: QaTestAssertion[];
+  executedBy: string;
+  executedAt: string;
+}
+
+export interface SystemMetric {
+  id: string;
+  endpointPath: string;
+  httpMethod: string;
+  p50LatencyMs: number;
+  p95LatencyMs: number;
+  p99LatencyMs: number;
+  requestsPerSecond: number;
+  errorCount: number;
+  totalRequests: number;
+  cpuUsagePercent: number;
+  memoryUsageMb: number;
+  dbPoolActiveConnections: number;
+  recordedAt: string;
+}
+
+export interface CommercialMetricSnapshot {
+  id: string;
+  totalRegisteredSchools: number;
+  totalHostOrganisations: number;
+  activeMobilityMatches: number;
+  totalParticipantsPrepared: number;
+  totalDossiersExported: number;
+  estimatedGrantVolumeEur: number;
+  freeTierCostSavedEur: number;
+  uptimePercentage: number;
+  snapshotDate: string;
+  createdAt: string;
+}
+
+export interface HardeningCheckItem {
+  id: string;
+  titleTr: string;
+  titleEn: string;
+  category: 'SECURITY' | 'ENV' | 'PERFORMANCE' | 'COMPLIANCE';
+  status: 'VERIFIED' | 'WARNING' | 'ACTION_REQUIRED';
+  detailsTr: string;
+  detailsEn: string;
+  verifiedAt: string;
+}
+
+export interface TriggerQaRunDto {
+  testCategory?: QaTestCategory;
+  suiteName?: string;
+}
+
+// ==============================================================================
+// 12. Provider Profiles, Cancellation Policies & 5D Reviews (PKG-IMP-05)
+// ==============================================================================
+
+export type TargetGroupType = 'STUDENT' | 'APPRENTICE' | 'STAFF' | 'TEACHER' | 'MIXED';
+
+export type CancellationPolicyType = 'FLEXIBLE' | 'MODERATE' | 'STRICT' | 'CUSTOM';
+
+export interface HostCancellationPolicy {
+  id?: string;
+  hostId?: string;
+  policyType: CancellationPolicyType;
+  refundPercentageFull: number; // e.g. 100% full refund
+  daysBeforeFullRefund: number; // e.g. 30 days before start
+  refundPercentagePartial: number; // e.g. 50% partial refund
+  daysBeforePartialRefund: number; // e.g. 14 days before start
+  forceMajeureCovered: boolean; // NA/Erasmus+ grant or travel cancellation protection
+  policyDetailsTr?: string;
+  policyDetailsEn?: string;
+}
+
+export interface HostAccessibilityFeatures {
+  wheelchairAccessible: boolean;
+  specialDiet: boolean;
+  visualAid?: boolean;
+  hearingAid?: boolean;
+  accessibilityDetailsTr?: string;
+  accessibilityDetailsEn?: string;
+}
+
+export interface FiveDimensionalReviewMetrics {
+  responseTime: number;      // 1.0 - 5.0 (Yanıt Süresi)
+  communication: number;     // 1.0 - 5.0 (İletişim)
+  serviceDelivery: number;   // 1.0 - 5.0 (Hizmet Tamamlama)
+  programmeAlignment: number;// 1.0 - 5.0 (Program Uygunluğu)
+  problemSolving: number;    // 1.0 - 5.0 (Sorun Çözme)
+}
+
+export interface HostReviewItem {
+  id: string;
+  hostId: string;
+  schoolName: string;
+  schoolOid?: string | null;
+  projectType: string;
+  mobilityYear: number;
+  overallScore: number;
+  metrics: FiveDimensionalReviewMetrics;
+  comment: string;
+  verifiedMobility: boolean;
+  createdAt: string;
+}
+
+export interface HostReviewsBreakdownResponse {
+  hostId: string;
+  hostName: string;
+  totalReviews: number;
+  overallAverage: number;
+  metricAverages: FiveDimensionalReviewMetrics;
+  reviews: HostReviewItem[];
+}
+
+export interface CreateHostReviewDto {
+  schoolName: string;
+  schoolOid?: string;
+  projectType?: 'KA121' | 'KA122' | 'OTHER';
+  mobilityYear?: number;
+  metrics: FiveDimensionalReviewMetrics;
+  comment?: string;
+}
+
+
+
 
 

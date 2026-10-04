@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useTranslation } from '../../lib/i18n';
 
 import HeroContrastSection from './HeroContrastSection';
-import InteractiveProcessStepper from './InteractiveProcessStepper';
+import HowItWorksProcessSection from './HowItWorksProcessSection';
 import EuropeanRouteNetwork from './EuropeanRouteNetwork';
 
 export interface DualActionGatewaysProps {
@@ -27,8 +27,8 @@ export default function DualActionGateways({
         onStartHostDemo={onSelectHostDemo}
       />
 
-      {/* 2. Exploration Section: 3-Step Interactive Process Stepper */}
-      <InteractiveProcessStepper />
+      {/* 2. Exploration Section: 5-Step "How It Works" Process Stepper */}
+      <HowItWorksProcessSection />
 
       {/* 3. Exploration Section: Pure Vector European Mobility Route Network */}
       <EuropeanRouteNetwork />
@@ -54,7 +54,6 @@ export default function DualActionGateways({
             href="/guide"
             className="flex-1 md:flex-initial px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs transition-colors shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
           >
-            <span>📖</span>
             <span>{locale === 'tr' ? 'Kılavuzu Aç (10 Bölüm)' : 'Open User Guide'}</span>
             <span>→</span>
           </Link>

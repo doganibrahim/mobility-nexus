@@ -267,7 +267,9 @@ export default function HostInquiriesSection({ hostId }: HostInquiriesSectionPro
                         🇹🇷 {inq.schoolCity}
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-100 text-blue-900 border border-blue-200">
-                        {inq.projectType === 'KA121' ? 'KA121 Akredite' : 'KA122 Kısa Dönem'}
+                        {inq.projectType === 'KA121'
+                          ? (locale === 'tr' ? 'KA121 Akredite' : 'KA121 Accredited')
+                          : (locale === 'tr' ? 'KA122 Kısa Dönem' : 'KA122 Short-term')}
                       </span>
                       {inq.isMock && (
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-purple-100 text-purple-800 border border-purple-200 flex items-center gap-1">
@@ -685,19 +687,42 @@ export default function HostInquiriesSection({ hostId }: HostInquiriesSectionPro
 
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3 leading-relaxed">
               <p className="m-0 text-slate-800">
-                <strong>Berlin VET Training Solutions GmbH (OID: E10345678)</strong>,{' '}
-                <strong>{selectedInquiryForLoI.schoolName} (OID: {selectedInquiryForLoI.schoolOid})</strong> tarafından iletilen{' '}
-                <strong>{selectedInquiryForLoI.vetField}</strong> alanındaki mesleki eğitim staj talebini incelemiş ve{' '}
-                <strong>{selectedInquiryForLoI.participantCount} öğrenci</strong> için{' '}
-                <strong>{selectedInquiryForLoI.targetStartDate} — {selectedInquiryForLoI.targetEndDate}</strong> tarihleri arasında işletme kontenjanı ayırmıştır.
+                {locale === 'tr' ? (
+                  <>
+                    <strong>{selectedInquiryForLoI.hostName || store.currentHost?.name || 'Berlin VET Training Solutions GmbH'}</strong>,{' '}
+                    <strong>{selectedInquiryForLoI.schoolName} (OID: {selectedInquiryForLoI.schoolOid})</strong> tarafından iletilen{' '}
+                    <strong>{selectedInquiryForLoI.vetField}</strong> alanındaki mesleki eğitim staj talebini incelemiş ve{' '}
+                    <strong>{selectedInquiryForLoI.participantCount} öğrenci</strong> için{' '}
+                    <strong>{selectedInquiryForLoI.targetStartDate} — {selectedInquiryForLoI.targetEndDate}</strong> tarihleri arasında işletme kontenjanı ayırmıştır.
+                  </>
+                ) : (
+                  <>
+                    <strong>{selectedInquiryForLoI.hostName || store.currentHost?.name || 'Berlin VET Training Solutions GmbH'}</strong> confirms acceptance of the vocational training mobility inquiry submitted by{' '}
+                    <strong>{selectedInquiryForLoI.schoolName} (OID: {selectedInquiryForLoI.schoolOid})</strong> in the field of{' '}
+                    <strong>{selectedInquiryForLoI.vetField}</strong>, and has allocated host capacity for{' '}
+                    <strong>{selectedInquiryForLoI.participantCount} learners</strong> between{' '}
+                    <strong>{selectedInquiryForLoI.targetStartDate} — {selectedInquiryForLoI.targetEndDate}</strong>.
+                  </>
+                )}
               </p>
               <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200 text-[11px] text-slate-600">
-                <div>Ev Sahibi İrtibat: <strong>Klaus Weber</strong></div>
-                <div>Durum: <strong className="text-emerald-700">✓ Onaylandı (LoI Aktif)</strong></div>
+                <div>
+                  {locale === 'tr' ? 'Ev Sahibi İrtibat: ' : 'Host Contact: '}
+                  <strong>{store.currentHost?.contactPerson || 'Klaus Weber'}</strong>
+                </div>
+                <div>
+                  {locale === 'tr' ? 'Durum: ' : 'Status: '}
+                  <strong className="text-emerald-700">
+                    {locale === 'tr' ? '✓ Onaylandı (LoI Aktif)' : '✓ Approved (LoI Active)'}
+                  </strong>
+                </div>
               </div>
               {selectedInquiryForLoI.hostReplyNote && (
                 <div className="p-2.5 bg-white border border-slate-200 rounded-lg text-[11px] text-slate-800">
-                  <strong className="text-emerald-800">Ev Sahibi Notu:</strong> {selectedInquiryForLoI.hostReplyNote}
+                  <strong className="text-emerald-800">
+                    {locale === 'tr' ? 'Ev Sahibi Notu: ' : 'Host Statement / Note: '}
+                  </strong>
+                  {selectedInquiryForLoI.hostReplyNote}
                 </div>
               )}
             </div>
@@ -753,7 +778,7 @@ export default function HostInquiriesSection({ hostId }: HostInquiriesSectionPro
               </div>
               <div className="flex justify-between border-b border-slate-100 pb-1.5">
                 <span>{locale === 'tr' ? 'Yetkili İrtibat:' : 'Coordinator:'}</span>
-                <strong className="text-slate-900">{selectedInquiryForDetails.schoolContactName || 'Proje Koordinatörü'}</strong>
+                <strong className="text-slate-900">{selectedInquiryForDetails.schoolContactName || (locale === 'tr' ? 'Proje Koordinatörü' : 'Project Coordinator')}</strong>
               </div>
               <div className="flex justify-between border-b border-slate-100 pb-1.5">
                 <span>{locale === 'tr' ? 'İletişim E-Postası:' : 'Contact Email:'}</span>

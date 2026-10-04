@@ -22,16 +22,44 @@ export default function CompetenceAssessmentCard({
 }: CompetenceAssessmentCardProps) {
   const { t, locale } = useTranslation();
 
-  const answeredCount = Object.keys(answers).filter(
-    (k) => answers[Number(k)] > 0,
-  ).length;
+  const missingQuestions = ASSESSMENT_QUESTIONS.filter(
+    (q) => !answers[q.id] || answers[q.id] < 1 || answers[q.id] > 5,
+  ).map((q) => q.id);
+
+  const answeredCount = 12 - missingQuestions.length;
+  const isAllAnswered = missingQuestions.length === 0;
+
+  // Single-source derived message: guarantees badge and message box never contradict
+  const displayMessage = (() => {
+    if (isAllAnswered) {
+      if (
+        resultMessage &&
+        !resultMessage.includes('Eksik Sorular') &&
+        !resultMessage.includes('Missing Questions')
+      ) {
+        return resultMessage;
+      }
+      return locale === 'en'
+        ? '✓ All 12 questions completed. Competence evaluation is ready.'
+        : '✓ 12 sorunun tamamı yanıtlandı. Yetkinlik değerlendirmesi hazır.';
+    }
+    return locale === 'en'
+      ? `Missing Questions: Please answer question(s) ${missingQuestions.join(', ')}.`
+      : `Eksik Sorular: Lütfen ${missingQuestions.join(', ')} numaralı soruları yanıtlayın.`;
+  })();
+
+  const displayType: 'good' | 'warn' | 'bad' = isAllAnswered
+    ? resultType === 'bad'
+      ? 'warn'
+      : (resultType || 'good')
+    : 'warn';
 
   return (
     <NeoCard
       id="assessment"
       title={t.assessment.title}
       badge={`${answeredCount}/12 ${locale === 'en' ? 'Completed' : 'Tamamlandı'}`}
-      badgeType={answeredCount === 12 ? 'good' : 'warn'}
+      badgeType={isAllAnswered ? 'good' : 'warn'}
     >
       <div className="space-y-4">
         <p className="text-xs text-slate-600 mb-1">
@@ -109,17 +137,17 @@ export default function CompetenceAssessmentCard({
         </div>
 
         {/* Score Result Box */}
-        {resultMessage && (
+        {displayMessage && (
           <div
             className={`p-4 rounded-xl border text-xs font-semibold ${
-              resultType === 'good'
+              displayType === 'good'
                 ? 'bg-emerald-50 text-emerald-900 border-emerald-200'
-                : resultType === 'warn'
+                : displayType === 'warn'
                   ? 'bg-amber-50 text-amber-900 border-amber-200'
                   : 'bg-rose-50 text-rose-900 border-rose-200'
             }`}
           >
-            {resultMessage}
+            {displayMessage}
           </div>
         )}
       </div>

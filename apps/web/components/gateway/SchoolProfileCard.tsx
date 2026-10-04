@@ -39,10 +39,10 @@ export default function SchoolProfileCard({
           <div className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-800">
             <span className="font-semibold flex items-center gap-1.5">
               <span>🏛️</span>
-              <span>Kayıtlı Kurum: <strong>{currentOrg.name}</strong></span>
+              <span>{locale === 'tr' ? 'Kayıtlı Kurum:' : 'Registered Organisation:'} <strong>{currentOrg.name}</strong></span>
             </span>
             <span className="text-[11px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
-              Aktif Profil
+              {locale === 'tr' ? 'Aktif Profil' : 'Active Profile'}
             </span>
           </div>
         )}
@@ -97,7 +97,7 @@ export default function SchoolProfileCard({
             <input
               type="text"
               className="edu-input font-semibold tracking-wider text-slate-900"
-              placeholder="Örn: E10123456"
+              placeholder={locale === 'tr' ? 'Örn: E10123456' : 'e.g. E10123456'}
               value={data.oid}
               onChange={(e) => onChange('oid', e.target.value)}
             />
@@ -139,8 +139,8 @@ export default function SchoolProfileCard({
             </div>
             <div className="text-xs text-slate-500 mt-0.5">
               {readinessScore >= 70
-                ? 'Kurum profili başvuru için yeterli seviyede.'
-                : 'Temel alanları doldurarak skoru yükseltin.'}
+                ? (locale === 'tr' ? 'Kurum profili başvuru için yeterli seviyede.' : 'Institution profile is ready for application.')
+                : (locale === 'tr' ? 'Temel alanları doldurarak skoru yükseltin.' : 'Complete the basic fields to improve your score.')}
             </div>
           </div>
 

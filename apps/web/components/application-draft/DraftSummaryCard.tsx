@@ -73,7 +73,7 @@ export default function DraftSummaryCard({
           >
             {overallPercentage === 100
               ? (locale === 'tr' ? '✓ %100 Hazır' : '✓ 100% Ready')
-              : (locale === 'tr' ? `%{overallPercentage} Tamamlandı` : `${overallPercentage}% Complete`)}
+              : (locale === 'tr' ? `%${overallPercentage} Tamamlandı` : `${overallPercentage}% Complete`)}
           </span>
         </div>
 

@@ -205,4 +205,25 @@ export class UpdateHostPortfolioDto {
   @IsString()
   @IsOptional()
   sampleMobilityProgrammeUrl?: string;
+
+  // PKG-IMP-05: Cancellation Policy, Accessibility & Target Groups
+  @ApiPropertyOptional({
+    description: 'Ev sahibi kurum iptal ve iade koşulları politikası',
+  })
+  @IsOptional()
+  cancellationPolicy?: any;
+
+  @ApiPropertyOptional({
+    description: 'Engelli erişilebilirliği ve özel ihtiyaç destek olanakları',
+  })
+  @IsOptional()
+  accessibilityFeatures?: any;
+
+  @ApiPropertyOptional({
+    description: 'Kurumun kabul ettiği hedef kitleler (Öğrenci, Çırak, Personel, Eğitici)',
+    example: ['STUDENT', 'APPRENTICE', 'STAFF', 'TEACHER'],
+  })
+  @IsArray()
+  @IsOptional()
+  targetGroups?: import('@mobility-nexus/types').TargetGroupType[];
 }

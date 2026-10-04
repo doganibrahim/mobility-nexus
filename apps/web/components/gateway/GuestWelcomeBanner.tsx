@@ -69,7 +69,6 @@ export default function GuestWelcomeBanner({
             href="/guide"
             className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
           >
-            <span>📖</span>
             <span>{t.guestBanner.btnTour}</span>
             <span>→</span>
           </Link>

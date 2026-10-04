@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { useUser, useClerk } from '@clerk/nextjs';
 import { useAppStore } from '../../lib/store';
@@ -10,9 +10,13 @@ import AppFooter from '../../components/layout/AppFooter';
 
 export default function ProfilePage() {
   const { user, isLoaded, isSignedIn } = useUser();
-  const { signOut } = useClerk();
+  const { signOut, openUserProfile } = useClerk();
   const { currentOrg, currentHost, orgType, userRole, isOnboarded } = useAppStore();
   const { t, locale } = useTranslation();
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const [imageNotice, setImageNotice] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   // Platform Admin verification check
   const adminEmails = (
@@ -35,6 +39,73 @@ export default function ProfilePage() {
         (userEmail && adminEmails.includes(userEmail)))
   );
 
+  const handleImageFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      setImageNotice({
+        type: 'error',
+        message: locale === 'tr' ? 'Fotoğraf boyutu 5 MB\'tan küçük olmalıdır.' : 'Image size must be under 5 MB.',
+      });
+      return;
+    }
+
+    try {
+      setIsUploadingImage(true);
+      setImageNotice(null);
+      if (user && 'setProfileImage' in user) {
+        await (user as any).setProfileImage({ file });
+        await user.reload();
+        setImageNotice({
+          type: 'success',
+          message: locale === 'tr' ? 'Profil fotoğrafınız başarıyla güncellendi!' : 'Profile photo updated successfully!',
+        });
+      }
+    } catch (err: any) {
+      console.error('Failed to upload profile image:', err);
+      setImageNotice({
+        type: 'error',
+        message: err?.message || (locale === 'tr' ? 'Fotoğraf yüklenemedi. Lütfen tekrar deneyin.' : 'Failed to upload photo.'),
+      });
+    } finally {
+      setIsUploadingImage(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
+
+  const handleRemoveImage = async () => {
+    if (
+      !confirm(
+        locale === 'tr'
+          ? 'Profil fotoğrafınızı kaldırmak istediğinize emin misiniz?'
+          : 'Are you sure you want to remove your profile photo?'
+      )
+    )
+      return;
+
+    try {
+      setIsUploadingImage(true);
+      setImageNotice(null);
+      if (user && 'setProfileImage' in user) {
+        await (user as any).setProfileImage({ file: null });
+        await user.reload();
+        setImageNotice({
+          type: 'success',
+          message: locale === 'tr' ? 'Profil fotoğrafınız kaldırıldı.' : 'Profile photo removed.',
+        });
+      }
+    } catch (err: any) {
+      console.error('Failed to remove profile image:', err);
+      setImageNotice({
+        type: 'error',
+        message: err?.message || (locale === 'tr' ? 'Fotoğraf kaldırılamadı.' : 'Failed to remove photo.'),
+      });
+    } finally {
+      setIsUploadingImage(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900 selection:bg-slate-200">
       <AppHeader />
@@ -55,23 +126,68 @@ export default function ProfilePage() {
           </span>
         </div>
 
+        {/* Status Notice if image upload or error */}
+        {imageNotice && (
+          <div
+            className={`p-3.5 rounded-xl border text-xs font-bold flex items-center justify-between animate-fadeIn ${
+              imageNotice.type === 'success'
+                ? 'bg-emerald-50 text-emerald-900 border-emerald-300'
+                : 'bg-rose-50 text-rose-900 border-rose-300'
+            }`}
+          >
+            <span>{imageNotice.message}</span>
+            <button
+              type="button"
+              onClick={() => setImageNotice(null)}
+              className="text-xs opacity-60 hover:opacity-100 cursor-pointer ml-2"
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
         {/* 1. Profile Header Card (Flat, Zero Gradient) */}
         <div className="bg-white border-2 border-slate-300 rounded-2xl p-6 sm:p-8 shadow-xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              {user?.imageUrl ? (
-                <img
-                  src={user.imageUrl}
-                  alt={user.fullName || 'User Avatar'}
-                  className="w-16 h-16 rounded-2xl border-2 border-slate-300 object-cover shadow-2xs"
+            <div className="flex items-center gap-5 flex-wrap">
+              {/* Profile Avatar with Direct Upload Trigger */}
+              <div className="relative group">
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleImageFileChange}
+                  accept="image/png,image/jpeg,image/webp,image/gif"
+                  className="hidden"
                 />
-              ) : (
-                <div className="w-16 h-16 rounded-2xl bg-slate-100 border-2 border-slate-300 flex items-center justify-center text-2xl font-black text-slate-800">
-                  {user?.firstName?.[0] || 'U'}
-                </div>
-              )}
 
-              <div className="space-y-1">
+                {user?.imageUrl ? (
+                  <img
+                    src={user.imageUrl}
+                    alt={user.fullName || 'User Avatar'}
+                    className={`w-20 h-20 rounded-2xl border-2 border-slate-300 object-cover shadow-2xs transition-all ${
+                      isUploadingImage ? 'opacity-40 animate-pulse' : ''
+                    }`}
+                  />
+                ) : (
+                  <div className="w-20 h-20 rounded-2xl bg-slate-100 border-2 border-slate-300 flex items-center justify-center text-3xl font-black text-slate-800 shadow-2xs">
+                    {user?.firstName?.[0] || 'U'}
+                  </div>
+                )}
+
+                {/* Upload Hover Overlay */}
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={isUploadingImage}
+                  className="absolute inset-0 rounded-2xl bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-[10px] font-bold cursor-pointer"
+                  title={locale === 'tr' ? 'Fotoğrafı Değiştir' : 'Change Photo'}
+                >
+                  <span className="text-base">📷</span>
+                  <span>{locale === 'tr' ? 'Değiştir' : 'Change'}</span>
+                </button>
+              </div>
+
+              <div className="space-y-1.5">
                 <div className="flex items-center gap-2.5 flex-wrap">
                   <h1 className="text-xl sm:text-2xl font-black text-slate-950 m-0 tracking-tight">
                     {user?.fullName || 'Kullanıcı'}
@@ -102,15 +218,57 @@ export default function ProfilePage() {
                 <p className="text-xs text-slate-600 m-0 font-medium">
                   {userEmail || 'E-posta belirtilmedi'}
                 </p>
+
+                {/* Photo Action Controls */}
+                <div className="flex items-center gap-2 pt-1 flex-wrap">
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={isUploadingImage}
+                    className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 transition-colors flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>📷</span>
+                    <span>
+                      {isUploadingImage
+                        ? locale === 'tr'
+                          ? 'Yükleniyor...'
+                          : 'Uploading...'
+                        : locale === 'tr'
+                        ? 'Fotoğraf Yükle'
+                        : 'Upload Photo'}
+                    </span>
+                  </button>
+
+                  {user?.imageUrl && (
+                    <button
+                      type="button"
+                      onClick={handleRemoveImage}
+                      disabled={isUploadingImage}
+                      className="px-2 py-1 rounded-lg text-[11px] font-bold text-slate-500 hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer"
+                    >
+                      {locale === 'tr' ? 'Kaldır' : 'Remove'}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
 
             {/* Quick Actions */}
-            <div className="flex items-center gap-2.5 self-start sm:self-center">
+            <div className="flex items-center gap-2.5 self-start sm:self-center flex-wrap">
+              <button
+                type="button"
+                onClick={() => openUserProfile()}
+                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-xl border border-slate-300 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+                title={locale === 'tr' ? 'Clerk Hesap ve Güvenlik Ayarları' : 'Clerk Account & Security Settings'}
+              >
+                <span>⚙️</span>
+                <span>{locale === 'tr' ? 'Hesap Ayarları' : 'Account Settings'}</span>
+              </button>
+
               <button
                 type="button"
                 onClick={() => signOut({ redirectUrl: '/' })}
-                className="px-4 py-2 bg-white hover:bg-slate-100 text-rose-700 font-bold text-xs rounded-xl border border-rose-200 transition-colors shadow-2xs flex items-center gap-1.5"
+                className="px-4 py-2 bg-white hover:bg-slate-100 text-rose-700 font-bold text-xs rounded-xl border border-rose-200 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
               >
                 <span>🚪</span>
                 <span>{t.profile.signOut}</span>
@@ -182,6 +340,16 @@ export default function ProfilePage() {
 
             {orgType === 'HOST' && currentHost ? (
               <div className="space-y-3 text-xs">
+                {currentHost.logoUrl && (
+                  <div className="flex items-center justify-between py-1 border-b border-slate-100">
+                    <span className="text-slate-500 font-medium">Kurum Logosu:</span>
+                    <img
+                      src={currentHost.logoUrl}
+                      alt={currentHost.name}
+                      className="w-9 h-9 rounded-lg object-contain border border-slate-200 p-0.5 bg-white"
+                    />
+                  </div>
+                )}
                 <div className="flex justify-between py-1 border-b border-slate-100">
                   <span className="text-slate-500 font-medium">Kurum Adı:</span>
                   <span className="font-bold text-slate-900">{currentHost.name}</span>

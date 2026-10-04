@@ -213,7 +213,9 @@ export default function SentInquiriesCard() {
                           🏢 {inq.hostCountry}
                         </span>
                         <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-100 text-blue-900 border border-blue-200">
-                          {inq.projectType === 'KA121' ? 'KA121 Akredite' : 'KA122 Kısa Dönem'}
+                          {inq.projectType === 'KA121'
+                            ? (locale === 'tr' ? 'KA121 Akredite' : 'KA121 Accredited')
+                            : (locale === 'tr' ? 'KA122 Kısa Dönem' : 'KA122 Short-term')}
                         </span>
                         <span className="text-[11px] font-mono text-slate-500">
                           {t.sentInquiries.sentDateLabel} <strong className="text-slate-800">{new Date(inq.createdAt).toLocaleDateString(locale === 'tr' ? 'tr-TR' : 'en-US')}</strong>
@@ -419,19 +421,42 @@ export default function SentInquiriesCard() {
 
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3 leading-relaxed">
               <p className="m-0 text-slate-800">
-                <strong>{selectedInquiryForLoI.hostName} ({selectedInquiryForLoI.hostCountry})</strong>,{' '}
-                <strong>{selectedInquiryForLoI.schoolName} (OID: {selectedInquiryForLoI.schoolOid})</strong> tarafından iletilen{' '}
-                <strong>{selectedInquiryForLoI.vetField}</strong> alanındaki mesleki eğitim hareketlilik talebini onaylamış ve{' '}
-                <strong>{selectedInquiryForLoI.participantCount} öğrenci</strong> için{' '}
-                <strong>{selectedInquiryForLoI.targetStartDate} — {selectedInquiryForLoI.targetEndDate}</strong> tarihleri arasında işletme kontenjanı ayırmıştır.
+                {locale === 'tr' ? (
+                  <>
+                    <strong>{selectedInquiryForLoI.hostName} ({selectedInquiryForLoI.hostCountry})</strong>,{' '}
+                    <strong>{selectedInquiryForLoI.schoolName} (OID: {selectedInquiryForLoI.schoolOid})</strong> tarafından iletilen{' '}
+                    <strong>{selectedInquiryForLoI.vetField}</strong> alanındaki mesleki eğitim hareketlilik talebini onaylamış ve{' '}
+                    <strong>{selectedInquiryForLoI.participantCount} öğrenci</strong> için{' '}
+                    <strong>{selectedInquiryForLoI.targetStartDate} — {selectedInquiryForLoI.targetEndDate}</strong> tarihleri arasında işletme kontenjanı ayırmıştır.
+                  </>
+                ) : (
+                  <>
+                    <strong>{selectedInquiryForLoI.hostName} ({selectedInquiryForLoI.hostCountry})</strong> confirms acceptance of the vocational education and training mobility inquiry submitted by{' '}
+                    <strong>{selectedInquiryForLoI.schoolName} (OID: {selectedInquiryForLoI.schoolOid})</strong> in the field of{' '}
+                    <strong>{selectedInquiryForLoI.vetField}</strong>, and has officially allocated host capacity for{' '}
+                    <strong>{selectedInquiryForLoI.participantCount} learners</strong> for the period{' '}
+                    <strong>{selectedInquiryForLoI.targetStartDate} — {selectedInquiryForLoI.targetEndDate}</strong>.
+                  </>
+                )}
               </p>
               <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200 text-[11px] text-slate-600">
-                <div>Ev Sahibi Kurum: <strong className="text-slate-900">{selectedInquiryForLoI.hostName}</strong></div>
-                <div>Durum: <strong className="text-emerald-700">✓ Onaylandı (LoI Aktif)</strong></div>
+                <div>
+                  {locale === 'tr' ? 'Ev Sahibi Kurum: ' : 'Host Organisation: '}
+                  <strong className="text-slate-900">{selectedInquiryForLoI.hostName}</strong>
+                </div>
+                <div>
+                  {locale === 'tr' ? 'Durum: ' : 'Status: '}
+                  <strong className="text-emerald-700">
+                    {locale === 'tr' ? '✓ Onaylandı (LoI Aktif)' : '✓ Approved (LoI Active)'}
+                  </strong>
+                </div>
               </div>
               {selectedInquiryForLoI.hostReplyNote && (
                 <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-lg text-[11px] text-emerald-950">
-                  <strong className="text-emerald-900">Ev Sahibi Resmi Açıklaması:</strong> {selectedInquiryForLoI.hostReplyNote}
+                  <strong className="text-emerald-900">
+                    {locale === 'tr' ? 'Ev Sahibi Resmi Açıklaması: ' : 'Host Official Statement: '}
+                  </strong>
+                  {selectedInquiryForLoI.hostReplyNote}
                 </div>
               )}
             </div>

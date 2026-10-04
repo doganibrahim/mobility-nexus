@@ -25,9 +25,114 @@ interface QuickChip {
   labelEn: string;
   targetAudience: GuideAudience;
   targetTopicId: string;
+  group: 'USE_CASE' | 'SETTINGS' | 'FAQ';
 }
 
 const QUICK_CURIOSITY_CHIPS: QuickChip[] = [
+  // 🎯 Use Caseler & Temel Akışlar
+  {
+    id: 'pipeline-flow',
+    icon: '🚀',
+    labelTr: '5 Adımlı Hibe Akışı',
+    labelEn: '5-Step Grant Pipeline',
+    targetAudience: 'SCHOOL',
+    targetTopicId: 'school-pipeline',
+    group: 'USE_CASE',
+  },
+  {
+    id: 'host-match-loi',
+    icon: '🏢',
+    labelTr: 'Ev Sahibi Bulma & LoI',
+    labelEn: 'Host Match & LoI',
+    targetAudience: 'SCHOOL',
+    targetTopicId: 'school-inquiry-loi',
+    group: 'USE_CASE',
+  },
+  {
+    id: 'application-export',
+    icon: '📝',
+    labelTr: 'Başvuru Taslağı & İndirme',
+    labelEn: 'Proposal Draft & Export',
+    targetAudience: 'SCHOOL',
+    targetTopicId: 'school-application-draft',
+    group: 'USE_CASE',
+  },
+  {
+    id: 'host-kyc-badge',
+    icon: '🛡️',
+    labelTr: 'Onaylı Partner (KYC) Rozeti',
+    labelEn: 'Verified Host (KYC) Badge',
+    targetAudience: 'HOST',
+    targetTopicId: 'host-kyc-tier3',
+    group: 'USE_CASE',
+  },
+  {
+    id: 'preparation-visa-insurance',
+    icon: '🎒',
+    labelTr: 'Vize, Sigorta & Hazırlık',
+    labelEn: 'Visa, Insurance & Prep',
+    targetAudience: 'SCHOOL',
+    targetTopicId: 'school-preparation-library',
+    group: 'USE_CASE',
+  },
+  {
+    id: 'consulting-appointment',
+    icon: '📊',
+    labelTr: 'Danışmanlık Randevusu',
+    labelEn: 'Advisory Appointment',
+    targetAudience: 'SCHOOL',
+    targetTopicId: 'school-consulting-analytics',
+    group: 'USE_CASE',
+  },
+
+  // ⚙️ Ayarlar, Profil & Görünüm
+  {
+    id: 'display-high-contrast',
+    icon: '👁️',
+    labelTr: 'Görünüm & Yüksek Kontrast',
+    labelEn: 'Display & High Contrast',
+    targetAudience: 'SETTINGS',
+    targetTopicId: 'settings-display-accessibility',
+    group: 'SETTINGS',
+  },
+  {
+    id: 'profile-oid-mgmt',
+    icon: '👤',
+    labelTr: 'Profil & OID Güncelleme',
+    labelEn: 'Profile & OID Setup',
+    targetAudience: 'SETTINGS',
+    targetTopicId: 'settings-profile-account',
+    group: 'SETTINGS',
+  },
+  {
+    id: 'lang-selection',
+    icon: '🌍',
+    labelTr: 'Dil Seçimi (TR / EN)',
+    labelEn: 'Language Switch (TR/EN)',
+    targetAudience: 'SETTINGS',
+    targetTopicId: 'settings-localization-language',
+    group: 'SETTINGS',
+  },
+  {
+    id: 'live-simulation',
+    icon: '⚡',
+    labelTr: 'Canlı Demo Simülasyonu',
+    labelEn: 'Live Simulation Demo',
+    targetAudience: 'SETTINGS',
+    targetTopicId: 'settings-simulation-demo',
+    group: 'SETTINGS',
+  },
+  {
+    id: 'gdpr-privacy',
+    icon: '🔒',
+    labelTr: 'KVKK & Veri Güvenliği',
+    labelEn: 'KVKK & Data Privacy',
+    targetAudience: 'SETTINGS',
+    targetTopicId: 'settings-privacy-compliance',
+    group: 'SETTINGS',
+  },
+
+  // ⚖️ Hibe Mevzuatı & Finansal SSS
   {
     id: 'free-model',
     icon: '🆓',
@@ -35,6 +140,7 @@ const QUICK_CURIOSITY_CHIPS: QuickChip[] = [
     labelEn: '100% Free Model',
     targetAudience: 'FAQ',
     targetTopicId: 'faq-free-model',
+    group: 'FAQ',
   },
   {
     id: 'ka121-vs-ka122',
@@ -43,14 +149,16 @@ const QUICK_CURIOSITY_CHIPS: QuickChip[] = [
     labelEn: 'KA121 vs KA122',
     targetAudience: 'FAQ',
     targetTopicId: 'faq-ka121-vs-ka122',
+    group: 'FAQ',
   },
   {
     id: 'grant-payment',
     icon: '💶',
-    labelTr: 'Hibe Ödemesi & Harcamalar',
+    labelTr: 'Hibe Ödemesi & Bütçe',
     labelEn: 'Grant Payment & Budget',
     targetAudience: 'FAQ',
     targetTopicId: 'faq-grant-payment-flow',
+    group: 'FAQ',
   },
   {
     id: 'daily-subsistence',
@@ -59,14 +167,7 @@ const QUICK_CURIOSITY_CHIPS: QuickChip[] = [
     labelEn: 'Daily Subsistence',
     targetAudience: 'FAQ',
     targetTopicId: 'faq-daily-subsistence-rates',
-  },
-  {
-    id: 'loi-matching',
-    icon: '🏢',
-    labelTr: 'Ev Sahibi Bulma & LoI',
-    labelEn: 'Host Match & LoI',
-    targetAudience: 'FAQ',
-    targetTopicId: 'faq-loi-requirement',
+    group: 'FAQ',
   },
   {
     id: 'green-travel',
@@ -75,22 +176,7 @@ const QUICK_CURIOSITY_CHIPS: QuickChip[] = [
     labelEn: 'Green Travel Bonus',
     targetAudience: 'FAQ',
     targetTopicId: 'faq-green-travel',
-  },
-  {
-    id: 'learning-agreement',
-    icon: '📜',
-    labelTr: 'Learning Agreement & Europass',
-    labelEn: 'Learning Agreement',
-    targetAudience: 'FAQ',
-    targetTopicId: 'faq-learning-agreement-europass',
-  },
-  {
-    id: 'consortium',
-    icon: '🤝',
-    labelTr: 'Konsorsiyuma Katılım',
-    labelEn: 'Consortium Guide',
-    targetAudience: 'FAQ',
-    targetTopicId: 'faq-consortium-participation',
+    group: 'FAQ',
   },
   {
     id: 'oid-setup',
@@ -99,6 +185,25 @@ const QUICK_CURIOSITY_CHIPS: QuickChip[] = [
     labelEn: 'OID Registration',
     targetAudience: 'FAQ',
     targetTopicId: 'faq-oid-setup',
+    group: 'FAQ',
+  },
+  {
+    id: 'learning-agreement',
+    icon: '📜',
+    labelTr: 'Öğrenim Anlaşması & Europass',
+    labelEn: 'Learning Agreement',
+    targetAudience: 'FAQ',
+    targetTopicId: 'faq-learning-agreement-europass',
+    group: 'FAQ',
+  },
+  {
+    id: 'consortium',
+    icon: '🤝',
+    labelTr: 'Konsorsiyuma Katılım',
+    labelEn: 'Consortium Guide',
+    targetAudience: 'FAQ',
+    targetTopicId: 'faq-consortium-participation',
+    group: 'FAQ',
   },
 ];
 
@@ -140,7 +245,7 @@ const SCHOOL_ROADMAP_STEPS: RoadmapStep[] = [
     targetAudience: 'SCHOOL',
     targetTopicId: 'school-pipeline',
     directRoute: '/school/pipeline',
-    directRouteLabelTr: 'Pipeline’ı Aç',
+    directRouteLabelTr: 'Süreç Akışını Aç',
     directRouteLabelEn: 'Open Pipeline',
   },
   {
@@ -153,7 +258,7 @@ const SCHOOL_ROADMAP_STEPS: RoadmapStep[] = [
     targetAudience: 'SCHOOL',
     targetTopicId: 'school-inquiry-loi',
     directRoute: '/marketplace',
-    directRouteLabelTr: 'Pazaryeri & Hostlar',
+    directRouteLabelTr: 'Pazaryeri & Ev Sahipleri',
     directRouteLabelEn: 'Marketplace',
   },
   {
@@ -182,7 +287,7 @@ const HOST_ROADMAP_STEPS: RoadmapStep[] = [
     targetAudience: 'HOST',
     targetTopicId: 'host-onboarding-tier1',
     directRoute: '/onboarding',
-    directRouteLabelTr: 'Host Kaydı Aç',
+    directRouteLabelTr: 'Ev Sahibi Kaydı Aç',
     directRouteLabelEn: 'Host Sign-up',
   },
   {
@@ -225,6 +330,7 @@ export default function PlatformGuideView({
   const [selectedTopicId, setSelectedTopicId] = useState<string | null>('school-onboarding');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [roadmapRole, setRoadmapRole] = useState<'SCHOOL' | 'HOST'>('SCHOOL');
+  const [selectedChipGroup, setSelectedChipGroup] = useState<'ALL' | 'USE_CASE' | 'SETTINGS' | 'FAQ'>('ALL');
 
   // Active category
   const currentCategory = useMemo(() => {
@@ -270,29 +376,52 @@ export default function PlatformGuideView({
     }
   };
 
+  // Filtered curiosity chips based on group tab
+  const filteredChips = useMemo(() => {
+    if (selectedChipGroup === 'ALL') return QUICK_CURIOSITY_CHIPS;
+    return QUICK_CURIOSITY_CHIPS.filter((c) => c.group === selectedChipGroup);
+  }, [selectedChipGroup]);
+
+  // Turkish case-insensitive normalizer (handles İ/i and I/ı properly)
+  const normalizeTr = (str: string) => {
+    return str
+      .replace(/İ/g, 'i')
+      .replace(/I/g, 'ı')
+      .toLowerCase()
+      .trim();
+  };
+
   // Global Universal Search across ALL categories when search query is active
   const globalSearchResults = useMemo(() => {
     if (!searchQuery.trim()) return null;
-    const q = searchQuery.toLowerCase().trim();
+    const q = normalizeTr(searchQuery);
 
     const results: { topic: GuideTopic; category: GuideCategory }[] = [];
 
     for (const cat of PLATFORM_GUIDE_DATA) {
       for (const topic of cat.topics) {
-        const title = (locale === 'en' ? topic.titleEn : topic.titleTr).toLowerCase();
-        const summary = (locale === 'en' ? topic.summaryEn : topic.summaryTr).toLowerCase();
-        const goal = (locale === 'en' ? topic.goalEn : topic.goalTr).toLowerCase();
-        const highlights = (locale === 'en' ? topic.keyHighlightsEn : topic.keyHighlightsTr) || [];
-        const hasHighlightMatch = highlights.some((h) => h.toLowerCase().includes(q));
+        const title = normalizeTr(locale === 'en' ? topic.titleEn : topic.titleTr);
+        const summary = normalizeTr(locale === 'en' ? topic.summaryEn : topic.summaryTr);
+        const goal = normalizeTr(locale === 'en' ? topic.goalEn : topic.goalTr);
+        const highlights = ((locale === 'en' ? topic.keyHighlightsEn : topic.keyHighlightsTr) || []).map(normalizeTr);
+        const hasHighlightMatch = highlights.some((h) => h.includes(q));
 
         const hasStepMatch = topic.steps.some((step) => {
-          const action = (locale === 'en' ? step.actionEn : step.actionTr).toLowerCase();
-          const stepTitle = (locale === 'en' ? step.titleEn : step.titleTr).toLowerCase();
-          const tip = (locale === 'en' ? step.expertTipEn : step.expertTipTr) || '';
-          return action.includes(q) || stepTitle.includes(q) || tip.toLowerCase().includes(q);
+          const action = normalizeTr(locale === 'en' ? step.actionEn : step.actionTr);
+          const stepTitle = normalizeTr(locale === 'en' ? step.titleEn : step.titleTr);
+          const tip = normalizeTr((locale === 'en' ? step.expertTipEn : step.expertTipTr) || '');
+          const expected = normalizeTr((locale === 'en' ? step.expectedStateEn : step.expectedStateTr) || '');
+          const uiTarget = normalizeTr((locale === 'en' ? step.uiTargetEn : step.uiTargetTr) || '');
+          return action.includes(q) || stepTitle.includes(q) || tip.includes(q) || expected.includes(q) || uiTarget.includes(q);
         });
 
-        if (title.includes(q) || summary.includes(q) || goal.includes(q) || hasHighlightMatch || hasStepMatch) {
+        const hasTableMatch = topic.parametersTable?.some((param) => {
+          const label = normalizeTr(locale === 'en' ? param.labelEn : param.labelTr);
+          const value = normalizeTr(locale === 'en' ? param.valueEn : param.valueTr);
+          return label.includes(q) || value.includes(q);
+        });
+
+        if (title.includes(q) || summary.includes(q) || goal.includes(q) || hasHighlightMatch || hasStepMatch || hasTableMatch) {
           results.push({ topic, category: cat });
         }
       }
@@ -388,7 +517,7 @@ export default function PlatformGuideView({
                 className="px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-colors shadow-xs inline-flex items-center gap-1.5"
               >
                 <span>🚀</span>
-                <span>{locale === 'en' ? 'Open Pipeline' : 'Pipeline’a Git'}</span>
+                <span>{locale === 'en' ? 'Open Pipeline' : 'Süreç Akışına Git'}</span>
               </Link>
             </div>
           </div>
@@ -597,12 +726,67 @@ export default function PlatformGuideView({
             </div>
 
             {/* 🔥 En Çok Merak Edilen Konular (Quick Curiosity Chips) */}
-            <div className="pt-2 border-t border-slate-100 space-y-1.5">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block">
-                {locale === 'en' ? '🔥 Frequently Asked Questions & Quick Shortcuts' : '🔥 En Çok Merak Edilen Konular'}
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {QUICK_CURIOSITY_CHIPS.map((chip) => {
+            <div className="pt-2 border-t border-slate-100 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block">
+                  {locale === 'en' ? '🔥 Quick Topic Shortcuts & FAQs' : '🔥 Hızlı Konu Kısayolları & SSS'}
+                </span>
+                <span className="text-[10px] text-slate-400 font-mono">
+                  {filteredChips.length}
+                </span>
+              </div>
+
+              {/* Chip Group Filter Tabs */}
+              <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pb-0.5">
+                <button
+                  type="button"
+                  onClick={() => setSelectedChipGroup('ALL')}
+                  className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all cursor-pointer ${
+                    selectedChipGroup === 'ALL'
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-600'
+                  }`}
+                >
+                  {locale === 'en' ? 'All' : 'Tümü'} ({QUICK_CURIOSITY_CHIPS.length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedChipGroup('USE_CASE')}
+                  className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all cursor-pointer ${
+                    selectedChipGroup === 'USE_CASE'
+                      ? 'bg-blue-700 text-white'
+                      : 'bg-blue-50 hover:bg-blue-100 text-blue-700'
+                  }`}
+                >
+                  🎯 {locale === 'en' ? 'Use Cases' : 'Akışlar'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedChipGroup('SETTINGS')}
+                  className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all cursor-pointer ${
+                    selectedChipGroup === 'SETTINGS'
+                      ? 'bg-indigo-700 text-white'
+                      : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700'
+                  }`}
+                >
+                  ⚙️ {locale === 'en' ? 'Settings' : 'Ayarlar'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedChipGroup('FAQ')}
+                  className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all cursor-pointer ${
+                    selectedChipGroup === 'FAQ'
+                      ? 'bg-amber-700 text-white'
+                      : 'bg-amber-50 hover:bg-amber-100 text-amber-800'
+                  }`}
+                >
+                  ⚖️ {locale === 'en' ? 'FAQ' : 'SSS'}
+                </button>
+              </div>
+
+              {/* Chips Cloud */}
+              <div className="flex flex-wrap gap-1.5 pt-0.5">
+                {filteredChips.map((chip) => {
                   const isChipActive = selectedTopicId === chip.targetTopicId && !searchQuery;
                   return (
                     <button
@@ -636,8 +820,12 @@ export default function PlatformGuideView({
                       ? 'bg-blue-50 text-blue-700 border-blue-200'
                       : category.id === 'HOST'
                       ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                      : category.id === 'SETTINGS'
+                      ? 'bg-indigo-50 text-indigo-700 border-indigo-200'
                       : category.id === 'FAQ'
                       ? 'bg-amber-50 text-amber-800 border-amber-200'
+                      : category.id === 'ADMIN'
+                      ? 'bg-rose-50 text-rose-700 border-rose-200'
                       : 'bg-purple-50 text-purple-700 border-purple-200';
 
                   return (
@@ -777,7 +965,7 @@ export default function PlatformGuideView({
                 onClick={() => handleDemoLaunch('HOST')}
                 className="flex-1 text-center py-2 px-3 text-xs font-bold text-emerald-900 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors shadow-2xs border border-emerald-200 cursor-pointer"
               >
-                🏢 {locale === 'en' ? 'Host Demo' : 'Host Demosu'}
+                🏢 {locale === 'en' ? 'Host Demo' : 'Ev Sahibi Kuruluş Demosu'}
               </button>
             </div>
           </div>
@@ -1021,7 +1209,7 @@ export default function PlatformGuideView({
                     <p className="text-xs text-slate-600 m-0 mt-0.5">
                       {locale === 'en'
                         ? 'Explore the live pipeline calculator, test live demo simulations, or ask the ErasmusAI assistant.'
-                        : 'Canlı hareketlilik pipeline’ını test edin, hibe hesaplayıcıyı deneyin veya ErasmusAI mevzuat danışmanına sorun.'}
+                        : 'Canlı hareketlilik süreç akışını test edin, hibe hesaplayıcıyı deneyin veya Erasmus Yapay Zekâ Asistanına danışın.'}
                     </p>
                   </div>
                 </div>
@@ -1032,7 +1220,7 @@ export default function PlatformGuideView({
                     className="flex-1 md:flex-initial px-4 py-2 text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 rounded-xl transition-colors shadow-2xs flex items-center justify-center gap-1.5"
                   >
                     <span>🚀</span>
-                    <span>{locale === 'en' ? 'Open Pipeline' : '5 Adımlı Pipeline'}</span>
+                    <span>{locale === 'en' ? 'Open Pipeline' : '5 Adımlı Süreç Akışı'}</span>
                   </Link>
                   <button
                     type="button"

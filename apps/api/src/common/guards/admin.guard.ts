@@ -39,8 +39,8 @@ export class AdminGuard implements CanActivate {
       return true;
     }
 
-    // 3. Check verified admin email
-    if (userEmailHeader && configuredEmails.includes(String(userEmailHeader).toLowerCase().trim())) {
+    // 3. Check verified admin email from authenticated user token only (never from raw headers)
+    if (user?.email && configuredEmails.includes(String(user.email).toLowerCase().trim())) {
       return true;
     }
 

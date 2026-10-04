@@ -657,9 +657,25 @@ export const MarketplaceDb = {
       }
     }
 
-    // Attach sessions and learning outcomes
+    // Attach sessions, learning outcomes and PKG-IMP-05 metadata
     return courses.map((course) => ({
       ...course,
+      cancellationPolicy: course.cancellationPolicy || {
+        policyType: 'FLEXIBLE',
+        refundPercentageFull: 100,
+        daysBeforeFullRefund: 30,
+        refundPercentagePartial: 50,
+        daysBeforePartialRefund: 14,
+        forceMajeureCovered: true,
+        policyDetailsTr: '30 gün öncesine kadar ücretsiz %100 kesintisiz iade. 14 güne kadar %50 iade. Ulusal Ajans mücbir sebep garantilidir.',
+        policyDetailsEn: 'Free 100% refund up to 30 days. 50% refund up to 14 days. NA force majeure guaranteed.',
+      },
+      accessibilityFeatures: course.accessibilityFeatures || {
+        wheelchairAccessible: true,
+        specialDiet: true,
+      },
+      targetGroups: course.targetGroups || ['TEACHER', 'STAFF'],
+      lastUpdatedAt: course.lastUpdatedAt || course.updatedAt || '2026-03-01T10:00:00Z',
       sessions: memoryStore.sessions.filter((s) => s.courseId === course.id),
       learningOutcomes: memoryStore.outcomes.filter((o) => o.courseId === course.id),
     }));
@@ -675,6 +691,22 @@ export const MarketplaceDb = {
 
     return {
       ...course,
+      cancellationPolicy: course.cancellationPolicy || {
+        policyType: 'FLEXIBLE',
+        refundPercentageFull: 100,
+        daysBeforeFullRefund: 30,
+        refundPercentagePartial: 50,
+        daysBeforePartialRefund: 14,
+        forceMajeureCovered: true,
+        policyDetailsTr: '30 gün öncesine kadar ücretsiz %100 kesintisiz iade. 14 güne kadar %50 iade. Ulusal Ajans mücbir sebep garantilidir.',
+        policyDetailsEn: 'Free 100% refund up to 30 days. 50% refund up to 14 days. NA force majeure guaranteed.',
+      },
+      accessibilityFeatures: course.accessibilityFeatures || {
+        wheelchairAccessible: true,
+        specialDiet: true,
+      },
+      targetGroups: course.targetGroups || ['TEACHER', 'STAFF'],
+      lastUpdatedAt: course.lastUpdatedAt || course.updatedAt || '2026-03-01T10:00:00Z',
       sessions: memoryStore.sessions.filter((s) => s.courseId === course.id),
       learningOutcomes: memoryStore.outcomes.filter((o) => o.courseId === course.id),
     };
@@ -685,7 +717,25 @@ export const MarketplaceDb = {
    */
   async getAllJobShadowingOffers(): Promise<JobShadowingOffer[]> {
     await readFromFile();
-    return memoryStore.jobShadowingOffers;
+    return memoryStore.jobShadowingOffers.map((offer) => ({
+      ...offer,
+      cancellationPolicy: offer.cancellationPolicy || {
+        policyType: 'FLEXIBLE',
+        refundPercentageFull: 100,
+        daysBeforeFullRefund: 30,
+        refundPercentagePartial: 50,
+        daysBeforePartialRefund: 14,
+        forceMajeureCovered: true,
+        policyDetailsTr: '30 gün öncesine kadar %100 kesintisiz iade. 14 güne kadar %50 iade. Ulusal Ajans mücbir sebep şartları güvence altındadır.',
+        policyDetailsEn: 'Full 100% refund up to 30 days before mobility. 50% refund up to 14 days.',
+      },
+      accessibilityFeatures: offer.accessibilityFeatures || {
+        wheelchairAccessible: true,
+        specialDiet: true,
+      },
+      targetGroups: offer.targetGroups || ['TEACHER', 'STAFF'],
+      lastUpdatedAt: offer.lastUpdatedAt || offer.updatedAt || '2026-03-05T12:00:00Z',
+    }));
   },
 
   /**
@@ -694,7 +744,27 @@ export const MarketplaceDb = {
   async getJobShadowingById(id: string): Promise<JobShadowingOffer | null> {
     await readFromFile();
     const offer = memoryStore.jobShadowingOffers.find((o) => o.id === id);
-    return offer || null;
+    if (!offer) return null;
+
+    return {
+      ...offer,
+      cancellationPolicy: offer.cancellationPolicy || {
+        policyType: 'FLEXIBLE',
+        refundPercentageFull: 100,
+        daysBeforeFullRefund: 30,
+        refundPercentagePartial: 50,
+        daysBeforePartialRefund: 14,
+        forceMajeureCovered: true,
+        policyDetailsTr: '30 gün öncesine kadar %100 kesintisiz iade. 14 güne kadar %50 iade. Ulusal Ajans mücbir sebep şartları güvence altındadır.',
+        policyDetailsEn: 'Full 100% refund up to 30 days before mobility. 50% refund up to 14 days.',
+      },
+      accessibilityFeatures: offer.accessibilityFeatures || {
+        wheelchairAccessible: true,
+        specialDiet: true,
+      },
+      targetGroups: offer.targetGroups || ['TEACHER', 'STAFF'],
+      lastUpdatedAt: offer.lastUpdatedAt || offer.updatedAt || '2026-03-05T12:00:00Z',
+    };
   },
 
   /**

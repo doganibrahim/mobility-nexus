@@ -395,6 +395,24 @@ export const DEFAULT_DRAFT_STATE: ApplicationDraftState = {
 };
 
 /**
+ * Calculates duration in days between two ISO date strings (inclusive of start and end date).
+ * Activity days represent physical working/learning days.
+ * In Erasmus+, travel days (1-2 days) are tracked separately.
+ */
+export function calculateDurationDaysFromDates(
+  startDateStr?: string,
+  endDateStr?: string
+): number | null {
+  if (!startDateStr || !endDateStr) return null;
+  const start = new Date(startDateStr);
+  const end = new Date(endDateStr);
+  if (isNaN(start.getTime()) || isNaN(end.getTime())) return null;
+  const diffTime = end.getTime() - start.getTime();
+  if (diffTime < 0) return null;
+  return Math.round(diffTime / (1000 * 60 * 60 * 24)) + 1;
+}
+
+/**
  * Calculates completion percentage of the draft based on form type
  */
 export function calculateDraftCompletion(draft: ApplicationDraftState): {

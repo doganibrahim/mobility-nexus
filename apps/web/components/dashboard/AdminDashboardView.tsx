@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import ka121Data from '../../lib/data/ka121_results.json';
+import ka122Data from '../../lib/data/ka122_results.json';
 import Link from 'next/link';
 import { useTranslation } from '../../lib/i18n';
 import { apiClient } from '../../lib/api-client';
@@ -29,6 +31,19 @@ export default function AdminDashboardView({
   const store = useAppStore();
   const inquiries = store.inquiries || [];
   const pendingInquiriesCount = inquiries.filter((i) => i.status === 'PENDING').length;
+
+  // Gerçek hibe havuzu — ka121_results.json ve ka122_results.json'dan hesaplanır
+  const grantStats = useMemo(() => {
+    const ka121Total = (ka121Data as any[]).reduce((acc, item) => acc + (Number(item.grant_amount_eur) || 0), 0);
+    const ka122Total = (ka122Data as any[]).reduce((acc, item) => acc + (Number(item.grant_amount_eur) || 0), 0);
+    const formatEur = (val: number, locale: string) =>
+      new Intl.NumberFormat(locale === 'tr' ? 'tr-TR' : 'en-US', {
+        style: 'currency',
+        currency: 'EUR',
+        maximumFractionDigits: 0,
+      }).format(val);
+    return { ka121Total, ka122Total, formatEur };
+  }, []);
 
   useEffect(() => {
     store.fetchInquiriesFromServer();
@@ -158,20 +173,22 @@ export default function AdminDashboardView({
           </button>
         </div>
 
-        {/* KPI 3: Hibe Havuzu */}
+        {/* KPI 3: Hibe Havuzu — ka121_results.json + ka122_results.json kaynaklı gerçek veriler */}
         <div className="bg-white border-2 border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              {locale === 'tr' ? '2026 Çağrısı Hibe Havuzu' : '2026 Call Grant Pool'}
+              {locale === 'tr' ? '2026 KA121-VET Hibe Havuzu' : '2026 KA121-VET Grant Pool'}
             </span>
             <span className="text-xl">💶</span>
           </div>
           <div className="mt-3">
             <div className="text-3xl font-black text-slate-950">
-              €10.420.000
+              {grantStats.formatEur(grantStats.ka121Total, locale)}
             </div>
             <p className="text-[11px] text-slate-500 mt-1 m-0">
-              {locale === 'tr' ? 'Türkiye geneli akredite kurum hibe dağılımı' : 'Accredited institution grant distribution'}
+              {locale === 'tr'
+                ? `${(ka121Data as any[]).filter((i: any) => i.list_type === 'Kabul Listesi').length} akredite kurum · KA122: ${grantStats.formatEur(grantStats.ka122Total, locale)}`
+                : `${(ka121Data as any[]).filter((i: any) => i.list_type === 'Kabul Listesi').length} accredited orgs · KA122: ${grantStats.formatEur(grantStats.ka122Total, locale)}`}
             </p>
           </div>
           <button

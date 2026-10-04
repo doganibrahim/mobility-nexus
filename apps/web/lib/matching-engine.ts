@@ -8,6 +8,13 @@ import {
   HostMatchCandidate,
   MatchHostsResponseDto,
   HostVerificationStatus,
+  SevenCriteriaDiagnostics,
+  CriterionEvaluation,
+  MatchingCriterionKey,
+  CriterionMatchStatus,
+  EvaluateCriteriaRequestDto,
+  EvaluateCriteriaResponseDto,
+  EvaluateCriteriaItemResult,
 } from '@mobility-nexus/types';
 
 export interface ClientHostRecord {
@@ -788,6 +795,434 @@ export function calculateLogisticsScoreClient(
   };
 }
 
+/**
+ * 7 Core Matching Criteria Engine (PKG-IMP-03)
+ * Evaluates: Country (15%), Activity (20%), Target Group (15%), Dates (10%), Duration (10%), Capacity (15%), Logistics (15%)
+ */
+export function evaluateSevenCriteriaClient(
+  host: ClientHostRecord,
+  query: MatchHostsRequestDto,
+): SevenCriteriaDiagnostics {
+  const criteria: CriterionEvaluation[] = [];
+  const primaryBlockersTr: string[] = [];
+  const primaryBlockersEn: string[] = [];
+  const actionableRecommendationsTr: string[] = [];
+  const actionableRecommendationsEn: string[] = [];
+
+  // 1. Country Match (Weight: 15%)
+  const requestedCountries = (query.targetCountries || []).map((c) => c.toUpperCase());
+  const isAnyCountry =
+    requestedCountries.length === 0 ||
+    requestedCountries.includes('ANY') ||
+    requestedCountries.includes('TÜMÜ') ||
+    requestedCountries.includes('ALL');
+
+  const hostCountry = (host.countryCode || '').toUpperCase();
+  const countryMatch = isAnyCountry || requestedCountries.includes(hostCountry);
+
+  const countryEval: CriterionEvaluation = {
+    key: 'country',
+    labelTr: 'Hedef Ülke Uyumu',
+    labelEn: 'Target Country Match',
+    weightPercent: 15,
+    status: countryMatch ? 'MATCH' : 'MISMATCH',
+    scoreContribution: countryMatch ? 100 : 0,
+    weightedScore: countryMatch ? 15 : 0,
+    schoolRequested: isAnyCountry ? 'Tüm Uygun AB Ülkeleri (Any)' : requestedCountries.join(', '),
+    hostProvided: `${host.countryCode} (${host.city})`,
+    messageTr: countryMatch
+      ? `Ev sahibi (${host.countryCode} - ${host.city}), okulun hedef ülke tercihi ile tam uyumludur.`
+      : `Hedef ülke uyuşmazlığı: Ev sahibi ${host.countryCode} ülkesindedir. Tercih edilen: [${requestedCountries.join(', ')}].`,
+    messageEn: countryMatch
+      ? `Host location (${host.countryCode} - ${host.city}) fully matches preferred countries.`
+      : `Country mismatch: Host is located in ${host.countryCode}. Requested: [${requestedCountries.join(', ')}].`,
+    actionableHintTr: countryMatch
+      ? undefined
+      : `Hedef ülke filtrenizi 'Tüm Ülkeler' yapabilir veya ${host.countryCode} ülkesini tercih listenize ekleyebilirsiniz.`,
+    actionableHintEn: countryMatch
+      ? undefined
+      : `Set country filter to 'All' or add ${host.countryCode} to preferred destinations.`,
+  };
+  criteria.push(countryEval);
+  if (!countryMatch) {
+    primaryBlockersTr.push(countryEval.messageTr);
+    primaryBlockersEn.push(countryEval.messageEn);
+    if (countryEval.actionableHintTr) actionableRecommendationsTr.push(countryEval.actionableHintTr);
+    if (countryEval.actionableHintEn) actionableRecommendationsEn.push(countryEval.actionableHintEn);
+  }
+
+  // 2. Activity Type (Weight: 20%)
+  const hostActivities = host.activities || [];
+  const activityMatch = hostActivities.includes(query.mobilityGoal);
+
+  const activityEval: CriterionEvaluation = {
+    key: 'activityType',
+    labelTr: 'Faaliyet Türü',
+    labelEn: 'Activity Type',
+    weightPercent: 20,
+    status: activityMatch ? 'MATCH' : 'MISMATCH',
+    scoreContribution: activityMatch ? 100 : 0,
+    weightedScore: activityMatch ? 20 : 0,
+    schoolRequested: query.mobilityGoal,
+    hostProvided: hostActivities.length > 0 ? hostActivities.join(', ') : 'Belirtilmedi',
+    messageTr: activityMatch
+      ? `Ev sahibi seçilen faaliyeti (${query.mobilityGoal}) aktif olarak sunmakta ve rehberlik vermektedir.`
+      : `Faaliyet uyuşmazlığı: Ev sahibi ${query.mobilityGoal} faaliyetini sunmamaktadır.`,
+    messageEn: activityMatch
+      ? `Host actively provides mentoring for ${query.mobilityGoal}.`
+      : `Activity mismatch: Host does not provide ${query.mobilityGoal}.`,
+    actionableHintTr: activityMatch
+      ? undefined
+      : `Ev sahibinin sunduğu faaliyetleri (${hostActivities.slice(0, 3).join(', ')}) inceleyebilir veya faaliyet türünüzü uyarlayabilirsiniz.`,
+    actionableHintEn: activityMatch
+      ? undefined
+      : `Consider activities offered by host (${hostActivities.slice(0, 3).join(', ')}) or adjust requirements.`,
+  };
+  criteria.push(activityEval);
+  if (!activityMatch) {
+    primaryBlockersTr.push(activityEval.messageTr);
+    primaryBlockersEn.push(activityEval.messageEn);
+    if (activityEval.actionableHintTr) actionableRecommendationsTr.push(activityEval.actionableHintTr);
+    if (activityEval.actionableHintEn) actionableRecommendationsEn.push(activityEval.actionableHintEn);
+  }
+
+  // 3. Target Group & Age Compatibility (Weight: 15%)
+  let targetStatus: CriterionMatchStatus = 'MATCH';
+  let targetScoreContribution = 100;
+  let targetMessageTr = '';
+  let targetMessageEn = '';
+  let targetHintTr: string | undefined;
+  let targetHintEn: string | undefined;
+
+  const isMinor = query.ageGroup === 'under_18' || query.ageGroup === 'mixed';
+  if (query.participantType === 'student' && host.hasVetLearner === false) {
+    targetStatus = 'MISMATCH';
+    targetScoreContribution = 0;
+    targetMessageTr = 'Ev sahibi meslek lisesi öğrencisi (stajyer) kabul etmemektedir.';
+    targetMessageEn = 'Host does not accept VET students/interns.';
+    targetHintTr = 'Öğrenci stajı kabul eden ev sahipleri listesine göz atın.';
+    targetHintEn = 'Filter for hosts accepting student mobility.';
+  } else if (
+    (query.participantType === 'teacher' || query.participantType === 'staff') &&
+    host.hasStaffMobility === false
+  ) {
+    targetStatus = 'MISMATCH';
+    targetScoreContribution = 0;
+    targetMessageTr = 'Ev sahibi öğretmen veya personel hareketliliği kabul etmemektedir.';
+    targetMessageEn = 'Host does not accept teacher/staff mobility.';
+    targetHintTr = 'İşbaşı gözlem (Job Shadowing) veya eğitici kabul eden kurumları seçin.';
+    targetHintEn = 'Select hosts that accommodate staff job shadowing.';
+  } else if (isMinor && host.acceptsUnder18 === false) {
+    targetStatus = 'MISMATCH';
+    targetScoreContribution = 0;
+    targetMessageTr = 'Yasal kısıt: Ev sahibi 18 yaş altı (reşit olmayan) stajyer kabul etmemektedir (Yalnızca 18+ Yetişkin).';
+    targetMessageEn = 'Host legal policy does not allow minors under 18 (18+ adults only).';
+    targetHintTr = 'Katılımcı grubunuzu 18+ mezun veya son sınıf öğrencilerinden oluşturun ya da 18 yaş altı kabul eden partnerleri seçin.';
+    targetHintEn = 'Form group with adult 18+ students or choose hosts accepting under-18.';
+  } else if (query.ageGroup === 'mixed' && host.acceptsUnder18) {
+    targetStatus = 'PARTIAL';
+    targetScoreContribution = 80;
+    targetMessageTr = 'Karma yaş grubu: Ev sahibi reşit olmayanları kabul ediyor; refakatçi ve veli izin prosedürleri gereklidir.';
+    targetMessageEn = 'Mixed age group: Host accepts minors; parental and accompanying person policies apply.';
+    targetHintTr = 'Her reşit olmayan öğrenci için refakatçi oranını ve veli muvafakatnamelerini tamamlayın.';
+    targetHintEn = 'Verify accompanying person ratio and parental consent forms.';
+  } else {
+    targetMessageTr = `Hedef profil (${query.participantType === 'student' ? 'Meslek Lisesi Öğrencisi' : 'Öğretmen/Eğitici'}) ve yaş grubu (${query.ageGroup === 'under_18' ? '18 Yaş Altı' : '18+'}) ev sahibi ile tam uyumludur.`;
+    targetMessageEn = `Participant profile (${query.participantType}) and age group (${query.ageGroup}) fully compatible with host.`;
+  }
+
+  const targetEval: CriterionEvaluation = {
+    key: 'targetGroup',
+    labelTr: 'Hedef Grup & Yaş Uygunluğu',
+    labelEn: 'Target Group & Age Compatibility',
+    weightPercent: 15,
+    status: targetStatus,
+    scoreContribution: targetScoreContribution,
+    weightedScore: Math.round((targetScoreContribution * 15) / 100),
+    schoolRequested: `${query.participantType === 'student' ? 'Öğrenci' : 'Öğretmen/Personel'} (${query.ageGroup === 'under_18' ? '18 Yaş Altı' : query.ageGroup === 'mixed' ? 'Karma Yaş' : '18+'})`,
+    hostProvided: `${host.hasVetLearner ? 'Öğrenci ✓' : 'Öğrenci ✕'} • ${host.hasStaffMobility ? 'Personel ✓' : 'Personel ✕'} • ${host.acceptsUnder18 ? '18 Yaş Altı Uygun' : 'Yalnızca 18+'}`,
+    messageTr: targetMessageTr,
+    messageEn: targetMessageEn,
+    actionableHintTr: targetHintTr,
+    actionableHintEn: targetHintEn,
+  };
+  criteria.push(targetEval);
+  if (targetStatus === 'MISMATCH') {
+    primaryBlockersTr.push(targetMessageTr);
+    primaryBlockersEn.push(targetMessageEn);
+  }
+  if (targetHintTr) actionableRecommendationsTr.push(targetHintTr);
+  if (targetHintEn) actionableRecommendationsEn.push(targetHintEn);
+
+  // 4. Dates & Term Availability (Weight: 10%)
+  let datesStatus: CriterionMatchStatus = 'MATCH';
+  let datesScore = 100;
+  let datesMsgTr = '';
+  let datesMsgEn = '';
+  let datesHintTr: string | undefined;
+  let datesHintEn: string | undefined;
+
+  if (!host.isActive) {
+    datesStatus = 'MISMATCH';
+    datesScore = 0;
+    datesMsgTr = 'Ev sahibi şu anda pasif durumda veya bu dönem için grup kabul etmemektedir.';
+    datesMsgEn = 'Host is currently inactive or not accepting groups for this term.';
+    datesHintTr = 'Aktif ve başvuruları açık ev sahiplerini listeleyin.';
+    datesHintEn = 'Browse active hosts accepting mobility groups.';
+  } else if ((host.totalAnnualCapacity || 36) < 15) {
+    datesStatus = 'PARTIAL';
+    datesScore = 70;
+    datesMsgTr = `Sınırlı yıllık kontenjan: Ev sahibi yıllık toplam ${host.totalAnnualCapacity} katılımcı ağırlayabilmektedir. Dönem doluluk riski olabilir.`;
+    datesMsgEn = `Limited annual capacity: Host accommodates up to ${host.totalAnnualCapacity} participants annually.`;
+    datesHintTr = 'Tarihlerinizi erkenden rezerve etmek için ev sahibiyle derhal talep iletişimi başlatın.';
+    datesHintEn = 'Initiate early inquiry to reserve target period.';
+  } else {
+    datesMsgTr = `Ev sahibi aktif ve yıllık ${host.totalAnnualCapacity || 36} kişilik kapasiteyle planlanan dönem için müsait durumdadır.`;
+    datesMsgEn = `Host is active with annual capacity of ${host.totalAnnualCapacity || 36} for target mobility periods.`;
+  }
+
+  const datesEval: CriterionEvaluation = {
+    key: 'dates',
+    labelTr: 'Tarihler & Dönem Müsaitliği',
+    labelEn: 'Dates & Term Availability',
+    weightPercent: 10,
+    status: datesStatus,
+    scoreContribution: datesScore,
+    weightedScore: Math.round((datesScore * 10) / 100),
+    schoolRequested: 'Planlanan Dönem (2026/2027)',
+    hostProvided: `Yıllık Kapasite: ${host.totalAnnualCapacity || 36} kişi (${host.isActive ? 'Aktif' : 'Pasif'})`,
+    messageTr: datesMsgTr,
+    messageEn: datesMsgEn,
+    actionableHintTr: datesHintTr,
+    actionableHintEn: datesHintEn,
+  };
+  criteria.push(datesEval);
+  if (datesStatus === 'MISMATCH') {
+    primaryBlockersTr.push(datesMsgTr);
+    primaryBlockersEn.push(datesMsgEn);
+  }
+  if (datesHintTr) actionableRecommendationsTr.push(datesHintTr);
+  if (datesHintEn) actionableRecommendationsEn.push(datesHintEn);
+
+  // 5. Duration Limits (Weight: 10%)
+  const reqDuration = query.durationDays || 14;
+  const minDays = host.minDurationDays || 2;
+  const maxDays = host.maxDurationDays || 365;
+
+  let durStatus: CriterionMatchStatus = 'MATCH';
+  let durScore = 100;
+  let durMsgTr = '';
+  let durMsgEn = '';
+  let durHintTr: string | undefined;
+  let durHintEn: string | undefined;
+
+  if (reqDuration >= minDays && reqDuration <= maxDays) {
+    durMsgTr = `Talep edilen ${reqDuration} günlük süre, ev sahibinin kabul aralığına [${minDays}–${maxDays} gün] tam uygundur.`;
+    durMsgEn = `Requested duration of ${reqDuration} days fits within host range [${minDays}–${maxDays} days].`;
+  } else if (Math.abs(reqDuration - minDays) <= 3 || Math.abs(reqDuration - maxDays) <= 5) {
+    durStatus = 'PARTIAL';
+    durScore = 60;
+    durMsgTr = `Süre yakın sınırda: Talep edilen ${reqDuration} gün, ev sahibi aralığı [${minDays}–${maxDays} gün]. Küçük bir esneklik gerekebilir.`;
+    durMsgEn = `Duration near threshold: Requested ${reqDuration} days vs host limits [${minDays}–${maxDays} days].`;
+    durHintTr = `Hareketlilik sürenizi ${minDays} veya ${maxDays} gün seviyesine yuvarlayarak tam uyum sağlayabilirsiniz.`;
+    durHintEn = `Adjust duration towards ${minDays} or ${maxDays} days for full compliance.`;
+  } else {
+    durStatus = 'MISMATCH';
+    durScore = 0;
+    durMsgTr = `Süre uyuşmazlığı: Talep edilen ${reqDuration} gün, ev sahibi kabul sınırları [${minDays}–${maxDays} gün] dışındadır.`;
+    durMsgEn = `Duration mismatch: Requested ${reqDuration} days is outside host limits [${minDays}–${maxDays} days].`;
+    durHintTr = `Hareketlilik sürenizi ev sahibinin kabul aralığı olan [${minDays}–${maxDays}] güne revize edin.`;
+    durHintEn = `Revise mobility duration to match host range [${minDays}–${maxDays} days].`;
+  }
+
+  const durEval: CriterionEvaluation = {
+    key: 'duration',
+    labelTr: 'Hareketlilik Süresi',
+    labelEn: 'Mobility Duration',
+    weightPercent: 10,
+    status: durStatus,
+    scoreContribution: durScore,
+    weightedScore: Math.round((durScore * 10) / 100),
+    schoolRequested: `${reqDuration} Gün`,
+    hostProvided: `${minDays}–${maxDays} Gün`,
+    messageTr: durMsgTr,
+    messageEn: durMsgEn,
+    actionableHintTr: durHintTr,
+    actionableHintEn: durHintEn,
+  };
+  criteria.push(durEval);
+  if (durStatus === 'MISMATCH') {
+    primaryBlockersTr.push(durMsgTr);
+    primaryBlockersEn.push(durMsgEn);
+  }
+  if (durHintTr) actionableRecommendationsTr.push(durHintTr);
+  if (durHintEn) actionableRecommendationsEn.push(durHintEn);
+
+  // 6. Participant Capacity (Weight: 15%)
+  const totalCount = (query.participantCount || 6) + (query.accompanyingPersonsCount || 0);
+  const maxCap = host.maxLearnersPerTerm || 4;
+
+  let capStatus: CriterionMatchStatus = 'MATCH';
+  let capScore = 100;
+  let capMsgTr = '';
+  let capMsgEn = '';
+  let capHintTr: string | undefined;
+  let capHintEn: string | undefined;
+
+  if (totalCount < maxCap) {
+    capMsgTr = `Kontenjan uygun: Talep edilen ${totalCount} kişi (${query.participantCount} asil + ${query.accompanyingPersonsCount || 0} refakatçi), ev sahibinin ${maxCap} kişilik azami kapasitesine rahatça sığmaktadır.`;
+    capMsgEn = `Capacity suitable: Requested ${totalCount} participants fits comfortably in ${maxCap} host slots.`;
+  } else if (totalCount === maxCap) {
+    capStatus = 'PARTIAL';
+    capScore = 80;
+    capMsgTr = `Kontenjan tam sınırda: Talep edilen ${totalCount} kişi, ev sahibinin dönemlik azami ${maxCap} kişilik kontenjanını doldurmaktadır.`;
+    capMsgEn = `Capacity at boundary: Requested ${totalCount} participants uses 100% of host capacity (${maxCap}).`;
+    capHintTr = 'Refakatçi sayısında artış planlanıyorsa ev sahibi ile önceden teyit edin.';
+    capHintEn = 'Confirm with host if additional accompanying persons might join.';
+  } else {
+    capStatus = 'MISMATCH';
+    capScore = 0;
+    capMsgTr = `Kontenjan yetersizliği: Talep edilen ${totalCount} kişi (${query.participantCount} asil + ${query.accompanyingPersonsCount || 0} refakatçi), ev sahibinin azami ${maxCap} kişilik dönem kontenjanını aşmaktadır.`;
+    capMsgEn = `Capacity deficit: Requested ${totalCount} participants exceeds host maximum term capacity of ${maxCap}.`;
+    capHintTr = `Katılımcı sayınızı ${maxCap} kişiye düşürün veya grubu iki farklı döneme bölerek iki ayrı hareketlilik akışı planlayın.`;
+    capHintEn = `Reduce group size to ${maxCap} or split participants into two sequential mobility flows.`;
+  }
+
+  const capEval: CriterionEvaluation = {
+    key: 'capacity',
+    labelTr: 'Katılımcı Sayısı & Kontenjan',
+    labelEn: 'Participant Capacity',
+    weightPercent: 15,
+    status: capStatus,
+    scoreContribution: capScore,
+    weightedScore: Math.round((capScore * 15) / 100),
+    schoolRequested: `${totalCount} Kişi (${query.participantCount || 6} Katılımcı + ${query.accompanyingPersonsCount || 0} Refakatçi)`,
+    hostProvided: `Azami ${maxCap} Kişi / Dönem`,
+    messageTr: capMsgTr,
+    messageEn: capMsgEn,
+    actionableHintTr: capHintTr,
+    actionableHintEn: capHintEn,
+  };
+  criteria.push(capEval);
+  if (capStatus === 'MISMATCH') {
+    primaryBlockersTr.push(capMsgTr);
+    primaryBlockersEn.push(capMsgEn);
+  }
+  if (capHintTr) actionableRecommendationsTr.push(capHintTr);
+  if (capHintEn) actionableRecommendationsEn.push(capHintEn);
+
+  // 7. Logistics & Special Needs (Weight: 15%)
+  const reqAccom = Boolean(query.logisticsRequired?.accommodation);
+  const reqMeals = Boolean(query.logisticsRequired?.meals);
+  const reqTransfers = Boolean(query.logisticsRequired?.transfers);
+  const reqWheelchair = Boolean(query.specialNeeds?.wheelchairAccessible);
+  const reqSpecialDiet = Boolean(query.specialNeeds?.specialDiet);
+
+  const hasAnyReq = reqAccom || reqMeals || reqTransfers || reqWheelchair || reqSpecialDiet;
+
+  let logStatus: CriterionMatchStatus = 'MATCH';
+  let logScore = 100;
+  let logMsgTr = '';
+  let logMsgEn = '';
+  let logHintTr: string | undefined;
+  let logHintEn: string | undefined;
+
+  const failedItems: string[] = [];
+  if (reqAccom && !host.providesAccommodation) failedItems.push('Konaklama');
+  if (reqMeals && !host.providesMeals) failedItems.push('Yemek');
+  if (reqTransfers && !host.providesTransfers) failedItems.push('Transfer');
+  if (reqWheelchair && !host.accessibilityFeatures?.wheelchairAccessible) failedItems.push('Tekerlekli Sandalye');
+  if (reqSpecialDiet && !host.accessibilityFeatures?.specialDiet) failedItems.push('Özel Diyet');
+
+  const providedItems: string[] = [];
+  if (host.providesAccommodation) providedItems.push('Konaklama');
+  if (host.providesMeals) providedItems.push('Yemek');
+  if (host.providesTransfers) providedItems.push('Transfer');
+  if (host.accessibilityFeatures?.wheelchairAccessible) providedItems.push('Engelsiz Erişim');
+
+  if (!hasAnyReq) {
+    logScore = 100;
+    logMsgTr = 'Okul özel bir lojistik zorunluluğu belirtmedi. Ev sahibi ihtiyaç duyulduğunda esnek destek sunabilmektedir.';
+    logMsgEn = 'No mandatory logistics required by school. Host offers flexible assistance.';
+  } else if (failedItems.length === 0) {
+    logScore = 100;
+    logMsgTr = `Talep edilen tüm lojistik hizmetler (${[reqAccom && 'Konaklama', reqMeals && 'Yemek', reqTransfers && 'Transfer', reqWheelchair && 'Erişilebilirlik'].filter(Boolean).join(', ')}) ev sahibi tarafından eksiksiz karşılanmaktadır.`;
+    logMsgEn = 'All requested logistics and accessibility services are fully provided by host.';
+  } else if (failedItems.length > 0 && (reqAccom && !host.providesAccommodation)) {
+    logStatus = 'MISMATCH';
+    logScore = 0;
+    logMsgTr = `Zorunlu lojistik uyuşmazlığı: Okul tarafından talep edilen kritik şartlar (${failedItems.join(', ')}) ev sahibi tarafından sağlanamamaktadır.`;
+    logMsgEn = `Logistics mismatch: Mandatory requirements (${failedItems.join(', ')}) cannot be provided by host.`;
+    logHintTr = 'Konaklamayı Erasmus+ harcırah yöntemiyle okulun kendisinin organize etmesini seçebilir veya tam konaklama sunan ev sahiplerini inceleyebilirsiniz.';
+    logHintEn = 'Consider self-managed accommodation via Erasmus daily allowances or select full-service hosts.';
+  } else {
+    logStatus = 'PARTIAL';
+    logScore = 65;
+    logMsgTr = `Kısmi lojistik: Ev sahibi temel hizmetleri karşılarken bazı kalemler (${failedItems.join(', ')}) eksiktir.`;
+    logMsgEn = `Partial logistics: Host covers core services but misses (${failedItems.join(', ')}).`;
+    logHintTr = `Eksik kalan ${failedItems.join(', ')} hizmetini harcırah bütçesi veya yerel tedarikçilerle planlayın.`;
+    logHintEn = `Plan for (${failedItems.join(', ')}) using allowance or local service providers.`;
+  }
+
+  const logEval: CriterionEvaluation = {
+    key: 'logistics',
+    labelTr: 'Lojistik & Özel İhtiyaçlar',
+    labelEn: 'Logistics & Special Needs',
+    weightPercent: 15,
+    status: logStatus,
+    scoreContribution: logScore,
+    weightedScore: Math.round((logScore * 15) / 100),
+    schoolRequested: hasAnyReq
+      ? [reqAccom && 'Konaklama', reqMeals && 'Yemek', reqTransfers && 'Transfer', reqWheelchair && 'Erişilebilirlik'].filter(Boolean).join(', ')
+      : 'Esnek / Bağımsız Yönetim',
+    hostProvided: providedItems.length > 0 ? providedItems.join(', ') : 'Hizmet Sağlanmıyor (Bağımsız)',
+    messageTr: logMsgTr,
+    messageEn: logMsgEn,
+    actionableHintTr: logHintTr,
+    actionableHintEn: logHintEn,
+  };
+  criteria.push(logEval);
+  if (logStatus === 'MISMATCH') {
+    primaryBlockersTr.push(logMsgTr);
+    primaryBlockersEn.push(logMsgEn);
+  }
+  if (logHintTr) actionableRecommendationsTr.push(logHintTr);
+  if (logHintEn) actionableRecommendationsEn.push(logHintEn);
+
+  // Summary counts and overall suitability score
+  const matchedCount = criteria.filter((c) => c.status === 'MATCH').length;
+  const partialCount = criteria.filter((c) => c.status === 'PARTIAL').length;
+  const mismatchCount = criteria.filter((c) => c.status === 'MISMATCH').length;
+
+  const totalWeighted = criteria.reduce((sum, c) => sum + c.weightedScore, 0);
+  const overallSuitabilityScore = Math.min(100, Math.max(0, totalWeighted));
+
+  let grade: 'EXCELLENT' | 'HIGH' | 'MODERATE' | 'LOW' = 'LOW';
+  if (overallSuitabilityScore >= 85 && mismatchCount === 0) grade = 'EXCELLENT';
+  else if (overallSuitabilityScore >= 70 && mismatchCount === 0) grade = 'HIGH';
+  else if (overallSuitabilityScore >= 50) grade = 'MODERATE';
+
+  const formulaExplanationTr =
+    'Uygunluk Skoru Formülü: %15 Ülke + %20 Faaliyet Türü + %15 Hedef Grup/Yaş + %10 Dönem Müsaitliği + %10 Süre + %15 Kontenjan + %15 Lojistik İhtiyaçlar = %100 Toplam Ağırlık. Kritik uyuşmazlık içeren kriterler elenme nedenidir.';
+  const formulaExplanationEn =
+    'Suitability Formula: 15% Country + 20% Activity + 15% Target Group/Age + 10% Term Availability + 10% Duration + 15% Capacity + 15% Logistics = 100% Total Weight. Critical mismatches result in disqualification.';
+
+  return {
+    overallSuitabilityScore,
+    grade,
+    formulaExplanationTr,
+    formulaExplanationEn,
+    criteria,
+    matchedCount,
+    partialCount,
+    mismatchCount,
+    primaryBlockersTr,
+    primaryBlockersEn,
+    actionableRecommendationsTr,
+    actionableRecommendationsEn,
+  };
+}
+
 export function matchHostsClientSide(
   query: MatchHostsRequestDto,
   hostsPool: ClientHostRecord[] = CLIENT_SEED_HOSTS,
@@ -801,6 +1236,8 @@ export function matchHostsClientSide(
       calculateEducationQualityScoreClient(host, query);
     const { score: logisticsScore, label: logisticsScoreLabel, breakdown: logBreakdown } =
       calculateLogisticsScoreClient(host, query);
+
+    const sevenCriteria = evaluateSevenCriteriaClient(host, query);
 
     const hasLogisticsRequest = Boolean(
       query.logisticsRequired?.accommodation ||
@@ -860,6 +1297,7 @@ export function matchHostsClientSide(
         transfers: logBreakdown.transfers,
         emergencySupport: logBreakdown.emergencySupport,
       },
+      sevenCriteria,
     };
 
     if (isEligible) {
@@ -889,5 +1327,54 @@ export function matchHostsClientSide(
       ageGroup: query.ageGroup,
       vetField: query.vetField,
     },
+  };
+}
+
+/**
+ * Evaluates 7 criteria on demand for a single host or host pool (PKG-IMP-03)
+ */
+export function evaluateCriteriaClient(
+  payload: EvaluateCriteriaRequestDto,
+  hostsPool: ClientHostRecord[] = CLIENT_SEED_HOSTS,
+): EvaluateCriteriaResponseDto {
+  const targetHosts = payload.hostId
+    ? hostsPool.filter((h) => h.id === payload.hostId)
+    : hostsPool;
+
+  const results: EvaluateCriteriaItemResult[] = targetHosts.map((host) => {
+    const { isEligible } = evaluateHardFiltersClient(host, payload.criteria);
+    const { score: educationScore } = calculateEducationQualityScoreClient(host, payload.criteria);
+    const { score: logisticsScore } = calculateLogisticsScoreClient(host, payload.criteria);
+    const diagnostics = evaluateSevenCriteriaClient(host, payload.criteria);
+
+    const hasLogisticsRequest = Boolean(
+      payload.criteria.logisticsRequired?.accommodation ||
+      payload.criteria.logisticsRequired?.meals ||
+      payload.criteria.logisticsRequired?.transfers,
+    );
+
+    const compositeScore = hasLogisticsRequest
+      ? Math.round(educationScore * 0.7 + logisticsScore * 0.3)
+      : educationScore;
+
+    return {
+      hostId: host.id,
+      hostName: host.name,
+      countryCode: host.countryCode,
+      city: host.city,
+      isEligible,
+      suitabilityScore: diagnostics.overallSuitabilityScore,
+      educationScore,
+      logisticsScore,
+      compositeScore,
+      matchGrade: diagnostics.grade,
+      diagnostics,
+    };
+  });
+
+  return {
+    totalEvaluated: results.length,
+    queryCriteria: payload.criteria,
+    results,
   };
 }

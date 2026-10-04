@@ -23,6 +23,17 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
 
     const body = await request.json();
 
+    const VALID_STATUSES = ['PENDING', 'ACCEPTED', 'REVISED', 'DECLINED'];
+    if (body.status && !VALID_STATUSES.includes(body.status)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: `Geçersiz talep durumu (${body.status}). Yalnızca PENDING, ACCEPTED, REVISED veya DECLINED olabilir.`,
+        },
+        { status: 400 },
+      );
+    }
+
     const updated = await InquiriesDb.updateInquiry(id, body);
     if (!updated) {
       return NextResponse.json(

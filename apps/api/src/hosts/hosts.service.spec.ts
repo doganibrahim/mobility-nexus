@@ -194,4 +194,84 @@ describe('HostsService', () => {
       expect(approved.verificationStatus).toBe('VERIFIED');
     });
   });
+
+  describe('PKG-IMP-05: 5-Dimensional Review Assessment & Cancellation Policies', () => {
+    it('should return 5-dimensional review breakdown for seeded hosts', async () => {
+      service.onModuleInit();
+      const breakdown = await service.getReviewsBreakdown('host-de-bavaria');
+      expect(breakdown).toBeDefined();
+      expect(breakdown.hostId).toBe('host-de-bavaria');
+      expect(breakdown.metricAverages).toBeDefined();
+      expect(breakdown.metricAverages.responseTime).toBeGreaterThanOrEqual(1);
+      expect(breakdown.metricAverages.communication).toBeGreaterThanOrEqual(1);
+      expect(breakdown.metricAverages.serviceDelivery).toBeGreaterThanOrEqual(1);
+      expect(breakdown.metricAverages.programmeAlignment).toBeGreaterThanOrEqual(1);
+      expect(breakdown.metricAverages.problemSolving).toBeGreaterThanOrEqual(1);
+      expect(breakdown.reviews.length).toBeGreaterThan(0);
+    });
+
+    it('should allow submitting a 5-dimensional review and update overall breakdown', async () => {
+      service.onModuleInit();
+      const newReview = await service.createReview(
+        'host-de-technordic',
+        {
+          schoolName: 'Test Mesleki ve Teknik AL',
+          schoolOid: 'E10999888',
+          projectType: 'KA121',
+          mobilityYear: 2026,
+          metrics: {
+            responseTime: 5,
+            communication: 5,
+            serviceDelivery: 4,
+            programmeAlignment: 5,
+            problemSolving: 5,
+          },
+          comment: 'Harika bir ev sahibi deneyimi.',
+        },
+        'test-review-corr',
+      );
+
+      expect(newReview.id).toBeDefined();
+      expect(newReview.overallScore).toBe(4.8);
+      expect(newReview.metrics.responseTime).toBe(5);
+
+      const breakdown = await service.getReviewsBreakdown('host-de-technordic');
+      const found = breakdown.reviews.find((r) => r.id === newReview.id);
+      expect(found).toBeDefined();
+      expect(found?.schoolName).toBe('Test Mesleki ve Teknik AL');
+    });
+
+    it('should support updating cancellation policy, accessibility, and target groups in updatePortfolio', async () => {
+      service.onModuleInit();
+      const host = await service.findOne('host-de-technordic');
+      expect(host.cancellationPolicy).toBeDefined();
+
+      const updated = await service.updatePortfolio(
+        'host-de-technordic',
+        {
+          cancellationPolicy: {
+            policyType: 'CUSTOM',
+            refundPercentageFull: 100,
+            daysBeforeFullRefund: 20,
+            refundPercentagePartial: 70,
+            daysBeforePartialRefund: 7,
+            forceMajeureCovered: true,
+            policyDetailsTr: 'Özel esnek iptal şartları.',
+          },
+          accessibilityFeatures: {
+            wheelchairAccessible: true,
+            specialDiet: true,
+            visualAid: true,
+            hearingAid: true,
+          },
+          targetGroups: ['STUDENT', 'APPRENTICE', 'TEACHER'],
+        },
+        'test-update-corr',
+      );
+
+      expect(updated.cancellationPolicy?.policyType).toBe('CUSTOM');
+      expect(updated.accessibilityFeatures?.visualAid).toBe(true);
+      expect(updated.targetGroups).toContain('APPRENTICE');
+    });
+  });
 });

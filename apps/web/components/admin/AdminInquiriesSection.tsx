@@ -340,8 +340,7 @@ export default function AdminInquiriesSection() {
                   onClick={() => handleOpenDetail(inquiry)}
                   className="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-lg transition-colors shadow-2xs flex items-center justify-center gap-1.5 shrink-0"
                 >
-                  <span>🔎</span>
-                  <span>{isEn ? 'Inspect Details & Full Message →' : 'Detaylari & Mesaji Gor →'}</span>
+                  <span>{isEn ? 'Inspect Details & Full Message →' : 'Detayları & Mesajı Gör →'}</span>
                 </button>
               </div>
             </div>

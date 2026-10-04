@@ -283,7 +283,7 @@ export default function MarketplacePage() {
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                🏛️ {isTr ? 'Gönderen Okul (Beneficiary)' : 'Sending School (Beneficiary)'}
+                🏛️ {isTr ? 'Gönderen Okul' : 'Sending School'}
               </button>
               <button
                 type="button"
@@ -294,7 +294,7 @@ export default function MarketplacePage() {
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                🏢 {isTr ? 'Ev Sahibi Kuruluş (Host)' : 'Host Institution (Host)'}
+                🏢 {isTr ? 'Ev Sahibi Kuruluş' : 'Host Institution'}
                 {pendingHostApps.length > 0 && (
                   <span className="ml-1 px-1.5 py-0.2 rounded-full bg-amber-500 text-white font-black text-[10px]">
                     {pendingHostApps.length}

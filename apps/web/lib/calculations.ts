@@ -43,11 +43,78 @@ export interface DecisionEngineResult {
   readiness: string;
   level: 'good' | 'warn' | 'bad';
   rationale: string;
+  validationErrors?: string[];
+  isDataValid?: boolean;
 }
 
 export interface LearningOutcomesResult {
   technicalOutcome: string;
   transversalOutcome: string;
+}
+
+/**
+ * Maps technical mobility goal keys (e.g. JOB_SHADOWING, VET_SHORT_TERM)
+ * to clean, human-readable labels in Turkish or English.
+ */
+export function getHumanReadableMobilityGoal(
+  goal: string | undefined,
+  locale: 'tr' | 'en' = 'tr',
+): string {
+  if (!goal) return '—';
+
+  const map: Record<string, { tr: string; en: string }> = {
+    JOB_SHADOWING: {
+      tr: 'İşbaşı Gözlem',
+      en: 'Job Shadowing',
+    },
+    VET_SHORT_TERM: {
+      tr: 'Kısa Dönemli Öğrenci Hareketliliği',
+      en: 'Short-term Learner Mobility',
+    },
+    VET_LONG_TERM_PRO: {
+      tr: 'ErasmusPro Uzun Dönemli Staj',
+      en: 'ErasmusPro Long-term Mobility',
+    },
+    VET_GROUP_MOBILITY: {
+      tr: 'Öğrenici Grup Hareketliliği',
+      en: 'Group Mobility of VET Learners',
+    },
+    VET_SKILLS_COMPETITION: {
+      tr: 'Mesleki Beceri Yarışmasına Katılım',
+      en: 'Participation in VET Skills Competitions',
+    },
+    TEACHING_ASSIGNMENT: {
+      tr: 'Öğretme veya Eğitim Görevi',
+      en: 'Teaching or Training Assignment',
+    },
+    STAFF_COURSE_TRAINING: {
+      tr: 'Kurslar ve Eğitimler',
+      en: 'Courses and Training',
+    },
+    INVITED_EXPERT: {
+      tr: 'Davetli Uzman',
+      en: 'Invited Expert',
+    },
+    HOSTING_TEACHERS: {
+      tr: 'Eğitimdeki Öğretmenleri Ağırlama',
+      en: 'Hosting Teachers in Training',
+    },
+    PREPARATORY_VISIT: {
+      tr: 'Hazırlık Ziyareti',
+      en: 'Preparatory Visit',
+    },
+  };
+
+  if (map[goal]) {
+    return locale === 'tr' ? map[goal].tr : map[goal].en;
+  }
+
+  const official = OFFICIAL_VET_ACTIVITIES[goal];
+  if (official) {
+    return locale === 'tr' ? official.nameTr : official.nameEn;
+  }
+
+  return goal.replace(/_/g, ' ');
 }
 
 /**
@@ -400,12 +467,71 @@ export function makeDecision(params: {
   competenceScore: number | null;
   targetScore: number;
   hostScore: number | null;
-  // Optional Eligibility Gatekeeper parameters
+  // Optional Eligibility Gatekeeper & Planning Parameters
   participantCount?: number;
+  accompanyingPersonsCount?: number;
+  startDate?: string;
+  endDate?: string;
+  mobilityGoal?: string;
+  locale?: 'tr' | 'en';
   projectDurationMonths?: number;
   pastKa122GrantsCount?: number;
   mobilityStrategy?: 'ad_hoc' | 'regular_annual';
 }): DecisionEngineResult {
+  const isEn = params.locale === 'en';
+  const validationErrors: string[] = [];
+
+  // Gatekeeper Check 1: Participant Count
+  if (params.participantCount !== undefined && params.participantCount <= 0) {
+    validationErrors.push(
+      isEn
+        ? 'Participant count must be at least 1 person.'
+        : 'Katılımcı sayısı en az 1 kişi olmalıdır.'
+    );
+  }
+
+  // Gatekeeper Check 2: Accompanying Persons Count
+  if (
+    params.accompanyingPersonsCount !== undefined &&
+    params.accompanyingPersonsCount < 0
+  ) {
+    validationErrors.push(
+      isEn
+        ? 'Accompanying persons count cannot be negative.'
+        : 'Refakat eden kişi sayısı negatif olamaz (yoksa 0 giriniz).'
+    );
+  }
+
+  // Gatekeeper Check 3: Date Chronology
+  if (params.startDate && params.endDate) {
+    const start = new Date(params.startDate).getTime();
+    const end = new Date(params.endDate).getTime();
+    if (end < start) {
+      validationErrors.push(
+        isEn
+          ? `End date (${params.endDate}) cannot be earlier than start date (${params.startDate}).`
+          : `Planlanan bitiş tarihi (${params.endDate}), başlangıç tarihinden (${params.startDate}) önce olamaz.`
+      );
+    }
+  }
+
+  // If critical validation fails, suspend evaluation and return invalid state
+  if (validationErrors.length > 0) {
+    return {
+      score: 0,
+      action: params.accredited === 'yes' ? 'KA121-VET' : 'KA122-VET',
+      readiness: isEn
+        ? 'Invalid Plan Data (Correction Required)'
+        : 'Geçersiz Veri (Düzeltme Gerekli)',
+      level: 'bad',
+      rationale: isEn
+        ? `Evaluation suspended due to invalid planning parameters: ${validationErrors.join(' • ')}`
+        : `Planlama parametrelerindeki kural ihlalleri nedeniyle değerlendirme durduruldu: ${validationErrors.join(' • ')}`,
+      validationErrors,
+      isDataValid: false,
+    };
+  }
+
   const compScore = params.competenceScore ?? 65;
   const hScore = params.hostScore ?? 70;
 
@@ -485,7 +611,15 @@ export function makeDecision(params: {
     level = 'warn';
   }
 
-  return { score, action, readiness, level, rationale };
+  return {
+    score,
+    action,
+    readiness,
+    level,
+    rationale,
+    isDataValid: true,
+    validationErrors: [],
+  };
 }
 
 /**

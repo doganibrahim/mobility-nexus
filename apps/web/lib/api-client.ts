@@ -392,7 +392,10 @@ export const apiClient = {
       if (userEmail) headers['x-user-email'] = userEmail;
 
       const response = await fetch(url, { headers });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const contentType = response.headers.get('content-type') || '';
+      if (!response.ok || !contentType.includes('application/json')) {
+        return [];
+      }
       return await response.json();
     } catch (err: any) {
       console.warn('Doğrulama kuyruğu yüklenirken hata:', err.message);
@@ -497,6 +500,41 @@ export const apiClient = {
   },
 
   /**
+   * Evaluates 7 matching criteria with transparent score breakdown & mismatch diagnostics (PKG-IMP-03)
+   * Calls POST /matching/evaluate-criteria (with graceful fallback to client engine).
+   */
+  async evaluateCriteria(
+    payload: import('@mobility-nexus/types').EvaluateCriteriaRequestDto,
+  ): Promise<{ data: import('@mobility-nexus/types').EvaluateCriteriaResponseDto; isFallback: boolean }> {
+    const correlationId = `web-eval-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+      const response = await fetch(`${API_BASE_URL}/matching/evaluate-criteria`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Correlation-Id': correlationId,
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      return { data, isFallback: false };
+    } catch {
+      // Resilient client-side fallback
+      const { evaluateCriteriaClient } = await import('./matching-engine');
+      const fallbackData = evaluateCriteriaClient(payload);
+      return { data: fallbackData, isFallback: true };
+    }
+  },
+
+  /**
    * Fetches all mobility inquiries from server/database
    */
   async getInquiries(params?: { status?: string; hostId?: string; schoolOid?: string }): Promise<any[]> {
@@ -511,7 +549,10 @@ export const apiClient = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const contentType = response.headers.get('content-type') || '';
+      if (!response.ok || !contentType.includes('application/json')) {
+        return [];
+      }
       const result = await response.json();
       return result.data || [];
     } catch (err: any) {
@@ -585,6 +626,51 @@ export const apiClient = {
       console.warn('API deleteInquiry hatası:', err.message);
       return false;
     }
+  },
+
+  /**
+   * Fetches 5-dimensional performance assessment breakdown for a host (PKG-IMP-05)
+   */
+  async getHostReviewsBreakdown(
+    hostId: string
+  ): Promise<import('@mobility-nexus/types').HostReviewsBreakdownResponse> {
+    try {
+      const response = await fetch(`/api/hosts/${hostId}/reviews-breakdown`);
+      if (response.ok) {
+        return await response.json();
+      }
+    } catch (err: any) {
+      console.warn('API getHostReviewsBreakdown hatası:', err.message);
+    }
+
+    const { ProviderReviewsDb } = await import('./provider-reviews-db');
+    return ProviderReviewsDb.getReviewsBreakdown(hostId);
+  },
+
+  /**
+   * Submits a 5-dimensional performance review for a host organisation (PKG-IMP-05)
+   */
+  async submitHostReview(
+    hostId: string,
+    payload: import('@mobility-nexus/types').CreateHostReviewDto
+  ): Promise<{ data: import('@mobility-nexus/types').HostReviewItem; success: boolean }> {
+    try {
+      const response = await fetch(`/api/hosts/${hostId}/reviews`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        return { data, success: true };
+      }
+    } catch (err: any) {
+      console.warn('API submitHostReview hatası:', err.message);
+    }
+
+    const { ProviderReviewsDb } = await import('./provider-reviews-db');
+    const fallbackReview = ProviderReviewsDb.addReview(hostId, payload);
+    return { data: fallbackReview, success: true };
   },
 };
 

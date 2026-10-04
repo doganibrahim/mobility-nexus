@@ -69,6 +69,7 @@ export default function HostMatchingCard({
     organisationType?: string;
     oid?: string;
   } | null>(null);
+  const [expandedDiagnosticsHostId, setExpandedDiagnosticsHostId] = useState<string | null>(null);
 
   // Search Preferences
   const [reqAccommodation, setReqAccommodation] = useState(true);
@@ -434,6 +435,143 @@ export default function HostMatchingCard({
                                 🍽️ Yemek: {candidate.providesMeals ? 'Var ✓' : 'Yok'}
                               </span>
                             </div>
+
+                            {/* 7 Core Criteria Pills & Diagnostics (PKG-IMP-03) */}
+                            {candidate.sevenCriteria && (
+                              <div className="space-y-2 pt-2 border-t border-slate-100">
+                                <div className="flex items-center justify-between text-[11px]">
+                                  <span className="font-bold text-slate-700 flex items-center gap-1">
+                                    <span>🎯</span>
+                                    <span>7 Eşleşme Kriteri:</span>
+                                  </span>
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      setExpandedDiagnosticsHostId(
+                                        expandedDiagnosticsHostId === candidate.hostId ? null : candidate.hostId,
+                                      )
+                                    }
+                                    className="text-[10px] font-bold text-blue-700 hover:text-blue-900 underline flex items-center gap-0.5 cursor-pointer"
+                                  >
+                                    <span>
+                                      {expandedDiagnosticsHostId === candidate.hostId
+                                        ? 'Tanılamayı Gizle ▲'
+                                        : 'Uyuşmazlık Tanılaması ▼'}
+                                    </span>
+                                  </button>
+                                </div>
+
+                                {/* 7 Criteria Pill Badges */}
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px]">
+                                  {candidate.sevenCriteria.criteria.map((crit) => {
+                                    const isMatch = crit.status === 'MATCH';
+                                    const isPartial = crit.status === 'PARTIAL';
+                                    return (
+                                      <div
+                                        key={crit.key}
+                                        className={`px-2 py-1 rounded-md border flex items-center justify-between gap-1 shadow-2xs ${
+                                          isMatch
+                                            ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                                            : isPartial
+                                            ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                            : 'bg-rose-50 text-rose-800 border-rose-200'
+                                        }`}
+                                        title={`${crit.labelTr}: ${crit.messageTr}`}
+                                      >
+                                        <span className="font-semibold truncate">{crit.labelTr.split(' ')[0]}</span>
+                                        <span className="font-bold">
+                                          {isMatch ? '✓' : isPartial ? '⚠️' : '✕'}
+                                        </span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+
+                                {/* Detailed 7-Criteria Diagnostic Breakdown */}
+                                {expandedDiagnosticsHostId === candidate.hostId && (
+                                  <div className="mt-2.5 p-3 rounded-xl border border-blue-200 bg-blue-50/50 text-[11px] space-y-2.5 animate-in fade-in duration-150">
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-200/80 pb-1.5">
+                                      <span className="font-black text-blue-950">
+                                        7 Kriterli Şeffaf Tanılama ve Skor Kırılımı
+                                      </span>
+                                      <span className="text-[10px] font-semibold text-blue-800">
+                                        Uygunluk: %{candidate.sevenCriteria.overallSuitabilityScore} ({candidate.sevenCriteria.matchedCount} Eşleşti, {candidate.sevenCriteria.partialCount} Kısmi, {candidate.sevenCriteria.mismatchCount} Uyuşmazlık)
+                                      </span>
+                                    </div>
+
+                                    <div className="space-y-1.5 overflow-x-auto">
+                                      <table className="w-full text-left border-collapse text-[10px]">
+                                        <thead>
+                                          <tr className="border-b border-blue-200 text-blue-900 uppercase font-bold text-[9px]">
+                                            <th className="py-1 px-1.5">Kriter (%Ağırlık)</th>
+                                            <th className="py-1 px-1.5">Okul Talebi</th>
+                                            <th className="py-1 px-1.5">Ev Sahibi İmkânı</th>
+                                            <th className="py-1 px-1.5 text-center">Durum</th>
+                                            <th className="py-1 px-1.5">Açıklama & Tavsiye</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-blue-100 text-slate-700">
+                                          {candidate.sevenCriteria.criteria.map((crit) => (
+                                            <tr key={crit.key} className="hover:bg-blue-50/80">
+                                              <td className="py-1.5 px-1.5 font-bold text-slate-900 whitespace-nowrap">
+                                                {crit.labelTr}{' '}
+                                                <span className="text-[9px] text-slate-500 font-normal">
+                                                  (%{crit.weightPercent})
+                                                </span>
+                                              </td>
+                                              <td className="py-1.5 px-1.5 text-slate-600">{crit.schoolRequested}</td>
+                                              <td className="py-1.5 px-1.5 text-slate-900 font-medium">
+                                                {crit.hostProvided}
+                                              </td>
+                                              <td className="py-1.5 px-1.5 text-center whitespace-nowrap">
+                                                <span
+                                                  className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-bold ${
+                                                    crit.status === 'MATCH'
+                                                      ? 'bg-emerald-100 text-emerald-800'
+                                                      : crit.status === 'PARTIAL'
+                                                      ? 'bg-amber-100 text-amber-800'
+                                                      : 'bg-rose-100 text-rose-800'
+                                                  }`}
+                                                >
+                                                  {crit.status === 'MATCH'
+                                                    ? '✓ Uyumlu'
+                                                    : crit.status === 'PARTIAL'
+                                                    ? '⚠️ Kısmi'
+                                                    : '✕ Uyuşmazlık'}
+                                                </span>
+                                              </td>
+                                              <td className="py-1.5 px-1.5">
+                                                <div className="text-slate-800">{crit.messageTr}</div>
+                                                {crit.actionableHintTr && (
+                                                  <div className="text-blue-900 font-medium text-[9px] mt-0.5 flex items-start gap-1">
+                                                    <span>💡</span>
+                                                    <span>
+                                                      <strong>Tavsiye:</strong> {crit.actionableHintTr}
+                                                    </span>
+                                                  </div>
+                                                )}
+                                              </td>
+                                            </tr>
+                                          ))}
+                                        </tbody>
+                                      </table>
+                                    </div>
+
+                                    {candidate.sevenCriteria.actionableRecommendationsTr.length > 0 && (
+                                      <div className="p-2 rounded-lg bg-white border border-blue-200 text-[10px] text-blue-950 space-y-1">
+                                        <strong className="block text-blue-900">📌 Aksiyon Rehberi:</strong>
+                                        {candidate.sevenCriteria.actionableRecommendationsTr.map((rec, i) => (
+                                          <div key={i} className="flex items-start gap-1">
+                                            <span>•</span>
+                                            <span>{rec}</span>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            )}
                           </div>
 
                           {/* Card Footer: Select & Inquiry Action Buttons */}
@@ -539,30 +677,66 @@ export default function HostMatchingCard({
                   </div>
                 )}
 
-                {/* Disqualified Hosts Accordion */}
+                {/* Disqualified Hosts Accordion with 7-Criteria Diagnosis (PKG-IMP-03) */}
                 {showDisqualified && matchResult.disqualified.length > 0 && (
                   <div className="mt-4 p-4 rounded-xl border border-slate-200 bg-slate-50/60 space-y-3">
-                    <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                      <span>🚫</span>
-                      <span>{t.host.disqualifiedTitle} ({matchResult.disqualified.length} Kurum)</span>
+                    <div className="text-xs font-bold text-slate-800 flex items-center justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <span>🚫</span>
+                        <span>{t.host.disqualifiedTitle} ({matchResult.disqualified.length} Kurum)</span>
+                      </span>
+                      <span className="text-[10px] text-slate-500 font-normal">
+                        Kriter uyuşmazlığı nedeniyle eşleşemeyen kurumlar
+                      </span>
                     </div>
                     <p className="text-[11px] text-slate-500 leading-relaxed">
                       {t.host.disqualifiedSub}
                     </p>
 
-                    <div className="space-y-2 max-h-[300px] overflow-y-auto pr-1">
+                    <div className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
                       {matchResult.disqualified.map((dq) => (
                         <div
                           key={dq.hostId}
-                          className="p-2.5 rounded-lg border border-slate-200 bg-white text-xs space-y-1"
+                          className="p-3 rounded-xl border border-slate-200 bg-white text-xs space-y-2.5 shadow-2xs"
                         >
                           <div className="flex items-center justify-between font-bold text-slate-800">
-                            <span>{dq.hostName} ({getCountryFlagLabel(dq.countryCode, locale as 'tr' | 'en') || dq.countryCode})</span>
-                            <span className="text-[10px] text-rose-600 font-bold uppercase">
+                            <span className="text-sm">
+                              {dq.hostName} ({getCountryFlagLabel(dq.countryCode, locale as 'tr' | 'en') || dq.countryCode})
+                            </span>
+                            <span className="text-[10px] px-2 py-0.5 rounded bg-rose-100 text-rose-700 font-bold uppercase">
                               Ön Elemede Elendi
                             </span>
                           </div>
-                          <div className="text-[11px] text-rose-700 space-y-0.5">
+
+                          {/* 7-Criteria Badges for Disqualified Host */}
+                          {dq.sevenCriteria && (
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 text-[10px]">
+                              {dq.sevenCriteria.criteria.map((crit) => {
+                                const isMatch = crit.status === 'MATCH';
+                                const isPartial = crit.status === 'PARTIAL';
+                                return (
+                                  <div
+                                    key={crit.key}
+                                    className={`px-1.5 py-0.5 rounded border flex items-center justify-between gap-1 text-[9px] ${
+                                      isMatch
+                                        ? 'bg-slate-50 text-slate-600 border-slate-200'
+                                        : isPartial
+                                        ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                        : 'bg-rose-50 text-rose-800 border-rose-300 font-bold'
+                                    }`}
+                                    title={`${crit.labelTr}: ${crit.messageTr}`}
+                                  >
+                                    <span className="truncate">{crit.labelTr.split(' ')[0]}</span>
+                                    <span>{isMatch ? '✓' : isPartial ? '⚠️' : '✕'}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+
+                          {/* Explicit Disqualification Reasons */}
+                          <div className="text-[11px] text-rose-700 bg-rose-50/60 p-2 rounded-lg border border-rose-100 space-y-1">
+                            <strong className="block text-rose-900 font-bold">Uyuşmazlık Nedenleri:</strong>
                             {dq.disqualificationReasons.map((r, i) => (
                               <div key={i} className="flex items-start gap-1">
                                 <span className="font-bold">•</span>
@@ -570,6 +744,19 @@ export default function HostMatchingCard({
                               </div>
                             ))}
                           </div>
+
+                          {/* Actionable recommendations for disqualified provider */}
+                          {dq.sevenCriteria && dq.sevenCriteria.actionableRecommendationsTr.length > 0 && (
+                            <div className="text-[10px] text-slate-700 bg-slate-50 p-2 rounded-lg border border-slate-200 space-y-1">
+                              <strong className="block text-blue-900 font-bold">💡 Nasıl Uygun Hale Getirebilirsiniz?</strong>
+                              {dq.sevenCriteria.actionableRecommendationsTr.map((rec, i) => (
+                                <div key={i} className="flex items-start gap-1">
+                                  <span>👉</span>
+                                  <span>{rec}</span>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>

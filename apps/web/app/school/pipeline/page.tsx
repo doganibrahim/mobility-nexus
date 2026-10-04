@@ -41,6 +41,20 @@ export default function SchoolPipelinePage() {
   const [activeTab, setActiveTab] = useState<string>('profile');
   const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
 
+  // Modern Non-blocking Toast Notification State (Prevents headless browser timeouts)
+  const [toastMessage, setToastMessage] = useState<{
+    text: string;
+    type: 'success' | 'warn' | 'error';
+  } | null>(null);
+
+  const showToast = (
+    text: string,
+    type: 'success' | 'warn' | 'error' = 'success',
+  ) => {
+    setToastMessage({ text, type });
+    setTimeout(() => setToastMessage(null), 3500);
+  };
+
   // Dynamic Tabs Configuration using i18n
   const TABS = [
     { id: 'profile', code: '1', label: t.tabs.profile.label, desc: t.tabs.profile.desc },
@@ -160,8 +174,41 @@ export default function SchoolPipelinePage() {
     handleScoreAssessment();
     handleScoreHost();
     handleGenerateOutcomes();
+    handleMakeDecision();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Dynamic outcome regeneration when participantType changes
+  useEffect(() => {
+    handleGenerateOutcomes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [participantType]);
+
+  // Re-sync competence score and result message whenever assessmentAnswers or targetScore change
+  useEffect(() => {
+    handleScoreAssessment();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [assessmentAnswers, targetScore]);
+
+  // Dynamic decision engine re-evaluation when any plan parameter changes
+  useEffect(() => {
+    handleMakeDecision();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    accredited,
+    institutionNeed,
+    erasmusPlan,
+    participantCount,
+    accompanyingPersonsCount,
+    startDate,
+    endDate,
+    mobilityGoal,
+    eligibilityDurationMonths,
+    eligibilityPastGrants,
+    eligibilityStrategy,
+    competenceScore,
+    hostScoreResult,
+  ]);
 
   // Handler: Select VET Field
   const handleSelectField = (key: string) => {
@@ -205,10 +252,11 @@ export default function SchoolPipelinePage() {
       );
       setAssessmentResultType('good');
     } else {
-      alert(
+      showToast(
         locale === 'tr'
-          ? 'Lütfen 0 ile 100 arasında bir skor giriniz.'
-          : 'Please enter a score between 0 and 100.',
+          ? 'Lütfen 0 ile 100 arasında bir yetkinlik skoru giriniz.'
+          : 'Please enter a competence score between 0 and 100.',
+        'warn'
       );
     }
   };
@@ -249,7 +297,12 @@ export default function SchoolPipelinePage() {
       competenceScore: currentCompScore,
       targetScore,
       hostScore: currentHostScore,
-      participantCount: participantCount,
+      participantCount,
+      accompanyingPersonsCount,
+      startDate,
+      endDate,
+      mobilityGoal,
+      locale: locale as 'tr' | 'en',
       projectDurationMonths: eligibilityDurationMonths,
       pastKa122GrantsCount: eligibilityPastGrants,
       mobilityStrategy: eligibilityStrategy,
@@ -273,9 +326,12 @@ export default function SchoolPipelinePage() {
     handleGenerateOutcomes();
   };
 
-  // Handler: Save to LocalStorage
+  // Handler: Save to LocalStorage (Non-blocking)
   const handleSaveLocal = () => {
     const payload = {
+      schemaVersion: '1.0',
+      generator: 'ErasmusMobility.com VET Mobility Planner',
+      savedAt: new Date().toISOString(),
       schoolName,
       city,
       accredited,
@@ -290,7 +346,7 @@ export default function SchoolPipelinePage() {
       startDate,
       endDate,
       participantCount,
-      accompanyingPersonsCount,
+      accompanyingPersonsCount: Math.max(0, accompanyingPersonsCount || 0),
       ageGroup,
       vetField,
       iscedCode,
@@ -306,70 +362,110 @@ export default function SchoolPipelinePage() {
       hostCountry,
       hostType,
       hostMetrics,
+      eligibilityDurationMonths,
+      eligibilityPastGrants,
+      eligibilityStrategy,
       primaryGap,
       technicalOutcome,
       transversalOutcome,
     };
 
-    localStorage.setItem('erasmusmobility_pipeline_data', JSON.stringify(payload));
-    alert(
-      `${locale === 'tr' ? '[Kayıt Başarılı] ' : '[Saved Successfully] '}${t.report.savedAlert}`,
-    );
+    try {
+      localStorage.setItem('erasmusmobility_pipeline_data', JSON.stringify(payload));
+      showToast(
+        locale === 'tr'
+          ? '✓ Hareketlilik planı başarıyla tarayıcı yerel hafızasına kaydedildi.'
+          : '✓ Mobility plan successfully saved to browser local storage.',
+        'success'
+      );
+    } catch {
+      showToast(
+        locale === 'tr'
+          ? '❌ Veri tarayıcıya kaydedilirken kota veya depolama hatası oluştu.'
+          : '❌ Storage quota exceeded or error occurred while saving.',
+        'error'
+      );
+    }
   };
 
-  // Handler: Load from LocalStorage
+  // Handler: Load from LocalStorage (Non-blocking & Full Pipeline Refresh)
   const handleLoadLocal = () => {
     const raw =
       localStorage.getItem('erasmusmobility_pipeline_data') ||
       localStorage.getItem('cappinno_mobility_nexus_data');
     if (!raw) {
-      alert(`${locale === 'tr' ? '[Uyarı] ' : '[Warning] '}${t.report.notFoundAlert}`);
+      showToast(
+        locale === 'tr'
+          ? '⚠️ Tarayıcı hafızasında kayıtlı bir hareketlilik planı bulunamadı.'
+          : '⚠️ No saved mobility plan found in browser storage.',
+        'warn'
+      );
       return;
     }
 
     try {
       const d = JSON.parse(raw);
-      if (d.schoolName) setSchoolName(d.schoolName);
-      if (d.city) setCity(d.city);
-      if (d.accredited) setAccredited(d.accredited);
-      if (d.oid) setOid(d.oid);
-      if (d.erasmusPlan) setErasmusPlan(d.erasmusPlan);
-      if (d.institutionNeed) setInstitutionNeed(d.institutionNeed);
-      if (d.participantType) setParticipantType(d.participantType);
-      if (d.mobilityGoal) setMobilityGoal(d.mobilityGoal);
-      if (d.participantName) setParticipantName(d.participantName);
+      if (d.schoolName !== undefined) setSchoolName(d.schoolName);
+      if (d.city !== undefined) setCity(d.city);
+      if (d.accredited !== undefined) setAccredited(d.accredited);
+      if (d.oid !== undefined) setOid(d.oid);
+      if (d.erasmusPlan !== undefined) setErasmusPlan(d.erasmusPlan);
+      if (d.institutionNeed !== undefined) setInstitutionNeed(d.institutionNeed);
+      if (d.participantType !== undefined) setParticipantType(d.participantType);
+      if (d.mobilityGoal !== undefined) setMobilityGoal(d.mobilityGoal);
+      if (d.participantName !== undefined) setParticipantName(d.participantName);
       if (d.language !== undefined) setLanguage(d.language);
-      if (d.targetCountries) setTargetCountries(d.targetCountries);
-      if (d.startDate) setStartDate(d.startDate);
-      if (d.endDate) setEndDate(d.endDate);
+      if (d.targetCountries !== undefined) setTargetCountries(d.targetCountries);
+      if (d.startDate !== undefined) setStartDate(d.startDate);
+      if (d.endDate !== undefined) setEndDate(d.endDate);
       if (d.participantCount !== undefined) setParticipantCount(d.participantCount);
       if (d.accompanyingPersonsCount !== undefined)
-        setAccompanyingPersonsCount(d.accompanyingPersonsCount);
-      if (d.ageGroup) setAgeGroup(d.ageGroup);
-      if (d.vetField) setVetField(d.vetField);
-      if (d.iscedCode) setIscedCode(d.iscedCode);
-      if (d.iscedName) setIscedName(d.iscedName);
-      if (d.escoTerm) setEscoTerm(d.escoTerm);
-      if (d.iscoCode) setIscoCode(d.iscoCode);
-      if (d.escoUri) setEscoUri(d.escoUri);
-      if (d.skills) setSkills(d.skills);
-      if (d.assessmentAnswers) setAssessmentAnswers(d.assessmentAnswers);
+        setAccompanyingPersonsCount(Math.max(0, d.accompanyingPersonsCount));
+      if (d.ageGroup !== undefined) setAgeGroup(d.ageGroup);
+      if (d.vetField !== undefined) setVetField(d.vetField);
+      if (d.iscedCode !== undefined) setIscedCode(d.iscedCode);
+      if (d.iscedName !== undefined) setIscedName(d.iscedName);
+      if (d.escoTerm !== undefined) setEscoTerm(d.escoTerm);
+      if (d.iscoCode !== undefined) setIscoCode(d.iscoCode);
+      if (d.escoUri !== undefined) setEscoUri(d.escoUri);
+      if (d.skills !== undefined) setSkills(d.skills);
+      if (d.assessmentAnswers !== undefined) setAssessmentAnswers(d.assessmentAnswers);
       if (d.targetScore !== undefined) setTargetScore(d.targetScore);
       if (d.competenceScore !== undefined) setCompetenceScore(d.competenceScore);
-      if (d.hostName) setHostName(d.hostName);
-      if (d.hostCountry) setHostCountry(d.hostCountry);
-      if (d.hostType) setHostType(d.hostType);
-      if (d.hostMetrics) setHostMetrics(d.hostMetrics);
-      if (d.primaryGap) setPrimaryGap(d.primaryGap);
-      if (d.technicalOutcome) setTechnicalOutcome(d.technicalOutcome);
-      if (d.transversalOutcome) setTransversalOutcome(d.transversalOutcome);
+      if (d.hostName !== undefined) setHostName(d.hostName);
+      if (d.hostCountry !== undefined) setHostCountry(d.hostCountry);
+      if (d.hostType !== undefined) setHostType(d.hostType);
+      if (d.hostMetrics !== undefined) setHostMetrics(d.hostMetrics);
+      if (d.eligibilityDurationMonths !== undefined)
+        setEligibilityField('projectDurationMonths', d.eligibilityDurationMonths);
+      if (d.eligibilityPastGrants !== undefined)
+        setEligibilityField('pastKa122GrantsCount', d.eligibilityPastGrants);
+      if (d.eligibilityStrategy !== undefined)
+        setEligibilityField('mobilityStrategy', d.eligibilityStrategy);
+      if (d.primaryGap !== undefined) setPrimaryGap(d.primaryGap);
+      if (d.technicalOutcome !== undefined) setTechnicalOutcome(d.technicalOutcome);
+      if (d.transversalOutcome !== undefined) setTransversalOutcome(d.transversalOutcome);
 
-      alert(`${locale === 'tr' ? '[Başarılı] ' : '[Loaded Successfully] '}${t.report.loadedAlert}`);
-    } catch {
-      alert(
+      // Re-trigger complete pipeline calculations with restored data
+      setTimeout(() => {
+        handleScoreAssessment();
+        handleScoreHost();
+        handleMakeDecision();
+        handleGenerateOutcomes();
+      }, 50);
+
+      showToast(
         locale === 'tr'
-          ? 'Kayıtlı veri ayrıştırılırken hata oluştu.'
-          : 'Failed to parse saved data.',
+          ? '✓ Kayıtlı hareketlilik planı eksiksiz yüklendi ve rapor güncellendi.'
+          : '✓ Saved mobility plan successfully loaded and refreshed.',
+        'success'
+      );
+    } catch {
+      showToast(
+        locale === 'tr'
+          ? '❌ Kayıtlı veri ayrıştırılırken hata oluştu.'
+          : '❌ Failed to parse saved data.',
+        'error'
       );
     }
   };
@@ -377,53 +473,88 @@ export default function SchoolPipelinePage() {
   // Handler: Export JSON File
   const handleExportJson = () => {
     const payload = {
-      schoolName,
-      city,
-      accredited,
-      oid,
-      erasmusPlan,
-      institutionNeed,
-      participantType,
-      mobilityGoal,
-      participantName,
-      language,
-      targetCountries,
-      startDate,
-      endDate,
-      participantCount,
-      accompanyingPersonsCount,
-      ageGroup,
-      vetField,
-      iscedCode,
-      iscedName,
-      escoTerm,
-      iscoCode,
-      escoUri,
-      skills,
-      assessmentAnswers,
-      competenceScore,
-      targetScore,
-      hostName,
-      hostCountry,
-      hostType,
-      hostMetrics,
-      hostScoreResult,
-      decisionResult,
-      primaryGap,
-      technicalOutcome,
-      transversalOutcome,
+      schemaVersion: '1.0',
+      generator: 'ErasmusMobility.com VET Mobility Planner',
       exportedAt: new Date().toISOString(),
+      schoolProfile: {
+        schoolName,
+        city,
+        accredited,
+        oid,
+        erasmusPlan,
+        institutionNeed,
+      },
+      participantProfile: {
+        participantType,
+        mobilityGoal,
+        participantName,
+        language,
+        targetCountries,
+        startDate,
+        endDate,
+        participantCount,
+        accompanyingPersonsCount: Math.max(0, accompanyingPersonsCount || 0),
+        ageGroup,
+      },
+      escoIsced: {
+        vetField,
+        iscedCode,
+        iscedName,
+        escoTerm,
+        iscoCode,
+        escoUri,
+        skills,
+      },
+      competenceAssessment: {
+        assessmentAnswers,
+        competenceScore,
+        targetScore,
+      },
+      hostMatching: {
+        hostName,
+        hostCountry,
+        hostType,
+        hostMetrics,
+        hostScoreResult,
+      },
+      eligibilityGatekeeper: {
+        projectDurationMonths: eligibilityDurationMonths,
+        pastKa122GrantsCount: eligibilityPastGrants,
+        mobilityStrategy: eligibilityStrategy,
+      },
+      decisionResult,
+      learningOutcomes: {
+        primaryGap,
+        technicalOutcome,
+        transversalOutcome,
+      },
     };
 
-    const blob = new Blob([JSON.stringify(payload, null, 2)], {
-      type: 'application/json',
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `Erasmus_VET_Hareketlilik_Dosyasi_${oid || 'Taslak'}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+    try {
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {
+        type: 'application/json',
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Erasmus_VET_Hareketlilik_Dosyasi_${oid || 'Taslak'}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      showToast(
+        locale === 'tr'
+          ? '✓ Hareketlilik planı JSON dosyası olarak indirildi.'
+          : '✓ Mobility plan exported as JSON file.',
+        'success'
+      );
+    } catch {
+      showToast(
+        locale === 'tr'
+          ? '❌ JSON dosyası oluşturulurken hata meydana geldi.'
+          : '❌ Failed to generate JSON export.',
+        'error'
+      );
+    }
   };
 
   // Step Navigation Helper
@@ -750,9 +881,25 @@ export default function SchoolPipelinePage() {
               
               <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="space-y-3 max-w-2xl">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
-                    <span>📑</span>
-                    <span>Resmi KA121 & KA122 Soru ve Karar Matrisi</span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
+                      <span>📑</span>
+                      <span>Resmi KA121 & KA122 Soru ve Karar Matrisi</span>
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-200 border border-indigo-400/30">
+                      <span>🎯</span>
+                      <span>
+                        {accredited === 'yes'
+                          ? (locale === 'tr' ? 'Önerilen: KA121-VET (Akredite Kurum Yıllık Hibe)' : 'Recommended: KA121-VET (Accredited Grant)')
+                          : (locale === 'tr' ? 'Önerilen: KA122-VET (Kısa Dönemli Proje)' : 'Recommended: KA122-VET (Short-term Project)')}
+                      </span>
+                    </span>
+                    {(!schoolName?.trim() || !oid?.trim()) && (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-200 border border-amber-400/30">
+                        <span>⚠️</span>
+                        <span>{locale === 'tr' ? 'Eksik Kurum Bilgisi (Taslakta tamamlanabilir)' : 'Missing Org Info (Can be filled in draft)'}</span>
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
@@ -778,16 +925,52 @@ export default function SchoolPipelinePage() {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row md:flex-col gap-3 min-w-[220px]">
-                  <Link
-                    href="/school/application-draft"
-                    className="px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-md hover:shadow-blue-500/30 flex items-center justify-center gap-2 text-center"
-                  >
-                    <span>Başvuru Taslağını Başlat</span>
-                    <span>→</span>
-                  </Link>
+                <div className="flex flex-col sm:flex-row md:flex-col gap-3 min-w-[240px]">
+                  {(() => {
+                    const recommendedType = accredited === 'yes' ? 'KA121' : 'KA122';
+                    const hasValidationErrors = Boolean(
+                      decisionResult &&
+                        (decisionResult.isDataValid === false ||
+                          (decisionResult.validationErrors &&
+                            decisionResult.validationErrors.length > 0))
+                    );
+
+                    if (hasValidationErrors) {
+                      return (
+                        <div className="space-y-1.5">
+                          <button
+                            type="button"
+                            disabled
+                            className="w-full px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-200 text-slate-500 border border-slate-300 cursor-not-allowed flex items-center justify-center gap-2 text-center"
+                          >
+                            <span>⚠️ {locale === 'tr' ? 'Önce Planlama Hatalarını Düzeltiniz' : 'Fix Planning Errors First'}</span>
+                          </button>
+                          <span className="block text-[11px] text-rose-300 font-semibold text-center">
+                            {locale === 'tr' ? 'Geçersiz parametrelerle taslak başlatılamaz' : 'Cannot start draft with invalid parameters'}
+                          </span>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <Link
+                        href={`/school/application-draft?type=${recommendedType}`}
+                        onClick={() => {
+                          store.syncPipelineToDraft(recommendedType);
+                        }}
+                        className="px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-md hover:shadow-blue-500/30 flex items-center justify-center gap-2 text-center"
+                      >
+                        <span>
+                          {recommendedType}-VET {locale === 'tr' ? 'Başvuru Taslağını Başlat' : 'Start Application Draft'}
+                        </span>
+                        <span>→</span>
+                      </Link>
+                    );
+                  })()}
                   <span className="text-[11px] text-slate-400 text-center">
-                    Cevaplar yerel belleğe kaydedilir
+                    {accredited === 'yes'
+                      ? (locale === 'tr' ? 'KA121 Akredite şablonu açılır' : 'Opens KA121 Accredited template')
+                      : (locale === 'tr' ? 'KA122 Standart şablon açılır' : 'Opens KA122 Standard template')}
                   </span>
                 </div>
               </div>
@@ -891,8 +1074,32 @@ export default function SchoolPipelinePage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="TERMS"
+        initialTab="COOKIES"
       />
+
+      {/* Modern Non-blocking Floating Toast Notification */}
+      {toastMessage && (
+        <div
+          role="status"
+          aria-live="polite"
+          className={`fixed bottom-6 right-6 z-50 text-xs font-bold px-4 py-3 rounded-xl shadow-xl border animate-in fade-in slide-in-from-bottom duration-200 flex items-center gap-2.5 no-print ${
+            toastMessage.type === 'success'
+              ? 'bg-emerald-950 text-emerald-100 border-emerald-800'
+              : toastMessage.type === 'warn'
+                ? 'bg-amber-950 text-amber-100 border-amber-800'
+                : 'bg-rose-950 text-rose-100 border-rose-800'
+          }`}
+        >
+          <span className="text-sm">
+            {toastMessage.type === 'success'
+              ? '✓'
+              : toastMessage.type === 'warn'
+                ? '⚠️'
+                : '❌'}
+          </span>
+          <span>{toastMessage.text}</span>
+        </div>
+      )}
     </div>
   );
 }

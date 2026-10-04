@@ -70,9 +70,17 @@ export default function HostVerificationModal({
         setSampleDocumentsUrls([...sampleDocumentsUrls, result.url]);
       }
 
-      setStatusMessage(`✅ ${file.name} güvenli şekilde yüklendi (Admin Only).`);
+      setStatusMessage(
+        locale === 'tr'
+          ? `✅ ${file.name} güvenli şekilde yüklendi (Admin Only).`
+          : `✅ ${file.name} uploaded securely (Admin Only).`,
+      );
     } catch {
-      setStatusMessage('❌ Dosya yükleme sırasında hata oluştu.');
+      setStatusMessage(
+        locale === 'tr'
+          ? '❌ Dosya yükleme sırasında hata oluştu.'
+          : '❌ An error occurred during file upload.',
+      );
     } finally {
       setIsUploading(null);
     }
@@ -82,12 +90,20 @@ export default function HostVerificationModal({
     e.preventDefault();
 
     if (!registrationNumber || !registrationDocumentUrl || !taxVatNumber || !emergencyContactPerson || !emergencyContactPhone) {
-      setStatusMessage('Lütfen zorunlu tüm alanları ve resmi evrakları doldurunuz.');
+      setStatusMessage(
+        locale === 'tr'
+          ? 'Lütfen zorunlu tüm alanları ve resmi evrakları doldurunuz.'
+          : 'Please complete all required fields and upload official documents.',
+      );
       return;
     }
 
     if (participantEvidenceUrls.length === 0) {
-      setStatusMessage('Lütfen beyan edilen katılımcı sayılarını destekleyen en az bir kanıt belgesi ekleyiniz.');
+      setStatusMessage(
+        locale === 'tr'
+          ? 'Lütfen beyan edilen katılımcı sayılarını destekleyen en az bir kanıt belgesi ekleyiniz.'
+          : 'Please attach at least one proof document supporting declared participant numbers.',
+      );
       return;
     }
 
@@ -111,7 +127,11 @@ export default function HostVerificationModal({
       onSuccess(data);
       onClose();
     } catch (err: any) {
-      setStatusMessage(`Hata: ${err.message || 'Doğrulama evrakları gönderilemedi.'}`);
+      setStatusMessage(
+        locale === 'tr'
+          ? `Hata: ${err.message || 'Doğrulama evrakları gönderilemedi.'}`
+          : `Error: ${err.message || 'Failed to submit verification documents.'}`,
+      );
     } finally {
       setIsSaving(false);
     }

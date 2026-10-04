@@ -204,10 +204,9 @@ export default function Home() {
 
               <Link
                 href="/school/pipeline"
-                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-xs flex items-center gap-1.5 ml-1"
+                className="px-3 py-1.5 rounded-lg text-xs font-black bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-xs flex items-center gap-1.5 ml-1"
               >
-                <span>🚀</span>
-                <span>{locale === 'tr' ? '5 Adımlı Pipeline' : '5-Step Pipeline'}</span>
+                <span>{locale === 'tr' ? 'Hareketliliğinizi Planlayın' : 'Plan your mobility'}</span>
                 <span>→</span>
               </Link>
             </div>
@@ -273,7 +272,7 @@ export default function Home() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="TERMS"
+        initialTab="COOKIES"
       />
     </div>
   );

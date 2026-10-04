@@ -53,7 +53,7 @@ const PROCESS_STEPS: ProcessStep[] = [
       'Automated pathway guide according to KA121/KA122 status',
       'Fillable questionnaire aligned with National Agency standards',
     ],
-    ctaTextTr: '5 Adımlı Pipeline’ı Başlat',
+    ctaTextTr: '5 Adımlı Süreç Akışını Başlat',
     ctaTextEn: 'Start 5-Step Pipeline',
     ctaHref: '/school/pipeline',
     secondaryTextTr: 'Başvuru Taslağı Modülü',
@@ -75,7 +75,7 @@ const PROCESS_STEPS: ProcessStep[] = [
     deliverableBadgeTr: 'Onaylı Kontenjan & Bütçe Planı',
     deliverableBadgeEn: 'Confirmed Slot & Budget Plan',
     featuresTr: [
-      'ISCED meslek alanına göre doğrulanmış host ve kurs filtreleme',
+      'ISCED meslek alanına göre doğrulanmış ev sahibi kuruluş ve kurs filtreleme',
       'Avrupa Komisyonu mesafe bandı formülüyle seyahat ve harcırah hesabı',
       'Doğrudan randevu ve talep masası (Sıfır aracı ajans komisyonu)',
       'Çok dilli öğrenme çıktıları ve ESCO meslek profili uyumu',
@@ -108,8 +108,8 @@ const PROCESS_STEPS: ProcessStep[] = [
     deliverableBadgeTr: 'Kapsamlı Hareketlilik Dosyası (Taslak)',
     deliverableBadgeEn: 'Mobility Dossier (Reference Draft)',
     featuresTr: [
-      'Avrupa Komisyonu standartlarında örnek VET Learning Agreement taslağı (Word/PDF)',
-      'ESCO mesleki yetkinlik kazanımlı örnek Europass Mobility şablonu',
+      'Avrupa Komisyonu standartlarında örnek Mesleki Öğrenim Anlaşması (Learning Agreement) taslağı (Word/PDF)',
+      'ESCO mesleki yetkinlik kazanımlı örnek Europass Hareketlilik Belgesi şablonu',
       'Kurumların kendi antetli kağıdına uyarlayabileceği ortaklık protokolü taslağı',
       '1. yıl ücretsiz model kapsamında sınırsız şablon ve taslak ihracı',
     ],

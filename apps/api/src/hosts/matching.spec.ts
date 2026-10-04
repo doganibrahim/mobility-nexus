@@ -285,4 +285,81 @@ describe('Hosts Matching Engine (Akıllı Eşleştirme Motoru)', () => {
       }
     });
   });
+
+  describe('7 Kriterli Şeffaf Eşleştirme & Uyuşmazlık Tanılaması (PKG-IMP-03)', () => {
+    it('her eşleşen ve elenen aday için 7 kriterli detaylı teşhis nesnesi (sevenCriteria) üretilmeli', async () => {
+      const query: MatchHostsDto = {
+        projectType: 'KA122',
+        targetCountries: ['DE'],
+        mobilityGoal: 'VET_SHORT_TERM',
+        participantType: 'student',
+        participantCount: 6,
+        durationDays: 14,
+        ageGroup: 'under_18',
+        logisticsRequired: {
+          accommodation: true,
+          meals: true,
+          transfers: false,
+        },
+      };
+
+      const result = await service.matchHosts(query);
+      expect(result.matches.length).toBeGreaterThan(0);
+
+      const topCandidate = result.matches[0];
+      expect(topCandidate.sevenCriteria).toBeDefined();
+      expect(topCandidate.sevenCriteria?.criteria.length).toBe(7);
+
+      const criteriaKeys = topCandidate.sevenCriteria?.criteria.map((c) => c.key);
+      expect(criteriaKeys).toEqual(
+        expect.arrayContaining([
+          'country',
+          'activityType',
+          'targetGroup',
+          'dates',
+          'duration',
+          'capacity',
+          'logistics',
+        ]),
+      );
+
+      // Toplam ağırlık 100 olmalı
+      const totalWeight = topCandidate.sevenCriteria?.criteria.reduce((s, c) => s + c.weightPercent, 0);
+      expect(totalWeight).toBe(100);
+    });
+
+    it('evaluateCriteria API metodu tekil veya tüm ev sahipleri için 7 kriter tanılama sonucunu döndürmeli', async () => {
+      const evalDto = {
+        criteria: {
+          projectType: 'KA122' as const,
+          targetCountries: ['ES'],
+          mobilityGoal: 'VET_SHORT_TERM' as const,
+          participantType: 'student' as const,
+          participantCount: 8,
+          durationDays: 14,
+          ageGroup: 'under_18' as const,
+        },
+      };
+
+      const evalResponse = await service.evaluateCriteria(evalDto, 'test-eval');
+      expect(evalResponse.totalEvaluated).toBeGreaterThan(0);
+      expect(evalResponse.results.length).toBe(evalResponse.totalEvaluated);
+
+      const esHost = evalResponse.results.find((r) => r.countryCode === 'ES');
+      expect(esHost).toBeDefined();
+      expect(esHost?.diagnostics.criteria.length).toBe(7);
+
+      const countryCrit = esHost?.diagnostics.criteria.find((c) => c.key === 'country');
+      expect(countryCrit?.status).toBe('MATCH');
+
+      // Almanya'daki kurum için Hedef Ülke MISMATCH olmalı
+      const deHost = evalResponse.results.find((r) => r.countryCode === 'DE');
+      if (deHost) {
+        const deCountryCrit = deHost.diagnostics.criteria.find((c) => c.key === 'country');
+        expect(deCountryCrit?.status).toBe('MISMATCH');
+        expect(deHost.diagnostics.primaryBlockersTr.length).toBeGreaterThan(0);
+        expect(deHost.diagnostics.actionableRecommendationsTr.length).toBeGreaterThan(0);
+      }
+    });
+  });
 });

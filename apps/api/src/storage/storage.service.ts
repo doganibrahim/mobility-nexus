@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, BadRequestException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
@@ -13,6 +13,30 @@ export interface UploadResult {
   filename: string;
   sizeBytes: number;
 }
+
+const ALLOWED_EXTENSIONS = new Set([
+  '.pdf',
+  '.png',
+  '.jpg',
+  '.jpeg',
+  '.webp',
+  '.svg',
+  '.docx',
+  '.xlsx',
+  '.doc',
+]);
+
+const ALLOWED_MIME_TYPES = new Set([
+  'application/pdf',
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/svg+xml',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  'application/msword',
+  'application/octet-stream',
+]);
 
 @Injectable()
 export class StorageService {
@@ -59,7 +83,22 @@ export class StorageService {
     subFolder = 'documents',
     isPrivate = false,
   ): Promise<UploadResult> {
-    const ext = path.extname(file.originalname) || '';
+    const ext = (path.extname(file.originalname) || '').toLowerCase();
+    
+    // Security check: validate extension against strict whitelist
+    if (!ALLOWED_EXTENSIONS.has(ext)) {
+      throw new BadRequestException(
+        `Desteklenmeyen veya güvenlik riski taşıyan dosya uzantısı (${ext || 'uzantısız'}). Yalnızca PDF, PNG, JPG, WEBP, SVG ve DOCX kabul edilir.`,
+      );
+    }
+
+    // Security check: validate MIME type
+    if (file.mimetype && !ALLOWED_MIME_TYPES.has(file.mimetype.toLowerCase())) {
+      throw new BadRequestException(
+        `Geçersiz dosya MIME türü (${file.mimetype}). Güvenlik nedeniyle dosya reddedildi.`,
+      );
+    }
+
     const safeBaseName = path.basename(file.originalname, ext).replace(/[^a-zA-Z0-9_-]/g, '_');
     const key = `${subFolder}/${uuidv4()}-${safeBaseName}${ext}`;
 

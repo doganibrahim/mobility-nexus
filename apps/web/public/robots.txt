@@ -1,0 +1,25 @@
+# https://www.erasmusmobility.com/robots.txt
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /platform
+Allow: /library
+Allow: /news-and-events
+Allow: /marketplace
+Allow: /guide
+Allow: /contact
+Allow: /privacy
+Allow: /terms
+Allow: /kvkk
+Allow: /accessibility
+Allow: /school/pipeline
+Allow: /school/application-draft
+
+# Disallow authenticated dashboards and internal API endpoints
+Disallow: /admin/
+Disallow: /profile/
+Disallow: /api/
+Disallow: /sign-in
+Disallow: /sign-up
+
+Sitemap: https://www.erasmusmobility.com/sitemap.xml

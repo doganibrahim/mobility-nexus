@@ -340,6 +340,28 @@ export interface Translations {
     subtitle: string;
     copyright: string;
   };
+  newsModal: {
+    detailsBtn: string;
+    closeBtn: string;
+    sourceLinkBtn: string;
+    readTime: string;
+    archiveNotice: string;
+    keyHighlights: string;
+    scopeAndObjectives: string;
+    targetAudience: string;
+  };
+  activityTypes: {
+    JOB_SHADOWING: string;
+    VET_SHORT_TERM: string;
+    VET_LONG_TERM_PRO: string;
+    VET_GROUP_MOBILITY: string;
+    VET_SKILLS_COMPETITION: string;
+    TEACHING_ASSIGNMENT: string;
+    STAFF_COURSE_TRAINING: string;
+    INVITED_EXPERT: string;
+    HOSTING_TEACHERS: string;
+    PREPARATORY_VISIT: string;
+  };
   legal: {
     title: string;
     termsTitle: string;
@@ -589,6 +611,33 @@ export interface Translations {
     statusDeclined: string;
     mockBadge: string;
     emptyInquiriesMsg: string;
+    step1Title: string;
+    step1Subtitle: string;
+    step2Title: string;
+    step2Subtitle: string;
+    nextStepBtn: string;
+    prevStepBtn: string;
+    stepBadge: string;
+    roadmapTitle: string;
+    roadmapSubtitle: string;
+    phase1Title: string;
+    phase1Duration: string;
+    phase1Desc: string;
+    phase2Title: string;
+    phase2Duration: string;
+    phase2Desc: string;
+    phase3Title: string;
+    phase3Duration: string;
+    phase3Desc: string;
+    trackInDashboardBtn: string;
+    inquiryIdLabel: string;
+    targetHostLabel: string;
+    summaryLearners: string;
+    summaryDuration: string;
+    summaryDates: string;
+    summaryLogistics: string;
+    validationFillRequired: string;
+    reqInclusionLabel: string;
   };
   sentInquiries: {
     cardTitle: string;
@@ -749,7 +798,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
         home: 'Anasayfa',
         about: 'Hakkımızda',
         platform: {
-          label: 'Platform',
+          label: 'Mobility Hub',
           desc: 'EMaaS karar, eşleştirme ve planlama araçları',
           pipeline: '5 Adımlı Hareketlilik Planı',
           pipelineDesc: 'Okul profili, ESCO analizi ve hibe karar motoru',
@@ -1073,6 +1122,28 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       subtitle: 'Erasmus+ Mesleki Eğitim (VET) hareketlilik projeleri için karar, eşleştirme ve planlama platformu.',
       copyright: '© 2026 ErasmusMobility.com • Tüm hakları saklıdır.',
     },
+    newsModal: {
+      detailsBtn: 'Detaylar →',
+      closeBtn: 'Kapat',
+      sourceLinkBtn: 'Resmi Kaynağı / Çağrıyı Aç ↗',
+      readTime: 'Tahmini Okuma',
+      archiveNotice: 'Bu içerik arşivlenmiş olup resmi başvuru dönemi sona ermiştir.',
+      keyHighlights: 'Önemli Noktalar & Kriterler',
+      scopeAndObjectives: 'Kapsam ve Amaç',
+      targetAudience: 'Hedef Kitle ve Uygunluk',
+    },
+    activityTypes: {
+      JOB_SHADOWING: 'İşbaşı Gözlem',
+      VET_SHORT_TERM: 'Kısa Dönemli Öğrenci Hareketliliği',
+      VET_LONG_TERM_PRO: 'ErasmusPro Uzun Dönemli Staj',
+      VET_GROUP_MOBILITY: 'Öğrenici Grup Hareketliliği',
+      VET_SKILLS_COMPETITION: 'Mesleki Beceri Yarışmasına Katılım',
+      TEACHING_ASSIGNMENT: 'Öğretme veya Eğitim Görevi',
+      STAFF_COURSE_TRAINING: 'Kurslar ve Eğitimler',
+      INVITED_EXPERT: 'Davetli Uzman',
+      HOSTING_TEACHERS: 'Eğitimdeki Öğretmenleri Ağırlama',
+      PREPARATORY_VISIT: 'Hazırlık Ziyareti',
+    },
     legal: {
       title: 'KVKK Aydınlatma Metni',
       termsTitle: 'Kullanım Koşulları ve Açık Rıza',
@@ -1286,7 +1357,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       notesLabel: 'Kurumsal Not / Özel Talepleriniz',
       notesPlaceholder: 'Öğrencilerinizin yapacağı çalışmalar, atölye beklentileri ve staj hedeflerini kısaca belirtin...',
       cancelBtn: 'Vazgeç',
-      submitBtn: '✉️ Talebi Host Kuruma İlet',
+      submitBtn: 'Talebi Host Kuruma İlet',
       successTitle: 'Hareketlilik Talebiniz Başarıyla İletildi!',
       successMessage: 'Talebiniz ev sahibi kurumun yönetim paneline düştü ve irtibat yetkilisine bildirim gönderildi. Ev sahibinin cevabını ve ön kabul mektubunu (LoI) bu panelden takip edebilirsiniz.',
       closeBtn: 'Kapat',
@@ -1296,11 +1367,11 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       tabPending: 'Değerlendirme Bekleyenler',
       tabAccepted: 'Ön Kabul Verilenler (LoI)',
       tabDeclined: 'Reddedilen / Uygun Olmayanlar',
-      acceptBtn: '✓ Ön Kabul Ver (Letter of Intent)',
-      reviseBtn: '✏️ Tarih/Kapasite Revizyonu İste',
-      declineBtn: '✕ Reddet / Uygun Değil',
-      undoBtn: '↩️ Kararı Geri Al / İptal Et',
-      editReplyBtn: '💬 Yanıtı Düzenle',
+      acceptBtn: 'Ön Kabul Ver (Letter of Intent)',
+      reviseBtn: 'Tarih/Kapasite Revizyonu İste',
+      declineBtn: 'Reddet / Uygun Değil',
+      undoBtn: 'Kararı Geri Al / İptal Et',
+      editReplyBtn: 'Yanıtı Düzenle',
       viewDetailsBtn: '👁️ Okul Detaylarını Gör',
       replyModalTitle: 'Ev Sahibi Yanıtı & Gerekçe İlet',
       replyModalSubtitle: 'Gönderen kuruma iletilecek resmi hareketlilik kararınızı ve yanıt notunu belirleyin.',
@@ -1322,6 +1393,33 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       statusDeclined: 'Reddedildi / Uygun Değil',
       mockBadge: 'Simülasyon / Mock Okul',
       emptyInquiriesMsg: 'Bu kriterde henüz gelen hareketlilik talebi bulunmuyor.',
+      step1Title: 'Hareketlilik Türü, Tarihler & Katılımcılar',
+      step1Subtitle: 'Mesleki alan, stajyer/personel sayısı ve hedef takvim',
+      step2Title: 'Lojistik Tercihler & İletişim',
+      step2Subtitle: 'Konaklama, yemek, transfer ve koordinatör irtibatı',
+      nextStepBtn: 'İleri: Lojistik & İletişim →',
+      prevStepBtn: '← Geri: Tarihler & Katılımcılar',
+      stepBadge: 'Adım',
+      roadmapTitle: 'Bundan Sonraki Süreç & Yol Haritası',
+      roadmapSubtitle: 'Talebiniz ev sahibi kuruma başarıyla iletildi. Süreç aşağıdaki 3 resmi aşamayla ilerleyecektir:',
+      phase1Title: '1. Aşama: Ev Sahibi İncelemesi & Kontenjan Kontrolü',
+      phase1Duration: '48-72 Saat',
+      phase1Desc: 'Ev sahibi kurum, talep ettiğiniz mesleki alan, katılımcı sayısı ve takvim uygunluğunu atölye mentorları ve operasyon ekibiyle inceler.',
+      phase2Title: '2. Aşama: Teklif, Revizyon veya Doğrudan Ön Onay',
+      phase2Duration: '3-5 İş Günü',
+      phase2Desc: 'Ev sahibi kontenjanı onaylar veya takvim/öğrenci sayısı revizyon teklifi iletir. Güncellemeler anında okul panelinize yansır.',
+      phase3Title: '3. Aşama: Resmi Ön Kabul Mektubu (LoI) & Dosya Entegrasyonu',
+      phase3Duration: 'Onay Sonrası',
+      phase3Desc: 'Onaylanan hareketlilik için imzalı/mühürlü Ön Kabul Mektubu (Letter of Intent - LoI) hazırlanır ve Erasmus+ KA121/KA122 başvuru dosyanıza eklenir.',
+      trackInDashboardBtn: '📊 Okul Panelinde Talebi İzle',
+      inquiryIdLabel: 'Talep Referans Kodu',
+      targetHostLabel: 'Hedef Ev Sahibi Kurum',
+      summaryLearners: 'Katılımcı',
+      summaryDuration: 'Süre',
+      summaryDates: 'Tarih Aralığı',
+      summaryLogistics: 'Lojistik Hizmetler',
+      validationFillRequired: 'Lütfen hareketlilik alanını ve geçerli bir tarih aralığını belirleyin.',
+      reqInclusionLabel: 'Özel İhtiyaç & Engelsiz Erişim Desteği (Dahil Etme)',
     },
     sentInquiries: {
       cardTitle: 'Gönderilen Hareketlilik Taleplerim & Başvuru Durumları',
@@ -1333,10 +1431,10 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       tabRevised: 'Revizyon İstendi',
       tabDeclined: 'Reddedildi / Müsait Değil',
       viewLoIBtn: '📄 Ön Kabul Belgesini (LoI) Gör & Yazdır',
-      withdrawBtn: '↩️ Talebi İptal Et / Geri Çek',
+      withdrawBtn: 'Talebi İptal Et / Geri Çek',
       withdrawConfirmMsg: 'Talebiniz başarıyla iptal edildi ve sistemden kaldırıldı.',
       findAlternativeBtn: '🔍 Yeni Ev Sahibi Ara',
-      editAndResubmitBtn: '✏️ Düzenle ve Yeniden Gönder',
+      editAndResubmitBtn: 'Düzenle ve Yeniden Gönder',
       revisionModalTitle: 'Revizyon Talebini Yanıtla & Yeniden Gönder',
       revisionModalSubtitle: 'Ev sahibi kurumun önerilerine göre detayları güncelleyin ve talebinizi revize edilmiş olarak tekrar iletin.',
       resubmitSuccessMsg: 'Talebiniz güncellendi ve ev sahibi kuruma yeniden iletildi.',
@@ -1480,7 +1578,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
         home: 'Home',
         about: 'About',
         platform: {
-          label: 'Platform',
+          label: 'Mobility Hub',
           desc: 'EMaaS decision, matching and planning tools',
           pipeline: '5-Step Mobility Planning Pipeline',
           pipelineDesc: 'School profile, ESCO analysis and project path recommendation',
@@ -1804,6 +1902,28 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       subtitle: 'Mobility planning and matching platform for Erasmus+ Vocational Education and Training (VET) projects.',
       copyright: '© 2026 ErasmusMobility.com • All rights reserved.',
     },
+    newsModal: {
+      detailsBtn: 'Details →',
+      closeBtn: 'Close',
+      sourceLinkBtn: 'Open Official Source / Call ↗',
+      readTime: 'Estimated Read',
+      archiveNotice: 'This item is archived and its official application period has concluded.',
+      keyHighlights: 'Key Highlights & Criteria',
+      scopeAndObjectives: 'Scope and Objectives',
+      targetAudience: 'Target Audience & Eligibility',
+    },
+    activityTypes: {
+      JOB_SHADOWING: 'Job Shadowing',
+      VET_SHORT_TERM: 'Short-term Learner Mobility',
+      VET_LONG_TERM_PRO: 'ErasmusPro Long-term Mobility',
+      VET_GROUP_MOBILITY: 'Group Mobility of VET Learners',
+      VET_SKILLS_COMPETITION: 'Participation in VET Skills Competitions',
+      TEACHING_ASSIGNMENT: 'Teaching or Training Assignment',
+      STAFF_COURSE_TRAINING: 'Courses and Training',
+      INVITED_EXPERT: 'Invited Expert',
+      HOSTING_TEACHERS: 'Hosting Teachers in Training',
+      PREPARATORY_VISIT: 'Preparatory Visit',
+    },
     legal: {
       title: 'GDPR Privacy Policy',
       termsTitle: 'Platform Participation Terms & Consent',
@@ -2017,7 +2137,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       notesLabel: 'Institutional Note / Special Requests',
       notesPlaceholder: 'Briefly outline expected student tasks, workshop requirements, and internship objectives...',
       cancelBtn: 'Cancel',
-      submitBtn: '✉️ Submit Inquiry to Host',
+      submitBtn: 'Submit Inquiry to Host',
       successTitle: 'Mobility Inquiry Successfully Sent!',
       successMessage: 'Your inquiry has been delivered to the host organisation dashboard and a notification was sent to their contact person.',
       closeBtn: 'Close',
@@ -2027,11 +2147,11 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       tabPending: 'Under Review',
       tabAccepted: 'Accepted (LoI Issued)',
       tabDeclined: 'Declined / Unavailable',
-      acceptBtn: '✓ Issue Letter of Intent (LoI)',
-      reviseBtn: '✏️ Request Date/Capacity Revision',
-      declineBtn: '✕ Decline / Unavailable',
-      undoBtn: '↩️ Revert Decision / Undo',
-      editReplyBtn: '💬 Edit Reply Note',
+      acceptBtn: 'Issue Letter of Intent (LoI)',
+      reviseBtn: 'Request Date/Capacity Revision',
+      declineBtn: 'Decline / Unavailable',
+      undoBtn: 'Revert Decision / Undo',
+      editReplyBtn: 'Edit Reply Note',
       viewDetailsBtn: '👁️ View School Profile',
       replyModalTitle: 'Send Host Decision & Official Reply',
       replyModalSubtitle: 'Formulate your formal institutional reply and placement decision for the sending school.',
@@ -2053,6 +2173,33 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       statusDeclined: 'Declined / Unavailable',
       mockBadge: 'Simulation / Mock School',
       emptyInquiriesMsg: 'No incoming mobility inquiries found in this view.',
+      step1Title: 'Mobility Type, Dates & Participants',
+      step1Subtitle: 'VET field, learner/staff headcount, and schedule window',
+      step2Title: 'Logistics Preferences & Contact',
+      step2Subtitle: 'Accommodation, meals, transport, and coordinator info',
+      nextStepBtn: 'Next: Logistics & Contact →',
+      prevStepBtn: '← Back: Dates & Participants',
+      stepBadge: 'Step',
+      roadmapTitle: 'Next Steps & Process Roadmap',
+      roadmapSubtitle: 'Your inquiry has been successfully delivered. The process will proceed through these 3 formal phases:',
+      phase1Title: 'Phase 1: Host Review & Capacity Verification',
+      phase1Duration: '48-72 Hours',
+      phase1Desc: 'The host organisation reviews your vocational field, participant count, and schedule compatibility with their workshop mentors.',
+      phase2Title: 'Phase 2: Offer, Revision or Direct Approval',
+      phase2Duration: '3-5 Business Days',
+      phase2Desc: 'The host approves placement capacity or proposes adjustments to dates/headcount. Status changes update instantly on your dashboard.',
+      phase3Title: 'Phase 3: Formal Letter of Intent (LoI) & Dossier Integration',
+      phase3Duration: 'Post-Approval',
+      phase3Desc: 'A signed/stamped Letter of Intent (LoI) is generated for the approved placement and integrated directly into your Erasmus+ application dossier.',
+      trackInDashboardBtn: '📊 Track in School Dashboard',
+      inquiryIdLabel: 'Inquiry Reference ID',
+      targetHostLabel: 'Target Host Enterprise',
+      summaryLearners: 'Participants',
+      summaryDuration: 'Duration',
+      summaryDates: 'Date Window',
+      summaryLogistics: 'Logistics',
+      validationFillRequired: 'Please specify the vocational field and a valid date range.',
+      reqInclusionLabel: 'Inclusion & Accessibility Support',
     },
     sentInquiries: {
       cardTitle: 'My Mobility Requests and Their Status',
@@ -2064,10 +2211,10 @@ const TRANSLATIONS: Record<Locale, Translations> = {
       tabRevised: 'Revision Requested',
       tabDeclined: 'Declined / Unavailable',
       viewLoIBtn: '📄 View Acceptance Letter (LoI) & Print',
-      withdrawBtn: '↩️ Withdraw / Cancel Inquiry',
+      withdrawBtn: 'Withdraw / Cancel Inquiry',
       withdrawConfirmMsg: 'Your inquiry has been successfully withdrawn.',
       findAlternativeBtn: '🔍 Find Alternative Host',
-      editAndResubmitBtn: '✏️ Edit & Resubmit',
+      editAndResubmitBtn: 'Edit & Resubmit',
       revisionModalTitle: 'Respond to Revision & Resubmit',
       revisionModalSubtitle: 'Update dates, participant count or logistics according to host suggestions and resubmit your inquiry.',
       resubmitSuccessMsg: 'Your inquiry was updated and resubmitted to the host.',

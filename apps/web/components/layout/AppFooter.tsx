@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useTranslation } from '../../lib/i18n';
 import LegalModal, { LegalTabType } from '../ui/LegalModal';
 import AppointmentModal from '../ui/AppointmentModal';
@@ -23,13 +24,15 @@ export default function AppFooter() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 border-b border-slate-100 pb-8 mb-6">
             <div className="md:col-span-6 space-y-2.5">
               <div className="flex items-center gap-2.5">
-                <span className="w-6 h-6 rounded-lg bg-blue-700 text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                  E
-                </span>
-                <span className="font-bold text-slate-900 text-sm">
-                  {locale === 'tr'
-                    ? 'ErasmusMobility.com • Erasmus+ Mesleki Eğitim Hareketlilik Platformu'
-                    : 'ErasmusMobility.com • Mobility Planning and Matching Platform'}
+                <img
+                  src="/images/logo.png"
+                  alt="ErasmusMobility"
+                  className="h-7 w-auto object-contain"
+                />
+                <span className="font-bold text-slate-900 text-sm hidden sm:inline">
+                  • {locale === 'tr'
+                    ? 'Erasmus+ Mesleki Eğitim Hareketlilik Platformu'
+                    : 'Mobility Planning and Matching Platform'}
                 </span>
               </div>
               <p className="text-xs text-slate-500 leading-relaxed max-w-xl">
@@ -76,6 +79,26 @@ export default function AppFooter() {
             </div>
           </div>
 
+          {/* Institutional Role & Official Disclaimer Block */}
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 text-[11px] text-slate-500 leading-relaxed mb-6 space-y-2">
+            <div className="flex items-center gap-2 font-black text-slate-800 text-xs">
+              <span>⚖️</span>
+              <span>
+                {locale === 'tr'
+                  ? 'Yasal Feragatname ve Platformun Rolü (Legal Disclaimer & Scope)'
+                  : 'Legal Disclaimer & Platform Scope'}
+              </span>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
+                {locale === 'tr' ? 'Bağımsız Platform' : 'Independent Tool'}
+              </span>
+            </div>
+            <p className="m-0 text-slate-600 leading-relaxed font-normal">
+              {locale === 'tr'
+                ? "ErasmusMobility.com; mesleki eğitim kurumları, meslek liseleri ve Avrupa ev sahibi işletmeleri için geliştirilmiş bağımsız bir planlama, eşleştirme ve resmi evrak hazırlık destek platformudur. ErasmusMobility; Avrupa Birliği, Avrupa Komisyonu, Türkiye Ulusal Ajansı veya herhangi bir ülkenin resmi Erasmus+ Ulusal Otoritesinin resmi bir kuruluşu, iştiraki veya kamu kurumu DEĞİLDİR. 'Erasmus+' ismi ve logosu Avrupa Birliği'nin tescilli ticari markalarıdır. Platform üzerinde sunulan hibe simülasyonları, yetkinlik ölçümleri ve evrak taslakları kurumsal planlama ve kolaylaştırma amaçlı olup; resmi başvuru kabulü, hibe tahsisi ve akreditasyon kararları münhasıran ilgili Ulusal Ajanslar ile Avrupa Komisyonu'nun yetki ve takdirindedir."
+                : "ErasmusMobility.com is an independent digital planning, partner matching, and documentation preparation support platform for vocational institutions and European host enterprises. ErasmusMobility is NOT an official agency, body, or affiliate of the European Union, the European Commission, the Turkish National Agency, or any National Authority. 'Erasmus+' is a registered trademark of the European Union. All grant budget simulations, competence scorecards, and document drafts generated on this platform are for institutional planning and preparatory purposes only; formal accreditation, grant allocation, and project selection decisions rest solely with official National Agencies and the European Commission."}
+            </p>
+          </div>
+
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-slate-400 sm:pr-48">
             <div>
               {locale === 'tr'
@@ -83,21 +106,48 @@ export default function AppFooter() {
                 : '© 2026 ErasmusMobility.com • All rights reserved.'}
             </div>
             <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
-              <button
-                type="button"
-                onClick={() => openLegal('LEGAL')}
+              <Link
+                href="/privacy"
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey) return;
+                  e.preventDefault();
+                  openLegal('LEGAL');
+                }}
                 className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500 cursor-pointer"
               >
                 {locale === 'tr' ? 'KVKK Aydınlatma Metni' : 'GDPR Privacy Policy'}
-              </button>
+              </Link>
               <span>•</span>
-              <button
-                type="button"
-                onClick={() => openLegal('TERMS')}
+              <Link
+                href="/terms"
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey) return;
+                  e.preventDefault();
+                  openLegal('TERMS');
+                }}
                 className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500 cursor-pointer"
               >
                 {locale === 'tr' ? 'Kullanım Koşulları ve Açık Rıza' : 'Platform Participation Terms & Consent'}
-              </button>
+              </Link>
+              <span>•</span>
+              <Link
+                href="/privacy"
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey) return;
+                  e.preventDefault();
+                  openLegal('COOKIES');
+                }}
+                className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500 cursor-pointer"
+              >
+                {locale === 'tr' ? 'Çerez Politikası' : 'Cookie Policy'}
+              </Link>
+              <span>•</span>
+              <Link
+                href="/accessibility"
+                className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500 cursor-pointer"
+              >
+                {locale === 'tr' ? 'Erişilebilirlik' : 'Accessibility'}
+              </Link>
               <span>•</span>
               <button
                 type="button"

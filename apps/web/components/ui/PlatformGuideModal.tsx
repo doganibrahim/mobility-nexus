@@ -140,7 +140,12 @@ export default function PlatformGuideModal({
         const stepTitle = (locale === 'en' ? step.titleEn : step.titleTr).toLowerCase();
         return action.includes(q) || stepTitle.includes(q);
       });
-      return title.includes(q) || summary.includes(q) || goal.includes(q) || hasStepMatch;
+      const hasTableMatch = topic.parametersTable?.some((param) => {
+        const label = (locale === 'en' ? param.labelEn : param.labelTr).toLowerCase();
+        const value = (locale === 'en' ? param.valueEn : param.valueTr).toLowerCase();
+        return label.includes(q) || value.includes(q);
+      });
+      return title.includes(q) || summary.includes(q) || goal.includes(q) || hasStepMatch || hasTableMatch;
     });
   }, [currentCategory, searchQuery, locale]);
 
@@ -577,7 +582,7 @@ export default function PlatformGuideModal({
                     className="px-3.5 py-2 text-xs font-bold text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl shadow-2xs transition-colors shrink-0 flex items-center gap-1.5 cursor-pointer self-start sm:self-auto"
                   >
                     <span>⚡</span>
-                    <span>{locale === 'en' ? 'Instant Host Demo' : 'Hızlı Host Demosunu Başlat'}</span>
+                    <span>{locale === 'en' ? 'Instant Host Demo' : 'Hızlı Ev Sahibi Kuruluş Demosunu Başlat'}</span>
                   </button>
                 )}
               </div>
@@ -709,7 +714,7 @@ export default function PlatformGuideModal({
               className="px-3 py-2 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg transition-colors cursor-pointer hidden md:inline-flex items-center gap-1.5"
             >
               <span>🏢</span>
-              <span>{locale === 'en' ? 'Host Demo' : 'Host Demosu'}</span>
+              <span>{locale === 'en' ? 'Host Demo' : 'Ev Sahibi Kuruluş Demosu'}</span>
             </button>
 
             <SignInButton mode="modal">

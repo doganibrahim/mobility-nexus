@@ -1,12 +1,12 @@
 {
   "project": "ErasmusMobility (CAPPINNO Mobility Nexus)",
   "version": "1.0.0",
-  "last_updated": "2026-09-27",
+  "last_updated": "2026-10-01",
   "status_summary": {
-    "total_packages": 13,
-    "completed_packages_count": 10,
-    "pending_packages_count": 3,
-    "completion_percentage": 77,
+    "total_packages": 22,
+    "completed_packages_count": 22,
+    "pending_packages_count": 0,
+    "completion_percentage": 100,
     "completed_phases": [
       "Phase 1: Temel Kurulum, Okul/Host Onboarding ve Multi-tenant Mimari",
       "Phase 2: 5 Adımlı Hareketlilik Pipeline, Karar Motoru, KA120 PDF Parser ve KA121/KA122 Başvuru Taslak Sihirbazı",
@@ -20,8 +20,21 @@
       "PKG-X-3: Veriden Bağımsız İnteraktif Süreç Adımları ve Vektörel Rota Görseli",
       "PKG-L-1: Core i18n Mimarisi, Dinamik HTML lang ve CSS/JS Büyük İ Düzeltmesi",
       "PKG-L-2: Kamusal Alan, Onboarding, Navigasyon ve Modallar Çift Dilli Tamamlama",
-      "PKG-L-3: Başvuru Taslak Sihirbazı, Pazaryeri ve Yönetici Koordinasyonu Çift Dilli Tamamlama"
+      "PKG-L-3: Başvuru Taslak Sihirbazı, Pazaryeri ve Yönetici Koordinasyonu Çift Dilli Tamamlama",
+      "PKG-04: Katılımcı Hazırlık Portalı (Öğrenci & Personel LMS)",
+      "PKG-05: Resmi Hareketlilik Evrak İhracı ve Otomasyon Motoru",
+      "PKG-06: Sistem Kalite Metrikleri (QA), Canlıya Alım ve Stabilizasyon",
+      "PKG-IMP-01: Ana Sayfa Kapsam Netleştirmesi, 'Plan your mobility' Ana CTA'sı ve 5 Adımlı Süreç Akışı",
+      "PKG-IMP-02: Güven ve Kapsam: Platform Rolü, Resmi AB/Ulusal Ajans Feragatnamesi (Disclaimer) ve Yasal Metinler",
+      "PKG-IMP-03: Şeffaf Sağlayıcı Eşleştirme Kriterleri, Uygunluk Skoru Kırılımı ve Uyuşmazlık Analizi",
+      "PKG-IMP-04: Çok Adımlı (Multi-Step) Ön Talep Formu ve Gönderim Sonrası Yol Haritası",
+      "PKG-IMP-05: Kapsamlı Sağlayıcı Profilleri, İptal Koşulları ve 5 Boyutlu Performans Değerlendirmesi",
+      "PKG-IMP-06: Ayrıştırılmış Navigasyon Mimarisi, Mobil & Klavye Erişilebilirliği (WCAG) ve İçerik Arşivi",
+      "PKG-IMP-07: Pipeline, Karar Motoru & Taslak Senkronizasyonu ve Dinamik Çıktı Bütünlüğü",
+      "PKG-IMP-08: Uygunluk Kuralları Konsolidasyonu, Senaryo Durum Takibi ve Misafir/Oturum Ayrımı",
+      "PKG-IMP-09: Arayüz Metin İnterpolasyonu, Faaliyet Etiketleri ve Haber Etkileşimi"
     ],
+    "pending_phases": [],
     "out_of_scope_operational": [
       "Avrupa Ev Sahibi (Host) kurumlarla fiziksel temas kurularak veritabanının doldurulması (CAPPINNO iş geliştirme ve ağ operasyonudur)",
       "Canlıya alım sonrası gerçek kullanıcı AI token/API faturaları (Kullandıkça öde mantığıyla doğrudan CAPPINNO tarafından karşılanacaktır)",
@@ -297,7 +310,7 @@
     },
     {
       "package_id": "PKG-04",
-      "status": "BEKLEMEDE",
+      "status": "COMPLETED",
       "phase": "3. Ay - Öğrenci Hazırlık Portalı",
       "title_tr": "Katılımcı Hazırlık Portalı (Öğrenci & Personel LMS)",
       "title_en": "Participant Mobility Preparation Portal (LMS)",
@@ -312,20 +325,25 @@
       "api_endpoints": [
         "GET /preparation/modules - 10 mikro-öğrenme modül listesi ve içerikleri",
         "POST /preparation/complete-step - Katılımcı modül tamamlama ve mini test kaydı",
-        "GET /preparation/progress/:participantId - İlerleme yüzdesi ve hazırlık karnesi"
+        "GET /preparation/progress/:participantId - İlerleme yüzdesi ve hazırlık karnesi",
+        "GET /preparation/participants - Okul koordinatörü toplu izleme ve filtreleme"
       ],
       "frontend_components": [
-        "apps/web/app/preparation/page.tsx (Katılımcı Hazırlık Portalı)",
-        "apps/web/components/preparation/MicroLearningCard.tsx",
-        "apps/web/components/preparation/ProgressOverviewBar.tsx"
+        "apps/web/app/preparation/page.tsx (Katılımcı Hazırlık Portalı - Çift Mod: LMS & Koordinatör Masası)",
+        "apps/web/components/preparation/MicroLearningCard.tsx (İnteraktif Modül & Mini Quiz Değerlendirme)",
+        "apps/web/components/preparation/ProgressOverviewBar.tsx (Hazırlık İlerleme & İstatistik Barı)",
+        "apps/web/components/preparation/CoordinatorParticipantTable.tsx (Koordinatör Katılımcı İzleme Tablosu)",
+        "apps/web/components/preparation/PreparationCertificateModal.tsx (Resmi Hazırlık Başarı Belgesi / PDF Çıktısı)"
       ],
       "acceptance_criteria": [
         "Katılımcılar interaktif hazırlık adımlarını tamamladıkça ilerleme çubukları güncellenmeli.",
-        "Okul koordinatörü hangi öğrencinin hareketlilik hazırlığını tamamladığını tek ekranda görebilmeli."
+        "Okul koordinatörü hangi öğrencinin hareketlilik hazırlığını tamamladığını tek ekranda görebilmeli.",
+        "Tüm modüller ve arayüzler TR/EN çift dilli çalışmalı, erasmus-edu-ui kurallarına tam uyumlu olmalıdır."
       ]
     },
     {
       "package_id": "PKG-05",
+      "status": "COMPLETED",
       "phase": "4. Ay - Resmi Evrak & Dosya İhracı",
       "title_tr": "Resmi Hareketlilik Evrak İhracı ve Otomasyon Motoru",
       "title_en": "Official Mobility Dossier & Formal Document Export Engine",
@@ -338,16 +356,19 @@
         "export_log"
       ],
       "api_endpoints": [
-        "GET /dossiers/mobility/:id - Hareketlilik dosya durumu ve evrak listesi",
-        "POST /documents/export-learning-agreement - Doldurulmuş resmi Learning Agreement belgesi (Word/PDF)",
-        "POST /documents/export-europass - Resmi Europass Mobility yetkinlik belgesi çıktısı",
-        "POST /documents/export-inter-institutional-agreement - Kurumlararası resmi ortaklık protokolü"
+        "GET /api/dossiers - Kayıtlı hareketlilik dosyaları listesi",
+        "GET /api/dossiers/:id - Dosya detayı, evrak listesi ve önizleme yükü",
+        "POST /api/documents/export-learning-agreement - Doldurulmuş resmi Learning Agreement belgesi (Word/PDF)",
+        "POST /api/documents/export-europass - Resmi Europass Mobility yetkinlik belgesi çıktısı",
+        "POST /api/documents/export-inter-institutional-agreement - Kurumlararası resmi ortaklık protokolü",
+        "GET /api/documents/logs - İhraç ve indirme geçmişi denetim izi"
       ],
       "frontend_components": [
         "apps/web/app/dossier/page.tsx (Resmi Hareketlilik Dosya ve Evrak İhraç Masası)",
-        "apps/web/components/export/LearningAgreementExportModal.tsx",
-        "apps/web/components/export/EuropassExportModal.tsx",
-        "apps/web/components/export/DossierDownloadCard.tsx"
+        "apps/web/components/export/LearningAgreementExportModal.tsx (Resmi EC VET Öğrenme Sözleşmesi Önizleme & PDF)",
+        "apps/web/components/export/EuropassExportModal.tsx (Resmi Europass Hareketlilik Belgesi Şablonu)",
+        "apps/web/components/export/InterInstitutionalAgreementExportModal.tsx (İkili Kurumlararası Ortaklık Protokolü)",
+        "apps/web/components/export/DossierDownloadCard.tsx (Evrak Önizleme & Hızlı İhraç Kartı)"
       ],
       "acceptance_criteria": [
         "Learning Agreement çıktısı resmi Avrupa Komisyonu VET şablonuna birebir uyumlu olmalıdır.",
@@ -357,6 +378,7 @@
     },
     {
       "package_id": "PKG-06",
+      "status": "COMPLETED",
       "phase": "4. Ay - Canlıya Alım & Kalite Kontrol",
       "title_tr": "Sistem Kalite Metrikleri (QA), Canlıya Alım ve Stabilizasyon",
       "title_en": "System QA Metrics, Production Deployment & Hardening",
@@ -369,18 +391,284 @@
         "commercial_metric_snapshot"
       ],
       "api_endpoints": [
-        "GET /admin/qa - Sistem yük ve güvenlik test sonuçları",
-        "GET /admin/metrics - API yanıt süreleri ve veritabanı sağlık göstergeleri",
-        "GET /analytics/commercial - Kayıtlı kurum, aktif eşleşme ve dönüşüm metrikleri"
+        "GET /api/admin/qa - Sistem yük ve güvenlik test sonuçları ve kilit denetimi",
+        "POST /api/admin/qa - Canlı QA test koşusu tetikleme motoru",
+        "GET /api/admin/metrics - API p95 yanıt süreleri ve veritabanı sağlık göstergeleri",
+        "GET /api/analytics/commercial - Kayıtlı kurum, aktif eşleşme ve dönüşüm metrikleri"
       ],
       "frontend_components": [
         "apps/web/app/admin/qa-dashboard/page.tsx (Sistem Sağlık ve Hata Takip Ekranı)",
-        "apps/web/components/admin/SystemHealthIndicator.tsx"
+        "apps/web/components/admin/SystemHealthIndicator.tsx (Canlı Servis ve SLA Sağlık Rozeti)",
+        "apps/web/components/admin/qa/ProductionHardeningChecklist.tsx (10 Maddelik Canlı Güvenlik & 30 Günlük Garanti)",
+        "apps/web/components/admin/qa/QaTestRunTable.tsx (Otomatik Test Koşuları ve İnceleme Çekmecesi)",
+        "apps/web/components/admin/qa/SystemMetricCharts.tsx (Uç Nokta p95 Gecikme ve Kaynak Kullanım Grafikleri)"
       ],
       "acceptance_criteria": [
         "API yanıt süreleri p95 bazında 500ms altında kalmalı.",
         "Tüm ortam değişkenleri (.env.production) canlı güvenlik kriterlerine göre kilitlenmeli.",
         "Sistem canlıya alındıktan sonraki ilk 30 günlük ücretsiz bakım ve hata giderme döngüsü başlatılmalı."
+      ]
+    },
+    {
+      "package_id": "PKG-IMP-01",
+      "status": "COMPLETED",
+      "phase": "Phase 5 - Önerilen İyileştirmeler",
+      "title_tr": "Ana Sayfa Kapsam Netleştirmesi, 'Plan your mobility' Ana CTA'sı ve 5 Adımlı Süreç Akışı",
+      "title_en": "Homepage Scope Clarity, 'Plan your mobility' Primary CTA & 5-Step Process Workflow",
+      "priority": "YÜKSEK",
+      "category": "Ana Sayfa & Süreç Akışı",
+      "summary_tr": "Ana sayfa hero alanında platformun Türkiye'den Avrupa'ya KA121/KA122 hareketliliği planlayan kurumları desteklediğinin netleştirilmesi, 'Plan your mobility' butonunun ana eylem çağrısı yapılması ve 5 adımlı (talep oluştur -> ihtiyaçları tanımla -> sağlayıcıları karşılaştır -> teklif iste -> hareketliliği planla) 'Nasıl Çalışır?' bölümünün eklenmesi.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/components/gateway/HeroContrastSection.tsx (TR-to-EU KA121/KA122 kapsam metni ve 'Plan your mobility' ana CTA)",
+        "apps/web/components/gateway/HowItWorksProcessSection.tsx (5 Adımlı 'Nasıl Çalışır?' Süreç Kartları)",
+        "apps/web/app/page.tsx (Yeni süreç akışının ana sayfaya entegrasyonu)",
+        "apps/web/lib/i18n.tsx (Ana sayfa kapsamı ve 5 adım için TR/EN sözlük güncellemeleri)"
+      ],
+      "acceptance_criteria": [
+        "Ana sayfa hero alanında 'Türkiye'den Avrupa'ya KA121/KA122 hareketliliği planlayan kurumlar için' kapsamı TR ve EN dillerinde belirgin şekilde vurgulanmalıdır.",
+        "Ana sayfa birincil CTA butonu 'Plan your mobility' ('Hareketliliğinizi Planlayın') olarak ayarlanmalı ve doğrudan /school/pipeline akışına yönlendirmelidir.",
+        "5 adımlı 'Nasıl Çalışır?' (How it works) süreci: 1. Talep oluştur (Submit request), 2. İhtiyaçları tanımla (Describe needs), 3. Sağlayıcıları karşılaştır (Compare providers), 4. Teklif iste (Request offers), 5. Hareketliliği planla (Plan mobility) sırasıyla sunulmalıdır."
+      ]
+    },
+    {
+      "package_id": "PKG-IMP-02",
+      "status": "COMPLETED",
+      "phase": "Phase 5 - Önerilen İyileştirmeler",
+      "title_tr": "Güven ve Kapsam: Platform Rolü, Resmi AB/Ulusal Ajans Feragatnamesi (Disclaimer) ve Yasal Metinler",
+      "title_en": "Trust & Scope: Platform Role, Official EU/NA Disclaimer & Legal Compliance Revision",
+      "priority": "YÜKSEK",
+      "category": "Güven, Uyum & Hukuk",
+      "summary_tr": "Platformun rolünün ve ne sunduğunun net anlatılması; resmi bir Erasmus+ veya Türkiye Ulusal Ajansı platformu olduğu algısı yaratabilecek tüm ifade ve başlıklardan kaçınılması; Header, Footer, Hero ve LegalModal içerisine görünür ve net feragatnamelerin eklenmesi.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/components/layout/AppHeader.tsx (Resmi kurum algısını önleyen marka ve rozet revizyonu)",
+        "apps/web/components/layout/AppFooter.tsx (Görünür Bağımsız Destek Platformu Feragatnamesi)",
+        "apps/web/components/ui/LegalModal.tsx (Platform Rolü, Sorumluluk Sınırı ve Veri İşleme Revizyonu)",
+        "apps/web/components/gateway/HeroContrastSection.tsx (Nötr ve şeffaf platform rolü etiketi)",
+        "apps/web/lib/i18n.tsx (Disclaimer ve platform rolü çift dilli sözlük güncellemeleri)"
+      ],
+      "acceptance_criteria": [
+        "AppHeader, AppFooter ve Landing alanlarında 'ErasmusMobility bağımsız bir destek ve planlama aracıdır; Avrupa Birliği, Avrupa Komisyonu veya Türkiye Ulusal Ajansı'nın resmi bir platformu değildir' feragatnamesi açıkça yer almalıdır.",
+        "Resmi AB organı çağrışımı yapabilecek başlıklar ('Erasmus+ Mesleki Eğitim Portalı' vb.) bağımsız destek platformu kimliğine uygun hale getirilmelidir.",
+        "LegalModal içindeki KVKK ve Katılım Koşulları metinlerine platformun aracı rolü, sorumluluk sınırları ve veri işleme amaçları şeffaf bir madde olarak eklenmelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-IMP-03",
+      "status": "COMPLETED",
+      "phase": "Phase 5 - Önerilen İyileştirmeler",
+      "title_tr": "Şeffaf Sağlayıcı Eşleştirme Kriterleri, Uygunluk Skoru Kırılımı ve Uyuşmazlık (Mismatch) Analizi",
+      "title_en": "Transparent Provider Matching Criteria, Suitability Score Breakdown & Mismatch Diagnostics",
+      "priority": "YÜKSEK",
+      "category": "Eşleştirme Algoritması & Tanılama",
+      "summary_tr": "/platform sayfasına eşleştirme kriterleri, skorlama mantığı ve uyuşmazlık analizinin eklenmesi; pipeline ve pazar yerinde her aday sağlayıcı için 7 temel kriterin (ülke, faaliyet türü, hedef grup, tarihler, süre, katılımcı sayısı, ihtiyaçlar) eşleşme ve uyuşmazlık (match vs mismatch) dökümünün görselleştirilmesi.",
+      "database_tables": [],
+      "api_endpoints": [
+        "POST /matching/evaluate-criteria - 7 kriterli detaylı eşleşme/uyuşmazlık dökümü ve skor açıklaması"
+      ],
+      "frontend_components": [
+        "apps/web/app/platform/page.tsx (Hareketlilik Eşleştirme Kriterleri, Skor Açıklamaları ve Uyuşmazlık Kılavuzu)",
+        "apps/web/components/platform/MatchingCriteriaExplainer.tsx (İnteraktif Kriter Karşılaştırma & Mismatch Simülatörü)",
+        "apps/web/components/gateway/HostMatchingCard.tsx (7 Kriterli Eşleşme [✓] / Uyuşmazlık [✕] Rozetleri ve Skor Detayı)",
+        "apps/web/lib/matching-engine.ts (Kriter bazlı teşhis ve uyuşmazlık nesnesi üretimi)"
+      ],
+      "acceptance_criteria": [
+        "/platform sayfasına 'Nasıl Eşleşir?' başlığı altında 7 kriterin ağırlıkları ve formülü açıklayıcı bir bölüm olarak eklenmelidir.",
+        "Her sağlayıcı kartında; Ülke, Faaliyet Türü, Hedef Grup, Tarihler, Süre, Katılımcı Sayısı ve Lojistik İhtiyaçlar kriterlerinin hangilerinin karşılandığı (✓) ve hangilerinde uyumsuzluk olduğu (⚠️/✕) tek tek listelenmelidir.",
+        "Diskalifiye veya düşük skor alan adaylar için uyuşmazlık nedenleri anlaşılır ve aksiyon alınabilir şekilde gösterilmelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-IMP-04",
+      "status": "COMPLETED",
+      "phase": "Phase 5 - Önerilen İyileştirmeler",
+      "title_tr": "Çok Adımlı (Multi-Step) Ön Talep Formu ve Gönderim Sonrası Yol Haritası",
+      "title_en": "Multi-Step Mobility Request Form & Post-Submission Next Steps Roadmap",
+      "priority": "YÜKSEK",
+      "category": "Talep & İletişim Akışı",
+      "summary_tr": "Kullanıcıyı yoran uzun tek parça talep formunun 2 net adıma bölünmesi; gönderim sonrası onay ekranında 'Bundan sonra ne olacak?' (What happens next: ev sahibi incelemesi, teklif/revizyon, kabul mektubu) sürecinin görsel bir yol haritasıyla anlatılması.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/components/inquiry/MobilityInquiryModal.tsx (2 Adımlı Form Mimarisi ve Sonraki Adımlar Akışı)",
+        "apps/web/components/inquiry/InquiryStepIndicator.tsx (Adım Gösterge Barı)",
+        "apps/web/components/inquiry/PostSubmissionRoadmap.tsx (Gönderim Sonrası 3 Aşamalı Yol Haritası)",
+        "apps/web/lib/i18n.tsx (Çok adımlı form ve bilgilendirme metinleri)"
+      ],
+      "acceptance_criteria": [
+        "Hareketlilik talep formu iki kısa adıma ayrılmalıdır: 1. Adım: Hareketlilik Türü, Tarihler & Katılımcılar; 2. Adım: Lojistik Tercihler & İletişim.",
+        "Form gönderildiğinde onay modalı gösterilmeli ve ardından gerçekleşecek süreç (48-72 saat inceleme süresi, teklif/kontenjan onayı, LoI hazırlanması) madde madde açıklanmalıdır.",
+        "Kullanıcı talep durumunu Okul Paneli üzerinden tek tıkla izleyebilmelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-IMP-05",
+      "status": "COMPLETED",
+      "phase": "Phase 5 - Önerilen İyileştirmeler",
+      "title_tr": "Kapsamlı Sağlayıcı Profilleri, İptal Koşulları ve 5 Boyutlu Performans Değerlendirmesi",
+      "title_en": "Comprehensive Provider Profiles, Cancellation Policies & 5-Dimensional Review Assessment",
+      "priority": "ORTA",
+      "category": "Pazaryeri & Sağlayıcı Kalitesi",
+      "summary_tr": "Sağlayıcı ve kurs profillerine hizmetler, konum, hedef gruplar, kapasite, diller, erişilebilirlik, iptal koşulları ve son güncelleme tarihinin eklenmesi; değerlendirme sisteminin yalnızca yıldız puanı olmaktan çıkarılıp 5 boyutta (yanıt süresi, iletişim, hizmet tamamlama, program uygunluğu, sorun çözme) puanlanması.",
+      "database_tables": [
+        "host_review_metric",
+        "host_cancellation_policy"
+      ],
+      "api_endpoints": [
+        "GET /hosts/:id/reviews-breakdown - 5 boyutlu performans değerlendirme puanları",
+        "POST /hosts/:id/reviews - 5 kriterli değerlendirme gönderme"
+      ],
+      "frontend_components": [
+        "apps/web/components/marketplace/CourseCard.tsx (İptal Koşulları, Son Güncelleme Tarihi ve Erişilebilirlik Rozetleri)",
+        "apps/web/components/marketplace/JobShadowingCard.tsx (Kapasite, Hedef Grup ve Güncelleme Bilgisi)",
+        "apps/web/components/host/HostPortfolioModal.tsx (İptal Şartları, Erişilebilirlik ve Hedef Grup Form Alanları)",
+        "apps/web/components/marketplace/ProviderFeedbackBreakdown.tsx (5 Boyutlu Değerlendirme Radar/Bar Bileşeni)",
+        "packages/types/src/index.ts (ProviderProfile ve Review tiplerine yeni alanların eklenmesi)"
+      ],
+      "acceptance_criteria": [
+        "Tüm sağlayıcı ve kurs kartlarında 'Son Güncellenme Tarihi' ve 'İptal Koşulları' açıkça görülebilmelidir.",
+        "Sağlayıcı profillerinde tekerlekli sandalye, özel diyet vb. erişilebilirlik olanakları ve hedef kitle (öğrenci, çırak, personel) listelenmelidir.",
+        "Geri bildirim alanı; Yanıt Süresi, İletişim, Hizmet Tamamlama, Program Uygunluğu ve Problem Çözme olmak üzere 5 boyutta kırılımlı gösterilmelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-IMP-06",
+      "status": "COMPLETED",
+      "phase": "Phase 5 - Önerilen İyileştirmeler",
+      "title_tr": "Ayrıştırılmış Navigasyon Mimarisi, Mobil & Klavye Erişilebilirliği (WCAG) ve İçerik Arşivi",
+      "title_en": "Distinct Section Navigation, Mobile & Keyboard Accessibility (WCAG) & Content Archival",
+      "priority": "ORTA",
+      "category": "Erişilebilirlik, Navigasyon & Arşiv",
+      "summary_tr": "Platform, Library, News & Events ve Contact bölümlerine net, ayrışmış roller tanımlanması ve en faydalı bilgilere doğrudan hızlı linkler verilmesi; mobil cihazlarda form ve filtrelerin kusursuz çalışması; görünür klavye odağı (visible focus), renk kontrastı, resim alt metinleri (alt text) ve süresi geçmiş duyuruların arşivlenmesi.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/components/layout/AppHeader.tsx (Bölüm amaçlarını açıklayan zengin menü başlıkları ve doğrudan hızlı bağlantılar)",
+        "apps/web/app/news-and-events/page.tsx (Geçmiş ve Süresi Dolan Duyurular İçin Arşiv Sekmesi)",
+        "apps/web/app/platform/page.tsx, /library/page.tsx, /contact/page.tsx (Ayrışmış amaç kartları)",
+        "apps/web/app/globals.css (Görünür klavye odak halkaları [focus-visible:ring-2] ve WCAG kontrast yardımcıları)"
+      ],
+      "acceptance_criteria": [
+        "Navigasyondaki her ana bölüm (Platform, Kütüphane, Haberler, İletişim) kendi özel amacını tek cümleyle tanımlamalı ve en çok aranan 3 kaynağa doğrudan bağlantı sunmalıdır.",
+        "Tüm formlar ve filtreler mobil ekranlarda test edilmiş olmalı; tab tuşuyla gezinirken tüm etkileşimli elemanlarda görünür odak (visible focus ring) bulunmalıdır.",
+        "Haberler ve Etkinlikler sayfasında süresi geçmiş çağrılar için 'Arşiv' sekmesi bulunmalı; eski içerikler arşive kaldırılabilmelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-IMP-07",
+      "status": "COMPLETED",
+      "phase": "Phase 6 - QA Hardening & Data Integrity",
+      "title_tr": "Pipeline, Karar Motoru & Taslak Senkronizasyonu ve Dinamik Çıktı Bütünlüğü",
+      "title_en": "Pipeline, Decision Engine & Application Draft Synchronization and Dynamic Outcome Integrity",
+      "priority": "YÜKSEK",
+      "category": "Veri Bütünlüğü & Karar Motoru",
+      "summary_tr": "Akreditasyonlu okullar için önerilen KA121 rotasının başvuru taslağına doğru aktarılması ve form tipi uyumsuzluk uyarıları; faaliyet süresinin tarihlerden dinamik hesaplanıp seyahat günlerinden ayrıştırılması; öğretmen/öğrenci profil değişiminde öğrenme çıktılarının otomatik güncellenmesi; kurum bilgisi girilmemiş taslakların 'Eksik Taslak' olarak etiketlenmesi.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/lib/store.ts (loadDemoData, syncPipelineToDraft, generateOutcomes dinamik tetikleyicisi)",
+        "apps/web/app/school/pipeline/page.tsx (Form yönlendirme, KA121/KA122 rotalama ve eksik profil uyarıları)",
+        "apps/web/components/gateway/RecommendationReportCard.tsx (Eksik taslak bannerı ve profil senkronizasyon bildirimi)",
+        "apps/web/lib/application-draft-schema.ts (Dinamik faaliyet süresi ve seyahat günleri hesaplama yardımcıları)"
+      ],
+      "acceptance_criteria": [
+        "Demo verisi yüklendiğinde akredite kurum için KA121-VET öneriliyorsa 'Başvuru Taslağını Başlat' butonu KA121 taslağına yönlendirmeli; form tipi değiştirilecekse kullanıcıya açık bir bilgilendirme sunulmalıdır.",
+        "Plandaki başlangıç ve bitiş tarihleri arasındaki gün sayısı (örn. 15–25 Ekim 2026 için 11 gün) taslak süresine otomatik yansıtılmalı, seyahat günleri (1-2 gün) toplam faaliyet süresinden ayrı tutulmalıdır.",
+        "Katılımcı tipi 'student'tan 'teacher'a geçtiğinde rapordaki öğrenme çıktıları öğretmen yetkinliklerine otomatik güncellenmeli veya 'Profil güncellendi, rapor güncel değil' uyarısı verilmelidir.",
+        "Kurum adı veya OID bilgisi doldurulmadan rapor adımına geçildiğinde taslak 'Eksik Taslak' olarak işaretlenmeli ve yapay olarak tamamlanmış değerlendirme izlenimi verilmemelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-IMP-08",
+      "status": "COMPLETED",
+      "phase": "Phase 6 - QA Hardening & Data Integrity",
+      "title_tr": "Uygunluk Kuralları Konsolidasyonu, Senaryo Durum Takibi ve Misafir/Oturum Ayrımı",
+      "title_en": "Single-Source Eligibility Rules, Scenario State Tracking & Guest/Auth Distinction",
+      "priority": "YÜKSEK",
+      "category": "Uygunluk & Oturum Yönetimi",
+      "summary_tr": "KA122 uygunluk kurallarının ve hibe geçmişi sınırlamalarının (çağrı yılları ve azami proje sayıları) tek merkezden yönetilmesi; KA122 için geçersiz olan 24 ay seçeneğinin kaldırılarak 6-18 ay standardının getirilmesi; taslaktaki senaryo butonlarının canlı form verisiyle karşılaştırılarak 'Özelleştirilmiş Senaryo' durumunun belirtilmesi; giriş yapmamış misafir kullanıcılar için 'Demo Okul Profili' ayrımının yapılması.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/lib/calculations.ts & apps/web/lib/platform-guide-data.ts (KA122 uygunluk kuralları ve hibe limitleri tek merkez)",
+        "apps/web/components/application-draft/sections/ContextSection.tsx (KA122 için 6, 12, 18 ay kısıtı, 24 ayın elenmesi)",
+        "apps/web/app/school/application-draft/page.tsx (Senaryo aktiflik doğrulaması ve Demo Okul Profili rozeti)",
+        "apps/web/components/application-draft/DraftSummaryCard.tsx (Katılımcı sayısı ve profil tutarlılık kontrolü)"
+      ],
+      "acceptance_criteria": [
+        "Tüm planlama ve taslak ekranlarındaki KA122 uygunluk metinleri ve hibe sınırları (son 5 çağrı yılında azami 3 KA122 hibesi) tek bir doğruluk kaynağından (single source of truth) beslenmelidir.",
+        "KA122-VET bağlamında proje süresi seçenekleri Erasmus+ Program Rehberi gereği yalnızca 6, 12 ve 18 ay olmalı; 24 ay seçeneği sunulmamalıdır.",
+        "Senaryo 1 (6 katılımcı) seçildikten sonra katılımcı sayısı değiştirilirse (örn. 5 katılımcı), kart '✓ Aktif Senaryo' yerine 'Özelleştirilmiş Senaryo' veya nötr olarak gösterilmelidir.",
+        "Clerk kimlik doğrulaması yapılmamış oturumlarda taslak başlığında 'Aktif Giriş Yapan Okul' yerine 'Demo Okul Profili (Misafir Modu)' etiketi gösterilmelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-IMP-09",
+      "status": "COMPLETED",
+      "phase": "Phase 6 - QA Hardening & Data Integrity",
+      "title_tr": "Arayüz Metin İnterpolasyonu, Faaliyet Etiketleri ve Haber Etkileşimi",
+      "title_en": "UI String Interpolation, Human-Readable Activity Labels & News Content Interaction",
+      "priority": "ORTA",
+      "category": "Kullanıcı Deneyimi & İçerik Erişimi",
+      "summary_tr": "DraftSummaryCard içindeki %{overallPercentage} değişken interpolasyon hatasının düzeltilmesi; tavsiye ve özet raporlarında JOB_SHADOWING gibi teknik kodlar yerine çift dilli insani faaliyet adlarının gösterilmesi; Haberler ve Etkinlikler sayfasında 'Detaylar →' butonuna basıldığında detay modalı veya orijinal haber/çağrı kaynağına dış yönlendirme açılması.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/components/application-draft/DraftSummaryCard.tsx (%{overallPercentage} sözdizimi düzeltmesi)",
+        "apps/web/components/gateway/RecommendationReportCard.tsx (Faaliyet tipi çevirici: İşbaşı Gözlem / Job Shadowing)",
+        "apps/web/app/news-and-events/page.tsx (Haber detay modalı veya hedef AB/Ulusal Ajans harici bağlantısı)",
+        "apps/web/lib/i18n.tsx (Faaliyet türleri ve haber modalı çift dilli çeviri sözlüğü)"
+      ],
+    },
+    {
+      "package_id": "PKG-IMP-10",
+      "status": "COMPLETED",
+      "phase": "Phase 6 - QA Hardening & Data Integrity",
+      "title_tr": "Form Doğrulama, Veri Bütünlüğü ve Karar Motoru Ön Geçidi",
+      "title_en": "Form Validation, Data Integrity & Decision Engine Pre-Validation Gatekeeper",
+      "priority": "KRİTİK",
+      "category": "Veri Bütünlüğü & Validasyon",
+      "summary_tr": "Refakatçi ve katılımcı sayısı girişlerindeki negatif/sıfır hatalarının giderilmesi; ters tarih sırası (startDate > endDate) durumunda form hata stilleri ve karar motorunun durdurulması; geçersiz veri varken uygunluk puanı ve 'Önerilir' üretilmesinin engellenerek kullanıcıya düzeltilecek alanların gösterilmesi; yetkinlik değerlendirmesindeki 12/12 rozeti ile eksik sorular hata mesajının tek bir kaynaktan reaktif senkronize edilmesi.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/components/gateway/ParticipantProfileCard.tsx (Sıfır ve negatif giriş validasyonları, tarih sırası hata stilleri)",
+        "apps/web/components/gateway/CompetenceAssessmentCard.tsx (Rozet ve sonuç mesajı tek gerçeğe bağlama)",
+        "apps/web/lib/calculations.ts (makeDecision ve validatePipelineData veri bütünlüğü geçidi)",
+        "apps/web/components/gateway/RecommendationReportCard.tsx (Geçersiz veri uyarı paneli ve karar askıya alma)",
+        "apps/web/app/school/pipeline/page.tsx (Canlı validasyon durumu ve reaktif yetkinlik senkronizasyonu)"
+      ],
+      "acceptance_criteria": [
+        "Refakatçi alanına negatif sayı (-1 vb.) girilememeli; manuel yazılsa dahi Math.max(0, ...) ile 0'a çekilmeli ve raporda '+-1 Refakatçi' gibi bozulmalar oluşmamalıdır.",
+        "Katılımcı sayısına 0 yazıldığında gizlice 1'e çevrilmemeli; 'En az 1 katılımcı girilmelidir' kırmızı validasyon mesajı gösterilerek form uyarısı verilmelidir.",
+        "Bitiş tarihi başlangıç tarihinden önce seçildiğinde tarih alanında görsel hata (kırmızı çerçeve ve açıklama) gösterilmeli; karar motoruna hatalı tarih akışı kesilmelidir.",
+        "Negatif refakatçi, 0 katılımcı veya geçersiz tarih içeren bir planda karar motoru 'Önerilir' ve başarı puanı üretmemeli; değerlendirme durdurulup düzeltilecek alanlar listelenmelidir.",
+        "Yetkinlik ekranında '12/12 Tamamlandı' rozeti varken altta '1-12 numaralı soruları yanıtlayın' çelişkisi oluşmamalı; rozet ve mesaj aynı cevap kaydından senkronize üretilmelidir."
+      ]
+    },
+    {
+      "package_id": "PKG-IMP-11",
+      "status": "COMPLETED",
+      "phase": "Phase 6 - QA Hardening & Data Integrity",
+      "title_tr": "Kaydet/Yükle, Test Otomasyon Uyumluluğu ve Belge Dışa Aktarım Sertleştirmesi",
+      "title_en": "Persistence, Headless Test Automation Resilience & Document Export Hardening",
+      "priority": "YÜKSEK",
+      "category": "Depolama & Dışa Aktarım",
+      "summary_tr": "Test araçlarını zaman aşımına uğratan window.alert çağrılarının kaldırılıp modern Toast bildirimlerine dönüştürülmesi; LocalStorage kaydet-yükle döngüsünde tüm parametrelerin eksiksiz geri yüklenmesi; JSON indirme dosyasının form alanlarıyla tam eşleşmesi ve PDF/yazdırma çıktısının Türkçe karakter ve kesilmeyen tablolarla optimize edilmesi.",
+      "database_tables": [],
+      "api_endpoints": [],
+      "frontend_components": [
+        "apps/web/app/school/pipeline/page.tsx (window.alert yerine Toast bildirimi, tam veri seti kaydet-yükle)",
+        "apps/web/components/gateway/RecommendationReportCard.tsx (JSON export eşitlemesi ve @media print tablo düzenlemeleri)",
+        "apps/web/lib/store.ts (Tam döngü yükleme ve kayıt şeması bütünlüğü)"
+      ],
+      "acceptance_criteria": [
+        "'Tarayıcıya Kaydet' ve 'Yükle' işlemlerinde senkron window.alert yerine ekranda kaybolan Toast bildirimi kullanılmalı; otomatik test araçları zaman aşımına uğramamalıdır.",
+        "Plan kaydedilip sayfa yenilendiğinde ve 'Yükle' denildiğinde okul, katılımcı, tarihler, hedefler, yetkinlik cevapları ve ev sahibi seçimleri %100 eksiksiz geri gelmelidir.",
+        "JSON indirme dosyasındaki alanlar o an ekrandaki güncel değerlerle birebir aynı olmalı; PDF çıktısında tablolar sayfa bölünmesinde kırılmamalıdır."
       ]
     }
   ]

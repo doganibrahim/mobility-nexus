@@ -116,7 +116,6 @@ export default function SchoolDashboardView({
               href="/school/pipeline"
               className="px-5 py-2.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-extrabold rounded-xl transition-all shadow-sm flex items-center gap-2 cursor-pointer"
             >
-              <span>🚀</span>
               <span>{locale === 'tr' ? '5 Adımlı Planlama Başlat' : 'Start 5-Step Pipeline'}</span>
               <span>→</span>
             </Link>

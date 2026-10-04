@@ -65,8 +65,8 @@ export default function AboutPage() {
             </h1>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed m-0">
               {locale === 'tr'
-                ? 'ErasmusMobility; Türkiye ve Avrupa genelindeki mesleki ve teknik eğitim kurumlarının (MTAL, ÇPAL, HEM) KA121 akredite bütçe taleplerini ve KA122 kısa dönemli hareketlilik projelerini uçtan uca planlamalarını, ESCO taksonomisiyle beceri açıklarını analiz etmelerini ve 33 Erasmus+ program ülkesindeki doğrulanmış işletmelerle doğrudan eşleşmelerini sağlayan kurumsal bir karar platformudur.'
-                : 'ErasmusMobility is an institutional decision gateway enabling vocational education institutions across Turkey and Europe to plan KA121 and KA122 Erasmus+ mobilities, evaluate competence gaps via the ESCO taxonomy, and match directly with verified European enterprises across 33 Erasmus+ programme countries.'}
+                ? 'ErasmusMobility; Türkiye ve Avrupa genelindeki mesleki ve teknik eğitim kurumlarının (MTAL, ÇPAL, HEM) KA121 akredite bütçe taleplerini ve KA122 kısa dönemli hareketlilik projelerini uçtan uca planlamalarını, ESCO taksonomisiyle beceri açıklarını analiz etmelerini ve 33 Erasmus+ program ülkesindeki doğrulanmış işletmelerle doğrudan eşleşmelerini sağlayan kurumsal bir karar destek platformudur.'
+                : 'ErasmusMobility is an institutional decision support platform enabling vocational education institutions across Turkey and Europe to plan KA121 and KA122 Erasmus+ mobilities, evaluate competence gaps via the ESCO taxonomy, and match directly with verified European enterprises across 33 Erasmus+ programme countries.'}
             </p>
           </div>
 
@@ -75,8 +75,7 @@ export default function AboutPage() {
               href="/platform"
               className="px-5 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs transition-colors shadow-xs flex items-center gap-1.5"
             >
-              <span>🚀</span>
-              <span>{locale === 'tr' ? 'Platform Modüllerini İncele' : 'Explore Platform Modules'}</span>
+              <span>{locale === 'tr' ? 'Mobility Hub Modüllerini İncele' : 'Explore Mobility Hub Modules'}</span>
               <span>→</span>
             </Link>
 
@@ -209,7 +208,7 @@ export default function AboutPage() {
               <div className="flex items-center justify-between">
                 <span className="text-2xl font-black text-emerald-900">8</span>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 border border-emerald-200 uppercase">
-                  {locale === 'tr' ? 'Host & Pazar Yeri' : 'Host & Marketplace'}
+                  {locale === 'tr' ? 'Ev Sahibi Kuruluşlar ve Pazar Yeri' : 'Host & Marketplace'}
                 </span>
               </div>
               <h3 className="text-sm font-bold text-slate-900 m-0">
@@ -296,7 +295,7 @@ export default function AboutPage() {
             </h3>
             <p className="text-xs text-slate-300 m-0 leading-relaxed">
               {locale === 'tr'
-                ? '5 adımlı interaktif pipeline ile kurum profilinizi girin, yetkinlik testini yapın ve uygun hostları hemen bulun.'
+                ? '5 adımlı interaktif hareketlilik süreç akışı ile kurum profilinizi girin, yetkinlik testini yapın ve uygun ev sahibi kuruluşları hemen bulun.'
                 : 'Experience the 5-step interactive pipeline to assess skills, match verified hosts, and generate grant files.'}
             </p>
           </div>
@@ -305,8 +304,7 @@ export default function AboutPage() {
             href="/school/pipeline"
             className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shadow-xs shrink-0"
           >
-            <span>🚀</span>
-            <span>{locale === 'tr' ? '5 Adımlı Pipeline\'ı Aç' : 'Launch 5-Step Pipeline'}</span>
+            <span>{locale === 'tr' ? '5 Adımlı Süreç Akışını Başlat' : 'Launch 5-Step Pipeline'}</span>
             <span>→</span>
           </Link>
         </section>
@@ -320,7 +318,7 @@ export default function AboutPage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="TERMS"
+        initialTab="COOKIES"
       />
     </div>
   );

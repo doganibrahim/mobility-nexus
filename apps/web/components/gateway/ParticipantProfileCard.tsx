@@ -239,7 +239,9 @@ export default function ParticipantProfileCard({
               </label>
               <input
                 type="date"
-                className="edu-input"
+                className={`edu-input ${
+                  durationDays === -1 ? 'border-red-500 bg-red-50/30 focus:ring-red-400' : ''
+                }`}
                 value={data.startDate || ''}
                 onChange={(e) => onChange('startDate', e.target.value)}
               />
@@ -250,7 +252,9 @@ export default function ParticipantProfileCard({
               </label>
               <input
                 type="date"
-                className="edu-input"
+                className={`edu-input ${
+                  durationDays === -1 ? 'border-red-500 bg-red-50/30 focus:ring-red-400' : ''
+                }`}
                 value={data.endDate || ''}
                 onChange={(e) => onChange('endDate', e.target.value)}
               />
@@ -292,8 +296,13 @@ export default function ParticipantProfileCard({
           )}
 
           {durationDays === -1 && (
-            <div className="p-2 rounded-lg bg-red-50 border border-red-200 text-xs text-red-700">
-              {locale === 'en' ? '❌ End date cannot be before start date.' : '❌ Bitiş tarihi başlangıç tarihinden önce olamaz.'}
+            <div className="p-2.5 rounded-lg bg-red-50 border border-red-300 text-xs font-semibold text-red-800 flex items-center gap-2">
+              <span>❌</span>
+              <span>
+                {locale === 'en'
+                  ? `End date (${data.endDate}) cannot be before start date (${data.startDate}). Please select a valid date range.`
+                  : `Bitiş tarihi (${data.endDate}) başlangıç tarihinden (${data.startDate}) önce olamaz. Lütfen geçerli bir tarih aralığı seçiniz.`}
+              </span>
             </div>
           )}
         </div>
@@ -302,15 +311,33 @@ export default function ParticipantProfileCard({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
           <div className="md:col-span-4">
             <label className="block text-xs font-semibold text-slate-700 mb-1">
-              {locale === 'en' ? 'Number of Participants' : 'Katılımcı Sayısı'}
+              {locale === 'en' ? 'Number of Participants' : 'Katılımcı Sayısı'} *
             </label>
             <input
               type="number"
               min="1"
-              className="edu-input"
-              value={data.participantCount || 1}
-              onChange={(e) => onChange('participantCount', parseInt(e.target.value) || 1)}
+              className={`edu-input ${
+                (data.participantCount ?? 0) <= 0
+                  ? 'border-red-500 bg-red-50/40 focus:ring-red-400 font-bold text-red-900'
+                  : ''
+              }`}
+              value={data.participantCount ?? ''}
+              onChange={(e) => {
+                const raw = e.target.value;
+                if (raw === '') {
+                  onChange('participantCount', 0);
+                  return;
+                }
+                const parsed = parseInt(raw, 10);
+                onChange('participantCount', isNaN(parsed) ? 0 : Math.max(0, parsed));
+              }}
             />
+            {(data.participantCount ?? 0) <= 0 && (
+              <p className="m-0 mt-1 text-[11px] font-bold text-red-600 flex items-center gap-1">
+                <span>⚠️</span>
+                <span>{locale === 'en' ? 'Minimum 1 participant required.' : 'En az 1 katılımcı girilmelidir.'}</span>
+              </p>
+            )}
           </div>
           <div className="md:col-span-4">
             <label className="block text-xs font-semibold text-slate-700 mb-1">
@@ -319,10 +346,25 @@ export default function ParticipantProfileCard({
             <input
               type="number"
               min="0"
-              className="edu-input"
-              value={data.accompanyingPersonsCount || 0}
-              onChange={(e) => onChange('accompanyingPersonsCount', parseInt(e.target.value) || 0)}
+              className={`edu-input ${
+                (data.accompanyingPersonsCount ?? 0) < 0
+                  ? 'border-red-500 bg-red-50/40 focus:ring-red-400'
+                  : ''
+              }`}
+              value={data.accompanyingPersonsCount ?? 0}
+              onChange={(e) => {
+                const raw = e.target.value;
+                if (raw === '') {
+                  onChange('accompanyingPersonsCount', 0);
+                  return;
+                }
+                const parsed = parseInt(raw, 10);
+                onChange('accompanyingPersonsCount', isNaN(parsed) ? 0 : Math.max(0, parsed));
+              }}
             />
+            <p className="m-0 mt-1 text-[10px] text-slate-500">
+              {locale === 'en' ? 'Cannot be negative (0 if none).' : 'Negatif değer alamaz (yoksa 0).'}
+            </p>
           </div>
           <div className="md:col-span-4">
             <label className="block text-xs font-semibold text-slate-700 mb-1">

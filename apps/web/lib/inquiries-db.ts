@@ -18,8 +18,9 @@ async function getPgPool(): Promise<any> {
 
   try {
     // Dynamic import to prevent bundler crash when pg is not installed in web workspace
+    const pgPackage = 'pg';
     // @ts-ignore
-    const { Pool } = await import('pg');
+    const { Pool } = await import(/* webpackIgnore: true */ pgPackage);
     const isSsl =
       process.env.DATABASE_SSL === 'true' ||
       connectionString.includes('sslmode=require') ||

@@ -104,3 +104,39 @@ export function getCountryName(code?: string | null, lang: 'tr' | 'en' = 'tr'): 
   const dict = lang === 'en' ? ERASMUS_COUNTRY_MAP_EN : ERASMUS_COUNTRY_MAP_TR;
   return dict[upper] || upper;
 }
+
+export const MARKETPLACE_TAG_MAP_EN: Record<string, string> = {
+  'Almanya': 'Germany',
+  'İtalya': 'Italy',
+  'İspanya': 'Spain',
+  'Endüstri 4.0': 'Industry 4.0',
+  'Yeşil Beceriler': 'Green Skills',
+  'Döngüsel Ekonomi': 'Circular Economy',
+  'Dijital İkiz': 'Digital Twin',
+  'Çıraklık Eğitimi': 'Apprenticeship Training',
+  'Staj Mentörlüğü': 'Internship Mentoring',
+  'Siber Güvenlik': 'Cybersecurity',
+  'Bulut Bilişim': 'Cloud Computing',
+  'Ağ Güvenliği': 'Network Security',
+  'Yiyecek İçecek': 'Food and Beverage',
+  'Mutfak Sanatları': 'Culinary Arts',
+  'Yapay Zeka': 'Artificial Intelligence',
+  'Akıllı Atölye': 'Smart Workshop',
+  'Eko-Atölye': 'Eco-Workshop',
+  'Robotik': 'Robotics',
+  'Mekatronik': 'Mechatronics',
+  'Gastronomi': 'Gastronomy',
+  'Avusturya Modeli': 'Austrian Model',
+  'Finlandiya VET': 'Finnish VET',
+  'Siemens PLC': 'Siemens PLC',
+  'Dual VET': 'Dual VET',
+  'Cobot': 'Cobot',
+  'CAD/CAM': 'CAD/CAM',
+  'Linux': 'Linux',
+  'HACCP': 'HACCP',
+};
+
+export function localizeMarketplaceTag(tag: string, lang: 'tr' | 'en' = 'tr'): string {
+  if (lang === 'tr') return tag;
+  return MARKETPLACE_TAG_MAP_EN[tag] || tag;
+}

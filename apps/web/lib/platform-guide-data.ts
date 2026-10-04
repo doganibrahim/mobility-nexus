@@ -1,7 +1,7 @@
 // Comprehensive platform guide dataset extracted faithfully from docs/erasmus_mobility.json
 // Covers full end-to-end workflows for Schools, European Hosts, Platform Architecture, and Regulatory FAQ.
 
-export type GuideAudience = 'SCHOOL' | 'HOST' | 'ADMIN' | 'ARCHITECTURE' | 'FAQ';
+export type GuideAudience = 'SCHOOL' | 'HOST' | 'ADMIN' | 'ARCHITECTURE' | 'SETTINGS' | 'FAQ';
 
 export interface GuideStepAction {
   stepNumber: number;
@@ -514,6 +514,148 @@ export const PLATFORM_GUIDE_DATA: GuideCategory[] = [
             expectedStateEn: 'Structured JSON and formatted proposal dossier are exported to your machine.'
           }
         ]
+      },
+      {
+        id: 'school-preparation-library',
+        audience: 'SCHOOL',
+        icon: '🎒',
+        titleTr: '6. Hareketlilik Öncesi Hazırlık (Vize, Sigorta, OLS) & Doküman Kütüphanesi',
+        titleEn: '6. Pre-Departure Preparation (Visa, Insurance, OLS) & Document Library',
+        summaryTr: 'Yurtdışına çıkış öncesi yasal hazırlıklar: Vize süreçleri, SGK A/T 11 & seyahat sağlık sigortası, OLS dil hazırlığı, veli izinleri ve Kütüphane şablonları (LoI, Learning Agreement, Europass).',
+        summaryEn: 'Pre-departure legal and pedagogical preparation: Visa workflows, A/T 11 & medical insurance, OLS language prep, guardian consent, and Document Library templates (LoI, Learning Agreement, Europass).',
+        goalTr: 'Öğrenci ve refakatçi öğretmenlerin yurtdışına çıkmadan önceki tüm idari, yasal, dilsel ve lojistik hazırlıklarını eksiksiz tamamlamak.',
+        goalEn: 'Complete all administrative, legal, linguistic, and logistical milestones for students and accompanying staff before departure.',
+        route: '/preparation',
+        routeLabelTr: 'Hazırlık Modülünü Aç',
+        routeLabelEn: 'Open Preparation Module',
+        demoRole: 'SCHOOL',
+        keyHighlightsTr: [
+          'Vize ve Pasaport: Hizmet pasaportu (Gri) veya hususi pasaport süreçleri, konsolosluk vize talep yazıları ve seyahat onayları.',
+          'Sağlık Sigortası & A/T 11: Almanya vb. anlaşmalı ülkeler için SGK A/T 11 formüleri; diğer ülkeler için kapsamlı Erasmus+ özel seyahat sağlık ve mesuliyet sigortası.',
+          'OLS (Online Language Support): Avrupa Komisyonu OLS platformu üzerinden öğrencilerin hareketlilik öncesi ve sonrası dil seviyesi tespiti ve online eğitimler.',
+          'Doküman Kütüphanesi (/library): Standart Öğrenim Anlaşması (Learning Agreement for VET), Europass Hareketlilik Belgesi, veli muvafakatnameleri ve kriz eylem planı şablonları.'
+        ],
+        keyHighlightsEn: [
+          'Visa & Passports: Service passport (Grey) processing, consular visa support letters, and travel authorisations.',
+          'Health Insurance & A/T 11: Social Security A/T 11 bilateral certificate for countries like Germany; comprehensive Erasmus+ medical, accident, and liability insurance for all others.',
+          'OLS (Online Language Support): Mandatory pre- and post-mobility CEFR language assessments and self-paced language courses via the EC portal.',
+          'Document Library (/library): Official Learning Agreement for VET, Europass Mobility certificate guidelines, guardian consent forms, and emergency protocol templates.'
+        ],
+        parametersTable: [
+          {
+            labelTr: 'İdari Süreç: Pasaport & Vize',
+            labelEn: 'Process: Passport & Visa',
+            valueTr: 'Kaymakamlık / Valilik Oluru, Hizmet Pasaportu (Gri) veya Schengen Vize Randevusu',
+            valueEn: 'District Approval, Official Service Passport (Grey), or Schengen Visa Filing'
+          },
+          {
+            labelTr: 'Yasal Zorunluluk: Seyahat & Sağlık Sigortası',
+            labelEn: 'Mandatory: Medical & Liability Insurance',
+            valueTr: 'SGK A/T 11 Belgesi veya En Az 30.000 € Teminatlı Kapsamlı Seyahat Sağlık & Kaza Poliçesi',
+            valueEn: 'SGK A/T 11 or Comprehensive 30,000+ EUR Coverage with Repatriation & Civil Liability'
+          },
+          {
+            labelTr: 'Pedagojik Araç: OLS Dil Hazırlığı',
+            labelEn: 'Pedagogical: OLS Language Support',
+            valueTr: 'Avrupa Komisyonu Online Language Support sistemi üzerinden A1-C1 dil eğitimi',
+            valueEn: 'Self-paced CEFR level learning via official European Commission OLS portal'
+          },
+          {
+            labelTr: 'Sözleşme: Öğrenim Anlaşması (Learning Agreement)',
+            labelEn: 'Contract: Learning Agreement (VET)',
+            valueTr: 'Gönderen okul, ev sahibi işletme ve öğrenci tarafından imzalanan resmi staj sözleşmesi',
+            valueEn: 'Tripartite agreement signed by sending school, host enterprise, and trainee'
+          }
+        ],
+        steps: [
+          {
+            stepNumber: 1,
+            titleTr: 'Hazırlık Kontrol Listesini İnceleyin',
+            titleEn: 'Review Pre-Departure Checklist',
+            actionTr: 'Üst menüden "Hazırlık" (/preparation) sayfasına gidin. 4 aşamalı hazırlık takvimini (İdari, Lojistik, Dil, Kültürel) inceleyin.',
+            actionEn: 'Navigate to "Preparation" (/preparation) via navigation bar. Inspect the 4-phase milestone schedule.',
+            uiTargetTr: 'Sayfa: [/preparation - Hareketlilik Öncesi Hazırlık Masası]',
+            uiTargetEn: 'Page: [/preparation - Pre-Departure Readiness Deck]',
+            expectedStateTr: 'Vize, sigorta, veli izinleri ve konaklama hazırlık adımları listelenir.',
+            expectedStateEn: 'Structured pre-departure timeline with document links and checklists appears.'
+          },
+          {
+            stepNumber: 2,
+            titleTr: 'Doküman Kütüphanesinden Şablonları İndirin',
+            titleEn: 'Download Templates from Library',
+            actionTr: '"Kütüphane" (/library) sekmesinden resmi Öğrenim Anlaşması (Learning Agreement), Veli Muvafakatnamesi ve Europass rehberini indirin.',
+            actionEn: 'Access "Library" (/library) to download official Learning Agreement, parental consent, and Europass guides.',
+            uiTargetTr: 'Sayfa: [/library - Doküman Kütüphanesi & Standart Şablonlar]',
+            uiTargetEn: 'Page: [/library - Document Library & Templates]',
+            expectedStateTr: 'Komisyon standartlarında düzenlenebilir Word ve PDF formatlarında şablonlar edinilir.',
+            expectedStateEn: 'Editable Commission-compliant document templates are downloaded.'
+          }
+        ]
+      },
+      {
+        id: 'school-consulting-analytics',
+        audience: 'SCHOOL',
+        icon: '📊',
+        titleTr: '7. Birebir Danışmanlık Randevusu & Geçmiş Hibe Analitiği',
+        titleEn: '7. Expert Advisory Appointment & Historical Grant Analytics',
+        summaryTr: 'Ulusal Ajans geçmiş çağrı kabul oranları, il bazlı hibe dağılım istatistikleri ve platform uzmanlarıyla canlı birebir online danışmanlık randevusu planlama.',
+        summaryEn: 'National Agency historical acceptance analytics, province-based grant allocation benchmarks, and scheduling live 1-on-1 expert advisory consultations.',
+        goalTr: 'Okulun başvuru stratejisini somut verilerle güçlendirmek, soru işaretleri için uzman desteği almak ve kazanma şansını maksimize etmek.',
+        goalEn: 'Reinforce proposal strategy with empirical data and schedule direct consultations with European project specialists.',
+        route: '/',
+        routeLabelTr: 'Üst Menüden Randevu Al',
+        routeLabelEn: 'Schedule via Top Nav',
+        demoRole: 'SCHOOL',
+        keyHighlightsTr: [
+          'Canlı Randevu Sistemi: Üst menüde "Danışmanlık Randevusu" butonu ile uygun tarih/saat seçimi ve soru konusu iletme.',
+          'Hibe İstatistikleri & Sonuçlar Widget\'ı: Türkiye Ulusal Ajansı geçmiş dönem çağrı sonuçları, sektör bazlı hibe dağılımları ve puanlama eşikleri.',
+          'Ön Başvuru Kontrolü: Proje metninin Erasmus+ Kalite Standartları ve hibe uygunluk kriterlerine göre ön değerlendirmesi.',
+          'Bütçe ve Kota Danışmanlığı: KA121 yıllık tahsisat bütçe planlaması veya KA122 30 hareketlilik ve 60.000 € üst sınır danışmanlığı.'
+        ],
+        keyHighlightsEn: [
+          'Live Appointment System: Direct booking via "Expert Advisory" in top header with date/time picker and inquiry context notes.',
+          'Grant Results & Analytics Widget: Historical Turkish National Agency acceptance rates, sectoral distributions, and scoring cutoffs.',
+          'Pre-Submission Quality Audit: Preliminary review against Erasmus+ Quality Standards and operational criteria.',
+          'Budget & Quota Consultation: Guidance on KA121 block allocation or KA122 30-participant / 60,000 EUR thresholds.'
+        ],
+        parametersTable: [
+          {
+            labelTr: 'Danışmanlık Formatı: Canlı Görüşme',
+            labelEn: 'Consultation: Live Session',
+            valueTr: '30-45 dakikalık online video görüşme (Google Meet / Zoom)',
+            valueEn: '30-45 minute interactive online session (Google Meet / Zoom)'
+          },
+          {
+            labelTr: 'Veri Tabanı: Geçmiş Proje Analitiği',
+            labelEn: 'Database: Historical Project Analytics',
+            valueTr: 'Türkiye geneli ve AB geneli mesleki eğitim kabul oranları ve ortalama hibe tutarları',
+            valueEn: 'National and European VET acceptance rates and mean allocation benchmarks'
+          }
+        ],
+        steps: [
+          {
+            stepNumber: 1,
+            titleTr: 'Randevu Penceresini Açın',
+            titleEn: 'Trigger Appointment Modal',
+            actionTr: 'Üst menüdeki "📅 Danışmanlık Randevusu" bağlantısına tıklayın.',
+            actionEn: 'Click "📅 Expert Advisory" in the top navigation bar.',
+            uiTargetTr: 'Menü Butonu: [📅 Randevu Al]',
+            uiTargetEn: 'Nav Button: [📅 Book Advisory]',
+            expectedStateTr: 'Uzman takvimi, tarih seçici ve konu başlıkları formu açılır.',
+            expectedStateEn: 'Interactive appointment scheduling dialog opens with topic and date pickers.'
+          },
+          {
+            stepNumber: 2,
+            titleTr: 'Tarih & Proje Konusunu Belirleyin',
+            titleEn: 'Select Date & Project Topic',
+            actionTr: 'Okulunuzun OID numarasını, ilgilendiğiniz çağrı türünü (KA121 / KA122) ve danışmak istediğiniz konuları girerek randevuyu onaylayın.',
+            actionEn: 'Specify school OID, target action type (KA121/KA122), and questions before confirming.',
+            uiTargetTr: 'Form Alanları: [Tarih, Saat, İrtibat E-posta ve Not]',
+            uiTargetEn: 'Fields: [Date, Time Slot, Contact Email, Context Note]',
+            expectedStateTr: 'Randevu onaylanır, e-posta bildirim ve takvim daveti oluşturulur.',
+            expectedStateEn: 'Appointment is confirmed with email notification and calendar invitation.'
+          }
+        ]
       }
     ]
   },
@@ -990,6 +1132,404 @@ export const PLATFORM_GUIDE_DATA: GuideCategory[] = [
             expectedStateEn: 'Host badge is updated; entity is promoted to top tier in school searches.'
           }
         ]
+      },
+      {
+        id: 'admin-governance-audit',
+        audience: 'ADMIN',
+        icon: '⚖️',
+        titleTr: '3. Platform Denetimi, KVKK/GDPR ve Güvenlik Bütünlüğü',
+        titleEn: '3. Governance Audit, KVKK/GDPR & Security Integrity',
+        summaryTr: 'Platform içi kurumların kimlik doğrulaması, şüpheli etkinliklerin tespiti, KVKK/GDPR şifreleme logları ve veri güvenliği kontrolleri.',
+        summaryEn: 'Institutional identity auditing, suspicious activity detection, KVKK/GDPR encryption logs, and security oversight.',
+        goalTr: 'Platform ekosisteminin mevzuata tam uyumlu, kötü niyetli aracılardan arındırılmış ve güvenilir kalmasını sağlamak.',
+        goalEn: 'Ensure the platform ecosystem remains strictly compliant, free from bad actors, and completely transparent.',
+        route: '/admin',
+        routeLabelTr: 'Yönetim Masasını Aç',
+        routeLabelEn: 'Open Admin Deck',
+        keyHighlightsTr: [
+          'Aracı / Danışmanlık Ayıklama: Sadece doğrudan ev sahibi olan gerçek işletmelerin ve onaylı VET okullarının listelenmesi denetlenir.',
+          'Hibe Dolandırıcılığı Koruması: Sahte LoI veya şişirilmiş maliyet talepleri sistem uyarı mekanizmalarıyla tespit edilir.',
+          'Veri Koruma Denetimi: Cloudflare R2 üzerindeki belgelerin erişim izinleri ve saklama süreleri periyodik olarak kontrol edilir.'
+        ],
+        keyHighlightsEn: [
+          'Intermediary Filtering: Strict screening to ensure only genuine direct host enterprises and accredited schools are listed.',
+          'Grant Fraud Prevention: Detection algorithms flag fraudulent LoI generation or artificially inflated fee structures.',
+          'Data Vault Auditing: Periodic verification of encryption controls, retention periods, and access credentials on Cloudflare R2.'
+        ],
+        steps: [
+          {
+            stepNumber: 1,
+            titleTr: 'Yönetici Denetim Kayıtlarını İnceleyin',
+            titleEn: 'Inspect Audit Logs',
+            actionTr: 'Yönetici konsolundaki güvenlik paneline girerek şüpheli veya eksik evraklı kurumları listeleyin.',
+            actionEn: 'Access the admin console security deck to review flagged or incomplete registrations.',
+            uiTargetTr: 'Panel: [Yönetim Masası / Güvenlik Denetimi]',
+            uiTargetEn: 'Panel: [Admin Deck / Security Audit]',
+            expectedStateTr: 'Şüpheli aktivite uyarıları ve denetim kayıtları görüntülenir.',
+            expectedStateEn: 'Audit trails and risk flags are rendered in the dashboard.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'SETTINGS',
+    labelTr: 'Ayarlar, Profil & Görünüm',
+    labelEn: 'Settings, Profile & Accessibility',
+    icon: '⚙️',
+    badgeTr: 'WCAG 2.1 AA Görünüm, Hesap & Sistem Tercihleri',
+    badgeEn: 'WCAG 2.1 AA Display, Account & Preferences',
+    descriptionTr: 'Erişilebilirlik (yüksek kontrast, yazı boyutu, animasyon azaltma), kullanıcı ve kurum profili yönetimi, OID düzenleme, çok dilli (TR/EN) sistem ve canlı simülasyon veri yönetimi kılavuzu.',
+    descriptionEn: 'Comprehensive guide covering WCAG 2.1 AA accessibility (high contrast, font scaling, motion reduction), user & institution profile setup, OID updates, bilingual (TR/EN) locale, and live interactive simulation data.',
+    topics: [
+      {
+        id: 'settings-display-accessibility',
+        audience: 'SETTINGS',
+        icon: '👁️',
+        titleTr: '1. Görünüm, Okuma & WCAG 2.1 AA Erişilebilirlik Ayarları',
+        titleEn: '1. Display, Reading & WCAG 2.1 AA Accessibility Preferences',
+        summaryTr: 'Yazı boyutu ölçekleme (Normal, Büyük, Ekstra Büyük), Yüksek Kontrast (Koyu/Yüksek Kontrast Modu), Bağlantıların Altını Çizme ve Animasyonları Azaltma (Reduced Motion) kontrolleri.',
+        summaryEn: 'Font scaling (Normal, Large, Extra Large), High Contrast (Dark/High-Contrast Mode), Link Underlining, and Motion Reduction (WCAG 2.1 AA compliance).',
+        goalTr: 'Platformu her görme yetisi ve cihaz koşulunda rahatça okumak, göz yorgunluğunu önlemek ve engelsiz erişim sağlamak.',
+        goalEn: 'Ensure effortless legibility, eye comfort, and barrier-free access under all lighting conditions and visual needs.',
+        route: '/',
+        routeLabelTr: 'Üst Menüden Ayarları Aç',
+        routeLabelEn: 'Open from Top Navigation',
+        keyHighlightsTr: [
+          'Üst Menüde "Görünüm & Okuma" Butonu: Ekranın sağ üst köşesinde Type ikonuyla her an erişilebilirdir.',
+          'Yazı Boyutu Ölçekleme: Normal (14px/16px), Büyük (18px) ve Ekstra Büyük (20px) seçenekleri tüm metinleri yeniden boyutlandırır.',
+          'Yüksek Kontrast Modu: Arka planı derin siyaha dönüştürür, sarı/cyan yüksek kontrast vurgularıyla metin netliğini maksimize eder.',
+          'Bağlantıların Altını Çiz: Renk körlüğü veya okuma güçlüğü çeken kullanıcılar için tıklanabilir tüm metinlerin altına çizgi ekler.',
+          'Animasyonları Azalt (Reduced Motion): Baş dönmesi veya dikkat dağınıklığını önlemek için geçiş ve kayma efektlerini devre dışı bırakır.',
+          'Tek Tıkla Sıfırlama: "Varsayılana Sıfırla" butonuyla tüm kişisel görünüm tercihlerini fabrika ayarlarına döndürür.'
+        ],
+        keyHighlightsEn: [
+          'Header "Display & Reading" Trigger: Accessible anytime from the top-right header via Type icon.',
+          'Font Size Scaling: Normal (14px/16px), Large (18px), and Extra Large (20px) instantly rescales platform typography.',
+          'High Contrast Mode: Inverts interface to pitch black with vibrant yellow/cyan contrast highlights for maximum legibility.',
+          'Underline Links: Adds distinct underlines beneath all clickable interactive anchors for low-vision and color-blind users.',
+          'Reduced Motion: Disables transitions, spinners, and parallax animations to eliminate vestibular trigger risks.',
+          'One-Click Reset: "Reset to Default" button restores all display preferences to standard factory values.'
+        ],
+        parametersTable: [
+          {
+            labelTr: 'Ayar: Yazı Boyutu Seçenekleri',
+            labelEn: 'Setting: Font Size Options',
+            valueTr: 'Normal (100%), Büyük (115% - 18px), Ekstra Büyük (130% - 20px)',
+            valueEn: 'Normal (100%), Large (115% - 18px), Extra Large (130% - 20px)'
+          },
+          {
+            labelTr: 'Ayar: Yüksek Kontrast / Koyu Mod',
+            labelEn: 'Setting: High Contrast / Dark Mode',
+            valueTr: 'WCAG 2.1 AA 7:1 kontrast oranlı koyu tema',
+            valueEn: 'WCAG 2.1 AA compliant 7:1 contrast ratio dark aesthetic'
+          },
+          {
+            labelTr: 'Ayar: Animasyonları Azalt (Reduced Motion)',
+            labelEn: 'Setting: Reduced Motion',
+            valueTr: 'CSS prefers-reduced-motion ve Tailwind animasyon iptali',
+            valueEn: 'CSS prefers-reduced-motion override and transition dampening'
+          },
+          {
+            labelTr: 'Depolama: Yerel Tercih Kalıcılığı',
+            labelEn: 'Storage: Local Persistence',
+            valueTr: 'Tarayıcı localStorage üzerinde güvenle saklanır, sayfa yenilendiğinde kaybolmaz',
+            valueEn: 'Persisted in browser localStorage across reloads and sessions'
+          }
+        ],
+        steps: [
+          {
+            stepNumber: 1,
+            titleTr: 'Görünüm Menüsünü Açın',
+            titleEn: 'Open Display Menu',
+            actionTr: 'Üst menü çubuğunun sağ tarafındaki "Görünüm & Okuma" (Type ikonu) butonuna tıklayın.',
+            actionEn: 'Click the "Display & Reading" (Type icon) button in the top right navigation bar.',
+            uiTargetTr: 'Buton: [Type İkonu - Görünüm & Okuma]',
+            uiTargetEn: 'Button: [Type Icon - Display & Reading]',
+            expectedStateTr: 'Görünüm ve Okuma Tercihleri açılır paneli görüntülenir.',
+            expectedStateEn: 'Display & Reading Options dropdown panel appears.'
+          },
+          {
+            stepNumber: 2,
+            titleTr: 'Tercihlerinizi Özelleştirin',
+            titleEn: 'Customize Your Reading Preferences',
+            actionTr: 'İhtiyacınıza göre "Büyük" yazı boyutunu seçin, "Yüksek Kontrast" veya "Bağlantıların Altını Çiz" düğmelerini açın.',
+            actionEn: 'Select "Large" typography, toggle "High Contrast", or enable "Underline Links" as needed.',
+            uiTargetTr: 'Panel Kontrolleri: [Yazı Boyutu Butonları & Geçiş Anahtarları]',
+            uiTargetEn: 'Panel Controls: [Font Size Radios & Toggle Switches]',
+            expectedStateTr: 'Tüm sayfa anında seçilen ayarlarla güncellenir ve tercihiniz kaydedilir.',
+            expectedStateEn: 'The entire UI dynamically re-renders with your settings and persists locally.'
+          }
+        ]
+      },
+      {
+        id: 'settings-profile-account',
+        audience: 'SETTINGS',
+        icon: '👤',
+        titleTr: '2. Kullanıcı Hesabı & Kurumsal Profil Yönetimi',
+        titleEn: '2. User Account & Institutional Profile Management',
+        summaryTr: 'Profil fotoğrafı yükleme/kaldırma, ad-soyad, e-posta, Clerk hesap ve şifre güvenliği, kurum OID ve akreditasyon durumu güncelleme.',
+        summaryEn: 'Profile photo upload/removal, full name, email, Clerk account security, institution OID and accreditation status updates.',
+        goalTr: 'Kullanıcının ve temsil ettiği okul/ev sahibi kurumun yasal bilgilerini güncel tutmak, oturum güvenliğini sağlamak.',
+        goalEn: 'Keep institutional and personal credentials up-to-date and maintain secure multi-factor authentication.',
+        route: '/profile',
+        routeLabelTr: 'Profil Sayfasına Git',
+        routeLabelEn: 'Go to Profile Page',
+        keyHighlightsTr: [
+          'Profil Sayfası (/profile): Üst menüde kullanıcı avatarına veya ismine tıklanarak ulaşılır.',
+          'Fotoğraf Yükleme / Kaldırma: Maksimum 5 MB boyutunda PNG, JPG, WebP veya GIF fotoğrafı doğrudan yüklenebilir.',
+          'Clerk Hesap ve Güvenlik: "Hesap Ayarları" butonuyla şifre değiştirme, iki adımlı doğrulama (2FA) ve bağlı hesaplar yönetilir.',
+          'Kurum Bilgilerini Düzenleme: Okul OID numarası, şehir, akreditasyon durumu ve hazırbulunuşluk skoru takip edilir.',
+          'Güvenli Çıkış (Sign Out): "Oturumu Kapat" butonuyla tüm yerel oturum jetonları temizlenir.'
+        ],
+        keyHighlightsEn: [
+          'Profile Portal (/profile): Reached via user avatar or name link in the top header.',
+          'Photo Upload / Removal: Upload custom avatars up to 5 MB (PNG, JPG, WebP, GIF) with direct preview and delete.',
+          'Clerk Account & Security: Access password changes, two-factor authentication (2FA), and connected logins via "Account Settings".',
+          'Institutional Data Editing: Inspect and modify school OID, city, accreditation status, and mobility readiness score.',
+          'Secure Sign Out: Clears all active auth tokens and returns to the guest landing view.'
+        ],
+        parametersTable: [
+          {
+            labelTr: 'Profil Alanı: Fotoğraf Yükleme',
+            labelEn: 'Field: Photo Upload',
+            valueTr: 'Maksimum 5 MB (PNG, JPEG, WebP, GIF formatları)',
+            valueEn: 'Max 5 MB (PNG, JPEG, WebP, GIF supported)'
+          },
+          {
+            labelTr: 'Profil Alanı: Kurum OID Numarası',
+            labelEn: 'Field: Organisation OID',
+            valueTr: '8 haneli E-OID (Örn: E10389241, onboarding üzerinden düzenlenebilir)',
+            valueEn: '8-digit E-OID (e.g. E10389241, editable via onboarding)'
+          },
+          {
+            labelTr: 'Güvenlik Protokolü: Kimlik Doğrulama',
+            labelEn: 'Security: Authentication',
+            valueTr: 'Clerk SOC-2 Tip II sertifikalı bulut kimlik yönetimi',
+            valueEn: 'Clerk SOC-2 Type II certified cloud identity management'
+          }
+        ],
+        steps: [
+          {
+            stepNumber: 1,
+            titleTr: 'Profil Masasına Gidin',
+            titleEn: 'Open Profile Dashboard',
+            actionTr: 'Üst menü çubuğundaki kullanıcı avatarınıza veya "Profil" linkine tıklayın.',
+            actionEn: 'Click your user avatar or "Profile" in the navigation bar.',
+            uiTargetTr: 'Menü Butonu: [Kullanıcı Avatarı / Profil]',
+            uiTargetEn: 'Nav Link: [User Avatar / Profile]',
+            expectedStateTr: 'Kişisel bilgiler, bağlı kurum detayları ve güvenlik kartı listelenir.',
+            expectedStateEn: 'Personal details, linked institution profile, and security controls open.'
+          },
+          {
+            stepNumber: 2,
+            titleTr: 'Kurum veya Hesap Bilgilerinizi Güncelleyin',
+            titleEn: 'Update Details or Security',
+            actionTr: 'Kurum OID ve şehir bilgilerini güncellemek için "Düzenle" linkine; şifre ve 2FA için "Hesap Ayarları" butonuna tıklayın.',
+            actionEn: 'Click "Edit" to modify school OID or "Account Settings" to manage passwords and 2FA.',
+            uiTargetTr: 'Butonlar: [Düzenle] & [Hesap Ayarları]',
+            uiTargetEn: 'Buttons: [Edit] & [Account Settings]',
+            expectedStateTr: 'Değişiklikler anında veritabanına kaydedilir.',
+            expectedStateEn: 'Modifications are committed securely to the persistent store.'
+          }
+        ]
+      },
+      {
+        id: 'settings-localization-language',
+        audience: 'SETTINGS',
+        icon: '🌍',
+        titleTr: '3. Dil ve Yerelleştirme Tercihi (TR / EN)',
+        titleEn: '3. Bilingual Localization & Language Settings (TR / EN)',
+        summaryTr: 'Türkçe ve İngilizce dilleri arasında anında geçiş, iki dilli bütçe formülleri, mevzuat rehberleri ve resmi başvuru taslağı dışa aktarımı.',
+        summaryEn: 'Instant switching between Turkish and English, dynamic bilingual budget tables, regulatory guidelines, and proposal exports.',
+        goalTr: 'Yerel okul ekiplerinin Türkçe, Avrupalı ortakların ve denetçilerin İngilizce olarak platformu sorunsuz kullanmasını sağlamak.',
+        goalEn: 'Enable Turkish VET teams to operate in Turkish while European partners and auditors operate in English seamlessly.',
+        route: '/',
+        routeLabelTr: 'Üst Menüden Dili Değiştir',
+        routeLabelEn: 'Toggle Language from Header',
+        keyHighlightsTr: [
+          'Üst Menüde Dil Değiştirici: 🇹🇷 TR / 🇬🇧 EN bayrak menüsü ile tek tıkla dil değişimi.',
+          'Eşzamanlı Dinamik Çeviri: Tüm arayüz butonları, rehber adımları, hata mesajları ve hibe açıklamaları anında güncellenir.',
+          'Dışa Aktarma Dili: Başvuru taslakları ve LoI belgeleri seçili dile göre üretilir (örneğin yabancı ev sahibi için İngilizce LoI).',
+          'Kalıcı Dil Tercihi: Seçtiğiniz dil çerezlerde ve yerel hafızada saklanır, sonraki ziyaretlerde hatırlanır.'
+        ],
+        keyHighlightsEn: [
+          'Header Language Selector: Instant switch via 🇹🇷 TR / 🇬🇧 EN selector dropdown in the top bar.',
+          'Synchronous Re-Rendering: All button labels, guidance narratives, validation alerts, and grant tables update immediately.',
+          'Export Locale: Application dossiers and Letters of Intent render in the active language (e.g. English LoIs for foreign hosts).',
+          'Persistent Language State: Selected language is stored in browser cookie and localStorage across future visits.'
+        ],
+        parametersTable: [
+          {
+            labelTr: 'Desteklenen Diller',
+            labelEn: 'Supported Languages',
+            valueTr: 'Türkçe (tr) ve İngilizce (en)',
+            valueEn: 'Turkish (tr) and English (en)'
+          },
+          {
+            labelTr: 'Kapsam: Çift Dilli Belgeler',
+            labelEn: 'Scope: Bilingual Documents',
+            valueTr: 'Kullanım Kılavuzu, LoI Taslakları, 5 Adımlı Pipeline, Bütçe Tabloları',
+            valueEn: 'User Manual, LoI Drafts, 5-Step Pipeline, Subsistence Calculators'
+          }
+        ],
+        steps: [
+          {
+            stepNumber: 1,
+            titleTr: 'Dil Seçim Menüsüne Tıklayın',
+            titleEn: 'Click Language Dropdown',
+            actionTr: 'Üst çubuktaki bayrak simgesine (🇹🇷 TR veya 🇬🇧 EN) tıklayın.',
+            actionEn: 'Click the flag dropdown (🇹🇷 TR or 🇬🇧 EN) in the navigation bar.',
+            uiTargetTr: 'Menü Elemanı: [Dil Seçici Bayrak]',
+            uiTargetEn: 'Nav Element: [Language Selector Flag]',
+            expectedStateTr: 'Türkçe ve İngilizce seçeneklerini içeren menü açılır.',
+            expectedStateEn: 'Dropdown showing Turkish and English options expands.'
+          },
+          {
+            stepNumber: 2,
+            titleTr: 'İstediğiniz Dili Seçin',
+            titleEn: 'Choose Desired Language',
+            actionTr: 'Kullanmak istediğiniz dile tıklayın; tüm sayfa anında o dile çevrilir.',
+            actionEn: 'Select preferred locale; the entire interface transforms dynamically.',
+            uiTargetTr: 'Seçenek: [🇹🇷 Türkçe] veya [🇬🇧 English]',
+            uiTargetEn: 'Option: [🇹🇷 Türkçe] or [🇬🇧 English]',
+            expectedStateTr: 'Dil tercihi kaydedilir ve arayüz seçilen dilde görüntülenir.',
+            expectedStateEn: 'Locale is saved to localStorage and the UI refreshes instantly.'
+          }
+        ]
+      },
+      {
+        id: 'settings-simulation-demo',
+        audience: 'SETTINGS',
+        icon: '⚡',
+        titleTr: '4. İnteraktif Simülasyon & Canlı Demo Veri Yönetimi',
+        titleEn: '4. Interactive Simulation & Live Demo Data Management',
+        summaryTr: 'Kayıt olmadan platformu test etmek için akredite meslek lisesi (Kapadokya VET) ve Berlin ev sahibi işletme hazır demo verilerini yükleme ve sıfırlama.',
+        summaryEn: 'Load pre-configured realistic datasets (Kapadokya Accredited VET / Berlin Host Solutions) to test workflows without registering.',
+        goalTr: 'Platformun tüm özelliklerini, hesaplayıcılarını ve LoI üretim mekanizmasını gerçekçi verilerle canlı deneyimlemek.',
+        goalEn: 'Experience all calculators, pipeline steps, and LoI generators with realistic institutional datasets.',
+        route: '/',
+        routeLabelTr: 'Ana Sayfada Demoyu Başlat',
+        routeLabelEn: 'Launch Demo on Home',
+        demoRole: 'SCHOOL',
+        keyHighlightsTr: [
+          'Simülasyon Çubuğu: Ekranın en üstünde veya kılavuz kenar çubuğunda "Canlı İnteraktif Simülasyon" alanı yer alır.',
+          'Okul Demosu: 6 Siber Güvenlik öğrencisi, KA121 akredite lise, onaylı hibe ve hazır staj talepleriyle tam bir okul senaryosu yükler.',
+          'Ev Sahibi Demosu: Berlin merkezli Tier 2 portföyü onaylı, gelen staj taleplerini bekleyen bir Avrupa işletmesi senaryosu yükler.',
+          'Tek Tıkla Sıfırlama: Yüklenen demo verileri tarayıcı hafızasını temizleyerek istediğiniz an sıfırlanabilir.',
+          'Hibe Hesabı Testi: Demo verisiyle mesafe bandı, harcırah ve yeşil seyahat hesaplamalarını anında test edebilirsiniz.'
+        ],
+        keyHighlightsEn: [
+          'Simulation Bar: Positioned at the top of the interface and in the guide sidebar for instant sandbox access.',
+          'School Demo: Loads Kapadokya VET (KA121 accredited, 6 cybersecurity interns, pre-calculated grant budget, and active sent inquiries).',
+          'Host Demo: Loads Berlin VET Training Solutions GmbH (Tier 2 verified showcase, incoming internship inquiries awaiting LoI decisions).',
+          'Zero Risk Reset: Sandbox state can be cleared or reloaded anytime with a single click.',
+          'Instant Subsistence Test: Test distance bands, subsistence tables, and green travel formulas with live realistic data.'
+        ],
+        parametersTable: [
+          {
+            labelTr: 'Demo Profili: Meslek Lisesi',
+            labelEn: 'Demo Profile: Vocational School',
+            valueTr: 'Kapadokya Teknik Lisesi (E10999001 - KA121 Akredite)',
+            valueEn: 'Kapadokya Technical High School (E10999001 - KA121 Accredited)'
+          },
+          {
+            labelTr: 'Demo Profili: Avrupa Ev Sahibi',
+            labelEn: 'Demo Profile: European Host',
+            valueTr: 'Berlin VET Training Solutions GmbH (DE - Tier 2 Onaylı)',
+            valueEn: 'Berlin VET Training Solutions GmbH (DE - Tier 2 Verified)'
+          }
+        ],
+        steps: [
+          {
+            stepNumber: 1,
+            titleTr: 'Demo Yükleme Butonuna Basın',
+            titleEn: 'Click Demo Preset Trigger',
+            actionTr: 'Kılavuz sol kenarındaki "⚡ Canlı İnteraktif Simülasyon" kutusundan "🏛️ Okul Demosu" veya "🏢 Ev Sahibi Demosu" butonuna tıklayın.',
+            actionEn: 'Click "🏛️ School Demo" or "🏢 Host Demo" inside the guide sidebar simulation panel.',
+            uiTargetTr: 'Buton: [🏛️ Okul Demosu] veya [🏢 Ev Sahibi Demosu]',
+            uiTargetEn: 'Button: [🏛️ School Demo] or [🏢 Host Demo]',
+            expectedStateTr: 'Seçilen kurumun tüm gerçekçi verileri, staj talepleri ve bütçeleri sisteme yüklenir.',
+            expectedStateEn: 'Realistic school/host profile, inquiries, and budget calculations are loaded.'
+          },
+          {
+            stepNumber: 2,
+            titleTr: 'Modülleri Canlı Deneyimleyin',
+            titleEn: 'Interact with Live Modules',
+            actionTr: 'Yüklenen verilerle 5 adımlı pipeline\'ı gezinin, harcırah hesaplayın veya gelen staj talebine LoI metni oluşturun.',
+            actionEn: 'Navigate through pipeline steps, calculate subsistence, or review inquiry LoI generation with loaded data.',
+            uiTargetTr: 'Modüller: [/school/pipeline & Host Masası]',
+            uiTargetEn: 'Modules: [/school/pipeline & Host Dashboard]',
+            expectedStateTr: 'Tüm butonlar ve formlar gerçekçi verilerle çalışır durumda deneyimlenir.',
+            expectedStateEn: 'All tools and interactive components operate with real-time responsive behavior.'
+          }
+        ]
+      },
+      {
+        id: 'settings-privacy-compliance',
+        audience: 'SETTINGS',
+        icon: '🛡️',
+        titleTr: '5. Veri Güvenliği, KVKK / GDPR & Şifreli Saklama',
+        titleEn: '5. Data Privacy, KVKK / GDPR & Encrypted Storage',
+        summaryTr: '6698 sayılı KVKK ve AB GDPR uyumluluğu, Cloudflare R2 üzerinde şifreli belge saklama, çerez tercihleri ve veri silme hakları.',
+        summaryEn: 'Compliance with Turkish KVKK and EU GDPR, Cloudflare R2 encrypted document storage, cookie controls, and data erasure rights.',
+        goalTr: 'Okul ve işletme verilerinin Avrupa ve Türk kişisel veri mevzuatına %100 uygun şekilde korunduğunu bilerek güvenle işlem yapmak.',
+        goalEn: 'Conduct mobility operations with confidence under 100% compliant Turkish KVKK and European GDPR data protection standards.',
+        route: '/kvkk',
+        routeLabelTr: 'KVKK Metnini Oku',
+        routeLabelEn: 'Read Privacy Terms',
+        keyHighlightsTr: [
+          'KVKK & GDPR Uyumluluğu: Platform, hem 6698 sayılı Türk Kişisel Verilerin Korunması Kanunu\'na hem de AB Genel Veri Koruma Tüzüğü\'ne (GDPR) tam uyumludur.',
+          'Şifreli Bulut Depolama: Yüklenen ticaret sicil gazeteleri, vergi levhaları ve öğrenci evrakları Cloudflare R2 üzerinde AES-256 ile şifrelenir.',
+          'Veri Minimizasyonu: Yalnızca Erasmus+ hibe başvurusu ve eşleştirme için zorunlu olan asgari veriler talep edilir.',
+          'Açık Rıza ve İptal Hakkı: Kullanıcılar diledikleri zaman hesap ve kurum verilerinin silinmesini talep edebilirler.',
+          'Yasal Uyarı & Sorumluluk Reddi: Platform bağımsız bir teknik destek ağıdır; nihai hibe tahsis kararı Türkiye Ulusal Ajansı\'na aittir.'
+        ],
+        keyHighlightsEn: [
+          'Dual KVKK & GDPR Compliance: Certified compliance with both Turkish Law No. 6698 and European Union GDPR regulations.',
+          'Encrypted Cloud Vault: Trade registry PDFs, tax certificates, and student records are encrypted via AES-256 on Cloudflare R2.',
+          'Data Minimization: Only data strictly necessary for Erasmus+ vetting and proposal generation is gathered.',
+          'Right to Erasure: Users possess full statutory rights to inspect, export, or permanently purge their data.',
+          'Regulatory Disclaimer: The platform is an independent advisory framework; final grant awards are determined solely by the National Agency.'
+        ],
+        parametersTable: [
+          {
+            labelTr: 'Şifreleme Standardı',
+            labelEn: 'Encryption Standard',
+            valueTr: 'AES-256 bekleyen veri şifrelemesi ve TLS 1.3 aktarım güvenliği',
+            valueEn: 'AES-256 data at rest encryption and TLS 1.3 transport security'
+          },
+          {
+            labelTr: 'Yasal Dayanak',
+            labelEn: 'Legal Basis',
+            valueTr: 'KVKK Madde 5/2-c (Sözleşmenin kurulması/ifası) & GDPR Madde 6(1)(b)',
+            valueEn: 'KVKK Article 5/2-c & EU GDPR Article 6(1)(b)'
+          }
+        ],
+        steps: [
+          {
+            stepNumber: 1,
+            titleTr: 'Yasal Metinleri İnceleyin',
+            titleEn: 'Access Legal Disclosures',
+            actionTr: 'Sayfa altındaki (footer) "KVKK Aydınlatma Metni", "Kullanım Şartları" veya "Gizlilik Politikası" linklerine tıklayın.',
+            actionEn: 'Click "KVKK Disclosure", "Terms of Service", or "Privacy Policy" links in the footer.',
+            uiTargetTr: 'Footer Linkleri: [/kvkk & /terms & /privacy]',
+            uiTargetEn: 'Footer Links: [/kvkk & /terms & /privacy]',
+            expectedStateTr: 'Mevzuata uygun detaylı hukuki aydınlatma metinleri açılır.',
+            expectedStateEn: 'Comprehensive statutory legal disclosures open.'
+          },
+          {
+            stepNumber: 2,
+            titleTr: 'Veri Güvenliği Haklarınızı Kullanın',
+            titleEn: 'Exercise Data Protection Rights',
+            actionTr: 'Veri silme veya bilgi alma talepleriniz için iletişim sekmesinden resmi başvuruda bulunabilirsiniz.',
+            actionEn: 'Submit data access or erasure requests through the contact portal.',
+            uiTargetTr: 'İletişim Kanalı: [/contact - Veri Sorumlusu İrtibat]',
+            uiTargetEn: 'Contact Channel: [/contact - Data Protection Officer]',
+            expectedStateTr: 'Talebiniz yasal süre içinde işleme alınır.',
+            expectedStateEn: 'Request is queued and processed within statutory timelines.'
+          }
+        ]
       }
     ]
   },
@@ -1018,13 +1558,13 @@ export const PLATFORM_GUIDE_DATA: GuideCategory[] = [
         routeLabelEn: 'Open Application Assistant',
         keyHighlightsTr: [
           'KA121-VET: Yalnızca KA120 Akreditasyonuna sahip kurumlar içindir; yarışma yoktur, doğrudan bütçe tahsisi yapılır (46 Soru).',
-          'KA122-VET: Akreditasyonu olmayan tüm VET kurumlarına açıktır; yarışmalıdır (74 Soru), azami 30 katılımcı ve 6-24 ay süre sınırı vardır.',
-          'Kurallar Kapısı (Eligibility Gatekeeper): Son 5 yılda en fazla 2 KA122 hibesi alınabilir; aşılıyorsa KA120 akreditasyonuna yönlendirilir.'
+          'KA122-VET: Akreditasyonu olmayan tüm VET kurumlarına açıktır; yarışmalıdır (74 Soru), azami 30 katılımcı ve 6-18 ay süre sınırı vardır.',
+          'Kurallar Kapısı (Eligibility Gatekeeper): 5 ardışık çağrı yılında aynı alanda en fazla 3 KA122 hibesi alınabilir; 3 hibe tamamlandığında KA120 akreditasyonuna yönlendirilir.'
         ],
         keyHighlightsEn: [
           'KA121-VET: Exclusive to KA120 accredited organisations; non-competitive annual budget allocation (46 Questions).',
-          'KA122-VET: Open to all non-accredited VET providers; competitive call (74 Questions), max 30 participants, 6-24 months.',
-          'Eligibility Gatekeeper: Max 2 KA122 grants in 5 years; organisations exceeding this are guided to KA120 accreditation.'
+          'KA122-VET: Open to all non-accredited VET providers; competitive call (74 Questions), max 30 participants, 6-18 months.',
+          'Eligibility Gatekeeper: Max 3 KA122 grants across 5 consecutive call years; organisations reaching this threshold must apply for KA120 accreditation.'
         ],
         steps: [
           {
@@ -1042,8 +1582,8 @@ export const PLATFORM_GUIDE_DATA: GuideCategory[] = [
             stepNumber: 2,
             titleTr: 'KA122 Kurallar Kapısını (Gatekeeper) Doğrulayın',
             titleEn: 'Verify KA122 Eligibility Rules Gatekeeper',
-            actionTr: 'KA122 başvurusu yapacaksanız, katılımcı sayınızın 30\'u aşmadığını ve son 5 yılda 2\'den fazla KA122 almadığınızı teyit edin.',
-            actionEn: 'Ensure participants do not exceed 30 and no more than 2 KA122 grants have been received in the past 5 years.',
+            actionTr: 'KA122 başvurusu yapacaksanız, katılımcı sayınızın 30\'u aşmadığını, proje süresinin 6–18 ay olduğunu ve 5 ardışık çağrı yılında 3\'ten fazla KA122 almadığınızı teyit edin.',
+            actionEn: 'Ensure participants do not exceed 30, project duration is 6–18 months, and no more than 3 KA122 grants have been received in 5 consecutive call years.',
             uiTargetTr: 'Kontrol Bölümü: [KA121 / KA122 Uygunluk ve Kota Denetimi]',
             uiTargetEn: 'Rules Check: [KA121 / KA122 Eligibility & Quota Check]',
             expectedStateTr: 'Kriterler aşılıyorsa sistem otomatik olarak KA120 Akreditasyonuna başvurmanızı önerir.',
@@ -1464,6 +2004,80 @@ export const PLATFORM_GUIDE_DATA: GuideCategory[] = [
             uiTargetEn: 'Field: [Consortium Lead / Directorate]',
             expectedStateTr: 'Okulunuz konsorsiyum ağında listelenir ve ortak ev sahibi havuzundan faydalanır.',
             expectedStateEn: 'Your school is linked to the consortium cluster and gains access to pooled host capacity.'
+          }
+        ]
+      },
+      {
+        id: 'faq-display-settings',
+        audience: 'FAQ',
+        icon: '👁️',
+        titleTr: 'Görünüm, Yüksek Kontrast ve Yazı Boyutu Ayarları Nereden Değiştirilir?',
+        titleEn: 'Where Can I Customize Display, High Contrast, and Font Size?',
+        summaryTr: 'Platformun sağ üst köşesinde yer alan Görünüm & Okuma menüsü ile WCAG 2.1 AA erişilebilirlik ayarlarını kişiselleştirme.',
+        summaryEn: 'Customizing WCAG 2.1 AA accessibility preferences via the Display & Reading menu in the top right header.',
+        goalTr: 'Kullanıcının görme konforuna uygun kontrast, yazı boyutu ve hareket azaltma tercihlerini anında ayarlamasını sağlamak.',
+        goalEn: 'Enable users to customize contrast, font scaling, and motion damping to their visual comfort instantly.',
+        keyHighlightsTr: [
+          'Sağ üst menüdeki "Görünüm & Okuma" (Type simgesi) butonuna basarak paneli açabilirsiniz.',
+          'Büyük veya Ekstra Büyük yazı boyutunu seçerek metinleri büyütebilirsiniz.',
+          'Yüksek Kontrast modunu açarak koyu zemin üzerinde sarı/cyan yüksek kontrast görünüm elde edebilirsiniz.',
+          'Animasyonları Azalt seçeneği ile sayfa geçişlerindeki hareketleri durdurabilirsiniz.',
+          'Tüm ayarlar tarayıcınızda otomatik saklanır; dilediğiniz zaman "Varsayılana Sıfırla" ile geri alabilirsiniz.'
+        ],
+        keyHighlightsEn: [
+          'Access the panel anytime via the "Display & Reading" (Type icon) button in the upper right header.',
+          'Scale typography dynamically to Large or Extra Large for easier reading.',
+          'Enable High Contrast mode for a deep-black canvas with bright contrast highlights.',
+          'Turn on Reduced Motion to damp transitions and eliminate distracting animations.',
+          'Preferences are remembered locally and can be restored anytime via "Reset to Default".'
+        ],
+        steps: [
+          {
+            stepNumber: 1,
+            titleTr: 'Görünüm Menüsünü Açın',
+            titleEn: 'Open Display Menu',
+            actionTr: 'Üst çubuktaki "Görünüm & Okuma" butonuna tıklayın ve tercihinizi belirleyin.',
+            actionEn: 'Click "Display & Reading" in the navigation bar and toggle preferences.',
+            uiTargetTr: 'Header: [Görünüm & Okuma Butonu]',
+            uiTargetEn: 'Header: [Display & Reading Button]',
+            expectedStateTr: 'Tercihler anında uygulanır ve kaydedilir.',
+            expectedStateEn: 'Settings are applied instantly and saved.'
+          }
+        ]
+      },
+      {
+        id: 'faq-profile-oid-change',
+        audience: 'FAQ',
+        icon: '✏️',
+        titleTr: 'Okul OID Numarası, İrtibat Kişisi veya Kurum Bilgileri Nasıl Güncellenir?',
+        titleEn: 'How to Update School OID, Contact Person, or Institutional Info?',
+        summaryTr: 'Onboarding sonrasında okul OID numarası, proje koordinatörü e-postası veya adres değişikliklerinin nasıl güncelleneceği.',
+        summaryEn: 'How to modify school OID, coordinator contact details, or address data after initial onboarding.',
+        goalTr: 'Değişen okul yöneticisi, koordinatör veya OID bilgilerini sisteme hatasız yansıtmak.',
+        goalEn: 'Reflect changes in school leadership, coordinators, or OID credentials accurately.',
+        keyHighlightsTr: [
+          'Profil Sayfası (/profile): Üst menüde adınıza tıklayarak "Bağlı Kurum Bilgileri" alanından "Düzenle" linkine tıklayın.',
+          'Onboarding Formunu Yeniden Açma: /onboarding adresine giderek MEB okul atlası veya yeni OID numaranızı kaydedebilirsiniz.',
+          'Koordinatör Bilgileri: Staj talepleri gönderilirken okul irtibat kişisi adı ve e-postası form üzerinden de güncellenebilir.',
+          'Clerk Güvenliği: E-posta veya şifre güncellemesi için "Profil" sayfasındaki "Hesap Ayarları" butonunu kullanabilirsiniz.'
+        ],
+        keyHighlightsEn: [
+          'Profile Portal (/profile): Click your name in top nav and select "Edit" in the Connected Institution card.',
+          'Re-Engage Onboarding: Visit /onboarding to update MEB school lookup or input a revised 8-digit E-OID.',
+          'Coordinator Contacts: Sending coordinator contact details can also be revised dynamically when submitting inquiries.',
+          'Clerk Security: Manage email or password modifications via "Account Settings" on the profile page.'
+        ],
+        steps: [
+          {
+            stepNumber: 1,
+            titleTr: 'Profil Sayfasına Gidin',
+            titleEn: 'Visit Profile Page',
+            actionTr: 'Üst menüden "Profil" sayfasına girin ve Kurum Bilgileri kartındaki "Düzenle" bağlantısını tıklayın.',
+            actionEn: 'Navigate to "Profile" and click "Edit" in the Connected Institution panel.',
+            uiTargetTr: 'Profil Sayfası: [/profile]',
+            uiTargetEn: 'Profile Page: [/profile]',
+            expectedStateTr: 'Kurum ve OID düzenleme seçenekleri açılır.',
+            expectedStateEn: 'Institutional edit controls become available.'
           }
         ]
       }

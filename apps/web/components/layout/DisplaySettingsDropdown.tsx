@@ -63,18 +63,19 @@ export function DisplaySettingsDropdown() {
         aria-haspopup="dialog"
         aria-expanded={isOpen}
         aria-label={locale === 'tr' ? 'Görünüm ve Okuma Ayarları' : 'Display & Reading Settings'}
-        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold transition-all border shadow-2xs focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-hidden cursor-pointer ${
+        title={locale === 'tr' ? 'Görünüm ve Okuma Ayarları' : 'Display & Reading Settings'}
+        className={`inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all border shadow-2xs focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-hidden cursor-pointer shrink-0 ${
           hasCustomSettings
             ? 'bg-blue-50 text-blue-900 border-blue-300 font-bold'
             : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300'
         }`}
       >
         <Type className="w-3.5 h-3.5 text-blue-700 shrink-0" aria-hidden="true" />
-        <span className="hidden xl:inline">
+        <span className="hidden 2xl:inline">
           {locale === 'tr' ? 'Görünüm & Okuma' : 'Display & Reading'}
         </span>
         {hasCustomSettings && (
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" title="Özelleştirildi" />
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" title={locale === 'tr' ? 'Özelleştirildi' : 'Customized'} />
         )}
       </button>
 

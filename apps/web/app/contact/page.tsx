@@ -7,6 +7,7 @@ import AppFooter from '../../components/layout/AppFooter';
 import CookieBanner from '../../components/ui/CookieBanner';
 import LegalModal from '../../components/ui/LegalModal';
 import AppointmentModal from '../../components/ui/AppointmentModal';
+import DistinctSectionPurposeCard from '../../components/ui/DistinctSectionPurposeCard';
 import { useTranslation } from '../../lib/i18n';
 
 export default function ContactPage() {
@@ -52,9 +53,9 @@ export default function ContactPage() {
           </div>
 
           <div className="hidden sm:flex items-center gap-2 text-[11px] text-slate-500 font-mono">
-            <span>Online Danışmanlık</span>
+            <span>{locale === 'tr' ? 'Online Danışmanlık' : 'Online Consultation'}</span>
             <span>•</span>
-            <span>30 Dk Randevu</span>
+            <span>{locale === 'tr' ? '30 Dk Randevu' : '30-Minute Appointment'}</span>
           </div>
         </div>
       </div>
@@ -82,7 +83,7 @@ export default function ContactPage() {
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed m-0">
               {locale === 'tr'
-                ? 'KA121 akreditasyon yıllık planı, KA122 proje başvuruları, ev sahibi (host) işletme kaydı ve teknik sorularınız için doğrudan randevu alabilir veya mesaj bırakabilirsiniz.'
+                ? 'KA121 akreditasyon yıllık planı, KA122 proje başvuruları, ev sahibi kuruluş kaydı ve teknik sorularınız için doğrudan randevu alabilir veya mesaj bırakabilirsiniz.'
                 : 'Schedule a direct video consultation or send a message regarding KA121 annual plans, KA122 applications, European host registrations or platform assistance.'}
             </p>
           </div>
@@ -94,7 +95,6 @@ export default function ContactPage() {
               onClick={() => setIsAppointmentOpen(true)}
               className="px-5 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs transition-colors shadow-xs flex items-center gap-2"
             >
-              <span>📅</span>
               <span>{locale === 'tr' ? 'Ücretsiz Online Randevu Planlayın (30 Dk)' : 'Schedule Free Online Consultation (30 Min)'}</span>
               <span>→</span>
             </button>
@@ -105,12 +105,72 @@ export default function ContactPage() {
           </div>
         </section>
 
+        {/* Distinct Section Purpose & Top 3 Resources Card */}
+        <DistinctSectionPurposeCard
+          sectionKey="contact"
+          tag={locale === 'tr' ? 'Kurumsal İletişim Masası' : 'Institutional Contact Desk'}
+          tagColor="bg-blue-50 text-blue-900 border-blue-200"
+          title={
+            locale === 'tr'
+              ? 'İletişim Bölümünün Rolü ve En Çok Aranan Kaynaklar'
+              : 'Contact Section Role & Top Searched Resources'
+          }
+          purposeSentence={
+            locale === 'tr'
+              ? 'Proje planlama, KA121/KA122 rehberliği ve ev sahibi işletme eşleşmeleri için doğrudan uzman desteği iletişim merkezidir.'
+              : 'Dedicated institutional contact center providing direct specialist consultation for project planning, KA121/KA122 guidance and European host matching.'
+          }
+          topResourcesTitle={
+            locale === 'tr'
+              ? 'İletişimde En Çok Aranan 3 Kaynak ve Hızlı Erişim'
+              : 'Top 3 Most Searched Resources & Direct Access'
+          }
+          resources={[
+            {
+              icon: '📅',
+              title: locale === 'tr' ? 'Ücretsiz 30 Dk Çevrimiçi Danışmanlık' : 'Free 30-Min Online Consultation',
+              description:
+                locale === 'tr'
+                  ? 'Proje uzmanlarımızla Google Meet üzerinden birebir konsorsiyum ve hibe değerlendirmesi.'
+                  : 'Direct 1-on-1 video conference with VET specialists to evaluate project feasibility.',
+              href: '#appointment-section',
+              badge: locale === 'tr' ? 'Canlı Randevu' : 'Live Booking',
+              onClick: () => setIsAppointmentOpen(true),
+            },
+            {
+              icon: '✉️',
+              title: locale === 'tr' ? 'Kurumsal Talep & İletişim Formu' : 'Institutional Inquiry Form',
+              description:
+                locale === 'tr'
+                  ? 'Okul OID numarası ve hareketlilik ihtiyaçlarınızla birlikte doğrudan resmi mesaj iletin.'
+                  : 'Submit official institutional inquiries with school OID details directly to specialists.',
+              href: '#contact-form',
+              badge: locale === 'tr' ? '24s Yanıt' : '24h Response',
+            },
+            {
+              icon: '❓',
+              title: locale === 'tr' ? 'Destek Masası & Sıkça Sorulan Sorular' : 'Support Desk & FAQ',
+              description:
+                locale === 'tr'
+                  ? 'Onaylı işletme doğrulama kriterleri, OID eşleşmesi ve veri koruma hakları.'
+                  : 'Host verification criteria, school OID matchmaking and privacy compliance FAQs.',
+              href: '#faq-section',
+              badge: locale === 'tr' ? 'Destek' : 'Support',
+            },
+          ]}
+          footerNotice={
+            locale === 'tr'
+              ? 'Hafta içi 09:00 - 18:00 saatleri arasında iletilen tüm talepler aynı iş günü içinde işleme alınır.'
+              : 'All requests submitted on business days (09:00 - 18:00 TSI) are acknowledged on the same day.'
+          }
+        />
+
         {/* 2-Column Contact Layout */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column: Direct Info Cards (5 Cols) */}
           <div className="lg:col-span-5 space-y-6">
             {/* Direct Channel 1: Appointment Card */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
+            <div id="appointment-section" className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 font-bold flex items-center justify-center text-xl">
                   🗓️
@@ -136,14 +196,13 @@ export default function ContactPage() {
                 onClick={() => setIsAppointmentOpen(true)}
                 className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors shadow-xs flex items-center justify-center gap-2"
               >
-                <span>📅</span>
                 <span>{locale === 'tr' ? 'Randevu Takvimini Aç' : 'Open Calendar'}</span>
                 <span>→</span>
               </button>
             </div>
 
             {/* Direct Channel 2: Contact Info */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
+            <div id="faq-section" className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
               <h3 className="text-sm font-bold text-slate-900 m-0">
                 {locale === 'tr' ? 'İrtibat Noktaları & Çalışma Saatleri' : 'Liaison Desks & Operating Hours'}
               </h3>
@@ -183,7 +242,7 @@ export default function ContactPage() {
 
           {/* Right Column: Contact Message Form (7 Cols) */}
           <div className="lg:col-span-7">
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-xs space-y-5">
+            <div id="contact-form" className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-xs space-y-5">
               <div>
                 <h2 className="text-base font-bold text-slate-900 m-0">
                   {locale === 'tr' ? 'Doğrudan İletişim Formu' : 'Direct Message Form'}
@@ -274,11 +333,21 @@ export default function ContactPage() {
                         onChange={(e) => setSubject(e.target.value)}
                         className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 bg-white"
                       >
-                        <option value="KA121">KA121 Akredite Hibe Planlama</option>
-                        <option value="KA122">KA122 Kısa Dönemli Proje Başvurusu</option>
-                        <option value="HOST">Avrupa Ev Sahibi (Host) Olmak İstiyorum</option>
-                        <option value="SUPPORT">Platform ve Teknik Destek</option>
-                        <option value="OTHER">Diğer Kurumsal İş Birliği</option>
+                        <option value="KA121">
+                          {locale === 'tr' ? 'KA121 Akredite Hibe Planlama' : 'KA121 Accredited Grant Planning'}
+                        </option>
+                        <option value="KA122">
+                          {locale === 'tr' ? 'KA122 Kısa Dönemli Proje Başvurusu' : 'KA122 Short-Term Project Application'}
+                        </option>
+                        <option value="HOST">
+                          {locale === 'tr' ? 'Avrupa Ev Sahibi Kuruluş Olmak İstiyorum' : 'I Want to Become a European Host'}
+                        </option>
+                        <option value="SUPPORT">
+                          {locale === 'tr' ? 'Platform ve Teknik Destek' : 'Platform and Technical Support'}
+                        </option>
+                        <option value="OTHER">
+                          {locale === 'tr' ? 'Diğer Kurumsal İş Birliği' : 'Other Institutional Cooperation'}
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -335,9 +404,7 @@ export default function ContactPage() {
                       type="submit"
                       className="w-full py-2.5 px-4 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs transition-colors shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
                     >
-                      <span>✉️</span>
                       <span>{locale === 'tr' ? 'Mesajı Gönder' : 'Submit Message'}</span>
-                      <span>→</span>
                     </button>
                   </div>
                 </form>
@@ -355,7 +422,7 @@ export default function ContactPage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="TERMS"
+        initialTab="COOKIES"
       />
       <AppointmentModal
         isOpen={isAppointmentOpen}

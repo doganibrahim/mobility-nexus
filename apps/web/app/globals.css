@@ -1,14 +1,15 @@
-/* Google Fonts Imports for Erasmus+ Institutional UI:
+/* Google Fonts Imports for Erasmus+ Institutional UI (with Latin-Extended Turkish support):
    Inter, Plus Jakarta Sans, Playfair Display, Source Sans 3, Montserrat, Open Sans, Merriweather, Lato, Poppins, Roboto
 */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Lato:wght@400;700&family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Lato:wght@400;700&family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700&subset=latin,latin-ext&display=swap');
 @import "tailwindcss";
 
 /* ==========================================================================
    1. The 4 Exact Designer Color Palettes
    ========================================================================== */
 
-:root, [data-theme="theme-02"] {
+:root,
+[data-theme="theme-02"] {
   /* Palet 02: #E56438 (Turuncu), #302C4F (Koyu Lacivert), #C6C6C6 (Gri) */
   --theme-primary: #E56438;
   --theme-primary-hover: #CD4F26;
@@ -31,7 +32,8 @@
   /* Palet 01: #FFCA41 (Sarı), #000000 (Siyah), #A6A6A6 (Gri) */
   --theme-primary: #FFCA41;
   --theme-primary-hover: #EBB62D;
-  --theme-primary-text: #000000; /* High-contrast black text on gold */
+  --theme-primary-text: #000000;
+  /* High-contrast black text on gold */
   --theme-secondary: #000000;
   --theme-secondary-text: #FFFFFF;
   --theme-accent: #A6A6A6;
@@ -88,14 +90,15 @@
    2. Independent Typography Presets
    ========================================================================== */
 
-:root, [data-font="font-merriweather"] {
-  --font-family: 'Lato', sans-serif;
-  --font-heading: 'Merriweather', serif;
+:root,
+[data-font="font-inter"] {
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
 }
 
-[data-font="font-inter"] {
-  --font-family: 'Inter', sans-serif;
-  --font-heading: 'Plus Jakarta Sans', sans-serif;
+[data-font="font-merriweather"] {
+  --font-family: 'Lato', sans-serif;
+  --font-heading: 'Merriweather', serif;
 }
 
 [data-font="font-playfair"] {
@@ -132,7 +135,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   letter-spacing: -0.015em;
 }
@@ -144,7 +152,8 @@ h1, h2, h3, h4, h5, h6 {
 .edu-card {
   background-color: var(--theme-card);
   border: 1px solid var(--theme-border);
-  border-radius: 0.875rem; /* rounded-xl (14px) */
+  border-radius: 0.875rem;
+  /* rounded-xl (14px) */
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
@@ -306,12 +315,17 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Print Optimization */
 @media print {
-  header, nav, .no-print {
+
+  header,
+  nav,
+  .no-print {
     display: none !important;
   }
+
   body {
     background: #FFFFFF !important;
   }
+
   .edu-card {
     box-shadow: none !important;
     border: 1px solid #CBD5E1 !important;
@@ -336,6 +350,22 @@ html[data-a11y-font-size="large"] {
 
 html[data-a11y-font-size="xlarge"] {
   font-size: 125% !important;
+}
+
+/* Accessibility Font Scaling Safeguards for Top Header */
+html[data-a11y-font-size="large"] header .header-container,
+html[data-a11y-font-size="xlarge"] header .header-container {
+  gap: 0.5rem;
+}
+
+html[data-a11y-font-size="large"] header .header-nav,
+html[data-a11y-font-size="xlarge"] header .header-nav {
+  gap: 0.25rem !important;
+}
+
+html[data-a11y-font-size="large"] header .header-right-utility,
+html[data-a11y-font-size="xlarge"] header .header-right-utility {
+  gap: 0.375rem !important;
 }
 
 /* 3. High Contrast Mode (WCAG AAA) */
@@ -376,6 +406,7 @@ html[data-a11y-motion="true"] *::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -416,8 +447,244 @@ html[data-a11y-motion="true"] *::after {
 html[lang="en"] {
   font-language-override: "ENG";
 }
+
 html[lang="tr"] {
   font-language-override: "TRK";
 }
 
+/* ==========================================================================
+   WCAG 2.1 AA Keyboard Accessibility & Visible Focus Ring
+   Ensures every interactive element displays an unmistakable, high-contrast ring
+   when navigating with Tab / Keyboard.
+   ========================================================================== */
+:focus-visible {
+  outline: 2px solid #0284c7 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.28) !important;
+}
 
+/* High Contrast Mode Focus Ring Adjustment */
+html[data-a11y-contrast="true"] :focus-visible {
+  outline: 3px solid #000000 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 5px #fbbf24 !important;
+}
+
+/* Skip-to-Content Link for Screen Readers and Keyboard Users */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 99999;
+  padding: 0.75rem 1.25rem;
+  background-color: #0f172a;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  border: 2px solid #38bdf8;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  top: 1rem;
+  outline: 3px solid #38bdf8 !important;
+}
+
+/* Touch Target Minimum Sizing for Mobile Compliance (WCAG 2.5.5 / 2.5.8) */
+@media (max-width: 640px) {
+
+  button,
+  a[role="button"],
+  input[type="button"],
+  input[type="submit"],
+  select,
+  .mobile-touch-target {
+    min-height: 44px;
+  }
+}
+
+/* ==========================================================================
+   Print and PDF Export Optimizations (@media print)
+   ========================================================================== */
+@media print {
+
+  /* Hide non-printable UI elements */
+  .no-print,
+  header,
+  footer,
+  nav,
+  .skip-to-content,
+  #cookie-banner,
+  button:not(.print-keep) {
+    display: none !important;
+  }
+
+  /* Reset body and background for crisp printer output */
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 10.5pt !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Prevent awkward page breaks inside cards, tables and callouts */
+  table,
+  tr,
+  td,
+  th {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .edu-card,
+  .rounded-xl {
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Ensure links are readable */
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+
+  /* Clean page margins */
+  @page {
+    margin: 1.5cm;
+    size: auto;
+  }
+}
+
+/* ==========================================================================
+   Clerk Auth Modal: Brand Logo & Unified Compact Card (No Split)
+   ========================================================================== */
+.cl-modalContent {
+  width: 100% !important;
+  max-width: 450px !important;
+  max-height: 94vh !important;
+  background: transparent !important;
+  border-radius: 1.25rem !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35) !important;
+  border: none !important;
+}
+
+.cl-rootBox {
+  width: 100% !important;
+  max-width: 450px !important;
+  margin: 0 auto !important;
+}
+
+.cl-cardBox {
+  width: 100% !important;
+  max-width: 450px !important;
+  background: #ffffff !important;
+  border-radius: 1.25rem !important;
+  overflow: hidden !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.cl-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 1.25rem 1.5rem 0.65rem 1.5rem !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: #ffffff !important;
+  margin: 0 !important;
+}
+
+.cl-header {
+  margin-bottom: 0.5rem !important;
+}
+
+.cl-headerTitle {
+  font-size: 1.125rem !important;
+  line-height: 1.3 !important;
+}
+
+.cl-headerTitle::before {
+  content: '';
+  display: block;
+  width: 175px;
+  max-width: 85%;
+  height: 35px;
+  margin: 0 auto 8px auto;
+  background-image: url('/images/logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.cl-headerSubtitle {
+  font-size: 0.75rem !important;
+  margin-top: 0.15rem !important;
+  line-height: 1.4 !important;
+}
+
+.cl-socialButtonsBlockButton {
+  height: 2.25rem !important;
+  padding: 0.3rem 0.75rem !important;
+}
+
+.cl-dividerRow {
+  margin: 0.4rem 0 !important;
+}
+
+.cl-formField {
+  margin-bottom: 0.4rem !important;
+}
+
+.cl-formFieldInput {
+  padding: 0.45rem 0.75rem !important;
+  font-size: 0.8125rem !important;
+}
+
+.cl-formButtonPrimary {
+  padding: 0.55rem 1rem !important;
+  font-size: 0.8125rem !important;
+}
+
+.cl-footer {
+  width: 100% !important;
+  background-color: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0.65rem 1.25rem !important;
+  margin: 0 !important;
+}
+
+.cl-footerAction {
+  margin: 0 0 0.65rem 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.35rem !important;
+}
+
+.cl-footerActionText {
+  font-size: 0.775rem !important;
+  color: #475569 !important;
+}
+
+.cl-footerActionLink {
+  font-size: 0.775rem !important;
+  font-weight: 700 !important;
+  color: #1d4ed8 !important;
+  margin-left: 0.25rem !important;
+}

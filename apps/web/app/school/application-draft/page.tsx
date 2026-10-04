@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useUser, SignInButton } from '@clerk/nextjs';
 import AppHeader from '../../../components/layout/AppHeader';
 import AppFooter from '../../../components/layout/AppFooter';
 import CookieBanner from '../../../components/ui/CookieBanner';
@@ -25,6 +26,7 @@ import { useTranslation } from '../../../lib/i18n';
 export default function ApplicationDraftPage() {
   const { t, locale } = useTranslation();
   const store = useAppStore();
+  const { isSignedIn } = useUser();
 
   const [activeSection, setActiveSection] = useState<string>('context');
   const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
@@ -43,6 +45,15 @@ export default function ApplicationDraftPage() {
   useEffect(() => {
     setMounted(true);
     store.initFromStorage();
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlType = urlParams.get('type') as FormType | null;
+      if (urlType === 'KA121' || urlType === 'KA122') {
+        if (store.applicationDraft.formType !== urlType) {
+          store.syncPipelineToDraft(urlType);
+        }
+      }
+    }
     const activeSchoolName = store.currentOrg?.name || store.schoolProfile?.schoolName;
     if (activeSchoolName && !store.applicationDraft.context.applicantName) {
       store.syncPipelineToDraft();
@@ -77,6 +88,24 @@ export default function ApplicationDraftPage() {
 
   const handleFormTypeChange = (newType: FormType) => {
     if (newType === formType) return;
+
+    // Inconsistency warning between accreditation status and selected form type
+    if (store.schoolProfile?.accredited === 'yes' && newType === 'KA122') {
+      const confirmed = window.confirm(
+        locale === 'tr'
+          ? 'Uyarı: Kurumunuz Erasmus Akreditasyonuna (KA120) sahiptir. Akredite kurumlar için KA121-VET Yıllık Hibe başvurusu önerilir. KA122-VET kısa dönemli proje formunu açmak istediğinizden emin misiniz?'
+          : 'Notice: Your institution holds Erasmus Accreditation (KA120). KA121-VET Annual Grant is recommended. Are you sure you want to open the KA122-VET short-term form?'
+      );
+      if (!confirmed) return;
+    } else if (store.schoolProfile?.accredited === 'no' && newType === 'KA121') {
+      const confirmed = window.confirm(
+        locale === 'tr'
+          ? 'Uyarı: Kurumunuz akredite değildir (KA120 akreditasyonu bulunmuyor). KA121 formu yalnızca akredite kurumlara açıktır. Yine de KA121 taslağını incelemek istiyor musunuz?'
+          : 'Notice: Your institution is not accredited. KA121 is reserved for accredited institutions. Do you still want to preview the KA121 draft?'
+      );
+      if (!confirmed) return;
+    }
+
     store.syncPipelineToDraft(newType);
     setActiveSection('context');
     triggerToast(`${newType} ${ad.templateLoadedToast}`);
@@ -249,21 +278,35 @@ export default function ApplicationDraftPage() {
 
       {/* Main Container */}
       <main id="main-content" tabIndex={-1} className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 focus:outline-none">
-        {/* 1. Aktif Giriş Yapmış Okul Bildirim Paneli */}
+        {/* 1. Okul Bilgi Paneli (Giriş Yapmış Okul vs Demo Misafir Modu) */}
         {mounted && (store.currentOrg?.name || store.schoolProfile?.schoolName) && (
-          <div className="bg-emerald-50/90 border border-emerald-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-emerald-950 shadow-xs">
+          <div
+            className={`border rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-xs ${
+              isSignedIn && store.currentOrg
+                ? 'bg-emerald-50/90 border-emerald-200 text-emerald-950'
+                : 'bg-blue-50/90 border-blue-200 text-blue-950'
+            }`}
+          >
             <div className="flex items-start sm:items-center gap-3">
               <span className="text-xl">🏛️</span>
               <div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">
-                    {locale === 'tr' ? 'Aktif Giriş Yapan Okul' : 'Active Logged-in School'}
+                  <span
+                    className={`text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded border ${
+                      isSignedIn && store.currentOrg
+                        ? 'text-emerald-700 bg-emerald-100 border-emerald-200'
+                        : 'text-blue-700 bg-blue-100 border-blue-200'
+                    }`}
+                  >
+                    {isSignedIn && store.currentOrg
+                      ? (locale === 'tr' ? '✓ Aktif Giriş Yapan Okul' : '✓ Active Logged-in School')
+                      : (locale === 'tr' ? 'Demo Okul Profili (Misafir Modu)' : 'Demo School Profile (Guest Mode)')}
                   </span>
-                  <strong className="text-sm font-bold text-emerald-950">
+                  <strong className="text-sm font-bold">
                     {store.currentOrg?.name || store.schoolProfile?.schoolName}
                   </strong>
                 </div>
-                <div className="text-emerald-800 text-[11px] mt-1 flex flex-wrap items-center gap-2">
+                <div className="text-[11px] mt-1 flex flex-wrap items-center gap-2 opacity-90">
                   <span>
                     <strong>OID:</strong>{' '}
                     <span className="font-mono">{store.currentOrg?.oid || store.schoolProfile?.oid || 'E10000000'}</span>
@@ -280,20 +323,89 @@ export default function ApplicationDraftPage() {
                       : (locale === 'tr' ? 'Akreditasyonsuz' : 'Non-accredited')}
                   </span>
                   <span>•</span>
-                  <span className="text-emerald-700 font-semibold">
-                    {locale === 'tr' ? '✓ Bilgiler taslağa otomatik aktarıldı' : '✓ Details synced to draft'}
+                  <span className="font-semibold">
+                    {isSignedIn && store.currentOrg
+                      ? (locale === 'tr' ? '✓ Bilgiler taslağa otomatik aktarıldı' : '✓ Details synced to draft')
+                      : (locale === 'tr' ? 'Önizleme verileri yerel oturumda tutulmaktadır' : 'Preview data in local session')}
                   </span>
                 </div>
               </div>
             </div>
 
+            <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+              {!isSignedIn && (
+                <SignInButton mode="modal">
+                  <button
+                    type="button"
+                    className="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-blue-700 hover:bg-blue-800 text-white transition-colors whitespace-nowrap shadow-xs cursor-pointer flex items-center gap-1.5"
+                  >
+                    <span>🔐</span> {locale === 'tr' ? 'Giriş Yap' : 'Sign In'}
+                  </button>
+                </SignInButton>
+              )}
+              <button
+                type="button"
+                onClick={handleSyncPipeline}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shadow-xs flex items-center gap-1.5 ${
+                  isSignedIn && store.currentOrg
+                    ? 'bg-emerald-700 hover:bg-emerald-800 text-white'
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-300'
+                }`}
+                title={locale === 'tr' ? "Giriş yapılan okulun ve pipeline'ın güncel verilerini taslağa aktarır" : 'Syncs active school and pipeline details to draft'}
+              >
+                <span>🔄</span> {locale === 'tr' ? 'Okul Bilgilerini Yenile' : 'Refresh School Data'}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Accreditation & Form Type Mismatch Alerts */}
+        {mounted && store.schoolProfile?.accredited === 'yes' && formType === 'KA122' && (
+          <div className="bg-amber-50 border border-amber-300 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-950 shadow-xs">
+            <div className="flex items-start sm:items-center gap-3">
+              <span className="text-xl shrink-0">⚠️</span>
+              <div>
+                <strong className="font-bold text-amber-900">
+                  {locale === 'tr' ? 'Akreditasyon Uyarısı:' : 'Accreditation Notice:'}
+                </strong>{' '}
+                <span>
+                  {locale === 'tr'
+                    ? 'Kurumunuz Erasmus Akreditasyonuna (KA120) sahiptir. Akredite kurumların yıllık bütçe tahsisatı için KA121-VET formunu doldurması önerilir. Şu anda kısa dönemli KA122-VET formu açıktır.'
+                    : 'Your institution holds Erasmus Accreditation (KA120). Accredited institutions should submit KA121-VET for annual grants. Currently viewing KA122-VET.'}
+                </span>
+              </div>
+            </div>
             <button
               type="button"
-              onClick={handleSyncPipeline}
-              className="self-start sm:self-auto px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white transition-colors whitespace-nowrap shadow-xs flex items-center gap-1.5"
-              title={locale === 'tr' ? "Giriş yapılan okulun ve pipeline'ın güncel verilerini taslağa aktarır" : 'Syncs active school and pipeline details to draft'}
+              onClick={() => handleFormTypeChange('KA121')}
+              className="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg whitespace-nowrap shadow-xs cursor-pointer transition-colors"
             >
-              <span>🔄</span> {locale === 'tr' ? 'Okul Bilgilerini Yenile' : 'Refresh School Data'}
+              {locale === 'tr' ? 'Önerilen KA121-VET Formuna Geç' : 'Switch to KA121-VET Form'}
+            </button>
+          </div>
+        )}
+
+        {mounted && store.schoolProfile?.accredited === 'no' && formType === 'KA121' && (
+          <div className="bg-amber-50 border border-amber-300 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-950 shadow-xs">
+            <div className="flex items-start sm:items-center gap-3">
+              <span className="text-xl shrink-0">⚠️</span>
+              <div>
+                <strong className="font-bold text-amber-900">
+                  {locale === 'tr' ? 'Akreditasyon Uyarısı:' : 'Accreditation Notice:'}
+                </strong>{' '}
+                <span>
+                  {locale === 'tr'
+                    ? 'Kurumunuz akredite değildir. KA121-VET formu yalnızca KA120 akreditasyonu olan kurumlar içindir. Akreditasyonsuz kurumların KA122-VET formunu kullanması gerekmektedir.'
+                    : 'Your institution is non-accredited. KA121-VET is only for KA120 accredited bodies. Non-accredited institutions should use KA122-VET.'}
+                </span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => handleFormTypeChange('KA122')}
+              className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg whitespace-nowrap shadow-xs cursor-pointer transition-colors"
+            >
+              {locale === 'tr' ? 'Önerilen KA122-VET Formuna Geç' : 'Switch to KA122-VET Form'}
             </button>
           </div>
         )}
@@ -316,41 +428,58 @@ export default function ApplicationDraftPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {DRAFT_DEMO_PRESETS.map((preset, idx) => {
-              const isSelected =
-                mounted &&
-                (store.schoolProfile.oid === preset.schoolProfile.oid &&
-                  draft.context.applicantOid === preset.schoolProfile.oid);
+              const isSameOid =
+                store.schoolProfile.oid === preset.schoolProfile.oid &&
+                draft.context.applicantOid === preset.schoolProfile.oid;
+              const isSameFormType = draft.formType === preset.formType;
+              const isSameParticipantCount =
+                draft.activityDetails.totalParticipants === preset.draftData.activityDetails.totalParticipants;
+              const isSameDuration =
+                draft.activityDetails.standardDurationDays === preset.draftData.activityDetails.standardDurationDays;
+
+              const isExactMatch = mounted && isSameOid && isSameFormType && isSameParticipantCount && isSameDuration;
+              const isModifiedPreset = mounted && isSameOid && isSameFormType && (!isSameParticipantCount || !isSameDuration);
+
               return (
                 <button
                   key={preset.id}
                   type="button"
                   onClick={() => handleLoadPreset(preset.id)}
                   className={`p-3.5 rounded-xl border text-left transition-all hover:shadow-md hover:-translate-y-0.5 group relative ${
-                    isSelected
+                    isExactMatch
                       ? 'bg-blue-50/80 border-blue-600 ring-2 ring-blue-600/20 shadow-xs'
-                      : 'bg-slate-50/80 border-slate-200 hover:border-slate-300 hover:bg-white'
+                      : isModifiedPreset
+                        ? 'bg-amber-50/70 border-amber-400 ring-2 ring-amber-400/20 shadow-xs'
+                        : 'bg-slate-50/80 border-slate-200 hover:border-slate-300 hover:bg-white'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-1 mb-1.5">
                     <span className="text-[10px] font-bold text-slate-500 uppercase">
                       {locale === 'tr' ? 'Senaryo' : 'Scenario'} {idx + 1}
                     </span>
-                    <span
-                      className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${
-                        preset.formType === 'KA121'
-                          ? 'bg-blue-100 text-blue-900 border-blue-300'
-                          : 'bg-emerald-100 text-emerald-900 border-emerald-300'
-                      }`}
-                    >
-                      {preset.badge}
-                    </span>
+                    <div className="flex items-center gap-1">
+                      {isModifiedPreset && (
+                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300">
+                          {locale === 'tr' ? 'Özelleştirildi' : 'Modified'}
+                        </span>
+                      )}
+                      <span
+                        className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${
+                          preset.formType === 'KA121'
+                            ? 'bg-blue-100 text-blue-900 border-blue-300'
+                            : 'bg-emerald-100 text-emerald-900 border-emerald-300'
+                        }`}
+                      >
+                        {locale === 'en' && preset.badgeEn ? preset.badgeEn : preset.badge}
+                      </span>
+                    </div>
                   </div>
 
                   <div className="text-xs font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
                     {preset.name}
                   </div>
                   <div className="text-[11px] text-slate-600 mt-0.5 font-medium line-clamp-1">
-                    {preset.shortDesc}
+                    {locale === 'en' && preset.shortDescEn ? preset.shortDescEn : preset.shortDesc}
                   </div>
 
                   <div className="text-[10px] text-slate-400 mt-1.5 flex items-center gap-1.5 font-medium">
@@ -361,11 +490,19 @@ export default function ApplicationDraftPage() {
                     <span>{preset.draftData.activityDetails.hostCountry}</span>
                   </div>
 
-                  <div className="mt-2.5 pt-2 border-t border-slate-200/70 flex items-center justify-between text-[11px] font-bold text-blue-700 group-hover:text-blue-800">
+                  <div className={`mt-2.5 pt-2 border-t border-slate-200/70 flex items-center justify-between text-[11px] font-bold ${
+                    isExactMatch
+                      ? 'text-blue-700'
+                      : isModifiedPreset
+                        ? 'text-amber-800'
+                        : 'text-slate-600 group-hover:text-blue-700'
+                  }`}>
                     <span>
-                      {isSelected
-                        ? (locale === 'tr' ? '✓ Aktif Senaryo' : '✓ Active Scenario')
-                        : (locale === 'tr' ? 'Bu Senaryoyu Yükle' : 'Load This Scenario')}
+                      {isExactMatch
+                        ? (locale === 'tr' ? `✓ Aktif Senaryo (${preset.draftData.activityDetails.totalParticipants} Katılımcı)` : `✓ Active Scenario (${preset.draftData.activityDetails.totalParticipants} Pax)`)
+                        : isModifiedPreset
+                          ? (locale === 'tr' ? `✏️ Özelleştirilmiş Senaryo (${draft.activityDetails.totalParticipants} Katılımcı)` : `✏️ Customised Scenario (${draft.activityDetails.totalParticipants} Pax)`)
+                          : (locale === 'tr' ? 'Bu Senaryoyu Yükle' : 'Load This Scenario')}
                     </span>
                     <span>→</span>
                   </div>
@@ -756,7 +893,7 @@ export default function ApplicationDraftPage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="TERMS"
+        initialTab="COOKIES"
       />
 
       {/* KA120 Preview & Edit Modal */}

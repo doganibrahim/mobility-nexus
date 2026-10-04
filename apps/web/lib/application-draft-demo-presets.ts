@@ -10,7 +10,9 @@ export interface DraftDemoPreset {
   id: string;
   name: string;
   shortDesc: string;
+  shortDescEn?: string;
   badge: string;
+  badgeEn?: string;
   formType: 'KA121' | 'KA122';
   color: string;
   schoolProfile: {
@@ -58,7 +60,9 @@ export const DRAFT_DEMO_PRESETS: DraftDemoPreset[] = [
     id: 'kapadokya-ka121',
     name: 'Kapadokya MTAL',
     shortDesc: 'Bilişim & Siber Güvenlik (KA121 Akredite)',
+    shortDescEn: 'ICT & Cybersecurity (KA121 Accredited)',
     badge: 'KA121 Akredite',
+    badgeEn: 'KA121 Accredited',
     formType: 'KA121',
     color: 'blue',
     schoolProfile: {
@@ -216,7 +220,9 @@ export const DRAFT_DEMO_PRESETS: DraftDemoPreset[] = [
     id: 'seyrek-ka122',
     name: 'Seyrek MTAL',
     shortDesc: 'Endüstriyel Otomasyon & Robotik (KA122)',
+    shortDescEn: 'Industrial Automation & Robotics (KA122)',
     badge: 'KA122 Standart',
+    badgeEn: 'KA122 Standard',
     formType: 'KA122',
     color: 'emerald',
     schoolProfile: {
@@ -372,7 +378,9 @@ export const DRAFT_DEMO_PRESETS: DraftDemoPreset[] = [
     id: 'inegol-ka122',
     name: 'İnegöl MEMP',
     shortDesc: 'Yeşil Dönüşüm & Ahşap CNC (KA122 Destekli)',
+    shortDescEn: 'Green Transition & Wood CNC (KA122 Supported)',
     badge: 'KA122 Yeşil Seyahat',
+    badgeEn: 'KA122 Green Travel',
     formType: 'KA122',
     color: 'amber',
     schoolProfile: {

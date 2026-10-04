@@ -10,11 +10,15 @@ import ErasmusResultsWidget from '../../components/ui/ErasmusResultsWidget';
 import MebSchoolsWidget from '../../components/ui/MebSchoolsWidget';
 import { useTranslation } from '../../lib/i18n';
 import { LibraryDocument } from '../../lib/library-db';
+import DistinctSectionPurposeCard from '../../components/ui/DistinctSectionPurposeCard';
+import KnowledgeLibrarySection from '../../components/library/KnowledgeLibrarySection';
 import { Download, FileText, Sparkles, Tag, ExternalLink } from 'lucide-react';
+
+type LibraryTab = 'RESOURCES' | 'FORMS' | 'DOCS' | 'DATA' | 'LEGAL';
 
 export default function LibraryPage() {
   const { t, locale } = useTranslation();
-  const [activeTab, setActiveTab] = useState<'FORMS' | 'GUIDES' | 'DATA' | 'LEGAL'>('FORMS');
+  const [activeTab, setActiveTab] = useState<LibraryTab>('RESOURCES');
   const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
   const [legalModalTab, setLegalModalTab] = useState<LegalTabType>('LEGAL');
@@ -24,12 +28,21 @@ export default function LibraryPage() {
   const [isDocsLoading, setIsDocsLoading] = useState(true);
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#knowledge-library') {
+      setActiveTab('RESOURCES');
+    }
+  }, []);
+
+  useEffect(() => {
     async function loadDocs() {
       try {
-        const res = await fetch('/api/admin/library/documents');
-        if (res.ok) {
+        const res = await fetch('/api/library/documents');
+        const contentType = res.headers.get('content-type') || '';
+        if (res.ok && contentType.includes('application/json')) {
           const data = await res.json();
-          setDynamicDocuments(data.data || []);
+          if (data && Array.isArray(data.data)) {
+            setDynamicDocuments(data.data);
+          }
         }
       } catch (e) {
         console.error('Error loading library docs:', e);
@@ -102,53 +115,142 @@ export default function LibraryPage() {
           <div className="flex items-center gap-2 pt-2 border-t border-slate-100 flex-wrap">
             <button
               type="button"
+              onClick={() => setActiveTab('RESOURCES')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                activeTab === 'RESOURCES'
+                  ? 'bg-blue-700 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+              }`}
+            >
+              <span>🏛️</span>
+              <span>{locale === 'tr' ? 'Bilgi Kütüphanesi & Kaynaklar' : 'Knowledge Library & Resources'}</span>
+              <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${activeTab === 'RESOURCES' ? 'bg-blue-800 text-white' : 'bg-slate-200 text-slate-700'}`}>34</span>
+            </button>
+            <button
+              type="button"
               onClick={() => setActiveTab('FORMS')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                 activeTab === 'FORMS'
                   ? 'bg-slate-900 text-white shadow-xs'
                   : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
               }`}
             >
-              📝 {locale === 'tr' ? 'KA121 / KA122 Form Rehberleri' : 'KA121 / KA122 Guides'}
+              <span>📝</span>
+              <span>{locale === 'tr' ? 'KA121 / KA122 Form Rehberleri' : 'KA121 / KA122 Guides'}</span>
             </button>
             <button
               type="button"
-              onClick={() => setActiveTab('GUIDES')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                activeTab === 'GUIDES'
+              onClick={() => setActiveTab('DOCS')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                activeTab === 'DOCS'
                   ? 'bg-slate-900 text-white shadow-xs'
                   : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
               }`}
             >
-              📘 {locale === 'tr' ? 'Program Rehberi & Standartlar' : 'Programme Guide & Standards'}
+              <span>📁</span>
+              <span>{locale === 'tr' ? 'İndirilebilir Şablonlar' : 'Downloadable Templates'}</span>
+              {dynamicDocuments.length > 0 && (
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${activeTab === 'DOCS' ? 'bg-slate-800 text-white' : 'bg-slate-200 text-slate-700'}`}>
+                  {dynamicDocuments.length}
+                </span>
+              )}
             </button>
             <button
               type="button"
               onClick={() => setActiveTab('DATA')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                 activeTab === 'DATA'
                   ? 'bg-slate-900 text-white shadow-xs'
                   : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
               }`}
             >
-              📊 {locale === 'tr' ? 'Açık Veri & Hibe Kataloğu' : 'Open Data & Grants'}
+              <span>📊</span>
+              <span>{locale === 'tr' ? 'Açık Veri & Hibe Kataloğu' : 'Open Data & Grants'}</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveTab('LEGAL')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                 activeTab === 'LEGAL'
                   ? 'bg-slate-900 text-white shadow-xs'
                   : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
               }`}
             >
-              ⚖️ {locale === 'tr' ? 'Hukuki Metinler & KVKK/GDPR' : 'Legal & Compliance'}
+              <span>⚖️</span>
+              <span>{locale === 'tr' ? 'Hukuki Metinler & KVKK/GDPR' : 'Legal & Compliance'}</span>
             </button>
           </div>
         </section>
 
+        {/* Distinct Section Purpose & Top 3 Resources Card */}
+        <DistinctSectionPurposeCard
+          sectionKey="library"
+          tag={locale === 'tr' ? 'Erasmus+ Dokümantasyon & Açık Veri' : 'Erasmus+ Documentation & Open Data'}
+          tagColor="bg-emerald-50 text-emerald-900 border-emerald-200"
+          title={
+            locale === 'tr'
+              ? 'Kütüphane Bölümünün Rolü ve En Çok Aranan Kaynaklar'
+              : 'Library Section Role & Top Searched Resources'
+          }
+          purposeSentence={
+            locale === 'tr'
+              ? 'Avrupa Komisyonu standartlarında resmi form şablonları, hibe analizleri, ESCO/EQAVET standartları ve açık veri deposudur.'
+              : 'Official repository for European Commission compliant form templates, grant analytics, ESCO/EQAVET standards and open datasets.'
+          }
+          topResourcesTitle={
+            locale === 'tr'
+              ? 'Kütüphanede En Çok Aranan 3 Kaynak ve Hızlı Erişim'
+              : 'Top 3 Most Searched Resources & Direct Access'
+          }
+          resources={[
+            {
+              icon: '🏛️',
+              title: locale === 'tr' ? 'ErasmusMobility Bilgi Kütüphanesi' : 'ErasmusMobility Knowledge Library',
+              description:
+                locale === 'tr'
+                  ? '34 doğrulanmış resmi kaynak: AB rehberleri, Europass, ESCO becerileri, EQAVET kalite döngüsü ve Türkiye sektörel kurumları.'
+                  : '34 verified resources: EU guides, Europass tools, ESCO taxonomy, EQAVET quality cycle and national VET directories.',
+              href: '#knowledge-library',
+              badge: locale === 'tr' ? '34 Resmi Kaynak' : '34 Verified Sources',
+              onClick: () => setActiveTab('RESOURCES'),
+            },
+            {
+              icon: '📝',
+              title: locale === 'tr' ? 'KA121 & KA122 Form Soru Rehberleri' : 'KA121 / KA122 Form Question Guides',
+              description:
+                locale === 'tr'
+                  ? 'Web form soru alanları, resmi puanlama kriterleri ve saha rehberliği.'
+                  : 'Web form question breakdowns, scoring criteria and field execution guidelines.',
+              href: '#forms',
+              badge: locale === 'tr' ? 'Form Rehberi' : 'Form Guide',
+              onClick: () => setActiveTab('FORMS'),
+            },
+            {
+              icon: '📊',
+              title: locale === 'tr' ? 'Erasmus+ Hibe Tahsisat & Dağılım Analizi' : 'Erasmus+ Grant Allocation Analytics',
+              description:
+                locale === 'tr'
+                  ? 'Ulusal Ajans resmi hibe sonuçları, okul bazlı bütçe payları ve emsal veriler.'
+                  : 'Official National Agency grant allocation results and historical benchmarking.',
+              href: '#data',
+              badge: locale === 'tr' ? 'Hibe Verisi' : 'Grant Data',
+              onClick: () => setIsHibeWidgetOpen(true),
+            },
+          ]}
+          footerNotice={
+            locale === 'tr'
+              ? 'Tüm rehber ve şablonlar 2026-2027 Erasmus+ Program Rehberi kurallarına göre güncel tutulmaktadır.'
+              : 'All guidelines and templates are continuously synchronized with 2026-2027 Erasmus+ Programme criteria.'
+          }
+        />
+
+        {/* TAB 0: ErasmusMobility Knowledge Library (34 Official Resources) */}
+        {activeTab === 'RESOURCES' && (
+          <KnowledgeLibrarySection />
+        )}
+
         {/* TAB 1: KA121 & KA122 Form Guides */}
-        {(activeTab === 'FORMS' || activeTab === 'GUIDES') && (
+        {activeTab === 'FORMS' && (
           <section className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* KA121 Guide Card */}
@@ -176,19 +278,39 @@ export default function LibraryPage() {
                 <div className="space-y-2 border-t border-slate-100 pt-3">
                   <div className="flex items-center gap-2 text-xs text-slate-700">
                     <span className="text-blue-600 font-bold">1.</span>
-                    <span><strong>Kurum ve OID Doğrulaması:</strong> Tüzel kişilik ve akreditasyon kodu teyidi.</span>
+                    <span>
+                      <strong>{locale === 'tr' ? 'Kurum ve OID Doğrulaması:' : 'Organisation and OID Verification:'}</strong>{' '}
+                      {locale === 'tr'
+                        ? 'Tüzel kişilik ve akreditasyon kodu teyidi.'
+                        : 'Legal entity and accreditation code confirmation.'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-slate-700">
                     <span className="text-blue-600 font-bold">2.</span>
-                    <span><strong>Erasmus Planı Hedefleri:</strong> Kurumsal gelişim hedefleriyle eşleştirme.</span>
+                    <span>
+                      <strong>{locale === 'tr' ? 'Erasmus Planı Hedefleri:' : 'Erasmus Plan Objectives:'}</strong>{' '}
+                      {locale === 'tr'
+                        ? 'Kurumsal gelişim hedefleriyle eşleştirme.'
+                        : 'Alignment with institutional development goals.'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-slate-700">
                     <span className="text-blue-600 font-bold">3.</span>
-                    <span><strong>Faaliyetler & Katılımcılar:</strong> Kısa/uzun dönem öğrenci stajı ve personel izleme.</span>
+                    <span>
+                      <strong>{locale === 'tr' ? 'Faaliyetler & Katılımcılar:' : 'Activities and Participants:'}</strong>{' '}
+                      {locale === 'tr'
+                        ? 'Kısa/uzun dönem öğrenci stajı ve personel izleme.'
+                        : 'Short/long-term student internships and staff job shadowing.'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-slate-700">
                     <span className="text-blue-600 font-bold">4.</span>
-                    <span><strong>Bütçe Tahsisat Matrisi:</strong> Seyahat, harcırah ve kurumsal destek birim maliyetleri.</span>
+                    <span>
+                      <strong>{locale === 'tr' ? 'Bütçe Tahsisat Matrisi:' : 'Budget Allocation Matrix:'}</strong>{' '}
+                      {locale === 'tr'
+                        ? 'Seyahat, harcırah ve kurumsal destek birim maliyetleri.'
+                        : 'Travel, subsistence, and organizational support unit costs.'}
+                    </span>
                   </div>
                 </div>
 
@@ -197,7 +319,6 @@ export default function LibraryPage() {
                     href="/school/pipeline"
                     className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs transition-colors shadow-xs"
                   >
-                    <span>🚀</span>
                     <span>{locale === 'tr' ? 'KA121 Planlama Aracına Git' : 'Open KA121 Planner'}</span>
                     <span>→</span>
                   </Link>
@@ -229,19 +350,39 @@ export default function LibraryPage() {
                 <div className="space-y-2 border-t border-slate-100 pt-3">
                   <div className="flex items-center gap-2 text-xs text-slate-700">
                     <span className="text-emerald-700 font-bold">1.</span>
-                    <span><strong>Kurumsal İhtiyaç Analizi:</strong> Gelişim alanları ve yerel sektör ihtiyaçları.</span>
+                    <span>
+                      <strong>{locale === 'tr' ? 'Kurumsal İhtiyaç Analizi:' : 'Institutional Needs Assessment:'}</strong>{' '}
+                      {locale === 'tr'
+                        ? 'Gelişim alanları ve yerel sektör ihtiyaçları.'
+                        : 'Growth areas and local industry demands.'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-slate-700">
                     <span className="text-emerald-700 font-bold">2.</span>
-                    <span><strong>Proje Hedefleri (Objectives):</strong> SMART ilkelerine uygun ölçülebilir hedefler.</span>
+                    <span>
+                      <strong>{locale === 'tr' ? 'Proje Hedefleri:' : 'Project Objectives:'}</strong>{' '}
+                      {locale === 'tr'
+                        ? 'SMART ilkelerine uygun ölçülebilir hedefler.'
+                        : 'Measurable targets compliant with SMART criteria.'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-slate-700">
                     <span className="text-emerald-700 font-bold">3.</span>
-                    <span><strong>Öğrenme Çıktıları:</strong> ESCO becerileriyle uyumlu teknik ve yabancı dil kazanımı.</span>
+                    <span>
+                      <strong>{locale === 'tr' ? 'Öğrenme Çıktıları:' : 'Learning Outcomes:'}</strong>{' '}
+                      {locale === 'tr'
+                        ? 'ESCO becerileriyle uyumlu teknik ve yabancı dil kazanımı.'
+                        : 'Technical and language acquisition aligned with ESCO skills.'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-slate-700">
                     <span className="text-emerald-700 font-bold">4.</span>
-                    <span><strong>Yaygınlaştırma ve Etki:</strong> Proje sonuçlarının yerel ve bölgesel görünürlüğü.</span>
+                    <span>
+                      <strong>{locale === 'tr' ? 'Yaygınlaştırma ve Etki:' : 'Dissemination and Impact:'}</strong>{' '}
+                      {locale === 'tr'
+                        ? 'Proje sonuçlarının yerel ve bölgesel görünürlüğü.'
+                        : 'Local and regional visibility of project results.'}
+                    </span>
                   </div>
                 </div>
 
@@ -250,18 +391,41 @@ export default function LibraryPage() {
                     href="/school/pipeline"
                     className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition-colors shadow-xs"
                   >
-                    <span>🚀</span>
                     <span>{locale === 'tr' ? 'KA122 Uygunluk Analizini Başlat' : 'Open KA122 Eligibility Tool'}</span>
                     <span>→</span>
                   </Link>
                 </div>
               </div>
             </div>
+
+            {/* Cross-link to Knowledge Library */}
+            <div className="p-5 rounded-2xl bg-blue-50/80 border-2 border-blue-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🏛️</span>
+                <div className="space-y-0.5">
+                  <h4 className="text-xs sm:text-sm font-bold text-blue-950 m-0">
+                    {locale === 'tr' ? 'Resmi Erasmus+ ve ESCO/EQAVET Kütüphanesini İnceleyin' : 'Explore Official Erasmus+ & ESCO/EQAVET Library'}
+                  </h4>
+                  <p className="text-[11px] sm:text-xs text-blue-800 m-0">
+                    {locale === 'tr'
+                      ? '34 doğrulanmış resmi kaynak: Ulusal Ajans duyuruları, Europass şablonları, CEDEFOP raporları ve MEB/MYK portalleri.'
+                      : '34 verified official sources: National Agency calls, Europass templates, CEDEFOP reports, and national VET directories.'}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveTab('RESOURCES')}
+                className="shrink-0 px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs transition-colors shadow-xs"
+              >
+                {locale === 'tr' ? 'Bilgi Kütüphanesini Aç' : 'Open Knowledge Library'} →
+              </button>
+            </div>
           </section>
         )}
 
         {/* DYNAMIC DOCUMENTS SECTION */}
-        {(activeTab === 'FORMS' || activeTab === 'GUIDES') && (
+        {activeTab === 'DOCS' && (
           <section className="bg-white border-2 border-slate-300 rounded-2xl p-6 sm:p-8 shadow-xs space-y-6 animate-fadeIn">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1">
@@ -270,7 +434,7 @@ export default function LibraryPage() {
                     {locale === 'tr' ? 'Resmi Şablonlar ve İndirilebilir Doküman Havuzu' : 'Official Templates & Downloadable Document Pool'}
                   </h2>
                   <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-100 text-blue-800">
-                    {dynamicDocuments.length} Belge
+                    {dynamicDocuments.length} {locale === 'tr' ? 'Belge' : 'Documents'}
                   </span>
                 </div>
                 <p className="text-xs text-slate-600 m-0">
@@ -489,7 +653,7 @@ export default function LibraryPage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="TERMS"
+        initialTab="COOKIES"
       />
       <LegalModal
         isOpen={isLegalModalOpen}

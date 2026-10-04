@@ -6,6 +6,8 @@ import AppHeader from '../../components/layout/AppHeader';
 import AppFooter from '../../components/layout/AppFooter';
 import CookieBanner from '../../components/ui/CookieBanner';
 import LegalModal from '../../components/ui/LegalModal';
+import MatchingCriteriaExplainer from '../../components/platform/MatchingCriteriaExplainer';
+import DistinctSectionPurposeCard from '../../components/ui/DistinctSectionPurposeCard';
 import { useTranslation } from '../../lib/i18n';
 
 export default function PlatformPage() {
@@ -37,7 +39,7 @@ export default function PlatformPage() {
           <div className="hidden sm:flex items-center gap-2 text-[11px] text-slate-500 font-mono">
             <span>EMaaS v1.0</span>
             <span>•</span>
-            <span>Erasmus Mobility as a Service</span>
+            <span>{locale === 'tr' ? 'Hizmet Olarak Erasmus Hareketliliği (EMaaS)' : 'Erasmus Mobility as a Service'}</span>
           </div>
         </div>
       </div>
@@ -50,6 +52,10 @@ export default function PlatformPage() {
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-900 border border-blue-200">
               <span>⚡</span>
               <span>{locale === 'tr' ? 'EMaaS Platform Mimarisi' : 'EMaaS Platform Architecture'}</span>
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200">
+              <span>⚖️</span>
+              <span>{locale === 'tr' ? 'Bağımsız Planlama & Destek Platformu' : 'Independent Planning & Support Platform'}</span>
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
               <span>✓</span>
@@ -65,8 +71,8 @@ export default function PlatformPage() {
             </h1>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed m-0">
               {locale === 'tr'
-                ? 'ErasmusMobility; okul yöneticileri, proje ekipleri ve Avrupa işletmelerini tek bir dijital platformda buluşturur. 5 adımlı hareketlilik planlama pipeline\'ı, doğrulanmış Avrupa host havuzu ve resmi başvuru form rehberleri ile proje sürecinizi profesyonelleştirin.'
-                : 'ErasmusMobility brings together school leaders, project coordinators, and European host enterprises on a single institutional gateway. Elevate your Erasmus+ journey through a 5-step pipeline, verified European hosts, and official web application guidance.'}
+                ? 'ErasmusMobility; Türkiye\'den Avrupa\'ya hareketlilik planlayan okul yöneticileri, proje ekipleri ve doğrulanmış Avrupa işletmelerini tek bir dijital platformda buluşturan bağımsız bir karar, eşleştirme ve dosya hazırlık desteğidir. Resmi başvuru form rehberleri, 5 adımlı hareketlilik planlama süreç akışı ve hibe hesabı ile kurumların resmi Erasmus+ süreçlerine en yüksek hazırlık kalitesiyle başvurmasını sağlar.'
+                : 'ErasmusMobility is an independent decision, host matching, and document preparation support platform connecting vocational schools planning Türkiye-to-Europe mobility with verified European hosts. Our guided workflows empower institutions to prepare for official Erasmus+ applications with maximum compliance and confidence.'}
             </p>
           </div>
 
@@ -75,8 +81,7 @@ export default function PlatformPage() {
               href="/school/pipeline"
               className="px-5 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs transition-colors shadow-xs flex items-center gap-1.5"
             >
-              <span>🚀</span>
-              <span>{locale === 'tr' ? '5 Adımlı Pipeline\'ı Başlat' : 'Start 5-Step Pipeline'}</span>
+              <span>{locale === 'tr' ? '5 Adımlı Süreç Akışını Başlat' : 'Start 5-Step Pipeline'}</span>
               <span>→</span>
             </Link>
 
@@ -87,8 +92,75 @@ export default function PlatformPage() {
               <span>🏛️</span>
               <span>{locale === 'tr' ? 'Kurumsal Kayıt & OID Kurulumu' : 'Institutional Setup & OID'}</span>
             </Link>
+
+            <a
+              href="#matching-criteria"
+              className="px-4 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold text-xs transition-colors flex items-center gap-1.5"
+            >
+              <span>⚖️</span>
+              <span>{locale === 'tr' ? 'Nasıl Eşleşir? 7 Kriter Kılavuzu' : 'How It Matches: 7 Criteria'}</span>
+            </a>
           </div>
         </section>
+
+        {/* Distinct Section Purpose & Top 3 Resources Card */}
+        <DistinctSectionPurposeCard
+          sectionKey="platform"
+          tag={locale === 'tr' ? 'EMaaS Operasyon Merkezi' : 'EMaaS Operations Hub'}
+          tagColor="bg-blue-50 text-blue-900 border-blue-200"
+          title={
+            locale === 'tr'
+              ? 'Platform Bölümünün Rolü ve En Çok Aranan Kaynaklar'
+              : 'Platform Section Role & Top Searched Resources'
+          }
+          purposeSentence={
+            locale === 'tr'
+              ? 'Uçtan uca dijital hareketlilik planlama, akıllı ev sahibi eşleştirmesi, başvuru taslağı ve resmi evrak ihracı operasyon merkezidir.'
+              : 'Operations hub for end-to-end digital mobility planning, smart host matching, application drafting and official dossier generation.'
+          }
+          topResourcesTitle={
+            locale === 'tr'
+              ? 'Platformda En Çok Aranan 3 Kaynak ve Hızlı Erişim'
+              : 'Top 3 Most Searched Resources & Direct Access'
+          }
+          resources={[
+            {
+              icon: '🚀',
+              title: locale === 'tr' ? '5 Adımlı Hareketlilik Planı' : '5-Step Mobility Pipeline',
+              description:
+                locale === 'tr'
+                  ? 'Okul profili, ESCO yetkinlik seçimi, akıllı filtreleme ve hibe fizibilitesi kararı.'
+                  : 'Institutional profile, ESCO competencies, smart filtering and grant calculation.',
+              href: '/school/pipeline',
+              badge: locale === 'tr' ? 'Süreç Akışı' : 'Pipeline',
+            },
+            {
+              icon: '🎓',
+              title: locale === 'tr' ? 'Eğitim & Fırsat Pazar Yeri' : 'Training & Opportunity Marketplace',
+              description:
+                locale === 'tr'
+                  ? 'Doğrulanmış kurslar, işbaşı gözlem ilanları ve doğrudan teklif/kontenjan talebi.'
+                  : 'Verified European courses, job shadowing slots and direct offer inquiries.',
+              href: '/marketplace',
+              badge: locale === 'tr' ? 'Pazaryeri' : 'Marketplace',
+            },
+            {
+              icon: '📋',
+              title: locale === 'tr' ? 'KA121 & KA122 Başvuru Taslağı' : 'KA121 / KA122 Application Draft',
+              description:
+                locale === 'tr'
+                  ? 'Resmi web form soru setleri, KA120 PDF aktarımı ve bütçe taslak hazırlığı.'
+                  : 'Official web form questionnaires, KA120 PDF ingestion and draft preparation.',
+              href: '/school/application-draft',
+              badge: locale === 'tr' ? 'Taslak' : 'Draft',
+            },
+          ]}
+          footerNotice={
+            locale === 'tr'
+              ? 'Platform modülleri hem bağımsız hem de tek bir akışta entegre biçimde çalışabilir.'
+              : 'Platform modules can be utilized independently or cohesively across the mobility lifecycle.'
+          }
+        />
 
         {/* 6 Core Modules Grid */}
         <section className="space-y-4">
@@ -114,11 +186,11 @@ export default function PlatformPage() {
                   {locale === 'tr' ? 'Aşama 1-5' : 'Stages 1-5'}
                 </div>
                 <h3 className="text-base font-bold text-slate-900 m-0">
-                  {locale === 'tr' ? '5 Adımlı Planlama Pipeline\'ı' : '5-Step Planning Pipeline'}
+                  {locale === 'tr' ? '5 Adımlı Planlama Süreç Akışı' : '5-Step Planning Pipeline'}
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed m-0">
                   {locale === 'tr'
-                    ? 'Kurum profili, katılımcı analizi, ESCO taksonomisi, 10 kriterli host eşleştirme ve hibe tavsiye raporunu tek bir akışta tamamlayın.'
+                    ? 'Kurum profili, katılımcı analizi, ESCO taksonomisi, 10 kriterli ev sahibi kuruluş eşleştirmesi ve hibe tavsiye raporunu tek bir akışta tamamlayın.'
                     : 'Complete institutional profile, participant needs, ESCO taxonomy mapping, 10-parameter host scoring, and grant advisory dossiers in one seamless flow.'}
                 </p>
               </div>
@@ -126,7 +198,7 @@ export default function PlatformPage() {
                 href="/school/pipeline"
                 className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold text-xs transition-colors"
               >
-                <span>{locale === 'tr' ? 'Pipeline\'a Git' : 'Open Pipeline'}</span>
+                <span>{locale === 'tr' ? 'Süreç Akışına Git' : 'Open Pipeline'}</span>
                 <span>→</span>
               </Link>
             </div>
@@ -165,10 +237,10 @@ export default function PlatformPage() {
                   🏢
                 </div>
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 text-indigo-900">
-                  {locale === 'tr' ? 'Host Portföyü' : 'Host Portfolio'}
+                  {locale === 'tr' ? 'Ev Sahibi Portföyü' : 'Host Portfolio'}
                 </div>
                 <h3 className="text-base font-bold text-slate-900 m-0">
-                  {locale === 'tr' ? 'Avrupa Ev Sahibi Portalı' : 'European Host Portal'}
+                  {locale === 'tr' ? 'Avrupa Ev Sahibi Kuruluş Portalı' : 'European Host Portal'}
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed m-0">
                   {locale === 'tr'
@@ -180,7 +252,7 @@ export default function PlatformPage() {
                 href="/onboarding"
                 className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-800 font-bold text-xs transition-colors"
               >
-                <span>{locale === 'tr' ? 'Host Kaydı Yap' : 'Register Host'}</span>
+                <span>{locale === 'tr' ? 'Ev Sahibi Kuruluş Kaydı Yap' : 'Register Host'}</span>
                 <span>→</span>
               </Link>
             </div>
@@ -253,7 +325,7 @@ export default function PlatformPage() {
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed m-0">
                   {locale === 'tr'
-                    ? 'Şirket sicili, vergi numarası, OHS iş güvenliği ve 7/24 acil durum kontağı ile onaylı partner (Verified Partner) rozeti denetimi.'
+                    ? 'Şirket sicili, vergi numarası, OHS iş güvenliği ve 7/24 acil durum kontağı ile Doğrulanmış Ortak (Verified Partner) rozeti denetimi.'
                     : 'Rigorous vetting of company registration, tax status, emergency contacts, and trainee safeguards to grant Verified Partner badges.'}
                 </p>
               </div>
@@ -266,6 +338,11 @@ export default function PlatformPage() {
               </Link>
             </div>
           </div>
+        </section>
+
+        {/* 7 Core Matching Criteria & Mismatch Diagnostics (PKG-IMP-03) */}
+        <section id="matching-criteria" className="space-y-4">
+          <MatchingCriteriaExplainer />
         </section>
 
         {/* Role Comparison Table (Flat, High Contrast) */}
@@ -287,37 +364,47 @@ export default function PlatformPage() {
                 <tr className="border-b-2 border-slate-200 text-slate-600 uppercase tracking-wider text-[11px]">
                   <th className="py-3 px-4">{locale === 'tr' ? 'İşlev / Özellik' : 'Functionality / Feature'}</th>
                   <th className="py-3 px-4 text-center">{locale === 'tr' ? 'Okul / Gönderen Kurum' : 'Sending School'}</th>
-                  <th className="py-3 px-4 text-center">{locale === 'tr' ? 'Ev Sahibi (Host) İşletme' : 'Host Enterprise'}</th>
+                  <th className="py-3 px-4 text-center">{locale === 'tr' ? 'Ev Sahibi Kuruluş' : 'Host Enterprise'}</th>
                   <th className="py-3 px-4 text-center">{locale === 'tr' ? 'Platform Yöneticisi' : 'Platform Admin'}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-700">
                 <tr className="hover:bg-slate-50">
-                  <td className="py-3 px-4 font-bold text-slate-900">5 Adımlı Hareketlilik Planlama Pipeline'ı</td>
+                  <td className="py-3 px-4 font-bold text-slate-900">
+                    {locale === 'tr' ? '5 Adımlı Hareketlilik Süreç Akışı' : '5-Step Mobility Planning Pipeline'}
+                  </td>
                   <td className="py-3 px-4 text-center text-emerald-700 font-bold text-base">✓</td>
                   <td className="py-3 px-4 text-center text-slate-300">-</td>
                   <td className="py-3 px-4 text-center text-emerald-700 font-bold text-base">✓</td>
                 </tr>
                 <tr className="hover:bg-slate-50">
-                  <td className="py-3 px-4 font-bold text-slate-900">Avrupa Host Arama & Doğrudan Talep Gönderme</td>
+                  <td className="py-3 px-4 font-bold text-slate-900">
+                    {locale === 'tr' ? 'Avrupa Ev Sahibi Kuruluş Arama & Doğrudan Talep Gönderme' : 'European Host Search and Direct Request Submission'}
+                  </td>
                   <td className="py-3 px-4 text-center text-emerald-700 font-bold text-base">✓</td>
                   <td className="py-3 px-4 text-center text-slate-300">-</td>
                   <td className="py-3 px-4 text-center text-emerald-700 font-bold text-base">✓</td>
                 </tr>
                 <tr className="hover:bg-slate-50">
-                  <td className="py-3 px-4 font-bold text-slate-900">Staj Kontenjanı & Kabul Mektubu (LoI) Yönetimi</td>
+                  <td className="py-3 px-4 font-bold text-slate-900">
+                    {locale === 'tr' ? 'Staj Kontenjanı & Niyet Mektubu (LoI) Yönetimi' : 'Internship Capacity and Letter of Intent Management'}
+                  </td>
                   <td className="py-3 px-4 text-center text-slate-300">-</td>
                   <td className="py-3 px-4 text-center text-emerald-700 font-bold text-base">✓</td>
                   <td className="py-3 px-4 text-center text-emerald-700 font-bold text-base">✓</td>
                 </tr>
                 <tr className="hover:bg-slate-50">
-                  <td className="py-3 px-4 font-bold text-slate-900">15 Kriterli Kurumsal KYC Evrak Yükleme</td>
+                  <td className="py-3 px-4 font-bold text-slate-900">
+                    {locale === 'tr' ? '15 Kriterli Kurumsal KYC Evrak Yükleme' : '15-Criterion Institutional KYC Document Upload'}
+                  </td>
                   <td className="py-3 px-4 text-center text-slate-300">-</td>
                   <td className="py-3 px-4 text-center text-emerald-700 font-bold text-base">✓</td>
                   <td className="py-3 px-4 text-center text-emerald-700 font-bold text-base">✓</td>
                 </tr>
                 <tr className="hover:bg-slate-50">
-                  <td className="py-3 px-4 font-bold text-slate-900">Yönetici Doğrulama Havuzu & Onay Paneli</td>
+                  <td className="py-3 px-4 font-bold text-slate-900">
+                    {locale === 'tr' ? 'Yönetici Doğrulama Havuzu & Onay Paneli' : 'Administrator Verification Pool and Approval Panel'}
+                  </td>
                   <td className="py-3 px-4 text-center text-slate-300">-</td>
                   <td className="py-3 px-4 text-center text-slate-300">-</td>
                   <td className="py-3 px-4 text-center text-emerald-700 font-bold text-base">✓</td>
@@ -336,7 +423,7 @@ export default function PlatformPage() {
       <LegalModal
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="TERMS"
+        initialTab="COOKIES"
       />
     </div>
   );

@@ -14,6 +14,16 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const hostId = searchParams.get('hostId');
     const schoolOid = searchParams.get('schoolOid');
+    const adminKey = request.headers.get('x-admin-key');
+
+    // IDOR & Data Isolation: Prevent unauthenticated mass exfiltration of all institutional records
+    if (!hostId && !schoolOid && !adminKey) {
+      return NextResponse.json({
+        success: true,
+        count: 0,
+        data: [],
+      });
+    }
 
     let inquiries = await InquiriesDb.getAll();
 

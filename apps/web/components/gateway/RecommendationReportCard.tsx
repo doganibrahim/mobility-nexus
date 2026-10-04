@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import NeoCard from '../ui/NeoCard';
-import { DecisionEngineResult, HostScoreResult } from '../../lib/calculations';
+import { DecisionEngineResult, HostScoreResult, getHumanReadableMobilityGoal } from '../../lib/calculations';
 import { ParticipantType, MobilityGoal } from '@mobility-nexus/types';
 import { useTranslation } from '../../lib/i18n';
 import MobilityInquiryModal from '../inquiry/MobilityInquiryModal';
@@ -64,6 +64,16 @@ export default function RecommendationReportCard({
   const isReportGenerated = Boolean(decisionResult || hostScoreResult || competenceScore !== null);
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
 
+  const isOrgProfileIncomplete = !data.schoolName?.trim() || !data.oid?.trim();
+  const isOutcomesOutOfSync = Boolean(
+    data.technicalOutcome &&
+      (((data.participantType === 'teacher' || data.participantType === 'staff') &&
+        data.technicalOutcome.toLowerCase().includes('öğrenci') &&
+        !data.technicalOutcome.toLowerCase().includes('eğitici')) ||
+        (data.participantType === 'student' &&
+          data.technicalOutcome.toLowerCase().includes('teknik eğitici')))
+  );
+
   const existingInquiry = data.hostName
     ? store.inquiries.find(
         (inq) => inq.hostName.toLowerCase() === data.hostName.toLowerCase(),
@@ -79,8 +89,20 @@ export default function RecommendationReportCard({
     <NeoCard
       id="report"
       title={t.report.title}
-      badge={t.report.badge}
-      badgeType="primary"
+      badge={
+        decisionResult?.isDataValid === false
+          ? (locale === 'tr' ? 'Geçersiz Plan — Düzeltme Gerekli' : 'Invalid Plan — Correction Required')
+          : isOrgProfileIncomplete
+            ? (locale === 'tr' ? 'Eksik Taslak' : 'Incomplete Draft')
+            : t.report.badge
+      }
+      badgeType={
+        decisionResult?.isDataValid === false
+          ? 'bad'
+          : isOrgProfileIncomplete
+            ? 'warn'
+            : 'primary'
+      }
       featured
     >
       <div className="space-y-4">
@@ -170,6 +192,71 @@ export default function RecommendationReportCard({
         {/* Formatted Report Container */}
         {isReportGenerated ? (
           <div className="rounded-xl border border-slate-200 bg-white p-4 sm:p-6 space-y-5 shadow-xs">
+            {/* Planning Validation Error Banner */}
+            {decisionResult?.isDataValid === false && decisionResult.validationErrors && decisionResult.validationErrors.length > 0 && (
+              <div className="p-4 rounded-xl border border-red-300 bg-red-50 text-red-950 text-xs leading-relaxed space-y-2 shadow-2xs">
+                <div className="flex items-center gap-2 font-bold text-red-900 text-sm">
+                  <span>🛑</span>
+                  <span>
+                    {locale === 'tr'
+                      ? 'Planlama Hatası — Uygunluk Değerlendirmesi ve Karar Durduruldu'
+                      : 'Planning Errors Detected — Evaluation & Decision Suspended'}
+                  </span>
+                </div>
+                <p className="m-0 text-slate-700">
+                  {locale === 'tr'
+                    ? 'Aşağıdaki planlama alanlarında Erasmus+ kural veya veri tutarlılığı ihlalleri tespit edildi. Hatalar giderilmeden resmi başvuru taslağı veya başarı puanı oluşturulamaz:'
+                    : 'Rule violations or data inconsistencies were detected. Application draft and suitability scoring are suspended until resolved:'}
+                </p>
+                <ul className="list-disc pl-5 space-y-1 font-semibold text-red-900">
+                  {decisionResult.validationErrors.map((err, idx) => (
+                    <li key={idx}>{err}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Incomplete Draft Warning Banner */}
+            {isOrgProfileIncomplete && (
+              <div className="p-4 rounded-xl border border-amber-300 bg-amber-50/90 text-amber-950 text-xs leading-relaxed space-y-1.5 shadow-2xs">
+                <div className="flex items-center gap-2 font-bold text-amber-900">
+                  <span className="text-base">⚠️</span>
+                  <span>
+                    {locale === 'tr'
+                      ? 'Eksik Taslak — Kurum Bilgisi Girilmedi'
+                      : 'Incomplete Draft — Organization Details Missing'}
+                  </span>
+                </div>
+                <p className="m-0 text-slate-700">
+                  {locale === 'tr'
+                    ? 'Bu rapor bir simülasyon taslağıdır ve henüz bir kuruma (Okul Adı ve OID) bağlanmamıştır. Tam ve geçerli bir uygunluk değerlendirmesi için lütfen 1. Adım Kurum Profili sekmesinden kurum bilgilerinizi doldurunuz.'
+                    : 'This report is a simulated draft and has not yet been linked to an official institution (School Name and OID). Please complete Step 1 (School Profile) to obtain an authentic institutional evaluation.'}
+                </p>
+              </div>
+            )}
+
+            {/* Out-of-sync outcomes banner */}
+            {isOutcomesOutOfSync && (
+              <div className="p-3.5 rounded-xl border border-blue-300 bg-blue-50 text-blue-950 text-xs leading-relaxed flex items-center justify-between gap-3 flex-wrap shadow-2xs">
+                <div className="flex items-center gap-2">
+                  <span className="text-base">ℹ️</span>
+                  <span>
+                    {locale === 'tr'
+                      ? 'Katılımcı profili değişti. Öğrenme çıktıları güncel katılımcı rolünü yansıtacak şekilde yenilenmelidir.'
+                      : 'Participant profile was modified. Learning outcomes should be refreshed to reflect the new role.'}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={onRefreshReport}
+                  className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shadow-xs"
+                >
+                  <span>🔄</span>
+                  <span>{locale === 'tr' ? 'Raporu ve Çıktıları Yenile' : 'Refresh Report & Outcomes'}</span>
+                </button>
+              </div>
+            )}
+
             <div className="border-b border-slate-200 pb-4 flex justify-between items-start flex-wrap gap-3">
               <div>
                 <span className="text-[11px] font-bold text-blue-700 uppercase tracking-wide">
@@ -189,23 +276,31 @@ export default function RecommendationReportCard({
                   </div>
                 </div>
               </div>
-              {decisionResult && (
-                <span
-                  className={`edu-badge text-xs font-bold ${
-                    decisionResult.action === 'KA120-VET Erasmus Accreditation Recommended'
-                      ? 'bg-purple-100 text-purple-900 border-purple-300'
-                      : decisionResult.level === 'good'
-                        ? 'edu-badge-good'
-                        : decisionResult.level === 'warn'
-                          ? 'edu-badge-warn'
-                          : 'edu-badge-bad'
-                  }`}
-                >
-                  {decisionResult.action === 'KA120-VET Erasmus Accreditation Recommended'
-                    ? (locale === 'en' ? '⭐ KA120-VET Accreditation Recommended' : '⭐ KA120-VET Akreditasyon Tavsiyesi')
-                    : decisionResult.action} • {decisionResult.readiness}
-                </span>
-              )}
+              <div className="flex items-center gap-2 flex-wrap">
+                {isOrgProfileIncomplete && (
+                  <span className="px-2.5 py-1 rounded-lg border text-xs font-bold bg-amber-50 text-amber-900 border-amber-300 flex items-center gap-1">
+                    <span>⚠️</span>
+                    <span>{locale === 'tr' ? 'Eksik Taslak (Kurum/OID Yok)' : 'Incomplete Draft (No Org/OID)'}</span>
+                  </span>
+                )}
+                {decisionResult && (
+                  <span
+                    className={`edu-badge text-xs font-bold ${
+                      decisionResult.action === 'KA120-VET Erasmus Accreditation Recommended'
+                        ? 'bg-purple-100 text-purple-900 border-purple-300'
+                        : decisionResult.level === 'good'
+                          ? 'edu-badge-good'
+                          : decisionResult.level === 'warn'
+                            ? 'edu-badge-warn'
+                            : 'edu-badge-bad'
+                    }`}
+                  >
+                    {decisionResult.action === 'KA120-VET Erasmus Accreditation Recommended'
+                      ? (locale === 'en' ? '⭐ KA120-VET Accreditation Recommended' : '⭐ KA120-VET Akreditasyon Tavsiyesi')
+                      : decisionResult.action} • {decisionResult.readiness}
+                  </span>
+                )}
+              </div>
             </div>
 
             {/* Key Metadata Table */}
@@ -365,10 +460,10 @@ export default function RecommendationReportCard({
                     </th>
                     <td colSpan={3} className="p-3 text-slate-800">
                       <div className="flex flex-wrap gap-x-6 gap-y-2">
-                        <span><strong>{locale === 'tr' ? 'Faaliyet:' : 'Activity:'}</strong> {data.mobilityGoal}</span>
+                        <span><strong>{locale === 'tr' ? 'Faaliyet:' : 'Activity:'}</strong> {getHumanReadableMobilityGoal(data.mobilityGoal, locale as 'tr' | 'en')}</span>
                         <span><strong>{locale === 'tr' ? 'Ülkeler:' : 'Countries:'}</strong> {data.targetCountries?.length > 0 ? data.targetCountries.map(c => getCountryFlagLabel(c, locale as 'tr' | 'en')).join(', ') : (locale === 'tr' ? 'Fark Etmez / Tüm Uygun Ülkeler' : 'No Preference / All Eligible Countries')}</span>
                         <span><strong>{locale === 'tr' ? 'Tarih:' : 'Dates:'}</strong> {data.startDate || '—'} / {data.endDate || '—'}</span>
-                        <span><strong>{locale === 'tr' ? 'Katılımcı:' : 'Participants:'}</strong> {data.participantCount} {locale === 'tr' ? 'Katılımcı' : 'Participants'} (+{data.accompanyingPersonsCount} {locale === 'tr' ? 'Refakat Eden Kişi' : 'Accompanying Persons'})</span>
+                        <span><strong>{locale === 'tr' ? 'Katılımcı:' : 'Participants:'}</strong> {data.participantCount} {locale === 'tr' ? 'Katılımcı' : 'Participants'} (+{Math.max(0, data.accompanyingPersonsCount || 0)} {locale === 'tr' ? 'Refakat Eden Kişi' : 'Accompanying Persons'})</span>
                         <span><strong>{locale === 'tr' ? 'Yaş Grubu:' : 'Age Group:'}</strong> {data.ageGroup === 'under_18' ? (locale === 'tr' ? '18 Yaş Altı Reşit Olmayan Katılımcı' : 'Under 18 Minor Participant') : data.ageGroup === '18_plus' ? (locale === 'tr' ? '18+ Yetişkin' : '18+ Adult') : (locale === 'tr' ? 'Karma' : 'Mixed')}</span>
                       </div>
                     </td>
@@ -422,8 +517,19 @@ export default function RecommendationReportCard({
                 <div className="text-xs font-bold text-slate-700 mb-1">
                   {t.report.decisionSummary}
                 </div>
-                <div className="bg-blue-900 text-white p-4 rounded-xl text-xs leading-relaxed shadow-sm">
-                  <strong className="text-blue-200">Değerlendirme:</strong> Bu tavsiye raporu Erasmus+ VET yönergelerine ve Ulusal Ajans standartlarına uygun olarak otomatik sentezlenmiştir. Nihai katılımcı seçimi şeffaf ve belgelendirilebilir bir prosedürle yapılmalıdır.
+                <div className={`p-4 rounded-xl text-xs leading-relaxed shadow-sm ${
+                  isOrgProfileIncomplete ? 'bg-slate-800 text-slate-200 border border-amber-500/40' : 'bg-blue-900 text-white'
+                }`}>
+                  <strong className={isOrgProfileIncomplete ? 'text-amber-300' : 'text-blue-200'}>
+                    {locale === 'tr' ? 'Değerlendirme:' : 'Assessment:'}
+                  </strong>{' '}
+                  {isOrgProfileIncomplete
+                    ? (locale === 'tr'
+                        ? 'Eksik Taslak: Kurum bilgisi ve OID girilmediği için bu rapor bağlayıcı olmayan bir önizleme simülasyonudur. Resmi başvuru taslağına geçilmeden önce kurum bilgilerinin 1. Adım altında tamamlanması gerekmektedir.'
+                        : 'Incomplete Draft: Because organization details and OID are missing, this report is a non-binding preview simulation. Institutional details must be completed in Step 1 before starting an official draft.')
+                    : (locale === 'tr'
+                        ? 'Bu tavsiye raporu Erasmus+ VET yönergelerine ve Ulusal Ajans standartlarına uygun olarak otomatik sentezlenmiştir. Nihai katılımcı seçimi şeffaf ve belgelendirilebilir bir prosedürle yapılmalıdır.'
+                        : 'This recommendation dossier has been automatically synthesized according to Erasmus+ VET guidelines. Final participant selection must follow a transparent and documented procedure.')}
                 </div>
               </div>
             </div>

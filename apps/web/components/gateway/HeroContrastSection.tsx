@@ -20,10 +20,18 @@ export default function HeroContrastSection({
     <section className="bg-[#0B1930] text-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl border border-slate-800 space-y-8">
       {/* Top Tag & Context */}
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
             <span>🇪🇺</span>
-            <span>{locale === 'tr' ? 'Erasmus+ Mesleki Eğitim (VET) Portalı' : 'Erasmus+ VET Mobility Portal'}</span>
+            <span>{locale === 'tr' ? 'Erasmus+ Mesleki Eğitim (VET) Planlama Ağı' : 'Erasmus+ VET Mobility Planning Network'}</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30">
+            <span>🇹🇷 ➔ 🇪🇺</span>
+            <span>
+              {locale === 'tr'
+                ? "Türkiye'den Avrupa'ya Hareketlilik"
+                : 'Türkiye-to-Europe Mobility'}
+            </span>
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -37,16 +45,16 @@ export default function HeroContrastSection({
       </div>
 
       {/* Main Headline */}
-      <div className="max-w-3xl space-y-2.5">
+      <div className="max-w-3xl space-y-3">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
           {locale === 'tr'
-            ? 'Meslek Liseleri ve Avrupa Ev Sahibi İşletmeler İçin Ortak Ağ'
-            : 'Unified European Mobility Network for Vocational Schools & Hosts'}
+            ? "Türkiye'den Avrupa'ya Mesleki Hareketlilik Planlama ve Ortak Ağı"
+            : 'Plan Your Türkiye-to-Europe Mobility: Verified Host Network & Planning Platform'}
         </h1>
         <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
           {locale === 'tr'
-            ? 'KA121/KA122 proje süreçlerini, doğrudan ev sahibi eşleşmesini ve resmi AB evraklarını tek platformda yönetin.'
-            : 'Manage KA121/KA122 projects, direct host matching, and official EU documentation in one unified platform.'}
+            ? "Platformumuz; Türkiye'den Avrupa'ya KA121 ve KA122 hareketliliği planlayan meslek liseleri, konsorsiyumlar ve eğitim kurumlarını; kurumsal ihtiyaç analizi, onaylı Avrupa ev sahibi eşleşmesi ve resmi AB evrak otomasyonu ile uçtan uca destekler."
+            : 'Our platform supports organisations and vocational schools planning Türkiye-to-Europe KA121/KA122 mobility through needs assessment, verified European host matching, distance band grants, and official EU documentation.'}
         </p>
       </div>
 
@@ -75,15 +83,15 @@ export default function HeroContrastSection({
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed m-0">
               {locale === 'tr'
-                ? 'Meslek liseleri ve konsorsiyumlar için proje hazırlığı, ihtiyaç analizi, ev sahibi eşleşmesi ve resmi evrak ihracı.'
-                : 'Project preparation, needs assessment, verified host matching, and official dossier export for vocational schools.'}
+                ? "Türkiye'den Avrupa'ya hareketlilik planlayan meslek liseleri ve konsorsiyumlar için proje hazırlığı, ihtiyaç analizi, ev sahibi eşleşmesi ve resmi evrak ihracı."
+                : 'Project preparation, needs assessment, verified host matching, and official dossier export for vocational schools planning Türkiye-to-Europe mobility.'}
             </p>
 
             {/* 3 Value Points */}
             <ul className="space-y-2 pt-1">
               <li className="flex items-center gap-2 text-xs text-slate-300">
                 <span className="w-4 h-4 rounded-full bg-blue-500/30 text-blue-300 flex items-center justify-center font-bold text-[10px] shrink-0">✓</span>
-                <span>{locale === 'tr' ? '5 Adımlı Hareketlilik Pipeline ve OID doğrulaması' : '5-Step Mobility Pipeline & OID validation'}</span>
+                <span>{locale === 'tr' ? '5 Adımlı Hareketlilik Planlama ve OID doğrulaması' : '5-Step Mobility Planning & OID validation'}</span>
               </li>
               <li className="flex items-center gap-2 text-xs text-slate-300">
                 <span className="w-4 h-4 rounded-full bg-blue-500/30 text-blue-300 flex items-center justify-center font-bold text-[10px] shrink-0">✓</span>
@@ -91,7 +99,7 @@ export default function HeroContrastSection({
               </li>
               <li className="flex items-center gap-2 text-xs text-slate-300">
                 <span className="w-4 h-4 rounded-full bg-blue-500/30 text-blue-300 flex items-center justify-center font-bold text-[10px] shrink-0">✓</span>
-                <span>{locale === 'tr' ? 'Learning Agreement ve Europass Mobility ihracı' : 'Learning Agreement & Europass Mobility export'}</span>
+                <span>{locale === 'tr' ? 'Öğrenim Anlaşması ve Europass Hareketlilik Belgesi ihracı' : 'Learning Agreement & Europass Mobility export'}</span>
               </li>
             </ul>
           </div>
@@ -101,10 +109,9 @@ export default function HeroContrastSection({
             <div className="flex flex-col sm:flex-row items-center gap-2.5">
               <Link
                 href="/school/pipeline"
-                className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs sm:text-sm text-center shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-xs sm:text-sm text-center shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer focus:ring-2 focus:ring-blue-400"
               >
-                <span>🚀</span>
-                <span>{locale === 'tr' ? 'Pipeline’ı Başlat' : 'Start Pipeline'}</span>
+                <span>{locale === 'tr' ? 'Hareketliliğinizi Planlayın' : 'Plan your mobility'}</span>
                 <span>→</span>
               </Link>
 
@@ -114,7 +121,6 @@ export default function HeroContrastSection({
                   onClick={onStartSchoolDemo}
                   className="w-full sm:w-auto py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-blue-200 border border-slate-700 font-bold text-xs text-center transition-colors flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
                 >
-                  <span>🏛️</span>
                   <span>{locale === 'tr' ? 'Okul Demosu' : 'School Demo'}</span>
                 </button>
               )}
@@ -127,7 +133,6 @@ export default function HeroContrastSection({
                   type="button"
                   className="text-blue-300 hover:text-white font-semibold hover:underline flex items-center gap-1 text-[11px] cursor-pointer"
                 >
-                  <span>➕</span>
                   <span>{locale === 'tr' ? 'Yararlanıcı / Okul Kaydı Oluştur' : 'Register Beneficiary School'}</span>
                   <span>→</span>
                 </button>
@@ -156,7 +161,7 @@ export default function HeroContrastSection({
                 </div>
               </div>
               <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-600/40 text-emerald-200 border border-emerald-500/40 shrink-0">
-                {locale === 'tr' ? 'Host & Staj' : 'Hosts & Internships'}
+                {locale === 'tr' ? 'Ev Sahibi Kuruluşlar ve Staj' : 'Hosts & Internships'}
               </span>
             </div>
 
@@ -190,7 +195,6 @@ export default function HeroContrastSection({
                 href="/marketplace"
                 className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm text-center shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>🎓</span>
                 <span>{locale === 'tr' ? 'Pazaryerini İncele' : 'Explore Marketplace'}</span>
                 <span>→</span>
               </Link>
@@ -201,8 +205,7 @@ export default function HeroContrastSection({
                   onClick={onStartHostDemo}
                   className="w-full sm:w-auto py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-200 border border-slate-700 font-bold text-xs text-center transition-colors flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
                 >
-                  <span>🏢</span>
-                  <span>{locale === 'tr' ? 'Host Demosu' : 'Host Demo'}</span>
+                  <span>{locale === 'tr' ? 'Ev Sahibi Kuruluş Demosu' : 'Host Demo'}</span>
                 </button>
               )}
             </div>
@@ -214,7 +217,6 @@ export default function HeroContrastSection({
                   type="button"
                   className="text-emerald-300 hover:text-white font-semibold hover:underline flex items-center gap-1 text-[11px] cursor-pointer"
                 >
-                  <span>➕</span>
                   <span>{locale === 'tr' ? 'Ev Sahibi Kurum Kaydı Oluştur' : 'Register Host Organisation'}</span>
                   <span>→</span>
                 </button>
@@ -236,7 +238,7 @@ export default function HeroContrastSection({
           </span>
           <span className="flex items-center gap-1.5">
             <span className="text-emerald-400">📄</span>
-            <span>{locale === 'tr' ? 'Europass & Learning Agreement Standartları' : 'Europass & Learning Agreement'}</span>
+            <span>{locale === 'tr' ? 'Europass & Öğrenim Anlaşması Standartları' : 'Europass & Learning Agreement'}</span>
           </span>
         </div>
 
@@ -244,8 +246,7 @@ export default function HeroContrastSection({
           href="/guide"
           className="text-slate-300 hover:text-white font-bold flex items-center gap-1 transition-colors"
         >
-          <span>📖</span>
-          <span>{locale === 'tr' ? 'Platform Kılavuzu' : 'Platform Guide'}</span>
+          <span>{locale === 'tr' ? 'Platform Kullanım Kılavuzu' : 'Platform Guide'}</span>
           <span>→</span>
         </Link>
       </div>

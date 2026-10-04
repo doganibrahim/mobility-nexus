@@ -107,4 +107,34 @@ export class HostsController {
   ) {
     return this.hostsService.matchHosts(dto, correlationId);
   }
+
+  @Post('evaluate-criteria')
+  @UsePipes(new ValidationPipe({ whitelist: true, transform: true }))
+  @ApiOperation({ summary: '7 Kriterli Şeffaf Eşleşme, Skor ve Uyuşmazlık (Mismatch) Tanılaması (PKG-IMP-03)' })
+  @ApiResponse({ status: 200, description: '7 kriterli detaylı eşleşme/uyuşmazlık dökümü ve skor açıklaması' })
+  evaluateCriteria(
+    @Body() dto: import('./dto/evaluate-criteria.dto').EvaluateCriteriaDto,
+    @Headers(CORRELATION_ID_HEADER) correlationId = 'eval-req',
+  ) {
+    return this.hostsService.evaluateCriteria(dto, correlationId);
+  }
+
+  @Get(':id/reviews-breakdown')
+  @ApiOperation({ summary: '5 Boyutlu Performans Değerlendirme Puanları ve Yorum Kırılımı (PKG-IMP-05)' })
+  @ApiResponse({ status: 200, description: '5 boyutlu performans değerlendirme puanları ve son okul geri bildirimleri' })
+  getReviewsBreakdown(@Param('id') id: string) {
+    return this.hostsService.getReviewsBreakdown(id);
+  }
+
+  @Post(':id/reviews')
+  @UsePipes(new ValidationPipe({ whitelist: true, transform: true }))
+  @ApiOperation({ summary: 'Ev Sahibi Kurum İçin 5 Kriterli Değerlendirme Gönder (PKG-IMP-05)' })
+  @ApiResponse({ status: 201, description: '5 boyutlu değerlendirme kaydedildi' })
+  createReview(
+    @Param('id') id: string,
+    @Body() dto: import('./dto/create-review.dto').CreateReviewDto,
+    @Headers(CORRELATION_ID_HEADER) correlationId = 'review-req',
+  ) {
+    return this.hostsService.createReview(id, dto, correlationId);
+  }
 }

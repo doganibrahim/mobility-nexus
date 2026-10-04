@@ -3,126 +3,37 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from '../../lib/i18n';
-
-interface RouteCity {
-  id: string;
-  nameTr: string;
-  nameEn: string;
-  countryTr: string;
-  countryEn: string;
-  flag: string;
-  distanceKm: number;
-  travelGrantEuro: number;
-  dailyGrantEuro: number;
-  sectorTr: string;
-  sectorEn: string;
-  isced: string;
-  x: number;
-  y: number;
-  accent: 'blue' | 'emerald' | 'amber';
-}
-
-const ROUTE_CITIES: RouteCity[] = [
-  {
-    id: 'berlin',
-    nameTr: 'Berlin',
-    nameEn: 'Berlin',
-    countryTr: 'Almanya',
-    countryEn: 'Germany',
-    flag: '🇩🇪',
-    distanceKm: 1740,
-    travelGrantEuro: 275,
-    dailyGrantEuro: 165,
-    sectorTr: 'Bilişim Teknolojileri & Mekatronik',
-    sectorEn: 'IT & Mechatronics',
-    isced: '0714 / 0610',
-    x: 420,
-    y: 170,
-    accent: 'blue',
-  },
-  {
-    id: 'madrid',
-    nameTr: 'Madrid',
-    nameEn: 'Madrid',
-    countryTr: 'İspanya',
-    countryEn: 'Spain',
-    flag: '🇪🇸',
-    distanceKm: 2750,
-    travelGrantEuro: 360,
-    dailyGrantEuro: 155,
-    sectorTr: 'Yenilenebilir Enerji & Elektrik',
-    sectorEn: 'Renewable Energy & Electrical',
-    isced: '0712 / 0713',
-    x: 190,
-    y: 310,
-    accent: 'emerald',
-  },
-  {
-    id: 'rome',
-    nameTr: 'Roma',
-    nameEn: 'Rome',
-    countryTr: 'İtalya',
-    countryEn: 'Italy',
-    flag: '🇮🇹',
-    distanceKm: 1380,
-    travelGrantEuro: 275,
-    dailyGrantEuro: 165,
-    sectorTr: 'Otomotiv & Endüstriyel Tasarım',
-    sectorEn: 'Automotive & Industrial Design',
-    isced: '0716 / 0212',
-    x: 420,
-    y: 295,
-    accent: 'amber',
-  },
-  {
-    id: 'vienna',
-    nameTr: 'Viyana',
-    nameEn: 'Vienna',
-    countryTr: 'Avusturya',
-    countryEn: 'Austria',
-    flag: '🇦🇹',
-    distanceKm: 1280,
-    travelGrantEuro: 275,
-    dailyGrantEuro: 165,
-    sectorTr: 'Endüstri 4.0 & Otomasyon Sistemleri',
-    sectorEn: 'Industry 4.0 & Automation Systems',
-    isced: '0714 / 0710',
-    x: 465,
-    y: 220,
-    accent: 'blue',
-  },
-  {
-    id: 'warsaw',
-    nameTr: 'Varşova',
-    nameEn: 'Warsaw',
-    countryTr: 'Polonya',
-    countryEn: 'Poland',
-    flag: '🇵🇱',
-    distanceKm: 1400,
-    travelGrantEuro: 275,
-    dailyGrantEuro: 145,
-    sectorTr: 'Lojistik & Ağ Güvenliği',
-    sectorEn: 'Logistics & Network Security',
-    isced: '1041 / 0612',
-    x: 520,
-    y: 165,
-    accent: 'emerald',
-  },
-];
-
-const ORIGIN_TURKEY = {
-  name: 'İstanbul / Türkiye',
-  flag: '🇹🇷',
-  x: 620,
-  y: 330,
-};
+import {
+  EUROPE_COUNTRY_PATHS,
+  MOBILITY_COUNTRIES,
+  ORIGIN_TURKEY,
+  MobilityCountry,
+} from './europeMapData';
 
 export default function EuropeanRouteNetwork() {
   const { locale } = useTranslation();
-  const [activeCityId, setActiveCityId] = useState<string>('berlin');
+  const isTr = locale === 'tr';
 
-  const activeCity =
-    ROUTE_CITIES.find((c) => c.id === activeCityId) || ROUTE_CITIES[0];
+  const [activeCountryId, setActiveCountryId] = useState<string>('DE');
+  const [isGreenTravel, setIsGreenTravel] = useState<boolean>(false);
+
+  const activeCountry: MobilityCountry =
+    MOBILITY_COUNTRIES.find((c) => c.id === activeCountryId) ||
+    MOBILITY_COUNTRIES[0];
+
+  const travelGrant = isGreenTravel
+    ? activeCountry.greenGrantEuro
+    : activeCountry.travelGrantEuro;
+
+  // Active path curve from Turkey to selected country
+  const midX = (ORIGIN_TURKEY.x + activeCountry.x) / 2;
+  const midY = Math.min(ORIGIN_TURKEY.y, activeCountry.y) - 60;
+  const activePathD = `M ${ORIGIN_TURKEY.x} ${ORIGIN_TURKEY.y} Q ${midX} ${midY} ${activeCountry.x} ${activeCountry.y}`;
+
+  // Quick lookup set for partner countries
+  const partnerCountryMap = new Map(
+    MOBILITY_COUNTRIES.map((c) => [c.id, c])
+  );
 
   return (
     <div className="bg-white rounded-3xl border-2 border-slate-300 p-6 sm:p-8 shadow-sm space-y-6">
@@ -132,21 +43,21 @@ export default function EuropeanRouteNetwork() {
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-blue-50 text-blue-900 border border-blue-200">
               <span>🗺️</span>
-              <span>{locale === 'tr' ? 'Vektörel Hareketlilik Ağı' : 'Mobility Route Network'}</span>
+              <span>{isTr ? 'Avrupa Hareketlilik Ağı' : 'European Mobility Network'}</span>
             </span>
             <span className="text-xs font-bold text-slate-500 hidden sm:inline">
-              {locale === 'tr' ? 'Mesafe Bandı & Hibe Otomasyonu' : 'Distance Band & Grant Automation'}
+              {isTr ? 'Mesafe Bandı & Hibe Otomasyonu' : 'Distance Band & Grant Automation'}
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1.5 m-0">
-            {locale === 'tr'
+            {isTr
               ? 'Türkiye’den Avrupa’ya Hareketlilik Koridorları'
               : 'Mobility Corridors from Turkey to Europe'}
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-1 m-0">
-            {locale === 'tr'
-              ? 'Avrupa Komisyonu mesafe bandı formülüyle hesaplanan hibe tutarları ve mesleki staj alanları.'
-              : 'Standardised Erasmus+ travel grants and technical sectors across key European mobility hubs.'}
+            {isTr
+              ? 'Avrupa Komisyonu mesafe bandı ve ülke hibe gruplarına göre anlık seyahat ve harcırah hesaplama.'
+              : 'Real-time Erasmus+ distance band grants and daily unit costs across partner countries.'}
           </p>
         </div>
 
@@ -154,65 +65,133 @@ export default function EuropeanRouteNetwork() {
           href="/school/pipeline"
           className="px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 text-xs font-extrabold rounded-xl transition-colors shadow-2xs self-start md:self-auto flex items-center gap-1.5 cursor-pointer"
         >
-          <span>🚀</span>
-          <span>{locale === 'tr' ? 'Kendi Rotanı Hesapla' : 'Calculate Your Route'}</span>
+          <span>{isTr ? 'Kendi Rotanı Hesapla' : 'Calculate Your Route'}</span>
           <span>→</span>
         </Link>
       </div>
 
-      {/* Main Interactive Stage: SVG Map + Info Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-        {/* SVG Interactive Canvas (7 cols on desktop) */}
-        <div className="lg:col-span-7 bg-[#0B1930] rounded-2xl p-4 sm:p-6 border border-slate-800 relative overflow-hidden flex flex-col justify-between shadow-inner min-h-[340px]">
+      {/* Main Interactive Stage: Real Vector Map (7 cols) + Detail & Cost Card (5 cols) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        {/* Real Geographic European Vector Map Canvas (7 cols on desktop) */}
+        <div className="lg:col-span-7 bg-[#081220] rounded-2xl p-4 sm:p-5 border border-slate-800 relative overflow-hidden flex flex-col justify-between shadow-inner min-h-[380px]">
           {/* Subtle Grid Pattern Overlay */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <svg width="100%" height="100%">
               <defs>
-                <pattern id="route-grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="white" strokeWidth="0.5" />
+                <pattern id="radar-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#route-grid)" />
+              <rect width="100%" height="100%" fill="url(#radar-grid)" />
             </svg>
           </div>
 
-          {/* SVG Map Canvas */}
+          {/* Real Geographic Vector Map SVG */}
           <svg
-            viewBox="0 0 750 420"
+            viewBox="200 130 800 550"
             className="w-full h-auto select-none relative z-10"
-            style={{ maxHeight: '360px' }}
+            style={{ maxHeight: '420px' }}
           >
-            {/* Draw Paths from Origin (Istanbul) to Target Cities */}
-            {ROUTE_CITIES.map((city) => {
-              const isActive = city.id === activeCityId;
-              // Curved bezier midpoint
-              const midX = (ORIGIN_TURKEY.x + city.x) / 2;
-              const midY = (ORIGIN_TURKEY.y + city.y) / 2 - 40;
-              const pathD = `M ${ORIGIN_TURKEY.x} ${ORIGIN_TURKEY.y} Q ${midX} ${midY} ${city.x} ${city.y}`;
+            <defs>
+              <style>{`
+                @keyframes routeDashFlow {
+                  to {
+                    stroke-dashoffset: -28;
+                  }
+                }
+              `}</style>
+            </defs>
 
-              return (
-                <g key={`path-${city.id}`}>
-                  {/* Background shadow line */}
+            {/* 1. All European Countries Landmass Geometry */}
+            <g id="europe-landmasses">
+              {EUROPE_COUNTRY_PATHS.map((c, idx) => {
+                const isTurkey = c.id === 'TR';
+                const isPartner = partnerCountryMap.has(c.id);
+                const isActive = c.id === activeCountryId;
+
+                let fill = '#111C2E';
+                let stroke = '#1E2D44';
+                let strokeWidth = 0.8;
+
+                if (isTurkey) {
+                  fill = '#1E3A8A';
+                  stroke = '#3B82F6';
+                  strokeWidth = 1.4;
+                } else if (isActive) {
+                  fill = isGreenTravel ? '#065F46' : '#1D4ED8';
+                  stroke = isGreenTravel ? '#34D399' : '#60A5FA';
+                  strokeWidth = 1.8;
+                } else if (isPartner) {
+                  fill = '#1A2942';
+                  stroke = '#334D6E';
+                  strokeWidth = 1;
+                }
+
+                return (
                   <path
+                    key={`country-${c.id}-${idx}`}
+                    d={c.d}
+                    fill={fill}
+                    stroke={stroke}
+                    strokeWidth={strokeWidth}
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    onClick={() => {
+                      if (isPartner) {
+                        setActiveCountryId(c.id);
+                      }
+                    }}
+                    className={`transition-colors duration-200 ${
+                      isPartner ? 'cursor-pointer hover:fill-blue-900/70' : ''
+                    }`}
+                  >
+                    <title>{c.name}</title>
+                  </path>
+                );
+              })}
+            </g>
+
+            {/* 2. Inactive Flight Corridors */}
+            <g id="inactive-corridors">
+              {MOBILITY_COUNTRIES.filter((c) => c.id !== activeCountryId).map((c) => {
+                const mx = (ORIGIN_TURKEY.x + c.x) / 2;
+                const my = Math.min(ORIGIN_TURKEY.y, c.y) - 40;
+                const pathD = `M ${ORIGIN_TURKEY.x} ${ORIGIN_TURKEY.y} Q ${mx} ${my} ${c.x} ${c.y}`;
+
+                return (
+                  <path
+                    key={`corridor-${c.id}`}
                     d={pathD}
                     fill="none"
-                    stroke={isActive ? (city.accent === 'emerald' ? '#10B981' : city.accent === 'amber' ? '#F59E0B' : '#3B82F6') : '#334155'}
-                    strokeWidth={isActive ? 3 : 1.5}
-                    strokeDasharray={isActive ? '6 4' : '4 4'}
-                    className="transition-all duration-300"
+                    stroke="#2A3D59"
+                    strokeWidth="1.2"
+                    strokeDasharray="4 4"
                   />
-                </g>
-              );
-            })}
+                );
+              })}
+            </g>
 
-            {/* Origin Node: Istanbul, Turkey */}
-            <g className="cursor-pointer">
+            {/* 3. Active Flight Corridor with Moving Beam Flow */}
+            <path
+              d={activePathD}
+              fill="none"
+              stroke={isGreenTravel ? '#10B981' : '#38BDF8'}
+              strokeWidth="3.5"
+              strokeDasharray="8 6"
+              style={{
+                animation: 'routeDashFlow 1.3s linear infinite',
+              }}
+              className="transition-all duration-300"
+            />
+
+            {/* 4. Origin Node: Turkey */}
+            <g className="cursor-pointer select-none">
               <circle
                 cx={ORIGIN_TURKEY.x}
                 cy={ORIGIN_TURKEY.y}
-                r="14"
+                r="16"
                 fill="#3B82F6"
-                fillOpacity="0.2"
+                fillOpacity="0.25"
                 className="animate-ping"
               />
               <circle
@@ -224,180 +203,229 @@ export default function EuropeanRouteNetwork() {
                 strokeWidth="2.5"
               />
               <text
-                x={ORIGIN_TURKEY.x - 10}
-                y={ORIGIN_TURKEY.y + 22}
+                x={ORIGIN_TURKEY.x}
+                y={ORIGIN_TURKEY.y + 20}
                 fill="#FFFFFF"
-                fontSize="11"
+                fontSize="12"
                 fontWeight="900"
                 textAnchor="middle"
+                className="pointer-events-none"
               >
-                🇹🇷 {locale === 'tr' ? 'Türkiye (Çıkış)' : 'Turkey (Origin)'}
+                {ORIGIN_TURKEY.flag} {isTr ? ORIGIN_TURKEY.nameTr : ORIGIN_TURKEY.nameEn}
               </text>
             </g>
 
-            {/* Destination Nodes: European Cities */}
-            {ROUTE_CITIES.map((city) => {
-              const isActive = city.id === activeCityId;
-              const nodeColor =
-                city.accent === 'emerald'
+            {/* 5. Destination Partner Country Markers */}
+            {MOBILITY_COUNTRIES.map((country) => {
+              const isActive = country.id === activeCountryId;
+              const textX = country.x + (country.labelDx ?? 0);
+              const textY = country.y + (country.labelDy ?? -12);
+              const textAnchor = country.labelAnchor ?? 'middle';
+              const dotColor = isActive
+                ? isGreenTravel
                   ? '#10B981'
-                  : city.accent === 'amber'
-                  ? '#F59E0B'
-                  : '#3B82F6';
+                  : '#38BDF8'
+                : '#94A3B8';
 
               return (
                 <g
-                  key={`node-${city.id}`}
-                  onClick={() => setActiveCityId(city.id)}
+                  key={`marker-${country.id}`}
+                  onClick={() => setActiveCountryId(country.id)}
                   className="cursor-pointer group"
                 >
-                  {/* Hit area */}
-                  <circle cx={city.x} cy={city.y} r="20" fill="transparent" />
+                  {/* Generous invisible tap/click target */}
+                  <circle cx={country.x} cy={country.y} r="20" fill="transparent" />
 
-                  {/* Pulsing ring if active */}
+                  {/* Pulsing ring on active */}
                   {isActive && (
                     <circle
-                      cx={city.x}
-                      cy={city.y}
+                      cx={country.x}
+                      cy={country.y}
                       r="16"
-                      fill={nodeColor}
+                      fill={dotColor}
                       fillOpacity="0.3"
                       className="animate-pulse"
                     />
                   )}
 
-                  {/* Core Node Dot */}
+                  {/* Core Country Dot */}
                   <circle
-                    cx={city.x}
-                    cy={city.y}
-                    r={isActive ? 8 : 6}
-                    fill={nodeColor}
+                    cx={country.x}
+                    cy={country.y}
+                    r={isActive ? 8 : 5}
+                    fill={dotColor}
                     stroke="#FFFFFF"
                     strokeWidth={isActive ? 2.5 : 1.5}
-                    className="transition-all duration-200 group-hover:scale-125"
                   />
 
-                  {/* City Label */}
+                  {/* Country Name & Flag */}
                   <text
-                    x={city.x}
-                    y={city.y - 12}
-                    fill={isActive ? '#FFFFFF' : '#94A3B8'}
-                    fontSize={isActive ? '12' : '10'}
+                    x={textX}
+                    y={textY}
+                    fill={isActive ? '#FFFFFF' : '#CBD5E1'}
+                    fontSize={isActive ? '13' : '11'}
                     fontWeight={isActive ? '900' : '700'}
-                    textAnchor="middle"
-                    className="transition-colors"
+                    textAnchor={textAnchor}
+                    className="transition-colors group-hover:fill-white select-none pointer-events-none drop-shadow-sm"
                   >
-                    {city.flag} {locale === 'tr' ? city.nameTr : city.nameEn}
+                    {country.flag} {isTr ? country.nameTr : country.nameEn}
                   </text>
                 </g>
               );
             })}
           </svg>
 
-          {/* Quick city pills on the bottom of map */}
-          <div className="flex items-center gap-1.5 flex-wrap pt-3 border-t border-slate-800/80 relative z-10">
-            <span className="text-[11px] font-bold text-slate-400 mr-1">
-              {locale === 'tr' ? 'Şehir Seç:' : 'Select Hub:'}
+          {/* Sleek bottom radar status indicator */}
+          <div className="flex items-center justify-between text-xs text-slate-400 pt-3 border-t border-slate-800/80 relative z-10">
+            <span className="flex items-center gap-2 font-semibold">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>
+                {isTr ? 'Aktif Rota:' : 'Active Route:'}{' '}
+                <strong className="text-white font-black">
+                  Türkiye ➔ {isTr ? activeCountry.nameTr : activeCountry.nameEn} ({activeCountry.distanceKm} km)
+                </strong>
+              </span>
             </span>
-            {ROUTE_CITIES.map((city) => (
-              <button
-                key={city.id}
-                type="button"
-                onClick={() => setActiveCityId(city.id)}
-                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  activeCityId === city.id
-                    ? 'bg-blue-600 text-white shadow-xs'
-                    : 'bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700'
-                }`}
-              >
-                <span>{city.flag}</span> <span>{locale === 'tr' ? city.nameTr : city.nameEn}</span>
-              </button>
-            ))}
+            <span className="text-slate-400 hidden sm:inline text-[11px]">
+              {isTr ? '💡 Harita üzerindeki ülkelere tıklayabilirsiniz' : '💡 Click countries directly on the map'}
+            </span>
           </div>
         </div>
 
-        {/* Dynamic Detail Card for Active Hub (5 cols on desktop) */}
-        <div className="lg:col-span-5 bg-slate-50 rounded-2xl border-2 border-slate-200 p-6 flex flex-col justify-between space-y-5">
+        {/* Dynamic Detail & Cost Card (5 cols on desktop) */}
+        <div className="lg:col-span-5 bg-slate-50 rounded-2xl border-2 border-slate-200 p-6 flex flex-col justify-between space-y-4">
           <div className="space-y-4">
-            {/* City Title & Distance Badge */}
+            {/* Header: Selected Country & Distance Band */}
             <div className="flex items-center justify-between gap-3">
               <div>
                 <span className="text-xs font-black uppercase tracking-wider text-slate-500 block">
-                  {locale === 'tr' ? 'Seçili Hareketlilik Merkezi' : 'Selected Mobility Hub'}
+                  {isTr ? 'SEÇİLİ HAREKETLİLİK ÜLKESİ' : 'SELECTED DESTINATION COUNTRY'}
                 </span>
-                <h3 className="text-2xl font-black text-slate-900 m-0 flex items-center gap-2">
-                  <span>{activeCity.flag}</span>
-                  <span>{locale === 'tr' ? activeCity.nameTr : activeCity.nameEn}</span>
-                  <span className="text-xs font-semibold text-slate-500">
-                    ({locale === 'tr' ? activeCity.countryTr : activeCity.countryEn})
-                  </span>
+                <h3 className="text-2xl font-black text-slate-900 m-0 flex items-center gap-2 mt-0.5">
+                  <span>{activeCountry.flag}</span>
+                  <span>{isTr ? activeCountry.nameTr : activeCountry.nameEn}</span>
                 </h3>
               </div>
 
-              <span className="px-3 py-1 rounded-full text-xs font-extrabold bg-blue-100 text-blue-900 border border-blue-300 shrink-0">
-                {activeCity.distanceKm} km
+              <span className="px-3 py-1 rounded-full text-xs font-extrabold bg-blue-100 text-blue-900 border border-blue-300 shrink-0 shadow-2xs">
+                {activeCountry.distanceKm} km
               </span>
+            </div>
+
+            {/* Destination Country Dropdown for Instant Selection */}
+            <div>
+              <label className="text-[11px] font-bold text-slate-600 uppercase tracking-wider block mb-1">
+                🎯 {isTr ? 'Hedef Ülkeyi Değiştir:' : 'Change Destination Country:'}
+              </label>
+              <select
+                value={activeCountryId}
+                onChange={(e) => setActiveCountryId(e.target.value)}
+                className="w-full p-2.5 rounded-xl bg-white border border-slate-300 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer"
+              >
+                {MOBILITY_COUNTRIES.map((country) => (
+                  <option key={country.id} value={country.id}>
+                    {country.flag} {isTr ? country.nameTr : country.nameEn} - {country.distanceKm} km (Grup {country.group})
+                  </option>
+                ))}
+              </select>
             </div>
 
             {/* EU Calculated Metrics Grid */}
             <div className="grid grid-cols-2 gap-3 pt-1">
               <div className="p-3.5 bg-white rounded-xl border border-slate-200 shadow-2xs">
                 <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
-                  {locale === 'tr' ? 'Seyahat Desteği' : 'Travel Grant'}
+                  {isTr ? 'SEYAHAT DESTEĞİ' : 'TRAVEL GRANT'}
                 </span>
-                <div className="text-2xl font-black text-blue-700 mt-0.5">
-                  {activeCity.travelGrantEuro} €
+                <div className={`text-2xl font-black mt-0.5 ${isGreenTravel ? 'text-emerald-700' : 'text-blue-700'}`}>
+                  {travelGrant} €
                 </div>
                 <span className="text-[11px] text-slate-500">
-                  {locale === 'tr' ? 'Katılımcı Başına' : 'Per Participant'}
+                  {isGreenTravel
+                    ? isTr ? 'Yeşil Seyahat / Kişi' : 'Green Travel / Person'
+                    : isTr ? 'Katılımcı Başına' : 'Per Participant'}
                 </span>
               </div>
 
               <div className="p-3.5 bg-white rounded-xl border border-slate-200 shadow-2xs">
                 <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
-                  {locale === 'tr' ? 'Günlük Bireysel Hibe' : 'Daily Unit Cost'}
+                  {isTr ? 'GÜNLÜK HARCIRAH' : 'DAILY UNIT COST'}
                 </span>
                 <div className="text-2xl font-black text-emerald-700 mt-0.5">
-                  {activeCity.dailyGrantEuro} €
+                  {activeCountry.dailyGrantEuro} €
                 </div>
                 <span className="text-[11px] text-slate-500">
-                  {locale === 'tr' ? 'Grup 1/2 AB Ülkesi' : 'Group 1/2 Country'}
+                  {isTr ? `Grup ${activeCountry.group} AB Ülkesi` : `Group ${activeCountry.group} Country`}
                 </span>
               </div>
             </div>
 
-            {/* Target VET Sectors */}
-            <div className="p-4 bg-white rounded-xl border border-slate-200 space-y-1.5 shadow-2xs text-xs">
-              <div className="flex items-center justify-between text-slate-500 font-bold">
-                <span>{locale === 'tr' ? 'Öne Çıkan Mesleki Alan:' : 'Target VET Domain:'}</span>
-                <span className="font-mono text-slate-700">{activeCity.isced}</span>
+            {/* Green Travel Toggle Option */}
+            <div className="p-3 bg-white rounded-xl border border-slate-200 flex items-center justify-between text-xs">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={isGreenTravel}
+                  onChange={(e) => setIsGreenTravel(e.target.checked)}
+                  className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300 cursor-pointer"
+                />
+                <span className="font-semibold text-slate-800">
+                  🌱 {isTr ? 'Yeşil Seyahat Desteği' : 'Green Travel Bonus'}
+                </span>
+              </label>
+
+              <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                {isGreenTravel
+                  ? `+${activeCountry.greenGrantEuro - activeCountry.travelGrantEuro} € ${isTr ? 'Ek Hibe' : 'Extra'}`
+                  : (isTr ? 'Standart' : 'Standard')}
+              </span>
+            </div>
+
+            {/* 14-Day Practical Total Budget Preview */}
+            <div className="p-3.5 bg-blue-50/80 rounded-xl border border-blue-200 flex items-center justify-between text-xs">
+              <div>
+                <span className="text-xs font-extrabold text-blue-900 block">
+                  💶 {isTr ? 'Örnek 14 Günlük Hibe Paketi:' : 'Sample 14-Day Grant Package:'}
+                </span>
+                <span className="text-[11px] text-blue-700">
+                  {travelGrant} € (Seyahat) + (14 × {activeCountry.dailyGrantEuro} € Harcırah)
+                </span>
               </div>
-              <div className="text-sm font-black text-slate-900">
-                {locale === 'tr' ? activeCity.sectorTr : activeCity.sectorEn}
+              <div className="text-right">
+                <span className="text-lg font-black text-blue-950 block">
+                  {travelGrant + 14 * activeCountry.dailyGrantEuro} €
+                </span>
+                <span className="text-[10px] font-semibold text-blue-700">
+                  {isTr ? 'Öğrenci Başına' : 'Per Participant'}
+                </span>
               </div>
-              <p className="text-xs text-slate-500 m-0 pt-0.5 leading-relaxed">
-                {locale === 'tr'
-                  ? 'Bu rotada akredite meslek liseleri için doğrudan işbaşı izleme ve staj kontenjanı tanımlanabilmektedir.'
-                  : 'Direct internship placements and job shadowing opportunities available for accredited schools.'}
-              </p>
+            </div>
+
+            {/* Official Erasmus+ Distance Band Explanation */}
+            <div className="p-3 bg-slate-100 rounded-xl border border-slate-200 text-xs text-slate-600 leading-relaxed">
+              <span className="font-bold text-slate-800 block mb-0.5">
+                📌 {isTr ? 'Resmi Erasmus+ Hibe Esası:' : 'Official Erasmus+ Grant Rules:'}
+              </span>
+              {isTr
+                ? 'Mesafe bantları Avrupa Komisyonu resmi mesafe hesaplayıcısı baz alınarak otomatik belirlenir. Bireysel destek hibesi ev sahibi ülkenin yaşam maliyet grubuna (Grup 1-3) göre ödenir.'
+                : 'Distance bands are calculated via the European Commission distance calculator. Individual support is based on the host country living cost group.'}
             </div>
           </div>
 
           {/* Action Links */}
           <div className="pt-3 border-t border-slate-200 flex items-center justify-between gap-3">
             <Link
-              href="/marketplace"
+              href={`/marketplace?country=${encodeURIComponent(activeCountry.nameEn)}`}
               className="flex-1 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs text-center transition-colors shadow-2xs"
             >
-              <span>{locale === 'tr' ? 'Bu Rota İlanlarını Gör' : 'View Hub Offers'}</span>
-              <span>→</span>
+              <span>{isTr ? 'Bu Ülke İlanlarını Gör' : 'View Country Offers'}</span>
+              <span> →</span>
             </Link>
 
             <Link
               href="/school/pipeline"
               className="py-2.5 px-3 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs border border-slate-300 transition-colors shadow-2xs text-center"
             >
-              <span>{locale === 'tr' ? 'Hibe Planla' : 'Plan Grant'}</span>
+              <span>{isTr ? 'Hibe Planla' : 'Plan Grant'}</span>
             </Link>
           </div>
         </div>

@@ -5,12 +5,13 @@ import {
   HostType,
   Ka122EligibilityResult,
 } from '@mobility-nexus/types';
-import { DecisionEngineResult, HostScoreResult } from './calculations';
+import { DecisionEngineResult, HostScoreResult, generateOutcomes } from './calculations';
 import {
   ApplicationDraftState,
   DEFAULT_DRAFT_STATE,
   FormType,
   calculateDraftCompletion,
+  calculateDurationDaysFromDates,
   Ka120ExtractedData,
 } from './application-draft-schema';
 import { DRAFT_DEMO_PRESETS } from './application-draft-demo-presets';
@@ -390,7 +391,12 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   fetchInquiriesFromServer: async () => {
     try {
-      const serverInquiries = await apiClient.getInquiries();
+      const { schoolProfile, currentHost } = get();
+      const schoolOid = schoolProfile?.oid;
+      const hostId = currentHost?.id;
+      const serverInquiries = await apiClient.getInquiries(
+        schoolOid || hostId ? { schoolOid, hostId } : undefined
+      );
       if (Array.isArray(serverInquiries) && serverInquiries.length > 0) {
         set(() => {
           if (typeof window !== 'undefined') {
@@ -600,9 +606,26 @@ export const useAppStore = create<AppState>((set, get) => ({
         data.participantCount !== undefined
           ? { ...state.eligibilityGatekeeper, participantCount: data.participantCount }
           : state.eligibilityGatekeeper;
+
+      let nextOutcomes = state.learningOutcomes;
+      if (data.participantType && data.participantType !== state.participantProfile.participantType) {
+        const gap = state.learningOutcomes.primaryGap || state.escoIsced.escoTerm || 'belirlenen mesleki yetkinlik';
+        const generated = generateOutcomes(
+          data.participantType,
+          gap,
+          state.escoIsced.escoTerm
+        );
+        nextOutcomes = {
+          ...state.learningOutcomes,
+          technicalOutcome: generated.technicalOutcome,
+          transversalOutcome: generated.transversalOutcome,
+        };
+      }
+
       return {
         participantProfile: nextProfile,
         eligibilityGatekeeper: nextEligibility,
+        learningOutcomes: nextOutcomes,
       };
     }),
 
@@ -658,6 +681,16 @@ export const useAppStore = create<AppState>((set, get) => ({
       const formType: FormType = targetFormType || state.applicationDraft.formType;
       const isKa121 = formType === 'KA121';
 
+      // Dynamically calculate activity duration from participant dates if present
+      const calculatedDuration = calculateDurationDaysFromDates(
+        state.participantProfile.startDate,
+        state.participantProfile.endDate
+      );
+      const standardDays =
+        calculatedDuration ??
+        state.applicationDraft.activityDetails.standardDurationDays ??
+        14;
+
       const nextDraft: ApplicationDraftState = {
         ...state.applicationDraft,
         formType,
@@ -708,8 +741,13 @@ export const useAppStore = create<AppState>((set, get) => ({
           hostName: state.hostMatching.hostName || state.applicationDraft.activityDetails.hostName,
           hostCountry: state.hostMatching.hostCountry || state.applicationDraft.activityDetails.hostCountry,
           totalParticipants: state.participantProfile.participantCount || state.applicationDraft.activityDetails.totalParticipants,
+          standardDurationDays: standardDays,
+          allSameDuration: true,
+          includeTravelDays: true,
+          travelDaysPerPerson: state.applicationDraft.activityDetails.travelDaysPerPerson || 2,
           accompanyingRequired: (state.participantProfile.accompanyingPersonsCount || 0) > 0,
           accompanyingCount: state.participantProfile.accompanyingPersonsCount || 0,
+          accompanyingDays: standardDays,
           accompanyingReason: state.participantProfile.ageGroup === 'under_18' ? 'UNDERAGE' : 'SAFETY_LOGISTICS',
         },
       };
@@ -926,74 +964,81 @@ export const useAppStore = create<AppState>((set, get) => ({
       } catch {}
     }
 
-    set({
-      currentHost: null,
-      orgType: 'SCHOOL',
-      isOnboarded: true,
-      schoolProfile: {
-        schoolName: isEn ? 'Kapadokya Technical High School [MOCK]' : 'Kapadokya Teknik Lisesi [MOCK]',
-        city: 'Nevşehir',
-        accredited: 'yes',
-        oid: 'E10999001',
-        erasmusPlan: isEn ? 'Enhance teachers and learners competence in Industry 4.0, smart automation, and robotics.' : 'Öğretmen ve öğrencilerin Endüstri 4.0 / dijital üretim ve robotik yetkinliklerini geliştirmek.',
-        institutionNeed: isEn ? 'Our school has established a new PLC lab and requires European job-shadowing for technical staff.' : 'Okulumuzda yeni nesil PLC ve endüstriyel haberleşme laboratuvarı kurulmuş olup, öğretmenlerimizin Avrupa standartlarında pratik işbaşı gözlem ihtiyacı bulunmaktadır.',
-      },
-      participantProfile: {
-        participantType: 'teacher',
-        mobilityGoal: 'JOB_SHADOWING',
-        participantName: isEn ? 'Vocational Teachers Group' : 'Teknik Öğretmen Grubu',
-        language: 70,
-        targetCountries: ['DE', 'NL'],
-        startDate: '2026-10-15',
-        endDate: '2026-10-25',
-        participantCount: 5,
-        accompanyingPersonsCount: 0,
-        ageGroup: '18_plus',
-      },
-      escoIsced: {
-        vetField: 'automation',
-        iscedCode: '0714',
-        iscedName: 'Electronics and automation',
-        escoTerm: 'automation technician / mechatronics technician / industrial electrician',
-        iscoCode: '3115',
-        escoUri: 'http://data.europa.eu/esco/occupation/3115',
-        skills: 'PLC programlama; endüstriyel otomasyon; robotik; arıza tespiti; kontrol sistemleri; önleyici bakım',
-      },
-      competence: {
-        assessmentAnswers: { 1: 4, 2: 4, 3: 3, 4: 5, 5: 4, 6: 4, 7: 4, 8: 4, 9: 3, 10: 4, 11: 4, 12: 4 },
-        competenceScore: 78,
-        assessmentResultMsg: 'Skor: 78/100 | Hedef: 80 | Yetkinlik Farkı: 2 Puan (Yüksek Hazırlık Seviyesi)',
-        assessmentResultType: 'good',
-        targetScore: 80,
-        externalScore: '',
-      },
-      decisionEngine: {
-        decisionResult: null, // Will be computed
-      },
-      eligibilityGatekeeper: {
-        participantCount: 5,
-        projectDurationMonths: 12,
-        pastKa122GrantsCount: 0,
-        mobilityStrategy: 'ad_hoc',
-        eligibilityResult: null,
-      },
-      hostMatching: {
-        hostName: 'Leipzig Vocational Training Center (BSZ 7)',
-        hostCountry: isEn ? 'Germany' : 'Almanya',
-        hostType: 'VET school',
-        hostMetrics: { h1: 85, h2: 80, h3: 85, h4: 70, h5: 75, h6: 70, h7: 85, h8: 80, h9: 90, h10: 80 },
-        hostScoreResult: null, // Will be computed
-      },
-      learningOutcomes: {
-        primaryGap: 'Endüstriyel PLC Programlama & Robotik',
-        technicalOutcome: '',
-        transversalOutcome: '',
-      },
-    });
+      const demoOutcomes = generateOutcomes(
+        'teacher',
+        'Endüstriyel PLC Programlama & Robotik',
+        'automation technician / mechatronics technician / industrial electrician'
+      );
 
-    // Also populate application draft for demo
-    get().syncPipelineToDraft('KA122');
-  },
+      set({
+        currentHost: null,
+        orgType: 'SCHOOL',
+        isOnboarded: true,
+        schoolProfile: {
+          schoolName: isEn ? 'Kapadokya Technical High School [MOCK]' : 'Kapadokya Teknik Lisesi [MOCK]',
+          city: 'Nevşehir',
+          accredited: 'yes',
+          oid: 'E10999001',
+          erasmusPlan: isEn ? 'Enhance teachers and learners competence in Industry 4.0, smart automation, and robotics.' : 'Öğretmen ve öğrencilerin Endüstri 4.0 / dijital üretim ve robotik yetkinliklerini geliştirmek.',
+          institutionNeed: isEn ? 'Our school has established a new PLC lab and requires European job-shadowing for technical staff.' : 'Okulumuzda yeni nesil PLC ve endüstriyel haberleşme laboratuvarı kurulmuş olup, öğretmenlerimizin Avrupa standartlarında pratik işbaşı gözlem ihtiyacı bulunmaktadır.',
+        },
+        participantProfile: {
+          participantType: 'teacher',
+          mobilityGoal: 'JOB_SHADOWING',
+          participantName: isEn ? 'Vocational Teachers Group' : 'Teknik Öğretmen Grubu',
+          language: 70,
+          targetCountries: ['DE', 'NL'],
+          startDate: '2026-10-15',
+          endDate: '2026-10-25',
+          participantCount: 5,
+          accompanyingPersonsCount: 0,
+          ageGroup: '18_plus',
+        },
+        escoIsced: {
+          vetField: 'automation',
+          iscedCode: '0714',
+          iscedName: 'Electronics and automation',
+          escoTerm: 'automation technician / mechatronics technician / industrial electrician',
+          iscoCode: '3115',
+          escoUri: 'http://data.europa.eu/esco/occupation/3115',
+          skills: 'PLC programlama; endüstriyel otomasyon; robotik; arıza tespiti; kontrol sistemleri; önleyici bakım',
+        },
+        competence: {
+          assessmentAnswers: { 1: 4, 2: 4, 3: 3, 4: 5, 5: 4, 6: 4, 7: 4, 8: 4, 9: 3, 10: 4, 11: 4, 12: 4 },
+          competenceScore: 78,
+          assessmentResultMsg: 'Skor: 78/100 | Hedef: 80 | Yetkinlik Farkı: 2 Puan (Yüksek Hazırlık Seviyesi)',
+          assessmentResultType: 'good',
+          targetScore: 80,
+          externalScore: '',
+        },
+        decisionEngine: {
+          decisionResult: null, // Will be computed
+        },
+        eligibilityGatekeeper: {
+          participantCount: 5,
+          projectDurationMonths: 12,
+          pastKa122GrantsCount: 0,
+          mobilityStrategy: 'ad_hoc',
+          eligibilityResult: null,
+        },
+        hostMatching: {
+          hostName: 'Leipzig Vocational Training Center (BSZ 7)',
+          hostCountry: isEn ? 'Germany' : 'Almanya',
+          hostType: 'VET school',
+          hostMetrics: { h1: 85, h2: 80, h3: 85, h4: 70, h5: 75, h6: 70, h7: 85, h8: 80, h9: 90, h10: 80 },
+          hostScoreResult: null, // Will be computed
+        },
+        learningOutcomes: {
+          primaryGap: 'Endüstriyel PLC Programlama & Robotik',
+          technicalOutcome: demoOutcomes.technicalOutcome,
+          transversalOutcome: demoOutcomes.transversalOutcome,
+        },
+      });
+
+      // Also populate application draft for demo using recommended form type (KA121 for accredited school)
+      const targetForm: FormType = get().schoolProfile.accredited === 'yes' ? 'KA121' : 'KA122';
+      get().syncPipelineToDraft(targetForm);
+    },
 
   loadHostDemoData: (locale: string) => {
     const isEn = locale === 'en';

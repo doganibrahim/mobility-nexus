@@ -179,7 +179,7 @@ export default function ActivityDetailsSection({
             </label>
             <input
               type="number"
-              min={10}
+              min={2}
               max={365}
               value={data.standardDurationDays}
               onChange={(e) =>
@@ -187,6 +187,9 @@ export default function ActivityDetailsSection({
               }
               className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 font-bold focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
+            <p className="text-[11px] text-slate-500 mt-1">
+              Yalnızca fiziksel öğrenme/staj günlerini kapsar. Seyahat günleri (1-2 gün) TRV-01 adımında ayrıca hibe hesabına eklenir.
+            </p>
           </div>
 
           <div>
