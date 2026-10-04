@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useTranslation } from '../../lib/i18n';
 
 export interface TopResourceItem {
   icon: string;
@@ -30,10 +31,17 @@ export default function DistinctSectionPurposeCard({
   tagColor = 'bg-blue-50 text-blue-900 border-blue-200',
   title,
   purposeSentence,
-  topResourcesTitle = 'En Cok Aranan 3 Kaynak ve Hizli Erisim',
+  topResourcesTitle,
   resources,
   footerNotice,
 }: DistinctSectionPurposeCardProps) {
+  const { locale } = useTranslation();
+  const isTr = locale === 'tr';
+
+  const defaultTopResourcesTitle = isTr
+    ? 'En Çok Aranan 3 Kaynak ve Hızlı Erişim'
+    : 'Top 3 Most Searched Resources & Quick Access';
+
   return (
     <section
       aria-labelledby={`section-purpose-${sectionKey}`}
@@ -50,7 +58,7 @@ export default function DistinctSectionPurposeCard({
           </span>
           <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
             <span>✓</span>
-            <span>Ayrismis Bolum Rolu</span>
+            <span>{isTr ? 'Ayrışmış Bölüm Rolü' : 'Distinct Section Role'}</span>
           </span>
         </div>
 
@@ -65,7 +73,7 @@ export default function DistinctSectionPurposeCard({
             <span className="text-base select-none shrink-0 mt-0.5">🎯</span>
             <div>
               <strong className="font-extrabold text-slate-900 mr-1.5">
-                Bolumun Ozel Amaci:
+                {isTr ? 'Bölümün Özel Amacı:' : 'Section Objective:'}
               </strong>
               <span>{purposeSentence}</span>
             </div>
@@ -78,10 +86,10 @@ export default function DistinctSectionPurposeCard({
         <div className="flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2 text-xs font-extrabold text-slate-900 uppercase tracking-wider">
             <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-            <span>{topResourcesTitle}</span>
+            <span>{topResourcesTitle || defaultTopResourcesTitle}</span>
           </div>
           <span className="text-[11px] font-semibold text-slate-500">
-            Dogrudan Hizli Baglantilar
+            {isTr ? 'Doğrudan Hızlı Bağlantılar' : 'Direct Quick Links'}
           </span>
         </div>
 
@@ -115,7 +123,7 @@ export default function DistinctSectionPurposeCard({
                 </div>
 
                 <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-blue-700 group-hover:text-blue-900">
-                  <span>Hizli Erisim</span>
+                  <span>{isTr ? 'Hızlı Erişim' : 'Quick Access'}</span>
                   <span className="group-hover:translate-x-1 transition-transform">
                     →
                   </span>

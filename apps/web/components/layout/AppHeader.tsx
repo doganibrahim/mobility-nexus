@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { SignInButton, SignUpButton, Show, useUser } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 import { useTranslation } from '../../lib/i18n';
 import { useTheme } from '../../lib/theme-context';
 import { useAppStore } from '../../lib/store';
@@ -1037,7 +1037,7 @@ export default function AppHeader() {
           )}
 
           {/* User Profile Area (Navigates to /profile on click) */}
-          <Show when="signed-in">
+          {isSignedIn ? (
             <Link
               href="/profile"
               className="inline-flex items-center gap-1.5 sm:gap-2 p-1 sm:pl-2 sm:pr-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300 transition-all shadow-2xs group shrink-0"
@@ -1064,28 +1064,22 @@ export default function AppHeader() {
                 </span>
               </div>
             </Link>
-          </Show>
-
-          <Show when="signed-out">
+          ) : (
             <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
-              <SignUpButton mode="modal">
-                <button
-                  type="button"
-                  className="px-2.5 sm:px-3 py-1.5 text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 active:bg-blue-900 rounded-lg transition-all shadow-xs hover:shadow-sm cursor-pointer whitespace-nowrap"
-                >
-                  {locale === 'en' ? 'Register' : 'Kayıt Ol'}
-                </button>
-              </SignUpButton>
-              <SignInButton mode="modal">
-                <button
-                  type="button"
-                  className="px-2.5 sm:px-3 py-1.5 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs cursor-pointer whitespace-nowrap"
-                >
-                  {locale === 'en' ? 'Sign In' : 'Giriş Yap'}
-                </button>
-              </SignInButton>
+              <Link
+                href="/sign-up"
+                className="px-2.5 sm:px-3 py-1.5 text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 active:bg-blue-900 rounded-lg transition-all shadow-xs hover:shadow-sm cursor-pointer whitespace-nowrap"
+              >
+                {locale === 'en' ? 'Register' : 'Kayıt Ol'}
+              </Link>
+              <Link
+                href="/sign-in"
+                className="px-2.5 sm:px-3 py-1.5 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs cursor-pointer whitespace-nowrap"
+              >
+                {locale === 'en' ? 'Sign In' : 'Giriş Yap'}
+              </Link>
             </div>
-          </Show>
+          )}
 
           {/* Mobile Hamburger Menu Toggle Button (Visible on screens < xl) */}
           <button
@@ -1371,28 +1365,52 @@ export default function AppHeader() {
           </div>
 
           {/* Mobile Auth Actions */}
-          <Show when="signed-out">
-            <div className="p-3 bg-slate-50 border-t border-slate-200 flex items-center gap-2">
-              <SignUpButton mode="modal">
-                <button
-                  type="button"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex-1 py-2.5 px-3 text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 rounded-lg transition-all shadow-xs text-center cursor-pointer"
-                >
-                  {locale === 'en' ? 'Register' : 'Kayıt Ol'}
-                </button>
-              </SignUpButton>
-              <SignInButton mode="modal">
-                <button
-                  type="button"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex-1 py-2.5 px-3 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 text-center transition-colors shadow-2xs cursor-pointer"
-                >
-                  {locale === 'en' ? 'Sign In' : 'Giriş Yap'}
-                </button>
-              </SignInButton>
+          {isSignedIn ? (
+            <div className="p-3 bg-slate-50 border-t border-slate-200">
+              <Link
+                href="/profile"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full flex items-center gap-2.5 p-2 rounded-xl bg-white border border-slate-200 hover:border-slate-300 transition-all"
+              >
+                {user?.imageUrl ? (
+                  <img
+                    src={user.imageUrl}
+                    alt={user.fullName || 'User'}
+                    className="w-7 h-7 rounded-lg object-cover border border-slate-300"
+                  />
+                ) : (
+                  <div className="w-7 h-7 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
+                    {user?.firstName?.[0] || 'U'}
+                  </div>
+                )}
+                <div className="flex flex-col text-left">
+                  <span className="text-xs font-bold text-slate-900">
+                    {user?.firstName || user?.fullName || 'Profilim'}
+                  </span>
+                  <span className="text-[10px] text-slate-500 font-medium">
+                    {isAdmin ? 'Yönetici' : orgType === 'HOST' ? 'Host' : 'Okul'}
+                  </span>
+                </div>
+              </Link>
             </div>
-          </Show>
+          ) : (
+            <div className="p-3 bg-slate-50 border-t border-slate-200 flex items-center gap-2">
+              <Link
+                href="/sign-up"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex-1 py-2.5 px-3 text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 rounded-lg transition-all shadow-xs text-center cursor-pointer"
+              >
+                {locale === 'en' ? 'Register' : 'Kayıt Ol'}
+              </Link>
+              <Link
+                href="/sign-in"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex-1 py-2.5 px-3 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 text-center transition-colors shadow-2xs cursor-pointer"
+              >
+                {locale === 'en' ? 'Sign In' : 'Giriş Yap'}
+              </Link>
+            </div>
+          )}
         </div>
       )}
 
