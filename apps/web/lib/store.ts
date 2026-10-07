@@ -241,6 +241,7 @@ export interface AppState {
   ) => void;
   syncPipelineToDraft: (targetFormType?: FormType) => void;
   resetDraft: (formType?: FormType) => void;
+  clearLocalDraftStorage: () => void;
   loadDraftDemoPreset: (presetId: string) => void;
   applyKa120Data: (data: Partial<Ka120ExtractedData>) => void;
 
@@ -744,7 +745,7 @@ export const useAppStore = create<AppState>((set, get) => ({
           standardDurationDays: standardDays,
           allSameDuration: true,
           includeTravelDays: true,
-          travelDaysPerPerson: state.applicationDraft.activityDetails.travelDaysPerPerson || 2,
+          travelDaysPerPerson: state.applicationDraft.activityDetails.travelDaysPerPerson ?? 2,
           accompanyingRequired: (state.participantProfile.accompanyingPersonsCount || 0) > 0,
           accompanyingCount: state.participantProfile.accompanyingPersonsCount || 0,
           accompanyingDays: standardDays,
@@ -780,6 +781,21 @@ export const useAppStore = create<AppState>((set, get) => ({
       } catch {}
     }
     set({ applicationDraft: freshDraft });
+  },
+
+  clearLocalDraftStorage: () => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('em_application_draft');
+        localStorage.removeItem('cappinno_application_draft');
+      } catch {}
+    }
+    set({
+      applicationDraft: {
+        ...DEFAULT_DRAFT_STATE,
+        lastUpdated: new Date().toISOString(),
+      },
+    });
   },
 
   loadDraftDemoPreset: (presetId) => {

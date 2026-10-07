@@ -69,12 +69,15 @@ export interface ClientHostRecord {
   emergencyContactPerson?: string;
   emergencyContactPhone?: string;
   shortDescription?: string;
+  shortDescriptionEn?: string;
+  nameEn?: string;
 }
 
 export const CLIENT_SEED_HOSTS: ClientHostRecord[] = [
   {
     id: 'host-de-technordic',
     name: '[MOCK] TechNordic Digital Solutions (Simülasyon)',
+    nameEn: '[MOCK] TechNordic Digital Solutions (Simulation)',
     legalName: '[MOCK / DEMO] TechNordic Digital Solutions GmbH',
     tradingName: 'TechNordic Demo Hub',
     organisationType: 'Company / SME',
@@ -130,10 +133,12 @@ export const CLIENT_SEED_HOSTS: ClientHostRecord[] = [
     emergencyContactPerson: 'Dr. Anna Becker (Mock)',
     emergencyContactPhone: '+49 176 8839201',
     shortDescription: '[SİMÜLASYON VERİSİDİR] Almanya Leipzig merkezli yazılım, web geliştirme ve yapay zeka uygulamaları simülasyonu için oluşturulmuş örnek işletme profili.',
+    shortDescriptionEn: '[SIMULATION DATA] Sample host company profile in Leipzig, Germany for software development, web engineering and AI internship simulations.',
   },
   {
     id: 'host-es-iberia-vet',
     name: '[MOCK] Iberia EcoTech VET Hub (Simülasyon)',
+    nameEn: '[MOCK] Iberia EcoTech VET Hub (Simulation)',
     legalName: '[MOCK / DEMO] Iberia EcoTech Vocational Training S.L.',
     tradingName: 'Iberia EcoTech Demo Hub',
     organisationType: 'Training centre',
@@ -189,10 +194,12 @@ export const CLIENT_SEED_HOSTS: ClientHostRecord[] = [
     emergencyContactPerson: 'Carlos Navarro (Mock)',
     emergencyContactPhone: '+34 612 345678',
     shortDescription: '[SİMÜLASYON VERİSİDİR] Güneş enerjisi, fotovoltaik sistemler ve temiz teknoloji stajı simülasyonu için oluşturulmuş örnek İspanyol eğitim merkezi profili.',
+    shortDescriptionEn: '[SIMULATION DATA] Sample Spanish training centre profile in Valencia for solar energy, photovoltaic systems and cleantech internship simulations.',
   },
   {
     id: 'host-it-meccatronica',
     name: '[MOCK] Bologna Meccatronica Hub (Simülasyon - Yalnızca 18+)',
+    nameEn: '[MOCK] Bologna Meccatronica Hub (Simulation - Adults 18+ Only)',
     legalName: '[MOCK / DEMO] Consorzio Bologna Meccatronica Industriale SCARL',
     tradingName: 'Bologna Robotics Demo Lab',
     organisationType: 'Sectoral organisation',
@@ -246,10 +253,12 @@ export const CLIENT_SEED_HOSTS: ClientHostRecord[] = [
     emergencyContactPerson: 'Matteo Conti (Mock)',
     emergencyContactPhone: '+39 340 8920192',
     shortDescription: '[SİMÜLASYON VERİSİDİR] İtalya Motor Vadisi bölgesinde endüstriyel robotik stajı simülasyonu için oluşturulmuş örnek sanayi konsorsiyumu (Yalnızca 18+ yetişkin stajyer kabul eder).',
+    shortDescriptionEn: '[SIMULATION DATA] Sample industrial consortium profile in Italian Motor Valley for robotics and automation simulations (Adults 18+ only).',
   },
   {
     id: 'host-pl-silesia-green',
     name: '[MOCK] Silesia Green Manufacturing (Simülasyon - KA122 Only)',
+    nameEn: '[MOCK] Silesia Green Manufacturing (Simulation - KA122 Only)',
     legalName: '[MOCK / DEMO] Silesia Green Manufacturing Sp. z o.o.',
     tradingName: 'Silesia GreenTech Demo',
     organisationType: 'Company / SME',
@@ -302,10 +311,12 @@ export const CLIENT_SEED_HOSTS: ClientHostRecord[] = [
     emergencyContactPerson: 'Agnieszka Kowalska (Mock)',
     emergencyContactPhone: '+48 601 892019',
     shortDescription: '[SİMÜLASYON VERİSİDİR] Polonya Katowice sanayi bölgesinde elektronik devre tasarımı üzerine staj simülasyonu için oluşturulmuş örnek üretim tesisi (Yalnızca KA122).',
+    shortDescriptionEn: '[SIMULATION DATA] Sample manufacturing facility in Katowice industrial cluster for electronic circuit design internships (KA122 only).',
   },
   {
     id: 'host-nl-rotterdam-port',
     name: '[MOCK] Rotterdam Port Logistics Academy (Simülasyon)',
+    nameEn: '[MOCK] Rotterdam Port Logistics Academy (Simulation)',
     legalName: '[MOCK / DEMO] Rotterdam Port Logistics Training B.V.',
     tradingName: 'SmartPort Demo Academy',
     organisationType: 'Training centre',
@@ -357,10 +368,12 @@ export const CLIENT_SEED_HOSTS: ClientHostRecord[] = [
     emergencyContactPerson: 'Sanne de Jong (Mock)',
     emergencyContactPhone: '+31 6 82910291',
     shortDescription: '[SİMÜLASYON VERİSİDİR] Rotterdam liman lojistiği, gümrükleme yazılımları ve depo otomasyonu staj simülasyonu için oluşturulmuş örnek akademi profili (Kendi lojistiğini yöneten gruplar için).',
+    shortDescriptionEn: '[SIMULATION DATA] Sample logistics academy in Rotterdam for port logistics, customs software, and warehouse automation simulations (for self-managed groups).',
   },
   {
     id: 'host-cz-bohemia-mech',
     name: '[MOCK] Bohemia Precision Engineering (Simülasyon - Düşük Kontenjan)',
+    nameEn: '[MOCK] Bohemia Precision Engineering (Simulation - Boutique Quota)',
     legalName: '[MOCK / DEMO] Bohemia Precision Strojírenství s.r.o.',
     tradingName: 'Bohemia Precision Demo',
     organisationType: 'Factory / industrial company',
@@ -414,10 +427,12 @@ export const CLIENT_SEED_HOSTS: ClientHostRecord[] = [
     emergencyContactPerson: 'Klara Novakova (Mock)',
     emergencyContactPhone: '+420 777 892019',
     shortDescription: '[SİMÜLASYON VERİSİDİR] Çekya Brno teknoloji vadisinde 5 eksenli CNC işleme ve hassas metroloji staj simülasyonu için oluşturulmuş örnek üretim işletmesi (6 kişilik butik kontenjan).',
+    shortDescriptionEn: '[SIMULATION DATA] Sample precision manufacturing enterprise in Brno tech park for 5-axis CNC machining and metrology simulations (6-slot boutique capacity).',
   },
   {
     id: 'host-es-andalucia-gastro',
     name: '[MOCK] Andalucía Gastro & Hospitality Hub (Simülasyon - Yalnızca Öğrenci)',
+    nameEn: '[MOCK] Andalucía Gastro & Hospitality Hub (Simulation - Students Only)',
     legalName: '[MOCK / DEMO] Centro Andaluz de Hostelería y Turismo S.L.',
     tradingName: 'Andalucía Gastro Demo',
     organisationType: 'Training centre',
@@ -472,10 +487,12 @@ export const CLIENT_SEED_HOSTS: ClientHostRecord[] = [
     emergencyContactPerson: 'Alvaro Ruiz (Mock)',
     emergencyContactPhone: '+34 655 892019',
     shortDescription: '[SİMÜLASYON VERİSİDİR] Sevilla bölgesinde otel işletmeciliği ve mutfak sanatları staj simülasyonu için oluşturulmuş örnek gastronomi enstitüsü (Yalnızca öğrenci stajı).',
+    shortDescriptionEn: '[SIMULATION DATA] Sample gastronomy institute in Seville for hotel management and culinary arts simulations (VET students only).',
   },
   {
     id: 'host-de-bavaria-digital',
     name: '[MOCK] Bavaria EV Training Center (Simülasyon - Yalnızca Öğretmen)',
+    nameEn: '[MOCK] Bavaria EV Training Center (Simulation - Staff Only)',
     legalName: '[MOCK / DEMO] Bayerisches Zentrum für Digitale Mobilität gGmbH',
     tradingName: 'Bavaria Digital Demo',
     organisationType: 'Training centre',
@@ -526,6 +543,7 @@ export const CLIENT_SEED_HOSTS: ClientHostRecord[] = [
     emergencyContactPerson: 'Helena Wolf (Mock)',
     emergencyContactPhone: '+49 171 8920199',
     shortDescription: '[SİMÜLASYON VERİSİDİR] Münih merkezli, otomotiv yan sanayisi ve elektrikli araç batarya montajı alanında öğretmen işbaşı gözlem simülasyonu sunan örnek merkez (Yalnızca personel/öğretmen).',
+    shortDescriptionEn: '[SIMULATION DATA] Sample Munich-based automotive supplier centre offering staff job shadowing simulations in EV battery assembly (Staff only).',
   },
 ];
 
@@ -829,7 +847,9 @@ export function evaluateSevenCriteriaClient(
     scoreContribution: countryMatch ? 100 : 0,
     weightedScore: countryMatch ? 15 : 0,
     schoolRequested: isAnyCountry ? 'Tüm Uygun AB Ülkeleri (Any)' : requestedCountries.join(', '),
+    schoolRequestedEn: isAnyCountry ? 'All Eligible EU Countries (Any)' : requestedCountries.join(', '),
     hostProvided: `${host.countryCode} (${host.city})`,
+    hostProvidedEn: `${host.countryCode} (${host.city})`,
     messageTr: countryMatch
       ? `Ev sahibi (${host.countryCode} - ${host.city}), okulun hedef ülke tercihi ile tam uyumludur.`
       : `Hedef ülke uyuşmazlığı: Ev sahibi ${host.countryCode} ülkesindedir. Tercih edilen: [${requestedCountries.join(', ')}].`,
@@ -864,7 +884,9 @@ export function evaluateSevenCriteriaClient(
     scoreContribution: activityMatch ? 100 : 0,
     weightedScore: activityMatch ? 20 : 0,
     schoolRequested: query.mobilityGoal,
+    schoolRequestedEn: query.mobilityGoal,
     hostProvided: hostActivities.length > 0 ? hostActivities.join(', ') : 'Belirtilmedi',
+    hostProvidedEn: hostActivities.length > 0 ? hostActivities.join(', ') : 'Not Specified',
     messageTr: activityMatch
       ? `Ev sahibi seçilen faaliyeti (${query.mobilityGoal}) aktif olarak sunmakta ve rehberlik vermektedir.`
       : `Faaliyet uyuşmazlığı: Ev sahibi ${query.mobilityGoal} faaliyetini sunmamaktadır.`,
@@ -940,7 +962,9 @@ export function evaluateSevenCriteriaClient(
     scoreContribution: targetScoreContribution,
     weightedScore: Math.round((targetScoreContribution * 15) / 100),
     schoolRequested: `${query.participantType === 'student' ? 'Öğrenci' : 'Öğretmen/Personel'} (${query.ageGroup === 'under_18' ? '18 Yaş Altı' : query.ageGroup === 'mixed' ? 'Karma Yaş' : '18+'})`,
+    schoolRequestedEn: `${query.participantType === 'student' ? 'VET Student' : 'Staff/Teacher'} (${query.ageGroup === 'under_18' ? 'Under 18' : query.ageGroup === 'mixed' ? 'Mixed Age' : '18+'})`,
     hostProvided: `${host.hasVetLearner ? 'Öğrenci ✓' : 'Öğrenci ✕'} • ${host.hasStaffMobility ? 'Personel ✓' : 'Personel ✕'} • ${host.acceptsUnder18 ? '18 Yaş Altı Uygun' : 'Yalnızca 18+'}`,
+    hostProvidedEn: `${host.hasVetLearner ? 'Student ✓' : 'Student ✕'} • ${host.hasStaffMobility ? 'Staff ✓' : 'Staff ✕'} • ${host.acceptsUnder18 ? 'Under-18 OK' : '18+ Only'}`,
     messageTr: targetMessageTr,
     messageEn: targetMessageEn,
     actionableHintTr: targetHintTr,
@@ -990,7 +1014,9 @@ export function evaluateSevenCriteriaClient(
     scoreContribution: datesScore,
     weightedScore: Math.round((datesScore * 10) / 100),
     schoolRequested: 'Planlanan Dönem (2026/2027)',
+    schoolRequestedEn: 'Planned Term (2026/2027)',
     hostProvided: `Yıllık Kapasite: ${host.totalAnnualCapacity || 36} kişi (${host.isActive ? 'Aktif' : 'Pasif'})`,
+    hostProvidedEn: `Annual Capacity: ${host.totalAnnualCapacity || 36} (${host.isActive ? 'Active' : 'Inactive'})`,
     messageTr: datesMsgTr,
     messageEn: datesMsgEn,
     actionableHintTr: datesHintTr,
@@ -1044,7 +1070,9 @@ export function evaluateSevenCriteriaClient(
     scoreContribution: durScore,
     weightedScore: Math.round((durScore * 10) / 100),
     schoolRequested: `${reqDuration} Gün`,
+    schoolRequestedEn: `${reqDuration} Days`,
     hostProvided: `${minDays}–${maxDays} Gün`,
+    hostProvidedEn: `${minDays}–${maxDays} Days`,
     messageTr: durMsgTr,
     messageEn: durMsgEn,
     actionableHintTr: durHintTr,
@@ -1097,7 +1125,9 @@ export function evaluateSevenCriteriaClient(
     scoreContribution: capScore,
     weightedScore: Math.round((capScore * 15) / 100),
     schoolRequested: `${totalCount} Kişi (${query.participantCount || 6} Katılımcı + ${query.accompanyingPersonsCount || 0} Refakatçi)`,
+    schoolRequestedEn: `${totalCount} Persons (${query.participantCount || 6} Participants + ${query.accompanyingPersonsCount || 0} Accompanying)`,
     hostProvided: `Azami ${maxCap} Kişi / Dönem`,
+    hostProvidedEn: `Max ${maxCap} Persons / Term`,
     messageTr: capMsgTr,
     messageEn: capMsgEn,
     actionableHintTr: capHintTr,
@@ -1128,17 +1158,46 @@ export function evaluateSevenCriteriaClient(
   let logHintEn: string | undefined;
 
   const failedItems: string[] = [];
-  if (reqAccom && !host.providesAccommodation) failedItems.push('Konaklama');
-  if (reqMeals && !host.providesMeals) failedItems.push('Yemek');
-  if (reqTransfers && !host.providesTransfers) failedItems.push('Transfer');
-  if (reqWheelchair && !host.accessibilityFeatures?.wheelchairAccessible) failedItems.push('Tekerlekli Sandalye');
-  if (reqSpecialDiet && !host.accessibilityFeatures?.specialDiet) failedItems.push('Özel Diyet');
+  const failedItemsEn: string[] = [];
+  if (reqAccom && !host.providesAccommodation) {
+    failedItems.push('Konaklama');
+    failedItemsEn.push('Accommodation');
+  }
+  if (reqMeals && !host.providesMeals) {
+    failedItems.push('Yemek');
+    failedItemsEn.push('Meals');
+  }
+  if (reqTransfers && !host.providesTransfers) {
+    failedItems.push('Transfer');
+    failedItemsEn.push('Transfers');
+  }
+  if (reqWheelchair && !host.accessibilityFeatures?.wheelchairAccessible) {
+    failedItems.push('Tekerlekli Sandalye');
+    failedItemsEn.push('Wheelchair Access');
+  }
+  if (reqSpecialDiet && !host.accessibilityFeatures?.specialDiet) {
+    failedItems.push('Özel Diyet');
+    failedItemsEn.push('Special Diet');
+  }
 
   const providedItems: string[] = [];
-  if (host.providesAccommodation) providedItems.push('Konaklama');
-  if (host.providesMeals) providedItems.push('Yemek');
-  if (host.providesTransfers) providedItems.push('Transfer');
-  if (host.accessibilityFeatures?.wheelchairAccessible) providedItems.push('Engelsiz Erişim');
+  const providedItemsEn: string[] = [];
+  if (host.providesAccommodation) {
+    providedItems.push('Konaklama');
+    providedItemsEn.push('Accommodation');
+  }
+  if (host.providesMeals) {
+    providedItems.push('Yemek');
+    providedItemsEn.push('Meals');
+  }
+  if (host.providesTransfers) {
+    providedItems.push('Transfer');
+    providedItemsEn.push('Transfers');
+  }
+  if (host.accessibilityFeatures?.wheelchairAccessible) {
+    providedItems.push('Engelsiz Erişim');
+    providedItemsEn.push('Accessibility');
+  }
 
   if (!hasAnyReq) {
     logScore = 100;
@@ -1152,16 +1211,16 @@ export function evaluateSevenCriteriaClient(
     logStatus = 'MISMATCH';
     logScore = 0;
     logMsgTr = `Zorunlu lojistik uyuşmazlığı: Okul tarafından talep edilen kritik şartlar (${failedItems.join(', ')}) ev sahibi tarafından sağlanamamaktadır.`;
-    logMsgEn = `Logistics mismatch: Mandatory requirements (${failedItems.join(', ')}) cannot be provided by host.`;
+    logMsgEn = `Logistics mismatch: Mandatory requirements (${failedItemsEn.join(', ')}) cannot be provided by host.`;
     logHintTr = 'Konaklamayı Erasmus+ harcırah yöntemiyle okulun kendisinin organize etmesini seçebilir veya tam konaklama sunan ev sahiplerini inceleyebilirsiniz.';
     logHintEn = 'Consider self-managed accommodation via Erasmus daily allowances or select full-service hosts.';
   } else {
     logStatus = 'PARTIAL';
     logScore = 65;
     logMsgTr = `Kısmi lojistik: Ev sahibi temel hizmetleri karşılarken bazı kalemler (${failedItems.join(', ')}) eksiktir.`;
-    logMsgEn = `Partial logistics: Host covers core services but misses (${failedItems.join(', ')}).`;
+    logMsgEn = `Partial logistics: Host covers core services but misses (${failedItemsEn.join(', ')}).`;
     logHintTr = `Eksik kalan ${failedItems.join(', ')} hizmetini harcırah bütçesi veya yerel tedarikçilerle planlayın.`;
-    logHintEn = `Plan for (${failedItems.join(', ')}) using allowance or local service providers.`;
+    logHintEn = `Plan for (${failedItemsEn.join(', ')}) using allowance or local service providers.`;
   }
 
   const logEval: CriterionEvaluation = {
@@ -1175,7 +1234,11 @@ export function evaluateSevenCriteriaClient(
     schoolRequested: hasAnyReq
       ? [reqAccom && 'Konaklama', reqMeals && 'Yemek', reqTransfers && 'Transfer', reqWheelchair && 'Erişilebilirlik'].filter(Boolean).join(', ')
       : 'Esnek / Bağımsız Yönetim',
+    schoolRequestedEn: hasAnyReq
+      ? [reqAccom && 'Accommodation', reqMeals && 'Meals', reqTransfers && 'Transfers', reqWheelchair && 'Accessibility'].filter(Boolean).join(', ')
+      : 'Flexible / Self-Managed',
     hostProvided: providedItems.length > 0 ? providedItems.join(', ') : 'Hizmet Sağlanmıyor (Bağımsız)',
+    hostProvidedEn: providedItemsEn.length > 0 ? providedItemsEn.join(', ') : 'Not Provided (Self-Managed)',
     messageTr: logMsgTr,
     messageEn: logMsgEn,
     actionableHintTr: logHintTr,
@@ -1257,6 +1320,7 @@ export function matchHostsClientSide(
     const candidate: HostMatchCandidate = {
       hostId: host.id,
       hostName: host.name,
+      hostNameEn: host.nameEn || host.name,
       legalName: host.legalName,
       countryCode: host.countryCode,
       city: host.city,
@@ -1266,6 +1330,7 @@ export function matchHostsClientSide(
       verificationStatus: host.verificationStatus,
       profileCompletenessScore: host.profileCompletenessScore,
       shortDescription: host.shortDescription,
+      shortDescriptionEn: host.shortDescriptionEn || host.shortDescription,
       websiteUrl: host.websiteUrl,
       providesAccommodation: host.providesAccommodation,
       accommodationDetails: host.accommodationDetails,

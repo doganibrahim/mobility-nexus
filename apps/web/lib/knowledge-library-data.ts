@@ -6,6 +6,8 @@ export interface KnowledgeResourceItem {
   descriptionTr?: string;
   descriptionEn?: string;
   badge?: string;
+  badgeTr?: string;
+  badgeEn?: string;
 }
 
 export interface KnowledgeCategory {
@@ -35,6 +37,8 @@ export const KNOWLEDGE_LIBRARY_CATEGORIES: KnowledgeCategory[] = [
         descriptionTr: 'Resmi kurallar, uygunluk kriterleri ve bütçe kalemleri rehberi.',
         descriptionEn: 'Official rules, eligibility criteria and grant allocation framework.',
         badge: 'Official Guide',
+        badgeTr: 'Resmi Rehber',
+        badgeEn: 'Official Guide',
       },
       {
         id: 'ua-gov',
@@ -71,6 +75,8 @@ export const KNOWLEDGE_LIBRARY_CATEGORIES: KnowledgeCategory[] = [
         descriptionTr: 'Mesleki eğitimde kurumsal yönetim ve kapsayıcılık kalite ilkeleri.',
         descriptionEn: 'Key quality principles, management and inclusion criteria for VET mobilities.',
         badge: 'Standards',
+        badgeTr: 'Standartlar',
+        badgeEn: 'Standards',
       },
       {
         id: 'project-results-platform',
@@ -80,6 +86,8 @@ export const KNOWLEDGE_LIBRARY_CATEGORIES: KnowledgeCategory[] = [
         descriptionTr: 'Avrupa genelinde finanse edilmiş projeler, iyi uygulamalar ve çıktılar.',
         descriptionEn: 'Official dissemination platform for completed projects and good practices.',
         badge: 'Database',
+        badgeTr: 'Veri Tabanı',
+        badgeEn: 'Database',
       },
     ],
   },

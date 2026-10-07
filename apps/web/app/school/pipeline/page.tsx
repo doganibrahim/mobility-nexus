@@ -589,13 +589,13 @@ export default function SchoolPipelinePage() {
               <span>{locale === 'tr' ? 'Okul Paneline Dön' : 'Back to School Dashboard'}</span>
             </Link>
             <span className="text-slate-300">/</span>
-            <span className="font-semibold text-slate-800">
+            <h1 className="font-bold text-slate-900 text-xs sm:text-sm inline m-0">
               {locale === 'tr' ? '5 Adımlı Hareketlilik Planlama Pipeline\'ı' : '5-Step Mobility Planning Pipeline'}
-            </span>
+            </h1>
           </div>
 
           <div className="hidden sm:flex items-center gap-2 text-[11px] text-slate-500 font-mono">
-            <span>OID: <strong>{oid || 'Belirtilmedi'}</strong></span>
+            <span>OID: <strong>{oid || (locale === 'tr' ? 'Belirtilmedi' : 'Not Specified')}</strong></span>
             <span>•</span>
             <span>{schoolName || (locale === 'tr' ? 'Örnek Mesleki Eğitim Kurumu' : 'Sample VET School')}</span>
           </div>

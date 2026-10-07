@@ -1,7 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { QaDb } from '@/lib/qa-db';
+import { verifyAdminAccess } from '@/lib/admin-auth';
 
 export async function GET(request: NextRequest) {
+  const auth = await verifyAdminAccess(request);
+  if (!auth.authorized) {
+    return NextResponse.json(
+      { success: false, error: auth.error || 'Admin yetkisi gereklidir.' },
+      { status: auth.status }
+    );
+  }
+
   try {
     const metrics = await QaDb.getSystemMetrics();
 

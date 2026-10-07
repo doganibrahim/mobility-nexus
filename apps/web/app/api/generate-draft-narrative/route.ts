@@ -171,7 +171,7 @@ INSTITUTIONAL AND MOBILITY PROJECT DATA:
 - Duration & Dates: ${draft.context.projectDurationMonths || 12} Months (Start: ${draft.context.projectStartDate || '2026-10-01'})
 - Vocational Sectors / Programs: ${mainVetField}
 - Destination Country & Hosting Partner: ${targetCountries} | ${hostName}
-- Mobility Scale: ${participants} VET learners (${durationDays} days standard duration + ${draft.activityDetails.travelDaysPerPerson || 2} travel days)
+- Mobility Scale: ${participants} VET learners (${durationDays} days standard duration + ${draft.activityDetails.travelDaysPerPerson ?? 2} travel days)
 - Accompanying Persons: ${draft.activityDetails.accompanyingRequired ? `${draft.activityDetails.accompanyingCount} teacher(s) (Reason: ${draft.activityDetails.accompanyingReason})` : 'None required'}
 - Travel & Sustainability: ${draft.activityDetails.mainTravelMode} (${draft.activityDetails.greenTravelParticipantsCount} participant(s) using Green Travel)
 - Identified Needs & Rationale:

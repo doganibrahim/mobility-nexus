@@ -16,6 +16,8 @@ export default function EuropeanRouteNetwork() {
 
   const [activeCountryId, setActiveCountryId] = useState<string>('DE');
   const [isGreenTravel, setIsGreenTravel] = useState<boolean>(false);
+  const [participantRole, setParticipantRole] = useState<'learner' | 'staff'>('learner');
+  const [durationDays, setDurationDays] = useState<number>(14);
 
   const activeCountry: MobilityCountry =
     MOBILITY_COUNTRIES.find((c) => c.id === activeCountryId) ||
@@ -24,6 +26,24 @@ export default function EuropeanRouteNetwork() {
   const travelGrant = isGreenTravel
     ? activeCountry.greenGrantEuro
     : activeCountry.travelGrantEuro;
+
+  const dailyGrant = participantRole === 'learner'
+    ? activeCountry.learnerDailyGrantEuro
+    : activeCountry.staffDailyGrantEuro;
+
+  // Official Erasmus+ 15th+ day 70% rule
+  const calculateTotalIndividualSupport = (days: number, rate: number) => {
+    if (days <= 14) {
+      return days * rate;
+    }
+    const baseAmount = 14 * rate;
+    const reducedDays = days - 14;
+    const reducedRate = Math.round(rate * 0.7);
+    return baseAmount + (reducedDays * reducedRate);
+  };
+
+  const totalIndividualSupport = calculateTotalIndividualSupport(durationDays, dailyGrant);
+  const totalGrantPackage = travelGrant + totalIndividualSupport;
 
   // Active path curve from Turkey to selected country
   const midX = (ORIGIN_TURKEY.x + activeCountry.x) / 2;
@@ -324,10 +344,65 @@ export default function EuropeanRouteNetwork() {
               >
                 {MOBILITY_COUNTRIES.map((country) => (
                   <option key={country.id} value={country.id}>
-                    {country.flag} {isTr ? country.nameTr : country.nameEn} - {country.distanceKm} km (Grup {country.group})
+                    {country.flag} {isTr ? country.nameTr : country.nameEn} - {country.distanceKm} km ({isTr ? 'Grup' : 'Group'} {country.group})
                   </option>
                 ))}
               </select>
+            </div>
+
+            {/* Role & Duration Switchers */}
+            <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
+              <div>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                  {isTr ? 'KATILIMCI TÜRÜ' : 'PARTICIPANT ROLE'}
+                </span>
+                <div className="flex rounded-lg bg-slate-100 p-0.5 border border-slate-200">
+                  <button
+                    type="button"
+                    onClick={() => setParticipantRole('learner')}
+                    className={`flex-1 py-1 px-1.5 rounded-md text-[11px] font-bold transition-all ${
+                      participantRole === 'learner'
+                        ? 'bg-white text-blue-900 shadow-2xs'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    👨‍🎓 {isTr ? 'Öğrenci' : 'Learner'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setParticipantRole('staff')}
+                    className={`flex-1 py-1 px-1.5 rounded-md text-[11px] font-bold transition-all ${
+                      participantRole === 'staff'
+                        ? 'bg-white text-blue-900 shadow-2xs'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    👨‍🏫 {isTr ? 'Personel' : 'Staff'}
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                  {isTr ? 'FAALİYET SÜRESİ' : 'DURATION'}
+                </span>
+                <div className="flex rounded-lg bg-slate-100 p-0.5 border border-slate-200">
+                  {[14, 21, 30].map((d) => (
+                    <button
+                      key={d}
+                      type="button"
+                      onClick={() => setDurationDays(d)}
+                      className={`flex-1 py-1 rounded-md text-[11px] font-bold transition-all ${
+                        durationDays === d
+                          ? 'bg-white text-blue-900 shadow-2xs'
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                    >
+                      {d} {isTr ? 'Gün' : 'd'}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* EU Calculated Metrics Grid */}
@@ -342,7 +417,7 @@ export default function EuropeanRouteNetwork() {
                 <span className="text-[11px] text-slate-500">
                   {isGreenTravel
                     ? isTr ? 'Yeşil Seyahat / Kişi' : 'Green Travel / Person'
-                    : isTr ? 'Katılımcı Başına' : 'Per Participant'}
+                    : isTr ? 'Standart / Kişi' : 'Standard / Person'}
                 </span>
               </div>
 
@@ -351,10 +426,12 @@ export default function EuropeanRouteNetwork() {
                   {isTr ? 'GÜNLÜK HARCIRAH' : 'DAILY UNIT COST'}
                 </span>
                 <div className="text-2xl font-black text-emerald-700 mt-0.5">
-                  {activeCountry.dailyGrantEuro} €
+                  {dailyGrant} €
                 </div>
                 <span className="text-[11px] text-slate-500">
-                  {isTr ? `Grup ${activeCountry.group} AB Ülkesi` : `Group ${activeCountry.group} Country`}
+                  {isTr
+                    ? `Grup ${activeCountry.group} • ${participantRole === 'learner' ? 'Öğrenci Tarifesi' : 'Personel Tarifesi'}`
+                    : `Group ${activeCountry.group} • ${participantRole === 'learner' ? 'Learner Rate' : 'Staff Rate'}`}
                 </span>
               </div>
             </div>
@@ -380,22 +457,31 @@ export default function EuropeanRouteNetwork() {
               </span>
             </div>
 
-            {/* 14-Day Practical Total Budget Preview */}
+            {/* Total Budget Preview with 15th+ day 70% rule */}
             <div className="p-3.5 bg-blue-50/80 rounded-xl border border-blue-200 flex items-center justify-between text-xs">
               <div>
                 <span className="text-xs font-extrabold text-blue-900 block">
-                  💶 {isTr ? 'Örnek 14 Günlük Hibe Paketi:' : 'Sample 14-Day Grant Package:'}
+                  💶 {isTr ? `Örnek ${durationDays} Günlük Hibe Paketi:` : `Sample ${durationDays}-Day Grant Package:`}
                 </span>
                 <span className="text-[11px] text-blue-700">
-                  {travelGrant} € (Seyahat) + (14 × {activeCountry.dailyGrantEuro} € Harcırah)
+                  {travelGrant} € ({isTr ? 'Seyahat' : 'Travel'}) + {totalIndividualSupport} € ({isTr ? 'Harcırah' : 'Subsistence'})
+                  {durationDays > 14 && (
+                    <span className="block text-[10px] text-blue-600 mt-0.5">
+                      {isTr
+                        ? `(14 × ${dailyGrant} € + ${durationDays - 14} × ${Math.round(dailyGrant * 0.7)} € [%70 Kuralı])`
+                        : `(14 × ${dailyGrant} € + ${durationDays - 14} × ${Math.round(dailyGrant * 0.7)} € [70% Rule])`}
+                    </span>
+                  )}
                 </span>
               </div>
               <div className="text-right">
                 <span className="text-lg font-black text-blue-950 block">
-                  {travelGrant + 14 * activeCountry.dailyGrantEuro} €
+                  {totalGrantPackage} €
                 </span>
                 <span className="text-[10px] font-semibold text-blue-700">
-                  {isTr ? 'Öğrenci Başına' : 'Per Participant'}
+                  {participantRole === 'learner'
+                    ? (isTr ? 'Öğrenci Başına' : 'Per Learner')
+                    : (isTr ? 'Personel Başına' : 'Per Staff')}
                 </span>
               </div>
             </div>
@@ -403,11 +489,11 @@ export default function EuropeanRouteNetwork() {
             {/* Official Erasmus+ Distance Band Explanation */}
             <div className="p-3 bg-slate-100 rounded-xl border border-slate-200 text-xs text-slate-600 leading-relaxed">
               <span className="font-bold text-slate-800 block mb-0.5">
-                📌 {isTr ? 'Resmi Erasmus+ Hibe Esası:' : 'Official Erasmus+ Grant Rules:'}
+                📌 {isTr ? 'Resmi 2024–2027 Erasmus+ Hibe Kuralları:' : 'Official 2024–2027 Erasmus+ Grant Rules:'}
               </span>
               {isTr
-                ? 'Mesafe bantları Avrupa Komisyonu resmi mesafe hesaplayıcısı baz alınarak otomatik belirlenir. Bireysel destek hibesi ev sahibi ülkenin yaşam maliyet grubuna (Grup 1-3) göre ödenir.'
-                : 'Distance bands are calculated via the European Commission distance calculator. Individual support is based on the host country living cost group.'}
+                ? 'Seyahat hibeleri güncel resmi mesafe bantlarına göre hesaplanır. Bireysel destek harcırahı ev sahibi ülkenin yaşam maliyet grubuna (Grup 1–3) göre belirlenir ve 15. günden itibaren %70 oranında ödenir.'
+                : 'Travel grants are aligned with official 2024–2027 distance bands. Subsistence adheres to country living cost groups (Group 1–3) with a 70% rate applied from day 15 onward.'}
             </div>
           </div>
 

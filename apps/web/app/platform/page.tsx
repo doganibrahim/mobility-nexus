@@ -190,8 +190,8 @@ export default function PlatformPage() {
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed m-0">
                   {locale === 'tr'
-                    ? 'Kurum profili, katılımcı analizi, ESCO taksonomisi, 10 kriterli ev sahibi kuruluş eşleştirmesi ve hibe tavsiye raporunu tek bir akışta tamamlayın.'
-                    : 'Complete institutional profile, participant needs, ESCO taxonomy mapping, 10-parameter host scoring, and grant advisory dossiers in one seamless flow.'}
+                    ? 'Kurum profili, katılımcı analizi, ESCO taksonomisi, 7 temel kriterli ev sahibi kuruluş eşleştirmesi ve hibe tavsiye raporunu tek bir akışta tamamlayın.'
+                    : 'Complete institutional profile, participant needs, ESCO taxonomy mapping, 7-criterion host scoring, and grant advisory dossiers in one seamless flow.'}
                 </p>
               </div>
               <Link

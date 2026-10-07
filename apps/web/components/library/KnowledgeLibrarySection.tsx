@@ -13,6 +13,28 @@ interface KnowledgeLibrarySectionProps {
   initialCategoryId?: string;
 }
 
+const BADGE_TRANSLATIONS: Record<string, { tr: string; en: string }> = {
+  'Official Guide': { tr: 'Resmi Rehber', en: 'Official Guide' },
+  'Standards': { tr: 'Standartlar', en: 'Standards' },
+  'Database': { tr: 'Veri Tabanı', en: 'Database' },
+  'Guide': { tr: 'Kılavuz', en: 'Guide' },
+  'Templates': { tr: 'Şablonlar', en: 'Templates' },
+  'Taxonomy': { tr: 'Taksonomi', en: 'Taxonomy' },
+  'Integration': { tr: 'Entegrasyon', en: 'Integration' },
+  'Directory': { tr: 'Dizin', en: 'Directory' },
+  'Policy': { tr: 'Politika', en: 'Policy' },
+  'Mobility': { tr: 'Hareketlilik', en: 'Mobility' },
+  'Reports': { tr: 'Raporlar', en: 'Reports' },
+  'Resources': { tr: 'Kaynaklar', en: 'Resources' },
+  'Framework': { tr: 'Çerçeve', en: 'Framework' },
+  'Cycle': { tr: 'Döngü', en: 'Cycle' },
+  'Provider': { tr: 'Kurum Seviyesi', en: 'Provider Level' },
+  'Virtual Library': { tr: 'Sanal Kütüphane', en: 'Virtual Library' },
+  'Results': { tr: 'Sonuçlar', en: 'Results' },
+  'Info': { tr: 'Bilgi', en: 'Info' },
+  'FAQ': { tr: 'SSS', en: 'FAQ' },
+};
+
 export default function KnowledgeLibrarySection({ initialCategoryId }: KnowledgeLibrarySectionProps) {
   const { locale } = useTranslation();
   const isTr = locale === 'tr';
@@ -260,7 +282,9 @@ export default function KnowledgeLibrarySection({ initialCategoryId }: Knowledge
                       <div className="flex items-center gap-2 mt-1.5">
                         {item.badge && (
                           <span className="px-1.5 py-0.5 rounded-md text-[9px] font-extrabold uppercase bg-slate-100 group-hover/item:bg-blue-100 text-slate-700 group-hover/item:text-blue-900 border border-slate-200 group-hover/item:border-blue-200 font-mono">
-                            {item.badge}
+                            {isTr
+                              ? (item.badgeTr || BADGE_TRANSLATIONS[item.badge || '']?.tr || item.badge)
+                              : (item.badgeEn || BADGE_TRANSLATIONS[item.badge || '']?.en || item.badge)}
                           </span>
                         )}
                         <span className="text-[10px] text-slate-400 font-mono truncate max-w-[200px]">

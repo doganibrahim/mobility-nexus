@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { ApplicationDraftQualityTeam } from '../../../lib/application-draft-schema';
+import { useTranslation } from '../../../lib/i18n';
 
 interface QualityTeamSectionProps {
   data: ApplicationDraftQualityTeam;
@@ -14,37 +15,50 @@ export default function QualityTeamSection({
   onChange,
   ka120ImportedFields,
 }: QualityTeamSectionProps) {
+  const { locale } = useTranslation();
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between pb-4 border-b border-slate-200">
         <div>
           <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
             <span>👥</span>
-            <span>Bölüm 5: Kalite Standartları, Proje Ekibi ve Yaygınlaştırma (KA122)</span>
+            <span>
+              {locale === 'tr'
+                ? 'Bölüm 5: Kalite Standartları, Proje Ekibi ve Yaygınlaştırma (KA122)'
+                : 'Section 5: Quality Standards, Project Team & Dissemination (KA122)'}
+            </span>
           </h2>
           <p className="text-xs text-slate-600 mt-0.5">
-            Erasmus Kalite Standartları taahhütleri, yönetim ekibi ve proje sonuçlarının yaygınlaştırılması
+            {locale === 'tr'
+              ? 'Erasmus Kalite Standartları taahhütleri, yönetim ekibi ve proje sonuçlarının yaygınlaştırılması'
+              : 'Erasmus quality commitments, project core team, and institutional dissemination'}
           </p>
         </div>
         <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200">
-          KA122 Zorunlu
+          {locale === 'tr' ? 'KA122 Zorunlu' : 'KA122 Mandatory'}
         </span>
       </div>
 
       {/* 1. Proje Yönetim Ekibi (TEAM-01 & TEAM-02) */}
       <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-4">
         <div className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-          <span>👔</span> Proje Yönetim Ekibi (Yasal Temsilci & Koordinatör)
+          <span>👔</span>{' '}
+          {locale === 'tr'
+            ? 'Proje Yönetim Ekibi (Yasal Temsilci & Koordinatör)'
+            : 'Project Management Team (Legal Representative & Coordinator)'}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Yasal Temsilci */}
           <div className="p-3 bg-white rounded-lg border border-slate-200 space-y-3">
             <div className="flex items-center justify-between gap-1">
-              <div className="text-xs font-bold text-slate-900">Yasal Temsilci (Okul Müdürü) *</div>
+              <div className="text-xs font-bold text-slate-900">
+                {locale === 'tr' ? 'Yasal Temsilci (Okul Müdürü) *' : 'Legal Representative (School Principal) *'}
+              </div>
               {ka120ImportedFields?.['qualityTeam.legalRepresentativeName'] && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -52,7 +66,7 @@ export default function QualityTeamSection({
               type="text"
               value={data.legalRepresentativeName}
               onChange={(e) => onChange({ legalRepresentativeName: e.target.value })}
-              placeholder="Ad Soyad"
+              placeholder={locale === 'tr' ? 'Ad Soyad' : 'Full Name'}
               className="w-full text-xs px-2.5 py-1.5 border border-slate-300 rounded bg-white text-slate-900"
             />
             <div className="grid grid-cols-2 gap-2">
@@ -60,14 +74,14 @@ export default function QualityTeamSection({
                 type="text"
                 value={data.legalRepresentativeRole}
                 onChange={(e) => onChange({ legalRepresentativeRole: e.target.value })}
-                placeholder="Görevi (Örn: Okul Müdürü)"
+                placeholder={locale === 'tr' ? 'Görevi (Örn: Okul Müdürü)' : 'Role (e.g. Principal)'}
                 className="w-full text-xs px-2.5 py-1.5 border border-slate-300 rounded bg-white text-slate-900"
               />
               <input
                 type="email"
                 value={data.legalRepresentativeEmail}
                 onChange={(e) => onChange({ legalRepresentativeEmail: e.target.value })}
-                placeholder="E-posta Adresi"
+                placeholder={locale === 'tr' ? 'E-posta Adresi' : 'Email Address'}
                 className="w-full text-xs px-2.5 py-1.5 border border-slate-300 rounded bg-white text-slate-900"
               />
             </div>
@@ -76,10 +90,12 @@ export default function QualityTeamSection({
           {/* Proje Koordinatörü */}
           <div className="p-3 bg-white rounded-lg border border-slate-200 space-y-3">
             <div className="flex items-center justify-between gap-1">
-              <div className="text-xs font-bold text-slate-900">Proje Koordinatörü / İrtibat Kişisi *</div>
+              <div className="text-xs font-bold text-slate-900">
+                {locale === 'tr' ? 'Proje Koordinatörü / İrtibat Kişisi *' : 'Project Coordinator / Primary Contact *'}
+              </div>
               {ka120ImportedFields?.['qualityTeam.coordinatorName'] && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -87,7 +103,7 @@ export default function QualityTeamSection({
               type="text"
               value={data.coordinatorName}
               onChange={(e) => onChange({ coordinatorName: e.target.value })}
-              placeholder="Ad Soyad"
+              placeholder={locale === 'tr' ? 'Ad Soyad' : 'Full Name'}
               className="w-full text-xs px-2.5 py-1.5 border border-slate-300 rounded bg-white text-slate-900"
             />
             <div className="grid grid-cols-2 gap-2">
@@ -95,14 +111,14 @@ export default function QualityTeamSection({
                 type="text"
                 value={data.coordinatorRole}
                 onChange={(e) => onChange({ coordinatorRole: e.target.value })}
-                placeholder="Görevi (Örn: İngilizce Öğretmeni)"
+                placeholder={locale === 'tr' ? 'Görevi (Örn: İngilizce Öğretmeni)' : 'Role (e.g. VET Coordinator)'}
                 className="w-full text-xs px-2.5 py-1.5 border border-slate-300 rounded bg-white text-slate-900"
               />
               <input
                 type="email"
                 value={data.coordinatorEmail}
                 onChange={(e) => onChange({ coordinatorEmail: e.target.value })}
-                placeholder="E-posta Adresi"
+                placeholder={locale === 'tr' ? 'E-posta Adresi' : 'Email Address'}
                 className="w-full text-xs px-2.5 py-1.5 border border-slate-300 rounded bg-white text-slate-900"
               />
             </div>
@@ -113,18 +129,21 @@ export default function QualityTeamSection({
       {/* 2. Katılımcı Seçimi, Hazırlık ve Tanınma */}
       <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs space-y-4">
         <div className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-          <span>📋</span> Seçim, Hazırlık ve Öğrenme Çıktılarının Tanınması
+          <span>📋</span>{' '}
+          {locale === 'tr'
+            ? 'Seçim, Hazırlık ve Öğrenme Çıktılarının Tanınması'
+            : 'Selection, Preparation and Recognition of Learning Outcomes'}
         </div>
 
         <div className="space-y-3">
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-bold text-slate-700">
-                Katılımcı Seçim Kriterleri (TEAM-03) *
+                {locale === 'tr' ? 'Katılımcı Seçim Kriterleri (TEAM-03) *' : 'Participant Selection Criteria (TEAM-03) *'}
               </label>
               {ka120ImportedFields?.['qualityTeam.selectionCriteriaSummary'] && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -132,7 +151,11 @@ export default function QualityTeamSection({
               type="text"
               value={data.selectionCriteriaSummary}
               onChange={(e) => onChange({ selectionCriteriaSummary: e.target.value })}
-              placeholder="Örn: Akademik başarı (%30), Mesleki motivasyon (%30), Dil düzeyi (%20), Mülakat (%20)"
+              placeholder={
+                locale === 'tr'
+                  ? 'Örn: Akademik başarı (%30), Mesleki motivasyon (%30), Dil düzeyi (%20), Mülakat (%20)'
+                  : 'e.g. Academic standing (30%), Vocational motivation (30%), Language level (20%), Interview (20%)'
+              }
               className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
           </div>
@@ -140,11 +163,13 @@ export default function QualityTeamSection({
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-bold text-slate-700">
-                Pedagojik, Kültürel ve Dilsel Hazırlık Planı (TEAM-04) *
+                {locale === 'tr'
+                  ? 'Pedagojik, Kültürel ve Dilsel Hazırlık Planı (TEAM-04) *'
+                  : 'Pedagogical, Cultural & Linguistic Preparation Plan (TEAM-04) *'}
               </label>
               {ka120ImportedFields?.['qualityTeam.preparationPlanSummary'] && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -152,7 +177,11 @@ export default function QualityTeamSection({
               type="text"
               value={data.preparationPlanSummary}
               onChange={(e) => onChange({ preparationPlanSummary: e.target.value })}
-              placeholder="Örn: 20 saat mesleki yabancı dil, 10 saat kültürel oryantasyon ve iş güvenliği eğitimi"
+              placeholder={
+                locale === 'tr'
+                  ? 'Örn: 20 saat mesleki yabancı dil, 10 saat kültürel oryantasyon ve iş güvenliği eğitimi'
+                  : 'e.g. 20h technical language, 10h cultural orientation and occupational safety'
+              }
               className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
           </div>
@@ -160,28 +189,40 @@ export default function QualityTeamSection({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 mb-1">
-                Öğrenme Çıktılarının Tanınma Yöntemi (TEAM-05) *
+                {locale === 'tr'
+                  ? 'Öğrenme Çıktılarının Tanınma Yöntemi (TEAM-05) *'
+                  : 'Recognition of Learning Outcomes (TEAM-05) *'}
               </label>
               <select
                 value={data.recognitionMethod}
                 onChange={(e) => onChange({ recognitionMethod: e.target.value as any })}
                 className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
               >
-                <option value="EUROPASS_MOBILITY">Europass Hareketlilik Belgesi (Önerilen)</option>
-                <option value="INSTITUTIONAL_CERTIFICATE">Kurumsal Katılım ve Başarı Sertifikası</option>
-                <option value="BOTH">Europass + Kurumsal Sertifika</option>
+                <option value="EUROPASS_MOBILITY">
+                  {locale === 'tr' ? 'Europass Hareketlilik Belgesi (Önerilen)' : 'Europass Mobility Document (Recommended)'}
+                </option>
+                <option value="INSTITUTIONAL_CERTIFICATE">
+                  {locale === 'tr' ? 'Kurumsal Katılım ve Başarı Sertifikası' : 'Institutional Certificate of Completion'}
+                </option>
+                <option value="BOTH">
+                  {locale === 'tr' ? 'Europass + Kurumsal Sertifika' : 'Europass + Institutional Certificate'}
+                </option>
               </select>
             </div>
 
             <div>
               <label className="block text-xs font-bold text-slate-700 mb-1">
-                Acil Durum ve Kriz Protokolü (TEAM-07) *
+                {locale === 'tr' ? 'Acil Durum ve Kriz Protokolü (TEAM-07) *' : 'Emergency & Crisis Protocol (TEAM-07) *'}
               </label>
               <input
                 type="text"
                 value={data.emergencyCrisisProtocol}
                 onChange={(e) => onChange({ emergencyCrisisProtocol: e.target.value })}
-                placeholder="Örn: 24/7 acil iletişim hattı, seyahat sağlık sigortası ve konsolosluk bildirimi"
+                placeholder={
+                  locale === 'tr'
+                    ? 'Örn: 24/7 acil iletişim hattı, seyahat sağlık sigortası ve konsolosluk bildirimi'
+                    : 'e.g. 24/7 emergency hotline, comprehensive medical insurance, and consular registration'
+                }
                 className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
             </div>
@@ -192,18 +233,18 @@ export default function QualityTeamSection({
       {/* 3. Erasmus Temel İlkeleri (QLT-01 ~ QLT-04) */}
       <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
         <div className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-          <span>🇪🇺</span> Erasmus Kalite İlkelerine Uyum
+          <span>🇪🇺</span> {locale === 'tr' ? 'Erasmus Kalite İlkelerine Uyum' : 'Compliance with Erasmus Quality Standards'}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-semibold text-slate-700">
-                Kapsayıcılık ve Fırsat Eşitliği (QLT-01)
+                {locale === 'tr' ? 'Kapsayıcılık ve Fırsat Eşitliği (QLT-01)' : 'Inclusion and Diversity (QLT-01)'}
               </label>
               {ka120ImportedFields?.['qualityTeam.inclusionApproach'] && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -218,11 +259,11 @@ export default function QualityTeamSection({
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-semibold text-slate-700">
-                Çevre Sürdürülebilirliği ve Yeşil İlkeler (QLT-02)
+                {locale === 'tr' ? 'Çevre Sürdürülebilirliği ve Yeşil İlkeler (QLT-02)' : 'Environmental Sustainability & Green Principles (QLT-02)'}
               </label>
               {ka120ImportedFields?.['qualityTeam.greenPractices'] && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -237,11 +278,11 @@ export default function QualityTeamSection({
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-semibold text-slate-700">
-                Dijital Eğitim Araçları Kullanımı (QLT-03)
+                {locale === 'tr' ? 'Dijital Eğitim Araçları Kullanımı (QLT-03)' : 'Digital Education Tools & Platforms (QLT-03)'}
               </label>
               {ka120ImportedFields?.['qualityTeam.digitalToolsUsage'] && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -256,11 +297,11 @@ export default function QualityTeamSection({
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-semibold text-slate-700">
-                Demokratik Yaşama Aktif Katılım (QLT-04)
+                {locale === 'tr' ? 'Demokratik Yaşama Aktif Katılım (QLT-04)' : 'Active Democratic Participation (QLT-04)'}
               </label>
               {ka120ImportedFields?.['qualityTeam.democraticParticipation'] && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -277,18 +318,18 @@ export default function QualityTeamSection({
       {/* 4. Kurumsallaşma ve Yaygınlaştırma (INT-01, DIS-01 ~ 03) */}
       <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs space-y-3">
         <div className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-          <span>📢</span> Kurumsallaşma ve Yaygınlaştırma
+          <span>📢</span> {locale === 'tr' ? 'Kurumsallaşma ve Yaygınlaştırma' : 'Institutional Impact & Dissemination'}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-semibold text-slate-700">
-                Müfredata Entegrasyon (INT-01)
+                {locale === 'tr' ? 'Müfredata Entegrasyon (INT-01)' : 'Curricular Integration (INT-01)'}
               </label>
               {ka120ImportedFields?.['qualityTeam.institutionalIntegrationPlan'] && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -303,11 +344,11 @@ export default function QualityTeamSection({
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-semibold text-slate-700">
-                Kurum İçi Paylaşım (DIS-01)
+                {locale === 'tr' ? 'Kurum İçi Paylaşım (DIS-01)' : 'Internal Dissemination (DIS-01)'}
               </label>
               {ka120ImportedFields?.['qualityTeam.internalDissemination'] && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -321,7 +362,7 @@ export default function QualityTeamSection({
 
           <div>
             <label className="block text-xs font-semibold text-slate-700 mb-1">
-              Sektör ve Yerel Paydaşlarla Paylaşım (DIS-02)
+              {locale === 'tr' ? 'Sektör ve Yerel Paydaşlarla Paylaşım (DIS-02)' : 'Sectoral & Local Stakeholder Sharing (DIS-02)'}
             </label>
             <input
               type="text"
@@ -333,7 +374,7 @@ export default function QualityTeamSection({
 
           <div>
             <label className="block text-xs font-semibold text-slate-700 mb-1">
-              AB Görünürlük Tedbirleri (DIS-03)
+              {locale === 'tr' ? 'AB Görünürlük Tedbirleri (DIS-03)' : 'EU Visibility Measures (DIS-03)'}
             </label>
             <input
               type="text"

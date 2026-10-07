@@ -12,6 +12,7 @@ import {
   ZapOff,
   Underline,
   SunMoon,
+  X,
 } from 'lucide-react';
 
 export function DisplaySettingsDropdown() {
@@ -30,8 +31,9 @@ export function DisplaySettingsDropdown() {
   const { locale } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
-  // Close on click outside and ESC key
+  // Close on click outside and ESC key with focus restoration
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
@@ -41,6 +43,7 @@ export function DisplaySettingsDropdown() {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === 'Escape' && isOpen) {
         setIsOpen(false);
+        triggerRef.current?.focus();
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -58,6 +61,7 @@ export function DisplaySettingsDropdown() {
     <div ref={containerRef} className="relative inline-block text-left z-40">
       {/* Trigger Button */}
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="dialog"
@@ -103,17 +107,31 @@ export function DisplaySettingsDropdown() {
               </div>
             </div>
 
-            {hasCustomSettings && (
+            <div className="flex items-center gap-1.5">
+              {hasCustomSettings && (
+                <button
+                  type="button"
+                  onClick={resetToDefault}
+                  className="text-[10px] text-slate-500 hover:text-blue-700 font-bold flex items-center gap-1 p-1 rounded-md hover:bg-slate-100 transition-colors"
+                  title={locale === 'tr' ? 'Varsayılana Sıfırla' : 'Reset to Defaults'}
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>{locale === 'tr' ? 'Sıfırla' : 'Reset'}</span>
+                </button>
+              )}
               <button
                 type="button"
-                onClick={resetToDefault}
-                className="text-[10px] text-slate-500 hover:text-blue-700 font-bold flex items-center gap-1 p-1 rounded-md hover:bg-slate-100 transition-colors"
-                title={locale === 'tr' ? 'Varsayılana Sıfırla' : 'Reset to Defaults'}
+                onClick={() => {
+                  setIsOpen(false);
+                  triggerRef.current?.focus();
+                }}
+                className="text-slate-400 hover:text-slate-700 p-1 rounded-md hover:bg-slate-100 transition-colors cursor-pointer"
+                aria-label={locale === 'tr' ? 'Paneli Kapat' : 'Close Panel'}
+                title={locale === 'tr' ? 'Kapat (Esc)' : 'Close (Esc)'}
               >
-                <RotateCcw className="w-3 h-3" />
-                <span>{locale === 'tr' ? 'Sıfırla' : 'Reset'}</span>
+                <X className="w-3.5 h-3.5" />
               </button>
-            )}
+            </div>
           </div>
 
           {/* Warm Erasmus+ Inclusion Banner */}

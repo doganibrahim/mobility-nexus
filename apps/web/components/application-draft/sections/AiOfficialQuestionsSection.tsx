@@ -7,6 +7,7 @@ import {
   DEFAULT_OFFICIAL_QUESTIONS_KA122,
   DEFAULT_OFFICIAL_QUESTIONS_KA121,
 } from '../../../lib/application-draft-schema';
+import { useTranslation } from '../../../lib/i18n';
 
 interface AiOfficialQuestionsSectionProps {
   draft: ApplicationDraftState;
@@ -19,6 +20,7 @@ export default function AiOfficialQuestionsSection({
   schoolProfile,
   onChangeAnswers,
 }: AiOfficialQuestionsSectionProps) {
+  const { locale } = useTranslation();
   const isKa121 = draft.formType === 'KA121';
   const defaultQuestions = isKa121
     ? DEFAULT_OFFICIAL_QUESTIONS_KA121
@@ -40,193 +42,220 @@ export default function AiOfficialQuestionsSection({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successToast, setSuccessToast] = useState<string | null>(null);
   const [showSuccessBanner, setShowSuccessBanner] = useState(false);
+  const [generateProgress, setGenerateProgress] = useState<{ current: number; total: number } | null>(null);
 
   // 1. Temel Başvuru Bilgileri (Okul, Proje, Faaliyet)
+  const notSpecified = locale === 'tr' ? 'Belirtilmedi' : 'Not specified';
   const directFields = [
     {
       id: 'df-applicant-name',
-      category: 'Temel Bilgiler',
-      label: 'Başvuran Kuruluş Yasal Adı (Applicant Legal Name)',
-      value: draft.context.applicantName || schoolProfile?.schoolName || 'Belirtilmedi',
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Başvuran Kuruluş Yasal Adı (Applicant Legal Name)' : 'Applicant Legal Name',
+      value: draft.context.applicantName || schoolProfile?.schoolName || notSpecified,
     },
     {
       id: 'df-applicant-oid',
-      category: 'Temel Bilgiler',
-      label: 'Kuruluş Kimlik Kodu (Organisation ID - OID)',
-      value: draft.context.applicantOid || schoolProfile?.oid || 'Belirtilmedi',
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Kuruluş Kimlik Kodu (Organisation ID - OID)' : 'Organisation ID (OID)',
+      value: draft.context.applicantOid || schoolProfile?.oid || notSpecified,
     },
     {
       id: 'df-applicant-city',
-      category: 'Temel Bilgiler',
-      label: 'Şehir ve Ülke (City & Country)',
-      value: `${draft.context.applicantCity || schoolProfile?.city || 'Türkiye'}, Türkiye`,
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Şehir ve Ülke (City & Country)' : 'City & Country',
+      value: `${draft.context.applicantCity || schoolProfile?.city || (locale === 'tr' ? 'Türkiye' : 'Turkey')}, ${locale === 'tr' ? 'Türkiye' : 'Turkey'}`,
     },
     {
       id: 'df-project-title',
-      category: 'Temel Bilgiler',
-      label: 'Proje Tam Adı (İngilizce / Project name)',
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Proje Tam Adı (Project Title)' : 'Project Title',
       value: draft.context.projectTitle || `${draft.context.applicantName || schoolProfile?.schoolName || 'VET School'} Erasmus+ Project`,
     },
     {
       id: 'df-project-acronym',
-      category: 'Temel Bilgiler',
-      label: 'Proje Kısaltması / Akronim (Project acronym)',
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Proje Kısaltması / Akronim (Project acronym)' : 'Project Acronym',
       value: draft.context.projectAcronym || 'VET-MOBILITY',
     },
     {
       id: 'df-start-date',
-      category: 'Temel Bilgiler',
-      label: 'Proje Başlangıç Tarihi (Project Start Date)',
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Proje Başlangıç Tarihi (Project Start Date)' : 'Project Start Date',
       value: draft.context.projectStartDate || '2026-10-01',
     },
     {
       id: 'df-duration-months',
-      category: 'Temel Bilgiler',
-      label: 'Proje Süresi (Duration)',
-      value: `${draft.context.projectDurationMonths || 12} Ay`,
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Proje Süresi (Duration)' : 'Project Duration',
+      value: `${draft.context.projectDurationMonths || 12} ${locale === 'tr' ? 'Ay' : 'Months'}`,
     },
     {
       id: 'df-language',
-      category: 'Temel Bilgiler',
-      label: 'Başvuru Dili (Language used to fill the form)',
-      value: 'İngilizce (EN)',
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Başvuru Dili (Language used to fill the form)' : 'Application Form Language',
+      value: locale === 'tr' ? 'İngilizce (EN)' : 'English (EN)',
     },
     {
       id: 'df-activity-type',
-      category: 'Temel Bilgiler',
-      label: 'Faaliyet Türü (Activity Type)',
-      value: draft.activityDetails.activityType === 'VET_SHORT_TERM' ? 'Kısa Dönemli Mesleki Öğrenici Hareketliliği (Short-term learning mobility of VET learners)' : draft.activityDetails.activityType,
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Faaliyet Türü (Activity Type)' : 'Activity Type',
+      value: draft.activityDetails.activityType === 'VET_SHORT_TERM'
+        ? (locale === 'tr' ? 'Kısa Dönemli Mesleki Öğrenici Hareketliliği (10-89 gün)' : 'Short-term learning mobility of VET learners (10-89 days)')
+        : draft.activityDetails.activityType,
     },
     {
       id: 'df-participants-count',
-      category: 'Temel Bilgiler',
-      label: 'Öğrenici / Katılımcı Sayısı (Learners Count)',
-      value: `${draft.activityDetails.totalParticipants || 0} Katılımcı`,
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Öğrenici / Katılımcı Sayısı (Learners Count)' : 'Learners / Participants Count',
+      value: `${draft.activityDetails.totalParticipants || 0} ${locale === 'tr' ? 'Katılımcı' : 'Participants'}`,
     },
     {
       id: 'df-duration-days',
-      category: 'Temel Bilgiler',
-      label: 'Faaliyet Süresi (Standard Duration)',
-      value: `${draft.activityDetails.standardDurationDays || 0} Gün (+${draft.activityDetails.travelDaysPerPerson || 2} seyahat günü)`,
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Faaliyet Süresi (Standard Duration)' : 'Activity Duration',
+      value: `${draft.activityDetails.standardDurationDays || 0} ${locale === 'tr' ? 'Gün' : 'Days'} (${
+        (draft.activityDetails.travelDaysPerPerson ?? 2) > 0
+          ? `+${draft.activityDetails.travelDaysPerPerson ?? 2}`
+          : '0'
+      } ${locale === 'tr' ? 'seyahat günü' : 'travel days'})`,
     },
     {
       id: 'df-target-country',
-      category: 'Temel Bilgiler',
-      label: 'Hedef Ülke (Destination Country)',
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Hedef Ülke (Destination Country)' : 'Destination Country',
       value: (draft.activityDetails.targetCountries || []).join(', ') || draft.activityDetails.hostCountry || 'Almanya (DE)',
     },
     {
       id: 'df-host-name',
-      category: 'Temel Bilgiler',
-      label: 'Ev Sahibi Kuruluş (Hosting Organisation)',
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Ev Sahibi Kuruluş (Hosting Organisation)' : 'Hosting Organisation',
       value: draft.activityDetails.hostName || 'European Vocational Training & Internship Center',
     },
     {
       id: 'df-travel-mode',
-      category: 'Temel Bilgiler',
-      label: 'Ulaşım Türü & Yeşil Seyahat (Travel Mode)',
-      value: `${draft.activityDetails.mainTravelMode} (${draft.activityDetails.greenTravelParticipantsCount || 0} kişi Yeşil Seyahat Hibe Desteği)`,
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Ulaşım Türü & Yeşil Seyahat (Travel Mode)' : 'Travel Mode & Green Mobility',
+      value: `${draft.activityDetails.mainTravelMode} (${draft.activityDetails.greenTravelParticipantsCount || 0} ${locale === 'tr' ? 'kişi Yeşil Seyahat Hibe Desteği' : 'participants Green Travel'})`,
     },
     {
       id: 'df-accompanying',
-      category: 'Temel Bilgiler',
-      label: 'Refakatçi Durumu (Accompanying Persons)',
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Refakatçi Durumu (Accompanying Persons)' : 'Accompanying Persons Status',
       value: draft.activityDetails.accompanyingRequired
-        ? `${draft.activityDetails.accompanyingCount} Refakatçi Öğretmen (${draft.activityDetails.accompanyingDays} gün - Gerekçe: ${draft.activityDetails.accompanyingReason})`
-        : 'Refakatçi Talep Edilmedi',
+        ? `${draft.activityDetails.accompanyingCount} ${locale === 'tr' ? 'Refakatçi Öğretmen' : 'Accompanying Staff'} (${draft.activityDetails.accompanyingDays} ${locale === 'tr' ? 'gün' : 'days'})`
+        : (locale === 'tr' ? 'Refakatçi Talep Edilmedi' : 'No accompanying persons requested'),
     },
     {
       id: 'df-legal-rep',
-      category: 'Temel Bilgiler',
-      label: 'Yasal Temsilci (Legal Representative)',
-      value: `${draft.qualityTeam.legalRepresentativeName || 'Okul Müdürü'} (${draft.qualityTeam.legalRepresentativeRole || 'Okul Müdürü'} - ${draft.qualityTeam.legalRepresentativeEmail || 'E-posta belirtilmedi'})`,
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Yasal Temsilci (Legal Representative)' : 'Legal Representative',
+      value: `${draft.qualityTeam.legalRepresentativeName || (locale === 'tr' ? 'Okul Müdürü' : 'Principal')} (${draft.qualityTeam.legalRepresentativeRole || (locale === 'tr' ? 'Okul Müdürü' : 'Principal')} - ${draft.qualityTeam.legalRepresentativeEmail || (locale === 'tr' ? 'E-posta belirtilmedi' : 'Email not specified')})`,
     },
     {
       id: 'df-coordinator',
-      category: 'Temel Bilgiler',
-      label: 'Proje Koordinatörü / İrtibat Kişisi (Contact Person)',
-      value: `${draft.qualityTeam.coordinatorName || 'Proje Koordinatörü'} (${draft.qualityTeam.coordinatorRole || 'Koordinatör'} - ${draft.qualityTeam.coordinatorEmail || 'E-posta belirtilmedi'})`,
+      category: locale === 'tr' ? 'Temel Bilgiler' : 'Core Details',
+      label: locale === 'tr' ? 'Proje Koordinatörü / İrtibat Kişisi (Contact Person)' : 'Project Coordinator / Contact Person',
+      value: `${draft.qualityTeam.coordinatorName || (locale === 'tr' ? 'Proje Koordinatörü' : 'Coordinator')} (${draft.qualityTeam.coordinatorRole || (locale === 'tr' ? 'Koordinatör' : 'Coordinator')} - ${draft.qualityTeam.coordinatorEmail || (locale === 'tr' ? 'E-posta belirtilmedi' : 'Email not specified')})`,
     },
   ];
 
   // Kategoriler (Temel Bilgiler + Anlatısal Sorular)
-  const narrativeCategories = Array.from(new Set(answers.map((a) => a.category)));
-  const allCategories = ['Temel Bilgiler', ...narrativeCategories];
+  const coreCategoryLabel = locale === 'tr' ? 'Temel Bilgiler' : 'Core Details';
+  const narrativeCategories = Array.from(new Set(answers.map((a) => (locale === 'en' && a.categoryEn ? a.categoryEn : a.category))));
+  const allCategories = [coreCategoryLabel, ...narrativeCategories];
+
+  const showToast = (msg: string) => {
+    setSuccessToast(msg);
+    setTimeout(() => setSuccessToast(null), 3000);
+  };
 
   const handleCopySingle = async (id: string, text: string) => {
     if (!text) return;
     try {
       await navigator.clipboard.writeText(text);
       setCopiedId(id);
+      showToast(locale === 'tr' ? 'Panoya kopyalandı.' : 'Copied to clipboard.');
       setTimeout(() => setCopiedId(null), 2000);
-    } catch {
-      const el = document.createElement('textarea');
-      el.value = text;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
-      setCopiedId(id);
-      setTimeout(() => setCopiedId(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy', err);
     }
   };
 
-  const handleAnswerChange = (id: string, newText: string) => {
-    const updated = answers.map((item) =>
-      item.id === id ? { ...item, answer: newText } : item,
-    );
+  const handleAnswerChange = (id: string, newAnswer: string) => {
+    const updated = answers.map((a) => (a.id === id ? { ...a, answer: newAnswer, lastGeneratedAt: new Date().toISOString() } : a));
     onChangeAnswers(updated);
   };
 
-  const [generateProgress, setGenerateProgress] = useState<{ current: number; total: number } | null>(null);
-  const stopRequestedRef = React.useRef(false);
+  const handleGenerateSingle = async (id: string) => {
+    const q = answers.find((a) => a.id === id);
+    if (!q) return;
 
-  // Toplu Üretim (Soruları Sırayla Üreterek Ekrana Canlı Doldurur)
+    setGeneratingQuestionId(id);
+    setErrorMessage(null);
+
+    try {
+      const res = await fetch('/api/generate-draft-narrative', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          questionId: id,
+          questionText: q.question,
+          category: q.category,
+          charLimit: q.charLimit,
+          evaluatorCriteria: q.evaluatorCriteria,
+          draft,
+          schoolProfile,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || (locale === 'tr' ? 'Yapay zeka yanıtı üretilemedi' : 'Failed to generate AI response'));
+      }
+
+      handleAnswerChange(id, data.narrative);
+      showToast(locale === 'tr' ? 'Yanıt başarıyla üretildi.' : 'Response generated successfully.');
+    } catch (err: any) {
+      setErrorMessage(err.message);
+    } finally {
+      setGeneratingQuestionId(null);
+    }
+  };
+
   const handleGenerateAll = async () => {
     setIsGeneratingAll(true);
     setErrorMessage(null);
-    stopRequestedRef.current = false;
-
-    let currentAnswers = [...answers];
-    let successCount = 0;
+    setShowSuccessBanner(false);
 
     try {
-      for (let i = 0; i < defaultQuestions.length; i++) {
-        if (stopRequestedRef.current) break;
-        const q = defaultQuestions[i];
-        setGenerateProgress({ current: i + 1, total: defaultQuestions.length });
+      for (let i = 0; i < answers.length; i++) {
+        const q = answers[i];
+        setGenerateProgress({ current: i + 1, total: answers.length });
         setGeneratingQuestionId(q.id);
 
-        try {
-          const res = await fetch('/api/generate-draft-narrative', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              draft: { ...draft, generatedAnswers: currentAnswers },
-              schoolProfile,
-              questionId: q.id,
-            }),
-          });
+        const res = await fetch('/api/generate-draft-narrative', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            questionId: q.id,
+            questionText: q.question,
+            category: q.category,
+            charLimit: q.charLimit,
+            evaluatorCriteria: q.evaluatorCriteria,
+            draft,
+            schoolProfile,
+          }),
+        });
 
-          const data = await res.json();
-          if (res.ok && data.answers) {
-            currentAnswers = data.answers;
-            onChangeAnswers(currentAnswers);
-            successCount++;
-          } else if (data.error) {
-            console.warn(`Question ${q.code} warning:`, data.error);
-          }
-        } catch (itemErr) {
-          console.error(`Error generating question ${q.code}:`, itemErr);
+        const data = await res.json();
+        if (res.ok && data.success) {
+          handleAnswerChange(q.id, data.narrative);
         }
       }
-
-      if (successCount > 0) {
-        setShowSuccessBanner(true);
-        showToast(`${successCount} / ${defaultQuestions.length} soru yanıtı başarıyla üretildi.`);
-      }
+      setShowSuccessBanner(true);
+      showToast(locale === 'tr' ? 'Tüm resmi soru yanıtları başarıyla üretildi!' : 'All official responses generated successfully!');
     } catch (err: any) {
-      setErrorMessage(err.message || 'Üretim sırasında bir bağlantı hatası oluştu.');
+      setErrorMessage(err.message);
     } finally {
       setIsGeneratingAll(false);
       setGeneratingQuestionId(null);
@@ -235,75 +264,35 @@ export default function AiOfficialQuestionsSection({
   };
 
   const handleStopGeneration = () => {
-    stopRequestedRef.current = true;
-    showToast('Üretim durduruldu.');
+    setIsGeneratingAll(false);
+    setGeneratingQuestionId(null);
+    setGenerateProgress(null);
   };
 
-  // Tekil Soru Üretimi
-  const handleGenerateSingle = async (questionId: string) => {
-    setGeneratingQuestionId(questionId);
-    setErrorMessage(null);
-    try {
-      const res = await fetch('/api/generate-draft-narrative', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          draft,
-          schoolProfile,
-          questionId,
-        }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Soru yanıtı üretilemedi.');
-      }
-
-      if (data.answers) {
-        onChangeAnswers(data.answers);
-        showToast('Soru yanıtı güncellendi.');
-      }
-    } catch (err: any) {
-      setErrorMessage(err.message || 'Bağlantı hatası oluştu.');
-    } finally {
-      setGeneratingQuestionId(null);
-    }
-  };
-
-  const showToast = (msg: string) => {
-    setSuccessToast(msg);
-    setTimeout(() => setSuccessToast(null), 3000);
-  };
-
-  // Tüm Formu (Parametreler + Kompozisyon Yanıtları) Tek Dosyada İndir
   const handleExportTxt = () => {
     let content = `============================================================\n`;
-    content += `OFFICIAL ERASMUS+ ${draft.formType} VET APPLICATION PROPOSAL & GUIDE\n`;
-    content += `Generated on: ${new Date().toISOString()}\n`;
-    content += `Applicant: ${draft.context.applicantName || schoolProfile?.schoolName || 'VET School'} (OID: ${draft.context.applicantOid || schoolProfile?.oid || 'N/A'})\n`;
-    content += `Project: ${draft.context.projectTitle || 'Erasmus+ VET Project'} (${draft.context.projectAcronym || 'VET-MOBILITY'})\n`;
+    content += `ERASMUS+ ${draft.formType}-VET OFFICIAL APPLICATION PROPOSAL DOSSIER\n`;
     content += `============================================================\n\n`;
 
-    content += `*DISCLAIMER: This document serves as a structured draft and guidance model aligned with the European Commission Guide for Experts on Quality Assessment. Verify all institutional figures and operational data before final submission on the official EU portal.*\n\n`;
-
-    content += `SECTION 0: DIRECT APPLICATION PARAMETERS (COPY DIRECTLY INTO FORM)\n`;
+    content += `PART 1: APPLICANT AND PROJECT DATA\n`;
     content += `------------------------------------------------------------\n`;
-    directFields.forEach((df) => {
-      content += `${df.label}\n=> ${df.value}\n\n`;
+    directFields.forEach((f) => {
+      content += `${f.label}: ${f.value}\n`;
     });
+    content += `\n`;
 
-    content += `\nSECTION 1: OFFICIAL APPLICATION QUESTIONS & HIGH-SCORING ENGLISH NARRATIVE ANSWERS\n`;
-    content += `------------------------------------------------------------\n`;
-    answers.forEach((q) => {
-      content += `CATEGORY: ${q.categoryEn || q.category}\n`;
-      content += `QUESTION (EN): ${q.questionEn || q.question}\n`;
+    content += `PART 2: OFFICIAL PROPOSAL NARRATIVE (ENGLISH)\n`;
+    content += `------------------------------------------------------------\n\n`;
+    answers.forEach((q, idx) => {
+      content += `[QUESTION ${idx + 1}/${answers.length}] ${q.categoryEn || q.category}\n`;
+      content += `OFFICIAL QUESTION: ${q.questionEn || q.question}\n`;
       if (q.question && q.questionEn !== q.question) {
         content += `QUESTION (TR): ${q.question}\n`;
       }
       if (q.evaluatorCriteria) {
         content += `EVALUATOR CRITERIA: ${q.evaluatorCriteria}\n`;
       }
-      content += `\nOFFICIAL NARRATIVE ANSWER (ENGLISH):\n${q.answer || '(No answer generated yet. Click "Yapay Zeka Yanıtları Üret" in the dashboard.)'}\n\n`;
+      content += `\nOFFICIAL NARRATIVE ANSWER (ENGLISH):\n${q.answer || '(No answer generated yet.)'}\n\n`;
       content += `------------------------------------------------------------\n`;
     });
 
@@ -316,19 +305,19 @@ export default function AiOfficialQuestionsSection({
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-    showToast('Tam başvuru dosyası (İngilizce) indirildi.');
+    showToast(locale === 'tr' ? 'Tam başvuru dosyası (İngilizce) indirildi.' : 'Application dossier (English) downloaded.');
   };
 
   const answeredCount = answers.filter((a) => a.answer && a.answer.trim().length > 10).length;
 
   const showDirectFields =
-    activeCategory === 'ALL' || activeCategory === 'Temel Bilgiler';
-  const showNarrativeFields = activeCategory !== 'Temel Bilgiler';
+    activeCategory === 'ALL' || activeCategory === coreCategoryLabel;
+  const showNarrativeFields = activeCategory !== coreCategoryLabel;
 
   const filteredNarrativeAnswers =
     activeCategory === 'ALL'
       ? answers
-      : answers.filter((a) => a.category === activeCategory);
+      : answers.filter((a) => (locale === 'en' && a.categoryEn ? a.categoryEn === activeCategory : a.category === activeCategory));
 
   return (
     <div className="space-y-6">
@@ -337,12 +326,14 @@ export default function AiOfficialQuestionsSection({
         <span className="text-xl leading-none">⚠️</span>
         <div className="space-y-1">
           <h4 className="text-xs font-bold uppercase tracking-wider text-amber-900">
-            Resmi Form Doldurma Rehberi (Örnek Taslak Uyarısı)
+            {locale === 'tr'
+              ? 'Resmi Form Doldurma Rehberi (Örnek Taslak Uyarısı)'
+              : 'Official Application Drafting Guide (Sample Workspace Notice)'}
           </h4>
           <p className="text-xs text-amber-800 leading-relaxed">
-            Bu ekrandaki tüm alanlar ve soru yanıtları, resmi Avrupa Komisyonu Erasmus+ başvuru formunu doldururken 
-            kurumunuza <strong>rehberlik etmek amacıyla oluşturulmuş örnek taslaklardır</strong>. 
-            Ulusal Ajans'a resmi başvuru yapılmadan önce her alanı inceleyiniz ve okulunuzun gerçek verilerine göre doğrulayınız.
+            {locale === 'tr'
+              ? 'Bu ekrandaki tüm alanlar ve soru yanıtları, resmi Avrupa Komisyonu Erasmus+ başvuru formunu doldururken kurumunuza rehberlik etmek amacıyla oluşturulmuş örnek taslaklardır. Ulusal Ajans\'a resmi başvuru yapılmadan önce her alanı inceleyiniz ve okulunuzun gerçek verilerine göre doğrulayınız.'
+              : 'All data fields and narrative answers provided here are sample draft guidelines designed to assist your institution when filling out the official European Commission Erasmus+ form. Please review and verify all details against your school\'s records before official submission.'}
           </p>
         </div>
       </div>
@@ -352,14 +343,16 @@ export default function AiOfficialQuestionsSection({
         <div>
           <div className="flex items-center gap-2">
             <h3 className="text-sm font-bold text-slate-900">
-              Resmi Başvuru Formu Dosyası
+              {locale === 'tr' ? 'Resmi Başvuru Formu Dosyası' : 'Official Application Drafting Dossier'}
             </h3>
             <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">
-              {directFields.length} Temel Alan + {answeredCount} / {answers.length} Soru
+              {directFields.length} {locale === 'tr' ? 'Temel Alan' : 'Core Fields'} + {answeredCount} / {answers.length} {locale === 'tr' ? 'Soru' : 'Questions'}
             </span>
           </div>
           <p className="text-xs text-slate-500 mt-0.5">
-            Resmi forma kopyalayacağınız temel kurum/proje bilgileri ve kompozisyon soruları tek bir derli toplu rehberdedir.
+            {locale === 'tr'
+              ? 'Resmi forma kopyalayacağınız temel kurum/proje bilgileri ve kompozisyon soruları tek bir derli toplu rehberdedir.'
+              : 'Consolidated dossier of institutional parameters and official narrative responses ready to paste into the official submission.'}
           </p>
         </div>
 
@@ -369,7 +362,7 @@ export default function AiOfficialQuestionsSection({
             onClick={handleExportTxt}
             className="px-3.5 py-2 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-300 hover:bg-slate-100 transition-colors"
           >
-            Metin Olarak İndir
+            {locale === 'tr' ? 'Metin Olarak İndir' : 'Download as Text'}
           </button>
 
           {isGeneratingAll && (
@@ -377,9 +370,9 @@ export default function AiOfficialQuestionsSection({
               type="button"
               onClick={handleStopGeneration}
               className="px-3 py-2 text-xs font-semibold rounded-lg bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition-colors"
-              title="Üretimi durdur"
+              title={locale === 'tr' ? 'Üretimi durdur' : 'Stop generation'}
             >
-              Durdur
+              {locale === 'tr' ? 'Durdur' : 'Stop'}
             </button>
           )}
 
@@ -392,27 +385,32 @@ export default function AiOfficialQuestionsSection({
             {isGeneratingAll && generateProgress ? (
               <>
                 <span className="animate-spin text-sm">⏳</span>
-                <span>Üretiliyor ({generateProgress.current}/{generateProgress.total})...</span>
+                <span>
+                  {locale === 'tr'
+                    ? `Üretiliyor (${generateProgress.current}/${generateProgress.total})...`
+                    : `Generating (${generateProgress.current}/${generateProgress.total})...`}
+                </span>
               </>
             ) : (
-              <span>Yapay Zeka Yanıtları Üret</span>
+              <span>{locale === 'tr' ? 'Yapay Zeka Yanıtları Üret' : 'Generate AI Responses'}</span>
             )}
           </button>
         </div>
       </div>
 
-      {/* Başarı Bildirimi (Tüm Sorular Üretildiğinde) */}
+      {/* Başarı Bildirimi */}
       {showSuccessBanner && (
         <div className="bg-emerald-50 border border-emerald-300 rounded-xl p-4 text-emerald-950 flex items-start justify-between gap-3 shadow-xs animate-in fade-in duration-300">
           <div className="flex items-start gap-3">
             <span className="text-xl leading-none">✅</span>
             <div className="space-y-0.5">
               <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-900">
-                Yapay Zeka Yanıtları Başarıyla Üretildi
+                {locale === 'tr' ? 'Yapay Zeka Yanıtları Başarıyla Üretildi' : 'AI Narrative Answers Generated Successfully'}
               </h4>
               <p className="text-xs text-emerald-800 leading-relaxed">
-                Tüm sorular için Avrupa Komisyonu değerlendirme kriterlerine uygun resmi İngilizce yanıtlar üretildi.
-                Yanıtları doğrudan inceleyebilir, düzenleyebilir veya tek tıkla kopyalayıp resmi formdaki kutucuklara yapıştırabilirsiniz.
+                {locale === 'tr'
+                  ? 'Tüm sorular için Avrupa Komisyonu değerlendirme kriterlerine uygun resmi İngilizce yanıtlar üretildi. Yanıtları doğrudan inceleyebilir, düzenleyebilir veya tek tıkla kopyalayıp resmi formdaki kutucuklara yapıştırabilirsiniz.'
+                  : 'Official English narrative answers aligned with European Commission award criteria have been generated. Review, edit, or copy directly into your submission.'}
               </p>
             </div>
           </div>
@@ -420,7 +418,7 @@ export default function AiOfficialQuestionsSection({
             type="button"
             onClick={() => setShowSuccessBanner(false)}
             className="text-emerald-700 hover:text-emerald-900 font-bold text-sm px-1.5 py-0.5"
-            title="Kapat"
+            title={locale === 'tr' ? 'Kapat' : 'Close'}
           >
             ×
           </button>
@@ -452,14 +450,14 @@ export default function AiOfficialQuestionsSection({
               : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
           }`}
         >
-          Tüm Form ({directFields.length + answers.length})
+          {locale === 'tr' ? 'Tüm Form' : 'Full Dossier'} ({directFields.length + answers.length})
         </button>
 
         {allCategories.map((cat) => {
-          const isDirect = cat === 'Temel Bilgiler';
+          const isDirect = cat === coreCategoryLabel;
           const count = isDirect
             ? directFields.length
-            : answers.filter((a) => a.category === cat).length;
+            : answers.filter((a) => (locale === 'en' && a.categoryEn ? a.categoryEn === cat : a.category === cat)).length;
           const isActive = activeCategory === cat;
           return (
             <button
@@ -478,16 +476,16 @@ export default function AiOfficialQuestionsSection({
         })}
       </div>
 
-      {/* 4. DOĞRUDAN FORM ALANLARI (Okul Adı, OID, Proje, Tarih, Katılımcı) */}
+      {/* 4. DOĞRUDAN FORM ALANLARI */}
       {showDirectFields && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2">
               <span>🏛️</span>
-              <span>Temel Başvuru Bilgileri</span>
+              <span>{locale === 'tr' ? 'Temel Başvuru Bilgileri' : 'Core Application Parameters'}</span>
             </h4>
             <span className="text-[11px] text-slate-400">
-              Resmi formdaki kutucuklara doğrudan yapıştırılabilir
+              {locale === 'tr' ? 'Resmi formdaki kutucuklara doğrudan yapıştırılabilir' : 'Directly copyable into official form fields'}
             </span>
           </div>
 
@@ -518,9 +516,9 @@ export default function AiOfficialQuestionsSection({
                         ? 'bg-emerald-600 text-white border-emerald-600'
                         : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'
                     }`}
-                    title="Bu alanı panoya kopyala"
+                    title={locale === 'tr' ? 'Bu alanı panoya kopyala' : 'Copy field to clipboard'}
                   >
-                    {isCopied ? '✓ Kopyalandı' : 'Kopyala'}
+                    {isCopied ? (locale === 'tr' ? '✓ Kopyalandı' : '✓ Copied') : (locale === 'tr' ? 'Kopyala' : 'Copy')}
                   </button>
                 </div>
               );
@@ -536,7 +534,7 @@ export default function AiOfficialQuestionsSection({
             <div className="pt-3 border-t border-slate-200">
               <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2 mb-3">
                 <span>📝</span>
-                <span>Resmi Form Soruları ve Yanıtları</span>
+                <span>{locale === 'tr' ? 'Resmi Form Soruları ve Yanıtları' : 'Official Application Questions & Narrative Answers'}</span>
               </h4>
             </div>
           )}
@@ -556,26 +554,33 @@ export default function AiOfficialQuestionsSection({
                   <div className="space-y-1.5 flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
-                        {item.categoryEn || item.category}
+                        {locale === 'en' ? (item.categoryEn || item.category) : item.category}
                       </span>
                     </div>
 
                     {/* Resmi İngilizce Soru Başlığı */}
                     <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
-                      {item.questionEn || item.question}
+                      {locale === 'en' ? (item.questionEn || item.question) : item.question}
                     </h4>
 
-                    {/* Türkçe Çeviri / Açıklama */}
-                    {item.questionEn && item.question && item.questionEn !== item.question && (
+                    {/* Dil Desteği Çeviri / Açıklama */}
+                    {locale === 'tr' && item.questionEn && item.question && item.questionEn !== item.question && (
+                      <p className="text-[11px] text-slate-500 italic">
+                        EN: {item.questionEn}
+                      </p>
+                    )}
+                    {locale === 'en' && item.question && item.questionEn && item.questionEn !== item.question && (
                       <p className="text-[11px] text-slate-500 italic">
                         TR: {item.question}
                       </p>
                     )}
 
-                    {/* Avrupa Komisyonu Değerlendirici Kriteri (Award Criteria) */}
+                    {/* Değerlendirici Kriteri */}
                     {item.evaluatorCriteria && (
                       <div className="mt-2 p-2.5 rounded-lg bg-blue-50/70 border border-blue-100/90 text-[11px] text-blue-900 flex items-start gap-2">
-                        <span className="font-bold shrink-0">🎯 Değerlendirici Kriteri (Award Criteria):</span>
+                        <span className="font-bold shrink-0">
+                          {locale === 'tr' ? '🎯 Değerlendirici Kriteri (Award Criteria):' : '🎯 Award Criteria:'}
+                        </span>
                         <span className="text-blue-800 leading-relaxed">{item.evaluatorCriteria}</span>
                       </div>
                     )}
@@ -589,7 +594,7 @@ export default function AiOfficialQuestionsSection({
                       disabled={isGeneratingAll || isGeneratingThis}
                       className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-colors disabled:opacity-50"
                     >
-                      {isGeneratingThis ? 'Üretiliyor...' : 'Yeniden Üret'}
+                      {isGeneratingThis ? (locale === 'tr' ? 'Üretiliyor...' : 'Generating...') : (locale === 'tr' ? 'Yeniden Üret' : 'Regenerate')}
                     </button>
 
                     <button
@@ -607,10 +612,10 @@ export default function AiOfficialQuestionsSection({
                       {isCopied ? (
                         <>
                           <span>✓</span>
-                          <span>Kopyalandı</span>
+                          <span>{locale === 'tr' ? 'Kopyalandı' : 'Copied'}</span>
                         </>
                       ) : (
-                        <span>Kopyala</span>
+                        <span>{locale === 'tr' ? 'Kopyala' : 'Copy'}</span>
                       )}
                     </button>
                   </div>
@@ -622,7 +627,11 @@ export default function AiOfficialQuestionsSection({
                     rows={6}
                     value={item.answer || ''}
                     onChange={(e) => handleAnswerChange(item.id, e.target.value)}
-                    placeholder="Bu soru için resmi İngilizce kompozisyon metni üretilir. 'Yeniden Üret' veya yukarıdaki 'Yapay Zeka Yanıtları Üret' butonuna tıklayarak Avrupa Komisyonu değerlendirme standartlarına uygun İngilizce yanıt oluşturabilir ya da doğrudan metin yazabilirsiniz..."
+                    placeholder={
+                      locale === 'tr'
+                        ? "Bu soru için resmi İngilizce kompozisyon metni üretilir. 'Yeniden Üret' veya yukarıdaki 'Yapay Zeka Yanıtları Üret' butonuna tıklayarak Avrupa Komisyonu değerlendirme standartlarına uygun İngilizce yanıt oluşturabilir ya da doğrudan metin yazabilirsiniz..."
+                        : "Official English narrative response will be generated here. Click 'Generate AI Responses' to synthesize responses aligned with EC award criteria, or write directly..."
+                    }
                     className="w-full text-xs sm:text-sm text-slate-800 bg-slate-50/50 border border-slate-200 rounded-lg p-3.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all font-sans leading-relaxed resize-y"
                   />
 
@@ -630,13 +639,16 @@ export default function AiOfficialQuestionsSection({
                   <div className="flex items-center justify-between text-[11px] text-slate-400 mt-1">
                     <span>
                       {item.lastGeneratedAt ? (
-                        <>Son güncelleme: {new Date(item.lastGeneratedAt).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}</>
+                        <>
+                          {locale === 'tr' ? 'Son güncelleme: ' : 'Last updated: '}
+                          {new Date(item.lastGeneratedAt).toLocaleTimeString(locale === 'tr' ? 'tr-TR' : 'en-US', { hour: '2-digit', minute: '2-digit' })}
+                        </>
                       ) : (
-                        'Düzenlenebilir taslak alan'
+                        locale === 'tr' ? 'Düzenlenebilir taslak alan' : 'Editable draft response'
                       )}
                     </span>
                     <span className={currentLength > item.charLimit ? 'text-red-500 font-bold' : ''}>
-                      {currentLength.toLocaleString()} / {item.charLimit.toLocaleString()} karakter
+                      {currentLength.toLocaleString()} / {item.charLimit.toLocaleString()} {locale === 'tr' ? 'karakter' : 'chars'}
                     </span>
                   </div>
                 </div>
@@ -646,7 +658,7 @@ export default function AiOfficialQuestionsSection({
         </div>
       )}
 
-      {/* Başarı Bildirimi */}
+      {/* Bildirim Toast */}
       {successToast && (
         <div className="fixed bottom-6 right-6 z-50 bg-slate-900 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-lg border border-slate-800 animate-in fade-in duration-200">
           {successToast}

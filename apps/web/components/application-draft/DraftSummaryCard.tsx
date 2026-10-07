@@ -11,6 +11,7 @@ import { useTranslation } from '../../lib/i18n';
 interface DraftSummaryCardProps {
   draft: ApplicationDraftState;
   onResetDraft: () => void;
+  onPurgeStorage?: () => void;
   onSyncPipeline?: () => void;
   onExportJson?: () => void;
   onGoToQuestions?: () => void;
@@ -19,6 +20,7 @@ interface DraftSummaryCardProps {
 export default function DraftSummaryCard({
   draft,
   onResetDraft,
+  onPurgeStorage,
 }: DraftSummaryCardProps) {
   const { locale } = useTranslation();
   const isKa121 = draft.formType === 'KA121';
@@ -37,21 +39,35 @@ export default function DraftSummaryCard({
   return (
     <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex flex-col justify-between h-full">
       <div>
-        {/* Üst Başlık ve Sıfırla Aksiyonu */}
+        {/* Üst Başlık ve Sıfırla / Yerel Depolamayı Temizle Aksiyonları */}
         <div className="flex items-center justify-between gap-2">
           <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
             {locale === 'tr' ? 'BAŞVURU TASLAĞI DURUMU' : 'APPLICATION DRAFT STATUS'}
           </span>
 
-          <button
-            type="button"
-            onClick={onResetDraft}
-            className="text-xs font-semibold text-slate-400 hover:text-rose-600 hover:bg-rose-50 px-2.5 py-1 rounded-lg border border-slate-200 transition-colors flex items-center gap-1.5"
-            title={locale === 'tr' ? 'Taslak form verilerini sıfırla' : 'Reset draft form data'}
-          >
-            <span>🗑️</span>
-            <span>{locale === 'tr' ? 'Taslağı Sıfırla' : 'Reset Draft'}</span>
-          </button>
+          <div className="flex items-center gap-1.5">
+            {onPurgeStorage && (
+              <button
+                type="button"
+                onClick={onPurgeStorage}
+                className="text-[11px] font-semibold text-amber-700 hover:text-amber-800 hover:bg-amber-50 px-2 py-1 rounded-lg border border-amber-200 transition-colors flex items-center gap-1"
+                title={locale === 'tr' ? 'Ortak bilgisayarlar için: Tarayıcı yerel depolama alanındaki (localStorage) taslağı tamamen siler' : 'For shared computers: Permanently purges draft from browser localStorage'}
+              >
+                <span>🛡️</span>
+                <span>{locale === 'tr' ? 'Yerel Belleği Temizle' : 'Purge Storage'}</span>
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={onResetDraft}
+              className="text-[11px] font-semibold text-slate-400 hover:text-rose-600 hover:bg-rose-50 px-2 py-1 rounded-lg border border-slate-200 transition-colors flex items-center gap-1"
+              title={locale === 'tr' ? 'Taslak form verilerini sıfırla' : 'Reset draft form data'}
+            >
+              <span>🗑️</span>
+              <span>{locale === 'tr' ? 'Sıfırla' : 'Reset'}</span>
+            </button>
+          </div>
         </div>
 
         {/* Proje / Form Başlığı ve Rozet */}

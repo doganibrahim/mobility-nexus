@@ -67,7 +67,7 @@ export default function ParticipantProfileCard({
           ? '🌍 Any / All Eligible Countries'
           : '🌍 Fark Etmez / Tüm Uygun Ülkeler',
     },
-    ...ERASMUS_COUNTRIES.map((c) => ({
+    ...ERASMUS_COUNTRIES.filter((c) => c.code !== 'TR').map((c) => ({
       code: c.code,
       label: `${c.flagEmoji} ${locale === 'en' ? c.nameEn : c.nameTr}`,
     })),

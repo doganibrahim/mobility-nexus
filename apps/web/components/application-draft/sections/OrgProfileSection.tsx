@@ -4,8 +4,11 @@ import React from 'react';
 import {
   ApplicationDraftOrgProfile,
   VET_PROGRAM_OPTIONS,
+  VET_PROGRAM_OPTIONS_EN,
   SUPPORTING_ORG_TASK_OPTIONS,
+  SUPPORTING_ORG_TASK_OPTIONS_EN,
 } from '../../../lib/application-draft-schema';
+import { useTranslation } from '../../../lib/i18n';
 
 interface OrgProfileSectionProps {
   data: ApplicationDraftOrgProfile;
@@ -18,6 +21,8 @@ export default function OrgProfileSection({
   onChange,
   ka120ImportedFields,
 }: OrgProfileSectionProps) {
+  const { locale } = useTranslation();
+
   const toggleProgram = (prog: string) => {
     const exists = data.vetProgramTypes.includes(prog);
     const updated = exists
@@ -39,14 +44,20 @@ export default function OrgProfileSection({
         <div>
           <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
             <span>🏢</span>
-            <span>Bölüm 2: Kuruluş Profili ve Kapasitesi (KA122)</span>
+            <span>
+              {locale === 'tr'
+                ? 'Bölüm 2: Kuruluş Profili ve Kapasitesi (KA122)'
+                : 'Section 2: Organisation Profile & Capacity (KA122)'}
+            </span>
           </h2>
           <p className="text-xs text-slate-600 mt-0.5">
-            Kurumunuzun mesleki eğitimdeki yasal statüsü, öğrenici yapısı ve personel büyüklüğü
+            {locale === 'tr'
+              ? 'Kurumunuzun mesleki eğitimdeki yasal statüsü, öğrenici yapısı ve personel büyüklüğü'
+              : 'Legal status, learner demographics, and staff capacity in VET'}
           </p>
         </div>
         <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200">
-          KA122 Zorunlu
+          {locale === 'tr' ? 'KA122 Zorunlu' : 'KA122 Mandatory'}
         </span>
       </div>
 
@@ -54,23 +65,35 @@ export default function OrgProfileSection({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            Kuruluşun Temel Faaliyet Türü (ORG-01) *
+            {locale === 'tr'
+              ? 'Kuruluşun Temel Faaliyet Türü (ORG-01) *'
+              : 'Main Activity Type of Organisation (ORG-01) *'}
           </label>
           <select
             value={data.mainActivityType}
             onChange={(e) => onChange({ mainActivityType: e.target.value as any })}
             className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
           >
-            <option value="VET_SCHOOL">Mesleki ve Teknik Anadolu Lisesi / Meslek Lisesi</option>
-            <option value="VET_PROVIDER">Mesleki Eğitim Merkezi / Sürekli Eğitim Kurumu</option>
-            <option value="COMPANY">Mesleki Staj Veren Şirket / İşletme</option>
-            <option value="OTHER">Diğer Eğitim Otoritesi / Konsorsiyum Koordinatörü</option>
+            <option value="VET_SCHOOL">
+              {locale === 'tr' ? 'Mesleki ve Teknik Anadolu Lisesi / Meslek Lisesi' : 'Vocational and Technical High School'}
+            </option>
+            <option value="VET_PROVIDER">
+              {locale === 'tr' ? 'Mesleki Eğitim Merkezi / Sürekli Eğitim Kurumu' : 'VET Center / Continuing Education Provider'}
+            </option>
+            <option value="COMPANY">
+              {locale === 'tr' ? 'Mesleki Staj Veren Şirket / İşletme' : 'Company / Enterprise Hosting Apprentices'}
+            </option>
+            <option value="OTHER">
+              {locale === 'tr' ? 'Diğer Eğitim Otoritesi / Konsorsiyum Koordinatörü' : 'Other Education Authority / Consortium Coordinator'}
+            </option>
           </select>
         </div>
 
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            Mesleki Eğitim Deneyim Süresi (Yıl - ORG-05) *
+            {locale === 'tr'
+              ? 'Mesleki Eğitim Deneyim Süresi (Yıl - ORG-05) *'
+              : 'VET Experience (Years - ORG-05) *'}
           </label>
           <input
             type="number"
@@ -86,14 +109,19 @@ export default function OrgProfileSection({
       {/* 2. VET Programları (Hızlı Seçim Çipleri) */}
       <div>
         <label className="block text-xs font-bold text-slate-700 mb-1.5">
-          Kurumunuzda Sunulan Mesleki Eğitim Programları (ORG-02) *
+          {locale === 'tr'
+            ? 'Kurumunuzda Sunulan Mesleki Eğitim Programları (ORG-02) *'
+            : 'VET Programs Offered by Your Organisation (ORG-02) *'}
         </label>
         <p className="text-[11px] text-slate-500 mb-2">
-          Uygulanan tüm programları seçiniz (Hızlı seçim):
+          {locale === 'tr'
+            ? 'Uygulanan tüm programları seçiniz (Hızlı seçim):'
+            : 'Select all applicable programs (Quick select):'}
         </p>
         <div className="flex flex-wrap gap-2">
           {VET_PROGRAM_OPTIONS.map((prog) => {
             const selected = data.vetProgramTypes.includes(prog);
+            const label = locale === 'en' ? (VET_PROGRAM_OPTIONS_EN[prog] || prog) : prog;
             return (
               <button
                 key={prog}
@@ -106,7 +134,7 @@ export default function OrgProfileSection({
                 }`}
               >
                 {selected ? '✓ ' : '+ '}
-                {prog}
+                {label}
               </button>
             );
           })}
@@ -118,11 +146,13 @@ export default function OrgProfileSection({
         <div>
           <div className="flex items-center justify-between gap-1 mb-1">
             <label className="block text-xs font-bold text-slate-700">
-              Hedef Öğrenici Profili ve Yaş Grubu (ORG-03) *
+              {locale === 'tr'
+                ? 'Hedef Öğrenici Profili ve Yaş Grubu (ORG-03) *'
+                : 'Target Learner Profile and Age Group (ORG-03) *'}
             </label>
             {ka120ImportedFields?.['orgProfile.learnerProfileSummary'] && (
               <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                KA120'den çekildi
+                {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
               </span>
             )}
           </div>
@@ -130,14 +160,20 @@ export default function OrgProfileSection({
             type="text"
             value={data.learnerProfileSummary}
             onChange={(e) => onChange({ learnerProfileSummary: e.target.value })}
-            placeholder="Örn: 15-18 yaş bilişim ve endüstriyel otomasyon öğrencileri"
+            placeholder={
+              locale === 'tr'
+                ? 'Örn: 15-18 yaş bilişim ve endüstriyel otomasyon öğrencileri'
+                : 'e.g. 15-18 age IT and automation learners'
+            }
             className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
         </div>
 
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            İmkanları Kısıtlı Öğrenicilerle Çalışıyor musunuz? (ORG-04) *
+            {locale === 'tr'
+              ? 'İmkanları Kısıtlı Öğrenicilerle Çalışıyor musunuz? (ORG-04) *'
+              : 'Do you work with learners with fewer opportunities? (ORG-04) *'}
           </label>
           <div className="flex gap-2">
             <button
@@ -149,7 +185,7 @@ export default function OrgProfileSection({
                   : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
               }`}
             >
-              Evet
+              {locale === 'tr' ? 'Evet' : 'Yes'}
             </button>
             <button
               type="button"
@@ -160,7 +196,7 @@ export default function OrgProfileSection({
                   : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
               }`}
             >
-              Hayır
+              {locale === 'tr' ? 'Hayır' : 'No'}
             </button>
           </div>
         </div>
@@ -169,7 +205,9 @@ export default function OrgProfileSection({
       {data.hasFewerOpportunitiesLearners && (
         <div className="p-3 bg-blue-50/70 rounded-xl border border-blue-200">
           <label className="block text-xs font-bold text-blue-950 mb-1">
-            Kurumunuzdaki İmkanları Kısıtlı Öğrenici Tahmini Oranı (%)
+            {locale === 'tr'
+              ? 'Kurumunuzdaki İmkanları Kısıtlı Öğrenici Tahmini Oranı (%)'
+              : 'Estimated Percentage of Learners with Fewer Opportunities (%)'}
           </label>
           <div className="flex items-center gap-3">
             <input
@@ -187,20 +225,20 @@ export default function OrgProfileSection({
         </div>
       )}
 
-      {/* 4. Personel ve Öğrenici Sayıları (Hızlı Sayı Girişi) */}
+      {/* 4. Personel ve Öğrenici Sayıları */}
       <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
         <div className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-          <span>👥</span> Kurum Büyüklüğü ve Personel Sayıları
+          <span>👥</span> {locale === 'tr' ? 'Kurum Büyüklüğü ve Personel Sayıları' : 'Organisation Size & Staff Counts'}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-semibold text-slate-700">
-                Aktif Öğrenici Sayısı (ORG-06) *
+                {locale === 'tr' ? 'Aktif Öğrenici Sayısı (ORG-06) *' : 'Active Learners Count (ORG-06) *'}
               </label>
               {ka120ImportedFields?.['orgProfile.totalVetLearnersCount'] && (
                 <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -216,11 +254,11 @@ export default function OrgProfileSection({
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-semibold text-slate-700">
-                Meslek Öğretmeni Sayısı (ORG-07) *
+                {locale === 'tr' ? 'Meslek Öğretmeni Sayısı (ORG-07) *' : 'VET Teaching Staff Count (ORG-07) *'}
               </label>
               {ka120ImportedFields?.['orgProfile.teachingStaffCount'] && (
                 <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -236,11 +274,11 @@ export default function OrgProfileSection({
           <div>
             <div className="flex items-center justify-between gap-1 mb-1">
               <label className="block text-xs font-semibold text-slate-700">
-                İdari / Destek Personel (ORG-08) *
+                {locale === 'tr' ? 'İdari / Destek Personel (ORG-08) *' : 'Non-teaching / Admin Staff (ORG-08) *'}
               </label>
               {ka120ImportedFields?.['orgProfile.nonTeachingStaffCount'] && (
                 <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                  KA120'den çekildi
+                  {locale === 'tr' ? "KA120'den çekildi" : 'Imported from KA120'}
                 </span>
               )}
             </div>
@@ -260,10 +298,12 @@ export default function OrgProfileSection({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-              <span>🤝</span> Proje Yönetiminde Destek Kuruluşu Olacak mı? (SUP-01)
+              <span>🤝</span> {locale === 'tr' ? 'Proje Yönetiminde Destek Kuruluşu Olacak mı? (SUP-01)' : 'Will a Supporting Organisation be Involved? (SUP-01)'}
             </div>
             <p className="text-[11px] text-slate-500 mt-0.5">
-              Lojistik, konaklama veya transfer organizasyonunda aracı bir kurumdan destek alacak mısınız?
+              {locale === 'tr'
+                ? 'Lojistik, konaklama veya transfer organizasyonunda aracı bir kurumdan destek alacak mısınız?'
+                : 'Will you receive assistance from an intermediary body for logistics, lodging, or transport?'}
             </p>
           </div>
 
@@ -277,7 +317,7 @@ export default function OrgProfileSection({
                   : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
               }`}
             >
-              Evet
+              {locale === 'tr' ? 'Evet' : 'Yes'}
             </button>
             <button
               type="button"
@@ -288,7 +328,7 @@ export default function OrgProfileSection({
                   : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
               }`}
             >
-              Hayır
+              {locale === 'tr' ? 'Hayır' : 'No'}
             </button>
           </div>
         </div>
@@ -298,26 +338,26 @@ export default function OrgProfileSection({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Destek Kuruluşu Adı (SUP-02)
+                  {locale === 'tr' ? 'Destek Kuruluşu Adı (SUP-02)' : 'Supporting Organisation Name (SUP-02)'}
                 </label>
                 <input
                   type="text"
                   value={data.supportingOrgName || ''}
                   onChange={(e) => onChange({ supportingOrgName: e.target.value })}
-                  placeholder="Örn: EU Mobility Support Solutions"
+                  placeholder={locale === 'tr' ? 'Örn: EU Mobility Support Solutions' : 'e.g. EU Mobility Support Solutions'}
                   className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Destek Kuruluşu OID Kodu
+                  {locale === 'tr' ? 'Destek Kuruluşu OID Kodu' : 'Supporting Organisation OID Code'}
                 </label>
                 <input
                   type="text"
                   value={data.supportingOrgOid || ''}
                   onChange={(e) => onChange({ supportingOrgOid: e.target.value })}
-                  placeholder="Örn: E10987654"
+                  placeholder="E10987654"
                   className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 font-mono focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
               </div>
@@ -325,11 +365,14 @@ export default function OrgProfileSection({
 
             <div>
               <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                Destek Kuruluşuna Devredilecek Görevler (SUP-03)
+                {locale === 'tr'
+                  ? 'Destek Kuruluşuna Devredilecek Görevler (SUP-03)'
+                  : 'Tasks Assigned to Supporting Organisation (SUP-03)'}
               </label>
               <div className="flex flex-wrap gap-2">
                 {SUPPORTING_ORG_TASK_OPTIONS.map((task) => {
                   const selected = (data.supportingOrgTasks || []).includes(task);
+                  const label = locale === 'en' ? (SUPPORTING_ORG_TASK_OPTIONS_EN[task] || task) : task;
                   return (
                     <button
                       key={task}
@@ -342,7 +385,7 @@ export default function OrgProfileSection({
                       }`}
                     >
                       {selected ? '✓ ' : '+ '}
-                      {task}
+                      {label}
                     </button>
                   );
                 })}
@@ -352,9 +395,10 @@ export default function OrgProfileSection({
             <div className="p-3 bg-amber-50 rounded-lg border border-amber-200 text-amber-900 text-xs flex items-start gap-2">
               <span className="font-bold">⚠️</span>
               <div>
-                <strong>Resmi Erasmus+ Kuralı:</strong> Destek kuruluşu yalnızca lojistik ve pratik
-                düzenlemelerde yardımcı olabilir. Katılımcı seçimi, bütçe yönetimi ve içerik
-                kararları asla devredilemez.
+                <strong>{locale === 'tr' ? 'Resmi Erasmus+ Kuralı:' : 'Official Erasmus+ Rule:'}</strong>{' '}
+                {locale === 'tr'
+                  ? 'Destek kuruluşu yalnızca lojistik ve pratik düzenlemelerde yardımcı olabilir. Katılımcı seçimi, bütçe yönetimi ve içerik kararları asla devredilemez.'
+                  : 'Supporting organisations may only assist with logistics and practical arrangements. Participant selection, financial decisions, and course content can never be outsourced.'}
               </div>
             </div>
           </div>

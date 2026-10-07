@@ -12,12 +12,13 @@ Allow: /privacy
 Allow: /terms
 Allow: /kvkk
 Allow: /accessibility
-Allow: /school/pipeline
-Allow: /school/application-draft
 
-# Disallow authenticated dashboards and internal API endpoints
+# Disallow authenticated dashboards, internal workspaces and API endpoints
 Disallow: /admin/
 Disallow: /profile/
+Disallow: /onboarding/
+Disallow: /school/pipeline
+Disallow: /school/application-draft
 Disallow: /api/
 Disallow: /sign-in
 Disallow: /sign-up

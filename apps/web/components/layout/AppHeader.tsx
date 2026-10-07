@@ -19,6 +19,7 @@ import { DisplaySettingsDropdown } from './DisplaySettingsDropdown';
 export default function AppHeader() {
   const pathname = usePathname();
   const { locale, setLocale, t } = useTranslation();
+  const isTr = locale === 'tr';
   const { themeConfig } = useTheme();
   const { currentOrg, currentHost, orgType, userRole } = useAppStore();
   const { user, isSignedIn } = useUser();
@@ -229,7 +230,9 @@ export default function AppHeader() {
                     ? 'border-slate-800 text-white hover:bg-slate-800'
                     : 'border-slate-200 text-slate-500 hover:bg-slate-200/60 hover:text-slate-900'
                   }`}
-                aria-label="Mobility Hub Alt Menü"
+                aria-label={isTr ? 'Mobility Hub Alt Menü' : 'Mobility Hub submenu'}
+                aria-expanded={activeDropdown === 'PLATFORM'}
+                aria-controls="platform-dropdown-menu"
               >
                 <svg
                   className={`w-3 h-3 transition-transform ${activeDropdown === 'PLATFORM' ? 'rotate-180' : ''
@@ -245,7 +248,7 @@ export default function AppHeader() {
             </div>
 
             {activeDropdown === 'PLATFORM' && (
-              <div className="absolute left-0 mt-2 w-88 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
+              <div id="platform-dropdown-menu" className="absolute left-0 mt-2 w-88 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
                 {/* 1. Distinct Purpose Header */}
                 <div className="p-3 bg-blue-50/60 border-b border-blue-100 space-y-1">
                   <div className="flex items-center justify-between">
@@ -488,7 +491,9 @@ export default function AppHeader() {
                     ? 'border-slate-800 text-white hover:bg-slate-800'
                     : 'border-slate-200 text-slate-500 hover:bg-slate-200/60 hover:text-slate-900'
                   }`}
-                aria-label="Kütüphane Alt Menü"
+                aria-label={isTr ? 'Kütüphane Alt Menü' : 'Library submenu'}
+                aria-expanded={activeDropdown === 'LIBRARY'}
+                aria-controls="library-dropdown-menu"
               >
                 <svg
                   className={`w-3 h-3 transition-transform ${activeDropdown === 'LIBRARY' ? 'rotate-180' : ''
@@ -504,7 +509,7 @@ export default function AppHeader() {
             </div>
 
             {activeDropdown === 'LIBRARY' && (
-              <div className="absolute left-0 mt-2 w-88 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
+              <div id="library-dropdown-menu" className="absolute left-0 mt-2 w-88 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
                 {/* 1. Distinct Purpose Header */}
                 <div className="p-3 bg-emerald-50/60 border-b border-emerald-100 space-y-1">
                   <div className="flex items-center justify-between">
@@ -703,7 +708,9 @@ export default function AppHeader() {
                     ? 'border-slate-800 text-white hover:bg-slate-800'
                     : 'border-slate-200 text-slate-500 hover:bg-slate-200/60 hover:text-slate-900'
                   }`}
-                aria-label="Haberler Alt Menü"
+                aria-label={isTr ? 'Haberler Alt Menü' : 'News & Events submenu'}
+                aria-expanded={activeDropdown === 'NEWS'}
+                aria-controls="news-dropdown-menu"
               >
                 <svg
                   className={`w-3 h-3 transition-transform ${activeDropdown === 'NEWS' ? 'rotate-180' : ''
@@ -719,7 +726,7 @@ export default function AppHeader() {
             </div>
 
             {activeDropdown === 'NEWS' && (
-              <div className="absolute right-0 xl:left-0 mt-2 w-88 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
+              <div id="news-dropdown-menu" className="absolute right-0 xl:left-0 mt-2 w-88 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
                 {/* 1. Distinct Purpose Header */}
                 <div className="p-3 bg-blue-50/60 border-b border-blue-100 space-y-1">
                   <div className="flex items-center justify-between">
@@ -841,7 +848,9 @@ export default function AppHeader() {
                     ? 'border-slate-800 text-white hover:bg-slate-800'
                     : 'border-slate-200 text-slate-500 hover:bg-slate-200/60 hover:text-slate-900'
                   }`}
-                aria-label="İletişim Alt Menü"
+                aria-label={isTr ? 'İletişim Alt Menü' : 'Contact submenu'}
+                aria-expanded={activeDropdown === 'CONTACT'}
+                aria-controls="contact-dropdown-menu"
               >
                 <svg
                   className={`w-3 h-3 transition-transform ${activeDropdown === 'CONTACT' ? 'rotate-180' : ''
@@ -857,7 +866,7 @@ export default function AppHeader() {
             </div>
 
             {activeDropdown === 'CONTACT' && (
-              <div className="absolute right-0 mt-2 w-88 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
+              <div id="contact-dropdown-menu" className="absolute right-0 mt-2 w-88 rounded-xl bg-white border-2 border-slate-300 shadow-xl py-1.5 z-50 divide-y divide-slate-100 animate-fadeIn">
                 {/* 1. Distinct Purpose Header */}
                 <div className="p-3 bg-slate-50 border-b border-slate-200 space-y-1">
                   <div className="flex items-center justify-between">
@@ -1086,8 +1095,9 @@ export default function AppHeader() {
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="xl:hidden p-1.5 sm:p-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors shadow-2xs shrink-0 cursor-pointer"
-            aria-label={isMobileMenuOpen ? 'Menüyü Kapat' : 'Menüyü Aç'}
+            aria-label={isMobileMenuOpen ? (isTr ? 'Menüyü Kapat' : 'Close menu') : (isTr ? 'Menüyü Aç' : 'Open menu')}
             aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu-panel"
           >
             {isMobileMenuOpen ? (
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
@@ -1105,6 +1115,7 @@ export default function AppHeader() {
       {/* Mobile Slide-down Navigation Panel (Flat, Zero Gradient, xl:hidden) */}
       {isMobileMenuOpen && (
         <div
+          id="mobile-menu-panel"
           ref={mobileMenuRef}
           className="xl:hidden bg-white border-t border-slate-200 shadow-xl max-h-[calc(100vh-100px)] overflow-y-auto divide-y divide-slate-100 animate-fadeIn"
         >

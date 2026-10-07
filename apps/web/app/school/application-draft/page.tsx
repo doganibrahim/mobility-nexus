@@ -104,6 +104,13 @@ export default function ApplicationDraftPage() {
           : 'Notice: Your institution is not accredited. KA121 is reserved for accredited institutions. Do you still want to preview the KA121 draft?'
       );
       if (!confirmed) return;
+    } else if (store.schoolProfile?.accredited === 'unknown' && newType === 'KA121') {
+      const confirmed = window.confirm(
+        locale === 'tr'
+          ? 'Uyarı: Kurumunuzun KA120 akreditasyon durumu henüz doğrulanmamıştır. KA121 hibe talebi yalnızca resmi akredite kurumlara açıktır. Yine de KA121 taslağını incelemek istiyor musunuz?'
+          : 'Notice: Your KA120 accreditation status is unconfirmed. KA121 is reserved for accredited institutions. Do you still want to preview the KA121 draft?'
+      );
+      if (!confirmed) return;
     }
 
     store.syncPipelineToDraft(newType);
@@ -136,6 +143,23 @@ export default function ApplicationDraftPage() {
     }
   };
 
+  const handlePurgeDraftStorage = () => {
+    const confirmMsg =
+      locale === 'tr'
+        ? 'DİKKAT: Tarayıcınızda (localStorage) saklanan tüm taslak başvuru verileri ve okul bilgileri kalıcı olarak silinecektir.\n\nOrtak veya paylaşılan bir bilgisayarda çalışıyorsanız bu işlem gizliliğinizi korumak için önerilir. Devam etmek istiyor musunuz?'
+        : 'ATTENTION: All application draft data stored in local browser storage will be permanently wiped.\n\nRecommended for privacy if you are on a shared or public computer. Do you want to proceed?';
+
+    if (window.confirm(confirmMsg)) {
+      store.clearLocalDraftStorage();
+      setActiveSection('context');
+      triggerToast(
+        locale === 'tr'
+          ? '✓ Yerel taslak depolaması başarıyla temizlendi.'
+          : '✓ Local draft storage successfully purged.',
+      );
+    }
+  };
+
   const handleExportJson = () => {
     const dataStr =
       'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(draft, null, 2));
@@ -148,7 +172,7 @@ export default function ApplicationDraftPage() {
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
-    triggerToast('JSON dosyası indirildi');
+    triggerToast(locale === 'tr' ? 'JSON dosyası indirildi' : 'JSON file downloaded');
   };
 
   const handleKa120FileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -706,8 +730,29 @@ export default function ApplicationDraftPage() {
             <DraftSummaryCard
               draft={draft}
               onResetDraft={handleResetDraft}
+              onPurgeStorage={handlePurgeDraftStorage}
             />
           </div>
+        </div>
+
+        {/* Güvenlik & Yerel Veri Gizliliği Bildirimi (Ortak / Paylaşımlı Bilgisayarlar) */}
+        <div className="bg-slate-50 border border-slate-200/90 rounded-xl px-4 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-600 shadow-xs">
+          <div className="flex items-center gap-2">
+            <span className="text-sm">🔒</span>
+            <span>
+              <strong>{locale === 'tr' ? 'Veri Gizliliği Güvencesi:' : 'Data Privacy Guarantee:'}</strong>{' '}
+              {locale === 'tr'
+                ? 'Taslak yanıtlarınız ve kurum verileriniz yalnızca tarayıcınızın yerel depolama alanında (localStorage) tutulur, sunucuda saklanmaz. Ortak okul bilgisayarlarında oturumunuz bittiğinde verilerinizi silmek için "Yerel Belleği Temizle" seçeneğini kullanabilirsiniz.'
+                : 'Your draft answers and school data are retained solely in local browser storage (localStorage) and never stored on remote servers. Use "Purge Storage" after finishing on shared school computers.'}
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={handlePurgeDraftStorage}
+            className="text-[11px] font-bold text-amber-700 hover:text-amber-800 hover:underline whitespace-nowrap self-start sm:self-auto cursor-pointer"
+          >
+            {locale === 'tr' ? 'Şimdi Temizle →' : 'Purge Now →'}
+          </button>
         </div>
 
         {/* Horizontal Wizard Stepper / Tabs */}

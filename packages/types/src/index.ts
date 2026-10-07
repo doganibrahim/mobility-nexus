@@ -491,7 +491,9 @@ export interface CriterionEvaluation {
   scoreContribution: number; // 0-100
   weightedScore: number; // points contributed to total 100
   schoolRequested: string;
+  schoolRequestedEn?: string;
   hostProvided: string;
+  hostProvidedEn?: string;
   messageTr: string;
   messageEn: string;
   actionableHintTr?: string;
@@ -516,6 +518,7 @@ export interface SevenCriteriaDiagnostics {
 export interface HostMatchCandidate {
   hostId: string;
   hostName: string;
+  hostNameEn?: string;
   legalName?: string;
   countryCode: string;
   city: string;
@@ -526,6 +529,7 @@ export interface HostMatchCandidate {
   profileCompletenessScore: number;
   logoUrl?: string | null;
   shortDescription?: string | null;
+  shortDescriptionEn?: string | null;
   websiteUrl?: string;
 
   // Logistics flags

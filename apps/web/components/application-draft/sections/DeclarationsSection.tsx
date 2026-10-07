@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { ApplicationDraftDeclarations, FormType } from '../../../lib/application-draft-schema';
+import { useTranslation } from '../../../lib/i18n';
 
 interface DeclarationsSectionProps {
   data: ApplicationDraftDeclarations;
@@ -14,6 +15,7 @@ export default function DeclarationsSection({
   formType,
   onChange,
 }: DeclarationsSectionProps) {
+  const { locale } = useTranslation();
   const isKa121 = formType === 'KA121';
 
   return (
@@ -22,14 +24,20 @@ export default function DeclarationsSection({
         <div>
           <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
             <span>⚖️</span>
-            <span>Bölüm 6: Resmi Beyanlar ve Doğruluk Onayları</span>
+            <span>
+              {locale === 'tr'
+                ? 'Bölüm 6: Resmi Beyanlar ve Doğruluk Onayları'
+                : 'Section 6: Official Declarations & Consents'}
+            </span>
           </h2>
           <p className="text-xs text-slate-600 mt-0.5">
-            Erasmus+ Program Rehberi ve Ulusal Ajans resmi başvuru kuralları doğrultusunda taahhütler
+            {locale === 'tr'
+              ? 'Erasmus+ Program Rehberi ve Ulusal Ajans resmi başvuru kuralları doğrultusunda taahhütler'
+              : 'Formal commitments in compliance with the Erasmus+ Programme Guide and National Agency rules'}
           </p>
         </div>
         <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-          Son Adım
+          {locale === 'tr' ? 'Son Adım' : 'Final Step'}
         </span>
       </div>
 
@@ -45,13 +53,21 @@ export default function DeclarationsSection({
           <div className="text-xs">
             <span className="font-bold text-slate-900">
               {isKa121
-                ? 'Kurumsal Akreditasyon ve Erasmus Planı Uygunluğu (FIN-01 / FIN-02)'
-                : 'KA122 Başvuru Uygunluk ve Bütçe Kuralları (CTX-06 / DEC-01)'}
+                ? (locale === 'tr'
+                    ? 'Kurumsal Akreditasyon ve Erasmus Planı Uygunluğu (FIN-01 / FIN-02)'
+                    : 'Institutional Accreditation & Erasmus Plan Alignment (FIN-01 / FIN-02)')
+                : (locale === 'tr'
+                    ? 'KA122 Başvuru Uygunluk ve Bütçe Kuralları (CTX-06 / DEC-01)'
+                    : 'KA122 Application Eligibility & Grant Rules (CTX-06 / DEC-01)')}
             </span>
             <p className="text-slate-600 mt-0.5">
               {isKa121
-                ? 'Kurumumuzun onaylı Erasmus Akreditasyonundaki hedeflere uygun hareket ettiğimizi ve katılımcı sayılarının kurumsal kapasitemizle orantılı olduğunu onaylıyorum.'
-                : 'Kurumumuzun 5 ardışık çağrı yılı içinde en fazla 3 KA122 hibesi kuralına uyduğunu, talep edilen katılımcı ve gün sayısının kurumsal kapasitemizle örtüştüğünü beyan ederim.'}
+                ? (locale === 'tr'
+                    ? 'Kurumumuzun onaylı Erasmus Akreditasyonundaki hedeflere uygun hareket ettiğimizi ve katılımcı sayılarının kurumsal kapasitemizle orantılı olduğunu onaylıyorum.'
+                    : 'I confirm our mobilities align with the targets of our approved Erasmus Accreditation and participant volumes match capacity.')
+                : (locale === 'tr'
+                    ? 'Kurumumuzun 5 ardışık çağrı yılı içinde en fazla 3 KA122 hibesi kuralına uyduğunu, talep edilen katılımcı ve gün sayısının kurumsal kapasitemizle örtüştüğünü beyan ederim.'
+                    : 'I declare compliance with the rule of max 3 KA122 grants in 5 consecutive call years, and that requested quotas reflect institutional capacity.')}
             </p>
           </div>
         </label>
@@ -66,10 +82,14 @@ export default function DeclarationsSection({
           />
           <div className="text-xs">
             <span className="font-bold text-slate-900">
-              Operasyonel ve Mali Yönetim Kapasitesi Teyidi (DEC-02)
+              {locale === 'tr'
+                ? 'Operasyonel ve Mali Yönetim Kapasitesi Teyidi (DEC-02)'
+                : 'Confirmation of Operational and Financial Management Capacity (DEC-02)'}
             </span>
             <p className="text-slate-600 mt-0.5">
-              Kurumumuzun hareketliliği yürütecek yeterli idari, mali ve pedagojik personele sahip olduğunu, katılımcıların güvenliğini sağlayacak imkanların mevcut olduğunu teyit ederim.
+              {locale === 'tr'
+                ? 'Kurumumuzun hareketliliği yürütecek yeterli idari, mali ve pedagojik personele sahip olduğunu, katılımcıların güvenliğini sağlayacak imkanların mevcut olduğunu teyit ederim.'
+                : 'I confirm our institution has adequate administrative, financial, and pedagogical staff to manage the mobilities safely.'}
             </p>
           </div>
         </label>
@@ -84,10 +104,14 @@ export default function DeclarationsSection({
           />
           <div className="text-xs">
             <span className="font-bold text-slate-900">
-              Erasmus Kalite Standartlarına Bağlılık (FIN-03 / DEC-03)
+              {locale === 'tr'
+                ? 'Erasmus Kalite Standartlarına Bağlılık (FIN-03 / DEC-03)'
+                : 'Adherence to Erasmus Quality Standards (FIN-03 / DEC-03)'}
             </span>
             <p className="text-slate-600 mt-0.5">
-              Tüm faaliyet aşamalarında temel kalite standartlarına (katılımcıların ücretsiz katılımı, şeffaf seçim, adil mentörlük, sonuçların tanınması) tam riayet edileceğini taahhüt ederim.
+              {locale === 'tr'
+                ? 'Tüm faaliyet aşamalarında temel kalite standartlarına (katılımcıların ücretsiz katılımı, şeffaf seçim, adil mentörlük, sonuçların tanınması) tam riayet edileceğini taahhüt ederim.'
+                : 'I commit that all Erasmus quality standards (free participation, fair selection, transparent mentoring, learning recognition) will be strictly respected.'}
             </p>
           </div>
         </label>
@@ -102,10 +126,14 @@ export default function DeclarationsSection({
           />
           <div className="text-xs">
             <span className="font-bold text-slate-900">
-              Çıkar Çatışması Bulunmadığı Beyanı (FIN-04)
+              {locale === 'tr'
+                ? 'Çıkar Çatışması Bulunmadığı Beyanı (FIN-04)'
+                : 'Declaration of Absence of Conflict of Interest (FIN-04)'}
             </span>
             <p className="text-slate-600 mt-0.5">
-              Katılımcı seçimi, hizmet alımı veya refakatçi görevlendirmelerinde hiçbir kişisel veya kurumsal çıkar çatışması bulunmadığını beyan ederim.
+              {locale === 'tr'
+                ? 'Katılımcı seçimi, hizmet alımı veya refakatçi görevlendirmelerinde hiçbir kişisel veya kurumsal çıkar çatışması bulunmadığını beyan ederim.'
+                : 'I declare that no conflict of interest exists regarding participant selection, service procurement, or accompanying staff allocation.'}
             </p>
           </div>
         </label>
@@ -120,10 +148,14 @@ export default function DeclarationsSection({
           />
           <div className="text-xs">
             <span className="font-bold text-slate-900">
-              Çifte Finansman (Double Funding) Olmadığı Beyanı (FIN-05)
+              {locale === 'tr'
+                ? 'Çifte Finansman (Double Funding) Olmadığı Beyanı (FIN-05)'
+                : 'Declaration Against Double Funding (FIN-05)'}
             </span>
             <p className="text-slate-600 mt-0.5">
-              Bu başvuru kapsamında talep edilen faaliyet ve maliyet kalemlerinin başka hiçbir AB veya kamu kaynağından finanse edilmediğini beyan ederim.
+              {locale === 'tr'
+                ? 'Bu başvuru kapsamında talep edilen faaliyet ve maliyet kalemlerinin başka hiçbir AB veya kamu kaynağından finanse edilmediğini beyan ederim.'
+                : 'I declare that the activities and budget items requested are not funded by any other EU or national grant sources.'}
             </p>
           </div>
         </label>
@@ -138,10 +170,14 @@ export default function DeclarationsSection({
           />
           <div className="text-xs">
             <span className="font-bold text-blue-950">
-              Resmi Doğruluk Beyanı (Declaration on Honour - FIN-06 / DEC-04)
+              {locale === 'tr'
+                ? 'Resmi Doğruluk Beyanı (Declaration on Honour - FIN-06 / DEC-04)'
+                : 'Official Declaration on Honour (FIN-06 / DEC-04)'}
             </span>
             <p className="text-blue-800 mt-0.5">
-              Bu başvuru taslağında yer alan tüm bilgilerin eksiksiz ve doğru olduğunu, resmi başvuru sisteminde onaylanacak Declaration on Honour belgesi ile aynı hükümleri taşıyacağını kabul ve beyan ederim.
+              {locale === 'tr'
+                ? 'Bu başvuru taslağında yer alan tüm bilgilerin eksiksiz ve doğru olduğunu, resmi başvuru sisteminde onaylanacak Declaration on Honour belgesi ile aynı hükümleri taşıyacağını kabul ve beyan ederim.'
+                : 'I certify that all information in this application draft is complete and accurate, carrying identical weight to the official Declaration on Honour.'}
             </p>
           </div>
         </label>
@@ -151,7 +187,10 @@ export default function DeclarationsSection({
         <div className="flex items-center gap-2">
           <span className="text-base">📋</span>
           <div>
-            <strong>Soru ve Veri Seti Tamamlama:</strong> Bu modüldeki cevaplarınız yerel belleğe (LocalStorage) kaydedilir ve resmi başvuru taslağınız için hazır tutulur.
+            <strong>{locale === 'tr' ? 'Soru ve Veri Seti Tamamlama:' : 'Question & Dataset Completion:'}</strong>{' '}
+            {locale === 'tr'
+              ? 'Bu modüldeki cevaplarınız yerel belleğe (LocalStorage) kaydedilir ve resmi başvuru taslağınız için hazır tutulur.'
+              : 'Your responses are stored locally and kept ready for synthesis into your final Erasmus+ grant submission.'}
           </div>
         </div>
       </div>

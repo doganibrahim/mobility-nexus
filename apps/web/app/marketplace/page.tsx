@@ -314,11 +314,11 @@ export default function MarketplacePage() {
           {/* Header Title */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+              <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2">
                 <span>🎓</span>
                 <span>{isTr ? 'Avrupa Mesleki Eğitim ve İşbaşı Gözlem Kataloğu' : 'European VET Course & Job Shadowing Catalogue'}</span>
               </h1>
-              <p className="text-xs text-slate-500 mt-1">
+              <p className="text-xs sm:text-sm text-slate-600 mt-1">
                 {isTr
                   ? "Avrupa'daki onaylı eğitim kursları, işbaşı gözlem kontenjanları ve okulunuzun katılım başvuruları."
                   : 'Accredited training courses, job shadowing opportunities across Europe, and your mobility applications.'}
@@ -421,11 +421,21 @@ export default function MarketplacePage() {
                 </div>
               </div>
 
+              {/* H2 Section Header for Heading Hierarchy (WCAG 2.4.6) */}
+              <div className="flex items-center justify-between pb-1">
+                <h2 className="text-base sm:text-lg font-bold text-slate-900 m-0">
+                  {isTr ? 'Mevcut Kurs ve Hareketlilik Fırsatları' : 'Available Mobility Opportunities'}
+                </h2>
+                <span className="text-xs text-slate-500 font-medium">
+                  {filteredCourses.length} {isTr ? 'kurs listeleniyor' : 'courses listed'}
+                </span>
+              </div>
+
               {/* Grid */}
               {filteredCourses.length === 0 ? (
                 <div className="bg-white p-12 text-center rounded-xl border border-slate-200 space-y-2">
                   <Search className="w-8 h-8 text-slate-300 mx-auto" />
-                  <h3 className="text-sm font-bold text-slate-700">{isTr ? 'Aramanıza Uygun Kurs Bulunamadı' : 'No Matching Courses Found'}</h3>
+                  <p className="text-sm font-bold text-slate-700">{isTr ? 'Aramanıza Uygun Kurs Bulunamadı' : 'No Matching Courses Found'}</p>
                   <p className="text-xs text-slate-500">{isTr ? 'Farklı bir ülke veya meslek alanı seçebilirsiniz.' : 'Try selecting another country or vocational field.'}</p>
                 </div>
               ) : (
@@ -474,6 +484,16 @@ export default function MarketplacePage() {
                 </div>
               </div>
 
+              {/* H2 Section Header for Heading Hierarchy (WCAG 2.4.6) */}
+              <div className="flex items-center justify-between pb-1">
+                <h2 className="text-base sm:text-lg font-bold text-slate-900 m-0">
+                  {isTr ? 'Avrupa İşbaşı Gözlem Kontenjanları' : 'European Job Shadowing Opportunities'}
+                </h2>
+                <span className="text-xs text-slate-500 font-medium">
+                  {filteredJobOffers.length} {isTr ? 'fırsat listeleniyor' : 'opportunities listed'}
+                </span>
+              </div>
+
               {filteredJobOffers.length === 0 ? (
                 <div className="bg-white p-12 text-center rounded-xl border border-slate-200 space-y-2">
                   <p className="text-sm font-semibold text-slate-700">{isTr ? 'Seçilen filtrelerle eşleşen işbaşı gözlem bulunamadı.' : 'No matching job shadowing offers found.'}</p>
@@ -497,9 +517,9 @@ export default function MarketplacePage() {
           {beneTab === 'MY_APPLICATIONS' && (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-slate-900">
+                <h2 className="text-base sm:text-lg font-bold text-slate-900 m-0">
                   {isTr ? 'Okulunuz Tarafından İletilen Başvurular ve Durumları' : 'Applications Submitted by Your School and Their Status'}
-                </h3>
+                </h2>
                 <button
                   type="button"
                   onClick={loadData}

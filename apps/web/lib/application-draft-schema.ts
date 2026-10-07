@@ -248,6 +248,16 @@ export const PRIORITY_TOPIC_OPTIONS = [
   'Mesleki Mükemmeliyet ve Yenilikçi Pedagoji',
 ];
 
+export const PRIORITY_TOPIC_OPTIONS_EN: Record<string, string> = {
+  'Mesleki Eğitimde Dijital Beceriler ve Endüstri 4.0': 'Digital Skills in VET & Industry 4.0',
+  'Yeşil Beceriler ve Sürdürülebilir Kalkınma': 'Green Skills & Sustainable Development',
+  'Kapsayıcılık, Çeşitlilik ve Fırsat Eşitliği': 'Inclusion, Diversity & Equal Opportunities',
+  'İş Temelli Öğrenme ve Okul-Sektör İşbirliği': 'Work-Based Learning & School-Industry Cooperation',
+  'Yabancı Dil Yetkinliği ve Kültürlerarası Diyalog': 'Foreign Language Proficiency & Intercultural Dialogue',
+  'Erken Okul Terkini Önleme ve Rehberlik': 'Early School Leaving Prevention & Counseling',
+  'Mesleki Mükemmeliyet ve Yenilikçi Pedagoji': 'Vocational Excellence & Innovative Pedagogy',
+};
+
 export const VET_PROGRAM_OPTIONS = [
   'Anadolu Meslek Programı (AMP)',
   'Anadolu Teknik Programı (ATP)',
@@ -257,6 +267,15 @@ export const VET_PROGRAM_OPTIONS = [
   'Yetişkin Sürekli Mesleki Eğitim ve Sertifikasyon',
 ];
 
+export const VET_PROGRAM_OPTIONS_EN: Record<string, string> = {
+  'Anadolu Meslek Programı (AMP)': 'Anatolian Vocational Program (AMP)',
+  'Anadolu Teknik Programı (ATP)': 'Anatolian Technical Program (ATP)',
+  'Mesleki Eğitim Merkezi Programı (MEMP - Çıraklık/Kalfalık)': 'Vocational Training Center Program (Apprenticeship)',
+  'Özel Mesleki Eğitim / Özel Gereksinimli Öğreniciler': 'Special Needs Vocational Education',
+  'Meslek Yüksekokulu Ön Lisans Programı': 'Vocational College Associate Degree',
+  'Yetişkin Sürekli Mesleki Eğitim ve Sertifikasyon': 'Adult Continuing VET & Certification',
+};
+
 export const SUPPORTING_ORG_TASK_OPTIONS = [
   'Seyahat, Transfer ve Lojistik Düzenlemeleri',
   'Konaklama ve Güvenli Yaşam Şartlarının Sağlanması',
@@ -265,6 +284,14 @@ export const SUPPORTING_ORG_TASK_OPTIONS = [
   'Yerel İdari ve Yasal Süreç Desteği',
 ];
 
+export const SUPPORTING_ORG_TASK_OPTIONS_EN: Record<string, string> = {
+  'Seyahat, Transfer ve Lojistik Düzenlemeleri': 'Travel, Transfers & Logistics Arrangements',
+  'Konaklama ve Güvenli Yaşam Şartlarının Sağlanması': 'Accommodation & Safe Living Arrangements',
+  'Kültürel Oryantasyon ve Rehberlik Hizmetleri': 'Cultural Orientation & Guidance Services',
+  'İşletme ve Atölye Eşleştirmesi': 'Host Enterprise & Workshop Matching',
+  'Yerel İdari ve Yasal Süreç Desteği': 'Local Administrative & Legal Support',
+};
+
 export const INCLUSION_CATEGORY_OPTIONS = [
   'Ekonomik Engeller (Düşük gelir, burs ihtiyacı)',
   'Coğrafi Engeller (Kırsal veya dezavantajlı bölge)',
@@ -272,6 +299,14 @@ export const INCLUSION_CATEGORY_OPTIONS = [
   'Sosyal ve Kültürel Engeller (Göçmen, koruma altında)',
   'Eğitimsel Güçlükler (Öğrenme güçlüğü)',
 ];
+
+export const INCLUSION_CATEGORY_OPTIONS_EN: Record<string, string> = {
+  'Ekonomik Engeller (Düşük gelir, burs ihtiyacı)': 'Economic Obstacles (Low income, grant need)',
+  'Coğrafi Engeller (Kırsal veya dezavantajlı bölge)': 'Geographical Obstacles (Rural or remote area)',
+  'Engellilik ve Özel Eğitim İhtiyacı': 'Disability & Special Educational Needs',
+  'Sosyal ve Kültürel Engeller (Göçmen, koruma altında)': 'Social & Cultural Obstacles (Migrant, foster care)',
+  'Eğitimsel Güçlükler (Öğrenme güçlüğü)': 'Educational Difficulties (Learning challenges)',
+};
 
 export const DEFAULT_DRAFT_STATE: ApplicationDraftState = {
   formType: 'KA122',

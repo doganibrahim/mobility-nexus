@@ -225,7 +225,9 @@ export default function MatchingCriteriaExplainer() {
               {locale === 'tr' ? 'Toplam Uygunluk Formülü:' : 'Suitability Formula:'}
             </span>
             <span className="font-mono text-blue-300 font-bold">
-              %15 Ülke + %20 Faaliyet + %15 Hedef/Yaş + %10 Dönem + %10 Süre + %15 Kontenjan + %15 Lojistik = %100
+              {locale === 'tr'
+                ? '%15 Ülke + %20 Faaliyet + %15 Hedef/Yaş + %10 Dönem + %10 Süre + %15 Kontenjan + %15 Lojistik = %100'
+                : '15% Country + 20% Activity + 15% Target/Age + 10% Term + 10% Duration + 15% Capacity + 15% Logistics = 100%'}
             </span>
           </div>
 
@@ -255,10 +257,12 @@ export default function MatchingCriteriaExplainer() {
 
               {/* Country Selection */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
+                <label htmlFor="target-country" className="block text-xs font-bold text-slate-700 mb-1">
                   {locale === 'tr' ? 'Hedef Ülke Tercihi' : 'Target Country'}
                 </label>
                 <select
+                  id="target-country"
+                  name="target_country"
                   value={selectedCountry}
                   onChange={(e) => setSelectedCountry(e.target.value)}
                   className="edu-input text-xs font-semibold"
@@ -275,10 +279,12 @@ export default function MatchingCriteriaExplainer() {
 
               {/* Activity Selection */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
+                <label htmlFor="mobility-activity" className="block text-xs font-bold text-slate-700 mb-1">
                   {locale === 'tr' ? 'Faaliyet Türü' : 'Mobility Activity'}
                 </label>
                 <select
+                  id="mobility-activity"
+                  name="mobility_activity"
                   value={mobilityGoal}
                   onChange={(e) => setMobilityGoal(e.target.value)}
                   className="edu-input text-xs font-semibold"
@@ -294,10 +300,12 @@ export default function MatchingCriteriaExplainer() {
               {/* Participant Profile & Age */}
               <div className="grid grid-cols-2 gap-2.5">
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                  <label htmlFor="participant-profile" className="block text-[11px] font-bold text-slate-700 mb-1">
                     {locale === 'tr' ? 'Katılımcı Profili' : 'Profile'}
                   </label>
                   <select
+                    id="participant-profile"
+                    name="participant_profile"
                     value={participantType}
                     onChange={(e) => setParticipantType(e.target.value as any)}
                     className="edu-input text-xs font-medium"
@@ -307,10 +315,12 @@ export default function MatchingCriteriaExplainer() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                  <label htmlFor="age-group" className="block text-[11px] font-bold text-slate-700 mb-1">
                     {locale === 'tr' ? 'Yaş Grubu' : 'Age Group'}
                   </label>
                   <select
+                    id="age-group"
+                    name="age_group"
                     value={ageGroup}
                     onChange={(e) => setAgeGroup(e.target.value as any)}
                     className="edu-input text-xs font-medium"
@@ -325,10 +335,12 @@ export default function MatchingCriteriaExplainer() {
               {/* Participants & Duration */}
               <div className="grid grid-cols-3 gap-2">
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                  <label htmlFor="learners" className="block text-[11px] font-bold text-slate-700 mb-1">
                     {locale === 'tr' ? 'Öğrenci Sayısı' : 'Learners'}
                   </label>
                   <input
+                    id="learners"
+                    name="learners"
                     type="number"
                     min={1}
                     max={30}
@@ -338,10 +350,12 @@ export default function MatchingCriteriaExplainer() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                  <label htmlFor="escorts" className="block text-[11px] font-bold text-slate-700 mb-1">
                     {locale === 'tr' ? 'Refakatçi' : 'Escorts'}
                   </label>
                   <input
+                    id="escorts"
+                    name="escorts"
                     type="number"
                     min={0}
                     max={5}
@@ -351,10 +365,12 @@ export default function MatchingCriteriaExplainer() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                  <label htmlFor="duration-days" className="block text-[11px] font-bold text-slate-700 mb-1">
                     {locale === 'tr' ? 'Süre (Gün)' : 'Duration (Days)'}
                   </label>
                   <input
+                    id="duration-days"
+                    name="duration_days"
                     type="number"
                     min={2}
                     max={180}
@@ -371,8 +387,10 @@ export default function MatchingCriteriaExplainer() {
                   {locale === 'tr' ? 'Zorunlu Lojistik Şartları:' : 'Mandatory Logistics Requirements:'}
                 </span>
                 <div className="grid grid-cols-2 gap-2 text-xs">
-                  <label className="flex items-center gap-1.5 cursor-pointer">
+                  <label htmlFor="req-accommodation" className="flex items-center gap-1.5 cursor-pointer">
                     <input
+                      id="req-accommodation"
+                      name="req_accommodation"
                       type="checkbox"
                       checked={reqAccommodation}
                       onChange={(e) => setReqAccommodation(e.target.checked)}
@@ -380,8 +398,10 @@ export default function MatchingCriteriaExplainer() {
                     />
                     <span>🏨 {locale === 'tr' ? 'Konaklama' : 'Accommodation'}</span>
                   </label>
-                  <label className="flex items-center gap-1.5 cursor-pointer">
+                  <label htmlFor="req-meals" className="flex items-center gap-1.5 cursor-pointer">
                     <input
+                      id="req-meals"
+                      name="req_meals"
                       type="checkbox"
                       checked={reqMeals}
                       onChange={(e) => setReqMeals(e.target.checked)}
@@ -389,8 +409,10 @@ export default function MatchingCriteriaExplainer() {
                     />
                     <span>🍽️ {locale === 'tr' ? 'Yemek' : 'Meals'}</span>
                   </label>
-                  <label className="flex items-center gap-1.5 cursor-pointer">
+                  <label htmlFor="req-transfers" className="flex items-center gap-1.5 cursor-pointer">
                     <input
+                      id="req-transfers"
+                      name="req_transfers"
                       type="checkbox"
                       checked={reqTransfers}
                       onChange={(e) => setReqTransfers(e.target.checked)}
@@ -398,8 +420,10 @@ export default function MatchingCriteriaExplainer() {
                     />
                     <span>🚌 {locale === 'tr' ? 'Transfer' : 'Transfers'}</span>
                   </label>
-                  <label className="flex items-center gap-1.5 cursor-pointer">
+                  <label htmlFor="req-wheelchair" className="flex items-center gap-1.5 cursor-pointer">
                     <input
+                      id="req-wheelchair"
+                      name="req_wheelchair"
                       type="checkbox"
                       checked={reqWheelchair}
                       onChange={(e) => setReqWheelchair(e.target.checked)}
@@ -412,17 +436,19 @@ export default function MatchingCriteriaExplainer() {
 
               {/* Host Selector */}
               <div className="pt-2 border-t border-slate-200">
-                <label className="block text-xs font-bold text-slate-700 mb-1">
+                <label htmlFor="provider-select" className="block text-xs font-bold text-slate-700 mb-1">
                   {locale === 'tr' ? 'Test Edilecek Avrupa Kuruluşu' : 'Test Provider'}
                 </label>
                 <select
+                  id="provider-select"
+                  name="provider_select"
                   value={selectedHostId}
                   onChange={(e) => setSelectedHostId(e.target.value)}
                   className="edu-input text-xs font-bold text-blue-900 bg-white"
                 >
                   {CLIENT_SEED_HOSTS.map((h) => (
                     <option key={h.id} value={h.id}>
-                      {h.name} ({h.countryCode} - {h.city})
+                      {locale === 'en' ? (h.nameEn || h.name) : h.name} ({h.countryCode} - {h.city})
                     </option>
                   ))}
                 </select>
@@ -448,12 +474,19 @@ export default function MatchingCriteriaExplainer() {
                         {hardFilterResult.isEligible ? (diagnostics.overallSuitabilityScore >= 75 ? '🌟' : '✅') : '🚫'}
                       </span>
                       <h3 className="text-base font-black text-slate-900 m-0">
-                        {selectedHost.name}
+                        {locale === 'en' ? (selectedHost.nameEn || selectedHost.name) : selectedHost.name}
                       </h3>
                     </div>
                     <div className="text-xs text-slate-600 mt-1">
                       {selectedHost.city}, {getCountryFlagLabel(selectedHost.countryCode, locale as 'tr' | 'en') || selectedHost.countryCode} • OID: {selectedHost.oid}
                     </div>
+                    {(selectedHost.shortDescriptionEn || selectedHost.shortDescription) && (
+                      <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                        {locale === 'en'
+                          ? (selectedHost.shortDescriptionEn || selectedHost.shortDescription)
+                          : selectedHost.shortDescription}
+                      </p>
+                    )}
                   </div>
 
                   <div className="text-right sm:border-l sm:border-slate-200 sm:pl-4">
@@ -470,8 +503,8 @@ export default function MatchingCriteriaExplainer() {
                     </div>
                     <div className="text-[10px] font-bold uppercase tracking-wider text-slate-600">
                       {hardFilterResult.isEligible
-                        ? `${diagnostics.grade} UYGUNLUK`
-                        : 'ÖN ELEMEDE ELENDİ (MISMATCH)'}
+                        ? (locale === 'en' ? `${diagnostics.grade} SUITABILITY` : `${diagnostics.grade} UYGUNLUK`)
+                        : (locale === 'en' ? 'DISQUALIFIED IN PRE-SCREENING (MISMATCH)' : 'ÖN ELEMEDE ELENDİ (MISMATCH)')}
                     </div>
                   </div>
                 </div>
@@ -493,16 +526,16 @@ export default function MatchingCriteriaExplainer() {
                 {/* Summary counts */}
                 <div className="mt-3 flex items-center gap-3 text-xs">
                   <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold">
-                    ✓ {diagnostics.matchedCount} Eşleşti
+                    ✓ {diagnostics.matchedCount} {locale === 'en' ? 'Matched' : 'Eşleşti'}
                   </span>
                   {diagnostics.partialCount > 0 && (
                     <span className="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 font-bold">
-                      ⚠️ {diagnostics.partialCount} Kısmi Uyum
+                      ⚠️ {diagnostics.partialCount} {locale === 'en' ? 'Partial' : 'Kısmi Uyum'}
                     </span>
                   )}
                   {diagnostics.mismatchCount > 0 && (
                     <span className="px-2 py-0.5 rounded-md bg-rose-100 text-rose-800 font-bold">
-                      ✕ {diagnostics.mismatchCount} Uyuşmazlık
+                      ✕ {diagnostics.mismatchCount} {locale === 'en' ? 'Mismatch' : 'Uyuşmazlık'}
                     </span>
                   )}
                 </div>
@@ -511,8 +544,10 @@ export default function MatchingCriteriaExplainer() {
               {/* 7 Criteria Evaluation Table */}
               <div className="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-2xs">
                 <div className="px-4 py-3 bg-slate-100/80 border-b border-slate-200 font-bold text-xs text-slate-800 flex items-center justify-between">
-                  <span>7 Kriter Karşılaştırma Matrisi (Talep vs İmkân)</span>
-                  <span className="text-[10px] text-slate-500 font-normal">Ağırlıklı Puan Katkısı</span>
+                  <span>{locale === 'en' ? '7 Criteria Comparison Matrix (Request vs Offer)' : '7 Kriter Karşılaştırma Matrisi (Talep vs İmkân)'}</span>
+                  <span className="text-[10px] text-slate-500 font-normal">
+                    {locale === 'en' ? 'Weighted Score Contribution' : 'Ağırlıklı Puan Katkısı'}
+                  </span>
                 </div>
 
                 <div className="divide-y divide-slate-100 text-xs">
@@ -544,10 +579,10 @@ export default function MatchingCriteriaExplainer() {
                               {isMatch ? '✓' : isPartial ? '⚠️' : '✕'}
                             </span>
                             <span className="font-bold text-slate-900">
-                              {crit.labelTr}
+                              {locale === 'en' ? crit.labelEn : crit.labelTr}
                             </span>
                             <span className="text-[10px] text-slate-500 font-semibold px-1.5 py-0.2 rounded bg-slate-100">
-                              %{crit.weightPercent} Ağırlık
+                              %{crit.weightPercent} {locale === 'en' ? 'Weight' : 'Ağırlık'}
                             </span>
                           </div>
 
@@ -561,7 +596,7 @@ export default function MatchingCriteriaExplainer() {
                                   : 'text-rose-700'
                               }`}
                             >
-                              +{crit.weightedScore} / {crit.weightPercent} Puan
+                              +{crit.weightedScore} / {crit.weightPercent} {locale === 'en' ? 'Pts' : 'Puan'}
                             </span>
                           </div>
                         </div>
@@ -569,26 +604,35 @@ export default function MatchingCriteriaExplainer() {
                         {/* Comparison details */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pt-1 text-slate-600">
                           <div>
-                            <span className="text-slate-500 font-semibold">Okul Talebi:</span>{' '}
-                            <span className="font-medium text-slate-800">{crit.schoolRequested}</span>
+                            <span className="text-slate-500 font-semibold">
+                              {locale === 'en' ? 'School Request:' : 'Okul Talebi:'}
+                            </span>{' '}
+                            <span className="font-medium text-slate-800">
+                              {locale === 'en' ? (crit.schoolRequestedEn || crit.schoolRequested) : crit.schoolRequested}
+                            </span>
                           </div>
                           <div>
-                            <span className="text-slate-500 font-semibold">Ev Sahibi:</span>{' '}
-                            <span className="font-medium text-slate-900">{crit.hostProvided}</span>
+                            <span className="text-slate-500 font-semibold">
+                              {locale === 'en' ? 'Host Provision:' : 'Ev Sahibi:'}
+                            </span>{' '}
+                            <span className="font-medium text-slate-900">
+                              {locale === 'en' ? (crit.hostProvidedEn || crit.hostProvided) : crit.hostProvided}
+                            </span>
                           </div>
                         </div>
 
                         {/* Explanation message */}
                         <p className="text-[11px] text-slate-700 m-0 leading-relaxed">
-                          {crit.messageTr}
+                          {locale === 'en' ? crit.messageEn : crit.messageTr}
                         </p>
 
                         {/* Actionable Hint if any */}
-                        {crit.actionableHintTr && (
+                        {((locale === 'en' ? crit.actionableHintEn : crit.actionableHintTr) || crit.actionableHintTr) && (
                           <div className="p-2 rounded-lg bg-blue-50 border border-blue-200 text-[10px] text-blue-900 font-medium flex items-start gap-1.5">
                             <span>💡</span>
                             <span>
-                              <strong>Aksiyon Tavsiyesi:</strong> {crit.actionableHintTr}
+                              <strong>{locale === 'en' ? 'Action Advice:' : 'Aksiyon Tavsiyesi:'}</strong>{' '}
+                              {locale === 'en' ? (crit.actionableHintEn || crit.actionableHintTr) : crit.actionableHintTr}
                             </span>
                           </div>
                         )}
@@ -599,14 +643,14 @@ export default function MatchingCriteriaExplainer() {
               </div>
 
               {/* Action Roadmap Callout if Disqualified or Partial */}
-              {diagnostics.actionableRecommendationsTr.length > 0 && (
+              {((locale === 'en' ? diagnostics.actionableRecommendationsEn : diagnostics.actionableRecommendationsTr) || diagnostics.actionableRecommendationsTr).length > 0 && (
                 <div className="p-4 rounded-xl border border-blue-200 bg-blue-50/70 text-xs space-y-2">
                   <div className="font-bold text-blue-950 flex items-center gap-1.5">
                     <span>🧭</span>
                     <span>{locale === 'tr' ? 'Tam Eşleşme İçin Aksiyon Yol Haritası' : 'Action Roadmap for Full Alignment'}</span>
                   </div>
                   <ul className="space-y-1 text-blue-900 text-[11px] pl-4 list-disc m-0">
-                    {diagnostics.actionableRecommendationsTr.map((rec, idx) => (
+                    {(locale === 'en' ? diagnostics.actionableRecommendationsEn : diagnostics.actionableRecommendationsTr).map((rec, idx) => (
                       <li key={idx} className="leading-relaxed">
                         {rec}
                       </li>

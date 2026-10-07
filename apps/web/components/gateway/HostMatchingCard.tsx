@@ -355,7 +355,7 @@ export default function HostMatchingCard({
                                   )}
                                 </div>
                                 <h4 className="text-sm font-bold text-slate-900 mt-1">
-                                  {candidate.hostName}
+                                  {locale === 'en' ? (candidate.hostNameEn || candidate.hostName) : candidate.hostName}
                                 </h4>
                                 <div className="text-[11px] text-slate-500">
                                   OID: {candidate.oid || 'E10XXXXXX'} • {candidate.organisationType}
@@ -382,9 +382,9 @@ export default function HostMatchingCard({
                             </div>
 
                             {/* Short Description */}
-                            {candidate.shortDescription && (
+                            {(candidate.shortDescriptionEn || candidate.shortDescription) && (
                               <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                                {candidate.shortDescription}
+                                {locale === 'en' ? (candidate.shortDescriptionEn || candidate.shortDescription) : candidate.shortDescription}
                               </p>
                             )}
 
@@ -397,7 +397,7 @@ export default function HostMatchingCard({
                                 <div className="text-xs font-bold text-slate-900 mt-0.5">
                                   {candidate.educationScore}/100
                                   <span className="text-[10px] text-slate-500 font-normal ml-1">
-                                    (Ağırlık: %70)
+                                    {locale === 'en' ? '(Weight: 70%)' : '(Ağırlık: %70)'}
                                   </span>
                                 </div>
                               </div>
@@ -408,7 +408,7 @@ export default function HostMatchingCard({
                                 <div className="text-xs font-bold text-slate-900 mt-0.5">
                                   {candidate.logisticsScore}/100
                                   <span className="text-[10px] text-slate-500 font-normal ml-1">
-                                    (Ağırlık: %30)
+                                    {locale === 'en' ? '(Weight: 30%)' : '(Ağırlık: %30)'}
                                   </span>
                                 </div>
                               </div>
@@ -417,7 +417,7 @@ export default function HostMatchingCard({
                             {/* Logistics & Capacity Badges */}
                             <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-600">
                               <span className="px-2 py-0.5 rounded bg-slate-100 font-medium">
-                                👥 Kontenjan: {candidate.maxLearnersPerTerm} kişi
+                                👥 {locale === 'en' ? `Capacity: ${candidate.maxLearnersPerTerm} learners` : `Kontenjan: ${candidate.maxLearnersPerTerm} kişi`}
                               </span>
                               <span
                                 className={`px-2 py-0.5 rounded font-medium ${
@@ -426,13 +426,15 @@ export default function HostMatchingCard({
                                     : 'bg-rose-50 text-rose-800'
                                 }`}
                               >
-                                {candidate.acceptsUnder18 ? '👶 18 Yaş Altı Uygun' : '🚫 18+ Yetişkin'}
+                                {locale === 'en'
+                                  ? (candidate.acceptsUnder18 ? '👶 Under 18 Eligible' : '🚫 18+ Adults Only')
+                                  : (candidate.acceptsUnder18 ? '👶 18 Yaş Altı Uygun' : '🚫 18+ Yetişkin')}
                               </span>
                               <span className="px-2 py-0.5 rounded bg-slate-100 font-medium">
-                                🏨 Konaklama: {candidate.providesAccommodation ? 'Var ✓' : 'Yok'}
+                                🏨 {locale === 'en' ? `Accommodation: ${candidate.providesAccommodation ? 'Yes ✓' : 'No'}` : `Konaklama: ${candidate.providesAccommodation ? 'Var ✓' : 'Yok'}`}
                               </span>
                               <span className="px-2 py-0.5 rounded bg-slate-100 font-medium">
-                                🍽️ Yemek: {candidate.providesMeals ? 'Var ✓' : 'Yok'}
+                                🍽️ {locale === 'en' ? `Meals: ${candidate.providesMeals ? 'Yes ✓' : 'No'}` : `Yemek: ${candidate.providesMeals ? 'Var ✓' : 'Yok'}`}
                               </span>
                             </div>
 
@@ -442,7 +444,7 @@ export default function HostMatchingCard({
                                 <div className="flex items-center justify-between text-[11px]">
                                   <span className="font-bold text-slate-700 flex items-center gap-1">
                                     <span>🎯</span>
-                                    <span>7 Eşleşme Kriteri:</span>
+                                    <span>{locale === 'en' ? '7 Matching Criteria:' : '7 Eşleşme Kriteri:'}</span>
                                   </span>
                                   <button
                                     type="button"
@@ -455,8 +457,8 @@ export default function HostMatchingCard({
                                   >
                                     <span>
                                       {expandedDiagnosticsHostId === candidate.hostId
-                                        ? 'Tanılamayı Gizle ▲'
-                                        : 'Uyuşmazlık Tanılaması ▼'}
+                                        ? (locale === 'en' ? 'Hide Diagnostics ▲' : 'Tanılamayı Gizle ▲')
+                                        : (locale === 'en' ? 'Mismatch Diagnostics ▼' : 'Uyuşmazlık Tanılaması ▼')}
                                     </span>
                                   </button>
                                 </div>
@@ -476,9 +478,9 @@ export default function HostMatchingCard({
                                             ? 'bg-amber-50 text-amber-800 border-amber-200'
                                             : 'bg-rose-50 text-rose-800 border-rose-200'
                                         }`}
-                                        title={`${crit.labelTr}: ${crit.messageTr}`}
+                                        title={locale === 'en' ? `${crit.labelEn}: ${crit.messageEn}` : `${crit.labelTr}: ${crit.messageTr}`}
                                       >
-                                        <span className="font-semibold truncate">{crit.labelTr.split(' ')[0]}</span>
+                                        <span className="font-semibold truncate">{locale === 'en' ? crit.labelEn.split(' ')[0] : crit.labelTr.split(' ')[0]}</span>
                                         <span className="font-bold">
                                           {isMatch ? '✓' : isPartial ? '⚠️' : '✕'}
                                         </span>
@@ -492,10 +494,12 @@ export default function HostMatchingCard({
                                   <div className="mt-2.5 p-3 rounded-xl border border-blue-200 bg-blue-50/50 text-[11px] space-y-2.5 animate-in fade-in duration-150">
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-200/80 pb-1.5">
                                       <span className="font-black text-blue-950">
-                                        7 Kriterli Şeffaf Tanılama ve Skor Kırılımı
+                                        {locale === 'en' ? '7-Criteria Transparent Diagnostics & Score Breakdown' : '7 Kriterli Şeffaf Tanılama ve Skor Kırılımı'}
                                       </span>
                                       <span className="text-[10px] font-semibold text-blue-800">
-                                        Uygunluk: %{candidate.sevenCriteria.overallSuitabilityScore} ({candidate.sevenCriteria.matchedCount} Eşleşti, {candidate.sevenCriteria.partialCount} Kısmi, {candidate.sevenCriteria.mismatchCount} Uyuşmazlık)
+                                        {locale === 'en'
+                                          ? `Suitability: %${candidate.sevenCriteria.overallSuitabilityScore} (${candidate.sevenCriteria.matchedCount} Matched, ${candidate.sevenCriteria.partialCount} Partial, ${candidate.sevenCriteria.mismatchCount} Mismatch)`
+                                          : `Uygunluk: %${candidate.sevenCriteria.overallSuitabilityScore} (${candidate.sevenCriteria.matchedCount} Eşleşti, ${candidate.sevenCriteria.partialCount} Kısmi, ${candidate.sevenCriteria.mismatchCount} Uyuşmazlık)`}
                                       </span>
                                     </div>
 
@@ -503,25 +507,27 @@ export default function HostMatchingCard({
                                       <table className="w-full text-left border-collapse text-[10px]">
                                         <thead>
                                           <tr className="border-b border-blue-200 text-blue-900 uppercase font-bold text-[9px]">
-                                            <th className="py-1 px-1.5">Kriter (%Ağırlık)</th>
-                                            <th className="py-1 px-1.5">Okul Talebi</th>
-                                            <th className="py-1 px-1.5">Ev Sahibi İmkânı</th>
-                                            <th className="py-1 px-1.5 text-center">Durum</th>
-                                            <th className="py-1 px-1.5">Açıklama & Tavsiye</th>
+                                            <th className="py-1 px-1.5">{locale === 'en' ? 'Criterion (%Weight)' : 'Kriter (%Ağırlık)'}</th>
+                                            <th className="py-1 px-1.5">{locale === 'en' ? 'School Request' : 'Okul Talebi'}</th>
+                                            <th className="py-1 px-1.5">{locale === 'en' ? 'Host Provision' : 'Ev Sahibi İmkânı'}</th>
+                                            <th className="py-1 px-1.5 text-center">{locale === 'en' ? 'Status' : 'Durum'}</th>
+                                            <th className="py-1 px-1.5">{locale === 'en' ? 'Description & Advice' : 'Açıklama & Tavsiye'}</th>
                                           </tr>
                                         </thead>
                                         <tbody className="divide-y divide-blue-100 text-slate-700">
                                           {candidate.sevenCriteria.criteria.map((crit) => (
                                             <tr key={crit.key} className="hover:bg-blue-50/80">
                                               <td className="py-1.5 px-1.5 font-bold text-slate-900 whitespace-nowrap">
-                                                {crit.labelTr}{' '}
+                                                {locale === 'en' ? crit.labelEn : crit.labelTr}{' '}
                                                 <span className="text-[9px] text-slate-500 font-normal">
                                                   (%{crit.weightPercent})
                                                 </span>
                                               </td>
-                                              <td className="py-1.5 px-1.5 text-slate-600">{crit.schoolRequested}</td>
+                                              <td className="py-1.5 px-1.5 text-slate-600">
+                                                {locale === 'en' ? (crit.schoolRequestedEn || crit.schoolRequested) : crit.schoolRequested}
+                                              </td>
                                               <td className="py-1.5 px-1.5 text-slate-900 font-medium">
-                                                {crit.hostProvided}
+                                                {locale === 'en' ? (crit.hostProvidedEn || crit.hostProvided) : crit.hostProvided}
                                               </td>
                                               <td className="py-1.5 px-1.5 text-center whitespace-nowrap">
                                                 <span
@@ -534,19 +540,20 @@ export default function HostMatchingCard({
                                                   }`}
                                                 >
                                                   {crit.status === 'MATCH'
-                                                    ? '✓ Uyumlu'
+                                                    ? (locale === 'en' ? '✓ Matched' : '✓ Uyumlu')
                                                     : crit.status === 'PARTIAL'
-                                                    ? '⚠️ Kısmi'
-                                                    : '✕ Uyuşmazlık'}
+                                                    ? (locale === 'en' ? '⚠️ Partial' : '⚠️ Kısmi')
+                                                    : (locale === 'en' ? '✕ Mismatch' : '✕ Uyuşmazlık')}
                                                 </span>
                                               </td>
                                               <td className="py-1.5 px-1.5">
-                                                <div className="text-slate-800">{crit.messageTr}</div>
-                                                {crit.actionableHintTr && (
+                                                <div className="text-slate-800">{locale === 'en' ? crit.messageEn : crit.messageTr}</div>
+                                                {((locale === 'en' ? crit.actionableHintEn : crit.actionableHintTr) || crit.actionableHintTr) && (
                                                   <div className="text-blue-900 font-medium text-[9px] mt-0.5 flex items-start gap-1">
                                                     <span>💡</span>
                                                     <span>
-                                                      <strong>Tavsiye:</strong> {crit.actionableHintTr}
+                                                      <strong>{locale === 'en' ? 'Advice:' : 'Tavsiye:'}</strong>{' '}
+                                                      {locale === 'en' ? (crit.actionableHintEn || crit.actionableHintTr) : crit.actionableHintTr}
                                                     </span>
                                                   </div>
                                                 )}
@@ -557,10 +564,10 @@ export default function HostMatchingCard({
                                       </table>
                                     </div>
 
-                                    {candidate.sevenCriteria.actionableRecommendationsTr.length > 0 && (
+                                    {((locale === 'en' ? candidate.sevenCriteria.actionableRecommendationsEn : candidate.sevenCriteria.actionableRecommendationsTr) || candidate.sevenCriteria.actionableRecommendationsTr).length > 0 && (
                                       <div className="p-2 rounded-lg bg-white border border-blue-200 text-[10px] text-blue-950 space-y-1">
-                                        <strong className="block text-blue-900">📌 Aksiyon Rehberi:</strong>
-                                        {candidate.sevenCriteria.actionableRecommendationsTr.map((rec, i) => (
+                                        <strong className="block text-blue-900">{locale === 'en' ? '📌 Action Guide:' : '📌 Aksiyon Rehberi:'}</strong>
+                                        {(locale === 'en' ? candidate.sevenCriteria.actionableRecommendationsEn : candidate.sevenCriteria.actionableRecommendationsTr).map((rec, i) => (
                                           <div key={i} className="flex items-start gap-1">
                                             <span>•</span>
                                             <span>{rec}</span>
@@ -797,7 +804,7 @@ export default function HostMatchingCard({
                   }
                   onChange={(e) => onChangeHostInfo('hostCountry', e.target.value)}
                 >
-                  {ERASMUS_COUNTRIES.map((c) => (
+                  {ERASMUS_COUNTRIES.filter((c) => c.code !== 'TR').map((c) => (
                     <option key={c.code} value={c.code}>
                       {c.flagEmoji} {locale === 'en' ? c.nameEn : c.nameTr} ({c.code})
                     </option>

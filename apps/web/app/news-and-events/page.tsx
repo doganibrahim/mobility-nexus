@@ -102,17 +102,17 @@ const INITIAL_NEWS_ITEMS: NewsItem[] = [
     date: '08 Eylül 2026',
     titleTr: 'Erasmus Days 2026: Mesleki Eğitimde Yeşil Beceriler ve Dijital Dönüşüm Çalıştayları',
     titleEn: 'Erasmus Days 2026: Green Skills and Digital Transformation Workshops in VET',
-    descTr: '14-19 Ekim 2026 tarihlerinde tüm Avrupa\'da eş zamanlı gerçekleştirilecek Erasmus Days etkinlikleri kapsamında okullarımız için özel çevrimiçi panel serisi düzenleniyor.',
-    descEn: 'A dedicated online webinar series is scheduled for VET schools during Erasmus Days between 14-19 October 2026 across Europe.',
+    descTr: '12-17 Ekim 2026 tarihlerinde tüm Avrupa\'da eş zamanlı gerçekleştirilecek Erasmus Days etkinlikleri kapsamında okullarımız için özel çevrimiçi panel serisi düzenleniyor.',
+    descEn: 'A dedicated online webinar series is scheduled for VET schools during Erasmus Days between 12-17 October 2026 across Europe.',
     contentTr: 'Avrupa genelinde kutlanan Erasmus Days 2026 kapsamında, meslek liselerimizin yeşil beceriler, sürdürülebilir atölye uygulamaları ve sanal staj entegrasyonu deneyimlerini paylaşacakları çevrimiçi panel serisi başlıyor. Katılımcılar iyi uygulama örneklerini ve proje başarı hikayelerini doğrudan aktaracak.',
     contentEn: 'As part of the Europe-wide Erasmus Days 2026 celebrations, a dedicated webinar series spotlights green skills, eco-friendly vocational workshops, and virtual mobility integration across European VET institutions.',
     highlightsTr: [
-      '14-19 Ekim 2026 tarihleri arasında her gün 14:00\'te canlı panel oturumu',
+      '12-17 Ekim 2026 tarihleri arasında her gün 14:00\'te canlı panel oturumu',
       'Yeşil seyahat ve atölye karbon ayak izi azaltma vaka analizleri',
       'Tüm katılımcı öğretmenlere dijital katılım sertifikası',
     ],
     highlightsEn: [
-      'Daily live sessions at 14:00 CET between 14-19 October 2026',
+      'Daily live sessions at 14:00 CET between 12-17 October 2026',
       'Case studies on green travel and workshop sustainability',
       'Digital Certificate of Attendance issued for participants',
     ],
@@ -422,6 +422,93 @@ function NewsAndEventsContent() {
           </div>
         )}
 
+        {/* Hero Section */}
+        <section className="bg-white border-2 border-slate-300 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-900 border border-blue-200">
+              <span>📢</span>
+              <span>{locale === 'tr' ? 'Duyuru & Arşiv Akışı' : 'News & Archive Feed'}</span>
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+              <span>{locale === 'tr' ? '2026-2027 Dönemi Aktif' : '2026-2027 Cycle Active'}</span>
+            </span>
+          </div>
+
+          <div className="max-w-3xl space-y-2">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight m-0">
+              {locale === 'tr'
+                ? 'Erasmus+ Mesleki Eğitim Haber ve Çağrı Takvimi'
+                : 'Erasmus+ Vocational Education News & Call Calendar'}
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed m-0">
+              {locale === 'tr'
+                ? 'Ulusal Ajans hibe duyuruları, son başvuru tarihleri, Avrupa Mesleki Beceriler Haftası etkinlikleri ve onaylı host portföyündeki yeni staj kontenjanları.'
+                : 'Stay informed on National Agency grant releases, key deadlines, European VET Skills Week workshops, and newly verified host capacities.'}
+            </p>
+          </div>
+
+          {/* Quick Filter Bar with Dedicated ARCHIVE Tab */}
+          <div className="flex items-center gap-2 pt-2 border-t border-slate-100 flex-wrap">
+            <button
+              type="button"
+              onClick={() => setActiveFilter('ALL')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                activeFilter === 'ALL'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+              }`}
+            >
+              {locale === 'tr' ? `Tüm Haberler (${activeCount})` : `All News (${activeCount})`}
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveFilter('CALLS')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                activeFilter === 'CALLS'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+              }`}
+            >
+              🗓️ {locale === 'tr' ? 'Çağrılar & Takvim' : 'Calls & Deadlines'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveFilter('EVENTS')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                activeFilter === 'EVENTS'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+              }`}
+            >
+              🌍 {locale === 'tr' ? 'Etkinlikler & Seminerler' : 'Events & Workshops'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveFilter('RESULTS')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                activeFilter === 'RESULTS'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+              }`}
+            >
+              📋 {locale === 'tr' ? 'Sonuçlar & Rehberler' : 'Results & Guides'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveFilter('ARCHIVE')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeFilter === 'ARCHIVE'
+                  ? 'bg-amber-800 text-white shadow-xs'
+                  : 'bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300'
+              }`}
+            >
+              <span>🗄️</span>
+              <span>{locale === 'tr' ? `Arşivlenmiş İçerikler (${archivedCount})` : `Archived Content (${archivedCount})`}</span>
+            </button>
+          </div>
+        </section>
+
         {/* Distinct Section Purpose & Top 3 Resources Card */}
         <DistinctSectionPurposeCard
           sectionKey="news"
@@ -484,100 +571,6 @@ function NewsAndEventsContent() {
           }
         />
 
-        {/* Hero Section */}
-        <section className="bg-white border-2 border-slate-300 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-900 border border-blue-200">
-              <span>📢</span>
-              <span>{locale === 'tr' ? 'Duyuru & Arşiv Akışı' : 'News & Archive Feed'}</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-              <span>{locale === 'tr' ? '2026-2027 Dönemi Aktif' : '2026-2027 Cycle Active'}</span>
-            </span>
-          </div>
-
-          <div className="max-w-3xl space-y-2">
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight m-0">
-              {locale === 'tr'
-                ? 'Erasmus+ Mesleki Eğitim Haber ve Çağrı Takvimi'
-                : 'Erasmus+ Vocational Education News & Call Calendar'}
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed m-0">
-              {locale === 'tr'
-                ? 'Ulusal Ajans hibe duyuruları, son başvuru tarihleri, Avrupa Mesleki Beceriler Haftası etkinlikleri ve onaylı host portföyündeki yeni staj kontenjanları.'
-                : 'Stay informed on National Agency grant releases, key deadlines, European VET Skills Week workshops, and newly verified host capacities.'}
-            </p>
-          </div>
-
-          {/* Quick Filter Bar with Dedicated ARCHIVE Tab */}
-          <div className="flex items-center gap-2 pt-2 border-t border-slate-100 flex-wrap">
-            <button
-              type="button"
-              onClick={() => setActiveFilter('ALL')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                activeFilter === 'ALL'
-                  ? 'bg-slate-900 text-white shadow-xs'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-              }`}
-            >
-              {locale === 'tr' ? `Tüm Haberler (${activeCount})` : `All News (${activeCount})`}
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveFilter('CALLS')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                activeFilter === 'CALLS'
-                  ? 'bg-slate-900 text-white shadow-xs'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-              }`}
-            >
-              🗓️ {locale === 'tr' ? 'Çağrılar & Takvim' : 'Calls & Deadlines'}
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveFilter('EVENTS')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                activeFilter === 'EVENTS'
-                  ? 'bg-slate-900 text-white shadow-xs'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-              }`}
-            >
-              🌍 {locale === 'tr' ? 'Etkinlikler & Çalıştaylar' : 'Events & Workshops'}
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveFilter('RESULTS')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                activeFilter === 'RESULTS'
-                  ? 'bg-slate-900 text-white shadow-xs'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-              }`}
-            >
-              🏢 {locale === 'tr' ? 'Host & Hibe Güncellemeleri' : 'Hosts & Grants'}
-            </button>
-
-            {/* Dedicated ARCHIVE Filter Tab (Acceptance Criteria 3) */}
-            <button
-              type="button"
-              onClick={() => setActiveFilter('ARCHIVE')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
-                activeFilter === 'ARCHIVE'
-                  ? 'bg-amber-800 text-white shadow-xs ring-2 ring-amber-600'
-                  : 'bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200'
-              }`}
-            >
-              <span>🗄️</span>
-              <span>{locale === 'tr' ? 'Geçmiş & Arşiv' : 'Archive'}</span>
-              <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-extrabold ${
-                activeFilter === 'ARCHIVE' ? 'bg-amber-950 text-amber-200' : 'bg-amber-200 text-amber-900'
-              }`}>
-                {archivedCount}
-              </span>
-            </button>
-          </div>
-        </section>
-
         {/* Archival Notice Box (When ARCHIVE tab is active) */}
         {activeFilter === 'ARCHIVE' && (
           <section className="bg-amber-50/80 border-2 border-amber-300 rounded-2xl p-5 sm:p-6 text-amber-950 space-y-2 animate-fadeIn shadow-xs">
@@ -624,7 +617,7 @@ function NewsAndEventsContent() {
 
               <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-200 space-y-1">
                 <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800">
-                  {locale === 'tr' ? '14-19 Ekim 2026' : '14–19 October 2026'}
+                  {locale === 'tr' ? '12-17 Ekim 2026' : '12–17 October 2026'}
                 </span>
                 <div className="text-sm font-bold text-slate-900">Erasmus Days 2026</div>
                 <p className="text-xs text-slate-600 m-0">
@@ -697,7 +690,7 @@ function NewsAndEventsContent() {
                   {locale === 'tr' ? item.titleTr : item.titleEn}
                 </h3>
 
-                <p className="text-xs text-slate-600 leading-relaxed m-0">
+                <p className="text-sm text-slate-600 leading-relaxed m-0">
                   {locale === 'tr' ? item.descTr : item.descEn}
                 </p>
 
@@ -711,7 +704,11 @@ function NewsAndEventsContent() {
 
               <div className="pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500 gap-2">
                 <span className="text-[11px] text-slate-400">
-                  {item.isArchived ? formatLocalizedDate(item.date, locale) : `${item.readTime} ${locale === 'tr' ? 'okuma' : 'read'}`}
+                  {item.isArchived
+                    ? formatLocalizedDate(item.date, locale)
+                    : locale === 'tr'
+                    ? `${item.readTime} okuma`
+                    : `${item.readTime.replace('dk', 'min')} read`}
                 </span>
 
                 <div className="flex items-center gap-2">
@@ -855,7 +852,9 @@ function NewsAndEventsContent() {
                     </span>
                   )}
                   <span className="text-xs text-slate-400 font-medium">
-                    ⏱️ {selectedNewsItem.readTime} {locale === 'tr' ? 'okuma süresi' : 'read'}
+                    ⏱️ {locale === 'tr'
+                      ? `${selectedNewsItem.readTime} okuma süresi`
+                      : `${selectedNewsItem.readTime.replace('dk', 'min')} read`}
                   </span>
                 </div>
                 <h2 id="news-modal-title" className="text-lg sm:text-xl font-bold text-slate-950 leading-snug m-0">

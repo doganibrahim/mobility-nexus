@@ -131,7 +131,7 @@ export default function AppFooter() {
               </Link>
               <span>•</span>
               <Link
-                href="/privacy"
+                href="/cookies"
                 onClick={(e) => {
                   if (e.metaKey || e.ctrlKey) return;
                   e.preventDefault();

@@ -308,10 +308,10 @@ export function checkKa122Eligibility(
     checks.push({
       id: 'accreditation',
       title: 'Akreditasyon Durumu',
-      passed: true,
+      passed: false,
       status: 'warning',
       message:
-        'Kurumunuzun OID kaydı ve akreditasyon durumu teyit edilmelidir. Akredite kurumlar KA122 yerine KA121 yıllık bütçe tahsisatı kullanır.',
+        'Kurumunuzun OID kaydı ve Erasmus Akreditasyon (KA120) durumu teyit edilmelidir. Akredite kurumlar KA122 yerine KA121 yıllık bütçe tahsisatına başvurmalıdır.',
     });
   } else {
     checks.push({
@@ -440,6 +440,17 @@ export function checkKa122Eligibility(
       summaryTitle: 'Uygunluk Kriteri Düzeltilmeli',
       summaryMessage:
         'Proje süresi veya temel kriterlerde Erasmus+ kurallarına aykırı parametreler bulunmaktadır.',
+      checks,
+    };
+  }
+
+  if (params.accredited === 'unknown') {
+    return {
+      isEligibleForKa122: false,
+      recommendedPathway: 'NEEDS_VERIFICATION',
+      summaryTitle: 'Akreditasyon Teyidi Bekleniyor (Şartlı Uygunluk)',
+      summaryMessage:
+        'Kurumunuzun OID kaydı ve Erasmus Akreditasyon (KA120) durumu resmi olarak doğrulanmalıdır. Kurumunuz akredite değilse KA122 başvurusuna uygundur; akredite ise KA121 yıllık hibe tahsisatına başvurmalıdır.',
       checks,
     };
   }
