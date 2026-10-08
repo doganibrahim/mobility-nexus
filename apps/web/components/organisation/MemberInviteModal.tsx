@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 
 import { apiClient } from '../../lib/api-client';
+import { useTranslation } from '../../lib/i18n';
 
 interface MemberInviteModalProps {
   isOpen: boolean;
@@ -17,6 +18,7 @@ export default function MemberInviteModal({
   orgName,
   orgId = 'current-org',
 }: MemberInviteModalProps) {
+  const { locale } = useTranslation();
   const [email, setEmail] = useState('');
   const [role, setRole] = useState<'ORG_ADMIN' | 'MEMBER' | 'VIEWER'>('MEMBER');
   const [isSending, setIsSending] = useState(false);
@@ -34,7 +36,7 @@ export default function MemberInviteModal({
   const handleSendInvite = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes('@')) {
-      alert('Lütfen geçerli bir e-posta adresi giriniz.');
+      alert(locale === 'tr' ? 'Lütfen geçerli bir e-posta adresi giriniz.' : 'Please enter a valid email address.');
       return;
     }
 
@@ -53,7 +55,7 @@ export default function MemberInviteModal({
         expiresAt: invite.expiresAt,
       });
     } catch (err: any) {
-      alert(err.message || 'Davet oluşturulamadı.');
+      alert(err.message || (locale === 'tr' ? 'Davet oluşturulamadı.' : 'Failed to create invitation.'));
     } finally {
       setIsSending(false);
     }
@@ -74,10 +76,10 @@ export default function MemberInviteModal({
         <div className="flex items-center justify-between border-b border-slate-100 pb-3.5 mb-4">
           <div>
             <h3 className="text-base font-semibold text-slate-900 m-0">
-              👥 Kuruma Ekip Üyesi Davet Et
+              {locale === 'tr' ? '👥 Kuruma Ekip Üyesi Davet Et' : '👥 Invite Team Member'}
             </h3>
             <p className="text-xs text-slate-500 mt-0.5 font-normal">
-              {orgName || 'Kurum Paneli'} • Güvenli Tek Kullanımlık Davet Tokenı
+              {orgName || (locale === 'tr' ? 'Kurum Paneli' : 'Organisation Panel')} • {locale === 'tr' ? 'Güvenli Tek Kullanımlık Davet Tokenı' : 'Secure Single-Use Invite Token'}
             </p>
           </div>
           <button
@@ -93,13 +95,13 @@ export default function MemberInviteModal({
           <form onSubmit={handleSendInvite} className="space-y-4">
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
-                Davet Edilecek Yetkilinin E-Postası *
+                {locale === 'tr' ? 'Davet Edilecek Yetkilinin E-Postası *' : 'Invited Colleague Email *'}
               </label>
               <input
                 type="email"
                 required
                 className="enterprise-input"
-                placeholder="ornek.ogretmen@okul.edu.tr"
+                placeholder={locale === 'tr' ? 'ornek.ogretmen@okul.edu.tr' : 'colleague@institution.eu'}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -107,7 +109,7 @@ export default function MemberInviteModal({
 
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
-                Atanacak Kurum İçi Rol *
+                {locale === 'tr' ? 'Atanacak Kurum İçi Rol *' : 'Assigned Organisation Role *'}
               </label>
               <select
                 className="enterprise-input bg-white cursor-pointer font-medium"
@@ -116,14 +118,23 @@ export default function MemberInviteModal({
                   setRole(e.target.value as 'ORG_ADMIN' | 'MEMBER' | 'VIEWER')
                 }
               >
-                <option value="MEMBER">MEMBER (Ekip Üyesi / Proje Yazarı)</option>
-                <option value="ORG_ADMIN">ORG_ADMIN (Kurum Koordinatörü & Yönetici)</option>
-                <option value="VIEWER">VIEWER (Yalnızca Görüntüleyici / Denetçi)</option>
+                <option value="MEMBER">
+                  {locale === 'tr' ? 'MEMBER (Ekip Üyesi / Proje Yazarı)' : 'MEMBER (Team Member / Project Writer)'}
+                </option>
+                <option value="ORG_ADMIN">
+                  {locale === 'tr' ? 'ORG_ADMIN (Kurum Koordinatörü & Yönetici)' : 'ORG_ADMIN (Coordinator & Admin)'}
+                </option>
+                <option value="VIEWER">
+                  {locale === 'tr' ? 'VIEWER (Yalnızca Görüntüleyici / Denetçi)' : 'VIEWER (Viewer / Auditor)'}
+                </option>
               </select>
             </div>
 
             <div className="rounded-lg border border-slate-200/80 bg-slate-50 p-3 text-xs text-slate-600 leading-relaxed">
-              🔒 <strong className="font-semibold text-slate-800">Güvenlik Standardı:</strong> Davet bağlantısı 48 saat boyunca geçerlidir ve tek kullanımlıktır. İşlem denetim günlüğüne (<code>audit_event</code>) otomatik kaydedilir.
+              🔒 <strong className="font-semibold text-slate-800">{locale === 'tr' ? 'Güvenlik Standardı:' : 'Security Standard:'}</strong>{' '}
+              {locale === 'tr'
+                ? 'Davet bağlantısı 48 saat boyunca geçerlidir ve tek kullanımlıktır. İşlem denetim günlüğüne (audit_event) otomatik kaydedilir.'
+                : 'Invitation link is valid for 48 hours and single-use only. Action is automatically logged in the audit trail (audit_event).'}
             </div>
 
             <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-slate-100">
@@ -132,7 +143,7 @@ export default function MemberInviteModal({
                 onClick={onClose}
                 className="enterprise-btn-ghost text-xs"
               >
-                İptal
+                {locale === 'tr' ? 'İptal' : 'Cancel'}
               </button>
               <button
                 type="submit"
@@ -142,12 +153,12 @@ export default function MemberInviteModal({
                 {isSending ? (
                   <>
                     <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Üretiliyor...</span>
+                    <span>{locale === 'tr' ? 'Üretiliyor...' : 'Generating...'}</span>
                   </>
                 ) : (
                   <>
                     <span>✉️</span>
-                    <span>Davet Bağlantısı Üret</span>
+                    <span>{locale === 'tr' ? 'Davet Bağlantısı Üret' : 'Generate Invite Link'}</span>
                   </>
                 )}
               </button>
@@ -156,29 +167,30 @@ export default function MemberInviteModal({
         ) : (
           <div className="space-y-4">
             <div className="rounded-lg border border-emerald-200 bg-emerald-50/80 p-3 text-xs text-emerald-900 font-medium">
-              ✅ <strong className="font-semibold">Davet Başarıyla Oluşturuldu!</strong> 48 saat geçerli tek kullanımlık kayıt tokenı hazırlandı.
+              ✅ <strong className="font-semibold">{locale === 'tr' ? 'Davet Başarıyla Oluşturuldu!' : 'Invitation Successfully Created!'}</strong>{' '}
+              {locale === 'tr' ? '48 saat geçerli tek kullanımlık kayıt tokenı hazırlandı.' : 'Single-use registration token valid for 48 hours is ready.'}
             </div>
 
             <div className="space-y-2 text-xs">
               <div className="flex justify-between border-b border-slate-100 py-1.5">
-                <span className="text-slate-500">Davet Edilen:</span>
+                <span className="text-slate-500">{locale === 'tr' ? 'Davet Edilen:' : 'Invited:'}</span>
                 <span className="font-semibold font-mono text-slate-800">{generatedInvite.email}</span>
               </div>
               <div className="flex justify-between border-b border-slate-100 py-1.5">
-                <span className="text-slate-500">Yetki Rolü:</span>
+                <span className="text-slate-500">{locale === 'tr' ? 'Yetki Rolü:' : 'Role:'}</span>
                 <span className="enterprise-badge enterprise-badge-good text-[10px]">
                   {generatedInvite.role}
                 </span>
               </div>
               <div className="flex justify-between border-b border-slate-100 py-1.5">
-                <span className="text-slate-500">Son Geçerlilik:</span>
+                <span className="text-slate-500">{locale === 'tr' ? 'Son Geçerlilik:' : 'Expires At:'}</span>
                 <span className="font-mono text-slate-700">{generatedInvite.expiresAt}</span>
               </div>
             </div>
 
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
-                Kayıt / Katılım Bağlantısı:
+                {locale === 'tr' ? 'Kayıt / Katılım Bağlantısı:' : 'Registration / Invite Link:'}
               </label>
               <div className="flex gap-2">
                 <input
@@ -192,7 +204,7 @@ export default function MemberInviteModal({
                   onClick={handleCopy}
                   className="enterprise-btn-secondary text-xs whitespace-nowrap"
                 >
-                  {copied ? 'Kopyalandı! ✓' : 'Kopyala'}
+                  {copied ? (locale === 'tr' ? 'Kopyalandı! ✓' : 'Copied! ✓') : (locale === 'tr' ? 'Kopyala' : 'Copy')}
                 </button>
               </div>
             </div>
@@ -206,14 +218,14 @@ export default function MemberInviteModal({
                 }}
                 className="enterprise-btn-ghost text-xs"
               >
-                Yeni Davet Oluştur
+                {locale === 'tr' ? 'Yeni Davet Oluştur' : 'Create Another Invite'}
               </button>
               <button
                 type="button"
                 onClick={onClose}
                 className="enterprise-btn-primary text-xs"
               >
-                Kapat
+                {locale === 'tr' ? 'Kapat' : 'Close'}
               </button>
             </div>
           </div>

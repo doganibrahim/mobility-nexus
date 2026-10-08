@@ -170,7 +170,7 @@ export default function Ka120ImportPreviewModal({
                     type="text"
                     value={formData.applicantOid || ''}
                     onChange={(e) => handleTextChange('applicantOid', e.target.value)}
-                    placeholder="Örn: E10123456"
+                    placeholder={locale === 'tr' ? 'Örn: E10123456' : 'e.g. E10123456'}
                     className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 font-mono focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
@@ -196,7 +196,7 @@ export default function Ka120ImportPreviewModal({
                     type="text"
                     value={formData.accreditationCode || ''}
                     onChange={(e) => handleTextChange('accreditationCode', e.target.value)}
-                    placeholder="Örn: 2021-1-TR01-KA120-VET-000012"
+                    placeholder={locale === 'tr' ? 'Örn: 2021-1-TR01-KA120-VET-000012' : 'e.g. 2021-1-TR01-KA120-VET-000012'}
                     className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 font-mono focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
@@ -222,7 +222,7 @@ export default function Ka120ImportPreviewModal({
                     type="text"
                     value={formData.projectAcronym || ''}
                     onChange={(e) => handleTextChange('projectAcronym', e.target.value)}
-                    placeholder="Örn: DIGI-VET"
+                    placeholder={locale === 'tr' ? 'Örn: DIGI-VET' : 'e.g. DIGI-VET'}
                     className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
@@ -276,7 +276,7 @@ export default function Ka120ImportPreviewModal({
                       type="email"
                       value={formData.qualityTeam?.legalRepresentativeEmail || ''}
                       onChange={(e) => handleQualityChange('legalRepresentativeEmail', e.target.value)}
-                      placeholder="Örn: mudur@okul.k12.tr"
+                      placeholder={locale === 'tr' ? 'Örn: mudur@okul.k12.tr' : 'e.g. principal@school.edu'}
                       className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
@@ -320,7 +320,7 @@ export default function Ka120ImportPreviewModal({
                       type="email"
                       value={formData.qualityTeam?.coordinatorEmail || ''}
                       onChange={(e) => handleQualityChange('coordinatorEmail', e.target.value)}
-                      placeholder="Örn: koordinasyon@okul.k12.tr"
+                      placeholder={locale === 'tr' ? 'Örn: koordinasyon@okul.k12.tr' : 'e.g. coordinator@school.edu'}
                       className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-600"
                     />
                   </div>

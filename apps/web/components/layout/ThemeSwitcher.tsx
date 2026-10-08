@@ -2,10 +2,12 @@
 
 import React, { useState } from 'react';
 import { useTheme } from '../../lib/theme-context';
+import { useTranslation } from '../../lib/i18n';
 import { THEMES } from '../../lib/constants';
 
 export default function ThemeSwitcher() {
   const { theme, setTheme, themeConfig } = useTheme();
+  const { locale } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -13,10 +15,10 @@ export default function ThemeSwitcher() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold border border-slate-300 shadow-xs transition-all focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold border border-slate-300 shadow-xs transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
         aria-haspopup="true"
         aria-expanded={isOpen}
-        title="Renk Temasını Değiştir"
+        title={locale === 'tr' ? 'Renk Temasını Değiştir' : 'Change Color Theme'}
       >
         <span
           className="w-3.5 h-3.5 rounded-full border border-slate-300 inline-block shadow-xs shrink-0"
@@ -37,11 +39,11 @@ export default function ThemeSwitcher() {
           <div className="absolute right-0 mt-2 w-88 rounded-xl bg-white border border-slate-200 p-2.5 z-50 shadow-xl text-slate-800 animate-in fade-in zoom-in-95 duration-100">
             <div className="border-b border-slate-100 pb-2 mb-1.5 px-2">
               <div className="text-xs font-bold text-slate-900 flex items-center justify-between">
-                <span>4 Orijinal Renk Paleti</span>
-                <span className="text-[11px] font-semibold text-blue-700">Tasarımcı Seçimi</span>
+                <span>{locale === 'tr' ? '4 Orijinal Renk Paleti' : '4 Original Color Themes'}</span>
+                <span className="text-[11px] font-semibold text-blue-700">{locale === 'tr' ? 'Tasarımcı Seçimi' : 'Designer Choice'}</span>
               </div>
               <p className="text-[11px] text-slate-500 m-0 mt-0.5">
-                Spesifikasyona uygun 4 renk matrisi:
+                {locale === 'tr' ? 'Spesifikasyona uygun 4 renk matrisi:' : '4 compliant color matrices:'}
               </p>
             </div>
 
@@ -55,7 +57,7 @@ export default function ThemeSwitcher() {
                       setTheme(t.id);
                       setIsOpen(false);
                     }}
-                    className={`w-full text-left p-2 rounded-lg transition-all flex items-start gap-2.5 ${
+                    className={`w-full text-left p-2 rounded-lg transition-all flex items-start gap-2.5 cursor-pointer ${
                       isSelected
                         ? 'bg-blue-50/80 border border-blue-200 text-slate-900 font-bold'
                         : 'hover:bg-slate-50 text-slate-700 border border-transparent'
@@ -65,17 +67,17 @@ export default function ThemeSwitcher() {
                       <span
                         className="w-3.5 h-3.5 rounded-full border border-slate-300 shadow-xs"
                         style={{ backgroundColor: t.primary }}
-                        title={`Birincil: ${t.primary}`}
+                        title={`${locale === 'tr' ? 'Birincil' : 'Primary'}: ${t.primary}`}
                       />
                       <span
                         className="w-3.5 h-3.5 rounded-full border border-slate-300 shadow-xs"
                         style={{ backgroundColor: t.secondary }}
-                        title={`İkincil: ${t.secondary}`}
+                        title={`${locale === 'tr' ? 'İkincil' : 'Secondary'}: ${t.secondary}`}
                       />
                       <span
                         className="w-3.5 h-3.5 rounded-full border border-slate-300 shadow-xs"
                         style={{ backgroundColor: t.accent }}
-                        title={`Aksan: ${t.accent}`}
+                        title={`${locale === 'tr' ? 'Aksan' : 'Accent'}: ${t.accent}`}
                       />
                     </div>
 
@@ -84,7 +86,7 @@ export default function ThemeSwitcher() {
                         <span className="truncate">{t.name}</span>
                         {isSelected && (
                           <span className="text-[10px] bg-blue-600 text-white px-1.5 py-0.2 rounded-md font-semibold">
-                            Seçili
+                            {locale === 'tr' ? 'Seçili' : 'Active'}
                           </span>
                         )}
                       </div>

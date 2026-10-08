@@ -98,7 +98,7 @@ export default function SchoolDashboardView({
               {displayName}
             </h1>
             <p className="text-sm text-slate-600 m-0 leading-relaxed font-medium">
-              {displayCity}, Türkiye • OID: <strong className="font-mono text-slate-900">{displayOid}</strong> • {locale === 'tr' ? 'Alan' : 'VET Field'}: <strong className="text-slate-900">{vetField || 'Mekatronik & Otomasyon'}</strong>
+              {displayCity}, {locale === 'tr' ? 'Türkiye' : 'Turkey'} • OID: <strong className="font-mono text-slate-900">{displayOid}</strong> • {locale === 'tr' ? 'Alan' : 'VET Field'}: <strong className="text-slate-900">{vetField || (locale === 'tr' ? 'Mekatronik & Otomasyon' : 'Mechatronics & Automation')}</strong>
             </p>
           </div>
 

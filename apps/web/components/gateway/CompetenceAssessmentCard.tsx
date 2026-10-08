@@ -106,7 +106,13 @@ export default function CompetenceAssessmentCard({
                       >
                         {val}
                         <span className="block text-[10px] font-normal opacity-85">
-                          {val === 1 ? 'Başlangıç' : val === 3 ? 'Orta' : val === 5 ? 'İleri' : `Düzey ${val}`}
+                          {val === 1
+                            ? (locale === 'tr' ? 'Başlangıç' : 'Novice')
+                            : val === 3
+                            ? (locale === 'tr' ? 'Orta' : 'Intermediate')
+                            : val === 5
+                            ? (locale === 'tr' ? 'İleri' : 'Advanced')
+                            : (locale === 'tr' ? `Düzey ${val}` : `Level ${val}`)}
                         </span>
                       </button>
                     );
@@ -124,7 +130,7 @@ export default function CompetenceAssessmentCard({
             onClick={onScoreClick}
             className="edu-btn-primary text-xs"
           >
-            📊 Yetkinlik Skorunu Hesapla
+            📊 {locale === 'tr' ? 'Yetkinlik Skorunu Hesapla' : 'Calculate Competence Score'}
           </button>
           <a
             href="https://www.competence4vet.com/"
@@ -132,7 +138,7 @@ export default function CompetenceAssessmentCard({
             rel="noopener noreferrer"
             className="edu-btn-secondary text-xs"
           >
-            🧪 Competence4VET Test Portalı ↗
+            🧪 {locale === 'tr' ? 'Competence4VET Test Portalı ↗' : 'Competence4VET Assessment Portal ↗'}
           </a>
         </div>
 

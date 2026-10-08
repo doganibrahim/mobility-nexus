@@ -21,7 +21,7 @@ import { HostCreateCourseModal } from '@/components/marketplace/HostCreateCourse
 import { HostCreateSessionModal } from '@/components/marketplace/HostCreateSessionModal';
 import { HostCreateJobShadowingModal } from '@/components/marketplace/HostCreateJobShadowingModal';
 import { HostApplicationReviewModal } from '@/components/marketplace/HostApplicationReviewModal';
-import { ERASMUS_COUNTRIES } from '@/lib/countries';
+import { ERASMUS_COUNTRIES, ERASMUS_HOSTING_COUNTRIES } from '@/lib/countries';
 import {
   GraduationCap,
   Building2,
@@ -59,6 +59,12 @@ export default function MarketplacePage() {
       setActiveRole('HOST');
     }
   }, [isAutoHost]);
+
+  useEffect(() => {
+    document.title = isTr
+      ? 'Eğitim & Fırsat Pazaryeri | ErasmusMobility'
+      : 'VET Courses & Opportunities Marketplace | ErasmusMobility';
+  }, [isTr]);
 
   // Host selection for Host portal
   const [activeHostId, setActiveHostId] = useState(currentHost?.id || 'host-de-bavaria');
@@ -138,7 +144,7 @@ export default function MarketplacePage() {
       }
 
       if (iscedParam) setSelectedIsced(iscedParam);
-      if (countryParam) setSelectedCountry(countryParam);
+      if (countryParam && countryParam !== 'TR') setSelectedCountry(countryParam);
       if (queryParam) setSearchQuery(queryParam);
       if (roleParam === 'HOST' || roleParam === 'host') setActiveRole('HOST');
     }
@@ -380,8 +386,11 @@ export default function MarketplacePage() {
               {/* Search and Filters */}
               <div className="bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-2xs grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="relative">
+                  <label htmlFor="mp-search-input" className="sr-only">{isTr ? 'Kurs veya Şehir Ara' : 'Search Course or City'}</label>
                   <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
                   <input
+                    id="mp-search-input"
+                    name="courseSearch"
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -391,17 +400,23 @@ export default function MarketplacePage() {
                 </div>
 
                 <div>
+                  <label htmlFor="mp-country-select" className="sr-only">{isTr ? 'Ev Sahibi Ülke Filtresi' : 'Host Country Filter'}</label>
                   <select
+                    id="mp-country-select"
+                    name="courseCountry"
                     value={selectedCountry}
                     onChange={(e) => setSelectedCountry(e.target.value)}
                     className="w-full px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-hidden text-xs bg-white text-slate-700"
                   >
-                    <option value="ALL">🌍 {isTr ? `Tüm Ülkeler (${ERASMUS_COUNTRIES.length})` : `All Countries (${ERASMUS_COUNTRIES.length})`}</option>
-                    {ERASMUS_COUNTRIES.map((c) => (
+                    <option value="ALL">🌍 {isTr ? `Tüm Ev Sahibi Ülkeler (${ERASMUS_HOSTING_COUNTRIES.length})` : `All Host Countries (${ERASMUS_HOSTING_COUNTRIES.length})`}</option>
+                    {ERASMUS_HOSTING_COUNTRIES.map((c) => (
                       <option key={c.code} value={c.code}>
                         {c.flagEmoji} {isTr ? (c.nameTr || c.nameEn) : (c.nameEn || c.nameTr)}
                       </option>
                     ))}
+                    <option value="TR_SENDING_ONLY" disabled className="text-slate-400 bg-slate-50 italic">
+                      🇹🇷 {isTr ? 'Türkiye (Yalnızca Gönderen Ülke)' : 'Türkiye (Sending Country Only)'}
+                    </option>
                   </select>
                 </div>
 
@@ -459,8 +474,11 @@ export default function MarketplacePage() {
               {/* Filter bar */}
               <div className="bg-white rounded-xl border border-slate-200/80 p-3.5 shadow-2xs grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="relative">
+                  <label htmlFor="mp-js-search-input" className="sr-only">{isTr ? 'İşletme veya Şehir Ara' : 'Search Enterprise or City'}</label>
                   <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
                   <input
+                    id="mp-js-search-input"
+                    name="jsSearch"
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -469,17 +487,23 @@ export default function MarketplacePage() {
                   />
                 </div>
                 <div>
+                  <label htmlFor="mp-js-country-select" className="sr-only">{isTr ? 'Ev Sahibi Ülke Filtresi' : 'Host Country Filter'}</label>
                   <select
+                    id="mp-js-country-select"
+                    name="jsCountry"
                     value={selectedCountry}
                     onChange={(e) => setSelectedCountry(e.target.value)}
                     className="w-full px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-hidden text-xs bg-white text-slate-700"
                   >
-                    <option value="ALL">🌍 {isTr ? `Tüm Ülkeler (${ERASMUS_COUNTRIES.length})` : `All Countries (${ERASMUS_COUNTRIES.length})`}</option>
-                    {ERASMUS_COUNTRIES.map((c) => (
+                    <option value="ALL">🌍 {isTr ? `Tüm Ev Sahibi Ülkeler (${ERASMUS_HOSTING_COUNTRIES.length})` : `All Host Countries (${ERASMUS_HOSTING_COUNTRIES.length})`}</option>
+                    {ERASMUS_HOSTING_COUNTRIES.map((c) => (
                       <option key={c.code} value={c.code}>
                         {c.flagEmoji} {isTr ? (c.nameTr || c.nameEn) : (c.nameEn || c.nameTr)}
                       </option>
                     ))}
+                    <option value="TR_SENDING_ONLY" disabled className="text-slate-400 bg-slate-50 italic">
+                      🇹🇷 {isTr ? 'Türkiye (Yalnızca Gönderen Ülke)' : 'Türkiye (Sending Country Only)'}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -598,6 +622,34 @@ export default function MarketplacePage() {
               </div>
             </div>
           )}
+
+          {/* Provider & Inquiries Assistance Strip */}
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs shadow-2xs">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-lg">
+                🏢
+              </div>
+              <div>
+                <div className="font-bold text-slate-900">
+                  {isTr ? 'Ev Sahibi Kurum (Provider) Desteği & İlan Doğrulama' : 'Host Provider Support & Verification Desk'}
+                </div>
+                <div className="text-slate-500 text-[11px] mt-0.5">
+                  {isTr
+                    ? 'Kurs ekleme, OID ortaklık onayı veya kurumsal talepleriniz için: '
+                    : 'For course listing, OID partner verification or institutional inquiries: '}
+                  <a href="mailto:info@erasmusmobility.com" className="font-bold text-blue-700 hover:underline">
+                    info@erasmusmobility.com
+                  </a>
+                </div>
+              </div>
+            </div>
+            <a
+              href="mailto:info@erasmusmobility.com"
+              className="px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors shadow-2xs shrink-0"
+            >
+              ✉️ {isTr ? 'Sağlayıcı Desteği Al' : 'Contact Provider Desk'}
+            </a>
+          </div>
         </main>
       )}
 
@@ -981,6 +1033,34 @@ export default function MarketplacePage() {
               )}
             </div>
           )}
+
+          {/* Provider Support & Liaison Strip */}
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs shadow-2xs">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center text-lg">
+                🏢
+              </div>
+              <div>
+                <div className="font-bold text-slate-900">
+                  {isTr ? 'Ev Sahibi Sağlayıcı Danışma & Teknik Destek' : 'Host Provider Desk & Technical Support'}
+                </div>
+                <div className="text-slate-500 text-[11px] mt-0.5">
+                  {isTr
+                    ? 'Yeni oturum açma, katılımcı onayı ve hibe sözleşmesi sorularınız için: '
+                    : 'For new session creation, participant approvals and grant agreements: '}
+                  <a href="mailto:info@erasmusmobility.com" className="font-bold text-emerald-800 hover:underline">
+                    info@erasmusmobility.com
+                  </a>
+                </div>
+              </div>
+            </div>
+            <a
+              href="mailto:info@erasmusmobility.com"
+              className="px-3.5 py-1.5 rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-xs transition-colors shadow-2xs shrink-0"
+            >
+              ✉️ {isTr ? 'Provider Desteği' : 'Email Provider Desk'}
+            </a>
+          </div>
         </main>
       )}
 

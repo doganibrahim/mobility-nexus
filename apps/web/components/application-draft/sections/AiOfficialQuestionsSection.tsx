@@ -43,6 +43,8 @@ export default function AiOfficialQuestionsSection({
   const [successToast, setSuccessToast] = useState<string | null>(null);
   const [showSuccessBanner, setShowSuccessBanner] = useState(false);
   const [generateProgress, setGenerateProgress] = useState<{ current: number; total: number } | null>(null);
+  const [showSourceQuestions, setShowSourceQuestions] = useState(false);
+  const [expandedSourceCardIds, setExpandedSourceCardIds] = useState<Record<string, boolean>>({});
 
   // 1. Temel Başvuru Bilgileri (Okul, Proje, Faaliyet)
   const notSpecified = locale === 'tr' ? 'Belirtilmedi' : 'Not specified';
@@ -286,8 +288,8 @@ export default function AiOfficialQuestionsSection({
     answers.forEach((q, idx) => {
       content += `[QUESTION ${idx + 1}/${answers.length}] ${q.categoryEn || q.category}\n`;
       content += `OFFICIAL QUESTION: ${q.questionEn || q.question}\n`;
-      if (q.question && q.questionEn !== q.question) {
-        content += `QUESTION (TR): ${q.question}\n`;
+      if ((locale === 'tr' || showSourceQuestions) && q.question && q.questionEn !== q.question) {
+        content += `QUESTION (TR SOURCE): ${q.question}\n`;
       }
       if (q.evaluatorCriteria) {
         content += `EVALUATOR CRITERIA: ${q.evaluatorCriteria}\n`;
@@ -440,40 +442,58 @@ export default function AiOfficialQuestionsSection({
       )}
 
       {/* 3. Bölüm Filtreleme Sekmeleri */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
-        <button
-          type="button"
-          onClick={() => setActiveCategory('ALL')}
-          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-            activeCategory === 'ALL'
-              ? 'bg-slate-900 text-white shadow-xs'
-              : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
-          }`}
-        >
-          {locale === 'tr' ? 'Tüm Form' : 'Full Dossier'} ({directFields.length + answers.length})
-        </button>
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setActiveCategory('ALL')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              activeCategory === 'ALL'
+                ? 'bg-slate-900 text-white shadow-xs'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+            }`}
+          >
+            {locale === 'tr' ? 'Tüm Form' : 'Full Dossier'} ({directFields.length + answers.length})
+          </button>
 
-        {allCategories.map((cat) => {
-          const isDirect = cat === coreCategoryLabel;
-          const count = isDirect
-            ? directFields.length
-            : answers.filter((a) => (locale === 'en' && a.categoryEn ? a.categoryEn === cat : a.category === cat)).length;
-          const isActive = activeCategory === cat;
-          return (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setActiveCategory(cat)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                isActive
-                  ? 'bg-blue-700 text-white shadow-xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
-              }`}
-            >
-              {cat} ({count})
-            </button>
-          );
-        })}
+          {allCategories.map((cat) => {
+            const isDirect = cat === coreCategoryLabel;
+            const count = isDirect
+              ? directFields.length
+              : answers.filter((a) => (locale === 'en' && a.categoryEn ? a.categoryEn === cat : a.category === cat)).length;
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setActiveCategory(cat)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  isActive
+                    ? 'bg-blue-700 text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+                }`}
+              >
+                {cat} ({count})
+              </button>
+            );
+          })}
+        </div>
+
+        {locale === 'en' && (
+          <button
+            type="button"
+            onClick={() => setShowSourceQuestions(!showSourceQuestions)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 border cursor-pointer ${
+              showSourceQuestions
+                ? 'bg-blue-50 text-blue-700 border-blue-300'
+                : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+            }`}
+            title="Toggle Turkish source questions for reference"
+          >
+            <span>🌐</span>
+            <span>{showSourceQuestions ? 'Hide Source Questions (TR)' : 'Show Source Question (TR)'}</span>
+          </button>
+        )}
       </div>
 
       {/* 4. DOĞRUDAN FORM ALANLARI */}
@@ -569,10 +589,46 @@ export default function AiOfficialQuestionsSection({
                         EN: {item.questionEn}
                       </p>
                     )}
-                    {locale === 'en' && item.question && item.questionEn && item.questionEn !== item.question && (
-                      <p className="text-[11px] text-slate-500 italic">
-                        TR: {item.question}
-                      </p>
+
+                    {locale === 'en' && (showSourceQuestions || expandedSourceCardIds[item.id]) && item.question && item.questionEn && item.questionEn !== item.question && (
+                      <div className="mt-1 p-2 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-slate-600 flex items-start justify-between gap-1.5 animate-fadeIn">
+                        <div className="flex items-start gap-1.5 min-w-0">
+                          <span className="font-bold text-slate-700 shrink-0">TR Source:</span>
+                          <span className="italic break-words">{item.question}</span>
+                        </div>
+                        {!showSourceQuestions && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setExpandedSourceCardIds((prev) => ({
+                                ...prev,
+                                [item.id]: false,
+                              }))
+                            }
+                            className="text-slate-400 hover:text-slate-700 text-xs font-bold px-1 shrink-0 cursor-pointer"
+                            title="Hide"
+                          >
+                            ×
+                          </button>
+                        )}
+                      </div>
+                    )}
+
+                    {locale === 'en' && !showSourceQuestions && !expandedSourceCardIds[item.id] && item.question && item.questionEn && item.questionEn !== item.question && (
+                      <div className="pt-0.5">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpandedSourceCardIds((prev) => ({
+                              ...prev,
+                              [item.id]: true,
+                            }))
+                          }
+                          className="text-[11px] text-slate-400 hover:text-blue-700 underline font-medium cursor-pointer inline-flex items-center gap-1"
+                        >
+                          <span>Show source question (TR)</span>
+                        </button>
+                      </div>
                     )}
 
                     {/* Değerlendirici Kriteri */}

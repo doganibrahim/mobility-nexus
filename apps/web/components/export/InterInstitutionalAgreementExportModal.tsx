@@ -95,7 +95,9 @@ export function InterInstitutionalAgreementExportModal({
               Inter-Institutional Bilateral Partnership & Traineeship Agreement
             </h1>
             <p className="text-xs text-slate-600 font-medium">
-              Mesleki Eğitim Kurumlararası Resmi Ortaklık ve Staj Protokolü
+              {locale === 'tr'
+                ? 'Mesleki Eğitim Kurumlararası Resmi Ortaklık ve Staj Protokolü'
+                : 'Inter-Institutional VET Bilateral Partnership and Traineeship Protocol'}
             </p>
             <div className="text-xs font-mono font-bold text-blue-900 mt-1">
               Prot. No: {agreementNumber} • Call 2026
@@ -130,14 +132,14 @@ export function InterInstitutionalAgreementExportModal({
                 <strong>{locale === 'tr' ? 'Kurum:' : 'Institution:'}</strong> {dossier.schoolName}
               </div>
               <div>
-                <strong>{locale === 'tr' ? 'OID / Ülke:' : 'OID / Country:'}</strong> {dossier.schoolOid} • Türkiye
+                <strong>{locale === 'tr' ? 'OID / Ülke:' : 'OID / Country:'}</strong> {dossier.schoolOid} • {locale === 'tr' ? 'Türkiye' : 'Turkey'}
               </div>
               <div>
                 <strong>{locale === 'tr' ? 'Yasal Temsilci:' : 'Legal Representative:'}</strong>{' '}
                 {payload.partnerA?.legalRep || (locale === 'tr' ? 'Metin Demir (Okul Müdürü)' : 'Metin Demir (Headmaster)')}
               </div>
               <div>
-                <strong>{locale === 'tr' ? 'Adres:' : 'Address:'}</strong> {payload.partnerA?.address || 'Bursa, Türkiye'}
+                <strong>{locale === 'tr' ? 'Adres:' : 'Address:'}</strong> {payload.partnerA?.address || (locale === 'tr' ? 'Bursa, Türkiye' : 'Bursa, Turkey')}
               </div>
             </div>
 

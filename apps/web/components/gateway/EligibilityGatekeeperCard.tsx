@@ -49,10 +49,12 @@ export default function EligibilityGatekeeperCard({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
           {/* Accreditation Status */}
           <div className="md:col-span-4">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="eg-accredited" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.eligibility.accreditationLabel}
             </label>
             <select
+              id="eg-accredited"
+              name="accredited"
               className="edu-input bg-white cursor-pointer font-medium"
               value={data.accredited}
               onChange={(e) => onChange('accredited', e.target.value)}
@@ -71,14 +73,18 @@ export default function EligibilityGatekeeperCard({
 
           {/* Participant Count */}
           <div className="md:col-span-4">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="eg-participant-count" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.eligibility.participantCountLabel}
             </label>
             <div className="relative">
               <input
+                id="eg-participant-count"
+                name="participantCount"
                 type="number"
                 min={1}
                 max={150}
+                aria-describedby={data.participantCount > 30 ? 'eg-participant-limit-warn' : undefined}
+                aria-invalid={data.participantCount > 30}
                 className={`edu-input font-bold ${
                   data.participantCount > 30 ? 'border-amber-400 bg-amber-50/40 text-amber-900' : 'text-slate-900'
                 }`}
@@ -90,7 +96,7 @@ export default function EligibilityGatekeeperCard({
               </span>
             </div>
             {data.participantCount > 30 && (
-              <span className="text-[11px] text-amber-700 font-medium mt-1 block">
+              <span id="eg-participant-limit-warn" className="text-[11px] text-amber-700 font-medium mt-1 block">
                 ⚠️ {locale === 'tr' ? 'KA122 için azami sınır 30 kişidir.' : 'Maximum participant limit for KA122 is 30.'}
               </span>
             )}
@@ -98,14 +104,18 @@ export default function EligibilityGatekeeperCard({
 
           {/* Project Duration in Months */}
           <div className="md:col-span-4">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="eg-project-duration" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.eligibility.durationLabel}
             </label>
             <div className="relative">
               <input
+                id="eg-project-duration"
+                name="projectDurationMonths"
                 type="number"
                 min={1}
                 max={36}
+                aria-describedby={(data.projectDurationMonths < 6 || data.projectDurationMonths > 18) ? 'eg-duration-warn' : undefined}
+                aria-invalid={data.projectDurationMonths < 6 || data.projectDurationMonths > 18}
                 className={`edu-input font-bold ${
                   data.projectDurationMonths < 6 || data.projectDurationMonths > 18
                     ? 'border-red-400 bg-red-50/40 text-red-900'
@@ -119,7 +129,7 @@ export default function EligibilityGatekeeperCard({
               </span>
             </div>
             {(data.projectDurationMonths < 6 || data.projectDurationMonths > 18) && (
-              <span className="text-[11px] text-red-600 font-medium mt-1 block">
+              <span id="eg-duration-warn" className="text-[11px] text-red-600 font-medium mt-1 block">
                 ❌ {locale === 'tr' ? 'Süre 6–18 ay aralığında olmalıdır.' : 'Duration must be between 6 and 18 months.'}
               </span>
             )}
@@ -127,10 +137,12 @@ export default function EligibilityGatekeeperCard({
 
           {/* Past Grants in 5 Call Years */}
           <div className="md:col-span-6">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="eg-past-grants" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.eligibility.pastGrantsLabel}
             </label>
             <select
+              id="eg-past-grants"
+              name="pastKa122GrantsCount"
               className={`edu-input bg-white cursor-pointer font-medium ${
                 data.pastKa122GrantsCount >= 3 ? 'border-amber-400 bg-amber-50/40 text-amber-900' : ''
               }`}
@@ -157,10 +169,12 @@ export default function EligibilityGatekeeperCard({
 
           {/* Mobility Strategy & Vision */}
           <div className="md:col-span-6">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="eg-mobility-strategy" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.eligibility.strategyLabel}
             </label>
             <select
+              id="eg-mobility-strategy"
+              name="mobilityStrategy"
               className="edu-input bg-white cursor-pointer font-medium"
               value={data.mobilityStrategy}
               onChange={(e) => onChange('mobilityStrategy', e.target.value as 'ad_hoc' | 'regular_annual')}

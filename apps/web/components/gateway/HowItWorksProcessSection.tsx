@@ -106,9 +106,9 @@ const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
     titleTr: '3. Avrupa Ev Sahibi ve Sağlayıcıları Karşılaştır',
     titleEn: '3. Compare European Providers & Hosts',
     subtitleTr:
-      '10 parametreli eşleştirme filtresiyle onaylanmış Avrupa işletmelerini ve mesleki merkezleri uygunluk skoru, kapasite, dil ve lojistik imkanlarına göre inceleyin.',
+      'Okulunuzun 10 operasyonel parametresini 7 temel uygunluk kriterine dönüştüren şeffaf eşleştirme motoruyla onaylanmış Avrupa işletmelerini ve mesleki merkezleri inceleyin.',
     subtitleEn:
-      'Evaluate verified European companies and training centres using 10-parameter matching, suitability scores, capacity, and language compatibility.',
+      'Evaluate verified European companies and training centres using our matching engine that synthesizes 10 school parameters into 7 Core Criteria.',
     deliverableBadgeTr: 'Şeffaf Uygunluk Skoru & Uyuşmazlık Analizi',
     deliverableBadgeEn: 'Transparent Suitability Scoring & Diagnostics',
     featuresTr: [

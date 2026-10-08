@@ -56,7 +56,7 @@ export default function ContextSection({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
           <div className="flex items-center justify-between gap-1 mb-1">
-            <label className="block text-xs font-bold text-slate-700">
+            <label htmlFor="ad-applicant-name" className="block text-xs font-bold text-slate-700">
               {locale === 'tr' ? 'Kuruluşun Resmî Adı' : 'Applicant Legal Name'} *
             </label>
             {ka120ImportedFields?.['context.applicantName'] && (
@@ -66,17 +66,19 @@ export default function ContextSection({
             )}
           </div>
           <input
+            id="ad-applicant-name"
+            name="applicantName"
             type="text"
             value={data.applicantName}
             onChange={(e) => onChange({ applicantName: e.target.value })}
-            placeholder="Örn: Kapadokya Mesleki ve Teknik Anadolu Lisesi"
+            placeholder={locale === 'tr' ? 'Örn: Kapadokya Mesleki ve Teknik Anadolu Lisesi' : 'e.g. Cappadocia Vocational and Technical High School'}
             className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
         </div>
 
         <div>
           <div className="flex items-center justify-between gap-1 mb-1">
-            <label className="block text-xs font-bold text-slate-700">
+            <label htmlFor="ad-applicant-oid" className="block text-xs font-bold text-slate-700">
               {locale === 'tr' ? 'Kuruluş Kimlik Kodu (OID)' : 'Organisation ID (OID)'} *
             </label>
             {ka120ImportedFields?.['context.applicantOid'] && (
@@ -86,6 +88,8 @@ export default function ContextSection({
             )}
           </div>
           <input
+            id="ad-applicant-oid"
+            name="applicantOid"
             type="text"
             value={data.applicantOid}
             onChange={(e) => onChange({ applicantOid: e.target.value })}
@@ -96,7 +100,7 @@ export default function ContextSection({
 
         <div>
           <div className="flex items-center justify-between gap-1 mb-1">
-            <label className="block text-xs font-bold text-slate-700">
+            <label htmlFor="ad-applicant-city" className="block text-xs font-bold text-slate-700">
               {locale === 'tr' ? 'Şehir / Konum' : 'City / Location'} *
             </label>
             {ka120ImportedFields?.['context.applicantCity'] && (
@@ -106,6 +110,8 @@ export default function ContextSection({
             )}
           </div>
           <input
+            id="ad-applicant-city"
+            name="applicantCity"
             type="text"
             value={data.applicantCity}
             onChange={(e) => onChange({ applicantCity: e.target.value })}
@@ -120,7 +126,7 @@ export default function ContextSection({
         {isKa121 ? (
           <div className="md:col-span-2">
             <div className="flex items-center justify-between gap-1 mb-1">
-              <label className="block text-xs font-bold text-slate-700">
+              <label htmlFor="ad-accreditation-code" className="block text-xs font-bold text-slate-700">
                 {locale === 'tr' ? 'Erasmus Akreditasyon Kodu' : 'Erasmus Accreditation Code'} *
               </label>
               {ka120ImportedFields?.['context.accreditationCode'] && (
@@ -130,6 +136,8 @@ export default function ContextSection({
               )}
             </div>
             <input
+              id="ad-accreditation-code"
+              name="accreditationCode"
               type="text"
               value={data.accreditationCode || ''}
               onChange={(e) => onChange({ accreditationCode: e.target.value })}
@@ -145,10 +153,12 @@ export default function ContextSection({
         ) : (
           <>
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">
+              <label htmlFor="ad-past-ka122-count" className="block text-xs font-bold text-slate-700 mb-1">
                 {locale === 'tr' ? '5 Ardışık Çağrı Yılında Alınan KA122 Sayısı' : 'Number of KA122 Grants Received in Past 5 Call Years'} *
               </label>
               <select
+                id="ad-past-ka122-count"
+                name="pastKa122Count"
                 value={data.pastKa122Count}
                 onChange={(e) => onChange({ pastKa122Count: Number(e.target.value) })}
                 className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -174,10 +184,10 @@ export default function ContextSection({
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">
+              <label id="ad-duration-label" className="block text-xs font-bold text-slate-700 mb-1">
                 {locale === 'tr' ? 'Proje Süresi (Ay)' : 'Project Duration (Months)'} *
               </label>
-              <div className="flex items-center gap-2">
+              <div role="group" aria-labelledby="ad-duration-label" className="flex items-center gap-2">
                 {[6, 12, 18].map((m) => (
                   <button
                     key={m}
@@ -213,7 +223,7 @@ export default function ContextSection({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <div className="flex items-center justify-between gap-1 mb-1">
-                <label className="block text-xs font-bold text-slate-700">
+                <label htmlFor="ad-project-title" className="block text-xs font-bold text-slate-700">
                   {locale === 'tr' ? 'Projenin Tam Adı (İngilizce)' : 'Full Project Name'} *
                 </label>
                 {ka120ImportedFields?.['context.projectTitle'] && (
@@ -223,6 +233,8 @@ export default function ContextSection({
                 )}
               </div>
               <input
+                id="ad-project-title"
+                name="projectTitle"
                 type="text"
                 value={data.projectTitle}
                 onChange={(e) => onChange({ projectTitle: e.target.value })}
@@ -236,7 +248,7 @@ export default function ContextSection({
 
             <div>
               <div className="flex items-center justify-between gap-1 mb-1">
-                <label className="block text-xs font-bold text-slate-700">
+                <label htmlFor="ad-project-acronym" className="block text-xs font-bold text-slate-700">
                   {locale === 'tr' ? 'Proje Kısaltması / Akronim' : 'Project Acronym'} *
                 </label>
                 {ka120ImportedFields?.['context.projectAcronym'] && (
@@ -246,6 +258,8 @@ export default function ContextSection({
                 )}
               </div>
               <input
+                id="ad-project-acronym"
+                name="projectAcronym"
                 type="text"
                 value={data.projectAcronym}
                 onChange={(e) => onChange({ projectAcronym: e.target.value })}
@@ -255,10 +269,12 @@ export default function ContextSection({
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">
+              <label htmlFor="ad-project-start-date" className="block text-xs font-bold text-slate-700 mb-1">
                 {locale === 'tr' ? 'Tahmini Proje Başlangıç Tarihi' : 'Estimated Project Start Date'} *
               </label>
               <input
+                id="ad-project-start-date"
+                name="projectStartDate"
                 type="date"
                 value={data.projectStartDate}
                 onChange={(e) => onChange({ projectStartDate: e.target.value })}

@@ -774,7 +774,7 @@ export default function HostInquiriesSection({ hostId }: HostInquiriesSectionPro
             <div className="space-y-2 text-slate-700">
               <div className="flex justify-between border-b border-slate-100 pb-1.5">
                 <span>{locale === 'tr' ? 'Şehir / Ülke:' : 'City / Country:'}</span>
-                <strong className="text-slate-900">{selectedInquiryForDetails.schoolCity}, Türkiye</strong>
+                <strong className="text-slate-900">{selectedInquiryForDetails.schoolCity}, {locale === 'tr' ? 'Türkiye' : 'Turkey'}</strong>
               </div>
               <div className="flex justify-between border-b border-slate-100 pb-1.5">
                 <span>{locale === 'tr' ? 'Yetkili İrtibat:' : 'Coordinator:'}</span>

@@ -51,6 +51,8 @@ export async function POST(request: NextRequest) {
         success: true,
         message: 'Application submitted successfully',
         application,
+        supportEmail: 'info@erasmusmobility.com',
+        replyTo: 'info@erasmusmobility.com',
       },
       { status: 201 }
     );

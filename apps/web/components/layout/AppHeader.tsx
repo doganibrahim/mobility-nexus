@@ -274,7 +274,7 @@ export default function AppHeader() {
                       <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
                       <span>{locale === 'tr' ? 'En Çok Aranan 3 Kaynak' : 'Top 3 Popular Resources'}</span>
                     </span>
-                    <span className="text-[9px] font-bold text-blue-700">Hızlı Bağlantı</span>
+                    <span className="text-[9px] font-bold text-blue-700">{locale === 'tr' ? 'Hızlı Bağlantı' : 'Quick Link'}</span>
                   </div>
                 </div>
 
@@ -518,7 +518,7 @@ export default function AppHeader() {
                       <span>{locale === 'tr' ? 'Kütüphane Rolü & Amacı' : 'Library Role & Purpose'}</span>
                     </span>
                     <span className="px-1.5 py-0.2 rounded text-[9px] font-extrabold bg-emerald-200/80 text-emerald-900">
-                      Açık Veri
+                      {locale === 'tr' ? 'Açık Veri' : 'Open Data'}
                     </span>
                   </div>
                   <p className="text-[11px] text-slate-700 font-medium leading-snug m-0">
@@ -535,7 +535,7 @@ export default function AppHeader() {
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
                       <span>{locale === 'tr' ? 'En Çok Aranan 3 Kaynak' : 'Top 3 Popular Resources'}</span>
                     </span>
-                    <span className="text-[9px] font-bold text-emerald-700">Hızlı Bağlantı</span>
+                    <span className="text-[9px] font-bold text-emerald-700">{locale === 'tr' ? 'Hızlı Bağlantı' : 'Quick Link'}</span>
                   </div>
                 </div>
 
@@ -752,7 +752,7 @@ export default function AppHeader() {
                       <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
                       <span>{locale === 'tr' ? 'En Çok Aranan 3 Kaynak' : 'Top 3 Popular Resources'}</span>
                     </span>
-                    <span className="text-[9px] font-bold text-blue-700">Hızlı Bağlantı</span>
+                    <span className="text-[9px] font-bold text-blue-700">{locale === 'tr' ? 'Hızlı Bağlantı' : 'Quick Link'}</span>
                   </div>
                 </div>
 
@@ -875,7 +875,7 @@ export default function AppHeader() {
                       <span>{locale === 'tr' ? 'İletişim Masası Rolü' : 'Contact Desk Role'}</span>
                     </span>
                     <span className="px-1.5 py-0.2 rounded text-[9px] font-extrabold bg-emerald-100 text-emerald-900">
-                      Danışmanlık
+                      {locale === 'tr' ? 'Danışmanlık' : 'Consultation'}
                     </span>
                   </div>
                   <p className="text-[11px] text-slate-700 font-medium leading-snug m-0">
@@ -892,7 +892,7 @@ export default function AppHeader() {
                       <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
                       <span>{locale === 'tr' ? 'En Çok Aranan 3 Kaynak' : 'Top 3 Popular Resources'}</span>
                     </span>
-                    <span className="text-[9px] font-bold text-blue-700">Hızlı Bağlantı</span>
+                    <span className="text-[9px] font-bold text-blue-700">{locale === 'tr' ? 'Hızlı Bağlantı' : 'Quick Link'}</span>
                   </div>
                 </div>
 
@@ -1038,7 +1038,7 @@ export default function AppHeader() {
             <button
               onClick={() => setIsAdminQueueOpen(true)}
               className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-2xs shrink-0 cursor-pointer"
-              title="Admin Evrak İnceleme ve Onay Havuzu"
+              title={locale === 'tr' ? 'Admin Evrak İnceleme ve Onay Havuzu' : 'Admin Document Review & Verification Queue'}
             >
               <span>🛡️</span>
               <span className="hidden sm:inline">Admin</span>
@@ -1050,7 +1050,7 @@ export default function AppHeader() {
             <Link
               href="/profile"
               className="inline-flex items-center gap-1.5 sm:gap-2 p-1 sm:pl-2 sm:pr-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300 transition-all shadow-2xs group shrink-0"
-              title="Kullanıcı Profilini ve Kurum Detaylarını Gör"
+              title={locale === 'tr' ? 'Kullanıcı Profilini ve Kurum Detaylarını Gör' : 'View User Profile & Organisation Details'}
             >
               {user?.imageUrl ? (
                 <img
@@ -1216,7 +1216,7 @@ export default function AppHeader() {
                 <span>📚</span>
                 <span>{t.header.nav.library.label}</span>
               </span>
-              <span className="text-[9px] font-extrabold bg-emerald-100 text-emerald-900 px-1.5 py-0.2 rounded">Açık Veri</span>
+              <span className="text-[9px] font-extrabold bg-emerald-100 text-emerald-900 px-1.5 py-0.2 rounded">{locale === 'tr' ? 'Açık Veri' : 'Open Data'}</span>
             </div>
             {/* Purpose Sentence */}
             <p className="text-[10px] text-slate-600 bg-slate-50 p-2 rounded-lg border border-slate-200 leading-snug m-0">
@@ -1327,7 +1327,7 @@ export default function AppHeader() {
                 <span>📬</span>
                 <span>{t.header.nav.contact.label}</span>
               </span>
-              <span className="text-[9px] font-extrabold bg-emerald-100 text-emerald-900 px-1.5 py-0.2 rounded">Danışmanlık</span>
+              <span className="text-[9px] font-extrabold bg-emerald-100 text-emerald-900 px-1.5 py-0.2 rounded">{locale === 'tr' ? 'Danışmanlık' : 'Consultation'}</span>
             </div>
             {/* Purpose Sentence */}
             <p className="text-[10px] text-slate-600 bg-slate-50 p-2 rounded-lg border border-slate-200 leading-snug m-0">

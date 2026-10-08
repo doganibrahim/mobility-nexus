@@ -302,7 +302,7 @@ export default function EuropeanRouteNetwork() {
               <span>
                 {isTr ? 'Aktif Rota:' : 'Active Route:'}{' '}
                 <strong className="text-white font-black">
-                  Türkiye ➔ {isTr ? activeCountry.nameTr : activeCountry.nameEn} ({activeCountry.distanceKm} km)
+                  {isTr ? 'Türkiye' : 'Turkey'} ➔ {isTr ? activeCountry.nameTr : activeCountry.nameEn} ({activeCountry.distanceKm} km)
                 </strong>
               </span>
             </span>

@@ -37,6 +37,14 @@ import { useAppStore } from '../../../lib/store';
 export default function SchoolPipelinePage() {
   const { t, locale } = useTranslation();
 
+  // Dynamic Page Title
+  useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Hareketlilik Planlama Süreç Akışı | ErasmusMobility'
+        : 'Mobility Planning Pipeline | ErasmusMobility';
+  }, [locale]);
+
   // Active Tab State
   const [activeTab, setActiveTab] = useState<string>('profile');
   const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
@@ -589,15 +597,60 @@ export default function SchoolPipelinePage() {
               <span>{locale === 'tr' ? 'Okul Paneline Dön' : 'Back to School Dashboard'}</span>
             </Link>
             <span className="text-slate-300">/</span>
-            <h1 className="font-bold text-slate-900 text-xs sm:text-sm inline m-0">
-              {locale === 'tr' ? '5 Adımlı Hareketlilik Planlama Pipeline\'ı' : '5-Step Mobility Planning Pipeline'}
-            </h1>
+            <span className="text-slate-600 font-medium">
+              {locale === 'tr' ? 'Hareketlilik Pipeline\'ı' : 'Mobility Pipeline'}
+            </span>
           </div>
 
           <div className="hidden sm:flex items-center gap-2 text-[11px] text-slate-500 font-mono">
             <span>OID: <strong>{oid || (locale === 'tr' ? 'Belirtilmedi' : 'Not Specified')}</strong></span>
             <span>•</span>
             <span>{schoolName || (locale === 'tr' ? 'Örnek Mesleki Eğitim Kurumu' : 'Sample VET School')}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Page Title Banner (Prominent H1: 28px mobile, 32px tablet, 36px desktop) */}
+      <div className="bg-white border-b border-slate-200/90 px-4 sm:px-6 py-4 sm:py-5">
+        <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2.5">
+              <span className="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-600 text-white text-base sm:text-lg shadow-xs shrink-0">
+                🚀
+              </span>
+              <h1 className="text-[28px] sm:text-[32px] lg:text-[36px] font-black text-slate-900 tracking-tight leading-tight m-0">
+                {locale === 'tr' ? '5 Adımlı Hareketlilik Planlama Pipeline\'ı' : '5-Step Mobility Planning Pipeline'}
+              </h1>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed m-0 pl-1">
+              {locale === 'tr'
+                ? 'Kurum profili, katılımcı analizi, ESCO/ISCED taksonomisi, 7 kriterli canlı ev sahibi eşleştirme ve resmi hibe başvuru dosyası üretim omurgası.'
+                : 'Institutional profile, participant analysis, ESCO/ISCED taxonomy, 7-criteria live host matching, and official dossier generation backbone.'}
+            </p>
+          </div>
+
+          {/* Quick Institutional Badges */}
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            <div className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs">
+              <span className="text-slate-400 block text-[10px] font-bold uppercase tracking-wider">
+                {locale === 'tr' ? 'Kuruluş OID' : 'Organisation OID'}
+              </span>
+              <span className="font-mono font-bold text-slate-900">
+                {oid || (locale === 'tr' ? 'Belirtilmedi' : 'Not Specified')}
+              </span>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-xl px-3 py-1.5 text-xs">
+              <span className="text-blue-500 block text-[10px] font-bold uppercase tracking-wider">
+                {locale === 'tr' ? 'Akreditasyon' : 'Accreditation'}
+              </span>
+              <span className="font-bold text-blue-950">
+                {accredited === 'yes'
+                  ? (locale === 'tr' ? 'KA120-VET Akredite' : 'KA120-VET Accredited')
+                  : accredited === 'no'
+                  ? (locale === 'tr' ? 'KA122 Kısa Dönem' : 'KA122 Short-term')
+                  : (locale === 'tr' ? 'Teyit Edilecek' : 'To Be Verified')}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -794,7 +847,7 @@ export default function SchoolPipelinePage() {
               onChange={setEligibilityField}
             />
 
-            {/* Step 6: 10-Criteria Host Matching & Scoring */}
+            {/* Step 6: Host Matching & Scoring (7 Core Criteria / 10 Demand Parameters) */}
             <HostMatchingCard
               data={{
                 hostName,
@@ -903,24 +956,29 @@ export default function SchoolPipelinePage() {
                   </div>
 
                   <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                    Hizmet Alan Kuruluş Başvuru Taslağının Hazırlanmasını İstiyorum
+                    {locale === 'tr'
+                      ? 'Hizmet Alan Kuruluş Başvuru Taslağının Hazırlanmasını İstiyorum'
+                      : 'Prepare Sending School Application Draft'}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Bu 5 adımlı planda girdiğiniz kurum, katılımcı, süre, ev sahibi ve öğrenme çıktıları
-                    otomatik olarak resmi başvuru taslağına aktarılır. Başvuru formunda eksik kalan ek
-                    lojistik, seyahat, refakatçi ve resmi beyan sorularını hızlı seçeneklerle tamamlayın.
+                    {locale === 'tr'
+                      ? 'Bu 5 adımlı planda girdiğiniz kurum, katılımcı, süre, ev sahibi ve öğrenme çıktıları otomatik olarak resmi başvuru taslağına aktarılır. Başvuru formunda eksik kalan ek lojistik, seyahat, refakatçi ve resmi beyan sorularını hızlı seçeneklerle tamamlayın.'
+                      : 'All data entered across this 5-step pipeline (institution, participants, duration, host, and learning outcomes) is automatically synchronized into your official application draft questionnaire.'}
                   </p>
 
                   <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-300 pt-1">
                     <span className="flex items-center gap-1.5">
-                      <span className="text-emerald-400 font-bold">✓</span> Pipeline verileriyle otomatik eşleşir
+                      <span className="text-emerald-400 font-bold">✓</span>
+                      <span>{locale === 'tr' ? 'Pipeline verileriyle otomatik eşleşir' : 'Auto-synced with pipeline data'}</span>
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <span className="text-emerald-400 font-bold">✓</span> Hızlı seçenekli pratik sorular
+                      <span className="text-emerald-400 font-bold">✓</span>
+                      <span>{locale === 'tr' ? 'Hızlı seçenekli pratik sorular' : 'Fast structured questions'}</span>
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <span className="text-emerald-400 font-bold">✓</span> KA121 ve KA122 desteği
+                      <span className="text-emerald-400 font-bold">✓</span>
+                      <span>{locale === 'tr' ? 'KA121 ve KA122 desteği' : 'KA121 & KA122 supported'}</span>
                     </span>
                   </div>
                 </div>
@@ -1061,6 +1119,24 @@ export default function SchoolPipelinePage() {
               ✓ {t.nav.complete.replace(/[✓]/g, '').trim()}
             </button>
           )}
+        </div>
+
+        {/* Help & Support Notice for Pipeline Forms */}
+        <div className="mt-4 pt-3 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-500 no-print">
+          <div className="flex items-center gap-1.5">
+            <span>💡</span>
+            <span>
+              {locale === 'tr'
+                ? 'Hareketlilik planlama veya eşleştirme adımlarında yardıma mı ihtiyacınız var?'
+                : 'Need assistance with mobility planning or host matchmaking steps?'}
+            </span>
+          </div>
+          <div>
+            <span>{locale === 'tr' ? 'Destek masası: ' : 'Need help? Contact: '}</span>
+            <a href="mailto:info@erasmusmobility.com" className="font-bold text-blue-700 hover:underline">
+              info@erasmusmobility.com
+            </a>
+          </div>
         </div>
       </main>
 

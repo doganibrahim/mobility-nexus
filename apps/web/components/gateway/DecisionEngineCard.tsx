@@ -150,12 +150,31 @@ export default function DecisionEngineCard({
               <div className="p-3 bg-purple-900/40 rounded-lg border border-purple-700/60 text-xs text-purple-200 space-y-1.5">
                 <div className="font-bold text-white flex items-center gap-1.5">
                   <span>💡</span>
-                  <span>Erasmus Akreditasyonu (KA120-VET) Stratejik Yol Haritası:</span>
+                  <span>
+                    {locale === 'tr'
+                      ? 'Erasmus Akreditasyonu (KA120-VET) Stratejik Yol Haritası:'
+                      : 'Erasmus Accreditation (KA120-VET) Strategic Roadmap:'}
+                  </span>
                 </div>
                 <ul className="list-disc pl-5 space-y-1 text-[11px] text-purple-200">
-                  <li><strong>Erasmus Planı:</strong> Okulunuzun uluslararasılaşma ve pedagojik gelişim hedeflerini 3–5 yıllık periyot için belirleyin.</li>
-                  <li><strong>Yıllık Çağrı:</strong> Her yıl sonbaharda (genellikle Ekim) yayımlanan resmi KA120-VET akreditasyon çağrısına başvurun.</li>
-                  <li><strong>Yıllık Bütçe Tahsisatı (KA121):</strong> Akreditasyon onaylandığında, her yıl yeniden yarışmalı proje yazmadan doğrudan Erasmus Planı hedeflerinize uygun olarak yıllık bütçe tahsisatına başvurabilirsiniz.</li>
+                  <li>
+                    <strong>{locale === 'tr' ? 'Erasmus Planı:' : 'Erasmus Plan:'}</strong>{' '}
+                    {locale === 'tr'
+                      ? 'Okulunuzun uluslararasılaşma ve pedagojik gelişim hedeflerini 3–5 yıllık periyot için belirleyin.'
+                      : 'Define your institution’s internationalisation and pedagogical improvement goals across a 3–5 year timeframe.'}
+                  </li>
+                  <li>
+                    <strong>{locale === 'tr' ? 'Yıllık Çağrı:' : 'Annual Call:'}</strong>{' '}
+                    {locale === 'tr'
+                      ? 'Her yıl sonbaharda (genellikle Ekim) yayımlanan resmi KA120-VET akreditasyon çağrısına başvurun.'
+                      : 'Apply to the official KA120-VET accreditation call released annually in autumn (typically October).'}
+                  </li>
+                  <li>
+                    <strong>{locale === 'tr' ? 'Yıllık Bütçe Tahsisatı (KA121):' : 'Annual Budget Allocation (KA121):'}</strong>{' '}
+                    {locale === 'tr'
+                      ? 'Akreditasyon onaylandığında, her yıl yeniden yarışmalı proje yazmadan doğrudan Erasmus Planı hedeflerinize uygun olarak yıllık bütçe tahsisatına başvurabilirsiniz.'
+                      : 'Once accredited, bypass competitive project proposals each year and apply directly for fast-track annual budget allocations.'}
+                  </li>
                 </ul>
               </div>
             )}

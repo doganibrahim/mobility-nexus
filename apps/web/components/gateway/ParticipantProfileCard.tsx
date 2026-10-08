@@ -84,10 +84,12 @@ export default function ParticipantProfileCard({
         {/* Row 1: Participant Type & Mobility Goal */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
           <div className="md:col-span-4">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="pp-participant-type" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.participant.typeLabel}
             </label>
             <select
+              id="pp-participant-type"
+              name="participantType"
               className="edu-input bg-white cursor-pointer font-medium"
               value={data.participantType}
               onChange={(e) => onChange('participantType', e.target.value as ParticipantType)}
@@ -110,10 +112,12 @@ export default function ParticipantProfileCard({
             </select>
           </div>
           <div className="md:col-span-8">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="pp-mobility-goal" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.participant.goalLabel} ({locale === 'en' ? 'Supported Erasmus+ Activity Types' : 'Desteklenen Erasmus+ Faaliyet Türleri'})
             </label>
             <select
+              id="pp-mobility-goal"
+              name="mobilityGoal"
               className="edu-input bg-white cursor-pointer font-medium"
               value={data.mobilityGoal}
               onChange={(e) => onChange('mobilityGoal', e.target.value as MobilityGoal)}
@@ -234,10 +238,12 @@ export default function ParticipantProfileCard({
         <div className="space-y-2">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
             <div className="md:col-span-6">
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="pp-start-date" className="block text-xs font-semibold text-slate-700 mb-1">
                 {locale === 'en' ? 'Planned Start Date' : 'Planlanan Başlangıç Tarihi'}
               </label>
               <input
+                id="pp-start-date"
+                name="startDate"
                 type="date"
                 className={`edu-input ${
                   durationDays === -1 ? 'border-red-500 bg-red-50/30 focus:ring-red-400' : ''
@@ -247,11 +253,14 @@ export default function ParticipantProfileCard({
               />
             </div>
             <div className="md:col-span-6">
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="pp-end-date" className="block text-xs font-semibold text-slate-700 mb-1">
                 {locale === 'en' ? 'Planned End Date' : 'Planlanan Bitiş Tarihi'}
               </label>
               <input
+                id="pp-end-date"
+                name="endDate"
                 type="date"
+                aria-describedby={durationDays === -1 ? 'pp-date-error' : undefined}
                 className={`edu-input ${
                   durationDays === -1 ? 'border-red-500 bg-red-50/30 focus:ring-red-400' : ''
                 }`}
@@ -296,7 +305,7 @@ export default function ParticipantProfileCard({
           )}
 
           {durationDays === -1 && (
-            <div className="p-2.5 rounded-lg bg-red-50 border border-red-300 text-xs font-semibold text-red-800 flex items-center gap-2">
+            <div id="pp-date-error" className="p-2.5 rounded-lg bg-red-50 border border-red-300 text-xs font-semibold text-red-800 flex items-center gap-2">
               <span>❌</span>
               <span>
                 {locale === 'en'
@@ -310,12 +319,16 @@ export default function ParticipantProfileCard({
         {/* Row 4: Participant Demographics */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
           <div className="md:col-span-4">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="pp-participant-count" className="block text-xs font-semibold text-slate-700 mb-1">
               {locale === 'en' ? 'Number of Participants' : 'Katılımcı Sayısı'} *
             </label>
             <input
+              id="pp-participant-count"
+              name="participantCount"
               type="number"
               min="1"
+              aria-describedby={(data.participantCount ?? 0) <= 0 ? 'pp-count-error' : undefined}
+              aria-invalid={(data.participantCount ?? 0) <= 0}
               className={`edu-input ${
                 (data.participantCount ?? 0) <= 0
                   ? 'border-red-500 bg-red-50/40 focus:ring-red-400 font-bold text-red-900'
@@ -333,19 +346,22 @@ export default function ParticipantProfileCard({
               }}
             />
             {(data.participantCount ?? 0) <= 0 && (
-              <p className="m-0 mt-1 text-[11px] font-bold text-red-600 flex items-center gap-1">
+              <p id="pp-count-error" className="m-0 mt-1 text-[11px] font-bold text-red-600 flex items-center gap-1">
                 <span>⚠️</span>
                 <span>{locale === 'en' ? 'Minimum 1 participant required.' : 'En az 1 katılımcı girilmelidir.'}</span>
               </p>
             )}
           </div>
           <div className="md:col-span-4">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="pp-accompanying-count" className="block text-xs font-semibold text-slate-700 mb-1">
               {locale === 'en' ? 'Accompanying Persons' : 'Refakat Eden Kişi Sayısı'}
             </label>
             <input
+              id="pp-accompanying-count"
+              name="accompanyingPersonsCount"
               type="number"
               min="0"
+              aria-describedby="pp-accompanying-desc"
               className={`edu-input ${
                 (data.accompanyingPersonsCount ?? 0) < 0
                   ? 'border-red-500 bg-red-50/40 focus:ring-red-400'
@@ -362,15 +378,17 @@ export default function ParticipantProfileCard({
                 onChange('accompanyingPersonsCount', isNaN(parsed) ? 0 : Math.max(0, parsed));
               }}
             />
-            <p className="m-0 mt-1 text-[10px] text-slate-500">
+            <p id="pp-accompanying-desc" className="m-0 mt-1 text-[10px] text-slate-500">
               {locale === 'en' ? 'Cannot be negative (0 if none).' : 'Negatif değer alamaz (yoksa 0).'}
             </p>
           </div>
           <div className="md:col-span-4">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="pp-age-group" className="block text-xs font-semibold text-slate-700 mb-1">
               {locale === 'en' ? 'Age Group' : 'Yaş Grubu'}
             </label>
             <select
+              id="pp-age-group"
+              name="ageGroup"
               className="edu-input bg-white cursor-pointer"
               value={data.ageGroup || 'mixed'}
               onChange={(e) => onChange('ageGroup', e.target.value)}
@@ -385,10 +403,12 @@ export default function ParticipantProfileCard({
         {/* Row 5: Participant Name & Language Readiness */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
           <div className="md:col-span-6">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="pp-participant-name" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.participant.nameLabel}
             </label>
             <input
+              id="pp-participant-name"
+              name="participantName"
               type="text"
               className="edu-input"
               placeholder={t.participant.namePlaceholder}
@@ -398,7 +418,7 @@ export default function ParticipantProfileCard({
           </div>
           <div className="md:col-span-6">
             <div className="flex justify-between items-center mb-1">
-              <label className="block text-xs font-semibold text-slate-700">
+              <label htmlFor="pp-language-slider" className="block text-xs font-semibold text-slate-700">
                 {t.participant.langLabel}
               </label>
               <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
@@ -406,6 +426,8 @@ export default function ParticipantProfileCard({
               </span>
             </div>
             <input
+              id="pp-language-slider"
+              name="languageReadiness"
               type="range"
               min="0"
               max="100"

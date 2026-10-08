@@ -243,8 +243,8 @@ export const PLATFORM_GUIDE_DATA: GuideCategory[] = [
         icon: '🚀',
         titleTr: '3. 5 Adımlı Hareketlilik Planlama Pipeline\'ı',
         titleEn: '3. 5-Step Mobility Planning Pipeline',
-        summaryTr: 'Profil -> ESCO/ISCED Taksonomisi & 12 Likert Yetkinlik Testi -> 10 Kriterli Host Eşleştirme -> ECVET Öğrenme Kazanımları -> Resmi Tavsiye Dosyası (Dossier).',
-        summaryEn: 'Profile -> ESCO/ISCED Taxonomy & 12 Likert Assessment -> 10-Criteria Host Matching -> ECVET Learning Outcomes -> Institutional Dossier.',
+        summaryTr: 'Profil -> ESCO/ISCED Taksonomisi & 12 Likert Yetkinlik Testi -> 7 Temel Kriterli Host Eşleştirme (10 Talep Parametresi Uyumlu) -> ECVET Öğrenme Kazanımları -> Resmi Tavsiye Dosyası (Dossier).',
+        summaryEn: 'Profile -> ESCO/ISCED Taxonomy & 12 Likert Assessment -> 7-Criteria Host Matching (Evaluating 10 Request Parameters) -> ECVET Learning Outcomes -> Institutional Dossier.',
         goalTr: 'Avrupa Komisyonu ve Ulusal Ajans standartlarına tam uyumlu teknik, pedagojik ve lojistik hareketlilik dosyasını eksiksiz üretmek.',
         goalEn: 'Produce a complete pedagogical, logistical, and technical mobility dossier fully compliant with Commission criteria.',
         route: '/school/pipeline',
@@ -254,14 +254,14 @@ export const PLATFORM_GUIDE_DATA: GuideCategory[] = [
         keyHighlightsTr: [
           'Aşama 1 (Kurum & Katılımcı): Öğrenci stajı vs Personel işbaşı izleme, refakatçi sayısı, dil hazırlığı kaydırıcısı (0-100), hareketlilik takvimi.',
           'Aşama 2 (Yetkinlik & Karar): ESCO/ISCED taksonomi eşleşmesi, 12 Likert sorusu, Yetkinlik Açığı (Gap), 8 faktörlü Karar Motoru, KA122 Kurallar Kapısı (max 30 kişi).',
-          'Aşama 3 (Host Eşleştirme): 10 kriterli host puanlama (>=85 Mükemmel), vitrin portföyü ve haftalık müfredat (Syllabus PDF) inceleme, doğrudan staj talebi iletme.',
+          'Aşama 3 (Host Eşleştirme): 10 okul talep parametresinin analiz edildiği 7 temel kriterli host puanlama (>=85 Mükemmel), vitrin portföyü ve haftalık müfredat (Syllabus PDF) inceleme, doğrudan staj talebi iletme.',
           'Aşama 4 (Kazanımlar & Kalite): Rol bazlı ECVET/Europass teknik, yeşil ve dijital kazanımlar üretimi; sorumluluk paylaşım matrisi.',
           'Aşama 5 (Rapor & Form Taslağı): Kurumsal Hareketlilik Dosyası (Dossier), PDF/Yazdır, JSON indirme ve tek tıkla Başvuru Taslağına aktarma.'
         ],
         keyHighlightsEn: [
           'Stage 1 (Profile): Student internship vs Staff job shadowing, accompanying staff, language slider (0-100), dates.',
           'Stage 2 (Competence): ESCO/ISCED mapper, 12 Likert test, Competence Gap, 8-factor Decision Engine, KA122 Gatekeeper (max 30).',
-          'Stage 3 (Host Matching): 10-criteria host scoring (>=85 Excellent), syllabus inspection, direct inquiry dispatch.',
+          'Stage 3 (Host Matching): 7-criteria host scoring evaluating 10 school request parameters (>=85 Excellent), syllabus inspection, direct inquiry dispatch.',
           'Stage 4 (Outcomes): Role-based ECVET technical, green, and digital outcomes; institutional responsibility matrix.',
           'Stage 5 (Dossier): Institutional Mobility Dossier, PDF print preview, JSON export, one-click transfer to Application Draft.'
         ],
@@ -1177,19 +1177,19 @@ export const PLATFORM_GUIDE_DATA: GuideCategory[] = [
     labelTr: 'Ayarlar, Profil & Görünüm',
     labelEn: 'Settings, Profile & Accessibility',
     icon: '⚙️',
-    badgeTr: 'WCAG 2.1 AA Görünüm, Hesap & Sistem Tercihleri',
-    badgeEn: 'WCAG 2.1 AA Display, Account & Preferences',
+    badgeTr: 'WCAG 2.2 AA Görünüm, Hesap & Sistem Tercihleri',
+    badgeEn: 'WCAG 2.2 AA Display, Account & Preferences',
     descriptionTr: 'Erişilebilirlik (yüksek kontrast, yazı boyutu, animasyon azaltma), kullanıcı ve kurum profili yönetimi, OID düzenleme, çok dilli (TR/EN) sistem ve canlı simülasyon veri yönetimi kılavuzu.',
-    descriptionEn: 'Comprehensive guide covering WCAG 2.1 AA accessibility (high contrast, font scaling, motion reduction), user & institution profile setup, OID updates, bilingual (TR/EN) locale, and live interactive simulation data.',
+    descriptionEn: 'Comprehensive guide covering WCAG 2.2 AA accessibility (high contrast, font scaling, motion reduction), user & institution profile setup, OID updates, bilingual (TR/EN) locale, and live interactive simulation data.',
     topics: [
       {
         id: 'settings-display-accessibility',
         audience: 'SETTINGS',
         icon: '👁️',
-        titleTr: '1. Görünüm, Okuma & WCAG 2.1 AA Erişilebilirlik Ayarları',
-        titleEn: '1. Display, Reading & WCAG 2.1 AA Accessibility Preferences',
+        titleTr: '1. Görünüm, Okuma & WCAG 2.2 AA Erişilebilirlik Ayarları',
+        titleEn: '1. Display, Reading & WCAG 2.2 AA Accessibility Preferences',
         summaryTr: 'Yazı boyutu ölçekleme (Normal, Büyük, Ekstra Büyük), Yüksek Kontrast (Koyu/Yüksek Kontrast Modu), Bağlantıların Altını Çizme ve Animasyonları Azaltma (Reduced Motion) kontrolleri.',
-        summaryEn: 'Font scaling (Normal, Large, Extra Large), High Contrast (Dark/High-Contrast Mode), Link Underlining, and Motion Reduction (WCAG 2.1 AA compliance).',
+        summaryEn: 'Font scaling (Normal, Large, Extra Large), High Contrast (Dark/High-Contrast Mode), Link Underlining, and Motion Reduction (WCAG 2.2 AA compliance).',
         goalTr: 'Platformu her görme yetisi ve cihaz koşulunda rahatça okumak, göz yorgunluğunu önlemek ve engelsiz erişim sağlamak.',
         goalEn: 'Ensure effortless legibility, eye comfort, and barrier-free access under all lighting conditions and visual needs.',
         route: '/',
@@ -1221,8 +1221,8 @@ export const PLATFORM_GUIDE_DATA: GuideCategory[] = [
           {
             labelTr: 'Ayar: Yüksek Kontrast / Koyu Mod',
             labelEn: 'Setting: High Contrast / Dark Mode',
-            valueTr: 'WCAG 2.1 AA 7:1 kontrast oranlı koyu tema',
-            valueEn: 'WCAG 2.1 AA compliant 7:1 contrast ratio dark aesthetic'
+            valueTr: 'WCAG 2.2 AA 7:1 kontrast oranlı koyu tema',
+            valueEn: 'WCAG 2.2 AA compliant 7:1 contrast ratio dark aesthetic'
           },
           {
             labelTr: 'Ayar: Animasyonları Azalt (Reduced Motion)',
@@ -2013,8 +2013,8 @@ export const PLATFORM_GUIDE_DATA: GuideCategory[] = [
         icon: '👁️',
         titleTr: 'Görünüm, Yüksek Kontrast ve Yazı Boyutu Ayarları Nereden Değiştirilir?',
         titleEn: 'Where Can I Customize Display, High Contrast, and Font Size?',
-        summaryTr: 'Platformun sağ üst köşesinde yer alan Görünüm & Okuma menüsü ile WCAG 2.1 AA erişilebilirlik ayarlarını kişiselleştirme.',
-        summaryEn: 'Customizing WCAG 2.1 AA accessibility preferences via the Display & Reading menu in the top right header.',
+        summaryTr: 'Platformun sağ üst köşesinde yer alan Görünüm & Okuma menüsü ile WCAG 2.2 AA erişilebilirlik ayarlarını kişiselleştirme.',
+        summaryEn: 'Customizing WCAG 2.2 AA accessibility preferences via the Display & Reading menu in the top right header.',
         goalTr: 'Kullanıcının görme konforuna uygun kontrast, yazı boyutu ve hareket azaltma tercihlerini anında ayarlamasını sağlamak.',
         goalEn: 'Enable users to customize contrast, font scaling, and motion damping to their visual comfort instantly.',
         keyHighlightsTr: [

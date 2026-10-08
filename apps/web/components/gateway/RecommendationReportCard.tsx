@@ -482,7 +482,7 @@ export default function RecommendationReportCard({
                   <p className="m-0">{data.institutionNeed || '—'}</p>
                   {data.erasmusPlan && (
                     <p className="mt-2.5 pt-2.5 border-t border-slate-200 font-medium text-slate-900">
-                      Erasmus Planı Hedefi: <span className="font-normal text-slate-700">{data.erasmusPlan}</span>
+                      {locale === 'tr' ? 'Erasmus Planı Hedefi:' : 'Erasmus Plan Objective:'} <span className="font-normal text-slate-700">{data.erasmusPlan}</span>
                     </p>
                   )}
                 </div>

@@ -38,7 +38,7 @@ export default function AppFooter() {
               <p className="text-xs text-slate-500 leading-relaxed max-w-xl">
                 {t.footer.subtitle}
               </p>
-              <div className="pt-1">
+              <div className="pt-1 flex flex-wrap items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setIsAppointmentOpen(true)}
@@ -47,6 +47,13 @@ export default function AppFooter() {
                   <span>{locale === 'tr' ? 'Danışmanlık İçin Randevu Al' : 'Schedule Consultation'}</span>
                   <span>→</span>
                 </button>
+                <a
+                  href="mailto:info@erasmusmobility.com"
+                  className="inline-flex items-center gap-1 text-xs text-slate-600 hover:text-blue-700 hover:underline font-semibold transition-colors"
+                >
+                  <span>✉️</span>
+                  <span>info@erasmusmobility.com</span>
+                </a>
               </div>
             </div>
 
@@ -106,6 +113,14 @@ export default function AppFooter() {
                 : '© 2026 ErasmusMobility.com • All rights reserved.'}
             </div>
             <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+              <a
+                href="mailto:info@erasmusmobility.com"
+                className="hover:text-blue-700 hover:underline transition-colors font-bold text-slate-700 cursor-pointer inline-flex items-center gap-1"
+              >
+                <span>✉️</span>
+                <span>Contact: info@erasmusmobility.com</span>
+              </a>
+              <span>•</span>
               <Link
                 href="/privacy"
                 onClick={(e) => {

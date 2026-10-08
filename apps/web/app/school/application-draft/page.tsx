@@ -41,6 +41,14 @@ export default function ApplicationDraftPage() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
 
+  // Dynamic Page Title
+  useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Resmi Başvuru Taslak Asistanı | ErasmusMobility'
+        : 'Application Draft Assistant | ErasmusMobility';
+  }, [locale]);
+
   // Sync with store on mount
   useEffect(() => {
     setMounted(true);
@@ -921,6 +929,24 @@ export default function ApplicationDraftPage() {
                 <span>✓</span> {locale === 'tr' ? 'Taslak Tamamlandı' : 'Draft Completed'}
               </button>
             )}
+          </div>
+
+          {/* Help & Support Notice for Application Draft */}
+          <div className="mt-4 pt-3 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-500">
+            <div className="flex items-center gap-1.5">
+              <span>💡</span>
+              <span>
+                {locale === 'tr'
+                  ? 'Taslak hazırlığı veya resmi form maddeleriyle ilgili yardıma mı ihtiyacınız var?'
+                  : 'Need help with draft preparation or official application questions?'}
+              </span>
+            </div>
+            <div>
+              <span>{locale === 'tr' ? 'Destek masası: ' : 'Need help? Contact: '}</span>
+              <a href="mailto:info@erasmusmobility.com" className="font-bold text-blue-700 hover:underline">
+                info@erasmusmobility.com
+              </a>
+            </div>
           </div>
         </div>
       </main>

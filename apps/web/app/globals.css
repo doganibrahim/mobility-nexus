@@ -453,7 +453,7 @@ html[lang="tr"] {
 }
 
 /* ==========================================================================
-   WCAG 2.1 AA Keyboard Accessibility & Visible Focus Ring
+   WCAG 2.2 AA Keyboard Accessibility & Visible Focus Ring (2.4.7 / 2.4.11)
    Ensures every interactive element displays an unmistakable, high-contrast ring
    when navigating with Tab / Keyboard.
    ========================================================================== */

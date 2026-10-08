@@ -57,7 +57,9 @@ export default function CompetenceGapCard({
 
           {gap !== null && (
             <div className="text-xs font-semibold text-slate-700 mt-2.5">
-              Hedef: {targetScore} | Yetkinlik Farkı (Gap): {gap} Puan
+              {locale === 'tr'
+                ? `Hedef: ${targetScore} | Yetkinlik Farkı (Gap): ${gap} Puan`
+                : `Target: ${targetScore} | Competence Gap: ${gap} Points`}
             </div>
           )}
         </div>
@@ -87,7 +89,7 @@ export default function CompetenceGapCard({
               type="number"
               min="0"
               max="100"
-              placeholder="Örn: 82"
+              placeholder={locale === 'tr' ? 'Örn: 82' : 'e.g. 82'}
               className="edu-input"
               value={externalScore}
               onChange={(e) => onExternalScoreChange(e.target.value)}

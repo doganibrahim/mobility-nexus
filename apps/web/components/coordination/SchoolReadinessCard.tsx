@@ -3,6 +3,7 @@
 import React from 'react';
 import { SchoolCoordinationRecord, SchoolCoordinationStatusType } from '@mobility-nexus/types';
 import { MobilityGuidanceBadge } from './MobilityGuidanceBadge';
+import { useTranslation } from '../../lib/i18n';
 import {
   Building2,
   MapPin,
@@ -23,20 +24,22 @@ interface SchoolReadinessCardProps {
 }
 
 export function SchoolReadinessCard({ school, onSelect, onAddNote }: SchoolReadinessCardProps) {
+  const { locale } = useTranslation();
+
   const getStatusBadge = (status: SchoolCoordinationStatusType) => {
     switch (status) {
       case 'NEW_REGISTRATION':
-        return { label: 'Yeni Kayıt', bg: 'bg-blue-50 text-blue-800 border-blue-200' };
+        return { label: locale === 'tr' ? 'Yeni Kayıt' : 'New Registration', bg: 'bg-blue-50 text-blue-800 border-blue-200' };
       case 'IN_REVIEW':
-        return { label: 'İnceleniyor', bg: 'bg-amber-50 text-amber-800 border-amber-200' };
+        return { label: locale === 'tr' ? 'İnceleniyor' : 'In Review', bg: 'bg-amber-50 text-amber-800 border-amber-200' };
       case 'MEETING_SCHEDULED':
-        return { label: 'Randevu Planlandı', bg: 'bg-purple-50 text-purple-800 border-purple-200' };
+        return { label: locale === 'tr' ? 'Randevu Planlandı' : 'Meeting Scheduled', bg: 'bg-purple-50 text-purple-800 border-purple-200' };
       case 'CONSORTIUM_MATCHED':
-        return { label: 'Konsorsiyuma Bağlandı', bg: 'bg-emerald-50 text-emerald-800 border-emerald-200' };
+        return { label: locale === 'tr' ? 'Konsorsiyuma Bağlandı' : 'Consortium Matched', bg: 'bg-emerald-50 text-emerald-800 border-emerald-200' };
       case 'APPLICATION_READY':
-        return { label: 'Başvuru Hazır', bg: 'bg-indigo-50 text-indigo-800 border-indigo-200' };
+        return { label: locale === 'tr' ? 'Başvuru Hazır' : 'Application Ready', bg: 'bg-indigo-50 text-indigo-800 border-indigo-200' };
       case 'MOBILITY_ACTIVE':
-        return { label: 'Hareketlilik Aktif', bg: 'bg-teal-50 text-teal-800 border-teal-200' };
+        return { label: locale === 'tr' ? 'Hareketlilik Aktif' : 'Mobility Active', bg: 'bg-teal-50 text-teal-800 border-teal-200' };
       default:
         return { label: status, bg: 'bg-slate-100 text-slate-800 border-slate-200' };
     }
@@ -63,7 +66,9 @@ export function SchoolReadinessCard({ school, onSelect, onAddNote }: SchoolReadi
                 : 'bg-slate-100 text-slate-600 border-slate-200'
             }`}
           >
-            {school.accreditationStatus === 'YES' ? '✓ Erasmus Akredite' : 'Akreditasyonsuz (KA122)'}
+            {school.accreditationStatus === 'YES'
+              ? (locale === 'tr' ? '✓ Erasmus Akredite' : '✓ Erasmus Accredited')
+              : (locale === 'tr' ? 'Akreditasyonsuz (KA122)' : 'Non-Accredited (KA122)')}
           </span>
 
           {school.schoolOid && (
@@ -102,13 +107,17 @@ export function SchoolReadinessCard({ school, onSelect, onAddNote }: SchoolReadi
 
           {school.inquiriesCount > 0 && (
             <span className="text-blue-700 font-bold">
-              📬 {school.inquiriesCount} Başvuru/Talep
+              {locale === 'tr'
+                ? `📬 ${school.inquiriesCount} Başvuru/Talep`
+                : `📬 ${school.inquiriesCount} Inquiries/Requests`}
             </span>
           )}
 
           {school.lastContactedAt && (
             <span className="text-slate-400">
-              🕒 Son Görüşme: {new Date(school.lastContactedAt).toLocaleDateString('tr-TR')}
+              {locale === 'tr'
+                ? `🕒 Son Görüşme: ${new Date(school.lastContactedAt).toLocaleDateString('tr-TR')}`
+                : `🕒 Last Contact: ${new Date(school.lastContactedAt).toLocaleDateString('en-GB')}`}
             </span>
           )}
         </div>
@@ -118,13 +127,15 @@ export function SchoolReadinessCard({ school, onSelect, onAddNote }: SchoolReadi
       <div className="flex items-center gap-3 shrink-0 self-end md:self-center">
         {/* Readiness Circular Badge */}
         <div className="flex flex-col items-center justify-center p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-center min-w-[76px]">
-          <span className="text-[10px] font-bold text-slate-500">Hazırlık</span>
+          <span className="text-[10px] font-bold text-slate-500">
+            {locale === 'tr' ? 'Hazırlık' : 'Readiness'}
+          </span>
           <span
             className={`text-lg font-black ${
               score >= 80 ? 'text-emerald-700' : score >= 60 ? 'text-blue-700' : 'text-amber-700'
             }`}
           >
-            %{score}
+            {locale === 'tr' ? `%${score}` : `${score}%`}
           </span>
         </div>
 
@@ -136,7 +147,7 @@ export function SchoolReadinessCard({ school, onSelect, onAddNote }: SchoolReadi
             className="w-full sm:w-auto px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <MessageSquare className="w-3.5 h-3.5 text-blue-600" />
-            <span>Not / Durum</span>
+            <span>{locale === 'tr' ? 'Not / Durum' : 'Note / Status'}</span>
           </button>
 
           <button
@@ -144,7 +155,7 @@ export function SchoolReadinessCard({ school, onSelect, onAddNote }: SchoolReadi
             onClick={() => onSelect(school)}
             className="w-full sm:w-auto px-3.5 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs transition-colors shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
           >
-            <span>Radar & Profil</span>
+            <span>{locale === 'tr' ? 'Radar & Profil' : 'Radar & Profile'}</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </button>
         </div>

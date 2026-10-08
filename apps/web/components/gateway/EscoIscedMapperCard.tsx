@@ -48,10 +48,12 @@ export default function EscoIscedMapperCard({
         {/* Row 1: VET Field Selector, ISCED Code, ISCED Name */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
           <div className="md:col-span-6">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="esco-vet-field" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.esco.fieldLabel}
             </label>
             <select
+              id="esco-vet-field"
+              name="vetField"
               className="edu-input bg-white cursor-pointer font-medium"
               value={data.vetField}
               onChange={(e) => onSelectField(e.target.value)}
@@ -65,10 +67,12 @@ export default function EscoIscedMapperCard({
             </select>
           </div>
           <div className="md:col-span-3">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="esco-isced-code" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.esco.iscedCodeLabel}
             </label>
             <input
+              id="esco-isced-code"
+              name="iscedCode"
               type="text"
               readOnly
               className="edu-input bg-slate-50 text-slate-900 font-bold"
@@ -77,10 +81,12 @@ export default function EscoIscedMapperCard({
             />
           </div>
           <div className="md:col-span-3">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="esco-isced-name" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.esco.iscedNameLabel}
             </label>
             <input
+              id="esco-isced-name"
+              name="iscedName"
               type="text"
               readOnly
               className="edu-input bg-slate-50 text-slate-900 font-medium"
@@ -93,10 +99,12 @@ export default function EscoIscedMapperCard({
         {/* Row 2: ESCO Term, ISCO-08 Code, ESCO URI */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
           <div className="md:col-span-6">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="esco-term" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.esco.escoTermLabel}
             </label>
             <input
+              id="esco-term"
+              name="escoTerm"
               type="text"
               className="edu-input text-slate-900"
               placeholder="automation technician / mechatronics"
@@ -105,22 +113,26 @@ export default function EscoIscedMapperCard({
             />
           </div>
           <div className="md:col-span-3">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="esco-isco-code" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.esco.iscoLabel}
             </label>
             <input
+              id="esco-isco-code"
+              name="iscoCode"
               type="text"
               className="edu-input"
-              placeholder="Örn: 3115"
+              placeholder={locale === 'tr' ? 'Örn: 3115' : 'e.g. 3115'}
               value={data.iscoCode}
               onChange={(e) => onChange('iscoCode', e.target.value)}
             />
           </div>
           <div className="md:col-span-3">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="esco-uri" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.esco.escoUriLabel}
             </label>
             <input
+              id="esco-uri"
+              name="escoUri"
               type="text"
               className="edu-input text-xs font-mono"
               placeholder="http://data.europa.eu/esco/..."
@@ -132,10 +144,12 @@ export default function EscoIscedMapperCard({
 
         {/* Row 3: Priority Skills & Competences */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1">
+          <label htmlFor="esco-skills" className="block text-xs font-semibold text-slate-700 mb-1">
             {t.esco.skillsLabel}
           </label>
           <textarea
+            id="esco-skills"
+            name="skills"
             className="edu-input min-h-[75px] resize-y text-xs"
             placeholder="PLC programlama, endustriyel haberlesme, robotik, ariza tespiti, onleyici bakim..."
             value={data.skills}

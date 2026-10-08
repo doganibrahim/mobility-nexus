@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'User Guide',
+  title: 'Platform Kullanım Kılavuzu & Destek • User Manual | ErasmusMobility',
   description: 'ErasmusMobility platformu kapsamlı kullanım rehberi, adım adım hareketlilik akışı ve okul kılavuzu.',
 };
 

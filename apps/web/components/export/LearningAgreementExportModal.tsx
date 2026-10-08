@@ -111,7 +111,9 @@ export function LearningAgreementExportModal({
               Learning Agreement for Vocational Education and Training (VET)
             </h1>
             <p className="text-xs text-slate-600 font-medium">
-              Mesleki Eğitim ve Öğretim Katılımcıları İçin Resmi Öğrenme Sözleşmesi
+              {locale === 'tr'
+                ? 'Mesleki Eğitim ve Öğretim Katılımcıları İçin Resmi Öğrenme Sözleşmesi'
+                : 'Official Learning Agreement for VET Learners & Apprentices'}
             </p>
           </div>
 
@@ -277,17 +279,25 @@ export function LearningAgreementExportModal({
           {/* Section 4: Monitoring and Assessment */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs border border-slate-300 rounded-lg p-4 bg-slate-50/40">
             <div>
-              <strong className="block text-slate-800 mb-1">İzleme ve Rehberlik Planı:</strong>
+              <strong className="block text-slate-800 mb-1">
+                {locale === 'tr' ? 'İzleme ve Rehberlik Planı:' : 'Monitoring and Mentoring Plan:'}
+              </strong>
               <p className="text-slate-600 leading-relaxed">
                 {payload.monitoringPlan ||
-                  'Haftalık mentor toplantıları, günlük staj günlüğü (logbook) kontrolleri ve refakatçi öğretmen ara değerlendirmeleri.'}
+                  (locale === 'tr'
+                    ? 'Haftalık mentor toplantıları, günlük staj günlüğü (logbook) kontrolleri ve refakatçi öğretmen ara değerlendirmeleri.'
+                    : 'Weekly mentor meetings, daily logbook audits, and accompanying teacher milestone reviews.')}
               </p>
             </div>
             <div>
-              <strong className="block text-slate-800 mb-1">Değerlendirme ve Tanınma Kriteri:</strong>
+              <strong className="block text-slate-800 mb-1">
+                {locale === 'tr' ? 'Değerlendirme ve Tanınma Kriteri:' : 'Assessment and Recognition Criteria:'}
+              </strong>
               <p className="text-slate-600 leading-relaxed">
                 {payload.assessmentCriteria ||
-                  'ECVET ve ESCO mesleki beceri değerlendirme matrisi üzerinden %70 pratik uygulama, %30 teorik sınav ve sunum.'}
+                  (locale === 'tr'
+                    ? 'ECVET ve ESCO mesleki beceri değerlendirme matrisi üzerinden %70 pratik uygulama, %30 teorik sınav ve sunum.'
+                    : 'ECVET & ESCO skill assessment matrix: 70% hands-on practical tasks, 30% technical presentation and oral evaluation.')}
               </p>
             </div>
           </div>
@@ -301,9 +311,9 @@ export function LearningAgreementExportModal({
             <div className="grid grid-cols-3 gap-4 text-center text-xs">
               {/* Learner */}
               <div className="border-t border-slate-300 pt-2">
-                <div className="font-bold text-slate-900">{payload.studentName || 'Katılımcı Öğrenci'}</div>
-                <div className="text-[10px] text-slate-500">The Learner (Katılımcı)</div>
-                <div className="mt-8 text-[11px] font-mono text-slate-400">İmza & Tarih</div>
+                <div className="font-bold text-slate-900">{payload.studentName || (locale === 'tr' ? 'Katılımcı Öğrenci' : 'Participant Learner')}</div>
+                <div className="text-[10px] text-slate-500">The Learner ({locale === 'tr' ? 'Katılımcı' : 'Participant'})</div>
+                <div className="mt-8 text-[11px] font-mono text-slate-400">{locale === 'tr' ? 'İmza & Tarih' : 'Signature & Date'}</div>
               </div>
 
               {/* Sending Institution */}
@@ -314,7 +324,7 @@ export function LearningAgreementExportModal({
                 <div className="text-[10px] text-slate-500">
                   Sending Institution Coordinator
                 </div>
-                <div className="mt-8 text-[11px] font-mono text-slate-400">Resmi Mühür & İmza</div>
+                <div className="mt-8 text-[11px] font-mono text-slate-400">{locale === 'tr' ? 'Resmi Mühür & İmza' : 'Official Seal & Signature'}</div>
               </div>
 
               {/* Receiving Host */}
@@ -325,7 +335,7 @@ export function LearningAgreementExportModal({
                 <div className="text-[10px] text-slate-500">
                   Receiving Organisation Mentor
                 </div>
-                <div className="mt-8 text-[11px] font-mono text-slate-400">Kurumsal Onay & Kaşe</div>
+                <div className="mt-8 text-[11px] font-mono text-slate-400">{locale === 'tr' ? 'Kurumsal Onay & Kaşe' : 'Corporate Seal & Approval'}</div>
               </div>
             </div>
           </div>

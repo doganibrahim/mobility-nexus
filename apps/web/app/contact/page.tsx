@@ -285,6 +285,24 @@ export default function ContactPage() {
 
               <div className="space-y-3 text-xs text-slate-700">
                 <div className="flex items-start gap-3">
+                  <span className="text-base">✉️</span>
+                  <div>
+                    <div className="font-bold text-slate-900">{locale === 'tr' ? 'Genel İletişim & Destek' : 'General Enquiries'}</div>
+                    <a
+                      href="mailto:info@erasmusmobility.com"
+                      className="text-blue-700 hover:text-blue-900 font-semibold underline text-xs"
+                    >
+                      info@erasmusmobility.com
+                    </a>
+                    <div className="text-slate-500 text-[11px] mt-0.5">
+                      {locale === 'tr'
+                        ? 'Resmi kurum yazışmaları, ortaklık ve genel platform desteği'
+                        : 'Official institutional correspondence & general platform assistance'}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
                   <span className="text-base">💬</span>
                   <div>
                     <div className="font-bold text-slate-900">{locale === 'tr' ? 'Doğrudan İletişim Formu' : 'Direct Inquiries'}</div>
@@ -348,8 +366,8 @@ export default function ContactPage() {
                   )}
                   <p className="text-xs text-emerald-800 max-w-md mx-auto leading-relaxed">
                     {locale === 'tr'
-                      ? 'Talebiniz kaydedilmiştir. Proje uzmanımız belirttiğiniz e-posta ve telefon üzerinden en kısa sürede sizinle irtibata geçecektir.'
-                      : 'Your inquiry has been logged. Our VET project specialist will get in touch with you shortly.'}
+                      ? 'Talebiniz kaydedilmiştir. Teyit ve yanıt mesajı belirttiğiniz e-posta adresine iletilecektir (Reply-To: info@erasmusmobility.com). Doğrudan sorularınız için info@erasmusmobility.com üzerinden de iletişime geçebilirsiniz.'
+                      : 'Your inquiry has been logged. Confirmation will be sent to your email address (Reply-To: info@erasmusmobility.com). For direct questions, contact info@erasmusmobility.com.'}
                   </p>
                   <button
                     type="button"
@@ -550,6 +568,13 @@ export default function ContactPage() {
                         <span>{locale === 'tr' ? 'Mesajı Gönder' : 'Submit Message'}</span>
                       )}
                     </button>
+                  </div>
+
+                  <div className="text-center pt-2 text-[11px] text-slate-500">
+                    <span>{locale === 'tr' ? 'Yardıma mı ihtiyacınız var? ' : 'Need help? '}</span>
+                    <a href="mailto:info@erasmusmobility.com" className="text-blue-700 font-bold hover:underline">
+                      {locale === 'tr' ? 'info@erasmusmobility.com ile iletişime geçin' : 'Contact info@erasmusmobility.com'}
+                    </a>
                   </div>
                 </form>
               )}

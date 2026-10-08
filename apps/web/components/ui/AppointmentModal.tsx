@@ -156,8 +156,8 @@ export default function AppointmentModal({ isOpen, onClose }: AppointmentModalPr
           <div className="bg-slate-50 px-4 sm:px-6 py-3 border-t border-slate-200 flex items-center justify-between flex-wrap gap-2 text-xs">
             <div className="text-slate-500">
               {locale === 'tr'
-                ? 'Randevunuz onaylandığında Google Meet bağlantısı otomatik iletilir.'
-                : 'Google Meet link is sent automatically once booked.'}
+                ? 'Randevunuz onaylandığında Google Meet bağlantısı otomatik iletilir. Sorularınız için: info@erasmusmobility.com'
+                : 'Google Meet link is sent automatically once booked. Direct inquiries: info@erasmusmobility.com'}
             </div>
             <div className="flex items-center gap-2">
               <a

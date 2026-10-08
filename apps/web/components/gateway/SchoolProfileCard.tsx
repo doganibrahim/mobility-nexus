@@ -49,10 +49,12 @@ export default function SchoolProfileCard({
         {/* Row 1: School Name & City */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
           <div className="md:col-span-8">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="sp-school-name" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.school.nameLabel}
             </label>
             <input
+              id="sp-school-name"
+              name="schoolName"
               type="text"
               className="edu-input font-medium"
               placeholder={t.school.namePlaceholder}
@@ -61,10 +63,12 @@ export default function SchoolProfileCard({
             />
           </div>
           <div className="md:col-span-4">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="sp-city" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.school.cityLabel}
             </label>
             <input
+              id="sp-city"
+              name="city"
               type="text"
               className="edu-input"
               placeholder={t.school.cityPlaceholder}
@@ -77,10 +81,12 @@ export default function SchoolProfileCard({
         {/* Row 2: Accreditation Status & OID Code */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
           <div className="md:col-span-7">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="sp-accredited" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.school.accLabel}
             </label>
             <select
+              id="sp-accredited"
+              name="accredited"
               className="edu-input bg-white cursor-pointer font-medium"
               value={data.accredited}
               onChange={(e) => onChange('accredited', e.target.value)}
@@ -91,25 +97,33 @@ export default function SchoolProfileCard({
             </select>
           </div>
           <div className="md:col-span-5">
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="sp-oid" className="block text-xs font-semibold text-slate-700 mb-1">
               {t.school.oidLabel}
             </label>
             <input
+              id="sp-oid"
+              name="oid"
               type="text"
+              aria-describedby="sp-oid-hint"
               className="edu-input font-semibold tracking-wider text-slate-900"
               placeholder={locale === 'tr' ? 'Örn: E10123456' : 'e.g. E10123456'}
               value={data.oid}
               onChange={(e) => onChange('oid', e.target.value)}
             />
+            <span id="sp-oid-hint" className="sr-only">
+              {locale === 'tr' ? 'Avrupa Komisyonu Kurumsal Kimlik Numarası (OID)' : 'European Commission Organisation ID'}
+            </span>
           </div>
         </div>
 
         {/* Row 3: Erasmus Plan Objectives */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1">
+          <label htmlFor="sp-erasmus-plan" className="block text-xs font-semibold text-slate-700 mb-1">
             {t.school.planLabel}
           </label>
           <input
+            id="sp-erasmus-plan"
+            name="erasmusPlan"
             type="text"
             className="edu-input text-xs"
             placeholder={t.school.planPlaceholder}
@@ -120,10 +134,12 @@ export default function SchoolProfileCard({
 
         {/* Row 4: Institutional Need & Concrete Challenge */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1">
+          <label htmlFor="sp-institution-need" className="block text-xs font-semibold text-slate-700 mb-1">
             {t.school.needLabel}
           </label>
           <textarea
+            id="sp-institution-need"
+            name="institutionNeed"
             className="edu-input min-h-[85px] resize-y text-xs leading-relaxed"
             placeholder={t.school.needPlaceholder}
             value={data.institutionNeed}

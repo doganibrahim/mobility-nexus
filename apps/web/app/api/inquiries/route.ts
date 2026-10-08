@@ -102,6 +102,8 @@ export async function POST(request: NextRequest) {
       success: true,
       message: 'Hareketlilik talebi ve mesaj başarıyla kaydedildi.',
       data: saved,
+      supportEmail: 'info@erasmusmobility.com',
+      replyTo: 'info@erasmusmobility.com',
     });
   } catch (error: any) {
     console.error('Error saving inquiry:', error);

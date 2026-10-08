@@ -7,7 +7,7 @@ import LegalDocumentView from '../../components/legal/LegalDocumentView';
 export const metadata: Metadata = {
   title: 'Erişilebilirlik Beyanı • Accessibility Statement | ErasmusMobility',
   description:
-    'ErasmusMobility WCAG 2.1 AA düzeyinde dijital erişilebilirlik taahhüdü ve teknik standartları.',
+    'ErasmusMobility WCAG 2.2 AA düzeyinde dijital erişilebilirlik taahhüdü, EN 301 549 ve Avrupa Erişilebilirlik Yasası (EAA) teknik standartları.',
   alternates: {
     canonical: 'https://www.erasmusmobility.com/accessibility',
   },

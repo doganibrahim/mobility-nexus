@@ -279,7 +279,7 @@ export default function HostPortfolioModal({
               <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                 <span className="text-base">🎨</span>
                 <h3 className="text-xs font-bold text-slate-900 tracking-wider uppercase">
-                  1. Kurumsal Vitrin ve Tanıtım
+                  {locale === 'tr' ? '1. Kurumsal Vitrin ve Tanıtım' : '1. Institutional Showcase & Profile'}
                 </h3>
               </div>
 
@@ -288,10 +288,12 @@ export default function HostPortfolioModal({
                   {/* Kurum Logosu */}
                   <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">
-                      Kurum Logosu (PNG / SVG)
+                      {locale === 'tr' ? 'Kurum Logosu (PNG / SVG)' : 'Organisation Logo (PNG / SVG)'}
                     </label>
                     <p className="text-[11px] text-slate-500 mb-3">
-                      Profil kartınızda ve resmi anlaşma çıktılarında yer alacak logo.
+                      {locale === 'tr'
+                        ? 'Profil kartınızda ve resmi anlaşma çıktılarında yer alacak logo.'
+                        : 'Official logo appearing on your partner card and agreement exports.'}
                     </p>
                     <div className="flex items-center gap-3">
                       {logoUrl ? (
@@ -306,7 +308,9 @@ export default function HostPortfolioModal({
                         </div>
                       )}
                       <label className="cursor-pointer px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors shadow-2xs">
-                        {isUploading === 'logo' ? 'Yükleniyor...' : 'Logo Seç & Yükle'}
+                        {isUploading === 'logo'
+                          ? (locale === 'tr' ? 'Yükleniyor...' : 'Uploading...')
+                          : (locale === 'tr' ? 'Logo Seç & Yükle' : 'Upload Logo')}
                         <input
                           type="file"
                           accept="image/png,image/svg+xml,image/jpeg"
@@ -320,17 +324,23 @@ export default function HostPortfolioModal({
                   {/* Tanıtım Broşürü */}
                   <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">
-                      Kurumsal Profil / Broşür (PDF)
+                      {locale === 'tr' ? 'Kurumsal Profil / Broşür (PDF)' : 'Institutional Profile / Brochure (PDF)'}
                     </label>
                     <p className="text-[11px] text-slate-500 mb-3">
-                      Kurumunuzun atölye, staj ve faaliyet imkanlarını anlatan katalog.
+                      {locale === 'tr'
+                        ? 'Kurumunuzun atölye, staj ve faaliyet imkanlarını anlatan katalog.'
+                        : 'Brochure presenting your workshop, training facilities, and internship provisions.'}
                     </p>
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-lg border border-slate-200 bg-white flex items-center justify-center text-xl">
                         📄
                       </div>
                       <label className="cursor-pointer px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors shadow-2xs">
-                        {isUploading === 'brochure' ? 'Yükleniyor...' : detailedProfileUrl ? 'Broşürü Değiştir' : 'PDF Broşür Yükle'}
+                        {isUploading === 'brochure'
+                          ? (locale === 'tr' ? 'Yükleniyor...' : 'Uploading...')
+                          : detailedProfileUrl
+                            ? (locale === 'tr' ? 'Broşürü Değiştir' : 'Change Brochure')
+                            : (locale === 'tr' ? 'PDF Broşür Yükle' : 'Upload PDF Brochure')}
                         <input
                           type="file"
                           accept="application/pdf"
@@ -345,7 +355,7 @@ export default function HostPortfolioModal({
                           rel="noreferrer"
                           className="text-xs font-semibold text-blue-600 hover:underline"
                         >
-                          Önizle ↗
+                          {locale === 'tr' ? 'Önizle ↗' : 'Preview ↗'}
                         </a>
                       )}
                     </div>
@@ -356,26 +366,30 @@ export default function HostPortfolioModal({
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider">
-                      Kurum Tanıtımı (Maksimum 150 Kelime)
+                      {locale === 'tr' ? 'Kurum Tanıtımı (Maksimum 150 Kelime)' : 'Organisation Summary (Max 150 Words)'}
                     </label>
                     <span
                       className={`text-xs font-bold ${
                         isWordCountExceeded ? 'text-rose-600' : 'text-slate-500'
                       }`}
                     >
-                      {wordCount} / 150 kelime
+                      {wordCount} / 150 {locale === 'tr' ? 'kelime' : 'words'}
                     </span>
                   </div>
                   <textarea
                     rows={4}
-                    placeholder="Kurumunuzun sunduğu teknik altyapı, mesleki staj alanları ve katılımcı öğrencilere sağlanan mentorluk olanaklarını özetleyiniz..."
+                    placeholder={locale === 'tr'
+                      ? 'Kurumunuzun sunduğu teknik altyapı, mesleki staj alanları ve katılımcı öğrencilere sağlanan mentorluk olanaklarını özetleyiniz...'
+                      : 'Summarize your technical infrastructure, vocational internship placements, and mentoring offered to participants...'}
                     value={shortDescription}
                     onChange={(e) => setShortDescription(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-all leading-relaxed"
                   />
                   {isWordCountExceeded && (
                     <p className="text-xs text-rose-600 mt-1 font-semibold">
-                      Açıklama 150 kelime sınırını aşamaz. Lütfen metni kısaltınız.
+                      {locale === 'tr'
+                        ? 'Açıklama 150 kelime sınırını aşamaz. Lütfen metni kısaltınız.'
+                        : 'Description cannot exceed 150 words. Please shorten your text.'}
                     </p>
                   )}
                 </div>
@@ -384,7 +398,7 @@ export default function HostPortfolioModal({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      İrtibat Yetkilisi LinkedIn Profili
+                      {locale === 'tr' ? 'İrtibat Yetkilisi LinkedIn Profili' : 'Contact Person LinkedIn Profile'}
                     </label>
                     <input
                       type="url"
@@ -397,11 +411,11 @@ export default function HostPortfolioModal({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Türkiye İrtibat Temsilcisi (Varsa)
+                      {locale === 'tr' ? 'Türkiye İrtibat Temsilcisi (Varsa)' : 'Turkey Representative / Liaison (If Any)'}
                     </label>
                     <input
                       type="text"
-                      placeholder="Örn: Ahmet Yılmaz (Türkiye Koordinatörü / Ankara)"
+                      placeholder={locale === 'tr' ? 'Örn: Ahmet Yılmaz (Türkiye Koordinatörü / Ankara)' : 'e.g. Ahmet Yilmaz (Turkey Coordinator / Ankara)'}
                       value={turkeyContactPerson}
                       onChange={(e) => setTurkeyContactPerson(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-all"
@@ -416,7 +430,7 @@ export default function HostPortfolioModal({
               <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                 <span className="text-base">🇪🇺</span>
                 <h3 className="text-xs font-bold text-slate-900 tracking-wider uppercase">
-                  2. Erasmus+ Deneyim Metrikleri ve Geçmiş
+                  {locale === 'tr' ? '2. Erasmus+ Deneyim Metrikleri ve Geçmiş' : '2. Erasmus+ Track Record & Metrics'}
                 </h3>
               </div>
 
@@ -424,7 +438,7 @@ export default function HostPortfolioModal({
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Erasmus+ Deneyim Yılı <span className="text-rose-500">*</span>
+                      {locale === 'tr' ? 'Erasmus+ Deneyim Yılı' : 'Years of Erasmus+ Experience'} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       type="number"
@@ -437,7 +451,7 @@ export default function HostPortfolioModal({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Toplam Ağırlanan Katılımcı <span className="text-rose-500">*</span>
+                      {locale === 'tr' ? 'Toplam Ağırlanan Katılımcı' : 'Total Participants Hosted'} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       type="number"
@@ -450,7 +464,7 @@ export default function HostPortfolioModal({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Son 3 Yılda Ağırlanan Grup <span className="text-rose-500">*</span>
+                      {locale === 'tr' ? 'Son 3 Yılda Ağırlanan Grup' : 'Groups Hosted in Last 3 Years'} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       type="number"
@@ -465,7 +479,7 @@ export default function HostPortfolioModal({
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Türkiye'den Ağırlanan Grup <span className="text-rose-500">*</span>
+                      {locale === 'tr' ? "Türkiye'den Ağırlanan Grup" : 'Groups Hosted from Turkey'} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       type="number"
@@ -478,7 +492,7 @@ export default function HostPortfolioModal({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Türkiye'den Katılımcı Sayısı
+                      {locale === 'tr' ? "Türkiye'den Katılımcı Sayısı" : 'Learners Hosted from Turkey'}
                     </label>
                     <input
                       type="number"
@@ -491,11 +505,11 @@ export default function HostPortfolioModal({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Hizmet Verilen Gönderici Ülkeler
+                      {locale === 'tr' ? 'Hizmet Verilen Gönderici Ülkeler' : 'Sending Countries Served'}
                     </label>
                     <input
                       type="text"
-                      placeholder="Örn: TR, ES, IT, DE, PL"
+                      placeholder={locale === 'tr' ? 'Örn: TR, ES, IT, DE, PL' : 'e.g. TR, ES, IT, DE, PL'}
                       value={sendingCountries}
                       onChange={(e) => setSendingCountries(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-all uppercase font-mono"
@@ -506,7 +520,7 @@ export default function HostPortfolioModal({
                 {/* Faaliyet Türleri Kutuları */}
                 <div>
                   <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                    Faaliyet ve Program Deneyimi
+                    {locale === 'tr' ? 'Faaliyet ve Program Deneyimi' : 'Experience by Action Type & Target'}
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                     <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer">
@@ -517,7 +531,7 @@ export default function HostPortfolioModal({
                         className="rounded-sm text-blue-600"
                       />
                       <span className="font-semibold text-slate-800">
-                        KA121 Akredite Hareketlilik Projeleri
+                        {locale === 'tr' ? 'KA121 Akredite Hareketlilik Projeleri' : 'KA121 Accredited Mobility Projects'}
                       </span>
                     </label>
 
@@ -529,7 +543,7 @@ export default function HostPortfolioModal({
                         className="rounded-sm text-blue-600"
                       />
                       <span className="font-semibold text-slate-800">
-                        KA122 Kısa Dönemli Hareketlilik Projeleri
+                        {locale === 'tr' ? 'KA122 Kısa Dönemli Hareketlilik Projeleri' : 'KA122 Short-Term Mobility Projects'}
                       </span>
                     </label>
 
@@ -541,7 +555,7 @@ export default function HostPortfolioModal({
                         className="rounded-sm text-blue-600"
                       />
                       <span className="font-semibold text-slate-800">
-                        VET Öğrenci Staj ve Beceri Eğitimi
+                        {locale === 'tr' ? 'VET Öğrenci Staj ve Beceri Eğitimi' : 'VET Learner Traineeships & Skills'}
                       </span>
                     </label>
 
@@ -553,7 +567,7 @@ export default function HostPortfolioModal({
                         className="rounded-sm text-blue-600"
                       />
                       <span className="font-semibold text-slate-800">
-                        Öğretmen / Personel İşbaşı Gözlem (Job Shadowing)
+                        {locale === 'tr' ? 'Öğretmen / Personel İşbaşı Gözlem (Job Shadowing)' : 'Teacher / Staff Job Shadowing'}
                       </span>
                     </label>
                   </div>
@@ -563,11 +577,11 @@ export default function HostPortfolioModal({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Birlikte Çalışılan Ulusal Ajanslar
+                      {locale === 'tr' ? 'Birlikte Çalışılan Ulusal Ajanslar' : 'National Agencies Collaborated With'}
                     </label>
                     <input
                       type="text"
-                      placeholder="Örn: Türkiye Ulusal Ajansı, DAAD, SEPIE"
+                      placeholder={locale === 'tr' ? 'Örn: Türkiye Ulusal Ajansı, DAAD, SEPIE' : 'e.g. Turkish National Agency, DAAD, SEPIE'}
                       value={nationalAgencyExperience}
                       onChange={(e) => setNationalAgencyExperience(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-all"
@@ -576,15 +590,15 @@ export default function HostPortfolioModal({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Örnek Hareketlilik Programı (PDF) <span className="text-rose-500">*</span>
+                      {locale === 'tr' ? 'Örnek Hareketlilik Programı (PDF)' : 'Sample Mobility Programme (PDF)'} <span className="text-rose-500">*</span>
                     </label>
                     <div className="flex items-center gap-2">
                       <label className="flex-1 cursor-pointer px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors text-center">
                         {isUploading === 'sampleProgramme'
-                          ? 'Yükleniyor...'
+                          ? (locale === 'tr' ? 'Yükleniyor...' : 'Uploading...')
                           : sampleMobilityProgrammeUrl
-                            ? 'Program Yüklendi (Değiştir)'
-                            : 'Örnek Program PDF Seç'}
+                            ? (locale === 'tr' ? 'Program Yüklendi (Değiştir)' : 'Programme Uploaded (Change)')
+                            : (locale === 'tr' ? 'Örnek Program PDF Seç' : 'Select Sample Programme PDF')}
                         <input
                           type="file"
                           accept="application/pdf"
@@ -599,7 +613,7 @@ export default function HostPortfolioModal({
                           rel="noreferrer"
                           className="text-xs font-semibold text-blue-600 hover:underline px-2"
                         >
-                          Önizle ↗
+                          {locale === 'tr' ? 'Önizle ↗' : 'Preview ↗'}
                         </a>
                       )}
                     </div>
@@ -613,7 +627,7 @@ export default function HostPortfolioModal({
               <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 <h3 className="text-xs font-bold text-slate-900 tracking-wider uppercase">
-                  3. İptal ve İade Koşulları Politikası (Cancellation Policy)
+                  {locale === 'tr' ? '3. İptal ve İade Koşulları Politikası (Cancellation Policy)' : '3. Cancellation & Refund Policy'}
                 </h3>
               </div>
 
@@ -621,23 +635,31 @@ export default function HostPortfolioModal({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">
-                      İptal Politikası Türü
+                      {locale === 'tr' ? 'İptal Politikası Türü' : 'Cancellation Policy Tier'}
                     </label>
                     <select
                       value={policyType}
                       onChange={(e) => setPolicyType(e.target.value as CancellationPolicyType)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-all"
                     >
-                      <option value="FLEXIBLE">Esnek (Flexible - 30 Güne Kadar %100 İade)</option>
-                      <option value="MODERATE">Dengeli (Moderate - 45 Gün %100 / 21 Gün %50)</option>
-                      <option value="STRICT">Katı (Strict - 60 Güne Kadar %100 İade)</option>
-                      <option value="CUSTOM">Özel Kurumsal İptal Şartları (Custom)</option>
+                      <option value="FLEXIBLE">
+                        {locale === 'tr' ? 'Esnek (Flexible - 30 Güne Kadar %100 İade)' : 'Flexible (100% Refund up to 30 Days)'}
+                      </option>
+                      <option value="MODERATE">
+                        {locale === 'tr' ? 'Dengeli (Moderate - 45 Gün %100 / 21 Gün %50)' : 'Moderate (100% at 45 Days / 50% at 21 Days)'}
+                      </option>
+                      <option value="STRICT">
+                        {locale === 'tr' ? 'Katı (Strict - 60 Güne Kadar %100 İade)' : 'Strict (100% Refund up to 60 Days)'}
+                      </option>
+                      <option value="CUSTOM">
+                        {locale === 'tr' ? 'Özel Kurumsal İptal Şartları (Custom)' : 'Custom Institutional Terms (Custom)'}
+                      </option>
                     </select>
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">
-                      Mücbir Sebep & Hibe Koruma Garantisi
+                      {locale === 'tr' ? 'Mücbir Sebep & Hibe Koruma Garantisi' : 'Force Majeure & Grant Protection Guarantee'}
                     </label>
                     <label className="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-white cursor-pointer mt-1">
                       <input
@@ -647,7 +669,9 @@ export default function HostPortfolioModal({
                         className="rounded-sm text-emerald-600"
                       />
                       <span className="text-xs font-medium text-slate-800">
-                        Ulusal Ajans vize ret veya mücbir sebep iptallerinde tam koruma
+                        {locale === 'tr'
+                          ? 'Ulusal Ajans vize ret veya mücbir sebep iptallerinde tam koruma'
+                          : 'Full protection for National Agency visa rejections or force majeure cancellations'}
                       </span>
                     </label>
                   </div>
@@ -655,7 +679,9 @@ export default function HostPortfolioModal({
 
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
                   <div>
-                    <span className="text-slate-600 font-semibold block mb-1">Tam İade Gün Sınırı</span>
+                    <span className="text-slate-600 font-semibold block mb-1">
+                      {locale === 'tr' ? 'Tam İade Gün Sınırı' : 'Full Refund Window'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <input
                         type="number"
@@ -664,12 +690,16 @@ export default function HostPortfolioModal({
                         onChange={(e) => setDaysBeforeFullRefund(Number(e.target.value) || 0)}
                         className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-xs font-semibold"
                       />
-                      <span className="text-slate-500 font-medium shrink-0">gün önce</span>
+                      <span className="text-slate-500 font-medium shrink-0">
+                        {locale === 'tr' ? 'gün önce' : 'days prior'}
+                      </span>
                     </div>
                   </div>
 
                   <div>
-                    <span className="text-slate-600 font-semibold block mb-1">Tam İade Oranı (%)</span>
+                    <span className="text-slate-600 font-semibold block mb-1">
+                      {locale === 'tr' ? 'Tam İade Oranı (%)' : 'Full Refund Rate (%)'}
+                    </span>
                     <input
                       type="number"
                       min={0}
@@ -681,7 +711,9 @@ export default function HostPortfolioModal({
                   </div>
 
                   <div>
-                    <span className="text-slate-600 font-semibold block mb-1">Kısmi İade Gün Sınırı</span>
+                    <span className="text-slate-600 font-semibold block mb-1">
+                      {locale === 'tr' ? 'Kısmi İade Gün Sınırı' : 'Partial Refund Window'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <input
                         type="number"
@@ -690,12 +722,16 @@ export default function HostPortfolioModal({
                         onChange={(e) => setDaysBeforePartialRefund(Number(e.target.value) || 0)}
                         className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-xs font-semibold"
                       />
-                      <span className="text-slate-500 font-medium shrink-0">gün önce</span>
+                      <span className="text-slate-500 font-medium shrink-0">
+                        {locale === 'tr' ? 'gün önce' : 'days prior'}
+                      </span>
                     </div>
                   </div>
 
                   <div>
-                    <span className="text-slate-600 font-semibold block mb-1">Kısmi İade Oranı (%)</span>
+                    <span className="text-slate-600 font-semibold block mb-1">
+                      {locale === 'tr' ? 'Kısmi İade Oranı (%)' : 'Partial Refund Rate (%)'}
+                    </span>
                     <input
                       type="number"
                       min={0}
@@ -709,13 +745,13 @@ export default function HostPortfolioModal({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">
-                    Okullara Gösterilecek Açıklama Metni
+                    {locale === 'tr' ? 'Okullara Gösterilecek Açıklama Metni' : 'Cancellation Terms Shown to Sending Schools'}
                   </label>
                   <input
                     type="text"
                     value={policyDetailsTr}
                     onChange={(e) => setPolicyDetailsTr(e.target.value)}
-                    placeholder="Örn: 30 gün öncesine kadar kesintisiz %100 iade..."
+                    placeholder={locale === 'tr' ? 'Örn: 30 gün öncesine kadar kesintisiz %100 iade...' : 'e.g. 100% refund up to 30 days prior...'}
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-xs focus:outline-hidden focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
@@ -727,13 +763,15 @@ export default function HostPortfolioModal({
               <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                 <Accessibility className="w-4 h-4 text-blue-600" />
                 <h3 className="text-xs font-bold text-slate-900 tracking-wider uppercase">
-                  4. Erişilebilirlik ve Kapsayıcılık Olanakları (Inclusion & Accessibility)
+                  {locale === 'tr' ? '4. Erişilebilirlik ve Kapsayıcılık Olanakları (Inclusion & Accessibility)' : '4. Accessibility & Inclusion Provisions'}
                 </h3>
               </div>
 
               <div className="space-y-4 bg-slate-50/60 p-4 rounded-xl border border-slate-200">
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Erasmus+ kapsayıcılık önceliği kapsamında okullar özel politika ve fiziksel erişim olanaklarını arar. Kurumunuzun sunduğu imkanları işaretleyiniz:
+                  {locale === 'tr'
+                    ? 'Erasmus+ kapsayıcılık önceliği kapsamında okullar özel politika ve fiziksel erişim olanaklarını arar. Kurumunuzun sunduğu imkanları işaretleyiniz:'
+                    : 'In line with Erasmus+ inclusion priorities, schools evaluate physical accessibility and support mechanisms. Select provisions your organisation offers:'}
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
@@ -746,8 +784,12 @@ export default function HostPortfolioModal({
                     />
                     <Accessibility className="w-4 h-4 text-blue-600 shrink-0" />
                     <div>
-                      <span className="font-semibold text-slate-900 block">Tekerlekli Sandalye Erişimi</span>
-                      <span className="text-[11px] text-slate-500">Rampa, asansör ve engelsiz atölye/konaklama girişi</span>
+                      <span className="font-semibold text-slate-900 block">
+                        {locale === 'tr' ? 'Tekerlekli Sandalye Erişimi' : 'Wheelchair Accessibility'}
+                      </span>
+                      <span className="text-[11px] text-slate-500">
+                        {locale === 'tr' ? 'Rampa, asansör ve engelsiz atölye/konaklama girişi' : 'Ramps, elevators, and step-free workshop/accommodation entrance'}
+                      </span>
                     </div>
                   </label>
 
@@ -760,8 +802,12 @@ export default function HostPortfolioModal({
                     />
                     <Utensils className="w-4 h-4 text-amber-600 shrink-0" />
                     <div>
-                      <span className="font-semibold text-slate-900 block">Özel Diyet ve Beslenme Desteği</span>
-                      <span className="text-[11px] text-slate-500">Helal, vejetaryen, vegan, glutensiz veya alerjen menü</span>
+                      <span className="font-semibold text-slate-900 block">
+                        {locale === 'tr' ? 'Özel Diyet ve Beslenme Desteği' : 'Special Dietary Provisions'}
+                      </span>
+                      <span className="text-[11px] text-slate-500">
+                        {locale === 'tr' ? 'Helal, vejetaryen, vegan, glutensiz veya alerjen menü' : 'Halal, vegetarian, vegan, gluten-free, or allergy-friendly menus'}
+                      </span>
                     </div>
                   </label>
 
@@ -774,8 +820,12 @@ export default function HostPortfolioModal({
                     />
                     <Eye className="w-4 h-4 text-indigo-600 shrink-0" />
                     <div>
-                      <span className="font-semibold text-slate-900 block">Görme Desteği & Büyük Punto</span>
-                      <span className="text-[11px] text-slate-500">Braille, kontrast işaretler veya sesli yönlendirme</span>
+                      <span className="font-semibold text-slate-900 block">
+                        {locale === 'tr' ? 'Görme Desteği & Büyük Punto' : 'Visual Support & Large Print'}
+                      </span>
+                      <span className="text-[11px] text-slate-500">
+                        {locale === 'tr' ? 'Braille, kontrast işaretler veya sesli yönlendirme' : 'Braille, high-contrast signs, or acoustic wayfinding'}
+                      </span>
                     </div>
                   </label>
 
@@ -788,21 +838,25 @@ export default function HostPortfolioModal({
                     />
                     <Ear className="w-4 h-4 text-purple-600 shrink-0" />
                     <div>
-                      <span className="font-semibold text-slate-900 block">İşitme Desteği & Görsel İpuçları</span>
-                      <span className="text-[11px] text-slate-500">Görsel sinyaller, altyazı ve işaret dili mentorluğu</span>
+                      <span className="font-semibold text-slate-900 block">
+                        {locale === 'tr' ? 'İşitme Desteği & Görsel İpuçları' : 'Hearing Support & Visual Cues'}
+                      </span>
+                      <span className="text-[11px] text-slate-500">
+                        {locale === 'tr' ? 'Görsel sinyaller, altyazı ve işaret dili mentorluğu' : 'Visual signals, subtitles, and sign language mentoring'}
+                      </span>
                     </div>
                   </label>
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">
-                    Erişilebilirlik ve Kapsayıcılık Detayları
+                    {locale === 'tr' ? 'Erişilebilirlik ve Kapsayıcılık Detayları' : 'Accessibility & Inclusion Details'}
                   </label>
                   <input
                     type="text"
                     value={specialNeedsDetailsTr}
                     onChange={(e) => setSpecialNeedsDetailsTr(e.target.value)}
-                    placeholder="Örn: Zemin kat atölyelerimiz tekerlekli sandalyeye tam uygundur, helal sertifikalı restoranlarla anlaşmalıyız."
+                    placeholder={locale === 'tr' ? 'Örn: Zemin kat atölyelerimiz tekerlekli sandalyeye tam uygundur, helal sertifikalı restoranlarla anlaşmalıyız.' : 'e.g. Ground floor workshops are fully wheelchair-accessible; certified dietary partnerships available.'}
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-xs focus:outline-hidden focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
@@ -814,21 +868,23 @@ export default function HostPortfolioModal({
               <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                 <Users className="w-4 h-4 text-indigo-600" />
                 <h3 className="text-xs font-bold text-slate-900 tracking-wider uppercase">
-                  5. Kabul Edilen Hedef Gruplar (Target Audience)
+                  {locale === 'tr' ? '5. Kabul Edilen Hedef Gruplar (Target Audience)' : '5. Accepted Target Groups'}
                 </h3>
               </div>
 
               <div className="bg-slate-50/60 p-4 rounded-xl border border-slate-200">
                 <p className="text-xs text-slate-600 mb-3">
-                  Kurumunuzun atölye, staj ve eğitim ortamı hangi katılımcı profillerine uygundur?
+                  {locale === 'tr'
+                    ? 'Kurumunuzun atölye, staj ve eğitim ortamı hangi katılımcı profillerine uygundur?'
+                    : 'Which participant learner profiles are supported by your training environments and facilities?'}
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                   {[
-                    { id: 'STUDENT' as TargetGroupType, label: 'Meslek Lisesi Öğrencisi', sub: 'IVET Learners' },
-                    { id: 'APPRENTICE' as TargetGroupType, label: 'Çırak & Kalfa', sub: 'Dual Apprentices' },
-                    { id: 'TEACHER' as TargetGroupType, label: 'Öğretmen & Eğitici', sub: 'VET Teachers' },
-                    { id: 'STAFF' as TargetGroupType, label: 'İdari / Teknik Personel', sub: 'Staff Mobility' },
+                    { id: 'STUDENT' as TargetGroupType, label: locale === 'tr' ? 'Meslek Lisesi Öğrencisi' : 'VET / IVET Student', sub: locale === 'tr' ? 'Öğrenci Hareketliliği' : 'IVET Learners' },
+                    { id: 'APPRENTICE' as TargetGroupType, label: locale === 'tr' ? 'Çırak & Kalfa' : 'Apprentice / Trainee', sub: locale === 'tr' ? 'İkili Mesleki Eğitim' : 'Dual Apprentices' },
+                    { id: 'TEACHER' as TargetGroupType, label: locale === 'tr' ? 'Öğretmen & Eğitici' : 'VET Teacher / Trainer', sub: locale === 'tr' ? 'Eğitici Eğitimi' : 'VET Teachers' },
+                    { id: 'STAFF' as TargetGroupType, label: locale === 'tr' ? 'İdari / Teknik Personel' : 'Admin & Tech Staff', sub: locale === 'tr' ? 'Personel Hareketliliği' : 'Staff Mobility' },
                   ].map((tg) => {
                     const isSelected = targetGroups.includes(tg.id);
                     return (

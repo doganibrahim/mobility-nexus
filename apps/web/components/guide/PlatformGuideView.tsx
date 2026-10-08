@@ -718,7 +718,7 @@ export default function PlatformGuideView({
                   type="button"
                   onClick={() => setSearchQuery('')}
                   className="absolute right-2.5 top-3 text-slate-400 hover:text-slate-600 text-xs cursor-pointer font-bold"
-                  title="Aramayı Temizle"
+                  title={locale === 'tr' ? 'Aramayı Temizle' : 'Clear search'}
                 >
                   ✕
                 </button>
@@ -1231,6 +1231,32 @@ export default function PlatformGuideView({
                     <span>{locale === 'en' ? 'Print Guide' : 'Yazdır / PDF'}</span>
                   </button>
                 </div>
+              </div>
+
+              {/* PLATFORM SUPPORT & WORKING HOURS STRIP */}
+              <div className="bg-blue-50/80 rounded-2xl border border-blue-200 p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-start sm:items-center gap-3">
+                  <span className="text-2xl shrink-0">🎧</span>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900 m-0">
+                      {locale === 'en' ? 'Direct Platform Support & Help Desk' : 'Platform Destek Masası & Kurumsal İletişim'}
+                    </h4>
+                    <p className="text-xs text-slate-600 m-0 mt-0.5">
+                      <span>{locale === 'en' ? 'Operating Hours: Monday – Friday 09:00 – 18:00 TRT • ' : 'Çalışma Saatleri: Pazartesi – Cuma 09:00 – 18:00 TSI • '}</span>
+                      <a href="mailto:info@erasmusmobility.com" className="font-bold text-blue-700 hover:underline">
+                        info@erasmusmobility.com
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href="mailto:info@erasmusmobility.com"
+                  className="px-4 py-2 text-xs font-bold text-blue-900 bg-white hover:bg-blue-100/70 border border-blue-300 rounded-xl transition-colors shadow-2xs flex items-center gap-1.5 shrink-0"
+                >
+                  <span>✉️</span>
+                  <span>{locale === 'en' ? 'Email Support Desk' : 'Destek Masasına Yazın'}</span>
+                </a>
               </div>
             </div>
           ) : null}

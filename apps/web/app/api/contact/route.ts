@@ -170,6 +170,8 @@ export async function POST(request: NextRequest) {
       success: true,
       trackingId,
       message: 'Mesajınız başarıyla iletildi. Uzman ekibimiz en kısa sürede dönüş sağlayacaktır.',
+      supportEmail: 'info@erasmusmobility.com',
+      replyTo: 'info@erasmusmobility.com',
     });
   } catch (error: any) {
     console.error('Contact form submission error:', error);

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  title: 'Mobility Planning Pipeline',
   robots: {
     index: false,
     follow: false,

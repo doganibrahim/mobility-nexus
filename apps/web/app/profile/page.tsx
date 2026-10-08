@@ -300,19 +300,19 @@ export default function ProfilePage() {
               </div>
 
               <div className="flex justify-between py-1 border-b border-slate-100">
-                <span className="text-slate-500 font-medium">E-posta Doğrulandı:</span>
-                <span className="font-bold text-emerald-700">✓ Doğrulandı</span>
+                <span className="text-slate-500 font-medium">{locale === 'tr' ? 'E-posta Doğrulandı:' : 'Email Verified:'}</span>
+                <span className="font-bold text-emerald-700">{locale === 'tr' ? '✓ Doğrulandı' : '✓ Verified'}</span>
               </div>
 
               <div className="flex justify-between py-1 border-b border-slate-100">
-                <span className="text-slate-500 font-medium">Hesap ID:</span>
+                <span className="text-slate-500 font-medium">{locale === 'tr' ? 'Hesap ID:' : 'Account ID:'}</span>
                 <span className="font-mono text-slate-600 text-[11px] truncate max-w-[150px] sm:max-w-none">
                   {user?.id ? user.id.slice(0, 18) + '...' : '-'}
                 </span>
               </div>
 
               <div className="flex justify-between py-1">
-                <span className="text-slate-500 font-medium">Aktif Dil & Bölge:</span>
+                <span className="text-slate-500 font-medium">{locale === 'tr' ? 'Aktif Dil & Bölge:' : 'Active Language & Region:'}</span>
                 <span className="font-bold text-slate-900">
                   {locale === 'tr' ? '🇹🇷 Türkçe (TR)' : '🇬🇧 English (EN)'}
                 </span>
@@ -334,7 +334,7 @@ export default function ProfilePage() {
                 href="/onboarding"
                 className="text-xs font-bold text-blue-700 hover:text-blue-900 underline"
               >
-                {isOnboarded ? 'Düzenle' : 'Kaydet'}
+                {isOnboarded ? (locale === 'tr' ? 'Düzenle' : 'Edit') : (locale === 'tr' ? 'Kaydet' : 'Save')}
               </Link>
             </div>
 
@@ -342,7 +342,7 @@ export default function ProfilePage() {
               <div className="space-y-3 text-xs">
                 {currentHost.logoUrl && (
                   <div className="flex items-center justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-500 font-medium">Kurum Logosu:</span>
+                    <span className="text-slate-500 font-medium">{locale === 'tr' ? 'Kurum Logosu:' : 'Institution Logo:'}</span>
                     <img
                       src={currentHost.logoUrl}
                       alt={currentHost.name}
@@ -351,18 +351,18 @@ export default function ProfilePage() {
                   </div>
                 )}
                 <div className="flex justify-between py-1 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Kurum Adı:</span>
+                  <span className="text-slate-500 font-medium">{locale === 'tr' ? 'Kurum Adı:' : 'Organisation Name:'}</span>
                   <span className="font-bold text-slate-900">{currentHost.name}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Ülke / Şehir:</span>
+                  <span className="text-slate-500 font-medium">{locale === 'tr' ? 'Ülke / Şehir:' : 'Country / City:'}</span>
                   <span className="font-bold text-slate-900">
                     {currentHost.countryCode} • {currentHost.city}
                   </span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Ana Sektör:</span>
-                  <span className="font-bold text-slate-900">{currentHost.primarySector || 'Genel'}</span>
+                  <span className="text-slate-500 font-medium">{locale === 'tr' ? 'Ana Sektör:' : 'Primary Sector:'}</span>
+                  <span className="font-bold text-slate-900">{currentHost.primarySector || (locale === 'tr' ? 'Genel' : 'General')}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-100">
                   <span className="text-slate-500 font-medium">{t.profile.verificationStatus}:</span>
@@ -371,34 +371,36 @@ export default function ProfilePage() {
                   </span>
                 </div>
                 <div className="flex justify-between py-1">
-                  <span className="text-slate-500 font-medium">Dönemlik Kapasite:</span>
+                  <span className="text-slate-500 font-medium">{locale === 'tr' ? 'Dönemlik Kapasite:' : 'Seasonal Capacity:'}</span>
                   <span className="font-bold text-slate-900">
-                    {currentHost.maxLearnersPerTerm || 4} Öğrenci
+                    {currentHost.maxLearnersPerTerm || 4} {locale === 'tr' ? 'Öğrenci' : 'Learners'}
                   </span>
                 </div>
               </div>
             ) : currentOrg ? (
               <div className="space-y-3 text-xs">
                 <div className="flex justify-between py-1 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Kurum Adı:</span>
+                  <span className="text-slate-500 font-medium">{locale === 'tr' ? 'Kurum Adı:' : 'Organisation Name:'}</span>
                   <span className="font-bold text-slate-900">{currentOrg.name}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">OID Numarası:</span>
+                  <span className="text-slate-500 font-medium">{locale === 'tr' ? 'OID Numarası:' : 'OID Number:'}</span>
                   <span className="font-mono font-bold text-slate-900">
-                    {currentOrg.oid || 'Belirtilmedi'}
+                    {currentOrg.oid || (locale === 'tr' ? 'Belirtilmedi' : 'Not Specified')}
                   </span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Şehir / Ülke:</span>
+                  <span className="text-slate-500 font-medium">{locale === 'tr' ? 'Şehir / Ülke:' : 'City / Country:'}</span>
                   <span className="font-bold text-slate-900">
                     {currentOrg.city || 'Türkiye'} ({currentOrg.countryCode || 'TR'})
                   </span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Akreditasyon:</span>
+                  <span className="text-slate-500 font-medium">{locale === 'tr' ? 'Akreditasyon:' : 'Accreditation:'}</span>
                   <span className="font-bold text-slate-900">
-                    {currentOrg.accreditationStatus === 'YES' ? 'Akredite Kurum' : 'Akredite Değil / Bilinmiyor'}
+                    {currentOrg.accreditationStatus === 'YES'
+                      ? (locale === 'tr' ? 'Akredite Kurum' : 'Accredited Institution')
+                      : (locale === 'tr' ? 'Akredite Değil / Bilinmiyor' : 'Non-accredited / Unknown')}
                   </span>
                 </div>
                 <div className="flex justify-between py-1">
@@ -429,11 +431,13 @@ export default function ProfilePage() {
           <div className="flex items-center gap-2">
             <span className="text-base">🛡️</span>
             <h3 className="font-bold text-slate-900 text-sm m-0">
-              Mevzuat ve Güvenlik Uyumluluğu
+              {locale === 'tr' ? 'Mevzuat ve Güvenlik Uyumluluğu' : 'Legal & Security Compliance'}
             </h3>
           </div>
           <p className="text-xs text-slate-600 m-0 leading-relaxed">
-            Hesabınız {locale === 'tr' ? '6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK)' : 'EU General Data Protection Regulation (GDPR)'} ve AB Erasmus+ kurumsal standartları uyarınca korunmaktadır. Yüklediğiniz hareketlilik dokümanları ve kurum sicil evrakları şifrelenmiş Cloudflare R2 altyapısında saklanır.
+            {locale === 'tr'
+              ? 'Hesabınız 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve AB Erasmus+ kurumsal standartları uyarınca korunmaktadır. Yüklediğiniz hareketlilik dokümanları ve kurum sicil evrakları şifrelenmiş Cloudflare R2 altyapısında saklanır.'
+              : 'Your account is safeguarded in full compliance with EU General Data Protection Regulation (GDPR) and EU Erasmus+ quality standards. All uploaded mobility dossiers and institutional registries are encrypted via Cloudflare R2 infrastructure.'}
           </p>
         </div>
       </main>

@@ -428,8 +428,8 @@ export function ProviderFeedbackBreakdown({
                     onChange={(e) => setProjectType(e.target.value as any)}
                     className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-600"
                   >
-                    <option value="KA121">KA121 (Akredite Hareketlilik)</option>
-                    <option value="KA122">KA122 (Kısa Dönemli Proje)</option>
+                    <option value="KA121">{isTr ? 'KA121 (Akredite Hareketlilik)' : 'KA121 (Accredited Mobility)'}</option>
+                    <option value="KA122">{isTr ? 'KA122 (Kısa Dönemli Proje)' : 'KA122 (Short-Term Project)'}</option>
                     <option value="OTHER">{isTr ? 'Diğer Erasmus+ Faaliyeti' : 'Other Erasmus+ Activity'}</option>
                   </select>
                 </div>

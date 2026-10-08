@@ -555,12 +555,20 @@ export const useAppStore = create<AppState>((set, get) => ({
           }
         }
 
-        // Restore Application Draft
+        // Restore Application Draft with 7-day TTL expiration for shared computer privacy
         const storedDraft = localStorage.getItem('em_application_draft') || localStorage.getItem('cappinno_application_draft');
         if (storedDraft) {
           try {
             const parsedDraft = JSON.parse(storedDraft);
-            if (parsedDraft && parsedDraft.context) {
+            const DRAFT_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+            const draftTimestamp = parsedDraft?.lastUpdated ? new Date(parsedDraft.lastUpdated).getTime() : 0;
+            const isExpired = draftTimestamp > 0 && Date.now() - draftTimestamp > DRAFT_MAX_AGE_MS;
+
+            if (isExpired) {
+              localStorage.removeItem('em_application_draft');
+              localStorage.removeItem('cappinno_application_draft');
+              get().syncPipelineToDraft();
+            } else if (parsedDraft && parsedDraft.context) {
               set((state) => ({
                 applicationDraft: {
                   ...parsedDraft,

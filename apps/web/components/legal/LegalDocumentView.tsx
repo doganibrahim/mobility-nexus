@@ -160,7 +160,7 @@ export default function LegalDocumentView({
           <span>♿</span>
           <span>{locale === 'tr' ? 'Erişilebilirlik Beyanı' : 'Accessibility Statement'}</span>
           <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-100 text-slate-700 border border-slate-300 font-mono">
-            WCAG 2.1
+            WCAG 2.2
           </span>
         </button>
       </div>
@@ -175,7 +175,7 @@ export default function LegalDocumentView({
                   6698 SAYILI KİŞİSEL VERİLERİN KORUNMASI KANUNU (KVKK) MADDE 10 KAPSAMINDA AYDINLATMA METNİ
                 </div>
                 <div className="text-[11px] text-slate-600 font-medium">
-                  Platform: erasmusmobility.com • Sürüm: 1.0 (2026) • Veri Sorumlusu: Cappadocia Innovation Institute Teknoloji Ltd. Şti.
+                  Platform: erasmusmobility.com • Sürüm: 1.0 (2026) • Veri Sorumlusu: ErasmusMobility Teknoloji Ltd. Şti.
                 </div>
               </div>
 
@@ -194,7 +194,7 @@ export default function LegalDocumentView({
                   1. Veri Sorumlusu Sıfatı ve İletişim Kanalları
                 </h2>
                 <p className="m-0">
-                  6698 sayılı Kanun uyarınca veri sorumlusu, <strong>Cappadocia Innovation Institute Teknoloji Ltd. Şti.</strong>&apos;dir. İletişim: <strong>info@erasmusmobility.com</strong>, Kapadokya Teknopark, Nevşehir.
+                  6698 sayılı Kanun uyarınca veri sorumlusu, <strong>ErasmusMobility Teknoloji Ltd. Şti.</strong>&apos;dir. Resmi İletişim ve İlgili Kişi Başvuru Adresi: <strong>info@erasmusmobility.com</strong>, Kapadokya Teknopark, Nevşehir.
                 </p>
               </div>
 
@@ -223,7 +223,7 @@ export default function LegalDocumentView({
                   GENERAL DATA PROTECTION REGULATION (GDPR EU 2016/679) PRIVACY NOTICE
                 </div>
                 <div className="text-[11px] text-slate-600 font-medium">
-                  Platform: erasmusmobility.com • Version: 1.0 (2026) • Data Controller: Cappadocia Innovation Institute
+                  Platform: erasmusmobility.com • Version: 1.0 (2026) • Data Controller: ErasmusMobility Teknoloji Ltd. Şti.
                 </div>
               </div>
 
@@ -242,7 +242,7 @@ export default function LegalDocumentView({
                   1. Data Controller
                 </h2>
                 <p className="m-0">
-                  The data controller is <strong>Cappadocia Innovation Institute Teknoloji Ltd. Şti.</strong> Contact: <strong>info@erasmusmobility.com</strong>.
+                  The data controller is <strong>ErasmusMobility Teknoloji Ltd. Şti.</strong> (Operating entity of ErasmusMobility.com). Official DPO &amp; Data Subject Inquiries: <strong>info@erasmusmobility.com</strong>, Kapadokya Teknopark, Nevşehir, Türkiye.
                 </p>
               </div>
 
@@ -266,7 +266,7 @@ export default function LegalDocumentView({
                   PLATFORM KATILIM KOŞULLARI VE AÇIK RIZA BEYANI
                 </div>
                 <div className="text-[11px] text-slate-600 font-medium">
-                  Platform: erasmusmobility.com • Sürüm: 1.0 (2026)
+                  Platform: erasmusmobility.com • Sürüm: 1.0 (2026) • İşletici: ErasmusMobility Teknoloji Ltd. Şti.
                 </div>
               </div>
 
@@ -287,6 +287,15 @@ export default function LegalDocumentView({
                   Platform üzerinden üretilen bütçe hesaplamaları ve evrak şablonları tavsiye ve taslak niteliğindedir. Kurumlar resmi başvurularını kendi yetkili OID kodları ile resmi Avrupa Komisyonu portalları üzerinden yaparlar.
                 </p>
               </div>
+
+              <div className="space-y-2">
+                <h2 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider m-0">
+                  3. Hukuki Bildirimler ve Sağlayıcı Desteği
+                </h2>
+                <p className="m-0">
+                  Platform katılım şartları, ev sahibi kurum (provider) doğrulaması veya hukuki bildirimleriniz için resmi irtibat adresi: <strong>info@erasmusmobility.com</strong>.
+                </p>
+              </div>
             </div>
           ) : (
             <div className="space-y-6">
@@ -295,7 +304,7 @@ export default function LegalDocumentView({
                   PLATFORM PARTICIPATION TERMS AND CONDITIONS
                 </div>
                 <div className="text-[11px] text-slate-600 font-medium">
-                  Platform: erasmusmobility.com • Version: 1.0 (2026)
+                  Platform: erasmusmobility.com • Version: 1.0 (2026) • Operator: ErasmusMobility Teknoloji Ltd. Şti.
                 </div>
               </div>
 
@@ -314,6 +323,15 @@ export default function LegalDocumentView({
                 </h2>
                 <p className="m-0">
                   Calculators and document drafts provided are advisory working templates. Formal proposal submission is conducted by applicant organisations directly through Commission platforms.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <h2 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider m-0">
+                  3. Legal Notices &amp; Provider Support
+                </h2>
+                <p className="m-0">
+                  For formal legal notices, provider onboarding inquiries, or contract questions, official contact: <strong>info@erasmusmobility.com</strong>.
                 </p>
               </div>
             </div>
@@ -399,7 +417,7 @@ export default function LegalDocumentView({
                   ERİŞİLEBİLİRLİK BEYANI (ACCESSIBILITY STATEMENT)
                 </div>
                 <div className="text-[11px] text-slate-600 font-medium">
-                  Web İçeriği Erişilebilirlik Kılavuzları (WCAG 2.1 AA Düzeyi) Uyumluluk Taahhüdü
+                  Web İçeriği Erişilebilirlik Kılavuzları (WCAG 2.2 AA Düzeyi) & Avrupa Erişilebilirlik Yasası (EN 301 549) Uyumluluk Taahhüdü
                 </div>
               </div>
 
@@ -408,19 +426,20 @@ export default function LegalDocumentView({
                   1. Erişilebilirlik Taahhüdümüz
                 </h2>
                 <p className="m-0">
-                  ErasmusMobility, mesleki eğitim kurumları, dezavantajlı öğrenciler ve özel gereksinimli katılımcılar dahil olmak üzere tüm kullanıcıların dijital içeriklere engelsiz erişimini sağlamayı taahhüt eder.
+                  ErasmusMobility, mesleki eğitim kurumları, dezavantajlı öğrenciler ve özel gereksinimli katılımcılar dahil olmak üzere tüm kullanıcıların dijital içeriklere engelsiz erişimini sağlamayı taahhüt eder. Platformumuz W3C WCAG 2.2 AA başarı kriterleri ile AB Direktifi (EU) 2019/882 (European Accessibility Act) gerekliliklerine tam uyum hedefiyle geliştirilmektedir.
                 </p>
               </div>
 
               <div className="space-y-2">
                 <h2 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider m-0">
-                  2. Teknik Uyumluluk Standartları
+                  2. Teknik Uyumluluk Standartları (WCAG 2.2 AA)
                 </h2>
-                <ul className="list-disc pl-5 space-y-1 text-slate-600">
-                  <li><strong>Klavye Navigasyonu:</strong> Tüm etkileşimli öğeler (butonlar, formlar, sekmeler) fare olmadan Tab ve Ok tuşlarıyla kullanılabilir.</li>
-                  <li><strong>Ekran Okuyucu Desteği:</strong> Semantik HTML5 ve uygun ARIA etiketleri kullanılarak NVDA, JAWS ve VoiceOver ekran okuyucularına uyumlu hale getirilmiştir.</li>
-                  <li><strong>Kontrast Oranları:</strong> Metin ve arka plan renkleri WCAG AA standardı olan en az 4.5:1 kontrast oranını karşılar.</li>
-                  <li><strong>Yazı Tipi Büyütme:</strong> Tarayıcı yakınlaştırması %200&apos;e kadar içerik kırılması olmadan desteklenir.</li>
+                <ul className="list-disc pl-5 space-y-1.5 text-slate-600 text-xs leading-relaxed">
+                  <li><strong>Klavye Navigasyonu ve Belirgin Odak (2.4.7 / 2.4.11):</strong> Tüm etkileşimli öğeler klavye ile erişilebilir; odak göstergeleri (focus indicator) gizlenmez ve içeriklerce örtülmez.</li>
+                  <li><strong>Asgari Tıklama Hedef Boyutu (2.5.8):</strong> Etkileşimli buton ve bağlantılar dokunmatik ve masaüstü arayüzlerde en az 24×24 piksel hedef boyutunu karşılar.</li>
+                  <li><strong>Ekran Okuyucu Desteği (1.3.1 / 4.1.2):</strong> Form alanları benzersiz id, programatik label-for, aria-describedby ve geçerlilik durumlarıyla NVDA, JAWS ve VoiceOver uyumludur.</li>
+                  <li><strong>Yüksek Kontrast ve Tipografi (1.4.3 / 1.4.10):</strong> Normal metinlerde en az 4.5:1 kontrast sağlanır; %200 ve %400 yakınlaştırmada yatay kaydırma olmaksızın duyarlı (responsive) akış korunur.</li>
+                  <li><strong>Yinelenen Veri Girişinin Önlenmesi (3.3.7):</strong> Başvuru ve pipeline formlarında daha önce girilen veriler otomatik taşınarak gereksiz tekrar engellenir.</li>
                 </ul>
               </div>
 
@@ -429,7 +448,7 @@ export default function LegalDocumentView({
                   3. Geri Bildirim ve İletişim
                 </h2>
                 <p className="m-0">
-                  Erişilebilirlikle ilgili herhangi bir engelle karşılaşırsanız lütfen <strong>accessibility@erasmusmobility.com</strong> adresinden bize bildirin. Bildirimleriniz öncelikli olarak değerlendirilir.
+                  Erişilebilirlikle ilgili herhangi bir engelle karşılaşırsanız lütfen <strong>accessibility@erasmusmobility.com</strong> adresinden bize bildirin. Bildirimleriniz öncelikli olarak değerlendirilir. Genel platform desteği ve kurumsal danışmanlık talepleriniz için <strong>info@erasmusmobility.com</strong> adresi üzerinden de bize ulaşabilirsiniz.
                 </p>
               </div>
             </div>
@@ -440,7 +459,7 @@ export default function LegalDocumentView({
                   WEB ACCESSIBILITY STATEMENT
                 </div>
                 <div className="text-[11px] text-slate-600 font-medium">
-                  Commitment to WCAG 2.1 AA Accessibility Standards
+                  Commitment to WCAG 2.2 AA & European Accessibility Act (EN 301 549) Standards
                 </div>
               </div>
 
@@ -449,19 +468,20 @@ export default function LegalDocumentView({
                   1. Our Accessibility Commitment
                 </h2>
                 <p className="m-0">
-                  ErasmusMobility is dedicated to ensuring digital accessibility for all users, including participants with special needs and VET learners with fewer opportunities.
+                  ErasmusMobility is dedicated to ensuring digital accessibility for all users, including participants with special needs and VET learners with fewer opportunities. Our platform adheres to W3C WCAG 2.2 Level AA success criteria and the European Accessibility Act (Directive (EU) 2019/882 / EN 301 549).
                 </p>
               </div>
 
               <div className="space-y-2">
                 <h2 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider m-0">
-                  2. Technical Compliance
+                  2. Technical Compliance (WCAG 2.2 AA)
                 </h2>
-                <ul className="list-disc pl-5 space-y-1 text-slate-600">
-                  <li>Full keyboard operability via Tab navigation and visible focus indicators.</li>
-                  <li>Semantic HTML5 hierarchy and ARIA roles for screen reader accessibility.</li>
-                  <li>WCAG 2.1 Level AA color contrast compliance across text elements.</li>
-                  <li>Scalable typography supporting up to 200% zoom without loss of functionality.</li>
+                <ul className="list-disc pl-5 space-y-1.5 text-slate-600 text-xs leading-relaxed">
+                  <li><strong>Keyboard Navigation & Unobscured Focus (2.4.7 / 2.4.11):</strong> Complete keyboard operability via Tab navigation with highly visible, unobscured focus rings.</li>
+                  <li><strong>Target Size Minimum (2.5.8):</strong> Interactive elements maintain a minimum target size of 24×24 pixels for pointer and touch accuracy.</li>
+                  <li><strong>Programmatic Labelling (1.3.1 / 4.1.2):</strong> All input elements feature unique IDs, explicit label associations, and ARIA descriptors for NVDA, JAWS, and VoiceOver.</li>
+                  <li><strong>Color Contrast & Reflow (1.4.3 / 1.4.10):</strong> Text maintains at least 4.5:1 contrast; responsive layout adapts cleanly up to 200% and 400% zoom without horizontal scroll.</li>
+                  <li><strong>Redundant Entry Prevention (3.3.7):</strong> Information previously entered in institutional profiles is automatically reused across drafting steps.</li>
                 </ul>
               </div>
 
@@ -470,7 +490,7 @@ export default function LegalDocumentView({
                   3. Feedback and Contact
                 </h2>
                 <p className="m-0">
-                  If you encounter any accessibility barrier on our platform, please reach out directly to <strong>accessibility@erasmusmobility.com</strong>.
+                  If you encounter any accessibility barrier on our platform, please reach out directly to <strong>accessibility@erasmusmobility.com</strong>. For general platform assistance, institutional partnerships, and support: <strong>info@erasmusmobility.com</strong>.
                 </p>
               </div>
             </div>

@@ -187,8 +187,8 @@ export function MarketplaceApplicationModal({
             </h3>
             <p className="text-xs text-slate-600 max-w-sm">
               {locale === 'tr'
-                ? 'Talebiniz ev sahibi kuruma aktarıldı. Kabul ve kontenjan durumunu panelinizden takip edebilirsiniz.'
-                : 'Your request was forwarded to the host institution. You can track acceptance and quota status in your dashboard.'}
+                ? 'Talebiniz ev sahibi kuruma aktarıldı. Kabul ve kontenjan durumunu panelinizden takip edebilirsiniz. Otomatik teyit e-postası (Reply-To: info@erasmusmobility.com) adresinize iletilecektir. Sorularınız için: info@erasmusmobility.com'
+                : 'Your request was forwarded to the host institution. You can track status in your dashboard. Confirmation email will be delivered (Reply-To: info@erasmusmobility.com). Inquiries: info@erasmusmobility.com'}
             </p>
           </div>
         ) : (
@@ -383,26 +383,34 @@ export function MarketplaceApplicationModal({
             </div>
 
             {/* Footer Buttons */}
-            <div className="pt-3 border-t border-slate-200 flex items-center justify-end gap-3">
-              <button
-                type="button"
-                onClick={onClose}
-                className="px-4 py-2 rounded-lg font-semibold text-slate-600 hover:bg-slate-100 transition-colors"
-              >
-                {locale === 'tr' ? 'Vazgeç' : 'Cancel'}
-              </button>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-700 hover:bg-blue-800 active:scale-98 text-white font-bold transition-all shadow-xs disabled:opacity-50"
-              >
-                <Send className="w-4 h-4" />
-                <span>
-                  {isSubmitting
-                    ? (locale === 'tr' ? 'Gönderiliyor...' : 'Submitting...')
-                    : (locale === 'tr' ? 'Başvuruyu İlet' : 'Submit Application')}
-                </span>
-              </button>
+            <div className="pt-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="text-[11px] text-slate-500">
+                <span>{locale === 'tr' ? 'Yardıma mı ihtiyacınız var? ' : 'Need help? '}</span>
+                <a href="mailto:info@erasmusmobility.com" className="text-blue-700 font-bold hover:underline">
+                  {locale === 'tr' ? 'info@erasmusmobility.com ile iletişime geçin' : 'Contact info@erasmusmobility.com'}
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="px-4 py-2 rounded-lg font-semibold text-slate-600 hover:bg-slate-100 transition-colors"
+                >
+                  {locale === 'tr' ? 'Vazgeç' : 'Cancel'}
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-700 hover:bg-blue-800 active:scale-98 text-white font-bold transition-all shadow-xs disabled:opacity-50"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>
+                    {isSubmitting
+                      ? (locale === 'tr' ? 'Gönderiliyor...' : 'Submitting...')
+                      : (locale === 'tr' ? 'Başvuruyu İlet' : 'Submit Application')}
+                  </span>
+                </button>
+              </div>
             </div>
           </form>
         )}

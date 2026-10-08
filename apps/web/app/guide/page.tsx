@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import AppHeader from '../../components/layout/AppHeader';
@@ -13,6 +13,13 @@ export default function GuidePage() {
   const router = useRouter();
   const store = useAppStore();
   const { locale } = useTranslation();
+
+  useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Platform Kullanım Kılavuzu & Destek | ErasmusMobility'
+        : 'Platform User Manual & Support | ErasmusMobility';
+  }, [locale]);
 
   const handleRoleSelection = (role: 'SCHOOL' | 'HOST') => {
     if (role === 'HOST') {

@@ -21,7 +21,7 @@ export const ERASMUS_COUNTRIES: ErasmusCountry[] = [
   { code: 'AT', nameTr: 'Avusturya', nameEn: 'Austria', flagEmoji: '🇦🇹', isEuMember: true },
   { code: 'BE', nameTr: 'Belçika', nameEn: 'Belgium', flagEmoji: '🇧🇪', isEuMember: true },
   { code: 'BG', nameTr: 'Bulgaristan', nameEn: 'Bulgaria', flagEmoji: '🇧🇬', isEuMember: true },
-  { code: 'CZ', nameTr: 'Çekya', nameEn: 'Czech Republic', flagEmoji: '🇨🇿', isEuMember: true },
+  { code: 'CZ', nameTr: 'Çekya', nameEn: 'Czechia', flagEmoji: '🇨🇿', isEuMember: true },
   { code: 'DK', nameTr: 'Danimarka', nameEn: 'Denmark', flagEmoji: '🇩🇰', isEuMember: true },
   { code: 'EE', nameTr: 'Estonya', nameEn: 'Estonia', flagEmoji: '🇪🇪', isEuMember: true },
   { code: 'FI', nameTr: 'Finlandiya', nameEn: 'Finland', flagEmoji: '🇫🇮', isEuMember: true },
@@ -46,7 +46,7 @@ export const ERASMUS_COUNTRIES: ErasmusCountry[] = [
   { code: 'GR', nameTr: 'Yunanistan', nameEn: 'Greece', flagEmoji: '🇬🇷', isEuMember: true },
 
   // Third Countries Associated to the Programme (6)
-  { code: 'TR', nameTr: 'Türkiye', nameEn: 'Turkey', flagEmoji: '🇹🇷', isEuMember: false },
+  { code: 'TR', nameTr: 'Türkiye', nameEn: 'Türkiye', flagEmoji: '🇹🇷', isEuMember: false },
   { code: 'NO', nameTr: 'Norveç', nameEn: 'Norway', flagEmoji: '🇳🇴', isEuMember: false },
   { code: 'IS', nameTr: 'İzlanda', nameEn: 'Iceland', flagEmoji: '🇮🇸', isEuMember: false },
   { code: 'LI', nameTr: 'Lihtenştayn', nameEn: 'Liechtenstein', flagEmoji: '🇱🇮', isEuMember: false },
@@ -57,6 +57,13 @@ export const ERASMUS_COUNTRIES: ErasmusCountry[] = [
   { code: 'CH', nameTr: 'İsviçre', nameEn: 'Switzerland', flagEmoji: '🇨🇭', isEuMember: false },
   { code: 'UK', nameTr: 'Birleşik Krallık', nameEn: 'United Kingdom', flagEmoji: '🇬🇧', isEuMember: false },
 ];
+
+/**
+ * European Host Destination Countries (Excludes Turkey/Türkiye, as Turkey is the sending country)
+ */
+export const ERASMUS_HOSTING_COUNTRIES: ErasmusCountry[] = ERASMUS_COUNTRIES.filter(
+  (c) => c.code !== 'TR'
+);
 
 // Quick Flag + Name Dictionary (e.g. 'DE' -> '🇩🇪 Almanya')
 export const ERASMUS_COUNTRY_FLAGS_TR: Record<string, string> = ERASMUS_COUNTRIES.reduce(
@@ -109,6 +116,10 @@ export const MARKETPLACE_TAG_MAP_EN: Record<string, string> = {
   'Almanya': 'Germany',
   'İtalya': 'Italy',
   'İspanya': 'Spain',
+  'Polonya': 'Poland',
+  'Hollanda': 'Netherlands',
+  'Çekya': 'Czechia',
+  'Türkiye': 'Türkiye',
   'Endüstri 4.0': 'Industry 4.0',
   'Yeşil Beceriler': 'Green Skills',
   'Döngüsel Ekonomi': 'Circular Economy',

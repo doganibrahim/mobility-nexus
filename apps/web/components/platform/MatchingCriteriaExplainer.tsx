@@ -242,13 +242,30 @@ export default function MatchingCriteriaExplainer() {
       {/* TAB 1: LIVE SIMULATOR */}
       {activeTab === 'simulator' && (
         <div className="p-6 sm:p-8 space-y-6">
+          {/* Terminology Bridge: 10 Demand Parameters -> 7 Core Criteria */}
+          <div className="bg-blue-50/80 border border-blue-200 rounded-xl p-3.5 text-xs text-blue-950 flex items-start gap-2.5">
+            <span className="text-base shrink-0">ℹ️</span>
+            <div className="space-y-0.5">
+              <span className="font-extrabold block">
+                {locale === 'tr'
+                  ? 'Eşleştirme Terminolojisi: 10 Talep Parametresi → 7 Temel Uygunluk Kriteri'
+                  : 'Matching Terminology: 10 Demand Parameters → 7 Core Evaluation Criteria'}
+              </span>
+              <p className="text-[11px] text-blue-800 leading-relaxed m-0">
+                {locale === 'tr'
+                  ? 'Okul profilinizde tanımlanan 10 operasyonel talep parametresi (Hedef Ülke, Faaliyet Türü, Katılımcı Profili, Yaş Grubu, Öğrenci Sayısı, Refakatçi Sayısı, Süre, Dönem, Lojistik Paket ve Özel İhtiyaçlar), Avrupa Komisyonu standartlarındaki 7 Temel Kriter (Ülke Uyumu, Faaliyet Yetkinliği, Hedef Grup, Dönem Müsaitliği, Süre, Kontenjan, Lojistik & Kapsayıcılık) üzerinden ağırlıklı olarak puanlanır.'
+                  : 'The 10 operational demand parameters entered by sending schools (Target Country, Activity Type, Participant Profile, Age Group, Learner Count, Accompanying Persons, Duration, Mobility Term, Logistics, and Special Needs) are synthesized into 7 Core Criteria (Country Match, Activity Competence, Target Group & Age, Term Availability, Duration, Quota, and Logistics & Inclusion) for scoring.'}
+              </p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Left Column: Interactive Parameters (5 cols) */}
             <div className="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-4">
               <div className="flex items-center justify-between border-b border-slate-200 pb-2">
                 <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
                   <span>⚙️</span>
-                  <span>{locale === 'tr' ? '1. Okul Talep Parametreleri' : '1. School Request Parameters'}</span>
+                  <span>{locale === 'tr' ? '1. Okul Talep Parametreleri (10 Parametre)' : '1. School Request Parameters (10 Parameters)'}</span>
                 </span>
                 <span className="text-[10px] text-slate-500 font-semibold uppercase">
                   {locale === 'tr' ? 'Simülasyon Girişi' : 'Simulation Input'}
@@ -267,12 +284,12 @@ export default function MatchingCriteriaExplainer() {
                   onChange={(e) => setSelectedCountry(e.target.value)}
                   className="edu-input text-xs font-semibold"
                 >
-                  <option value="DE">🇩🇪 Almanya (Germany)</option>
-                  <option value="ES">🇪🇸 İspanya (Spain)</option>
-                  <option value="IT">🇮🇹 İtalya (Italy)</option>
-                  <option value="PL">🇵🇱 Polonya (Poland)</option>
-                  <option value="NL">🇳🇱 Hollanda (Netherlands)</option>
-                  <option value="CZ">🇨🇿 Çekya (Czech Republic)</option>
+                  <option value="DE">{locale === 'tr' ? '🇩🇪 Almanya' : '🇩🇪 Germany'}</option>
+                  <option value="ES">{locale === 'tr' ? '🇪🇸 İspanya' : '🇪🇸 Spain'}</option>
+                  <option value="IT">{locale === 'tr' ? '🇮🇹 İtalya' : '🇮🇹 Italy'}</option>
+                  <option value="PL">{locale === 'tr' ? '🇵🇱 Polonya' : '🇵🇱 Poland'}</option>
+                  <option value="NL">{locale === 'tr' ? '🇳🇱 Hollanda' : '🇳🇱 Netherlands'}</option>
+                  <option value="CZ">{locale === 'tr' ? '🇨🇿 Çekya' : '🇨🇿 Czechia'}</option>
                   <option value="ANY">{locale === 'tr' ? '🌍 Tüm Uygun Ülkeler (Any)' : '🌍 Any Eligible Country'}</option>
                 </select>
               </div>
@@ -672,8 +689,8 @@ export default function MatchingCriteriaExplainer() {
             </h3>
             <p className="text-xs text-slate-500 m-0">
               {locale === 'tr'
-                ? 'Avrupa Komisyonu Erasmus+ Standartları ve Ulusal Ajans kılavuzlarıyla %100 uyumlu değerlendirme matrisi'
-                : '100% compliant with European Commission Erasmus+ standards and National Agency monitoring rubrics'}
+                ? 'Okulların girdiği 10 operasyonel talep parametresi bu 7 temel kritere dönüştürülür. Avrupa Komisyonu Erasmus+ Standartları ile tam uyumludur.'
+                : '10 operational parameters entered by schools are synthesized into these 7 core criteria. Fully aligned with European Commission Erasmus+ standards.'}
             </p>
           </div>
 

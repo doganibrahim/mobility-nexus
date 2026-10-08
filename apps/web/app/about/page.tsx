@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppHeader from '../../components/layout/AppHeader';
 import AppFooter from '../../components/layout/AppFooter';
@@ -11,6 +11,13 @@ import { useTranslation } from '../../lib/i18n';
 export default function AboutPage() {
   const { t, locale } = useTranslation();
   const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
+
+  useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Hakkımızda • Proje Misyonu & Ekosistem | ErasmusMobility'
+        : 'About Us • Mission & Ecosystem | ErasmusMobility';
+  }, [locale]);
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 transition-colors duration-150">
@@ -284,6 +291,52 @@ export default function AboutPage() {
                   : 'All institutional and learner records are securely encrypted in compliance with GDPR and KVKK.'}
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Support Desk & Working Hours Strip */}
+        <section className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="text-xl">🏢</span>
+              <h3 className="text-base font-bold text-slate-900 m-0">
+                {locale === 'tr' ? 'Platform Destek Masası & İletişim' : 'Platform Support Desk & Liaison'}
+              </h3>
+            </div>
+            <p className="text-xs text-slate-600 m-0 max-w-xl leading-relaxed">
+              {locale === 'tr'
+                ? 'Mesleki eğitim kurumları, akreditasyon planlama ekipleri ve Avrupa ev sahibi işletmeler için resmi iletişim kanalı ve çalışma saatleri:'
+                : 'Official support channel and operating hours for VET sending institutions, coordinators, and host enterprises:'}
+            </p>
+            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-700">
+              <div className="flex items-center gap-1.5 font-semibold">
+                <span>✉️</span>
+                <span>{locale === 'tr' ? 'Resmi Destek:' : 'Support:'}</span>
+                <a
+                  href="mailto:info@erasmusmobility.com"
+                  className="text-blue-700 hover:text-blue-900 hover:underline font-bold"
+                >
+                  info@erasmusmobility.com
+                </a>
+              </div>
+              <div className="flex items-center gap-1.5 text-slate-600">
+                <span>⏱️</span>
+                <span>
+                  {locale === 'tr'
+                    ? 'Pazartesi – Cuma: 09:00 – 18:00 (TSI)'
+                    : 'Monday – Friday: 09:00 – 18:00 (TRT)'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 shrink-0">
+            <Link
+              href="/contact"
+              className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors shadow-2xs"
+            >
+              {locale === 'tr' ? 'İletişim Masasına Git' : 'Contact Help Desk'}
+            </Link>
           </div>
         </section>
 

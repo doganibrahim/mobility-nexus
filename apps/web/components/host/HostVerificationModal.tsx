@@ -214,7 +214,7 @@ export default function HostVerificationModal({
               <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                 <span className="text-base">📑</span>
                 <h3 className="text-xs font-bold text-slate-900 tracking-wider uppercase">
-                  1. Tüzel Kuruluş ve Vergi Bilgileri
+                  {locale === 'tr' ? '1. Tüzel Kuruluş ve Vergi Bilgileri' : '1. Legal Entity & Tax Information'}
                 </h3>
               </div>
 
@@ -222,12 +222,12 @@ export default function HostVerificationModal({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Kuruluş / Sicil Numarası <span className="text-rose-500">*</span>
+                      {locale === 'tr' ? 'Kuruluş / Sicil Numarası' : 'Registration / Chamber Number'} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Örn: HRB 123456 B"
+                      placeholder={locale === 'tr' ? 'Örn: HRB 123456 B' : 'e.g. HRB 123456 B'}
                       value={registrationNumber}
                       onChange={(e) => setRegistrationNumber(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all font-mono"
@@ -236,12 +236,12 @@ export default function HostVerificationModal({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Ulusal Vergi No / EU VAT <span className="text-rose-500">*</span>
+                      {locale === 'tr' ? 'Ulusal Vergi No / EU VAT' : 'National Tax ID / EU VAT'} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Örn: DE123456789"
+                      placeholder={locale === 'tr' ? 'Örn: DE123456789' : 'e.g. DE123456789'}
                       value={taxVatNumber}
                       onChange={(e) => setTaxVatNumber(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all font-mono"
@@ -252,18 +252,20 @@ export default function HostVerificationModal({
                 {/* Sicil Belgesi Yükleme */}
                 <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
                   <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">
-                    Resmi Sicil Tasdiknamesi / Kuruluş Belgesi (PDF) <span className="text-rose-500">*</span>
+                    {locale === 'tr' ? 'Resmi Sicil Tasdiknamesi / Kuruluş Belgesi (PDF)' : 'Official Certificate of Registration (PDF)'} <span className="text-rose-500">*</span>
                   </label>
                   <p className="text-[11px] text-slate-500 mb-3">
-                    Kurumun yasal varlığını kanıtlayan güncel ticaret sicil gazetesi, oda kaydı veya kuruluş senedi.
+                    {locale === 'tr'
+                      ? 'Kurumun yasal varlığını kanıtlayan güncel ticaret sicil gazetesi, oda kaydı veya kuruluş senedi.'
+                      : 'Official commercial registry excerpt, chamber of commerce registration, or charter proving legal entity status.'}
                   </p>
                   <div className="flex items-center gap-3">
                     <label className="cursor-pointer px-4 py-2 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors shadow-2xs">
                       {isUploading === 'regDoc'
-                        ? 'Yükleniyor...'
+                        ? (locale === 'tr' ? 'Yükleniyor...' : 'Uploading...')
                         : registrationDocumentUrl
-                          ? 'Belge Yüklendi (Değiştir)'
-                          : 'PDF Belge Yükle'}
+                          ? (locale === 'tr' ? 'Belge Yüklendi (Değiştir)' : 'Document Uploaded (Change)')
+                          : (locale === 'tr' ? 'PDF Belge Yükle' : 'Upload PDF Document')}
                       <input
                         type="file"
                         accept="application/pdf"
@@ -278,7 +280,7 @@ export default function HostVerificationModal({
                         rel="noreferrer"
                         className="text-xs font-semibold text-blue-600 hover:underline"
                       >
-                        Yüklenen Belgeyi Önizle ↗
+                        {locale === 'tr' ? 'Yüklenen Belgeyi Önizle ↗' : 'Preview Uploaded Document ↗'}
                       </a>
                     )}
                   </div>
@@ -291,7 +293,7 @@ export default function HostVerificationModal({
               <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                 <span className="text-base">🚨</span>
                 <h3 className="text-xs font-bold text-slate-900 tracking-wider uppercase">
-                  2. 7/24 Acil Durum ve Operasyonel İletişim
+                  {locale === 'tr' ? '2. 7/24 Acil Durum ve Operasyonel İletişim' : '2. 24/7 Emergency & Operational Contact'}
                 </h3>
               </div>
 
@@ -299,12 +301,12 @@ export default function HostVerificationModal({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Acil Durum İrtibat Kişisi <span className="text-rose-500">*</span>
+                      {locale === 'tr' ? 'Acil Durum İrtibat Kişisi' : 'Emergency Contact Person'} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Örn: Dr. Klaus Weber"
+                      placeholder={locale === 'tr' ? 'Örn: Dr. Klaus Weber' : 'e.g. Dr. Klaus Weber'}
                       value={emergencyContactPerson}
                       onChange={(e) => setEmergencyContactPerson(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -313,12 +315,12 @@ export default function HostVerificationModal({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      7/24 Acil Durum Telefonu <span className="text-rose-500">*</span>
+                      {locale === 'tr' ? '7/24 Acil Durum Telefonu' : '24/7 Emergency Phone Number'} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       type="tel"
                       required
-                      placeholder="Örn: +49 170 9876543"
+                      placeholder={locale === 'tr' ? 'Örn: +49 170 9876543' : 'e.g. +49 170 9876543'}
                       value={emergencyContactPhone}
                       onChange={(e) => setEmergencyContactPhone(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -329,11 +331,11 @@ export default function HostVerificationModal({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Yetkilinin Doğrudan Telefonu
+                      {locale === 'tr' ? 'Yetkilinin Doğrudan Telefonu' : 'Direct Official Contact Phone'}
                     </label>
                     <input
                       type="tel"
-                      placeholder="Örn: +49 30 98765432"
+                      placeholder={locale === 'tr' ? 'Örn: +49 30 98765432' : 'e.g. +49 30 98765432'}
                       value={contactDirectPhone}
                       onChange={(e) => setContactDirectPhone(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -342,11 +344,11 @@ export default function HostVerificationModal({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                      Operasyonel WhatsApp Numarası
+                      {locale === 'tr' ? 'Operasyonel WhatsApp Numarası' : 'Operational WhatsApp Number'}
                     </label>
                     <input
                       type="tel"
-                      placeholder="Örn: +49 176 12345678"
+                      placeholder={locale === 'tr' ? 'Örn: +49 176 12345678' : 'e.g. +49 176 12345678'}
                       value={contactWhatsapp}
                       onChange={(e) => setContactWhatsapp(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
@@ -361,20 +363,24 @@ export default function HostVerificationModal({
               <div className="flex items-center gap-2 pb-2 mb-4 border-b border-slate-100">
                 <span className="text-base">📜</span>
                 <h3 className="text-xs font-bold text-slate-900 tracking-wider uppercase">
-                  3. Katılımcı Sayısı Kanıt Evrakları
+                  {locale === 'tr' ? '3. Katılımcı Sayısı Kanıt Evrakları' : '3. Participant Volume Evidence Documents'}
                 </h3>
               </div>
 
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
                 <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider">
-                  Katılımcı Sayılarını Destekleyen Resmi Kanıt Belgeleri <span className="text-rose-500">*</span>
+                  {locale === 'tr' ? 'Katılımcı Sayılarını Destekleyen Resmi Kanıt Belgeleri' : 'Official Proof Supporting Learner/Staff Numbers'} <span className="text-rose-500">*</span>
                 </label>
                 <p className="text-[11px] text-slate-500">
-                  Daha önce ağırladığınız öğrencilere verilen katılım sertifikaları, sözleşmeler veya anonimleştirilmiş proje sonuç raporları.
+                  {locale === 'tr'
+                    ? 'Daha önce ağırladığınız öğrencilere verilen katılım sertifikaları, sözleşmeler veya anonimleştirilmiş proje sonuç raporları.'
+                    : 'Certificates of attendance, mobility agreements, or anonymized project completion reports from past cohorts.'}
                 </p>
 
                 <label className="inline-block cursor-pointer px-4 py-2 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors shadow-2xs">
-                  {isUploading === 'evidence' ? 'Yükleniyor...' : '+ Kanıt Belgesi Ekle (PDF)'}
+                  {isUploading === 'evidence'
+                    ? (locale === 'tr' ? 'Yükleniyor...' : 'Uploading...')
+                    : (locale === 'tr' ? '+ Kanıt Belgesi Ekle (PDF)' : '+ Add Proof Document (PDF)')}
                   <input
                     type="file"
                     accept="application/pdf"
@@ -385,12 +391,14 @@ export default function HostVerificationModal({
 
                 {participantEvidenceUrls.length > 0 && (
                   <div className="space-y-1 pt-2">
-                    <span className="text-[11px] font-bold text-slate-700">Yüklenen Kanıt Evrakları:</span>
+                    <span className="text-[11px] font-bold text-slate-700">
+                      {locale === 'tr' ? 'Yüklenen Kanıt Evrakları:' : 'Uploaded Evidence Documents:'}
+                    </span>
                     <ul className="space-y-1 m-0 p-0 list-none">
                       {participantEvidenceUrls.map((url, idx) => (
                         <li key={idx} className="flex items-center justify-between text-xs bg-white p-2 rounded-lg border border-slate-200">
                           <span className="truncate max-w-xs text-slate-700 font-mono">
-                            📄 Kanıt Belgesi #{idx + 1}
+                            {locale === 'tr' ? '📄 Kanıt Belgesi' : '📄 Evidence Document'} #{idx + 1}
                           </span>
                           <a
                             href={url}
@@ -398,7 +406,7 @@ export default function HostVerificationModal({
                             rel="noreferrer"
                             className="text-blue-600 font-semibold hover:underline"
                           >
-                            Görüntüle ↗
+                            {locale === 'tr' ? 'Görüntüle ↗' : 'View ↗'}
                           </a>
                         </li>
                       ))}

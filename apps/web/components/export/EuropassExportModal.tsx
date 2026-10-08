@@ -145,7 +145,7 @@ export function EuropassExportModal({
               <div>
                 <strong className="text-slate-800">{dossier.schoolName}</strong>
               </div>
-              <div className="text-slate-600">{dossier.schoolCity || 'Bursa'}, Türkiye</div>
+              <div className="text-slate-600">{dossier.schoolCity || 'Bursa'}, {locale === 'tr' ? 'Türkiye' : 'Turkey'}</div>
               <div className="text-[11px] text-slate-500 font-mono">OID: {dossier.schoolOid}</div>
             </div>
 

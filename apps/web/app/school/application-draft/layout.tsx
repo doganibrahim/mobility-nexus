@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  title: 'Application Draft Assistant',
   robots: {
     index: false,
     follow: false,
