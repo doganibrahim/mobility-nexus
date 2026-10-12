@@ -18,7 +18,7 @@ export default function GuidePage() {
     document.title =
       locale === 'tr'
         ? 'Platform Kullanım Kılavuzu & Destek | ErasmusMobility'
-        : 'Platform User Manual & Support | ErasmusMobility';
+        : 'Platform User Guide & Support | ErasmusMobility';
   }, [locale]);
 
   const handleRoleSelection = (role: 'SCHOOL' | 'HOST') => {
@@ -47,7 +47,7 @@ export default function GuidePage() {
             </Link>
             <span className="text-slate-300">/</span>
             <span className="font-extrabold text-slate-900">
-              {locale === 'tr' ? 'Platform Kullanım Kılavuzu' : 'Platform User Manual'}
+              {locale === 'tr' ? 'Platform Kullanım Kılavuzu' : 'Platform User Guide'}
             </span>
           </div>
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { LibraryCategory, CreateLibraryCategoryDto } from '@mobility-nexus/types';
+import { useTranslation } from '@/lib/i18n';
 import {
   FolderPlus,
   Edit2,
@@ -47,6 +48,7 @@ const AVAILABLE_COLORS = [
 ];
 
 export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: CategoryTagManagerProps) {
+  const { locale } = useTranslation();
   const [categories, setCategories] = useState<LibraryCategory[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -203,15 +205,19 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
       });
       const data = await res.json();
       if (res.ok && data.success) {
-        setSuccessMsg(`"${name}" kategorisi başarıyla kaldırıldı.`);
+        setSuccessMsg(
+          locale === 'tr'
+            ? `"${name}" kategorisi başarıyla kaldırıldı.`
+            : `Category "${name}" removed successfully.`
+        );
         await fetchCategories();
         onCategoryChanged?.();
       } else {
-        alert(data.error || 'Kategori silinemedi.');
+        alert(data.error || (locale === 'tr' ? 'Kategori silinemedi.' : 'Could not delete category.'));
       }
     } catch (e) {
       console.error('Error deleting category:', e);
-      alert('Kategori silinirken hata oluştu.');
+      alert(locale === 'tr' ? 'Kategori silinirken hata oluştu.' : 'Error deleting category.');
     }
   };
 
@@ -298,19 +304,23 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
                 <Layers className="w-4 h-4" />
               </span>
               <h2 className="text-base font-bold text-slate-900 m-0">
-                Kütüphane & Pazar Yeri Kategorileri
+                {locale === 'tr'
+                  ? 'Kütüphane & Pazar Yeri Kategorileri'
+                  : 'Library & Marketplace Categories'}
               </h2>
             </div>
             <p className="text-xs text-slate-500 m-0">
-              Dokümanların ve eğitim içeriklerinin filtreleme taksonomisini yönetin, sıralamasını düzenleyin.
+              {locale === 'tr'
+                ? 'Dokümanların ve eğitim içeriklerinin filtreleme taksonomisini yönetin, sıralamasını düzenleyin.'
+                : 'Manage filtering taxonomy and display order for documents and training contents.'}
             </p>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={fetchCategories}
-              className="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
-              title="Kategorileri Yenile"
+              className="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors cursor-pointer"
+              title={locale === 'tr' ? 'Kategorileri Yenile' : 'Refresh Categories'}
             >
               <RefreshCw className="w-4 h-4" />
             </button>
@@ -319,16 +329,20 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
               className="px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer"
             >
               <Plus className="w-4 h-4" />
-              <span>Yeni Kategori Ekle</span>
+              <span>{locale === 'tr' ? 'Yeni Kategori Ekle' : 'Add New Category'}</span>
             </button>
           </div>
         </div>
 
         {/* Categories Table / Cards */}
         {isLoading ? (
-          <div className="py-8 text-center text-xs text-slate-400">Kategoriler yükleniyor...</div>
+          <div className="py-8 text-center text-xs text-slate-400">
+            {locale === 'tr' ? 'Kategoriler yükleniyor...' : 'Loading categories...'}
+          </div>
         ) : categories.length === 0 ? (
-          <div className="py-8 text-center text-xs text-slate-500">Henüz tanımlı kategori bulunamadı.</div>
+          <div className="py-8 text-center text-xs text-slate-500">
+            {locale === 'tr' ? 'Henüz tanımlı kategori bulunamadı.' : 'No defined categories found yet.'}
+          </div>
         ) : (
           <div className="space-y-3">
             {categories.map((cat) => (
@@ -354,19 +368,21 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
                       </span>
                       {cat.isActive ? (
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                          Aktif
+                          {locale === 'tr' ? 'Aktif' : 'Active'}
                         </span>
                       ) : (
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500">
-                          Pasif
+                          {locale === 'tr' ? 'Pasif' : 'Inactive'}
                         </span>
                       )}
-                      <span className="text-[10px] text-slate-400 font-mono">Sıra: {cat.orderIndex}</span>
+                      <span className="text-[10px] text-slate-400 font-mono">
+                        {locale === 'tr' ? `Sıra: ${cat.orderIndex}` : `Order: ${cat.orderIndex}`}
+                      </span>
                     </div>
 
                     {cat.descriptionTr && (
                       <p className="text-xs text-slate-500 m-0 leading-relaxed">
-                        {cat.descriptionTr}
+                        {locale === 'tr' ? cat.descriptionTr : (cat.descriptionEn || cat.descriptionTr)}
                       </p>
                     )}
                   </div>
@@ -378,12 +394,12 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
                     className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     <Edit2 className="w-3.5 h-3.5 text-blue-600" />
-                    <span>Düzenle</span>
+                    <span>{locale === 'tr' ? 'Düzenle' : 'Edit'}</span>
                   </button>
                   <button
                     onClick={() => handleDelete(cat.id, cat.nameTr)}
                     className="p-1.5 rounded-lg text-red-600 hover:bg-red-50 border border-red-200 transition-colors cursor-pointer"
-                    title="Kategoriyi Kaldır"
+                    title={locale === 'tr' ? 'Kategoriyi Kaldır' : 'Remove Category'}
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
@@ -403,11 +419,13 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
                 <Tag className="w-4 h-4" />
               </span>
               <h2 className="text-base font-bold text-slate-900 m-0">
-                Merkezi Erasmus+ Etiket Havuzu
+                {locale === 'tr' ? 'Merkezi Erasmus+ Etiket Havuzu' : 'Central Erasmus+ Tag Pool'}
               </h2>
             </div>
             <p className="text-xs text-slate-500 m-0">
-              Dokümanlarda, kurslarda ve işbaşı ilanlarında kullanılan ortak anahtar kelimeleri ve etiketleri düzenleyin.
+              {locale === 'tr'
+                ? 'Dokümanlarda, kurslarda ve işbaşı ilanlarında kullanılan ortak anahtar kelimeleri ve etiketleri düzenleyin.'
+                : 'Manage shared keywords and tags used across documents, courses, and job shadowing postings.'}
             </p>
           </div>
 
@@ -417,7 +435,7 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
               type="text"
               value={newTagInput}
               onChange={(e) => setNewTagInput(e.target.value)}
-              placeholder="Yeni etiket (örn: SiberGüvenlik)"
+              placeholder={locale === 'tr' ? 'Yeni etiket (örn: SiberGüvenlik)' : 'New tag (e.g. Cybersecurity)'}
               className="px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-hidden focus:ring-2 focus:ring-blue-600 w-48 sm:w-56"
             />
             <button
@@ -425,7 +443,7 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
               className="px-3.5 py-2 rounded-xl bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs transition-colors flex items-center gap-1 cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
-              <span>Ekle</span>
+              <span>{locale === 'tr' ? 'Ekle' : 'Add'}</span>
             </button>
           </form>
         </div>
@@ -442,7 +460,7 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
                 type="button"
                 onClick={() => handleRemoveTag(tag)}
                 className="text-slate-400 hover:text-red-600 transition-colors cursor-pointer"
-                title={`#${tag} etiketini kaldır`}
+                title={locale === 'tr' ? `#${tag} etiketini kaldır` : `Remove tag #${tag}`}
               >
                 <X className="w-3 h-3" />
               </button>
@@ -463,7 +481,9 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
               <div className="flex items-center gap-2">
                 <FolderPlus className="w-5 h-5 text-blue-400" />
                 <h3 className="text-sm font-bold m-0">
-                  {editingCategory ? 'Kategori Düzenle' : 'Yeni Kategori Tanımla'}
+                  {editingCategory
+                    ? (locale === 'tr' ? 'Kategori Düzenle' : 'Edit Category')
+                    : (locale === 'tr' ? 'Yeni Kategori Tanımla' : 'Define New Category')}
                 </h3>
               </div>
               <button
@@ -477,7 +497,9 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
             <form onSubmit={handleSave} className="p-6 overflow-y-auto space-y-4 text-xs">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Kategori Kodu *</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Kategori Kodu *' : 'Category Code *'}
+                  </label>
                   <input
                     type="text"
                     required
@@ -500,31 +522,37 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Kategori Adı (TR) *</label>
+                <label className="block font-bold text-slate-700 mb-1">
+                  {locale === 'tr' ? 'Kategori Adı (TR) *' : 'Category Name (TR) *'}
+                </label>
                 <input
                   type="text"
                   required
                   value={nameTr}
                   onChange={(e) => setNameTr(e.target.value)}
-                  placeholder="Örn: Resmi Başvuru Formları & Web Form Rehberleri"
+                  placeholder={locale === 'tr' ? 'Örn: Resmi Başvuru Formları & Web Form Rehberleri' : 'e.g. Basvuru Formlari'}
                   className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Kategori Adı (EN) *</label>
+                <label className="block font-bold text-slate-700 mb-1">
+                  {locale === 'tr' ? 'Kategori Adı (EN) *' : 'Category Name (EN) *'}
+                </label>
                 <input
                   type="text"
                   required
                   value={nameEn}
                   onChange={(e) => setNameEn(e.target.value)}
-                  placeholder="Örn: Official Application Forms & Guidelines"
+                  placeholder="e.g. Official Application Forms & Guidelines"
                   className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Açıklama (TR)</label>
+                <label className="block font-bold text-slate-700 mb-1">
+                  {locale === 'tr' ? 'Açıklama (TR)' : 'Description (TR)'}
+                </label>
                 <textarea
                   rows={2}
                   value={descriptionTr}
@@ -535,7 +563,9 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">İkon</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'İkon' : 'Icon'}
+                  </label>
                   <select
                     value={icon}
                     onChange={(e) => setIcon(e.target.value)}
@@ -549,7 +579,9 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
                   </select>
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Renk Rozeti</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Renk Rozeti' : 'Color Badge'}
+                  </label>
                   <select
                     value={colorBadge}
                     onChange={(e) => setColorBadge(e.target.value)}
@@ -566,7 +598,9 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Sıralama İndeksi</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Sıralama İndeksi' : 'Order Index'}
+                  </label>
                   <input
                     type="number"
                     min={1}
@@ -576,14 +610,16 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Durum</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Durum' : 'Status'}
+                  </label>
                   <select
                     value={isActive ? 'ACTIVE' : 'INACTIVE'}
                     onChange={(e) => setIsActive(e.target.value === 'ACTIVE')}
                     className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white font-bold"
                   >
-                    <option value="ACTIVE">Aktif (Yayında)</option>
-                    <option value="INACTIVE">Pasif (Gizli)</option>
+                    <option value="ACTIVE">{locale === 'tr' ? 'Aktif (Yayında)' : 'Active (Published)'}</option>
+                    <option value="INACTIVE">{locale === 'tr' ? 'Pasif (Gizli)' : 'Inactive (Hidden)'}</option>
                   </select>
                 </div>
               </div>
@@ -594,7 +630,7 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
                   onClick={() => setIsModalOpen(false)}
                   className="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-bold transition-colors cursor-pointer"
                 >
-                  İptal
+                  {locale === 'tr' ? 'İptal' : 'Cancel'}
                 </button>
                 <button
                   type="submit"
@@ -602,7 +638,11 @@ export function CategoryTagManager({ onCategoryChanged, availableTags = [] }: Ca
                   className="px-5 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold transition-colors shadow-xs cursor-pointer flex items-center gap-1.5"
                 >
                   <Check className="w-4 h-4" />
-                  <span>{isSubmitting ? 'Kaydediliyor...' : 'Kaydet'}</span>
+                  <span>
+                    {isSubmitting
+                      ? (locale === 'tr' ? 'Kaydediliyor...' : 'Saving...')
+                      : (locale === 'tr' ? 'Kaydet' : 'Save')}
+                  </span>
                 </button>
               </div>
             </form>

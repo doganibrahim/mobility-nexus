@@ -43,7 +43,9 @@ export function HostCreateJobShadowingModal({
   const [titleTr, setTitleTr] = useState('');
   const [titleEn, setTitleEn] = useState('');
   const [selectedIsced, setSelectedIsced] = useState(COMMON_ISCED_FIELDS[0].code);
-  const [customVetField, setCustomVetField] = useState(COMMON_ISCED_FIELDS[0].nameTr);
+  const [customVetField, setCustomVetField] = useState(
+    isTr ? COMMON_ISCED_FIELDS[0].nameTr : COMMON_ISCED_FIELDS[0].nameEn
+  );
   const [descriptionTr, setDescriptionTr] = useState('');
   const [descriptionEn, setDescriptionEn] = useState('');
   const [durationDays, setDurationDays] = useState(5);
@@ -60,7 +62,7 @@ export function HostCreateJobShadowingModal({
     setSelectedIsced(code);
     const found = COMMON_ISCED_FIELDS.find((f) => f.code === code);
     if (found) {
-      setCustomVetField(found.nameTr);
+      setCustomVetField(isTr ? found.nameTr : found.nameEn);
     }
   };
 

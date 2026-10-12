@@ -175,10 +175,10 @@ export default function ParticipantProfileCard({
                 {data.mobilityGoal === 'JOB_SHADOWING'
                   ? (locale === 'en'
                       ? 'European host organizations have open Job Shadowing slots in the Marketplace.'
-                      : 'Avrupa ev sahibi kurumların aktif İşbaşı Gözlem kontenjanları Pazar Yeri’nde açık.')
+                      : 'Avrupa ev sahibi kurumların aktif İşbaşı Gözlem kontenjanları Pazaryerinde açık.')
                   : (locale === 'en'
                       ? 'Structured teacher training courses are available in the Marketplace.'
-                      : 'Akredite mesleki eğitimci kursları Pazar Yeri kataloğunda listelenmektedir.')}
+                      : 'Akredite mesleki eğitimci kursları Pazaryeri kataloğunda listelenmektedir.')}
               </p>
             </div>
             <Link

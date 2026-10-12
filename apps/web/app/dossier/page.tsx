@@ -68,6 +68,13 @@ export default function MobilityDossierPage() {
   };
 
   useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Hareketlilik Dosyası | ErasmusMobility'
+        : 'Mobility Dossier | ErasmusMobility';
+  }, [locale]);
+
+  useEffect(() => {
     loadDossiersAndLogs();
   }, []);
 
@@ -93,7 +100,7 @@ export default function MobilityDossierPage() {
           dossierId: selectedDossier.id,
           documentType: doc.documentType,
           format,
-          exporterName: 'Okul Koordinatörü',
+          exporterName: locale === 'tr' ? 'Okul Koordinatörü' : 'School Coordinator',
         }),
       });
 

@@ -68,7 +68,7 @@ export function CourseSessionPickerModal({
       : (isTr ? 'Mücbir Sebep Korumalı İptal Koşulları' : 'Force Majeure Protected Cancellation Policy');
 
   const policyDetail =
-    policyObj?.policyDetailsTr ||
+    (isTr ? policyObj?.policyDetailsTr : policyObj?.policyDetailsEn) ||
     (isTr
       ? 'Hareketlilik başlangıcından 30 gün öncesine kadar ücretsiz %100 iade. 14 güne kadar %50 iade. Ulusal Ajans vize veya mücbir sebep iptallerinde tam hibe güvencesi sunulur.'
       : 'Full 100% refund up to 30 days before mobility. 50% refund up to 14 days. National Agency force majeure and visa guarantees apply.');

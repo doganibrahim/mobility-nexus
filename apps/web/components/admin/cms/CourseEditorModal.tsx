@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Course, CourseSession, CourseLearningOutcome } from '@mobility-nexus/types';
+import { useTranslation } from '@/lib/i18n';
 import {
   X,
   Save,
@@ -31,6 +32,7 @@ export function CourseEditorModal({
   course,
   onSuccess,
 }: CourseEditorModalProps) {
+  const { locale } = useTranslation();
   if (!isOpen || !course) return null;
 
   const [activeTab, setActiveTab] = useState<'BASIC' | 'OUTCOMES' | 'SESSIONS'>('BASIC');
@@ -304,14 +306,16 @@ export function CourseEditorModal({
             </div>
             <div>
               <h2 id="course-editor-title" className="text-sm font-bold m-0">
-                Kurs Yönetimi & Müfredat Düzenleyici
+                {locale === 'tr'
+                  ? 'Kurs Yönetimi & Müfredat Düzenleyici'
+                  : 'Course Management & Syllabus Editor'}
               </h2>
               <p className="text-[11px] text-slate-400 m-0">ID: {course.id}</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            aria-label="Pencereyi kapat"
+            aria-label={locale === 'tr' ? 'Pencereyi kapat' : 'Close window'}
             className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
@@ -329,7 +333,7 @@ export function CourseEditorModal({
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            1. Temel Bilgiler & Fiyat
+            {locale === 'tr' ? '1. Temel Bilgiler & Fiyat' : '1. Basic Info & Fee'}
           </button>
           <button
             type="button"
@@ -340,7 +344,9 @@ export function CourseEditorModal({
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            2. Öğrenme Çıktıları ({outcomes.length})
+            {locale === 'tr'
+              ? `2. Öğrenme Çıktıları (${outcomes.length})`
+              : `2. Learning Outcomes (${outcomes.length})`}
           </button>
           <button
             type="button"
@@ -351,7 +357,9 @@ export function CourseEditorModal({
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            3. Oturumlar & Kontenjan ({sessions.length})
+            {locale === 'tr'
+              ? `3. Oturumlar & Kontenjan (${sessions.length})`
+              : `3. Sessions & Capacity (${sessions.length})`}
           </button>
         </div>
 
@@ -386,7 +394,9 @@ export function CourseEditorModal({
             <form id="course-basic-form" onSubmit={handleSaveCourse} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Kurs Başlığı (TR) *</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Kurs Başlığı (TR) *' : 'Course Title (TR) *'}
+                  </label>
                   <input
                     type="text"
                     required
@@ -396,7 +406,9 @@ export function CourseEditorModal({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Kurs Başlığı (EN) *</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Kurs Başlığı (EN) *' : 'Course Title (EN) *'}
+                  </label>
                   <input
                     type="text"
                     required
@@ -409,7 +421,9 @@ export function CourseEditorModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Ev Sahibi Kurum (Host)</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Ev Sahibi Kurum (Host)' : 'Host Organisation'}
+                  </label>
                   <input
                     type="text"
                     value={hostName}
@@ -418,7 +432,9 @@ export function CourseEditorModal({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Şehir</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Şehir' : 'City'}
+                  </label>
                   <input
                     type="text"
                     value={hostCity}
@@ -427,7 +443,9 @@ export function CourseEditorModal({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Ülke</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Ülke' : 'Country'}
+                  </label>
                   <input
                     type="text"
                     value={hostCountry}
@@ -438,7 +456,9 @@ export function CourseEditorModal({
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Açıklama (TR)</label>
+                <label className="block font-bold text-slate-700 mb-1">
+                  {locale === 'tr' ? 'Açıklama (TR)' : 'Description (TR)'}
+                </label>
                 <textarea
                   rows={3}
                   value={descriptionTr}
@@ -447,7 +467,9 @@ export function CourseEditorModal({
                 />
               </div>
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Açıklama (EN)</label>
+                <label className="block font-bold text-slate-700 mb-1">
+                  {locale === 'tr' ? 'Açıklama (EN)' : 'Description (EN)'}
+                </label>
                 <textarea
                   rows={2}
                   value={descriptionEn}
@@ -458,7 +480,9 @@ export function CourseEditorModal({
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Günlük Kurs Hibesi (€)</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Günlük Kurs Hibesi (€)' : 'Daily Fee (€)'}
+                  </label>
                   <input
                     type="number"
                     min={0}
@@ -468,7 +492,9 @@ export function CourseEditorModal({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Süre (Gün)</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Süre (Gün)' : 'Duration (Days)'}
+                  </label>
                   <input
                     type="number"
                     min={1}
@@ -479,7 +505,9 @@ export function CourseEditorModal({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Eğitim Dili</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Eğitim Dili' : 'Language'}
+                  </label>
                   <input
                     type="text"
                     value={language}
@@ -488,31 +516,37 @@ export function CourseEditorModal({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Yayın Durumu</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Yayın Durumu' : 'Publish Status'}
+                  </label>
                   <select
                     value={isPublished ? 'PUBLISHED' : 'DRAFT'}
                     onChange={(e) => setIsPublished(e.target.value === 'PUBLISHED')}
                     className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white font-bold"
                   >
-                    <option value="PUBLISHED">Yayında (Aktif)</option>
-                    <option value="DRAFT">Taslak / Gizli</option>
+                    <option value="PUBLISHED">{locale === 'tr' ? 'Yayında (Aktif)' : 'Published (Active)'}</option>
+                    <option value="DRAFT">{locale === 'tr' ? 'Taslak / Gizli' : 'Draft / Hidden'}</option>
                   </select>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">ISCED Meslek Alanı</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'ISCED Meslek Alanı' : 'ISCED Vocational Field'}
+                  </label>
                   <input
                     type="text"
                     value={iscedName}
                     onChange={(e) => setIscedName(e.target.value)}
-                    placeholder="Örn: Bilişim ve İletişim Teknolojileri"
+                    placeholder={locale === 'tr' ? 'Örn: Bilişim ve İletişim Teknolojileri' : 'e.g. ICT'}
                     className="w-full px-3 py-2 rounded-lg border border-slate-300"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Etiketler (Virgülle)</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {locale === 'tr' ? 'Etiketler (Virgülle)' : 'Tags (Comma separated)'}
+                  </label>
                   <input
                     type="text"
                     value={tagsInput}
@@ -529,28 +563,30 @@ export function CourseEditorModal({
           {activeTab === 'OUTCOMES' && (
             <div className="space-y-4">
               <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl text-blue-900 leading-relaxed text-xs">
-                Avrupa Komisyonu ESCO ve ECVET ilkeleri gereği kursun kazandıracağı somut mesleki öğrenme çıktılarını ekleyin.
+                {locale === 'tr'
+                  ? 'Avrupa Komisyonu ESCO ve ECVET ilkeleri gereği kursun kazandıracağı somut mesleki öğrenme çıktılarını ekleyin.'
+                  : 'Add concrete vocational learning outcomes in accordance with European Commission ESCO and ECVET principles.'}
               </div>
 
               {/* Add Outcome Form */}
               <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
                 <span className="font-bold text-slate-800 flex items-center gap-1.5">
                   <Plus className="w-3.5 h-3.5 text-blue-600" />
-                  <span>Yeni Öğrenme Çıktısı Ekle</span>
+                  <span>{locale === 'tr' ? 'Yeni Öğrenme Çıktısı Ekle' : 'Add New Learning Outcome'}</span>
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <input
                     type="text"
                     value={newOutcomeTr}
                     onChange={(e) => setNewOutcomeTr(e.target.value)}
-                    placeholder="Çıktı açıklaması (TR) *"
+                    placeholder={locale === 'tr' ? 'Çıktı açıklaması (TR) *' : 'Outcome description (TR) *'}
                     className="px-3 py-2 rounded-lg border border-slate-300 bg-white"
                   />
                   <input
                     type="text"
                     value={newOutcomeEn}
                     onChange={(e) => setNewOutcomeEn(e.target.value)}
-                    placeholder="Learning outcome (EN)"
+                    placeholder={locale === 'tr' ? 'Öğrenme çıktısı (EN)' : 'Learning outcome (EN)'}
                     className="px-3 py-2 rounded-lg border border-slate-300 bg-white"
                   />
                 </div>
@@ -560,7 +596,7 @@ export function CourseEditorModal({
                     onClick={handleAddOutcome}
                     className="px-3 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs transition-colors cursor-pointer"
                   >
-                    Listeye Ekle
+                    {locale === 'tr' ? 'Listeye Ekle' : 'Add to List'}
                   </button>
                 </div>
               </div>
@@ -568,7 +604,9 @@ export function CourseEditorModal({
               {/* Outcomes List */}
               <div className="space-y-2">
                 {outcomes.length === 0 ? (
-                  <div className="py-6 text-center text-slate-400">Henüz öğrenme çıktısı eklenmedi.</div>
+                  <div className="py-6 text-center text-slate-400">
+                    {locale === 'tr' ? 'Henüz öğrenme çıktısı eklenmedi.' : 'No learning outcomes added yet.'}
+                  </div>
                 ) : (
                   outcomes.map((o, idx) => (
                     <div
@@ -604,11 +642,13 @@ export function CourseEditorModal({
               <form onSubmit={handleCreateSession} className="p-4 rounded-xl border border-blue-200 bg-blue-50/50 space-y-3">
                 <span className="font-bold text-blue-900 flex items-center gap-1.5">
                   <Calendar className="w-4 h-4 text-blue-700" />
-                  <span>Yeni Seans / Oturum Takvimi Tanımla</span>
+                  <span>{locale === 'tr' ? 'Yeni Seans / Oturum Takvimi Tanımla' : 'Define New Session / Schedule'}</span>
                 </span>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">Başlangıç Tarihi *</label>
+                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                      {locale === 'tr' ? 'Başlangıç Tarihi *' : 'Start Date *'}
+                    </label>
                     <input
                       type="date"
                       required
@@ -618,7 +658,9 @@ export function CourseEditorModal({
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">Bitiş Tarihi *</label>
+                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                      {locale === 'tr' ? 'Bitiş Tarihi *' : 'End Date *'}
+                    </label>
                     <input
                       type="date"
                       required
@@ -628,7 +670,9 @@ export function CourseEditorModal({
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">Şehir & Ülke</label>
+                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                      {locale === 'tr' ? 'Şehir & Ülke' : 'City & Country'}
+                    </label>
                     <input
                       type="text"
                       required
@@ -642,7 +686,9 @@ export function CourseEditorModal({
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">Kontenjan</label>
+                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                      {locale === 'tr' ? 'Kontenjan' : 'Capacity'}
+                    </label>
                     <input
                       type="number"
                       min={1}
@@ -660,7 +706,11 @@ export function CourseEditorModal({
                     className="px-4 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
-                    <span>{isAddingSession ? 'Ekleniyor...' : 'Seansı Kaydet'}</span>
+                    <span>
+                      {isAddingSession
+                        ? (locale === 'tr' ? 'Ekleniyor...' : 'Adding...')
+                        : (locale === 'tr' ? 'Seansı Kaydet' : 'Save Session')}
+                    </span>
                   </button>
                 </div>
               </form>
@@ -668,7 +718,9 @@ export function CourseEditorModal({
               {/* Sessions List */}
               <div className="space-y-2">
                 {sessions.length === 0 ? (
-                  <div className="py-6 text-center text-slate-400">Bu kurs için henüz aktif bir seans tanımlanmamış.</div>
+                  <div className="py-6 text-center text-slate-400">
+                    {locale === 'tr' ? 'Bu kurs için henüz aktif bir seans tanımlanmamış.' : 'No active sessions defined for this course yet.'}
+                  </div>
                 ) : (
                   sessions.map((ses) => (
                     <div
@@ -688,11 +740,13 @@ export function CourseEditorModal({
                                 : 'bg-red-50 text-red-800 border border-red-200'
                             }`}
                           >
-                            {ses.status === 'OPEN' ? 'Açık' : 'Dolu / Kapalı'}
+                            {ses.status === 'OPEN'
+                              ? (locale === 'tr' ? 'Açık' : 'Open')
+                              : (locale === 'tr' ? 'Dolu / Kapalı' : 'Full / Closed')}
                           </span>
                         </div>
                         <div className="text-[11px] text-slate-400 font-mono">
-                          Kontenjan: {ses.enrolledCount || 0} / {ses.capacity} Katılımcı
+                          {locale === 'tr' ? 'Kontenjan' : 'Capacity'}: {ses.enrolledCount || 0} / {ses.capacity} {locale === 'tr' ? 'Katılımcı' : 'Participants'}
                         </div>
                       </div>
 
@@ -702,13 +756,15 @@ export function CourseEditorModal({
                           onClick={() => handleToggleSessionStatus(ses)}
                           className="px-2.5 py-1 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition-colors cursor-pointer"
                         >
-                          {ses.status === 'OPEN' ? 'Kontenjanı Kapat' : 'Yeniden Aç'}
+                          {ses.status === 'OPEN'
+                            ? (locale === 'tr' ? 'Kontenjanı Kapat' : 'Close Enrollment')
+                            : (locale === 'tr' ? 'Yeniden Aç' : 'Reopen')}
                         </button>
                         <button
                           type="button"
                           onClick={() => handleDeleteSession(ses.id)}
                           className="p-1 rounded-lg text-red-600 hover:bg-red-50 border border-red-200 transition-colors cursor-pointer"
-                          title="Seansı Sil"
+                          title={locale === 'tr' ? 'Seansı Sil' : 'Delete Session'}
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -730,7 +786,11 @@ export function CourseEditorModal({
             className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-red-600 hover:bg-red-50 border border-red-200 font-bold transition-colors cursor-pointer"
           >
             <Trash2 className="w-4 h-4" />
-            <span>{isDeleting ? 'Siliniyor...' : 'Kursu Kaldır'}</span>
+            <span>
+              {isDeleting
+                ? (locale === 'tr' ? 'Siliniyor...' : 'Deleting...')
+                : (locale === 'tr' ? 'Kursu Kaldır' : 'Remove Course')}
+            </span>
           </button>
 
           <div className="flex items-center gap-2">
@@ -739,7 +799,7 @@ export function CourseEditorModal({
               onClick={onClose}
               className="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-200/60 font-bold transition-colors cursor-pointer"
             >
-              Kapat
+              {locale === 'tr' ? 'Kapat' : 'Close'}
             </button>
             <button
               type="button"
@@ -748,7 +808,11 @@ export function CourseEditorModal({
               className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold transition-colors shadow-xs cursor-pointer"
             >
               <Save className="w-4 h-4" />
-              <span>{isSubmitting ? 'Kaydediliyor...' : 'Değişiklikleri Kaydet'}</span>
+              <span>
+                {isSubmitting
+                  ? (locale === 'tr' ? 'Kaydediliyor...' : 'Saving...')
+                  : (locale === 'tr' ? 'Değişiklikleri Kaydet' : 'Save Changes')}
+              </span>
             </button>
           </div>
         </div>

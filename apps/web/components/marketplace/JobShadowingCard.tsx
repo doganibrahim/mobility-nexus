@@ -129,7 +129,7 @@ export function JobShadowingCard({ offer, onApply, lang }: JobShadowingCardProps
           <div className="mt-3 pt-2.5 border-t border-slate-100 flex flex-wrap items-center gap-1.5 text-[11px]">
             {/* Cancellation Policy Badge */}
             <span
-              title={policyObj?.policyDetailsTr || policyLabel}
+              title={(isTr ? policyObj?.policyDetailsTr : policyObj?.policyDetailsEn) || policyLabel}
               className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200/90 font-medium"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />

@@ -117,6 +117,14 @@ export default function OnboardingPage() {
   const [legalConsentAccepted, setLegalConsentAccepted] = useState(false);
   const [schoolConsentPublicDisplay, setSchoolConsentPublicDisplay] = useState(false);
 
+  // Dynamic Page Title
+  useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Kurumsal Kayıt & Katılım | ErasmusMobility'
+        : 'Institutional Onboarding | ErasmusMobility';
+  }, [locale]);
+
   // Fetch Reference Data on mount
   useEffect(() => {
     async function loadReferenceData() {

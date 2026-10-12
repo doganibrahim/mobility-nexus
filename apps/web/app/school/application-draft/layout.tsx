@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Application Draft Assistant',
+  title: 'Başvuru Taslağı Asistanı / Application Draft Assistant | ErasmusMobility',
   robots: {
     index: false,
     follow: false,

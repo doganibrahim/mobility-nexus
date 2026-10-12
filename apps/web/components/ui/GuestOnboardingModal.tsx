@@ -757,7 +757,7 @@ export default function GuestOnboardingModal({
                 <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 group-hover:text-blue-950">
                   <span>
                     {selectedRolePreview === 'HOST'
-                      ? locale === 'tr' ? 'Host Panelini Aç' : 'Launch Host Dashboard'
+                      ? locale === 'tr' ? 'Ev Sahibi Panelini Aç' : 'Launch Host Dashboard'
                       : locale === 'tr' ? 'Okul Karar Motorunu Aç' : 'Launch School Pipeline'}
                   </span>
                   <span>→</span>

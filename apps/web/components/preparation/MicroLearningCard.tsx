@@ -126,7 +126,10 @@ export function MicroLearningCard({
       await onCompletedStep(module.id, score);
       setQuizSubmitted(true);
     } catch (e: any) {
-      setQuizError(e.message || 'Kayıt sırasında hata oluştu.');
+      setQuizError(
+        e.message ||
+          (locale === 'tr' ? 'Kayıt sırasında hata oluştu.' : 'An error occurred during save.')
+      );
     } finally {
       setIsSubmitting(false);
     }

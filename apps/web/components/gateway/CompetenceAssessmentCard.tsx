@@ -81,10 +81,10 @@ export default function CompetenceAssessmentCard({
                       <span className="text-blue-700 font-bold mr-1.5">
                         {String(q.id).padStart(2, '0')}.
                       </span>
-                      {q.title}
+                      {locale === 'en' && q.titleEn ? q.titleEn : q.title}
                     </div>
                     <div className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      {q.description}
+                      {locale === 'en' && q.descriptionEn ? q.descriptionEn : q.description}
                     </div>
                   </div>
                 </div>

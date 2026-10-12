@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { AdminCreateCourseWithSessionsDto } from '@mobility-nexus/types';
+import { useTranslation } from '@/lib/i18n';
 import { X, Plus, BookOpen, AlertCircle, CheckCircle, Calendar, Sparkles } from 'lucide-react';
 
 interface AdminCreateCourseModalProps {
@@ -15,6 +16,7 @@ export function AdminCreateCourseModal({
   onClose,
   onSuccess,
 }: AdminCreateCourseModalProps) {
+  const { locale } = useTranslation();
   if (!isOpen) return null;
 
   const [titleTr, setTitleTr] = useState('');
@@ -22,16 +24,16 @@ export function AdminCreateCourseModal({
   const [descriptionTr, setDescriptionTr] = useState('');
   const [descriptionEn, setDescriptionEn] = useState('');
   const [hostName, setHostName] = useState('CAPPINNO European Mobility Consortium');
-  const [hostCountry, setHostCountry] = useState('Almanya');
+  const [hostCountry, setHostCountry] = useState(locale === 'tr' ? 'Almanya' : 'Germany');
   const [hostCity, setHostCity] = useState('Berlin');
   const [hostOid, setHostOid] = useState('E10009988');
   const [iscedCode, setIscedCode] = useState('0714');
-  const [iscedName, setIscedName] = useState('Elektronik ve Otomasyon');
+  const [iscedName, setIscedName] = useState(locale === 'tr' ? 'Elektronik ve Otomasyon' : 'Electronics and Automation');
   const [durationDays, setDurationDays] = useState(5);
   const [dailyFeeEur, setDailyFeeEur] = useState(80);
   const [language, setLanguage] = useState('English');
   const [minLanguageLevel, setMinLanguageLevel] = useState<'A2' | 'B1' | 'B2' | 'C1'>('B1');
-  const [tagsInput, setTagsInput] = useState('Erasmus+, Mesleki Eğitim, İnovasyon');
+  const [tagsInput, setTagsInput] = useState(locale === 'tr' ? 'Erasmus+, Mesleki Eğitim, İnovasyon' : 'Erasmus+, VET, Innovation');
 
   // Initial session dates
   const [sessionStartDate, setSessionStartDate] = useState('');
@@ -117,8 +119,12 @@ export function AdminCreateCourseModal({
               <Plus className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-sm font-bold m-0">Yeni Kurs ve Seans Tanımlama</h2>
-              <p className="text-[11px] text-slate-400 m-0">Platform Admin Yetkili Yayın</p>
+              <h2 className="text-sm font-bold m-0">
+                {locale === 'tr' ? 'Yeni Kurs ve Seans Tanımlama' : 'Define New Course & Session'}
+              </h2>
+              <p className="text-[11px] text-slate-400 m-0">
+                {locale === 'tr' ? 'Platform Admin Yetkili Yayın' : 'Platform Admin Authorized Publishing'}
+              </p>
             </div>
           </div>
           <button
@@ -140,24 +146,28 @@ export function AdminCreateCourseModal({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Kurs Başlığı (TR) *</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Kurs Başlığı (TR) *' : 'Course Title (TR) *'}
+              </label>
               <input
                 type="text"
                 required
                 value={titleTr}
                 onChange={(e) => setTitleTr(e.target.value)}
-                placeholder="Örn: Siber Güvenlik ve Ağ Savunması"
+                placeholder={locale === 'tr' ? 'Örn: Siber Güvenlik ve Ağ Savunması' : 'e.g. Siber Guvenlik'}
                 className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600"
               />
             </div>
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Kurs Başlığı (EN) *</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Kurs Başlığı (EN) *' : 'Course Title (EN) *'}
+              </label>
               <input
                 type="text"
                 required
                 value={titleEn}
                 onChange={(e) => setTitleEn(e.target.value)}
-                placeholder="Örn: Cybersecurity & Network Defense"
+                placeholder="e.g. Cybersecurity & Network Defense"
                 className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600"
               />
             </div>
@@ -165,7 +175,9 @@ export function AdminCreateCourseModal({
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Ev Sahibi (Host) Kurum *</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Ev Sahibi (Host) Kurum *' : 'Host Organisation *'}
+              </label>
               <input
                 type="text"
                 required
@@ -175,7 +187,9 @@ export function AdminCreateCourseModal({
               />
             </div>
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Şehir *</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Şehir *' : 'City *'}
+              </label>
               <input
                 type="text"
                 required
@@ -185,7 +199,9 @@ export function AdminCreateCourseModal({
               />
             </div>
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Ülke *</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Ülke *' : 'Country *'}
+              </label>
               <input
                 type="text"
                 required
@@ -197,20 +213,28 @@ export function AdminCreateCourseModal({
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 mb-1">Açıklama (TR) *</label>
+            <label className="block font-bold text-slate-700 mb-1">
+              {locale === 'tr' ? 'Açıklama (TR) *' : 'Description (TR) *'}
+            </label>
             <textarea
               rows={3}
               required
               value={descriptionTr}
               onChange={(e) => setDescriptionTr(e.target.value)}
-              placeholder="Kurs müfredatı, kazanımları ve katılımcı profili hakkında özet bilgi..."
+              placeholder={
+                locale === 'tr'
+                  ? 'Kurs müfredatı, kazanımları ve katılımcı profili hakkında özet bilgi...'
+                  : 'Summary of syllabus, outcomes and participant requirements...'
+              }
               className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600"
             />
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Günlük Hibe (€/gün)</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Günlük Hibe (€/gün)' : 'Daily Fee (€/day)'}
+              </label>
               <input
                 type="number"
                 min={0}
@@ -220,7 +244,9 @@ export function AdminCreateCourseModal({
               />
             </div>
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Süre (Gün)</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Süre (Gün)' : 'Duration (Days)'}
+              </label>
               <input
                 type="number"
                 min={1}
@@ -231,7 +257,9 @@ export function AdminCreateCourseModal({
               />
             </div>
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Eğitim Dili</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Eğitim Dili' : 'Language'}
+              </label>
               <input
                 type="text"
                 value={language}
@@ -240,14 +268,16 @@ export function AdminCreateCourseModal({
               />
             </div>
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Min. Dil Seviyesi</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Min. Dil Seviyesi' : 'Min. Level'}
+              </label>
               <select
                 value={minLanguageLevel}
                 onChange={(e) => setMinLanguageLevel(e.target.value as any)}
                 className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white"
               >
                 <option value="A2">A2</option>
-                <option value="B1">B1 (Önerilen)</option>
+                <option value="B1">{locale === 'tr' ? 'B1 (Önerilen)' : 'B1 (Recommended)'}</option>
                 <option value="B2">B2</option>
                 <option value="C1">C1</option>
               </select>
@@ -256,7 +286,9 @@ export function AdminCreateCourseModal({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block font-bold text-slate-700 mb-1">ISCED Kodu & Alan Adı *</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'ISCED Kodu & Alan Adı *' : 'ISCED Code & Field *'}
+              </label>
               <div className="flex gap-2">
                 <input
                   type="text"
@@ -270,13 +302,15 @@ export function AdminCreateCourseModal({
                   type="text"
                   value={iscedName}
                   onChange={(e) => setIscedName(e.target.value)}
-                  placeholder="Elektronik ve Otomasyon"
+                  placeholder={locale === 'tr' ? 'Elektronik ve Otomasyon' : 'Electronics and Automation'}
                   className="flex-1 px-3 py-2 rounded-lg border border-slate-300"
                 />
               </div>
             </div>
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Etiketler (Virgülle ayırın)</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Etiketler (Virgülle ayırın)' : 'Tags (Comma separated)'}
+              </label>
               <input
                 type="text"
                 value={tagsInput}
@@ -290,11 +324,17 @@ export function AdminCreateCourseModal({
           <div className="p-3.5 bg-blue-50/70 border border-blue-200 rounded-xl space-y-2">
             <span className="font-bold text-blue-900 flex items-center gap-1.5">
               <Calendar className="w-4 h-4 text-blue-700" />
-              <span>İlk Kurs Seansı Tanımı (İsteğe Bağlı)</span>
+              <span>
+                {locale === 'tr'
+                  ? 'İlk Kurs Seansı Tanımı (İsteğe Bağlı)'
+                  : 'Initial Session Calendar (Optional)'}
+              </span>
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 mb-1">Başlangıç</label>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                  {locale === 'tr' ? 'Başlangıç' : 'Start Date'}
+                </label>
                 <input
                   type="date"
                   value={sessionStartDate}
@@ -303,7 +343,9 @@ export function AdminCreateCourseModal({
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 mb-1">Bitiş</label>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                  {locale === 'tr' ? 'Bitiş' : 'End Date'}
+                </label>
                 <input
                   type="date"
                   value={sessionEndDate}
@@ -312,7 +354,9 @@ export function AdminCreateCourseModal({
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 mb-1">Kontenjan</label>
+                <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                  {locale === 'tr' ? 'Kontenjan' : 'Capacity'}
+                </label>
                 <input
                   type="number"
                   min={1}
@@ -331,7 +375,7 @@ export function AdminCreateCourseModal({
               onClick={onClose}
               className="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-bold transition-colors cursor-pointer"
             >
-              İptal
+              {locale === 'tr' ? 'İptal' : 'Cancel'}
             </button>
             <button
               type="submit"
@@ -339,7 +383,11 @@ export function AdminCreateCourseModal({
               className="px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer"
             >
               <Plus className="w-4 h-4" />
-              <span>{isSubmitting ? 'Oluşturuluyor...' : 'Kursu Oluştur ve Yayına Al'}</span>
+              <span>
+                {isSubmitting
+                  ? (locale === 'tr' ? 'Oluşturuluyor...' : 'Creating...')
+                  : (locale === 'tr' ? 'Kursu Oluştur ve Yayına Al' : 'Create & Publish Course')}
+              </span>
             </button>
           </div>
         </form>

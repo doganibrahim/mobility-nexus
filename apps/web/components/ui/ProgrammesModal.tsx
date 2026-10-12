@@ -74,7 +74,8 @@ export default function ProgrammesModal({
               type="button"
               className="rounded-xl bg-white p-2.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors border border-slate-200"
               onClick={onClose}
-              title="Kapat"
+              title={locale === 'tr' ? 'Kapat' : 'Close'}
+              aria-label={locale === 'tr' ? 'Kapat' : 'Close'}
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

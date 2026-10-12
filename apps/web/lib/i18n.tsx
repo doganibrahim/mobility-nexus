@@ -798,7 +798,7 @@ const TRANSLATIONS: Record<Locale, Translations> = {
         home: 'Anasayfa',
         about: 'Hakkımızda',
         platform: {
-          label: 'Mobility Hub',
+          label: 'Hareketlilik Merkezi',
           desc: 'EMaaS karar, eşleştirme ve planlama araçları',
           pipeline: '5 Adımlı Hareketlilik Planı',
           pipelineDesc: 'Okul profili, ESCO analizi ve hibe karar motoru',

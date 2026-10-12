@@ -22,6 +22,13 @@ export default function Home() {
 
   const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
 
+  useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Ana Sayfa | ErasmusMobility'
+        : 'Home | ErasmusMobility';
+  }, [locale]);
+
   // Guest role exploration mode ('GATEWAY' | 'SCHOOL' | 'HOST' | 'GUIDE') - defaults to GATEWAY for visitors
   const [guestMode, setGuestMode] = useState<'GATEWAY' | 'SCHOOL' | 'HOST' | 'GUIDE'>('GATEWAY');
 
@@ -159,7 +166,7 @@ export default function Home() {
                 }`}
               >
                 <span>🚪</span>
-                <span>{locale === 'tr' ? 'Giriş Kapısı (Ana)' : 'Gateways'}</span>
+                <span>{locale === 'tr' ? 'Giriş Kapıları (Ana)' : 'Gateways'}</span>
               </button>
 
               <button
@@ -191,7 +198,7 @@ export default function Home() {
                 }`}
               >
                 <span>🏢</span>
-                <span>{locale === 'tr' ? 'Host Paneli' : 'Host View'}</span>
+                <span>{locale === 'tr' ? 'Ev Sahibi Paneli' : 'Host View'}</span>
               </button>
 
               <Link
@@ -206,7 +213,7 @@ export default function Home() {
                 href="/school/pipeline"
                 className="px-3 py-1.5 rounded-lg text-xs font-black bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-xs flex items-center gap-1.5 ml-1"
               >
-                <span>{locale === 'tr' ? 'Hareketliliğinizi Planlayın' : 'Plan your mobility'}</span>
+                <span>{locale === 'tr' ? 'Hareketliliğinizi Planlayın' : 'Plan Your Mobility'}</span>
                 <span>→</span>
               </Link>
             </div>

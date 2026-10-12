@@ -280,7 +280,9 @@ export default function HostDashboardView({
               </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-slate-600">Vergi / VAT No:</span>
+              <span className="text-slate-600">
+                {locale === 'tr' ? 'Vergi / KDV No:' : 'Tax / VAT ID:'}
+              </span>
               <span className="font-mono font-bold text-slate-900">
                 {host.taxVatNumber || (locale === 'tr' ? 'Belirtilmedi' : 'Not set')}
               </span>

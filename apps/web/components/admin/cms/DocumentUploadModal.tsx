@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from '@/lib/i18n';
 import { LibraryDocument } from '@/lib/library-db';
 import { X, Upload, Save, AlertCircle, CheckCircle, FileText } from 'lucide-react';
 
@@ -17,6 +18,7 @@ export function DocumentUploadModal({
   documentToEdit,
   onSuccess,
 }: DocumentUploadModalProps) {
+  const { locale } = useTranslation();
   if (!isOpen) return null;
 
   const isEditing = !!documentToEdit;
@@ -105,7 +107,7 @@ export function DocumentUploadModal({
 
       const data = await res.json();
       if (!res.ok || !data.success) {
-        throw new Error(data.error || 'İşlem başarısız oldu.');
+        throw new Error(data.error || (locale === 'tr' ? 'İşlem başarısız oldu.' : 'Operation failed.'));
       }
 
       setIsDone(true);
@@ -114,7 +116,7 @@ export function DocumentUploadModal({
         onClose();
       }, 700);
     } catch (err: any) {
-      setErrorMsg(err.message || 'Hata oluştu.');
+      setErrorMsg(err.message || (locale === 'tr' ? 'Hata oluştu.' : 'An error occurred.'));
     } finally {
       setIsSubmitting(false);
     }
@@ -144,16 +146,20 @@ export function DocumentUploadModal({
             </div>
             <div>
               <h2 id="doc-modal-title" className="text-sm font-bold">
-                {isEditing ? 'Kütüphane Dokümanını Güncelle' : 'Kütüphaneye Yeni Doküman / Rehber Ekle'}
+                {isEditing
+                  ? (locale === 'tr' ? 'Kütüphane Dokümanını Güncelle' : 'Update Library Document')
+                  : (locale === 'tr' ? 'Kütüphaneye Yeni Doküman / Rehber Ekle' : 'Add New Document / Guide to Library')}
               </h2>
               <p className="text-[11px] text-slate-400">
-                {isEditing ? `ID: ${documentToEdit?.id}` : 'Avrupa Komisyonu form ve rehber yayını'}
+                {isEditing
+                  ? `ID: ${documentToEdit?.id}`
+                  : (locale === 'tr' ? 'Avrupa Komisyonu form ve rehber yayını' : 'European Commission forms and guidance publishing')}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            aria-label="Pencereyi kapat"
+            aria-label={locale === 'tr' ? 'Pencereyi kapat' : 'Close window'}
             className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
@@ -172,13 +178,19 @@ export function DocumentUploadModal({
           {isDone && (
             <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 flex items-center gap-2 font-bold">
               <CheckCircle className="w-4 h-4 shrink-0" />
-              <span>Doküman başarıyla {isEditing ? 'güncellendi' : 'yayınlandı'}!</span>
+              <span>
+                {locale === 'tr'
+                  ? `Doküman başarıyla ${isEditing ? 'güncellendi' : 'yayınlandı'}!`
+                  : `Document ${isEditing ? 'updated' : 'published'} successfully!`}
+              </span>
             </div>
           )}
 
           {/* Titles */}
           <div>
-            <label className="block font-bold text-slate-700 mb-1">Doküman Başlığı (TR) *</label>
+            <label className="block font-bold text-slate-700 mb-1">
+              {locale === 'tr' ? 'Doküman Başlığı (TR) *' : 'Document Title (TR) *'}
+            </label>
             <input
               type="text"
               required
@@ -190,12 +202,14 @@ export function DocumentUploadModal({
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 mb-1">Doküman Başlığı (EN)</label>
+            <label className="block font-bold text-slate-700 mb-1">
+              {locale === 'tr' ? 'Doküman Başlığı (EN)' : 'Document Title (EN)'}
+            </label>
             <input
               type="text"
               value={titleEn}
               onChange={(e) => setTitleEn(e.target.value)}
-              placeholder="Örn: 2026 KA121-VET Annual Grant Allocation Form Guide"
+              placeholder="e.g. 2026 KA121-VET Annual Grant Allocation Form Guide"
               className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-emerald-600"
             />
           </div>
@@ -203,37 +217,43 @@ export function DocumentUploadModal({
           {/* Category, Format, File Size */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Kategori *</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Kategori *' : 'Category *'}
+              </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as any)}
                 className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white font-bold"
               >
-                <option value="FORMS">📝 Başvuru Formları (FORMS)</option>
-                <option value="GUIDES">📘 Rehber & Standartlar (GUIDES)</option>
-                <option value="TEMPLATES">📄 Resmi Şablonlar (TEMPLATES)</option>
-                <option value="OFFICIAL">🏛️ Resmi Program Rehberi (OFFICIAL)</option>
-                <option value="LEGAL">⚖️ Hukuki & KVKK (LEGAL)</option>
+                <option value="FORMS">{locale === 'tr' ? '📝 Başvuru Formları (FORMS)' : '📝 Application Forms (FORMS)'}</option>
+                <option value="GUIDES">{locale === 'tr' ? '📘 Rehber & Standartlar (GUIDES)' : '📘 Guides & Standards (GUIDES)'}</option>
+                <option value="TEMPLATES">{locale === 'tr' ? '📄 Resmi Şablonlar (TEMPLATES)' : '📄 Official Templates (TEMPLATES)'}</option>
+                <option value="OFFICIAL">{locale === 'tr' ? '🏛️ Resmi Program Rehberi (OFFICIAL)' : '🏛️ Official Programme Guide (OFFICIAL)'}</option>
+                <option value="LEGAL">{locale === 'tr' ? '⚖️ Hukuki & KVKK (LEGAL)' : '⚖️ Legal & Privacy (LEGAL)'}</option>
               </select>
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Dosya Formatı</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Dosya Formatı' : 'File Format'}
+              </label>
               <select
                 value={fileFormat}
                 onChange={(e) => setFileFormat(e.target.value as any)}
                 className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white font-bold"
               >
-                <option value="PDF">PDF Dokümanı</option>
+                <option value="PDF">{locale === 'tr' ? 'PDF Dokümanı' : 'PDF Document'}</option>
                 <option value="DOCX">Word (DOCX)</option>
                 <option value="XLSX">Excel (XLSX)</option>
-                <option value="ZIP">Arşiv (ZIP)</option>
-                <option value="LINK">Dış Bağlantı (URL)</option>
+                <option value="ZIP">{locale === 'tr' ? 'Arşiv (ZIP)' : 'Archive (ZIP)'}</option>
+                <option value="LINK">{locale === 'tr' ? 'Dış Bağlantı (URL)' : 'External Link (URL)'}</option>
               </select>
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Dosya Boyutu</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Dosya Boyutu' : 'File Size'}
+              </label>
               <input
                 type="text"
                 value={fileSize}
@@ -247,7 +267,9 @@ export function DocumentUploadModal({
           {/* Download URL */}
           <div>
             <label className="block font-bold text-slate-700 mb-1">
-              İndirme Bağlantısı / URL (Örn: /guides/belge.pdf veya https://...) *
+              {locale === 'tr'
+                ? 'İndirme Bağlantısı / URL (Örn: /guides/belge.pdf veya https://...) *'
+                : 'Download Link / URL (e.g. /guides/doc.pdf or https://...) *'}
             </label>
             <input
               type="text"
@@ -261,13 +283,15 @@ export function DocumentUploadModal({
 
           {/* Descriptions */}
           <div>
-            <label className="block font-bold text-slate-700 mb-1">Açıklama (TR) *</label>
+            <label className="block font-bold text-slate-700 mb-1">
+              {locale === 'tr' ? 'Açıklama (TR) *' : 'Description (TR) *'}
+            </label>
             <textarea
               rows={2}
               required
               value={descriptionTr}
               onChange={(e) => setDescriptionTr(e.target.value)}
-              placeholder="Dokümanın içeriği, hedef kitlesi ve resmi kullanım amacı..."
+              placeholder={locale === 'tr' ? 'Dokümanın içeriği, hedef kitlesi ve resmi kullanım amacı...' : 'Document content, target audience and official usage purpose...'}
               className="w-full px-3 py-2 rounded-lg border border-slate-300"
             />
           </div>
@@ -275,7 +299,9 @@ export function DocumentUploadModal({
           {/* Tags & Featured */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center">
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Etiketler (Virgülle)</label>
+              <label className="block font-bold text-slate-700 mb-1">
+                {locale === 'tr' ? 'Etiketler (Virgülle)' : 'Tags (Comma separated)'}
+              </label>
               <input
                 type="text"
                 value={tagsInput}
@@ -293,7 +319,7 @@ export function DocumentUploadModal({
                   onChange={(e) => setIsFeatured(e.target.checked)}
                   className="w-4 h-4 rounded-sm text-emerald-600 focus:ring-emerald-500"
                 />
-                <span>Öne Çıkan Belge Olarak İşaretle</span>
+                <span>{locale === 'tr' ? 'Öne Çıkan Belge Olarak İşaretle' : 'Mark as Featured Document'}</span>
               </label>
             </div>
           </div>
@@ -303,9 +329,9 @@ export function DocumentUploadModal({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-bold transition-colors"
+              className="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-bold transition-colors cursor-pointer"
             >
-              İptal
+              {locale === 'tr' ? 'İptal' : 'Cancel'}
             </button>
             <button
               type="submit"
@@ -313,7 +339,13 @@ export function DocumentUploadModal({
               className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold transition-colors shadow-xs cursor-pointer"
             >
               {isEditing ? <Save className="w-4 h-4" /> : <Upload className="w-4 h-4" />}
-              <span>{isSubmitting ? 'Kaydediliyor...' : isEditing ? 'Güncelle' : 'Yayına Al'}</span>
+              <span>
+                {isSubmitting
+                  ? (locale === 'tr' ? 'Kaydediliyor...' : 'Saving...')
+                  : isEditing
+                  ? (locale === 'tr' ? 'Güncelle' : 'Update')
+                  : (locale === 'tr' ? 'Yayına Al' : 'Publish')}
+              </span>
             </button>
           </div>
         </form>

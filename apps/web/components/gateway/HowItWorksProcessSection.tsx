@@ -56,7 +56,7 @@ const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
       '100% free institutional registration guarantee for the first year',
     ],
     primaryCtaTr: 'Hareketliliğinizi Planlayın',
-    primaryCtaEn: 'Plan your mobility',
+    primaryCtaEn: 'Plan Your Mobility',
     primaryHref: '/school/pipeline',
     secondaryCtaTr: 'Kullanım Kılavuzu',
     secondaryCtaEn: 'Platform Guide',
@@ -209,7 +209,7 @@ export default function HowItWorksProcessSection() {
   return (
     <section
       id="how-it-works"
-      aria-label={locale === 'tr' ? 'Nasıl Çalışır? 5 Adımda Hareketlilik Süreci' : 'How it works: 5-Step Mobility Process'}
+      aria-label={locale === 'tr' ? 'Nasıl Çalışır? 5 Adımda Hareketlilik Süreci' : 'How It Works: 5-Step Mobility Process'}
       className="bg-white rounded-3xl border-2 border-slate-300 p-6 sm:p-8 lg:p-10 shadow-sm space-y-8"
     >
       {/* 1. Header with Badge & Scope */}
@@ -249,7 +249,7 @@ export default function HowItWorksProcessSection() {
             className="px-4 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-extrabold text-xs transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
           >
             <span>🚀</span>
-            <span>{locale === 'tr' ? 'Hareketliliğinizi Planlayın' : 'Plan your mobility'}</span>
+            <span>{locale === 'tr' ? 'Hareketliliğinizi Planlayın' : 'Plan Your Mobility'}</span>
             <span>→</span>
           </Link>
         </div>

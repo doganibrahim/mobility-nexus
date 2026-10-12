@@ -223,7 +223,9 @@ export default function QaDashboardPage() {
                   <Clock className="w-4 h-4" />
                 </div>
               </div>
-              <div className="text-3xl font-black text-indigo-900 mt-2">30 Gün</div>
+              <div className="text-3xl font-black text-indigo-900 mt-2">
+                {locale === 'tr' ? '30 Gün' : '30 Days'}
+              </div>
               <div className="text-xs text-emerald-600 font-bold mt-1">
                 {locale === 'tr' ? '100% Ücretsiz Bakım Aktif' : 'Free Maintenance Active'}
               </div>
@@ -340,7 +342,9 @@ export default function QaDashboardPage() {
                   <div className="text-2xl font-black text-blue-900 font-mono mt-1">
                     €1,450,000
                   </div>
-                  <span className="text-[11px] text-slate-500">KA121 & KA122 Çağrıları</span>
+                  <span className="text-[11px] text-slate-500">
+                    {locale === 'tr' ? 'KA121 & KA122 Çağrıları' : 'KA121 & KA122 Calls'}
+                  </span>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl">
@@ -351,7 +355,7 @@ export default function QaDashboardPage() {
                     €42,000
                   </div>
                   <span className="text-[11px] text-emerald-600 font-semibold">
-                    100% Ücretsiz Erişim
+                    {locale === 'tr' ? '100% Ücretsiz Erişim' : '100% Free Access'}
                   </span>
                 </div>
 
@@ -359,15 +363,21 @@ export default function QaDashboardPage() {
                   <span className="text-xs font-bold text-slate-500 block uppercase">
                     {locale === 'tr' ? 'Hazırlanan Katılımcı' : 'Trainees Prepared'}
                   </span>
-                  <div className="text-2xl font-black text-slate-900 mt-1">420 Kişi</div>
-                  <span className="text-[11px] text-slate-500">LMS Hazırlık Modülleri</span>
+                  <div className="text-2xl font-black text-slate-900 mt-1">
+                    {locale === 'tr' ? '420 Kişi' : '420 Trainees'}
+                  </div>
+                  <span className="text-[11px] text-slate-500">
+                    {locale === 'tr' ? 'LMS Hazırlık Modülleri' : 'LMS Preparation Modules'}
+                  </span>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl">
                   <span className="text-xs font-bold text-slate-500 block uppercase">
                     {locale === 'tr' ? 'İhraç Edilen Evrak' : 'Dossiers Exported'}
                   </span>
-                  <div className="text-2xl font-black text-slate-900 mt-1">184 Belge</div>
+                  <div className="text-2xl font-black text-slate-900 mt-1">
+                    {locale === 'tr' ? '184 Belge' : '184 Documents'}
+                  </div>
                   <span className="text-[11px] text-slate-500">Learning Agreement & Europass</span>
                 </div>
               </div>

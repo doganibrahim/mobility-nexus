@@ -36,13 +36,14 @@ interface ProviderFeedbackBreakdownProps {
 
 export function ProviderFeedbackBreakdown({
   hostId,
-  hostName = 'Ev Sahibi Sağlayıcı',
+  hostName,
   initialBreakdown,
   compact = false,
   onReviewSubmitted,
 }: ProviderFeedbackBreakdownProps) {
   const { locale } = useTranslation();
   const isTr = locale === 'tr';
+  const effectiveHostName = hostName || (isTr ? 'Ev Sahibi Sağlayıcı' : 'Host Provider');
 
   const [data, setData] = useState<HostReviewsBreakdownResponse | null>(initialBreakdown || null);
   const [loading, setLoading] = useState(!initialBreakdown);
@@ -379,8 +380,8 @@ export function ProviderFeedbackBreakdown({
             </h5>
             <p className="text-xs text-blue-800 mb-4">
               {isTr
-                ? `${hostName} ile gerçekleştirdiğiniz hareketliliği 5 boyutta puanlayarak diğer meslek liselerine yol gösterin.`
-                : `Evaluate your mobility experience with ${hostName} across the 5 core dimensions.`}
+                ? `${effectiveHostName} ile gerçekleştirdiğiniz hareketliliği 5 boyutta puanlayarak diğer meslek liselerine yol gösterin.`
+                : `Evaluate your mobility experience with ${effectiveHostName} across the 5 core dimensions.`}
             </p>
 
             {submitSuccess && (

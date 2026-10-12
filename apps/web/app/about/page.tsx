@@ -16,7 +16,7 @@ export default function AboutPage() {
     document.title =
       locale === 'tr'
         ? 'Hakkımızda • Proje Misyonu & Ekosistem | ErasmusMobility'
-        : 'About Us • Mission & Ecosystem | ErasmusMobility';
+        : 'About • Project Mission & Ecosystem | ErasmusMobility';
   }, [locale]);
 
   return (
@@ -82,7 +82,7 @@ export default function AboutPage() {
               href="/platform"
               className="px-5 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs transition-colors shadow-xs flex items-center gap-1.5"
             >
-              <span>{locale === 'tr' ? 'Mobility Hub Modüllerini İncele' : 'Explore Mobility Hub Modules'}</span>
+              <span>{locale === 'tr' ? 'Hareketlilik Merkezi Modüllerini İncele' : 'Explore Mobility Hub Modules'}</span>
               <span>→</span>
             </Link>
 

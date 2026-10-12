@@ -5,7 +5,7 @@ import AppFooter from '../../components/layout/AppFooter';
 import LegalDocumentView from '../../components/legal/LegalDocumentView';
 
 export const metadata: Metadata = {
-  title: 'Kullanım Koşulları • Terms of Service | ErasmusMobility',
+  title: 'Kullanım Koşulları ve Açık Rıza | ErasmusMobility',
   description:
     'ErasmusMobility platform katılım koşulları, sorumluluğun sınırlandırılması ve kurumsal hizmet şartları.',
   alternates: {

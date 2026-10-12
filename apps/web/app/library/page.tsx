@@ -30,6 +30,13 @@ export default function LibraryPage() {
     }
   }, []);
 
+  useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Kütüphane | ErasmusMobility'
+        : 'Library | ErasmusMobility';
+  }, [locale]);
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 transition-colors duration-150">
       {/* 1. Official Erasmus+ Header */}

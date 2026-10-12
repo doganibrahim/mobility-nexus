@@ -177,7 +177,7 @@ export default function HostMatchingCard({
             <span>🤖</span>
             <span>{t.host.modeLive}</span>
             <span className="px-1.5 py-0.5 rounded-full text-[10px] bg-blue-100 text-blue-800 font-extrabold">
-              Yeni
+              {locale === 'tr' ? 'Yeni' : 'New'}
             </span>
           </button>
           <button

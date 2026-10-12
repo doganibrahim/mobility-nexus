@@ -21,8 +21,8 @@ export default function EligibilityGatekeeperCard({
   const { t, locale } = useTranslation();
 
   const eligibilityResult: Ka122EligibilityResult = useMemo(() => {
-    return checkKa122Eligibility(data);
-  }, [data]);
+    return checkKa122Eligibility(data, locale as 'tr' | 'en');
+  }, [data, locale]);
 
   return (
     <NeoCard

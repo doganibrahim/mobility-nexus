@@ -62,8 +62,8 @@ export default function MarketplacePage() {
 
   useEffect(() => {
     document.title = isTr
-      ? 'Eğitim & Fırsat Pazaryeri | ErasmusMobility'
-      : 'VET Courses & Opportunities Marketplace | ErasmusMobility';
+      ? 'Hareketlilik Pazaryeri | ErasmusMobility'
+      : 'Mobility Marketplace | ErasmusMobility';
   }, [isTr]);
 
   // Host selection for Host portal

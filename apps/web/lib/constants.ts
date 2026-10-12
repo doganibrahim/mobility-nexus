@@ -226,6 +226,7 @@ export interface Question {
   title: string;
   titleEn?: string;
   description: string;
+  descriptionEn?: string;
 }
 
 export const ASSESSMENT_QUESTIONS: Question[] = [
@@ -234,61 +235,84 @@ export const ASSESSMENT_QUESTIONS: Question[] = [
     title: 'Mesleki Teknik Yetkinlik',
     titleEn: 'Technical and Occupational Competence',
     description: 'Mesleki alanımdaki temel araç, ekipman veya yazılımları güvenli ve doğru biçimde kullanabilirim.',
+    descriptionEn: 'I can safely and accurately operate core tools, equipment, or software relevant to my vocational field.',
   },
   {
     id: 2,
     title: 'Problem Çözme ve Analiz',
+    titleEn: 'Problem Solving and Troubleshooting',
     description: 'Mesleki bir arıza veya teknik problemi sistematik olarak analiz edip çözüm geliştirebilirim.',
+    descriptionEn: 'I can systematically analyze vocational malfunctions or technical issues and formulate practical solutions.',
   },
   {
     id: 3,
     title: 'Dijital Beceriler & Araçlar',
+    titleEn: 'Digital Skills & Vocational Tools',
     description: 'Mesleki görevlerimde dijital araçları, verileri ve çevrim içi platformları etkin biçimde kullanabilirim.',
+    descriptionEn: 'I can effectively utilize digital tools, data, and online platforms in my professional vocational tasks.',
   },
   {
     id: 4,
     title: 'İSG (İş Sağlığı ve Güvenliği)',
+    titleEn: 'Occupational Health and Safety (OHS)',
     description: 'İş sağlığı ve güvenliği standartlarını uygulayabilir, çalışma ortamındaki riskleri tanıyabilirim.',
+    descriptionEn: 'I can strictly adhere to health and safety standards and identify potential workplace hazards.',
   },
   {
     id: 5,
     title: 'Yeşil Beceriler & Sürdürülebilirlik',
+    titleEn: 'Green Skills & Sustainability',
     description: 'Kaynak verimliliği, atık azaltımı ve sürdürülebilir uygulamaları mesleki görevlerime yansıtabilirim.',
+    descriptionEn: 'I can apply resource efficiency, waste reduction, and sustainable working practices to my tasks.',
   },
   {
     id: 6,
     title: 'İletişim ve Bilgi Aktarımı',
+    titleEn: 'Communication & Knowledge Transfer',
     description: 'Teknik bilgiyi ekip arkadaşlarıma, öğrencilere veya mentora açık ve net biçimde aktarabilirim.',
+    descriptionEn: 'I can convey technical information clearly and constructively to team members, learners, or mentors.',
   },
   {
     id: 7,
     title: 'Takım Çalışması & İşbirliği',
+    titleEn: 'Teamwork & Collaboration',
     description: 'Farklı disiplinlerden veya kültürlerden ekiplerde sorumluluk alarak uyum içinde çalışabilirim.',
+    descriptionEn: 'I can take responsibility and collaborate harmoniously within multidisciplinary or intercultural teams.',
   },
   {
     id: 8,
     title: 'Öğrenmeyi Öğrenme & Gelişim',
+    titleEn: 'Learning to Learn & Professional Development',
     description: 'Yeni bir teknoloji veya yöntemi öğrenmek için hedef belirleyip kendi öğrenme sürecimi yönetebilirim.',
+    descriptionEn: 'I can set goals and proactively manage my own learning process to master new technologies or methods.',
   },
   {
     id: 9,
     title: 'Mesleki Yabancı Dil (İngilizce)',
+    titleEn: 'Vocational Foreign Language (English)',
     description: 'Alanıma ilişkin temel teknik terimleri ve işyeri içi mesleki iletişimi yürütebilirim.',
+    descriptionEn: 'I can comprehend technical terminology in my field and conduct routine workplace communication.',
   },
   {
     id: 10,
     title: 'Kültürlerarası Uyum',
+    titleEn: 'Intercultural Adaptation',
     description: 'Farklı ülkelerdeki çalışma, eğitim ve sosyal kültür ortamlarına hızla uyum sağlayabilirim.',
+    descriptionEn: 'I can adapt swiftly to work, learning, and social cultural environments in different European countries.',
   },
   {
     id: 11,
     title: 'Öz Yönetim & Sorumluluk',
+    titleEn: 'Self-Management & Responsibility',
     description: 'Yeni bir iş/öğrenme ortamında zamanı, görevleri ve bireysel sorumluluklarımı planlayabilirim.',
+    descriptionEn: 'I can organize time, prioritize tasks, and fulfill individual responsibilities in a new work/learning setting.',
   },
   {
     id: 12,
     title: 'Avrupa Hareketliliği Hazırlığı',
+    titleEn: 'European Mobility Readiness',
     description: 'Yurt dışı hareketlilik deneyimini kurumsal hedeflerim ve kişisel kariyer planımla ilişkilendirebilirim.',
+    descriptionEn: 'I can connect the international mobility experience with my institutional goals and personal career progression.',
   },
 ];
 

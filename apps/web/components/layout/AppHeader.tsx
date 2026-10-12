@@ -230,7 +230,7 @@ export default function AppHeader() {
                     ? 'border-slate-800 text-white hover:bg-slate-800'
                     : 'border-slate-200 text-slate-500 hover:bg-slate-200/60 hover:text-slate-900'
                   }`}
-                aria-label={isTr ? 'Mobility Hub Alt Menü' : 'Mobility Hub submenu'}
+                aria-label={isTr ? 'Hareketlilik Merkezi Alt Menü' : 'Mobility Hub submenu'}
                 aria-expanded={activeDropdown === 'PLATFORM'}
                 aria-controls="platform-dropdown-menu"
               >
@@ -254,7 +254,7 @@ export default function AppHeader() {
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-black uppercase tracking-wider text-blue-950 flex items-center gap-1.5">
                       <span>⚡</span>
-                      <span>{locale === 'tr' ? 'Mobility Hub Rolü & Amacı' : 'Mobility Hub Role & Purpose'}</span>
+                      <span>{locale === 'tr' ? 'Hareketlilik Merkezi Rolü & Amacı' : 'Mobility Hub Role & Purpose'}</span>
                     </span>
                     <span className="px-1.5 py-0.2 rounded text-[9px] font-extrabold bg-blue-200/80 text-blue-900">
                       EMaaS
@@ -1069,7 +1069,11 @@ export default function AppHeader() {
                   {user?.firstName || user?.fullName || 'Profilim'}
                 </span>
                 <span className="text-[10px] text-slate-500 font-medium leading-none">
-                  {isAdmin ? 'Yönetici' : orgType === 'HOST' ? 'Host' : 'Okul'}
+                  {isAdmin
+                    ? locale === 'en' ? 'Admin' : 'Yönetici'
+                    : orgType === 'HOST'
+                    ? locale === 'en' ? 'Host' : 'Ev Sahibi'
+                    : locale === 'en' ? 'School' : 'Okul'}
                 </span>
               </div>
             </Link>
@@ -1187,7 +1191,7 @@ export default function AppHeader() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full px-3 py-2 rounded-lg text-xs font-bold text-indigo-900 bg-indigo-50/60 hover:bg-indigo-100 flex items-center justify-between"
               >
-                <span>🎓 2. {locale === 'tr' ? 'Eğitim & Fırsat Pazar Yeri' : 'Opportunity Marketplace'}</span>
+                <span>🎓 2. {locale === 'tr' ? 'Hareketlilik Pazaryeri' : 'Mobility Marketplace'}</span>
                 <span className="text-indigo-600">→</span>
               </Link>
               <Link
@@ -1275,7 +1279,9 @@ export default function AppHeader() {
                 <span>📢</span>
                 <span>{t.header.nav.newsAndEvents.label}</span>
               </span>
-              <span className="text-[9px] font-extrabold bg-blue-100 text-blue-900 px-1.5 py-0.2 rounded">Duyuru</span>
+              <span className="text-[9px] font-extrabold bg-blue-100 text-blue-900 px-1.5 py-0.2 rounded">
+                {locale === 'tr' ? 'Duyuru' : 'Announcement'}
+              </span>
             </div>
             {/* Purpose Sentence */}
             <p className="text-[10px] text-slate-600 bg-slate-50 p-2 rounded-lg border border-slate-200 leading-snug m-0">
@@ -1399,7 +1405,11 @@ export default function AppHeader() {
                     {user?.firstName || user?.fullName || 'Profilim'}
                   </span>
                   <span className="text-[10px] text-slate-500 font-medium">
-                    {isAdmin ? 'Yönetici' : orgType === 'HOST' ? 'Host' : 'Okul'}
+                    {isAdmin
+                      ? locale === 'en' ? 'Admin' : 'Yönetici'
+                      : orgType === 'HOST'
+                      ? locale === 'en' ? 'Host' : 'Ev Sahibi'
+                      : locale === 'en' ? 'School' : 'Okul'}
                   </span>
                 </div>
               </Link>

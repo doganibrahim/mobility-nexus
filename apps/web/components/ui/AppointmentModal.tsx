@@ -91,7 +91,7 @@ export default function AppointmentModal({ isOpen, onClose }: AppointmentModalPr
                 type="button"
                 onClick={onClose}
                 className="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                aria-label="Kapat"
+                aria-label={locale === 'tr' ? 'Kapat' : 'Close'}
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

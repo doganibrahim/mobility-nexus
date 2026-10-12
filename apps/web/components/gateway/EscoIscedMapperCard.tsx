@@ -107,7 +107,11 @@ export default function EscoIscedMapperCard({
               name="escoTerm"
               type="text"
               className="edu-input text-slate-900"
-              placeholder="automation technician / mechatronics"
+              placeholder={
+                locale === 'tr'
+                  ? 'otomasyon teknisyeni / mekatronik'
+                  : 'automation technician / mechatronics'
+              }
               value={data.escoTerm}
               onChange={(e) => onChange('escoTerm', e.target.value)}
             />
@@ -151,7 +155,11 @@ export default function EscoIscedMapperCard({
             id="esco-skills"
             name="skills"
             className="edu-input min-h-[75px] resize-y text-xs"
-            placeholder="PLC programlama, endustriyel haberlesme, robotik, ariza tespiti, onleyici bakim..."
+            placeholder={
+              locale === 'tr'
+                ? 'PLC programlama, endüstriyel haberleşme, robotik, arıza tespiti, önleyici bakım...'
+                : 'PLC programming, industrial communication, robotics, troubleshooting, preventive maintenance...'
+            }
             value={data.skills}
             onChange={(e) => onChange('skills', e.target.value)}
           />

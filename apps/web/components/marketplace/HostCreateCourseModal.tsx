@@ -88,7 +88,10 @@ export function HostCreateCourseModal({
 
       const data = await res.json();
       if (!res.ok || !data.success) {
-        throw new Error(data.message || 'Kurs eklenemedi.');
+        throw new Error(
+          data.message ||
+            (locale === 'tr' ? 'Kurs eklenemedi.' : 'Failed to create course.')
+        );
       }
 
       setIsDone(true);
@@ -98,7 +101,10 @@ export function HostCreateCourseModal({
         setIsDone(false);
       }, 1200);
     } catch (err: any) {
-      setErrorMsg(err.message || 'Bir hata oluştu.');
+      setErrorMsg(
+        err.message ||
+          (locale === 'tr' ? 'Bir hata oluştu.' : 'An error occurred.')
+      );
     } finally {
       setIsSubmitting(false);
     }

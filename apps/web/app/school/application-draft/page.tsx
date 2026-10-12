@@ -45,7 +45,7 @@ export default function ApplicationDraftPage() {
   useEffect(() => {
     document.title =
       locale === 'tr'
-        ? 'Resmi Başvuru Taslak Asistanı | ErasmusMobility'
+        ? 'Başvuru Taslağı Asistanı | ErasmusMobility'
         : 'Application Draft Assistant | ErasmusMobility';
   }, [locale]);
 
@@ -245,7 +245,7 @@ export default function ApplicationDraftPage() {
 
       reader.readAsDataURL(file);
     } catch (err: any) {
-      setUploadError(err?.message || 'Dosya yükleme hatası.');
+      setUploadError(err?.message || (locale === 'tr' ? 'Dosya yükleme hatası.' : 'File upload error.'));
       setIsUploadingKa120(false);
     }
   };
@@ -253,7 +253,11 @@ export default function ApplicationDraftPage() {
   const handleConfirmKa120Import = (confirmedData: Ka120ExtractedData) => {
     store.applyKa120Data(confirmedData);
     setIsKa120ModalOpen(false);
-    triggerToast('KA120 akreditasyon verileri taslağa başarıyla aktarıldı');
+    triggerToast(
+      locale === 'tr'
+        ? 'KA120 akreditasyon verileri taslağa başarıyla aktarıldı.'
+        : 'KA120 accreditation data successfully applied to draft.'
+    );
   };
 
   const triggerToast = (msg: string) => {

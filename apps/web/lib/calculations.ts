@@ -39,7 +39,8 @@ export interface DecisionEngineResult {
     | 'KA121-VET'
     | 'KA122-VET'
     | 'KA120-VET Erasmus Accreditation Recommended'
-    | 'Akreditasyon durumu doğrulanmalı';
+    | 'Akreditasyon durumu doğrulanmalı'
+    | 'Accreditation status must be verified';
   readiness: string;
   level: 'good' | 'warn' | 'bad';
   rationale: string;
@@ -291,36 +292,41 @@ export function scoreHost(metrics: Record<string, number>): HostScoreResult {
  */
 export function checkKa122Eligibility(
   params: Ka122EligibilityState,
+  locale: 'tr' | 'en' = 'tr',
 ): Ka122EligibilityResult {
+  const isEn = locale === 'en';
   const checks: Ka122EligibilityCheckItem[] = [];
 
   // Check 1: Accreditation status
   if (params.accredited === 'yes') {
     checks.push({
       id: 'accreditation',
-      title: 'Akreditasyon Durumu',
+      title: isEn ? 'Accreditation Status' : 'Akreditasyon Durumu',
       passed: false,
       status: 'recommend_ka121',
-      message:
-        'Kurumunuz zaten Erasmus Akreditasyonuna (KA120) sahiptir. KA122 yarışmalı başvurusuna katılamaz; akreditasyon kapsamındaki yıllık bütçe tahsisatı için doğrudan KA121-VET başvurusunda bulunmalıdır.',
+      message: isEn
+        ? 'Your institution already holds Erasmus Accreditation (KA120). You cannot apply for KA122 calls; apply directly for KA121-VET annual grant allocation.'
+        : 'Kurumunuz zaten Erasmus Akreditasyonuna (KA120) sahiptir. KA122 yarışmalı başvurusuna katılamaz; akreditasyon kapsamındaki yıllık bütçe tahsisatı için doğrudan KA121-VET başvurusunda bulunmalıdır.',
     });
   } else if (params.accredited === 'unknown') {
     checks.push({
       id: 'accreditation',
-      title: 'Akreditasyon Durumu',
+      title: isEn ? 'Accreditation Status' : 'Akreditasyon Durumu',
       passed: false,
       status: 'warning',
-      message:
-        'Kurumunuzun OID kaydı ve Erasmus Akreditasyon (KA120) durumu teyit edilmelidir. Akredite kurumlar KA122 yerine KA121 yıllık bütçe tahsisatına başvurmalıdır.',
+      message: isEn
+        ? 'Your organization OID and KA120 accreditation status must be confirmed. Accredited institutions should apply for KA121 annual budget allocation.'
+        : 'Kurumunuzun OID kaydı ve Erasmus Akreditasyon (KA120) durumu teyit edilmelidir. Akredite kurumlar KA122 yerine KA121 yıllık bütçe tahsisatına başvurmalıdır.',
     });
   } else {
     checks.push({
       id: 'accreditation',
-      title: 'Akreditasyon Durumu',
+      title: isEn ? 'Accreditation Status' : 'Akreditasyon Durumu',
       passed: true,
       status: 'eligible',
-      message:
-        'Kurumunuz akredite değildir; KA122 kısa dönemli projeye başvuru hakkına sahiptir.',
+      message: isEn
+        ? 'Your institution is non-accredited and fully eligible to apply for KA122 short-term mobility projects.'
+        : 'Kurumunuz akredite değildir; KA122 kısa dönemli projeye başvuru hakkına sahiptir.',
     });
   }
 
@@ -329,18 +335,22 @@ export function checkKa122Eligibility(
   if (count > 30) {
     checks.push({
       id: 'participant_limit',
-      title: 'Katılımcı Sınırı (Maks. 30)',
+      title: isEn ? 'Participant Cap (Max 30)' : 'Katılımcı Sınırı (Maks. 30)',
       passed: false,
       status: 'recommend_ka120',
-      message: `Planlanan katılımcı sayısı (${count} kişi), KA122 azami kotası olan 30 kişiyi aşmaktadır. 30 üzeri katılımcı için KA120 Akreditasyonu veya konsorsiyum ortaklığı gereklidir.`,
+      message: isEn
+        ? `Planned headcount (${count} learners) exceeds the KA122 cap of 30. Groups over 30 require KA120 Accreditation or a consortium.`
+        : `Planlanan katılımcı sayısı (${count} kişi), KA122 azami kotası olan 30 kişiyi aşmaktadır. 30 üzeri katılımcı için KA120 Akreditasyonu veya konsorsiyum ortaklığı gereklidir.`,
     });
   } else {
     checks.push({
       id: 'participant_limit',
-      title: 'Katılımcı Sınırı (Maks. 30)',
+      title: isEn ? 'Participant Cap (Max 30)' : 'Katılımcı Sınırı (Maks. 30)',
       passed: true,
       status: 'eligible',
-      message: `Planlanan ${count} katılımcı, KA122 azami 30 kişi kuralına uygundur.`,
+      message: isEn
+        ? `Planned headcount of ${count} participants complies with the KA122 maximum limit of 30.`
+        : `Planlanan ${count} katılımcı, KA122 azami 30 kişi kuralına uygundur.`,
     });
   }
 
@@ -349,18 +359,22 @@ export function checkKa122Eligibility(
   if (duration < 6 || duration > 18) {
     checks.push({
       id: 'project_duration',
-      title: 'Proje Süresi (6–18 Ay)',
+      title: isEn ? 'Project Duration (6–18 Months)' : 'Proje Süresi (6–18 Ay)',
       passed: false,
       status: 'ineligible',
-      message: `Belirtilen proje süresi (${duration} ay) kural dışıdır. Resmi Erasmus+ rehberine göre KA122-VET proje süresi 6 ile 18 ay arasında olmalıdır.`,
+      message: isEn
+        ? `Specified duration (${duration} months) violates guidelines. Official rules require KA122-VET projects to span between 6 and 18 months.`
+        : `Belirtilen proje süresi (${duration} ay) kural dışıdır. Resmi Erasmus+ rehberine göre KA122-VET proje süresi 6 ile 18 ay arasında olmalıdır.`,
     });
   } else {
     checks.push({
       id: 'project_duration',
-      title: 'Proje Süresi (6–18 Ay)',
+      title: isEn ? 'Project Duration (6–18 Months)' : 'Proje Süresi (6–18 Ay)',
       passed: true,
       status: 'eligible',
-      message: `Proje süresi (${duration} ay), resmi 6 ila 18 ay uygunluk aralığındadır.`,
+      message: isEn
+        ? `Project duration (${duration} months) falls within the eligible 6 to 18-month range.`
+        : `Proje süresi (${duration} ay), resmi 6 ila 18 ay uygunluk aralığındadır.`,
     });
   }
 
@@ -369,18 +383,22 @@ export function checkKa122Eligibility(
   if (pastGrants >= 3) {
     checks.push({
       id: 'past_grants',
-      title: 'Önceki Hibe Sayısı (5 Ardışık Çağrı Yılında Maks. 3)',
+      title: isEn ? 'Past Grants Limit (Max 3 in 5 Call Years)' : 'Önceki Hibe Sayısı (5 Ardışık Çağrı Yılında Maks. 3)',
       passed: false,
       status: 'recommend_ka120',
-      message: `Kurumunuz 5 ardışık çağrı yılı içinde azami 3 KA122 hibesi hakkına (${pastGrants} hibe) ulaşmıştır. Yeni KA122 başvurusu kural gereği elenir; doğrudan KA120 Akreditasyonu önerilir.`,
+      message: isEn
+        ? `Your institution reached the 3-grant cap (${pastGrants} grants) in 5 consecutive call years. A new KA122 call is ineligible; KA120 Accreditation is required.`
+        : `Kurumunuz 5 ardışık çağrı yılı içinde azami 3 KA122 hibesi hakkına (${pastGrants} hibe) ulaşmıştır. Yeni KA122 başvurusu kural gereği elenir; doğrudan KA120 Akreditasyonu önerilir.`,
     });
   } else {
     checks.push({
       id: 'past_grants',
-      title: 'Önceki Hibe Sayısı (5 Ardışık Çağrı Yılında Maks. 3)',
+      title: isEn ? 'Past Grants Limit (Max 3 in 5 Call Years)' : 'Önceki Hibe Sayısı (5 Ardışık Çağrı Yılında Maks. 3)',
       passed: true,
       status: 'eligible',
-      message: `5 ardışık çağrı yılı içindeki hibe sayısı (${pastGrants}), kural gereği 3 hakkı doldurmamıştır.`,
+      message: isEn
+        ? `Grants in the past 5 consecutive call years (${pastGrants}) comply with the quota of 3.`
+        : `5 ardışık çağrı yılı içindeki hibe sayısı (${pastGrants}), kural gereği 3 hakkı doldurmamıştır.`,
     });
   }
 
@@ -388,19 +406,22 @@ export function checkKa122Eligibility(
   if (params.mobilityStrategy === 'regular_annual') {
     checks.push({
       id: 'strategy',
-      title: 'Hareketlilik Stratejisi',
+      title: isEn ? 'Mobility Strategy' : 'Hareketlilik Stratejisi',
       passed: true,
       status: 'recommend_ka120',
-      message:
-        'Kurumunuz her yıl düzenli ve sürdürülebilir bir bütçe tahsisatıyla hareketlilik hedeflemektedir. Tek seferlik KA122 yerine KA120 Erasmus Akreditasyonu tavsiye edilir.',
+      message: isEn
+        ? 'Your institution aims for sustainable annual mobilities. KA120 Erasmus Accreditation is strongly recommended over ad-hoc KA122 calls.'
+        : 'Kurumunuz her yıl düzenli ve sürdürülebilir bir bütçe tahsisatıyla hareketlilik hedeflemektedir. Tek seferlik KA122 yerine KA120 Erasmus Akreditasyonu tavsiye edilir.',
     });
   } else {
     checks.push({
       id: 'strategy',
-      title: 'Hareketlilik Stratejisi',
+      title: isEn ? 'Mobility Strategy' : 'Hareketlilik Stratejisi',
       passed: true,
       status: 'eligible',
-      message: 'Kısa dönemli ve somut ihtiyaç odaklı proje yaklaşımı KA122 ile uyumludur.',
+      message: isEn
+        ? 'A short-term, specific-need project approach is well suited for KA122.'
+        : 'Kısa dönemli ve somut ihtiyaç odaklı proje yaklaşımı KA122 ile uyumludur.',
     });
   }
 
@@ -409,9 +430,10 @@ export function checkKa122Eligibility(
     return {
       isEligibleForKa122: false,
       recommendedPathway: 'KA121-VET',
-      summaryTitle: 'KA121-VET Başvuru Yolu Önerilir',
-      summaryMessage:
-        'Kurumunuz akredite olduğundan KA122 yarışmalı teklif çağrısına katılamaz; akredite kurumlara yönelik yıllık bütçe tahsisatı için KA121 başvuru yolunu kullanmalıdır.',
+      summaryTitle: isEn ? 'KA121-VET Pathway Recommended' : 'KA121-VET Başvuru Yolu Önerilir',
+      summaryMessage: isEn
+        ? 'Because your school is accredited, you must submit KA121 for annual budget allocation rather than participating in competitive KA122 calls.'
+        : 'Kurumunuz akredite olduğundan KA122 yarışmalı teklif çağrısına katılamaz; akredite kurumlara yönelik yıllık bütçe tahsisatı için KA121 başvuru yolunu kullanmalıdır.',
       checks,
     };
   }
@@ -425,9 +447,10 @@ export function checkKa122Eligibility(
     return {
       isEligibleForKa122: false,
       recommendedPathway: 'KA120-VET',
-      summaryTitle: 'KA120-VET Erasmus Akreditasyonu Önerilir',
-      summaryMessage:
-        'Yıllık düzenli hareketlilik vizyonu, katılımcı sayısı kotası veya 5 ardışık çağrı yılı hibe kotası (maks. 3 hibe) nedeniyle kurumunuz için en stratejik yol KA120-VET Akreditasyonudur.',
+      summaryTitle: isEn ? 'KA120-VET Erasmus Accreditation Recommended' : 'KA120-VET Erasmus Akreditasyonu Önerilir',
+      summaryMessage: isEn
+        ? 'Due to annual mobility vision, participant cohort cap, or the 3-grant quota in 5 call years, KA120-VET Accreditation is the recommended route.'
+        : 'Yıllık düzenli hareketlilik vizyonu, katılımcı sayısı kotası veya 5 ardışık çağrı yılı hibe kotası (maks. 3 hibe) nedeniyle kurumunuz için en stratejik yol KA120-VET Akreditasyonudur.',
       checks,
     };
   }
@@ -437,9 +460,10 @@ export function checkKa122Eligibility(
     return {
       isEligibleForKa122: false,
       recommendedPathway: 'NEEDS_VERIFICATION',
-      summaryTitle: 'Uygunluk Kriteri Düzeltilmeli',
-      summaryMessage:
-        'Proje süresi veya temel kriterlerde Erasmus+ kurallarına aykırı parametreler bulunmaktadır.',
+      summaryTitle: isEn ? 'Eligibility Criteria Must Be Corrected' : 'Uygunluk Kriteri Düzeltilmeli',
+      summaryMessage: isEn
+        ? 'Project duration or fundamental criteria conflict with official Erasmus+ regulations.'
+        : 'Proje süresi veya temel kriterlerde Erasmus+ kurallarına aykırı parametreler bulunmaktadır.',
       checks,
     };
   }
@@ -448,9 +472,10 @@ export function checkKa122Eligibility(
     return {
       isEligibleForKa122: false,
       recommendedPathway: 'NEEDS_VERIFICATION',
-      summaryTitle: 'Akreditasyon Teyidi Bekleniyor (Şartlı Uygunluk)',
-      summaryMessage:
-        'Kurumunuzun OID kaydı ve Erasmus Akreditasyon (KA120) durumu resmi olarak doğrulanmalıdır. Kurumunuz akredite değilse KA122 başvurusuna uygundur; akredite ise KA121 yıllık hibe tahsisatına başvurmalıdır.',
+      summaryTitle: isEn ? 'Awaiting Accreditation Confirmation (Conditional)' : 'Akreditasyon Teyidi Bekleniyor (Şartlı Uygunluk)',
+      summaryMessage: isEn
+        ? 'Your OID registration and KA120 accreditation status must be formally verified. If non-accredited, KA122 is eligible; if accredited, apply for KA121.'
+        : 'Kurumunuzun OID kaydı ve Erasmus Akreditasyon (KA120) durumu resmi olarak doğrulanmalıdır. Kurumunuz akredite değilse KA122 başvurusuna uygundur; akredite ise KA121 yıllık hibe tahsisatına başvurmalıdır.',
       checks,
     };
   }
@@ -458,9 +483,10 @@ export function checkKa122Eligibility(
   return {
     isEligibleForKa122: true,
     recommendedPathway: 'KA122-VET',
-    summaryTitle: 'KA122-VET İçin Tam Uygunluk Sağlandı',
-    summaryMessage:
-      'Kurumunuz tüm KA122-VET uygunluk kontrollerini başarıyla geçmiştir.',
+    summaryTitle: isEn ? 'Fully Eligible for KA122-VET' : 'KA122-VET İçin Tam Uygunluk Sağlandı',
+    summaryMessage: isEn
+      ? 'Your institution successfully fulfills all KA122-VET preliminary eligibility checks.'
+      : 'Kurumunuz tüm KA122-VET uygunluk kontrollerini başarıyla geçmiştir.',
     checks,
   };
 }
@@ -576,18 +602,25 @@ export function makeDecision(params: {
     | 'KA121-VET'
     | 'KA122-VET'
     | 'KA120-VET Erasmus Accreditation Recommended'
-    | 'Akreditasyon durumu doğrulanmalı' = 'Akreditasyon durumu doğrulanmalı';
+    | 'Akreditasyon durumu doğrulanmalı'
+    | 'Accreditation status must be verified' = isEn
+    ? 'Accreditation status must be verified'
+    : 'Akreditasyon durumu doğrulanmalı';
 
   let rationale = '';
 
   if (params.accredited === 'yes') {
     action = 'KA121-VET';
-    rationale =
-      'Akredite okulda faaliyet mevcut Erasmus Plan hedeflerine bağlanmalı ve yıllık tahsisat (KA121) kapsamında yürütülmelidir.';
+    rationale = isEn
+      ? 'In accredited schools, mobility must align with active Erasmus Plan objectives and be executed under KA121 annual budget allocation.'
+      : 'Akredite okulda faaliyet mevcut Erasmus Plan hedeflerine bağlanmalı ve yıllık tahsisat (KA121) kapsamında yürütülmelidir.';
   } else if (params.accredited === 'unknown') {
-    action = 'Akreditasyon durumu doğrulanmalı';
-    rationale =
-      'Kurumun OID ve Erasmus Akreditasyon durumu Ulusal Ajans nezdinde teyit edilmelidir.';
+    action = isEn
+      ? 'Accreditation status must be verified'
+      : 'Akreditasyon durumu doğrulanmalı';
+    rationale = isEn
+      ? 'The organization OID and Erasmus Accreditation status must be verified with the National Agency.'
+      : 'Kurumun OID ve Erasmus Akreditasyon durumu Ulusal Ajans nezdinde teyit edilmelidir.';
   } else {
     // accredited === 'no'
     const wantsRegular = params.mobilityStrategy === 'regular_annual';
@@ -596,12 +629,14 @@ export function makeDecision(params: {
 
     if (wantsRegular || hitCap || overParticipants) {
       action = 'KA120-VET Erasmus Accreditation Recommended';
-      rationale =
-        'Kurumun düzenli/yıllık hareketlilik planı, 30 kişiyi aşan katılımcı talebi veya 5 ardışık çağrı yılındaki KA122 hibe kotasını doldurması nedeniyle, tek seferlik KA122 yerine kurumsal KA120-VET Erasmus Akreditasyonuna başvurması şiddetle tavsiye edilir.';
+      rationale = isEn
+        ? 'Because of your recurring annual mobility plans, large participant cohort (>30), or reaching the 3-grant cap in 5 call years, KA120-VET Accreditation is strongly recommended over a single KA122.'
+        : 'Kurumun düzenli/yıllık hareketlilik planı, 30 kişiyi aşan katılımcı talebi veya 5 ardışık çağrı yılındaki KA122 hibe kotasını doldurması nedeniyle, tek seferlik KA122 yerine kurumsal KA120-VET Erasmus Akreditasyonuna başvurması şiddetle tavsiye edilir.';
     } else {
       action = 'KA122-VET';
-      rationale =
-        'Akreditasyonu olmayan uygun VET kuruluşunda KA122 için ihtiyaç/challenge → hedef → faaliyet → etki ölçüm zinciri kurulmalıdır.';
+      rationale = isEn
+        ? 'In eligible non-accredited VET schools, a clear need/challenge → objective → activity → impact measurement chain must be established for KA122.'
+        : 'Akreditasyonu olmayan uygun VET kuruluşunda KA122 için ihtiyaç/challenge → hedef → faaliyet → etki ölçüm zinciri kurulmalıdır.';
     }
   }
 
@@ -640,23 +675,35 @@ export function generateOutcomes(
   participantType: ParticipantType,
   primaryGap: string,
   escoTerm: string,
+  locale: 'tr' | 'en' = 'tr',
 ): LearningOutcomesResult {
-  const gap = primaryGap.trim() || escoTerm.trim() || 'belirlenen mesleki yetkinlik';
+  const isEn = locale === 'en';
+  const defaultGap = isEn ? 'targeted vocational competence' : 'belirlenen mesleki yetkinlik';
+  const gap = primaryGap.trim() || escoTerm.trim() || defaultGap;
 
   let technicalOutcome = '';
   if (participantType === 'teacher' || participantType === 'staff') {
-    technicalOutcome = `Mobilite sonunda teknik eğitici; ${gap} alanındaki güncel Avrupa iyi uygulamalarını ve endüstri standartlarını doğrudan gözlemleyebilecek, edindiği en az iki yenilikçi pedagojik/teknik yöntemi okulundaki atölye/laboratuvar ortamına entegre edebilecek ve sonuçları meslektaşlarıyla kurumsal yaygınlaştırma çalıştayında paylaşabilecektir.`;
+    technicalOutcome = isEn
+      ? `By the end of the mobility, the technical educator will directly observe contemporary European best practices and industrial standards in ${gap}, integrate at least two innovative pedagogical/technical methods into their vocational workshop, and disseminate outcomes in an institutional peer workshop.`
+      : `Mobilite sonunda teknik eğitici; ${gap} alanındaki güncel Avrupa iyi uygulamalarını ve endüstri standartlarını doğrudan gözlemleyebilecek, edindiği en az iki yenilikçi pedagojik/teknik yöntemi okulundaki atölye/laboratuvar ortamına entegre edebilecek ve sonuçları meslektaşlarıyla kurumsal yaygınlaştırma çalıştayında paylaşabilecektir.`;
   } else if (participantType === 'incoming') {
-    technicalOutcome = `Faaliyet süresince kuruma gelen uzman / eğitici; ${gap} alanındaki ileri Avrupa bilgi birikimini ve endüstriyel standartları ev sahibi okulun öğretmen ve öğrencilerine doğrudan aktaracak, yerel müfredatı zenginleştirecek ortak eğitim materyalleri geliştirecektir.`;
+    technicalOutcome = isEn
+      ? `During the activity, the invited expert / educator will transfer advanced European know-how and industrial standards in ${gap} directly to host teachers and students, co-creating enriched learning materials.`
+      : `Faaliyet süresince kuruma gelen uzman / eğitici; ${gap} alanındaki ileri Avrupa bilgi birikimini ve endüstriyel standartları ev sahibi okulun öğretmen ve öğrencilerine doğrudan aktaracak, yerel müfredatı zenginleştirecek ortak eğitim materyalleri geliştirecektir.`;
   } else if (participantType === 'project_team') {
-    technicalOutcome = `Hazırlık ziyareti sonunda proje ekibi; ev sahibi kurumla ${gap} odaklı pratik öğrenme anlaşmasını (Learning Agreement) detaylandıracak, katılımcıların işyeri güvenliği, mentorluk ve lojistik düzenlemelerini yerinde denetleyerek kalite taahhütlerini kesinleştirecektir.`;
+    technicalOutcome = isEn
+      ? `Upon completion of the preparatory visit, the project team will finalize the ${gap}-focused Learning Agreement with the host partner, audit workplace safety, mentoring, and logistics arrangements on-site, and confirm quality commitments.`
+      : `Hazırlık ziyareti sonunda proje ekibi; ev sahibi kurumla ${gap} odaklı pratik öğrenme anlaşmasını (Learning Agreement) detaylandıracak, katılımcıların işyeri güvenliği, mentorluk ve lojistik düzenlemelerini yerinde denetleyerek kalite taahhütlerini kesinleştirecektir.`;
   } else {
     // student / learner
-    technicalOutcome = `Mobilite sonunda meslek lisesi öğrencisi; ${gap} ile ilgili tanımlanmış gerçek iş görevlerini ev sahibi kurumdaki mentor gözetiminde iş sağlığı ve güvenliği kurallarına uygun biçimde icra edebilecek, edindiği pratik becerileri kanıtlayan somut bir iş/ürün çıktısı sunabilecek ve kazanımlarını Europass Hareketlilik Belgesi ile belgelendirecektir.`;
+    technicalOutcome = isEn
+      ? `By the end of the mobility, the VET learner will execute authentic workplace tasks in ${gap} under host mentor supervision adhering to OHS standards, present a tangible product/portfolio demonstrating practical competence, and validate achievements via Europass Mobility.`
+      : `Mobilite sonunda meslek lisesi öğrencisi; ${gap} ile ilgili tanımlanmış gerçek iş görevlerini ev sahibi kurumdaki mentor gözetiminde iş sağlığı ve güvenliği kurallarına uygun biçimde icra edebilecek, edindiği pratik becerileri kanıtlayan somut bir iş/ürün çıktısı sunabilecek ve kazanımlarını Europass Hareketlilik Belgesi ile belgelendirecektir.`;
   }
 
-  const transversalOutcome =
-    'Katılımcı; İş Sağlığı ve Güvenliği (İSG) kurallarını, çok kültürlü takım çalışmasını, mesleki yabancı dil terminolojisini, dijital iş araçlarını, yeşil/çevresel sürdürülebilirlik uygulamalarını ve kültürlerarası adaptasyon yetkinliğini gerçek bir Avrupa çalışma ortamında geliştirecektir.';
+  const transversalOutcome = isEn
+    ? 'The participant will cultivate Occupational Health and Safety (OHS) standards, intercultural teamwork, vocational English communication, digital tools, green sustainability practices, and adaptive resilience in an authentic European working environment.'
+    : 'Katılımcı; İş Sağlığı ve Güvenliği (İSG) kurallarını, çok kültürlü takım çalışmasını, mesleki yabancı dil terminolojisini, dijital iş araçlarını, yeşil/çevresel sürdürülebilirlik uygulamalarını ve kültürlerarası adaptasyon yetkinliğini gerçek bir Avrupa çalışma ortamında geliştirecektir.';
 
   return { technicalOutcome, transversalOutcome };
 }

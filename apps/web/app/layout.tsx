@@ -25,7 +25,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Home | ErasmusMobility',
+    default: 'Ana Sayfa | ErasmusMobility',
     template: '%s | ErasmusMobility',
   },
   description:

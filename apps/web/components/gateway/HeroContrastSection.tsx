@@ -111,7 +111,7 @@ export default function HeroContrastSection({
                 href="/school/pipeline"
                 className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-xs sm:text-sm text-center shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer focus:ring-2 focus:ring-blue-400"
               >
-                <span>{locale === 'tr' ? 'Hareketliliğinizi Planlayın' : 'Plan your mobility'}</span>
+                <span>{locale === 'tr' ? 'Hareketliliğinizi Planlayın' : 'Plan Your Mobility'}</span>
                 <span>→</span>
               </Link>
 

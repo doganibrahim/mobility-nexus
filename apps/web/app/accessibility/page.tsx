@@ -5,7 +5,7 @@ import AppFooter from '../../components/layout/AppFooter';
 import LegalDocumentView from '../../components/legal/LegalDocumentView';
 
 export const metadata: Metadata = {
-  title: 'Erişilebilirlik Beyanı • Accessibility Statement | ErasmusMobility',
+  title: 'Erişilebilirlik Beyanı | ErasmusMobility',
   description:
     'ErasmusMobility WCAG 2.2 AA düzeyinde dijital erişilebilirlik taahhüdü, EN 301 549 ve Avrupa Erişilebilirlik Yasası (EAA) teknik standartları.',
   alternates: {

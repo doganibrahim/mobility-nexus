@@ -55,7 +55,9 @@ export function MarketplaceApplicationModal({
   const [projectType, setProjectType] = useState<MarketplaceProjectType>('KA121');
   const [participantCount, setParticipantCount] = useState<number>(2);
   const [specialNotes, setSpecialNotes] = useState(
-    'Okulumuz KA121 akredite kurumudur. Belirtilen tarihlerdeki seansa 2 meslek öğretmenimiz ile katılım sağlamak ve resmi kabul belgesi almak istiyoruz.'
+    locale === 'tr'
+      ? 'Okulumuz KA121 akredite kurumudur. Belirtilen tarihlerdeki seansa 2 meslek öğretmenimiz ile katılım sağlamak ve resmi kabul belgesi almak istiyoruz.'
+      : 'Our school is a KA121 accredited institution. We wish to participate in the scheduled session with 2 vocational teachers and receive an official acceptance letter.'
   );
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -102,7 +104,12 @@ export function MarketplaceApplicationModal({
 
       const data = await res.json();
       if (!res.ok || !data.success) {
-        throw new Error(data.message || 'Başvuru gönderilirken bir hata oluştu.');
+        throw new Error(
+          data.message ||
+            (locale === 'tr'
+              ? 'Başvuru gönderilirken bir hata oluştu.'
+              : 'An error occurred while submitting application.')
+        );
       }
 
       setIsDone(true);
@@ -112,7 +119,10 @@ export function MarketplaceApplicationModal({
         setIsDone(false);
       }, 1400);
     } catch (err: any) {
-      setErrorMsg(err.message || 'Başvuru iletilemedi.');
+      setErrorMsg(
+        err.message ||
+          (locale === 'tr' ? 'Başvuru iletilemedi.' : 'Failed to submit application.')
+      );
     } finally {
       setIsSubmitting(false);
     }

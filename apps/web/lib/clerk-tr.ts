@@ -4,8 +4,8 @@
 export const clerkTrLocalization: Record<string, any> = {
   signUp: {
     start: {
-      title: 'ErasmusMobility Hesabı Oluşturun',
-      subtitle: 'Okul koordinatörleri ve ev sahibi kurumlar için güvenli kayıt.',
+      title: 'Kayıt Ol',
+      subtitle: 'ErasmusMobility platformuna ücretsiz kurumsal kayıt oluşturun.',
       actionText: 'Zaten bir hesabınız var mı? ',
       actionLink: 'Giriş Yap',
     },
@@ -24,8 +24,8 @@ export const clerkTrLocalization: Record<string, any> = {
   },
   signIn: {
     start: {
-      title: 'ErasmusMobility Girişi',
-      subtitle: 'Okul veya ev sahibi kurum hesabınıza güvenle erişin.',
+      title: 'Giriş Yap',
+      subtitle: 'ErasmusMobility kurumsal hesabınıza erişin.',
       actionText: 'Henüz bir hesabınız yok mu? ',
       actionLink: 'Kayıt Ol',
     },
@@ -38,6 +38,10 @@ export const clerkTrLocalization: Record<string, any> = {
       title: 'E-posta Doğrulaması',
       subtitle: 'Giriş yapmak için e-postanıza gönderilen kodu girin.',
     },
+    forgotPasswordAlternativeMethods: {
+      title: 'Şifre Sıfırlama',
+      subtitle: 'Şifrenizi sıfırlamak için bir yöntem seçin.',
+    },
   },
   userProfile: {
     start: {
@@ -47,10 +51,17 @@ export const clerkTrLocalization: Record<string, any> = {
   },
   dividerText: 'veya',
   formFieldLabel__emailAddress: 'E-posta Adresi',
-  formFieldInputPlaceholder__emailAddress: 'ornek@email.com',
+  formFieldInputPlaceholder__emailAddress: 'ornek@kurum.edu.tr',
   formFieldLabel__password: 'Şifre',
   formFieldInputPlaceholder__password: 'En az 8 karakterli şifreniz',
+  formFieldLabel__confirmPassword: 'Şifre Tekrarı',
+  formFieldInputPlaceholder__confirmPassword: 'Şifrenizi tekrar girin',
+  formFieldLabel__firstName: 'Ad',
+  formFieldLabel__lastName: 'Soyad',
+  formFieldLabel__username: 'Kullanıcı Adı',
   formButtonPrimary: 'Devam Et',
   socialButtonsBlockButton: '{{provider}} ile Devam Et',
-  footerActionLink: 'Giriş Yap',
+  footerActionText: 'Henüz hesabınız yok mu?',
+  footerActionLink: 'Kayıt Ol',
+  backButton: 'Geri',
 };

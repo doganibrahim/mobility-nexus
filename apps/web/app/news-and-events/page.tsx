@@ -298,6 +298,13 @@ function NewsAndEventsContent() {
   const [newsList, setNewsList] = useState<NewsItem[]>(INITIAL_NEWS_ITEMS);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
+
+  useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Haberler ve Etkinlikler | ErasmusMobility'
+        : 'News & Events | ErasmusMobility';
+  }, [locale]);
   const [actionNotice, setActionNotice] = useState<string | null>(null);
   const [selectedNewsItem, setSelectedNewsItem] = useState<NewsItem | null>(null);
 
@@ -313,6 +320,14 @@ function NewsAndEventsContent() {
       return () => window.removeEventListener('keydown', handleKeyDown);
     }
   }, [selectedNewsItem]);
+
+  // Dynamic Page Title
+  useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Haberler ve Etkinlikler | ErasmusMobility'
+        : 'News and Events | ErasmusMobility';
+  }, [locale]);
 
   // Sync with search parameter if provided (?filter=ARCHIVE)
   useEffect(() => {
@@ -341,8 +356,12 @@ function NewsAndEventsContent() {
           return {
             ...item,
             isArchived: willArchive,
-            archiveDate: willArchive ? 'Ekim 2026' : undefined,
-            archiveReason: willArchive ? 'Kullanıcı/Koordinatör tarafından arşive taşındı' : undefined,
+            archiveDate: willArchive ? (locale === 'tr' ? 'Ekim 2026' : 'October 2026') : undefined,
+            archiveReason: willArchive
+              ? (locale === 'tr'
+                  ? 'Kullanıcı/Koordinatör tarafından arşive taşındı'
+                  : 'Moved to archive by user/coordinator')
+              : undefined,
           };
         }
         return item;

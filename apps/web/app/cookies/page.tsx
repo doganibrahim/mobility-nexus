@@ -5,7 +5,7 @@ import AppFooter from '../../components/layout/AppFooter';
 import LegalDocumentView from '../../components/legal/LegalDocumentView';
 
 export const metadata: Metadata = {
-  title: 'Çerez Politikası • Cookie Policy | ErasmusMobility',
+  title: 'Çerez Politikası | ErasmusMobility',
   description:
     'ErasmusMobility platformu çerez politikası, zorunlu ve işlevsel çerez yönetimi kılavuzu.',
   alternates: {

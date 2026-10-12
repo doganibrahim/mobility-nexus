@@ -17,6 +17,13 @@ export default function ContactPage() {
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
+  React.useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'İletişim | ErasmusMobility'
+        : 'Contact | ErasmusMobility';
+  }, [locale]);
+
   const FAQ_ITEMS = [
     {
       qTr: 'Onaylı Ev Sahibi Kuruluş (Host) doğrulama kriterleri nelerdir?',

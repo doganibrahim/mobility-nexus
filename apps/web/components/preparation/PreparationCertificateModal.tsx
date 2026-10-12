@@ -140,12 +140,12 @@ export function PreparationCertificateModal({
             {/* Competency badges row */}
             <div className="pt-4 flex flex-wrap items-center justify-center gap-1.5 max-w-lg mx-auto">
               {[
-                'Kültürel Uyum',
-                'İSG & KKD Standartları',
-                'AB Dil Desteği (OLS)',
-                'Yeşil Seyahat',
+                locale === 'tr' ? 'Kültürel Uyum' : 'Cultural Adaptation',
+                locale === 'tr' ? 'İSG & KKD Standartları' : 'OHS & PPE Standards',
+                locale === 'tr' ? 'AB Dil Desteği (OLS)' : 'EU Language Support (OLS)',
+                locale === 'tr' ? 'Yeşil Seyahat' : 'Green Travel',
                 'Europass & ESCO',
-                'Acil Durum 112',
+                locale === 'tr' ? 'Acil Durum 112' : 'Emergency 112',
               ].map((comp, idx) => (
                 <span
                   key={idx}

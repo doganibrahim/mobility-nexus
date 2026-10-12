@@ -89,6 +89,13 @@ export default function PreparationPortalPage() {
   };
 
   useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Seyahat Öncesi Hazırlık | ErasmusMobility'
+        : 'Pre-departure Preparation | ErasmusMobility';
+  }, [locale]);
+
+  useEffect(() => {
     loadInitialData();
   }, []);
 

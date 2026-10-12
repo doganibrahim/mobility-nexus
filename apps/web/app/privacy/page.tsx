@@ -5,7 +5,7 @@ import AppFooter from '../../components/layout/AppFooter';
 import LegalDocumentView from '../../components/legal/LegalDocumentView';
 
 export const metadata: Metadata = {
-  title: 'Gizlilik Politikası & GDPR • Privacy Policy | ErasmusMobility',
+  title: 'Gizlilik Politikası | ErasmusMobility',
   description:
     'ErasmusMobility KVKK ve GDPR uyumlu veri koruma aydınlatma metni ve gizlilik politikası.',
   alternates: {

@@ -31,6 +31,30 @@ export default function LegalDocumentView({
   );
   const [copied, setCopied] = useState(false);
 
+  React.useEffect(() => {
+    if (!isModal) {
+      const titles: Record<string, string> = {
+        LEGAL:
+          locale === 'tr'
+            ? 'Gizlilik Politikası | ErasmusMobility'
+            : 'GDPR Privacy Policy | ErasmusMobility',
+        TERMS:
+          locale === 'tr'
+            ? 'Kullanım Koşulları ve Açık Rıza | ErasmusMobility'
+            : 'Terms of Service | ErasmusMobility',
+        COOKIES:
+          locale === 'tr'
+            ? 'Çerez Politikası | ErasmusMobility'
+            : 'Cookie Policy | ErasmusMobility',
+        ACCESSIBILITY:
+          locale === 'tr'
+            ? 'Erişilebilirlik Beyanı | ErasmusMobility'
+            : 'Accessibility Statement | ErasmusMobility',
+      };
+      document.title = titles[activeTab] || titles.LEGAL;
+    }
+  }, [activeTab, locale, isModal]);
+
   const handleCopy = () => {
     const textMap = {
       LEGAL:
@@ -89,7 +113,8 @@ export default function LegalDocumentView({
             type="button"
             className="rounded-xl bg-white p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors border border-slate-200 cursor-pointer"
             onClick={onClose}
-            title="Kapat"
+            title={locale === 'tr' ? 'Kapat' : 'Close'}
+            aria-label={locale === 'tr' ? 'Kapat' : 'Close'}
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -404,6 +429,33 @@ export default function LegalDocumentView({
                 <p className="m-0">
                   ErasmusMobility does not employ third-party advertising or behavioral tracking pixels. We use strictly necessary session cookies for authentication (Clerk Auth) and preference cookies for UI localization.
                 </p>
+              </div>
+
+              <div className="overflow-x-auto rounded-xl border border-slate-200">
+                <table className="min-w-[500px] w-full divide-y divide-slate-200 text-left text-[11px]">
+                  <thead className="bg-slate-50 font-bold text-slate-900">
+                    <tr>
+                      <th className="py-2.5 px-3">Cookie Name</th>
+                      <th className="py-2.5 px-3">Type</th>
+                      <th className="py-2.5 px-3">Purpose</th>
+                      <th className="py-2.5 px-3">Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    <tr>
+                      <td className="py-2 px-3 font-mono font-semibold text-slate-900">__session / __client_uat</td>
+                      <td className="py-2 px-3 text-slate-600">Strictly Necessary</td>
+                      <td className="py-2 px-3 text-slate-600">User session and authentication</td>
+                      <td className="py-2 px-3 text-slate-600">Session</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-3 font-mono font-semibold text-slate-900">em_locale</td>
+                      <td className="py-2 px-3 text-slate-600">Functional Preference</td>
+                      <td className="py-2 px-3 text-slate-600">Selected interface language (Turkish / English)</td>
+                      <td className="py-2 px-3 text-slate-600">1 Year</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           )

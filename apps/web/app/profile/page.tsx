@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useUser, useClerk } from '@clerk/nextjs';
 import { useAppStore } from '../../lib/store';
@@ -13,6 +13,13 @@ export default function ProfilePage() {
   const { signOut, openUserProfile } = useClerk();
   const { currentOrg, currentHost, orgType, userRole, isOnboarded } = useAppStore();
   const { t, locale } = useTranslation();
+
+  useEffect(() => {
+    document.title =
+      locale === 'tr'
+        ? 'Kullanıcı Profili | ErasmusMobility'
+        : 'User Profile | ErasmusMobility';
+  }, [locale]);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
@@ -190,7 +197,7 @@ export default function ProfilePage() {
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2.5 flex-wrap">
                   <h1 className="text-xl sm:text-2xl font-black text-slate-950 m-0 tracking-tight">
-                    {user?.fullName || 'Kullanıcı'}
+                    {user?.fullName || (locale === 'tr' ? 'Kullanıcı' : 'User')}
                   </h1>
 
                   {/* Role Badge */}

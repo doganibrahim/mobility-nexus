@@ -41,7 +41,7 @@ export default function SchoolPipelinePage() {
   useEffect(() => {
     document.title =
       locale === 'tr'
-        ? 'Hareketlilik Planlama Süreç Akışı | ErasmusMobility'
+        ? 'Hareketlilik Planlama Süreci | ErasmusMobility'
         : 'Mobility Planning Pipeline | ErasmusMobility';
   }, [locale]);
 
@@ -243,7 +243,9 @@ export default function SchoolPipelinePage() {
 
     setCompetenceScore(res.score);
     setAssessmentResultMsg(
-      `Skor: ${res.score}/100 | Hedef: ${targetScore} | Yetkinlik Farkı: ${res.gap} Puan (${res.readinessText})`,
+      locale === 'tr'
+        ? `Skor: ${res.score}/100 | Hedef: ${targetScore} | Yetkinlik Farkı: ${res.gap} Puan (${res.readinessText})`
+        : `Score: ${res.score}/100 | Target: ${targetScore} | Competence Gap: ${res.gap} Pts (${res.readinessText})`,
     );
     setAssessmentResultType(res.readinessType);
   };
@@ -321,7 +323,7 @@ export default function SchoolPipelinePage() {
 
   // Handler: Generate Outcomes
   const handleGenerateOutcomes = () => {
-    const res = generateOutcomes(participantType, primaryGap, escoTerm);
+    const res = generateOutcomes(participantType, primaryGap, escoTerm, locale as 'tr' | 'en');
     setTechnicalOutcome(res.technicalOutcome);
     setTransversalOutcome(res.transversalOutcome);
   };
@@ -937,7 +939,11 @@ export default function SchoolPipelinePage() {
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
                       <span>📑</span>
-                      <span>Resmi KA121 & KA122 Soru ve Karar Matrisi</span>
+                      <span>
+                        {locale === 'tr'
+                          ? 'Resmi KA121 & KA122 Soru ve Karar Matrisi'
+                          : 'Official KA121 & KA122 Question & Decision Matrix'}
+                      </span>
                     </span>
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-200 border border-indigo-400/30">
                       <span>🎯</span>

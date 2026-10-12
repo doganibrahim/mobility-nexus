@@ -328,14 +328,14 @@ export default function RecommendationReportCard({
                       {data.participantName || '—'}{' '}
                       <span className="text-slate-500 font-medium">
                         ({data.participantType === 'teacher'
-                          ? 'Teknik Öğretmen'
+                          ? (locale === 'tr' ? 'Teknik Öğretmen' : 'Technical Teacher')
                           : data.participantType === 'staff'
-                            ? 'Mesleki Eğitim Personeli'
+                            ? (locale === 'tr' ? 'Mesleki Eğitim Personeli' : 'VET Staff')
                             : data.participantType === 'incoming'
-                              ? 'Kuruma Gelen'
+                              ? (locale === 'tr' ? 'Kuruma Gelen' : 'Incoming Expert')
                               : data.participantType === 'project_team'
-                                ? 'Proje Ekibi'
-                                : 'VET Öğrencisi / Stajyer'})
+                                ? (locale === 'tr' ? 'Proje Ekibi' : 'Project Team')
+                                : (locale === 'tr' ? 'VET Öğrencisi / Stajyer' : 'VET Learner / Intern')})
                       </span>
                     </td>
                     <th className="p-3 bg-slate-50 font-semibold text-slate-700 border-r border-slate-200">

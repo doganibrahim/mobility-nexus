@@ -92,7 +92,7 @@ export default function AppFooter() {
               <span>⚖️</span>
               <span>
                 {locale === 'tr'
-                  ? 'Yasal Feragatname ve Platformun Rolü (Legal Disclaimer & Scope)'
+                  ? 'Yasal Feragatname ve Platformun Rolü'
                   : 'Legal Disclaimer & Platform Scope'}
               </span>
               <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
@@ -118,7 +118,7 @@ export default function AppFooter() {
                 className="hover:text-blue-700 hover:underline transition-colors font-bold text-slate-700 cursor-pointer inline-flex items-center gap-1"
               >
                 <span>✉️</span>
-                <span>Contact: info@erasmusmobility.com</span>
+                <span>{locale === 'tr' ? 'İletişim: ' : 'Contact: '}info@erasmusmobility.com</span>
               </a>
               <span>•</span>
               <Link

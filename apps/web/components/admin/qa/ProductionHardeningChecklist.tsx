@@ -28,13 +28,25 @@ export function ProductionHardeningChecklist({
   const getCategoryBadge = (cat: string) => {
     switch (cat) {
       case 'SECURITY':
-        return { label: 'Güvenlik', color: 'bg-red-50 text-red-800 border-red-200' };
+        return {
+          label: locale === 'tr' ? 'Güvenlik' : 'Security',
+          color: 'bg-red-50 text-red-800 border-red-200',
+        };
       case 'ENV':
-        return { label: 'Ortam & Gizlilik', color: 'bg-blue-50 text-blue-800 border-blue-200' };
+        return {
+          label: locale === 'tr' ? 'Ortam & Gizlilik' : 'Environment & Privacy',
+          color: 'bg-blue-50 text-blue-800 border-blue-200',
+        };
       case 'PERFORMANCE':
-        return { label: 'Performans', color: 'bg-emerald-50 text-emerald-800 border-emerald-200' };
+        return {
+          label: locale === 'tr' ? 'Performans' : 'Performance',
+          color: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+        };
       case 'COMPLIANCE':
-        return { label: 'Hukuk & Uyum', color: 'bg-purple-50 text-purple-800 border-purple-200' };
+        return {
+          label: locale === 'tr' ? 'Hukuk & Uyum' : 'Legal & Compliance',
+          color: 'bg-purple-50 text-purple-800 border-purple-200',
+        };
       default:
         return { label: cat, color: 'bg-slate-100 text-slate-700 border-slate-200' };
     }
@@ -75,9 +87,11 @@ export function ProductionHardeningChecklist({
             <div className="text-[10px] uppercase font-bold text-slate-300">
               {locale === 'tr' ? 'Garanti Süresi' : 'Warranty Window'}
             </div>
-            <div className="text-2xl font-black text-white font-mono mt-1">30 Gün</div>
+            <div className="text-2xl font-black text-white font-mono mt-1">
+              30 {locale === 'tr' ? 'Gün' : 'Days'}
+            </div>
             <div className="text-[10px] text-emerald-300 font-semibold mt-0.5">
-              100% Ücretsiz Destek
+              {locale === 'tr' ? '100% Ücretsiz Destek' : '100% Free Support'}
             </div>
           </div>
         </div>
