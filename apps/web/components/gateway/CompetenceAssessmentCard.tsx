@@ -90,7 +90,7 @@ export default function CompetenceAssessmentCard({
                 </div>
 
                 {/* Friendly 1-5 Scale Radio-Buttons */}
-                <div className="grid grid-cols-5 gap-1.5 mt-3 pt-2.5 border-t border-slate-200/60">
+                <div className="grid grid-cols-5 gap-1 sm:gap-1.5 mt-3 pt-2.5 border-t border-slate-200/60">
                   {[1, 2, 3, 4, 5].map((val) => {
                     const isSelected = currentVal === val;
                     return (
@@ -98,26 +98,50 @@ export default function CompetenceAssessmentCard({
                         key={val}
                         type="button"
                         onClick={() => onAnswerChange(q.id, val)}
-                        className={`py-1.5 px-2 text-xs font-semibold rounded-lg border transition-all text-center ${
+                        className={`py-1.5 px-0.5 sm:px-1.5 text-xs font-semibold rounded-lg border transition-all text-center min-w-0 overflow-hidden flex flex-col items-center justify-center cursor-pointer ${
                           isSelected
                             ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
                             : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
-                        {val}
-                        <span className="block text-[10px] font-normal opacity-85">
-                          {val === 1
-                            ? (locale === 'tr' ? 'Başlangıç' : 'Novice')
-                            : val === 3
-                            ? (locale === 'tr' ? 'Orta' : 'Intermediate')
-                            : val === 5
-                            ? (locale === 'tr' ? 'İleri' : 'Advanced')
-                            : (locale === 'tr' ? `Düzey ${val}` : `Level ${val}`)}
+                        <span className="font-bold text-xs sm:text-sm leading-tight">{val}</span>
+                        <span className="block text-[8.5px] sm:text-[10px] font-normal opacity-90 truncate w-full text-center leading-tight mt-0.5">
+                          {val === 1 ? (
+                            locale === 'tr' ? 'Başlangıç' : 'Novice'
+                          ) : val === 2 ? (
+                            locale === 'tr' ? 'Temel' : 'Level 2'
+                          ) : val === 3 ? (
+                            <>
+                              <span className="hidden sm:inline">{locale === 'tr' ? 'Orta' : 'Intermediate'}</span>
+                              <span className="sm:hidden">{locale === 'tr' ? 'Orta' : 'Inter.'}</span>
+                            </>
+                          ) : val === 4 ? (
+                            locale === 'tr' ? 'Yetkin' : 'Level 4'
+                          ) : (
+                            locale === 'tr' ? 'İleri' : 'Advanced'
+                          )}
                         </span>
                       </button>
                     );
                   })}
                 </div>
+
+                {currentVal && (
+                  <div className="mt-2 text-[11px] text-slate-500 font-medium flex items-center justify-between px-0.5">
+                    <span>{locale === 'tr' ? 'Seçilen Yetkinlik:' : 'Selected Level:'}</span>
+                    <span className="font-bold text-blue-700">
+                      {currentVal === 1
+                        ? (locale === 'tr' ? '1 - Başlangıç Seviyesi' : '1 - Novice')
+                        : currentVal === 2
+                        ? (locale === 'tr' ? '2 - Temel Düzey' : '2 - Level 2 (Basic)')
+                        : currentVal === 3
+                        ? (locale === 'tr' ? '3 - Orta Düzey (Intermediate)' : '3 - Intermediate')
+                        : currentVal === 4
+                        ? (locale === 'tr' ? '4 - Yetkin Düzey' : '4 - Level 4 (Proficient)')
+                        : (locale === 'tr' ? '5 - İleri Seviye (Advanced)' : '5 - Advanced')}
+                    </span>
+                  </div>
+                )}
               </div>
             );
           })}

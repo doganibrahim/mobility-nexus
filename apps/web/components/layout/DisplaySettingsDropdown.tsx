@@ -58,7 +58,7 @@ export function DisplaySettingsDropdown() {
     fontSize !== 'normal' || highContrast || underlineLinks || reducedMotion;
 
   return (
-    <div ref={containerRef} className="relative inline-block text-left z-40">
+    <div ref={containerRef} className="relative inline-block text-left">
       {/* Trigger Button */}
       <button
         ref={triggerRef}
@@ -68,7 +68,7 @@ export function DisplaySettingsDropdown() {
         aria-expanded={isOpen}
         aria-label={locale === 'tr' ? 'Görünüm ve Okuma Ayarları' : 'Display & Reading Settings'}
         title={locale === 'tr' ? 'Görünüm ve Okuma Ayarları' : 'Display & Reading Settings'}
-        className={`inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all border shadow-2xs focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-hidden cursor-pointer shrink-0 ${
+        className={`h-9 inline-flex items-center justify-center gap-1.5 px-2.5 rounded-xl text-xs font-semibold transition-all border shadow-2xs focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-hidden cursor-pointer shrink-0 ${
           hasCustomSettings
             ? 'bg-blue-50 text-blue-900 border-blue-300 font-bold'
             : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300'
@@ -83,13 +83,22 @@ export function DisplaySettingsDropdown() {
         )}
       </button>
 
-      {/* Dropdown Panel */}
+      {/* Mobile Backdrop for small screens */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-slate-900/50 z-40 sm:hidden backdrop-blur-xs transition-opacity"
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Dropdown / Modal Panel */}
       {isOpen && (
         <div
           role="dialog"
           aria-modal="true"
           aria-label={locale === 'tr' ? 'Görünüm ve Okuma Ayarları Paneli' : 'Display & Reading Preferences'}
-          className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl bg-white border border-slate-200 shadow-2xl p-4 z-50 text-slate-800 animate-fadeIn space-y-4"
+          className="fixed inset-x-3 top-14 max-h-[calc(100vh-4.5rem)] overflow-y-auto sm:overflow-visible sm:max-h-none sm:absolute sm:inset-x-auto sm:top-full sm:right-0 sm:mt-2 w-auto sm:w-96 rounded-2xl bg-white border border-slate-200 shadow-2xl p-4 z-50 text-slate-800 animate-fadeIn space-y-4"
         >
           {/* Header */}
           <div className="flex items-center justify-between pb-2 border-b border-slate-100">

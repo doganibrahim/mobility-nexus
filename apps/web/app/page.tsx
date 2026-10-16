@@ -155,18 +155,18 @@ export default function Home() {
               </span>
             </div>
 
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="grid grid-cols-2 xs:flex xs:items-center gap-2 flex-wrap">
               <button
                 type="button"
                 onClick={() => setGuestMode('GATEWAY')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                   guestMode === 'GATEWAY'
                     ? 'bg-slate-900 text-white shadow-xs'
                     : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
                 }`}
               >
                 <span>🚪</span>
-                <span>{locale === 'tr' ? 'Giriş Kapıları (Ana)' : 'Gateways'}</span>
+                <span>{locale === 'tr' ? 'Giriş Kapıları' : 'Gateways'}</span>
               </button>
 
               <button
@@ -175,7 +175,7 @@ export default function Home() {
                   setGuestMode('SCHOOL');
                   store.loadDemoData(locale);
                 }}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                   guestMode === 'SCHOOL'
                     ? 'bg-blue-600 text-white shadow-xs'
                     : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
@@ -191,7 +191,7 @@ export default function Home() {
                   setGuestMode('HOST');
                   store.loadHostDemoData(locale);
                 }}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                   guestMode === 'HOST'
                     ? 'bg-emerald-600 text-white shadow-xs'
                     : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
@@ -203,7 +203,7 @@ export default function Home() {
 
               <Link
                 href="/guide"
-                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-900 border border-slate-200 transition-all flex items-center gap-1.5"
+                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-900 border border-slate-200 transition-all flex items-center justify-center gap-1.5"
               >
                 <span>📖</span>
                 <span>{locale === 'tr' ? 'Kılavuz' : 'User Guide'}</span>
@@ -211,7 +211,7 @@ export default function Home() {
 
               <Link
                 href="/school/pipeline"
-                className="px-3 py-1.5 rounded-lg text-xs font-black bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-xs flex items-center gap-1.5 ml-1"
+                className="col-span-2 xs:col-auto px-3 py-1.5 rounded-lg text-xs font-black bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-xs flex items-center justify-center gap-1.5"
               >
                 <span>{locale === 'tr' ? 'Hareketliliğinizi Planlayın' : 'Plan Your Mobility'}</span>
                 <span>→</span>

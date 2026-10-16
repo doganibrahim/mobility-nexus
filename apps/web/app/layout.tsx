@@ -1,5 +1,5 @@
 import { ClerkProvider } from '@clerk/nextjs';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '../lib/theme-context';
@@ -22,6 +22,12 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: 'swap',
   variable: '--font-heading',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   title: {

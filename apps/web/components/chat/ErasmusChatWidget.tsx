@@ -268,52 +268,52 @@ export default function ErasmusChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end print:hidden">
+    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end print:hidden">
       {/* CHAT WINDOW */}
       {isOpen && (
-        <div className="mb-3 w-[92vw] sm:w-[400px] h-[540px] max-h-[82vh] bg-white rounded-2xl shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
+        <div className="mb-2 sm:mb-3 w-[calc(100vw-1.5rem)] sm:w-[400px] h-[500px] max-h-[calc(100vh-5rem)] sm:h-[540px] sm:max-h-[82vh] bg-white rounded-2xl shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
           {/* HEADER */}
-          <div className="bg-slate-900 text-white px-4 py-3.5 flex items-center justify-between border-b border-slate-800 select-none">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm ring-2 ring-blue-400/20">
-                <Bot className="w-5 h-5" />
+          <div className="bg-slate-900 text-white px-3 sm:px-4 py-3 sm:py-3.5 flex items-center justify-between border-b border-slate-800 select-none">
+            <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm ring-2 ring-blue-400/20 shrink-0">
+                <Bot className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <h3 className="text-sm font-semibold tracking-tight text-white">{cb.title}</h3>
-                  <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-400/30">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <h3 className="text-xs sm:text-sm font-semibold tracking-tight text-white truncate max-w-[150px] sm:max-w-none">{cb.title}</h3>
+                  <span className="inline-flex items-center px-1.5 py-0.2 rounded text-[9px] sm:text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-400/30">
                     {cb.badge}
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-400 leading-none mt-0.5 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  {cb.status}
+                <p className="text-[10px] sm:text-[11px] text-slate-400 leading-none mt-0.5 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  <span className="truncate">{cb.status}</span>
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 shrink-0">
               <button
                 type="button"
                 onClick={handleResetChat}
-                className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+                className="p-1 sm:p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
                 title={cb.resetTooltip}
               >
-                <RotateCcw className="w-4 h-4" />
+                <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+                className="p-1 sm:p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
                 title={cb.closeTooltip}
               >
-                <X className="w-4 h-4" />
+                <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
             </div>
           </div>
 
           {/* MESSAGES BODY */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-slate-50">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 bg-slate-50">
             {messages.map((msg) => {
               const isUser = msg.role === 'user';
               return (
@@ -322,7 +322,7 @@ export default function ErasmusChatWidget() {
                   className={`flex flex-col ${isUser ? 'items-end' : 'items-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] rounded-xl px-3.5 py-2.5 text-xs sm:text-[13px] leading-relaxed shadow-xs ${
+                    className={`max-w-[88%] sm:max-w-[85%] rounded-xl px-3 py-2 sm:px-3.5 sm:py-2.5 text-xs sm:text-[13px] leading-relaxed shadow-xs ${
                       isUser
                         ? 'bg-blue-600 text-white rounded-br-xs font-medium'
                         : 'bg-white text-slate-800 border border-slate-200/80 rounded-bl-xs'
@@ -352,31 +352,34 @@ export default function ErasmusChatWidget() {
 
           {/* QUICK PROMPTS */}
           {messages.length <= 2 && (
-            <div className="p-2.5 bg-white border-t border-slate-100 flex flex-wrap gap-1.5">
-              <span className="w-full text-[10px] font-medium text-slate-400 px-1">
+            <div className="p-2 sm:p-2.5 bg-white border-t border-slate-100">
+              <span className="block text-[10px] font-medium text-slate-400 px-1 mb-1">
                 {cb.suggestedLabel}
               </span>
-              {quickQuestions.map((q, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleSendMessage(q)}
-                  className="text-left text-[11px] bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200 transition-colors flex items-center gap-1 cursor-pointer"
-                >
-                  <span>{q}</span>
-                  <ArrowRight className="w-2.5 h-2.5 opacity-60 shrink-0" />
-                </button>
-              ))}
+              <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1 sm:flex-wrap">
+                {quickQuestions.map((q, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => handleSendMessage(q)}
+                    className="shrink-0 sm:shrink text-left text-[11px] bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 px-2.5 py-1.5 rounded-lg border border-slate-200 transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap sm:whitespace-normal max-w-[280px] sm:max-w-none"
+                  >
+                    <span className="truncate sm:whitespace-normal">{q}</span>
+                    <ArrowRight className="w-2.5 h-2.5 opacity-60 shrink-0" />
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 
           {/* INPUT AREA */}
-          <div className="p-3 bg-white border-t border-slate-200">
+          <div className="p-2.5 sm:p-3 bg-white border-t border-slate-200">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
                 handleSendMessage();
               }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-1.5 sm:gap-2"
             >
               <input
                 ref={inputRef}
@@ -385,21 +388,22 @@ export default function ErasmusChatWidget() {
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={cb.inputPlaceholder}
-                className="flex-1 bg-slate-100 text-slate-800 text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+                className="flex-1 bg-slate-100 text-slate-800 text-xs sm:text-sm px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
                 disabled={isLoading}
               />
               <button
                 type="submit"
                 disabled={isLoading || !inputMessage.trim()}
-                className="bg-blue-700 hover:bg-blue-800 disabled:opacity-40 disabled:hover:bg-blue-700 text-white p-2.5 rounded-xl transition-all shadow-sm flex items-center justify-center cursor-pointer shrink-0"
+                className="bg-blue-700 hover:bg-blue-800 disabled:opacity-40 disabled:hover:bg-blue-700 text-white p-2 sm:p-2.5 rounded-xl transition-all shadow-sm flex items-center justify-center cursor-pointer shrink-0"
                 title={cb.sendTooltip}
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
             </form>
-            <div className="mt-1.5 flex items-center justify-between text-[10px] text-slate-400 px-1">
+            <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400 px-1">
               <span>{cb.version}</span>
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
                 className="hover:text-slate-600 underline cursor-pointer"
               >

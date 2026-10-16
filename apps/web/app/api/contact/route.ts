@@ -4,6 +4,7 @@ import path from 'path';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { sanitizeInput, isValidEmail, isValidOid } from '@/lib/sanitize';
 import { recordAuditEvent } from '@/lib/audit-logger';
+import { sendContactNotificationEmail } from '@/lib/email-service';
 
 export const dynamic = 'force-dynamic';
 
@@ -164,6 +165,24 @@ export async function POST(request: NextRequest) {
         oid: oid || undefined,
         messageLength: message.length,
       },
+    });
+
+    // 9. Dispatch Resend Email Notification (Only to admin, never to submitter)
+    const emailPayload = {
+      trackingId,
+      fullName,
+      orgName,
+      oid: oid || null,
+      email,
+      phone: phone || null,
+      subject: subject || null,
+      message,
+      clientIp,
+      submittedAt: new Date().toISOString(),
+    };
+
+    await sendContactNotificationEmail(emailPayload).catch((err) => {
+      console.error('[Contact Notification Email Error]', err);
     });
 
     return NextResponse.json({

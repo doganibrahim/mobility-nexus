@@ -49,6 +49,7 @@ export default function AppHeader() {
   // Mobile menu open state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileToggleRef = useRef<HTMLButtonElement>(null);
 
   // Close dropdowns on outside click and Escape key
   useEffect(() => {
@@ -67,7 +68,9 @@ export default function AppHeader() {
       }
       if (
         mobileMenuRef.current &&
-        !mobileMenuRef.current.contains(event.target as Node)
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        mobileToggleRef.current &&
+        !mobileToggleRef.current.contains(event.target as Node)
       ) {
         setIsMobileMenuOpen(false);
       }
@@ -121,51 +124,56 @@ export default function AppHeader() {
       </a>
 
       {/* Top EU-Standard Context Strip (Light & Crisp, Responsive) */}
-      <div className="bg-slate-100/80 border-b border-slate-200 px-3 py-1 sm:px-6 text-[11px] sm:text-xs text-slate-600 flex items-center justify-between flex-wrap gap-1.5">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="flex items-center gap-1.5 font-semibold text-slate-800">
+      <div className="relative z-30 bg-slate-100/90 border-b border-slate-200 px-2.5 py-1 sm:px-6 text-[11px] sm:text-xs text-slate-600 flex items-center justify-between gap-1.5 overflow-hidden">
+        <div className="flex items-center gap-1.5 min-w-0 shrink">
+          <span className="flex items-center gap-1.5 font-semibold text-slate-800 shrink-0">
             <span>🇪🇺</span>
-            <span className="truncate max-w-[210px] sm:max-w-none">
+            <span className="hidden sm:inline">
               {locale === 'en' ? 'Erasmus+ VET Planning & Partner Network' : 'Erasmus+ Mesleki Eğitim Destek & Planlama Ağı'}
+            </span>
+            <span className="sm:hidden text-[10.5px]">
+              {locale === 'en' ? 'Erasmus+ VET Support' : 'Erasmus+ Mesleki Destek'}
             </span>
           </span>
           <span className="text-slate-400 hidden sm:inline">•</span>
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200/80 text-slate-700">
+          <span className="inline-flex items-center px-1.5 py-0.2 rounded text-[9.5px] font-bold bg-slate-200/80 text-slate-700 shrink-0 hidden md:inline-flex">
             {locale === 'en' ? 'Independent Support Platform' : 'Bağımsız Destek Platformu'}
           </span>
-          <span className="text-slate-400 hidden md:inline">•</span>
-          <span className="text-slate-500 hidden md:inline">
+          <span className="text-slate-400 hidden lg:inline">•</span>
+          <span className="text-slate-500 hidden lg:inline">
             KA121 / KA122 / ESCO & ISCED-F
           </span>
         </div>
-        <div className="flex items-center gap-2 flex-wrap justify-end">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-200">
+        <div className="flex items-center gap-1.5 shrink-0 justify-end">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9.5px] sm:text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-200">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-            <span>
+            <span className="sm:hidden">2026</span>
+            <span className="hidden sm:inline">
               {locale === 'tr'
                 ? '2026 Projeleri: Uygulama Dönemi'
                 : '2026 Projects: Implementation Phase'}
             </span>
           </span>
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-200">
+          <span className="hidden xs:inline-flex sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9.5px] sm:text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-200">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-            <span>
+            <span className="sm:hidden">2027</span>
+            <span className="hidden sm:inline">
               {locale === 'tr'
-                ? '2027 Çağrısı: Resmi Duyuru Bekleniyor'
-                : '2027 Call: Awaiting Official Announcement'}
+                ? '2027 Çağrısı: Duyuru Bekleniyor'
+                : '2027 Call: Awaiting Announcement'}
             </span>
           </span>
         </div>
       </div>
 
       {/* Main Single-Line Header Bar */}
-      <div className="header-container max-w-[1440px] mx-auto px-3 sm:px-4 xl:px-6 py-2 sm:py-2.5 flex items-center justify-between gap-2 xl:gap-3 2xl:gap-4">
+      <div className="relative z-30 bg-white header-container max-w-[1440px] mx-auto px-2.5 sm:px-4 xl:px-6 py-2 sm:py-2.5 flex items-center justify-between gap-1 sm:gap-2 xl:gap-3 2xl:gap-4">
         {/* 1. Left Brand Block (Official Branded Logo) */}
-        <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+        <Link href="/" className="flex items-center gap-1.5 sm:gap-2.5 shrink-0 group">
           <img
             src="/images/logo.png"
             alt="ErasmusMobility"
-            className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+            className="h-7 sm:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
           />
           <span className="hidden 2xl:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-200">
             {locale === 'tr' ? 'Bağımsız Destek Portalı' : 'Support Portal'}
@@ -967,7 +975,7 @@ export default function AppHeader() {
         </nav>
 
         {/* 3. Right Utility Bar (Single Line: Accessibility, Language, Admin Badge, Profile Link, Mobile Toggle) */}
-        <div className="header-right-utility flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <div className="header-right-utility flex items-center gap-1 sm:gap-1.5 xl:gap-2 shrink-0">
           {/* Görünüm & Okuma Ayarları (Accessibility Preferences) */}
           <DisplaySettingsDropdown />
 
@@ -976,7 +984,7 @@ export default function AppHeader() {
             <button
               type="button"
               onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-              className="px-2 sm:px-2.5 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 flex items-center gap-1 sm:gap-1.5 shadow-2xs transition-all shrink-0 cursor-pointer"
+              className="h-9 px-2 sm:px-2.5 text-xs font-bold rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 flex items-center justify-center gap-1 sm:gap-1.5 shadow-2xs transition-all shrink-0 cursor-pointer"
               title={locale === 'tr' ? 'Dili Değiştir' : 'Change Language'}
             >
               <span>{locale === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN'}</span>
@@ -1078,16 +1086,16 @@ export default function AppHeader() {
               </div>
             </Link>
           ) : (
-            <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+            <div className="flex items-center gap-1.5 shrink-0">
               <Link
                 href="/sign-up"
-                className="px-2.5 sm:px-3 py-1.5 text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 active:bg-blue-900 rounded-lg transition-all shadow-xs hover:shadow-sm cursor-pointer whitespace-nowrap"
+                className="hidden sm:inline-flex h-9 px-3 py-1.5 text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 active:bg-blue-900 rounded-xl transition-all shadow-xs hover:shadow-sm cursor-pointer whitespace-nowrap items-center justify-center"
               >
                 {locale === 'en' ? 'Register' : 'Kayıt Ol'}
               </Link>
               <Link
                 href="/sign-in"
-                className="px-2.5 sm:px-3 py-1.5 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs cursor-pointer whitespace-nowrap"
+                className="h-9 px-2.5 sm:px-3 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 hover:text-slate-950 transition-colors shadow-2xs cursor-pointer whitespace-nowrap flex items-center justify-center"
               >
                 {locale === 'en' ? 'Sign In' : 'Giriş Yap'}
               </Link>
@@ -1096,19 +1104,20 @@ export default function AppHeader() {
 
           {/* Mobile Hamburger Menu Toggle Button (Visible on screens < xl) */}
           <button
+            ref={mobileToggleRef}
             type="button"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="xl:hidden p-1.5 sm:p-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors shadow-2xs shrink-0 cursor-pointer"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className="xl:hidden h-9 w-9 rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors shadow-2xs shrink-0 flex items-center justify-center cursor-pointer"
             aria-label={isMobileMenuOpen ? (isTr ? 'Menüyü Kapat' : 'Close menu') : (isTr ? 'Menüyü Aç' : 'Open menu')}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu-panel"
           >
             {isMobileMenuOpen ? (
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+              <svg className="w-5 h-5 text-slate-800" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+              <svg className="w-5 h-5 text-slate-800" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
             )}
@@ -1118,11 +1127,40 @@ export default function AppHeader() {
 
       {/* Mobile Slide-down Navigation Panel (Flat, Zero Gradient, xl:hidden) */}
       {isMobileMenuOpen && (
-        <div
-          id="mobile-menu-panel"
-          ref={mobileMenuRef}
-          className="xl:hidden bg-white border-t border-slate-200 shadow-xl max-h-[calc(100vh-100px)] overflow-y-auto divide-y divide-slate-100 animate-fadeIn"
-        >
+        <>
+          {/* Mobile Backdrop (dims only page content below header) */}
+          <div
+            className="fixed inset-0 bg-slate-900/40 z-10 xl:hidden backdrop-blur-2xs transition-opacity"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          <div
+            id="mobile-menu-panel"
+            ref={mobileMenuRef}
+            className="relative z-30 xl:hidden bg-white border-t border-slate-200 shadow-xl max-h-[calc(100vh-100px)] overflow-y-auto divide-y divide-slate-100 animate-fadeIn"
+          >
+
+            {/* Mobile Quick Auth Header for Unauthenticated Users */}
+            {!isSignedIn && (
+              <div className="p-3 bg-slate-50 border-b border-slate-200 flex items-center gap-2">
+                <Link
+                  href="/sign-up"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex-1 py-2 text-center text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 rounded-lg shadow-xs transition-colors"
+                >
+                  {locale === 'en' ? 'Register' : 'Kayıt Ol'}
+                </Link>
+                <Link
+                  href="/sign-in"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex-1 py-2 text-center text-xs font-bold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 rounded-lg shadow-2xs transition-colors"
+                >
+                  {locale === 'en' ? 'Sign In' : 'Giriş Yap'}
+                </Link>
+              </div>
+            )}
+
           {/* Quick Action: 5 Adımlı Pipeline */}
           <div className="p-3 bg-blue-50/60 border-b border-blue-100">
             <Link
@@ -1433,6 +1471,7 @@ export default function AppHeader() {
             </div>
           )}
         </div>
+        </>
       )}
 
       {/* Modals Container */}
