@@ -346,7 +346,9 @@ export const OrganisationsDb = {
       websiteUrl: payload.websiteUrl || null,
       generalEmail: payload.generalEmail || null,
       primarySector: payload.primarySector,
+      sectors: payload.sectors || (payload.primarySector ? [payload.primarySector] : ['ict']),
       verificationStatus: 'PENDING',
+
       contactPerson: payload.contactPerson,
       contactEmail: payload.contactEmail,
       contactPhone: payload.telephone || payload.contactPhone || null,

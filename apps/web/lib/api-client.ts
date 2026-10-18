@@ -38,7 +38,9 @@ export interface RegisterHostPayload {
   generalEmail: string;
   telephone: string;
   primarySector: string;
+  sectors?: string[];
   contactPerson: string;
+
   contactTitle: string;
   contactEmail: string;
   contactPhone?: string;
@@ -304,7 +306,9 @@ export const apiClient = {
       address: payload.registeredAddress || payload.address || null,
       websiteUrl: payload.websiteUrl || null,
       primarySector: payload.primarySector,
+      sectors: payload.sectors || (payload.primarySector ? [payload.primarySector] : ['ict']),
       verificationStatus: 'PENDING',
+
       contactPerson: payload.contactPerson,
       contactEmail: payload.contactEmail,
       contactPhone: payload.telephone || payload.contactPhone || null,

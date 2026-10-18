@@ -14,7 +14,19 @@ import AdminVerificationQueueModal from '../../components/admin/AdminVerificatio
 import { useTranslation } from '../../lib/i18n';
 import LegalModal, { LegalTabType } from '../../components/ui/LegalModal';
 
+const SECTOR_ICONS: Record<string, string> = {
+  ict: '💻',
+  automotive: '🚗',
+  electrical: '⚡',
+  machinery: '⚙️',
+  health: '🩺',
+  tourism: '🏨',
+  logistics: '📦',
+  green_energy: '🌿',
+};
+
 export default function OnboardingPage() {
+
   const router = useRouter();
   const { user, isLoaded: isUserLoaded } = useUser();
   const { themeConfig } = useTheme();
@@ -75,7 +87,30 @@ export default function OnboardingPage() {
   const [hostWebsite, setHostWebsite] = useState('');
   const [hostGeneralEmail, setHostGeneralEmail] = useState('');
   const [hostTelephone, setHostTelephone] = useState('');
-  const [hostSector, setHostSector] = useState('ict');
+  const [hostSectors, setHostSectors] = useState<string[]>(['ict']);
+
+  const hostSector = hostSectors[0] || 'ict';
+
+  const toggleHostSector = (sectorCode: string) => {
+    setHostSectors((prev) => {
+      if (prev.includes(sectorCode)) {
+        if (prev.length === 1) return prev; // Keep at least one selected
+        return prev.filter((s) => s !== sectorCode);
+      }
+      return [...prev, sectorCode];
+    });
+  };
+
+  const selectAllHostSectors = () => {
+    if (sectors.length > 0) {
+      setHostSectors(sectors.map((s) => s.code));
+    }
+  };
+
+  const resetHostSectors = () => {
+    setHostSectors(['ict']);
+  };
+
   const [hostContactPerson, setHostContactPerson] = useState('');
   const [hostContactTitle, setHostContactTitle] = useState('');
   const [hostContactEmail, setHostContactEmail] = useState('');
@@ -435,8 +470,10 @@ export default function OnboardingPage() {
         websiteUrl: hostWebsite.trim(),
         generalEmail: hostGeneralEmail.trim().toLowerCase(),
         telephone: hostTelephone.trim(),
-        primarySector: hostSector,
+        primarySector: hostSectors[0] || 'ict',
+        sectors: hostSectors,
         workingLanguages: hostLanguages,
+
         contactPerson: hostContactPerson.trim(),
         contactTitle: hostContactTitle.trim(),
         contactEmail: hostContactEmail.trim().toLowerCase(),
@@ -760,9 +797,16 @@ export default function OnboardingPage() {
                   <span className="text-sm font-bold text-slate-900 mt-1 block capitalize">
                     {submittedHost.organisationType || 'Company'}
                   </span>
-                  <span className="text-[11px] text-slate-500 mt-0.5 block capitalize">
-                    {locale === 'tr' ? `Sektör: ${submittedHost.primarySector}` : `Sector: ${submittedHost.primarySector}`}
+                  <span className="text-[11px] text-slate-500 mt-0.5 block capitalize truncate">
+                    {submittedHost.sectors && submittedHost.sectors.length > 1
+                      ? locale === 'tr'
+                        ? `${submittedHost.sectors.length} Sektör (${submittedHost.sectors.join(', ')})`
+                        : `${submittedHost.sectors.length} Sectors (${submittedHost.sectors.join(', ')})`
+                      : locale === 'tr'
+                      ? `Sektör: ${submittedHost.primarySector || 'Genel'}`
+                      : `Sector: ${submittedHost.primarySector || 'General'}`}
                   </span>
+
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5">
@@ -1704,41 +1748,126 @@ export default function OnboardingPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider m-0">
-                          {locale === 'tr' ? 'Kurumsal Faaliyet Sektörü (8 Ana Sektör Kümesi)' : 'Vocational Sector Cluster'} <span className="text-rose-500">*</span>
-                        </label>
-                        <span className="text-[11px] text-slate-500 font-semibold">{locale === 'tr' ? '8 Sektör' : '8 Sectors'}</span>
+                  {/* Sektör Kümesi & Kapasite */}
+                  <div className="space-y-4">
+                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 space-y-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/80 pb-3">
+                        <div>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <label className="block text-xs font-bold text-slate-900 uppercase tracking-wider m-0">
+                              {locale === 'tr'
+                                ? 'Faaliyet Gösterilen Sektörler (Çoklu Seçim)'
+                                : 'Vocational Sector Clusters (Multi-Select)'}{' '}
+                              <span className="text-rose-500">*</span>
+                            </label>
+                            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                              {locale === 'tr'
+                                ? `${hostSectors.length} / ${sectors.length} Sektör Seçildi`
+                                : `${hostSectors.length} / ${sectors.length} Sectors Selected`}
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-600 m-0 mt-1">
+                            {locale === 'tr'
+                              ? 'Kurumunuz birden fazla sektörde staj veya işbaşı eğitimi düzenliyorsa tüm ilgili alanları seçebilirsiniz.'
+                              : 'Select all sectors where your organisation provides work placements, internships, or job shadowing.'}
+                          </p>
+                        </div>
+
+                        {/* Quick Selection Buttons */}
+                        <div className="flex items-center gap-2 shrink-0 self-start sm:self-auto">
+                          <button
+                            type="button"
+                            onClick={selectAllHostSectors}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                              hostSectors.length === sectors.length
+                                ? 'bg-emerald-700 text-white shadow-2xs'
+                                : 'bg-white hover:bg-emerald-50 text-emerald-800 border border-emerald-300'
+                            }`}
+                          >
+                            ✓ {locale === 'tr' ? `Tümünü Seç (${sectors.length}/${sectors.length})` : `Select All (${sectors.length}/${sectors.length})`}
+                          </button>
+                          {hostSectors.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={resetHostSectors}
+                              className="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-300 hover:bg-slate-100 transition-all cursor-pointer"
+                            >
+                              {locale === 'tr' ? 'Varsayılana Dön' : 'Reset'}
+                            </button>
+                          )}
+                        </div>
                       </div>
-                      <select
-                        value={hostSector}
-                        onChange={(e) => setHostSector(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all bg-white"
-                      >
-                        {sectors.map((s) => (
-                          <option key={s.code} value={s.code}>
-                            {locale === 'tr' ? (s.nameTr || s.nameEn) : (s.nameEn || s.nameTr)}
-                          </option>
-                        ))}
-                      </select>
+
+                      {/* 8 Sector Cards Grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                        {sectors.map((s) => {
+                          const isSelected = hostSectors.includes(s.code);
+                          const icon = SECTOR_ICONS[s.code] || '🏢';
+                          const label = locale === 'tr' ? s.nameTr || s.nameEn : s.nameEn || s.nameTr;
+
+                          return (
+                            <div
+                              key={s.code}
+                              onClick={() => toggleHostSector(s.code)}
+                              className={`p-3 rounded-xl border-2 transition-all cursor-pointer select-none flex items-start gap-2.5 ${
+                                isSelected
+                                  ? 'bg-emerald-50/80 border-emerald-500 shadow-2xs ring-1 ring-emerald-400/30'
+                                  : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/60'
+                              }`}
+                            >
+                              <div
+                                className={`w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 border transition-colors ${
+                                  isSelected
+                                    ? 'bg-emerald-600 text-white border-emerald-600'
+                                    : 'bg-white border-slate-300 text-transparent'
+                                }`}
+                              >
+                                ✓
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="text-base shrink-0">{icon}</span>
+                                  <span className={`text-xs font-extrabold leading-snug ${
+                                    isSelected ? 'text-emerald-950' : 'text-slate-800'
+                                  }`}>
+                                    {label}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
 
-                    <div>
-                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        {locale === 'tr' ? 'Dönemlik Stajyer Kapasitesi' : 'Internship Capacity Per Term'}
-                      </label>
-                      <input
-                        type="number"
-                        min={1}
-                        max={50}
-                        value={hostMaxLearners}
-                        onChange={(e) => setHostMaxLearners(Number(e.target.value) || 1)}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
-                      />
+                    {/* Capacity Row */}
+                    <div className="bg-white border border-slate-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">
+                          {locale === 'tr' ? 'Dönemlik Toplam Stajyer Kapasitesi' : 'Total Internship Capacity Per Term'}
+                        </label>
+                        <p className="text-xs text-slate-500 m-0">
+                          {locale === 'tr'
+                            ? 'Aynı dönemde eş zamanlı kabul edebileceğiniz maksimum öğrenci sayısı.'
+                            : 'Maximum number of learners you can host concurrently per term.'}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <input
+                          type="number"
+                          min={1}
+                          max={100}
+                          value={hostMaxLearners}
+                          onChange={(e) => setHostMaxLearners(Number(e.target.value) || 1)}
+                          className="w-24 px-3 py-2 rounded-xl border border-slate-300 text-sm font-bold text-center focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                        />
+                        <span className="text-xs font-bold text-slate-500">
+                          {locale === 'tr' ? 'Öğrenci' : 'Learners'}
+                        </span>
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </div>
 
