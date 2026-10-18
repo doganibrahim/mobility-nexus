@@ -61,7 +61,7 @@ export default function AdminVerificationQueueModal({
     setFeedbackMsg(null);
 
     try {
-      await apiClient.reviewHostVerification(
+      const { data } = await apiClient.reviewHostVerification(
         selectedHost.id,
         {
           status,
@@ -71,14 +71,20 @@ export default function AdminVerificationQueueModal({
         userEmail,
       );
 
-      setFeedbackMsg(`Kurum başarıyla "${status}" durumuna getirildi.`);
+      const updated = data && data.id ? data : { ...selectedHost, verificationStatus: status };
+
+      setFeedbackMsg(
+        locale === 'tr'
+          ? `Kurum başarıyla "${status}" durumuna getirildi.`
+          : `Organisation successfully set to "${status}".`
+      );
 
       // Update local queue
       const updatedQueue = queue.map((item) =>
-        item.id === selectedHost.id ? { ...item, verificationStatus: status } : item,
+        item.id === selectedHost.id ? updated : item,
       );
       setQueue(updatedQueue);
-      setSelectedHost({ ...selectedHost, verificationStatus: status });
+      setSelectedHost(updated);
     } catch (err: any) {
       setFeedbackMsg(`İşlem hatası: ${err.message}`);
     } finally {
@@ -214,8 +220,8 @@ export default function AdminVerificationQueueModal({
                     <span>📑</span>
                     <span>
                       {locale === 'tr'
-                        ? 'Yöneticiye Özel Resmi Bilgiler & Evraklar'
-                        : 'Admin Only Official Info & Documents'}
+                        ? 'Resmi Sicil Bilgileri & Doğrulama Evrakları'
+                        : 'Official Regulatory Info & Verification Documents'}
                     </span>
                   </div>
 

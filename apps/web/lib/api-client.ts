@@ -360,64 +360,110 @@ export const apiClient = {
     payload: any,
   ): Promise<{ data: any; isFallback: boolean }> {
     try {
-      const response = await fetch(`${API_BASE_URL}/hosts/${hostId}/portfolio`, {
+      // 1. Try internal Next.js API route first
+      const response = await fetch(`/api/hosts/${encodeURIComponent(hostId)}/portfolio`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (!response.ok) throw new Error();
-      const host = await response.json();
-      return { data: host, isFallback: false };
-    } catch {
-      return { data: payload, isFallback: true };
-    }
+      if (response.ok) {
+        const host = await response.json();
+        return { data: host, isFallback: false };
+      }
+    } catch {}
+
+    try {
+      // 2. Try external API URL if configured
+      const response = await fetch(`${API_BASE_URL}/hosts/${encodeURIComponent(hostId)}/portfolio`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (response.ok) {
+        const host = await response.json();
+        return { data: host, isFallback: false };
+      }
+    } catch {}
+
+    return { data: payload, isFallback: true };
   },
 
   /**
-   * Submits official legal & verification KYC documents (Tier 3 - Admin Only).
+   * Submits official legal & verification KYC documents (Tier 3).
    */
   async submitHostVerification(
     hostId: string,
     payload: any,
   ): Promise<{ data: any; isFallback: boolean }> {
     try {
-      const response = await fetch(`${API_BASE_URL}/hosts/${hostId}/verification`, {
+      // 1. Try internal Next.js API route first
+      const response = await fetch(`/api/hosts/${encodeURIComponent(hostId)}/verification`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (!response.ok) throw new Error();
-      const host = await response.json();
-      return { data: host, isFallback: false };
-    } catch {
-      return { data: { ...payload, verificationStatus: 'UNDER_REVIEW' }, isFallback: true };
-    }
+      if (response.ok) {
+        const host = await response.json();
+        return { data: host, isFallback: false };
+      }
+    } catch {}
+
+    try {
+      // 2. Try external API URL if configured
+      const response = await fetch(`${API_BASE_URL}/hosts/${encodeURIComponent(hostId)}/verification`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (response.ok) {
+        const host = await response.json();
+        return { data: host, isFallback: false };
+      }
+    } catch {}
+
+    return { data: { ...payload, verificationStatus: 'UNDER_REVIEW' }, isFallback: true };
   },
 
   /**
    * Fetches the admin verification review queue.
    */
   async getVerificationQueue(status?: string, userEmail?: string, adminKey?: string): Promise<any[]> {
-    try {
-      const url = status
-        ? `${API_BASE_URL}/hosts/verifications/queue?status=${status}`
-        : `${API_BASE_URL}/hosts/verifications/queue`;
-      
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      const secret = adminKey || process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY;
-      if (secret) headers['x-admin-key'] = secret;
-      if (userEmail) headers['x-user-email'] = userEmail;
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    const secret = adminKey || process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY;
+    if (secret) headers['x-admin-key'] = secret;
+    if (userEmail) headers['x-user-email'] = userEmail;
 
-      const response = await fetch(url, { headers });
+    // 1. Try internal Next.js API route first
+    try {
+      const internalUrl = status
+        ? `/api/hosts/verifications/queue?status=${encodeURIComponent(status)}`
+        : `/api/hosts/verifications/queue`;
+      const response = await fetch(internalUrl, { headers });
       const contentType = response.headers.get('content-type') || '';
-      if (!response.ok || !contentType.includes('application/json')) {
-        return [];
+      if (response.ok && contentType.includes('application/json')) {
+        const data = await response.json();
+        if (Array.isArray(data)) return data;
       }
-      return await response.json();
+    } catch (err: any) {
+      console.warn('Internal queue fetch failed, trying external:', err.message);
+    }
+
+    // 2. Try external API URL if configured
+    try {
+      const externalUrl = status
+        ? `${API_BASE_URL}/hosts/verifications/queue?status=${encodeURIComponent(status)}`
+        : `${API_BASE_URL}/hosts/verifications/queue`;
+
+      const response = await fetch(externalUrl, { headers });
+      const contentType = response.headers.get('content-type') || '';
+      if (response.ok && contentType.includes('application/json')) {
+        return await response.json();
+      }
     } catch (err: any) {
       console.warn('Doğrulama kuyruğu yüklenirken hata:', err.message);
-      return [];
     }
+
+    return [];
   },
 
   /**
@@ -429,23 +475,38 @@ export const apiClient = {
     userEmail?: string,
     adminKey?: string,
   ): Promise<{ data: any; isFallback: boolean }> {
-    try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      const secret = adminKey || process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY;
-      if (secret) headers['x-admin-key'] = secret;
-      if (userEmail) headers['x-user-email'] = userEmail;
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    const secret = adminKey || process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY;
+    if (secret) headers['x-admin-key'] = secret;
+    if (userEmail) headers['x-user-email'] = userEmail;
 
-      const response = await fetch(`${API_BASE_URL}/hosts/${hostId}/verification/review`, {
+    // 1. Try internal Next.js API route first
+    try {
+      const response = await fetch(`/api/hosts/${encodeURIComponent(hostId)}/verification/review`, {
         method: 'POST',
         headers,
         body: JSON.stringify(payload),
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const host = await response.json();
-      return { data: host, isFallback: false };
-    } catch {
-      return { data: payload, isFallback: true };
-    }
+      if (response.ok) {
+        const host = await response.json();
+        return { data: host, isFallback: false };
+      }
+    } catch {}
+
+    // 2. Try external API URL if configured
+    try {
+      const response = await fetch(`${API_BASE_URL}/hosts/${encodeURIComponent(hostId)}/verification/review`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(payload),
+      });
+      if (response.ok) {
+        const host = await response.json();
+        return { data: host, isFallback: false };
+      }
+    } catch {}
+
+    return { data: payload, isFallback: true };
   },
 
   /**

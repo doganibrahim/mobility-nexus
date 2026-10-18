@@ -1,9 +1,21 @@
 import fs from 'fs/promises';
+import fsSync from 'fs';
 import path from 'path';
-import { Organisation, AccreditationStatus } from '@mobility-nexus/types';
+import type { Organisation, AccreditationStatus } from '@mobility-nexus/types';
 
-const ORGS_FILE_PATH = path.join(process.cwd(), 'data', 'organisations.json');
-const HOSTS_FILE_PATH = path.join(process.cwd(), 'data', 'hosts.json');
+function getDataFilePath(filename: string): string {
+  const directPath = path.join(process.cwd(), 'data', filename);
+  const webPath = path.join(process.cwd(), 'apps', 'web', 'data', filename);
+  try {
+    if (fsSync.existsSync(webPath)) return webPath;
+    if (fsSync.existsSync(directPath)) return directPath;
+    if (fsSync.existsSync(path.join(process.cwd(), 'apps', 'web'))) return webPath;
+  } catch {}
+  return directPath;
+}
+
+const ORGS_FILE_PATH = getDataFilePath('organisations.json');
+const HOSTS_FILE_PATH = getDataFilePath('hosts.json');
 
 // Optional dynamic pg pool
 let pgPool: any = null;
@@ -326,8 +338,21 @@ export const OrganisationsDb = {
     } catch {}
 
     const records = await readHostsFile();
-    const match = records.find((r) => r.userId === userId);
-    return match ? match.host : null;
+    const match = records.find(
+      (r) =>
+        r.userId === userId ||
+        (r.userEmail && r.userEmail.toLowerCase() === userId.toLowerCase()) ||
+        (r.host.contactEmail && r.host.contactEmail.toLowerCase() === userId.toLowerCase()) ||
+        r.host.id === userId
+    );
+    if (match) {
+      const host = { ...match.host };
+      if (typeof host.profileCompletenessScore !== 'number') {
+        host.profileCompletenessScore = calculateCompletenessScore(host);
+      }
+      return host;
+    }
+    return null;
   },
 
   /**
@@ -339,7 +364,8 @@ export const OrganisationsDb = {
       (r) =>
         (payload.id && r.host.id === payload.id) ||
         (userId && r.userId === userId) ||
-        (payload.oid && r.host.oid && r.host.oid === payload.oid)
+        (payload.oid && r.host.oid && r.host.oid === payload.oid) ||
+        (payload.contactEmail && r.host.contactEmail && r.host.contactEmail.toLowerCase() === payload.contactEmail.toLowerCase())
     );
 
     const existingHost = existingIdx >= 0 ? records[existingIdx].host : null;
@@ -381,7 +407,9 @@ export const OrganisationsDb = {
       isActive: true,
       createdAt: existingHost?.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      profileCompletenessScore: 40,
     };
+    updatedHost.profileCompletenessScore = calculateCompletenessScore(updatedHost);
 
     const record: StoredHostRecord = {
       host: updatedHost,
@@ -399,4 +427,116 @@ export const OrganisationsDb = {
     await writeHostsFile(records);
     return updatedHost;
   },
+
+  /**
+   * Retrieves all registered host organisations
+   */
+  async getAllHosts(): Promise<any[]> {
+    const records = await readHostsFile();
+    return records.map((r) => {
+      const h = { ...r.host };
+      if (typeof h.profileCompletenessScore !== 'number') {
+        h.profileCompletenessScore = calculateCompletenessScore(h);
+      }
+      return h;
+    });
+  },
+
+  /**
+   * Retrieves a host organisation by its ID
+   */
+  async getHostById(hostId: string): Promise<any | null> {
+    const records = await readHostsFile();
+    const match = records.find((r) => r.host.id === hostId);
+    return match ? match.host : null;
+  },
+
+  /**
+   * Updates host portfolio & recalculated completeness score
+   */
+  async updateHostPortfolio(hostId: string, payload: any): Promise<any> {
+    const records = await readHostsFile();
+    const idx = records.findIndex((r) => r.host.id === hostId);
+    if (idx >= 0) {
+      const mergedHost = {
+        ...records[idx].host,
+        ...payload,
+        updatedAt: new Date().toISOString(),
+      };
+      mergedHost.profileCompletenessScore = calculateCompletenessScore(mergedHost);
+      records[idx].host = mergedHost;
+      await writeHostsFile(records);
+      return mergedHost;
+    }
+    return null;
+  },
+
+  /**
+   * Submits host official KYC verification documents
+   */
+  async submitHostVerification(hostId: string, payload: any): Promise<any> {
+    const records = await readHostsFile();
+    const idx = records.findIndex((r) => r.host.id === hostId);
+    if (idx >= 0) {
+      const mergedHost = {
+        ...records[idx].host,
+        ...payload,
+        verificationStatus: 'UNDER_REVIEW',
+        updatedAt: new Date().toISOString(),
+      };
+      mergedHost.profileCompletenessScore = calculateCompletenessScore(mergedHost);
+      records[idx].host = mergedHost;
+      await writeHostsFile(records);
+      return mergedHost;
+    }
+    return null;
+  },
+
+  /**
+   * Admin reviews verification request (VERIFIED, NEEDS_UPDATE, REJECTED)
+   */
+  async reviewHostVerification(
+    hostId: string,
+    status: 'VERIFIED' | 'NEEDS_UPDATE' | 'REJECTED',
+    reviewerNotes?: string,
+    criteriaChecklist?: Record<string, boolean>,
+  ): Promise<any> {
+    const records = await readHostsFile();
+    const idx = records.findIndex((r) => r.host.id === hostId);
+    if (idx >= 0) {
+      const mergedHost = {
+        ...records[idx].host,
+        verificationStatus: status,
+        reviewerNotes: reviewerNotes !== undefined ? reviewerNotes : records[idx].host.reviewerNotes,
+        criteriaChecklist: criteriaChecklist !== undefined ? criteriaChecklist : records[idx].host.criteriaChecklist,
+        reviewedAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      mergedHost.profileCompletenessScore = calculateCompletenessScore(mergedHost);
+      records[idx].host = mergedHost;
+      await writeHostsFile(records);
+      return mergedHost;
+    }
+    return null;
+  },
 };
+
+function calculateCompletenessScore(host: any): number {
+  let score = 40; // Base Tier 1 (Registered with name, OID, city, address, contact)
+  if (host.shortDescription && host.shortDescription.length > 20) score += 10;
+  if (host.logoUrl) score += 5;
+  if (host.sampleMobilityProgrammeUrl) score += 10;
+  if (Number(host.yearsOfExperience) > 0 || Number(host.totalParticipantsHosted) > 0) score += 10;
+  if (host.registrationDocumentUrl && host.taxVatNumber) {
+    if (host.verificationStatus === 'VERIFIED') {
+      score += 25; // Reaches 100%
+    } else if (host.verificationStatus === 'UNDER_REVIEW') {
+      score += 15; // Reaches 90%
+    } else {
+      score += 5;
+    }
+  } else if (host.verificationStatus === 'VERIFIED') {
+    score += 25;
+  }
+  return Math.min(100, score);
+}

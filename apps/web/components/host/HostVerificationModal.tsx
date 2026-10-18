@@ -72,8 +72,8 @@ export default function HostVerificationModal({
 
       setStatusMessage(
         locale === 'tr'
-          ? `✅ ${file.name} güvenli şekilde yüklendi (Admin Only).`
-          : `✅ ${file.name} uploaded securely (Admin Only).`,
+          ? `✅ ${file.name} güvenli ve gizli şekilde yüklendi.`
+          : `✅ ${file.name} uploaded securely and confidentially.`,
       );
     } catch {
       setStatusMessage(
@@ -146,7 +146,7 @@ export default function HostVerificationModal({
             <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold mb-1">
               <span>{locale === 'tr' ? 'Aşama 3' : 'Stage 3'}</span>
               <span>•</span>
-              <span>{locale === 'tr' ? 'Admin Only & Resmi Doğrulama' : 'Admin Only & Official Verification'}</span>
+              <span>{locale === 'tr' ? 'Resmi Doğrulama & KYC' : 'Official Verification & KYC'}</span>
             </div>
             <h2 className="text-xl font-bold tracking-tight m-0 text-white">
               {locale === 'tr' ? 'Kurumsal Doğrulama & KYC Başvurusu' : 'Institutional Verification & KYC Application'}
@@ -160,7 +160,7 @@ export default function HostVerificationModal({
           <button
             onClick={onClose}
             title={locale === 'tr' ? 'Kapat' : 'Close'}
-            className="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition-colors text-lg"
+            className="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition-colors text-lg cursor-pointer"
           >
             ✕
           </button>
@@ -173,7 +173,7 @@ export default function HostVerificationModal({
             <span className="text-lg leading-none mt-0.5">🔒</span>
             <div className="leading-relaxed">
               <span className="font-bold block mb-0.5">
-                {locale === 'tr' ? 'Admin Only Gizlilik Güvencesi' : 'Strict Admin-Only Confidentiality Guarantee'}
+                {locale === 'tr' ? 'Kurumsal Gizlilik & Güvenlik Güvencesi' : 'Strict Confidentiality Guarantee'}
               </span>
               {locale === 'tr'
                 ? 'Bu bölümde yükleyeceğiniz sicil, vergi ve acil durum irtibat bilgileri yalnızca platform denetçileri tarafından incelenir. Kamusal profilinizde veya üçüncü taraflarla kesinlikle paylaşılmaz.'

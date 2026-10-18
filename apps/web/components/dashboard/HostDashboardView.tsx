@@ -266,7 +266,7 @@ export default function HostDashboardView({
           icon="🔒"
           badge={
             <span className="text-xs font-black px-2.5 py-0.5 rounded-full bg-white text-amber-950 shadow-2xs">
-              {locale === 'tr' ? 'Admin Onaylı' : 'Admin Audited'}
+              {locale === 'tr' ? 'Resmi Doğrulama' : 'Official Verification'}
             </span>
           }
           footer={
@@ -374,6 +374,27 @@ export default function HostDashboardView({
           </div>
         </RoleThemedCard>
       </div>
+
+      {/* Host Portfolio & Verification Modals */}
+      <HostPortfolioModal
+        isOpen={isPortfolioModalOpen}
+        onClose={() => setIsPortfolioModalOpen(false)}
+        host={host}
+        onSuccess={(updated) => {
+          if (onUpdateHost) onUpdateHost(updated);
+          store.setCurrentHost(updated);
+        }}
+      />
+
+      <HostVerificationModal
+        isOpen={isVerificationModalOpen}
+        onClose={() => setIsVerificationModalOpen(false)}
+        host={host}
+        onSuccess={(updated) => {
+          if (onUpdateHost) onUpdateHost(updated);
+          store.setCurrentHost(updated);
+        }}
+      />
     </div>
   );
 }

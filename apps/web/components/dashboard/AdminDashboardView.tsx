@@ -63,7 +63,7 @@ export default function AdminDashboardView({
       }
     }
     fetchQueueStats();
-  }, [userEmail]);
+  }, [userEmail, isAdminQueueOpen]);
 
   return (
     <div className="space-y-8 animate-fadeIn">
