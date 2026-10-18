@@ -226,7 +226,9 @@ export const apiClient = {
     userId: string,
   ): Promise<{ data: any | null }> {
     try {
-      const response = await fetch(`/api/organisations/user/${encodeURIComponent(userId)}`);
+      const response = await fetch(`/api/organisations/user/${encodeURIComponent(userId)}`, {
+        signal: typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal ? AbortSignal.timeout(3000) : undefined,
+      });
       if (response.ok) {
         const org = await response.json();
         return { data: org };
@@ -325,7 +327,9 @@ export const apiClient = {
     userId: string,
   ): Promise<{ data: any | null }> {
     try {
-      const response = await fetch(`/api/hosts/user/${encodeURIComponent(userId)}`);
+      const response = await fetch(`/api/hosts/user/${encodeURIComponent(userId)}`, {
+        signal: typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal ? AbortSignal.timeout(3000) : undefined,
+      });
       if (response.ok) {
         const host = await response.json();
         return { data: host };

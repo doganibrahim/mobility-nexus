@@ -256,7 +256,7 @@ export default function HowItWorksProcessSection() {
       </div>
 
       {/* 2. Step Selector Tabs (Horizontal 5 Pills with Mobile Horizontal Scroll) */}
-      <div className="overflow-x-auto py-3 -my-3 -mx-2 px-2 no-scrollbar">
+      <div className="overflow-x-auto py-1 -mx-2 px-2 no-scrollbar">
         <div className="flex items-center gap-2 sm:gap-3 min-w-[720px] lg:min-w-0">
           {HOW_IT_WORKS_STEPS.map((step, idx) => {
             const isActive = idx === activeStepIndex;
@@ -265,19 +265,17 @@ export default function HowItWorksProcessSection() {
                 key={step.id}
                 type="button"
                 onClick={() => setActiveStepIndex(idx)}
-                className={`flex-1 py-3 px-3.5 rounded-xl text-xs font-bold border-2 transition-all flex items-center justify-between gap-2 text-left cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:ring-offset-1 ${
-                  isActive
-                    ? 'bg-slate-900 text-white border-slate-900 shadow-md translate-y-[-1px]'
-                    : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
-                }`}
+                className={`flex-1 py-3 px-3.5 rounded-xl text-xs font-bold border-2 transition-all flex items-center justify-between gap-2 text-left cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:ring-offset-1 ${isActive
+                  ? 'bg-slate-900 text-white border-slate-900 shadow-md translate-y-[-1px]'
+                  : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300 shadow-2xs'
+                  }`}
               >
                 <div className="flex items-center gap-2 truncate">
                   <span className="text-base shrink-0">{step.icon}</span>
                   <div className="truncate">
                     <span
-                      className={`text-[10px] uppercase font-mono block ${
-                        isActive ? 'text-blue-300' : 'text-slate-600 font-bold'
-                      }`}
+                      className={`text-[10px] uppercase font-mono block ${isActive ? 'text-blue-300' : 'text-slate-600 font-bold'
+                        }`}
                     >
                       {step.stepNumber}
                     </span>
@@ -297,7 +295,7 @@ export default function HowItWorksProcessSection() {
       </div>
 
       {/* 3. Active Step Detailed Spotlight Card */}
-      <div className="bg-slate-50 rounded-2xl border-2 border-slate-200 p-6 sm:p-8 space-y-6 animate-fadeIn">
+      <div className="-mt-2 sm:-mt-2 bg-slate-50 rounded-2xl border-2 border-slate-200 p-6 sm:p-8 space-y-6 animate-fadeIn">
         {/* Top Meta & Deliverable Badge */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
           <div className="flex items-center gap-2.5">

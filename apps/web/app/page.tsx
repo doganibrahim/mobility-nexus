@@ -12,6 +12,7 @@ import HostDashboardView from '../components/dashboard/HostDashboardView';
 import SchoolDashboardView from '../components/dashboard/SchoolDashboardView';
 import DualActionGateways from '../components/gateway/DualActionGateways';
 import PlatformGuideView from '../components/guide/PlatformGuideView';
+import BeneficiariesModal, { BeneficiaryCategory } from '../components/ui/BeneficiariesModal';
 
 import { useTranslation } from '../lib/i18n';
 import { useAppStore } from '../lib/store';
@@ -21,6 +22,19 @@ export default function Home() {
   const store = useAppStore();
 
   const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
+  const [isDirectoryModalOpen, setIsDirectoryModalOpen] = useState(false);
+  const [directoryCategory, setDirectoryCategory] = useState<BeneficiaryCategory>('MESLEK_LISELERI');
+  const [directorySearch, setDirectorySearch] = useState('');
+
+  const handleOpenDirectoryModal = (
+    category: BeneficiaryCategory = 'MESLEK_LISELERI',
+    initialSearch: string = ''
+  ) => {
+    setDirectoryCategory(category);
+    setDirectorySearch(initialSearch || '');
+    setIsDirectoryModalOpen(true);
+  };
+
 
   useEffect(() => {
     document.title =
@@ -265,6 +279,7 @@ export default function Home() {
               store.loadHostDemoData(locale);
               setGuestMode('HOST');
             }}
+            onOpenDirectory={handleOpenDirectoryModal}
           />
         )}
       </main>
@@ -280,6 +295,14 @@ export default function Home() {
         isOpen={isCookieLegalOpen}
         onClose={() => setIsCookieLegalOpen(false)}
         initialTab="COOKIES"
+      />
+
+      {/* MEB Open Data Beneficiaries Directory Modal */}
+      <BeneficiariesModal
+        isOpen={isDirectoryModalOpen}
+        onClose={() => setIsDirectoryModalOpen(false)}
+        initialCategory={directoryCategory}
+        initialSearch={directorySearch}
       />
     </div>
   );

@@ -100,6 +100,7 @@ export default function OnboardingPage() {
   const [isCheckingOrg, setIsCheckingOrg] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const hasCheckedRef = React.useRef(false);
 
   // Submitted Data View
   const [submittedOrg, setSubmittedOrg] = useState<any | null>(null);
@@ -125,6 +126,14 @@ export default function OnboardingPage() {
         : 'Institutional Onboarding | ErasmusMobility';
   }, [locale]);
 
+  // Safety fallback: Never keep user waiting on spinner for more than 1200ms
+  useEffect(() => {
+    const safetyTimer = setTimeout(() => {
+      setIsCheckingOrg(false);
+    }, 1200);
+    return () => clearTimeout(safetyTimer);
+  }, []);
+
   // Fetch Reference Data on mount
   useEffect(() => {
     async function loadReferenceData() {
@@ -143,17 +152,20 @@ export default function OnboardingPage() {
     let isMounted = true;
 
     async function checkExistingOrg() {
-      if (!isUserLoaded) return;
+      if (hasCheckedRef.current) return;
 
-      // Check current Zustand store first
+      // 1. Check current Zustand store first
       if (isOnboarded) {
         if (orgType === 'HOST' && currentHost) {
+          if (!isMounted) return;
           setSubmittedHost(currentHost);
           setSelectedRole('HOST');
           setIsCheckingOrg(false);
+          hasCheckedRef.current = true;
           return;
         }
         if (currentOrg) {
+          if (!isMounted) return;
           setSubmittedOrg(currentOrg);
           setSelectedRole('SCHOOL');
           setSchoolName(currentOrg.name || '');
@@ -161,11 +173,20 @@ export default function OnboardingPage() {
           setSchoolCity(currentOrg.city || '');
           setAccreditationStatus(currentOrg.accreditationStatus || null);
           setIsCheckingOrg(false);
+          hasCheckedRef.current = true;
           return;
         }
       }
 
-      // Check backend via user ID
+      // Fast path: if Clerk finished loading and user is not signed in
+      if (isUserLoaded && !user) {
+        if (!isMounted) return;
+        setIsCheckingOrg(false);
+        hasCheckedRef.current = true;
+        return;
+      }
+
+      // 2. Check backend via user ID if user is logged in
       if (user?.id) {
         try {
           const { data: orgData } = await apiClient.getUserOrganisation(user.id);
@@ -179,6 +200,7 @@ export default function OnboardingPage() {
             setSchoolCity(orgData.city || '');
             setAccreditationStatus(orgData.accreditationStatus || null);
             setIsCheckingOrg(false);
+            hasCheckedRef.current = true;
             return;
           }
 
@@ -191,6 +213,7 @@ export default function OnboardingPage() {
             setHostName(hostData.name || '');
             setHostCity(hostData.city || '');
             setIsCheckingOrg(false);
+            hasCheckedRef.current = true;
             return;
           }
         } catch (err) {
@@ -198,7 +221,12 @@ export default function OnboardingPage() {
         }
       }
 
-      setIsCheckingOrg(false);
+      if (isMounted) {
+        setIsCheckingOrg(false);
+        if (isUserLoaded) {
+          hasCheckedRef.current = true;
+        }
+      }
     }
 
     checkExistingOrg();
@@ -422,9 +450,9 @@ export default function OnboardingPage() {
     }
   };
 
-  if (!isUserLoaded || isCheckingOrg) {
+  if (isCheckingOrg) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 gap-4 p-4">
         <div className="flex items-center gap-3 text-slate-600 font-medium text-sm">
           <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
           <span>
@@ -433,6 +461,13 @@ export default function OnboardingPage() {
               : 'Verifying institutional authorizations and profile status...'}
           </span>
         </div>
+        <button
+          type="button"
+          onClick={() => setIsCheckingOrg(false)}
+          className="text-xs text-blue-700 hover:text-blue-900 underline font-medium cursor-pointer"
+        >
+          {locale === 'tr' ? 'Formu doğrudan aç →' : 'Open form directly →'}
+        </button>
       </div>
     );
   }

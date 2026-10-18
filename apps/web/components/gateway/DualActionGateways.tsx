@@ -7,15 +7,19 @@ import { useTranslation } from '../../lib/i18n';
 import HeroContrastSection from './HeroContrastSection';
 import HowItWorksProcessSection from './HowItWorksProcessSection';
 import EuropeanRouteNetwork from './EuropeanRouteNetwork';
+import MebCatalogStatsSection from '../home/MebCatalogStatsSection';
+import { BeneficiaryCategory } from '../ui/BeneficiariesModal';
 
 export interface DualActionGatewaysProps {
   onSelectSchoolDemo: () => void;
   onSelectHostDemo: () => void;
+  onOpenDirectory?: (category: BeneficiaryCategory, initialSearch?: string) => void;
 }
 
 export default function DualActionGateways({
   onSelectSchoolDemo,
   onSelectHostDemo,
+  onOpenDirectory,
 }: DualActionGatewaysProps) {
   const { locale } = useTranslation();
 
@@ -27,10 +31,13 @@ export default function DualActionGateways({
         onStartHostDemo={onSelectHostDemo}
       />
 
-      {/* 2. Exploration Section: 5-Step "How It Works" Process Stepper */}
+      {/* 2. MEB Open Data Reference Directory (Stats & 7 Category Cards) */}
+      <MebCatalogStatsSection onSelectCategory={onOpenDirectory} />
+
+      {/* 3. Exploration Section: 5-Step "How It Works" Process Stepper */}
       <HowItWorksProcessSection />
 
-      {/* 3. Exploration Section: Pure Vector European Mobility Route Network */}
+      {/* 4. Exploration Section: Pure Vector European Mobility Route Network */}
       <EuropeanRouteNetwork />
 
       {/* 4. Bottom Knowledge Strip: Platform Guide & Official Library */}

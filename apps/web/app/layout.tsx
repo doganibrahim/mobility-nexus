@@ -59,6 +59,7 @@ const clerkAppearance = {
     helpPageUrl: '/contact',
     privacyPageUrl: '/about',
     termsPageUrl: '/about',
+    unsafe_disableDevelopmentModeWarnings: true,
   },
   variables: {
     colorPrimary: '#1d4ed8', // Royal Blue (Blue 700) matching platform theme

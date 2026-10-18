@@ -9,6 +9,8 @@ import memData from '../../lib/data/milli_egitim_mudurlukleri.json';
 import osbData from '../../lib/data/osb.json';
 import ttsoData from '../../lib/data/ttso.json';
 import esnafData from '../../lib/data/esnaf.json';
+import { trSearchMatch } from '../../lib/locale-case';
+
 
 export type BeneficiaryCategory =
   | 'MESLEK_LISELERI'
@@ -28,17 +30,19 @@ export interface BeneficiariesModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialCategory?: BeneficiaryCategory;
+  initialSearch?: string;
 }
 
 export default function BeneficiariesModal({
   isOpen,
   onClose,
   initialCategory = 'MESLEK_LISELERI',
+  initialSearch = '',
 }: BeneficiariesModalProps) {
   const { t, locale } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<BeneficiaryCategory>(initialCategory);
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(initialSearch);
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [selectedType, setSelectedType] = useState('all');
@@ -48,12 +52,13 @@ export default function BeneficiariesModal({
   const [pageSize, setPageSize] = useState(10);
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
 
-  // Sync initialCategory when modal opens
+  // Sync initialCategory & initialSearch when modal opens
   useEffect(() => {
-    if (isOpen && initialCategory) {
-      setActiveCategory(initialCategory);
+    if (isOpen) {
+      if (initialCategory) setActiveCategory(initialCategory);
+      if (typeof initialSearch === 'string') setSearchTerm(initialSearch);
     }
-  }, [isOpen, initialCategory]);
+  }, [isOpen, initialCategory, initialSearch]);
 
   // Close on Escape key
   useEffect(() => {
@@ -79,13 +84,47 @@ export default function BeneficiariesModal({
   // Reset pagination and filters when category changes
   const handleCategoryChange = (category: BeneficiaryCategory) => {
     setActiveCategory(category);
-    setSearchTerm('');
+    // Keep searchTerm active across categories so user does not lose query
     setSelectedCity('');
     setSelectedDistrict('');
     setSelectedType('all');
     setSortConfig(null);
     setCurrentPage(1);
   };
+
+  // Match counts across all categories for active searchTerm
+  const categoryCounts = useMemo(() => {
+    if (!searchTerm.trim()) {
+      return {
+        MESLEK_LISELERI: meslekLiseleriData.length,
+        HALK_EGITIM: halkEgitimData.length,
+        OSB: osbData.length,
+        TTSO: ttsoData.length,
+        ESNAF: esnafData.length,
+        MEM: memData.length,
+        OLGUNLASMA: olgunlasmaData.length,
+      };
+    }
+    const filterCat = (list: any[]) =>
+      list.filter(
+        (item: any) =>
+          trSearchMatch(item.kurumAdi, searchTerm) ||
+          trSearchMatch(item.il, searchTerm) ||
+          trSearchMatch(item.ilce, searchTerm) ||
+          trSearchMatch(item.kurumKodu, searchTerm) ||
+          trSearchMatch(item.eposta, searchTerm)
+      ).length;
+
+    return {
+      MESLEK_LISELERI: filterCat(meslekLiseleriData),
+      HALK_EGITIM: filterCat(halkEgitimData),
+      OSB: filterCat(osbData),
+      TTSO: filterCat(ttsoData),
+      ESNAF: filterCat(esnafData),
+      MEM: filterCat(memData),
+      OLGUNLASMA: filterCat(olgunlasmaData),
+    };
+  }, [searchTerm]);
 
   // Reset page when filters change
   useEffect(() => {
@@ -163,18 +202,18 @@ export default function BeneficiariesModal({
     setTimeout(() => setCopiedEmail(null), 2000);
   };
 
-  // Filter and Sort
+  // Filter and Sort with Turkish-aware diacritic and casing folding
   const filteredAndSortedData = useMemo(() => {
     let result = [...rawData];
 
     if (searchTerm) {
-      const lowerSearch = searchTerm.toLowerCase();
-      result = result.filter((item: any) =>
-        (item.kurumAdi && item.kurumAdi.toLowerCase().includes(lowerSearch)) ||
-        (item.il && item.il.toLowerCase().includes(lowerSearch)) ||
-        (item.ilce && item.ilce.toLowerCase().includes(lowerSearch)) ||
-        (item.kurumKodu && String(item.kurumKodu).toLowerCase().includes(lowerSearch)) ||
-        (item.eposta && item.eposta.toLowerCase().includes(lowerSearch))
+      result = result.filter(
+        (item: any) =>
+          trSearchMatch(item.kurumAdi, searchTerm) ||
+          trSearchMatch(item.il, searchTerm) ||
+          trSearchMatch(item.ilce, searchTerm) ||
+          trSearchMatch(item.kurumKodu, searchTerm) ||
+          trSearchMatch(item.eposta, searchTerm)
       );
     }
 
@@ -202,6 +241,7 @@ export default function BeneficiariesModal({
 
     return result;
   }, [rawData, searchTerm, selectedCity, selectedDistrict, selectedType, sortConfig]);
+
 
   // Pagination logic
   const totalPages =
@@ -294,8 +334,12 @@ export default function BeneficiariesModal({
             >
               <span>🏫</span>
               <span>{t.header.beneficiaries.meslekLiseleri}</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-100 text-slate-700 border border-slate-300">
-                {meslekLiseleriData.length}
+              <span className={`px-1.5 py-0.2 rounded-full text-[10px] border ${
+                searchTerm.trim() && categoryCounts.MESLEK_LISELERI > 0
+                  ? 'bg-blue-100 text-blue-900 border-blue-300 font-black'
+                  : 'bg-slate-100 text-slate-700 border-slate-300'
+              }`}>
+                {categoryCounts.MESLEK_LISELERI}
               </span>
             </button>
 
@@ -310,8 +354,12 @@ export default function BeneficiariesModal({
             >
               <span>📚</span>
               <span>{t.header.beneficiaries.halkEgitim}</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-100 text-slate-700 border border-slate-300">
-                {halkEgitimData.length}
+              <span className={`px-1.5 py-0.2 rounded-full text-[10px] border ${
+                searchTerm.trim() && categoryCounts.HALK_EGITIM > 0
+                  ? 'bg-blue-100 text-blue-900 border-blue-300 font-black'
+                  : 'bg-slate-100 text-slate-700 border-slate-300'
+              }`}>
+                {categoryCounts.HALK_EGITIM}
               </span>
             </button>
 
@@ -326,8 +374,12 @@ export default function BeneficiariesModal({
             >
               <span>🏛️</span>
               <span>{t.header.beneficiaries.olgunlasma}</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-100 text-slate-700 border border-slate-300">
-                {olgunlasmaData.length}
+              <span className={`px-1.5 py-0.2 rounded-full text-[10px] border ${
+                searchTerm.trim() && categoryCounts.OLGUNLASMA > 0
+                  ? 'bg-blue-100 text-blue-900 border-blue-300 font-black'
+                  : 'bg-slate-100 text-slate-700 border-slate-300'
+              }`}>
+                {categoryCounts.OLGUNLASMA}
               </span>
             </button>
 
@@ -342,8 +394,12 @@ export default function BeneficiariesModal({
             >
               <span>🏢</span>
               <span>{t.header.beneficiaries.mem}</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-100 text-slate-700 border border-slate-300">
-                {memData.length}
+              <span className={`px-1.5 py-0.2 rounded-full text-[10px] border ${
+                searchTerm.trim() && categoryCounts.MEM > 0
+                  ? 'bg-blue-100 text-blue-900 border-blue-300 font-black'
+                  : 'bg-slate-100 text-slate-700 border-slate-300'
+              }`}>
+                {categoryCounts.MEM}
               </span>
             </button>
 
@@ -358,8 +414,12 @@ export default function BeneficiariesModal({
             >
               <span>🏭</span>
               <span>{t.header.beneficiaries.osb}</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-100 text-slate-700 border border-slate-300">
-                {osbData.length}
+              <span className={`px-1.5 py-0.2 rounded-full text-[10px] border ${
+                searchTerm.trim() && categoryCounts.OSB > 0
+                  ? 'bg-blue-100 text-blue-900 border-blue-300 font-black'
+                  : 'bg-slate-100 text-slate-700 border-slate-300'
+              }`}>
+                {categoryCounts.OSB}
               </span>
             </button>
 
@@ -374,8 +434,12 @@ export default function BeneficiariesModal({
             >
               <span>🤝</span>
               <span>{t.header.beneficiaries.ttso}</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-100 text-slate-700 border border-slate-300">
-                {ttsoData.length}
+              <span className={`px-1.5 py-0.2 rounded-full text-[10px] border ${
+                searchTerm.trim() && categoryCounts.TTSO > 0
+                  ? 'bg-blue-100 text-blue-900 border-blue-300 font-black'
+                  : 'bg-slate-100 text-slate-700 border-slate-300'
+              }`}>
+                {categoryCounts.TTSO}
               </span>
             </button>
 
@@ -390,8 +454,12 @@ export default function BeneficiariesModal({
             >
               <span>🛠️</span>
               <span>{t.header.beneficiaries.esnaf}</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-100 text-slate-700 border border-slate-300">
-                {esnafData.length}
+              <span className={`px-1.5 py-0.2 rounded-full text-[10px] border ${
+                searchTerm.trim() && categoryCounts.ESNAF > 0
+                  ? 'bg-blue-100 text-blue-900 border-blue-300 font-black'
+                  : 'bg-slate-100 text-slate-700 border-slate-300'
+              }`}>
+                {categoryCounts.ESNAF}
               </span>
             </button>
 

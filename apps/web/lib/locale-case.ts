@@ -47,3 +47,37 @@ export function toSafeTitleCase(text: string | null | undefined, locale: Support
     })
     .join(' ');
 }
+
+/**
+ * Folds Turkish diacritics and handles uppercase/lowercase dotted and dotless I/i
+ * so search terms like "kadikoy", "kadıköy", "istanbul", "İSTANBUL", "bilisim", "BİLİŞİM"
+ * match accurately and interchangeably.
+ */
+export function foldTurkish(s: string | null | undefined): string {
+  if (!s) return '';
+  return String(s)
+    .replace(/İ/g, 'i')
+    .replace(/I/g, 'i')
+    .replace(/ı/g, 'i')
+    .replace(/ğ/g, 'g')
+    .replace(/Ğ/g, 'g')
+    .replace(/ü/g, 'u')
+    .replace(/Ü/g, 'u')
+    .replace(/ş/g, 's')
+    .replace(/Ş/g, 's')
+    .replace(/ö/g, 'o')
+    .replace(/Ö/g, 'o')
+    .replace(/ç/g, 'c')
+    .replace(/Ç/g, 'c')
+    .toLowerCase();
+}
+
+/**
+ * Checks if target string contains the query string, using Turkish diacritic folding.
+ */
+export function trSearchMatch(target: string | null | undefined, query: string | null | undefined): boolean {
+  if (!query || !query.trim()) return true;
+  if (!target) return false;
+  return foldTurkish(target).includes(foldTurkish(query.trim()));
+}
+
