@@ -154,8 +154,19 @@ export default function OnboardingPage() {
     async function checkExistingOrg() {
       if (hasCheckedRef.current) return;
 
-      // 1. Check current Zustand store first
-      if (isOnboarded) {
+      // 1. Check current Zustand store only if user is logged in and not mock demo data
+      const isDemoHost = Boolean(
+        currentHost?.id?.startsWith('demo-') ||
+        currentHost?.id === 'demo-host-berlin' ||
+        currentHost?.name?.includes('Berlin VET')
+      );
+      const isDemoOrg = Boolean(
+        currentOrg?.id?.startsWith('demo-') ||
+        currentOrg?.id === 'demo-org-1' ||
+        currentOrg?.name?.includes('Ankara Bilim')
+      );
+
+      if (user && isOnboarded && !isDemoHost && !isDemoOrg) {
         if (orgType === 'HOST' && currentHost) {
           if (!isMounted) return;
           setSubmittedHost(currentHost);
@@ -181,10 +192,13 @@ export default function OnboardingPage() {
       // Fast path: if Clerk finished loading and user is not signed in
       if (isUserLoaded && !user) {
         if (!isMounted) return;
+        setSubmittedHost(null);
+        setSubmittedOrg(null);
         setIsCheckingOrg(false);
         hasCheckedRef.current = true;
         return;
       }
+
 
       // 2. Check backend via user ID if user is logged in
       if (user?.id) {
@@ -832,17 +846,32 @@ export default function OnboardingPage() {
                   <div />
                 )}
 
-                <Link
-                  href="/"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white font-bold text-sm bg-slate-900 hover:bg-slate-800 transition-all shadow-md cursor-pointer"
-                >
-                  <span>{locale === 'tr' ? 'Platform Ana Sayfasına Git' : 'Go to Platform Home'}</span>
-                  <span>→</span>
-                </Link>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmittedHost(null);
+                      setSubmittedOrg(null);
+                      setSelectedRole(null);
+                      setIsEditing(true);
+                    }}
+                    className="px-4 py-2.5 text-xs font-bold text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors cursor-pointer border border-slate-300"
+                  >
+                    {locale === 'tr' ? '↺ Yeni Kurum Kaydet' : '↺ Register New'}
+                  </button>
+                  <Link
+                    href="/"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white font-bold text-sm bg-slate-900 hover:bg-slate-800 transition-all shadow-md cursor-pointer"
+                  >
+                    <span>{locale === 'tr' ? 'Platform Ana Sayfasına Git' : 'Go to Platform Home'}</span>
+                    <span>→</span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         ) : selectedRole === null ? (
+
           /* ========================================================================= */
           /* ADIM 1: KURUMSAL ROL SEÇİM EKRANI (Role Selection)                        */
           /* ========================================================================= */
