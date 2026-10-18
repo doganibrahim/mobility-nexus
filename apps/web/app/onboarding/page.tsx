@@ -182,12 +182,65 @@ export default function OnboardingPage() {
     loadReferenceData();
   }, []);
 
+  // Helpers for editing registered organizations
+  const startEditingHost = (host: any) => {
+    setIsEditing(true);
+    setSelectedRole('HOST');
+    setHostName(host.name || '');
+    setHostTradingName(host.tradingName || '');
+    setHostOrgType(host.organisationType || 'Company');
+    setHostCountryCode(host.countryCode || 'DE');
+    setHostCity(host.city || '');
+    setHostRegisteredAddress(host.registeredAddress || host.address || '');
+    setHostOperationalAddress(host.operationalAddress || '');
+    setHostYearEstablished(Number(host.yearEstablished) || 2018);
+    setHostOid(host.oid || '');
+    setHostPicNumber(host.picNumber || '');
+    setHostWebsite(host.websiteUrl || '');
+    setHostGeneralEmail(host.generalEmail || host.contactEmail || '');
+    setHostTelephone(host.telephone || host.contactPhone || '');
+    if (Array.isArray(host.sectors) && host.sectors.length > 0) {
+      setHostSectors(host.sectors);
+    } else if (host.primarySector) {
+      setHostSectors([host.primarySector]);
+    }
+    setHostContactPerson(host.contactPerson || '');
+    setHostContactTitle(host.contactTitle || '');
+    setHostContactEmail(host.contactEmail || '');
+    setHostConsentPublicDisplay(host.consentPublicDisplay ?? true);
+    setHostMaxLearners(host.maxLearnersPerTerm || 4);
+    if (Array.isArray(host.activities) && host.activities.length > 0) {
+      setHostActivities(host.activities);
+    }
+    if (Array.isArray(host.workingLanguages) && host.workingLanguages.length > 0) {
+      setHostLanguages(host.workingLanguages);
+    } else if (Array.isArray(host.languages) && host.languages.length > 0) {
+      setHostLanguages(host.languages);
+    }
+    setLegalConsentAccepted(true);
+  };
+
+  const startEditingSchool = (org: any) => {
+    setIsEditing(true);
+    setSelectedRole('SCHOOL');
+    setSchoolName(org.name || '');
+    setSchoolOid(org.oid || '');
+    setSchoolCity(org.city || '');
+    setSchoolCountryCode(org.countryCode || 'TR');
+    setAccreditationStatus(org.accreditationStatus || 'YES');
+    setLegalConsentAccepted(true);
+  };
+
   // Check if user already has an active organisation or host
   useEffect(() => {
     let isMounted = true;
 
     async function checkExistingOrg() {
       if (hasCheckedRef.current) return;
+
+      const wantsEdit =
+        typeof window !== 'undefined' &&
+        new URLSearchParams(window.location.search).get('edit') === 'true';
 
       // 1. Check current Zustand store only if user is logged in and not mock demo data
       const isDemoHost = Boolean(
@@ -206,6 +259,9 @@ export default function OnboardingPage() {
           if (!isMounted) return;
           setSubmittedHost(currentHost);
           setSelectedRole('HOST');
+          if (wantsEdit) {
+            startEditingHost(currentHost);
+          }
           setIsCheckingOrg(false);
           hasCheckedRef.current = true;
           return;
@@ -218,6 +274,9 @@ export default function OnboardingPage() {
           setSchoolOid(currentOrg.oid || '');
           setSchoolCity(currentOrg.city || '');
           setAccreditationStatus(currentOrg.accreditationStatus || null);
+          if (wantsEdit) {
+            startEditingSchool(currentOrg);
+          }
           setIsCheckingOrg(false);
           hasCheckedRef.current = true;
           return;
@@ -234,7 +293,6 @@ export default function OnboardingPage() {
         return;
       }
 
-
       // 2. Check backend via user ID if user is logged in
       if (user?.id) {
         try {
@@ -248,6 +306,9 @@ export default function OnboardingPage() {
             setSchoolOid(orgData.oid || '');
             setSchoolCity(orgData.city || '');
             setAccreditationStatus(orgData.accreditationStatus || null);
+            if (wantsEdit) {
+              startEditingSchool(orgData);
+            }
             setIsCheckingOrg(false);
             hasCheckedRef.current = true;
             return;
@@ -261,6 +322,9 @@ export default function OnboardingPage() {
             setSelectedRole('HOST');
             setHostName(hostData.name || '');
             setHostCity(hostData.city || '');
+            if (wantsEdit) {
+              startEditingHost(hostData);
+            }
             setIsCheckingOrg(false);
             hasCheckedRef.current = true;
             return;
@@ -455,8 +519,10 @@ export default function OnboardingPage() {
     try {
       const userEmail = user?.primaryEmailAddress?.emailAddress;
       const userFullName = user?.fullName || undefined;
+      const existingHostId = (isEditing && (submittedHost?.id || currentHost?.id)) || undefined;
 
       const { data } = await apiClient.registerHost({
+        ...(existingHostId ? { id: existingHostId } : {}),
         name: hostName.trim(),
         tradingName: hostTradingName.trim() || undefined,
         organisationType: hostOrgType,
@@ -575,8 +641,8 @@ export default function OnboardingPage() {
         </div>
       </header>
 
-      {/* Main Content Area */}
-      <main id="main-content" tabIndex={-1} className="max-w-3xl mx-auto w-full px-4 py-8 sm:py-12 flex-1 focus:outline-none">
+      {/* Main Content Area - Wide & Spacious (max-w-5xl) */}
+      <main id="main-content" tabIndex={-1} className="max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1 focus:outline-none">
         {/* ========================================================================= */}
         {/* DURUM 1: OKUL ÖZET KARTI (Gönderen Kurum Kayıtlı)                          */}
         {/* ========================================================================= */}
@@ -584,18 +650,28 @@ export default function OnboardingPage() {
           <div className="bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden animate-fadeIn">
             {/* Header Banner */}
             <div className="p-6 sm:p-8 text-white" style={{ backgroundColor: primaryColor }}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-xs font-semibold tracking-wide uppercase mb-3">
-                <span>✓</span>
-                <span>
-                  {locale === 'tr'
-                    ? 'Okul / Gönderen Kurum Kaydı Tamamlandı'
-                    : 'School / Sending Institution Registration Complete'}
-                </span>
+              <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-xs font-semibold tracking-wide uppercase">
+                  <span>✓</span>
+                  <span>
+                    {locale === 'tr'
+                      ? 'Okul / Gönderen Kurum Kaydı Tamamlandı'
+                      : 'School / Sending Institution Registration Complete'}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => startEditingSchool(submittedOrg)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 hover:bg-white/30 text-white text-xs font-bold transition-colors cursor-pointer"
+                >
+                  <span>✏️</span>
+                  <span>{locale === 'tr' ? 'Bilgileri Düzenle' : 'Edit Info'}</span>
+                </button>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight m-0 text-white">
                 {submittedOrg.name}
               </h2>
-              <p className="text-white/80 text-sm mt-2 max-w-xl leading-relaxed">
+              <p className="text-white/80 text-sm mt-2 max-w-2xl leading-relaxed">
                 {locale === 'tr'
                   ? 'Kurumunuz sisteme başarıyla tanımlandı. Artık KA121 / KA122 hareketlilik süreçlerinizi planlayabilir ve başvuru hazırlıklarına geçebilirsiniz.'
                   : 'Your institution has been successfully registered. You can now plan your KA121 / KA122 mobility cycles and proceed to application preparation.'}
@@ -699,17 +775,11 @@ export default function OnboardingPage() {
               <div className="pt-4 border-t border-slate-200 flex items-center justify-between gap-3">
                 <button
                   type="button"
-                  onClick={() => {
-                    setIsEditing(true);
-                    setSchoolName(submittedOrg.name || '');
-                    setSchoolOid(submittedOrg.oid || '');
-                    setSchoolCity(submittedOrg.city || '');
-                    setSchoolCountryCode(submittedOrg.countryCode || 'TR');
-                    setAccreditationStatus(submittedOrg.accreditationStatus || 'YES');
-                  }}
-                  className="px-4 py-2.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200 shadow-2xs cursor-pointer"
+                  onClick={() => startEditingSchool(submittedOrg)}
+                  className="px-4 py-2.5 text-xs font-bold text-slate-700 hover:text-slate-950 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors border border-slate-300 shadow-2xs cursor-pointer flex items-center gap-1.5"
                 >
-                  {locale === 'tr' ? 'Bilgileri Düzenle' : 'Edit Information'}
+                  <span>✏️</span>
+                  <span>{locale === 'tr' ? 'Bilgileri Düzenle' : 'Edit Information'}</span>
                 </button>
 
                 <Link
@@ -722,7 +792,7 @@ export default function OnboardingPage() {
               </div>
             </div>
           </div>
-        ) : submittedHost ? (
+        ) : submittedHost && !isEditing ? (
           /* ========================================================================= */
           /* DURUM 2: EV SAHİBİ (HOST) ÖZET KARTI - 3 AŞAMALI İLERLEME                 */
           /* ========================================================================= */
@@ -733,15 +803,25 @@ export default function OnboardingPage() {
                   <span>✓</span>
                   <span>{locale === 'tr' ? 'Aşama 1: Temel Kurum Kurulumu Tamamlandı' : 'Stage 1: Core Setup Completed'}</span>
                 </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-bold font-mono">
-                  <span>OID: {submittedHost.oid || 'E10XXXXXX'}</span>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => startEditingHost(submittedHost)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 hover:bg-white/30 text-white text-xs font-bold transition-colors cursor-pointer"
+                  >
+                    <span>✏️</span>
+                    <span>{locale === 'tr' ? 'Bilgileri Düzenle' : 'Edit Info'}</span>
+                  </button>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-bold font-mono">
+                    <span>OID: {submittedHost.oid || 'E10XXXXXX'}</span>
+                  </div>
                 </div>
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight m-0 text-white">
                 {submittedHost.name}
               </h2>
-              <p className="text-white/80 text-sm mt-2 max-w-xl leading-relaxed">
+              <p className="text-white/80 text-sm mt-2 max-w-2xl leading-relaxed">
                 {locale === 'tr' ? (
                   <>Avrupa ev sahibi kurumunuz sisteme başarıyla tanımlandı. Okullarla güvenle eşleşmek ve <strong>&quot;Doğrulanmış Partner&quot;</strong> rozeti almak için aşağıdaki adımları tamamlayabilirsiniz.</>
                 ) : (
@@ -806,7 +886,6 @@ export default function OnboardingPage() {
                       ? `Sektör: ${submittedHost.primarySector || 'Genel'}`
                       : `Sector: ${submittedHost.primarySector || 'General'}`}
                   </span>
-
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5">
@@ -891,6 +970,14 @@ export default function OnboardingPage() {
                 )}
 
                 <div className="flex items-center gap-2 flex-wrap">
+                  <button
+                    type="button"
+                    onClick={() => startEditingHost(submittedHost)}
+                    className="px-4 py-2.5 text-xs font-bold text-slate-800 hover:text-slate-950 bg-white hover:bg-slate-50 rounded-xl transition-colors border-2 border-slate-300 shadow-2xs cursor-pointer flex items-center gap-1.5"
+                  >
+                    <span>✏️</span>
+                    <span>{locale === 'tr' ? 'Temel Bilgileri Düzenle' : 'Edit Core Information'}</span>
+                  </button>
                   <button
                     type="button"
                     onClick={() => {
@@ -1085,7 +1172,7 @@ export default function OnboardingPage() {
           /* ========================================================================= */
           /* FORM 1: OKUL / GÖNDEREN KURUM FORMU                                        */
           /* ========================================================================= */
-          <div className="bg-white border border-slate-200 rounded-2xl shadow-lg p-6 sm:p-9 animate-fadeIn">
+          <div className="bg-white border border-slate-200 rounded-2xl shadow-xl p-7 sm:p-10 lg:p-12 animate-fadeIn">
             <div className="flex items-center justify-between border-b border-slate-100 pb-5 mb-6">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-xs font-semibold mb-2.5">
@@ -1488,28 +1575,40 @@ export default function OnboardingPage() {
           /* ========================================================================= */
           /* FORM 2: EV SAHİBİ KURUM (HOST) - AŞAMA 1 HIZLI ONBOARDING                 */
           /* ========================================================================= */
-          <div className="bg-white border border-slate-200 rounded-2xl shadow-lg p-6 sm:p-9 animate-fadeIn">
+          <div className="bg-white border border-slate-200 rounded-2xl shadow-xl p-7 sm:p-10 lg:p-12 animate-fadeIn">
             <div className="flex items-center justify-between border-b border-slate-100 pb-5 mb-6">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold mb-2.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
-                  <span>{t.onboarding.hostSetupBadge}</span>
+                  <span>
+                    {isEditing
+                      ? (locale === 'tr' ? 'Aşama 1: Kurum Bilgilerini Güncelle' : 'Stage 1: Update Organisation Details')
+                      : t.onboarding.hostSetupBadge}
+                  </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight m-0">
-                  {t.onboarding.hostFormTitle}
+                  {isEditing
+                    ? (locale === 'tr' ? 'Ev Sahibi Kurum Bilgilerini Düzenle' : 'Edit Host Organisation Profile')
+                    : t.onboarding.hostFormTitle}
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
-                  {t.onboarding.hostFormSubtitle}
+                  {isEditing
+                    ? (locale === 'tr'
+                        ? 'Yasal unvan, resmi OID, faaliyet sektörleri, iletişim ve kontenjan bilgilerinizi güncelleyerek kaydedebilirsiniz.'
+                        : 'Update your legal name, OID, sectors, contact coordinates, and capacity quota.')
+                    : t.onboarding.hostFormSubtitle}
                 </p>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setSelectedRole(null)}
-                className="text-xs font-semibold text-slate-500 hover:text-slate-800 border border-slate-200 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors"
-              >
-                {t.onboarding.changeRole}
-              </button>
+              {!isEditing && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedRole(null)}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 border border-slate-200 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
+                >
+                  {t.onboarding.changeRole}
+                </button>
+              )}
             </div>
 
             {errorMessage && (
@@ -2117,28 +2216,42 @@ export default function OnboardingPage() {
                 </div>
 
               <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={() => setSelectedRole(null)}
-                  className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors border border-slate-200"
-                >
-                  {t.onboarding.back}
-                </button>
+                {isEditing ? (
+                  <button
+                    type="button"
+                    onClick={() => setIsEditing(false)}
+                    className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors border border-slate-200 cursor-pointer"
+                  >
+                    {t.onboarding.cancel}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedRole(null)}
+                    className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors border border-slate-200 cursor-pointer"
+                  >
+                    {t.onboarding.back}
+                  </button>
+                )}
 
                 <button
                   type="submit"
                   disabled={!canSubmitHost || isSubmitting || !legalConsentAccepted}
-                  className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold text-white transition-all shadow-sm ${
+                  className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold text-white transition-all shadow-sm cursor-pointer ${
                     !canSubmitHost || isSubmitting || !legalConsentAccepted
                       ? 'bg-slate-400 cursor-not-allowed opacity-70'
                       : 'bg-emerald-600 hover:bg-emerald-700 hover:shadow-md'
                   }`}
                 >
                   {isSubmitting ? (
-                    <span>{locale === 'tr' ? 'Kuruluyor...' : 'Registering...'}</span>
+                    <span>{locale === 'tr' ? 'Kaydediliyor...' : 'Saving...'}</span>
                   ) : (
                     <>
-                      <span>{t.onboarding.completeHostSetup}</span>
+                      <span>
+                        {isEditing
+                          ? (locale === 'tr' ? 'Değişiklikleri Kaydet' : 'Save Changes')
+                          : t.onboarding.completeHostSetup}
+                      </span>
                       <span>✓</span>
                     </>
                   )}

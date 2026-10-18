@@ -331,11 +331,25 @@ export const OrganisationsDb = {
   },
 
   /**
-   * Saves a host organisation
+   * Saves or updates a host organisation
    */
   async saveHost(payload: any, userId?: string): Promise<any> {
-    const hostId = `host-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
-    const newHost = {
+    const records = await readHostsFile();
+    const existingIdx = records.findIndex(
+      (r) =>
+        (payload.id && r.host.id === payload.id) ||
+        (userId && r.userId === userId) ||
+        (payload.oid && r.host.oid && r.host.oid === payload.oid)
+    );
+
+    const existingHost = existingIdx >= 0 ? records[existingIdx].host : null;
+    const hostId =
+      payload.id ||
+      existingHost?.id ||
+      `host-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
+
+    const updatedHost = {
+      ...existingHost,
       id: hostId,
       name: payload.name,
       tradingName: payload.tradingName || payload.name,
@@ -343,31 +357,34 @@ export const OrganisationsDb = {
       countryCode: payload.countryCode || 'DE',
       city: payload.city,
       address: payload.registeredAddress || payload.address || null,
+      registeredAddress: payload.registeredAddress || payload.address || null,
+      operationalAddress: payload.operationalAddress || null,
+      yearEstablished: Number(payload.yearEstablished) || 2018,
+      oid: payload.oid || null,
+      picNumber: payload.picNumber || null,
       websiteUrl: payload.websiteUrl || null,
       generalEmail: payload.generalEmail || null,
+      telephone: payload.telephone || payload.contactPhone || null,
       primarySector: payload.primarySector,
       sectors: payload.sectors || (payload.primarySector ? [payload.primarySector] : ['ict']),
-      verificationStatus: 'PENDING',
-
+      verificationStatus: existingHost?.verificationStatus || 'PENDING',
       contactPerson: payload.contactPerson,
+      contactTitle: payload.contactTitle || null,
       contactEmail: payload.contactEmail,
       contactPhone: payload.telephone || payload.contactPhone || null,
+      consentPublicDisplay: payload.consentPublicDisplay ?? true,
       languages: payload.languages || payload.workingLanguages || ['EN'],
+      workingLanguages: payload.workingLanguages || payload.languages || ['EN'],
       maxLearnersPerTerm: payload.maxLearnersPerTerm || 4,
       totalAnnualCapacity: payload.totalAnnualCapacity || 12,
       activities: payload.activities || ['VET_INTERNSHIP'],
       isActive: true,
-      createdAt: new Date().toISOString(),
+      createdAt: existingHost?.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
 
-    const records = await readHostsFile();
-    const existingIdx = records.findIndex(
-      (r) => (userId && r.userId === userId) || (payload.oid && r.host.oid === payload.oid)
-    );
-
     const record: StoredHostRecord = {
-      host: newHost,
+      host: updatedHost,
       userId,
       userEmail: payload.userEmail || payload.contactEmail,
       userFullName: payload.userFullName || payload.contactPerson,
@@ -380,6 +397,6 @@ export const OrganisationsDb = {
     }
 
     await writeHostsFile(records);
-    return newHost;
+    return updatedHost;
   },
 };

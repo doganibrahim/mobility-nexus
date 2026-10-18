@@ -23,6 +23,7 @@ export interface CreateInvitePayload {
 }
 
 export interface RegisterHostPayload {
+  id?: string;
   name: string;
   tradingName?: string;
   organisationType: string;
@@ -40,7 +41,6 @@ export interface RegisterHostPayload {
   primarySector: string;
   sectors?: string[];
   contactPerson: string;
-
   contactTitle: string;
   contactEmail: string;
   contactPhone?: string;
@@ -278,7 +278,7 @@ export const apiClient = {
   },
 
   /**
-   * Registers a new Host Organisation (European enterprise / hosting provider) on the backend.
+   * Registers or updates a Host Organisation (European enterprise / hosting provider).
    */
   async registerHost(
     payload: RegisterHostPayload,
@@ -297,22 +297,31 @@ export const apiClient = {
     } catch {}
 
     const fallbackHost = {
-      id: `host-loc-${Date.now()}`,
+      id: payload.id || `host-loc-${Date.now()}`,
       name: payload.name,
       tradingName: payload.tradingName || payload.name,
       organisationType: payload.organisationType || 'Company',
       countryCode: payload.countryCode || 'DE',
       city: payload.city,
       address: payload.registeredAddress || payload.address || null,
+      registeredAddress: payload.registeredAddress || payload.address || null,
+      operationalAddress: payload.operationalAddress || null,
+      yearEstablished: Number(payload.yearEstablished) || 2018,
+      oid: payload.oid || null,
+      picNumber: payload.picNumber || null,
       websiteUrl: payload.websiteUrl || null,
+      generalEmail: payload.generalEmail || null,
+      telephone: payload.telephone || payload.contactPhone || null,
       primarySector: payload.primarySector,
       sectors: payload.sectors || (payload.primarySector ? [payload.primarySector] : ['ict']),
       verificationStatus: 'PENDING',
-
       contactPerson: payload.contactPerson,
+      contactTitle: payload.contactTitle || null,
       contactEmail: payload.contactEmail,
       contactPhone: payload.telephone || payload.contactPhone || null,
+      consentPublicDisplay: payload.consentPublicDisplay ?? true,
       languages: payload.languages || payload.workingLanguages || ['EN'],
+      workingLanguages: payload.workingLanguages || payload.languages || ['EN'],
       maxLearnersPerTerm: payload.maxLearnersPerTerm || 4,
       totalAnnualCapacity: payload.totalAnnualCapacity || 12,
       activities: payload.activities || ['VET_INTERNSHIP'],
