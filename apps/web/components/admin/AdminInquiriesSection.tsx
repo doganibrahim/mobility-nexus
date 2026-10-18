@@ -16,6 +16,10 @@ export default function AdminInquiriesSection() {
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
+  React.useEffect(() => {
+    store.fetchInquiriesFromServer({ fetchAll: true });
+  }, []);
+
   const inquiries = store.inquiries || [];
 
   // Metrics
@@ -52,7 +56,7 @@ export default function AdminInquiriesSection() {
   const handleRefresh = async () => {
     setIsRefreshing(true);
     try {
-      await store.fetchInquiriesFromServer();
+      await store.fetchInquiriesFromServer({ fetchAll: true });
     } finally {
       setTimeout(() => setIsRefreshing(false), 400);
     }

@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import {
   HostCancellationPolicy,
   HostReviewItem,
@@ -5,6 +7,8 @@ import {
   CreateHostReviewDto,
   FiveDimensionalReviewMetrics,
 } from '@mobility-nexus/types';
+
+const REVIEWS_FILE_PATH = path.join(process.cwd(), 'data', 'reviews.json');
 
 // In-Memory store for development resilience
 const cancellationPolicies: Record<string, HostCancellationPolicy> = {
@@ -141,6 +145,33 @@ const reviewsStore: Record<string, HostReviewItem[]> = {
   ],
 };
 
+function loadPersistedReviews(): Record<string, HostReviewItem[]> {
+  try {
+    if (fs.existsSync(REVIEWS_FILE_PATH)) {
+      const content = fs.readFileSync(REVIEWS_FILE_PATH, 'utf-8');
+      const data = JSON.parse(content);
+      if (data && typeof data === 'object') {
+        return { ...reviewsStore, ...data };
+      }
+    }
+  } catch (err) {
+    console.warn('Error loading reviews from disk:', err);
+  }
+  return reviewsStore;
+}
+
+function savePersistedReviews(storeData: Record<string, HostReviewItem[]>): void {
+  try {
+    const dir = path.dirname(REVIEWS_FILE_PATH);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(REVIEWS_FILE_PATH, JSON.stringify(storeData, null, 2), 'utf-8');
+  } catch (err) {
+    console.warn('Error saving reviews to disk:', err);
+  }
+}
+
 export const ProviderReviewsDb = {
   getCancellationPolicy(hostId: string): HostCancellationPolicy {
     return (
@@ -169,7 +200,8 @@ export const ProviderReviewsDb = {
   },
 
   getReviewsBreakdown(hostId: string, hostName = 'Ev Sahibi Sağlayıcı'): HostReviewsBreakdownResponse {
-    const list = reviewsStore[hostId] || [];
+    const allReviews = loadPersistedReviews();
+    const list = allReviews[hostId] || [];
 
     if (list.length === 0) {
       return {
@@ -252,10 +284,13 @@ export const ProviderReviewsDb = {
       createdAt: new Date().toISOString(),
     };
 
-    if (!reviewsStore[hostId]) {
-      reviewsStore[hostId] = [];
+    const allReviews = loadPersistedReviews();
+    if (!allReviews[hostId]) {
+      allReviews[hostId] = [];
     }
-    reviewsStore[hostId].unshift(reviewItem);
+    allReviews[hostId].unshift(reviewItem);
+    reviewsStore[hostId] = allReviews[hostId];
+    savePersistedReviews(allReviews);
 
     return reviewItem;
   },

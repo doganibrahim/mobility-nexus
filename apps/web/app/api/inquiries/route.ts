@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { InquiriesDb } from '../../../lib/inquiries-db';
 import { MobilityInquiry } from '../../../lib/store';
+import { verifyAdminAccess } from '../../../lib/admin-auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,10 +15,37 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const hostId = searchParams.get('hostId');
     const schoolOid = searchParams.get('schoolOid');
+    const schoolName = searchParams.get('schoolName');
     const adminKey = request.headers.get('x-admin-key');
+    const userEmail = request.headers.get('x-user-email');
+    const validSecret =
+      process.env.ADMIN_SECRET_KEY ||
+      process.env.JWT_SECRET ||
+      'super-secret-jwt-key-change-in-production-erasmusmobility-2026';
+    const adminEmails = (
+      process.env.ADMIN_EMAILS ||
+      process.env.NEXT_PUBLIC_ADMIN_EMAILS ||
+      'ibrahimdogan.js@gmail.com'
+    )
+      .toLowerCase()
+      .split(',')
+      .map((e) => e.trim());
+
+    let isAdmin = Boolean(adminKey && adminKey.trim() === validSecret.trim());
+    if (!isAdmin && userEmail && adminEmails.includes(userEmail.toLowerCase().trim())) {
+      isAdmin = true;
+    }
+    if (!isAdmin) {
+      try {
+        const adminCheck = await verifyAdminAccess(request);
+        if (adminCheck.authorized) {
+          isAdmin = true;
+        }
+      } catch {}
+    }
 
     // IDOR & Data Isolation: Prevent unauthenticated mass exfiltration of all institutional records
-    if (!hostId && !schoolOid && !adminKey) {
+    if (!hostId && !schoolOid && !schoolName && !isAdmin) {
       return NextResponse.json({
         success: true,
         count: 0,
@@ -34,7 +62,15 @@ export async function GET(request: NextRequest) {
       inquiries = inquiries.filter((inq) => inq.hostId === hostId);
     }
     if (schoolOid) {
-      inquiries = inquiries.filter((inq) => inq.schoolOid === schoolOid);
+      inquiries = inquiries.filter(
+        (inq) =>
+          (inq.schoolOid && inq.schoolOid.toUpperCase() === schoolOid.toUpperCase()) ||
+          (schoolName && inq.schoolName && inq.schoolName.toLowerCase() === schoolName.toLowerCase()),
+      );
+    } else if (schoolName) {
+      inquiries = inquiries.filter(
+        (inq) => inq.schoolName && inq.schoolName.toLowerCase() === schoolName.toLowerCase(),
+      );
     }
 
     return NextResponse.json({

@@ -18,6 +18,20 @@ export default function SchoolDashboardView({
 }: SchoolDashboardViewProps) {
   const { t, locale } = useTranslation();
   const store = useAppStore();
+  const [isRefreshing, setIsRefreshing] = React.useState(false);
+
+  React.useEffect(() => {
+    store.fetchInquiriesFromServer();
+  }, [store.schoolProfile?.oid, store.currentOrg?.oid, store.currentOrg?.name]);
+
+  const handleRefreshInquiries = async () => {
+    setIsRefreshing(true);
+    try {
+      await store.fetchInquiriesFromServer();
+    } finally {
+      setTimeout(() => setIsRefreshing(false), 500);
+    }
+  };
 
   const {
     schoolName,
@@ -304,13 +318,25 @@ export default function SchoolDashboardView({
         }
         icon="📋"
         headerAction={
-          <Link
-            href="/school/pipeline"
-            className="text-xs font-extrabold text-blue-700 hover:text-blue-900 inline-flex items-center gap-1"
-          >
-            <span>{locale === 'tr' ? 'Tüm Eşleşmeleri İncele' : 'View All Matches'}</span>
-            <span>→</span>
-          </Link>
+          <div className="flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={handleRefreshInquiries}
+              disabled={isRefreshing}
+              className="text-xs font-bold text-slate-700 hover:text-slate-950 inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 transition-colors cursor-pointer disabled:opacity-50"
+              title={locale === 'tr' ? 'Sunucudan en güncel yanıtları çek' : 'Fetch latest replies from server'}
+            >
+              <span className={isRefreshing ? 'animate-spin inline-block' : 'inline-block'}>🔄</span>
+              <span>{isRefreshing ? (locale === 'tr' ? 'Yenileniyor...' : 'Refreshing...') : (locale === 'tr' ? 'Yenile' : 'Refresh')}</span>
+            </button>
+            <Link
+              href="/school/pipeline"
+              className="text-xs font-extrabold text-blue-700 hover:text-blue-900 inline-flex items-center gap-1"
+            >
+              <span>{locale === 'tr' ? 'Tüm Eşleşmeleri İncele' : 'View All Matches'}</span>
+              <span>→</span>
+            </Link>
+          </div>
         }
       >
         {inquiries.length > 0 ? (
@@ -328,39 +354,74 @@ export default function SchoolDashboardView({
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-700">
                 {inquiries.map((inq) => (
-                  <tr key={inq.id} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="py-3 px-3 font-bold text-slate-900">
-                      {inq.hostName}
-                    </td>
-                    <td className="py-3 px-3 font-medium">
-                      {inq.hostCountry}
-                    </td>
-                    <td className="py-3 px-3 font-medium">
-                      {inq.vetField}
-                    </td>
-                    <td className="py-3 px-3 font-mono font-medium">
-                      {inq.participantCount} {locale === 'tr' ? 'kişi' : 'persons'} ({inq.durationDays} {locale === 'tr' ? 'gün' : 'days'})
-                    </td>
-                    <td className="py-3 px-3">
-                      {inq.status === 'ACCEPTED' ? (
-                        <StatusAccentBadge status="APPROVED" label={t.inquiry.statusAccepted} />
-                      ) : inq.status === 'DECLINED' ? (
-                        <StatusAccentBadge status="REJECTED" label={t.inquiry.statusDeclined} />
-                      ) : inq.status === 'REVISED' ? (
-                        <StatusAccentBadge status="DRAFT" label={t.inquiry.statusRevised} />
-                      ) : (
-                        <StatusAccentBadge status="PENDING" label={t.inquiry.statusPending} />
-                      )}
-                    </td>
-                    <td className="py-3 px-3 text-right">
-                      <Link
-                        href="/school/pipeline"
-                        className="text-blue-700 hover:text-blue-900 font-bold text-xs"
-                      >
-                        {locale === 'tr' ? 'Detay' : 'Details'} →
-                      </Link>
-                    </td>
-                  </tr>
+                  <React.Fragment key={inq.id}>
+                    <tr className="hover:bg-slate-50/80 transition-colors">
+                      <td className="py-3 px-3 font-bold text-slate-900">
+                        {inq.hostName}
+                      </td>
+                      <td className="py-3 px-3 font-medium">
+                        {inq.hostCountry}
+                      </td>
+                      <td className="py-3 px-3 font-medium">
+                        {inq.vetField}
+                      </td>
+                      <td className="py-3 px-3 font-mono font-medium">
+                        {inq.participantCount} {locale === 'tr' ? 'kişi' : 'persons'} ({inq.durationDays} {locale === 'tr' ? 'gün' : 'days'})
+                      </td>
+                      <td className="py-3 px-3">
+                        {inq.status === 'ACCEPTED' ? (
+                          <StatusAccentBadge status="APPROVED" label={t.inquiry.statusAccepted} />
+                        ) : inq.status === 'DECLINED' ? (
+                          <StatusAccentBadge status="REJECTED" label={t.inquiry.statusDeclined} />
+                        ) : inq.status === 'REVISED' ? (
+                          <StatusAccentBadge status="DRAFT" label={t.inquiry.statusRevised} />
+                        ) : (
+                          <StatusAccentBadge status="PENDING" label={t.inquiry.statusPending} />
+                        )}
+                      </td>
+                      <td className="py-3 px-3 text-right">
+                        <Link
+                          href="/school/pipeline"
+                          className="text-blue-700 hover:text-blue-900 font-bold text-xs"
+                        >
+                          {locale === 'tr' ? 'Detay' : 'Details'} →
+                        </Link>
+                      </td>
+                    </tr>
+                    {inq.hostReplyNote && (
+                      <tr className="bg-slate-50/50">
+                        <td colSpan={6} className="px-3 pb-3 pt-0">
+                          <div
+                            className={`p-2.5 rounded-xl border text-xs leading-relaxed flex items-start gap-2.5 ${
+                              inq.status === 'ACCEPTED'
+                                ? 'bg-emerald-50 border-emerald-200 text-emerald-950'
+                                : inq.status === 'REVISED'
+                                  ? 'bg-blue-50 border-blue-200 text-blue-950'
+                                  : inq.status === 'DECLINED'
+                                    ? 'bg-rose-50 border-rose-200 text-rose-950'
+                                    : 'bg-slate-100 border-slate-200 text-slate-800'
+                            }`}
+                          >
+                            <span className="shrink-0 text-sm">
+                              {inq.status === 'ACCEPTED' ? '💬' : inq.status === 'REVISED' ? '✏️' : inq.status === 'DECLINED' ? '❌' : '📝'}
+                            </span>
+                            <div className="flex-1 space-y-0.5">
+                              <span className="font-extrabold text-[10px] uppercase tracking-wider block opacity-75">
+                                {inq.status === 'ACCEPTED'
+                                  ? locale === 'tr' ? 'Ev Sahibi Ön Kabul Yanıtı:' : 'Host Acceptance Note:'
+                                  : inq.status === 'REVISED'
+                                    ? locale === 'tr' ? 'Ev Sahibi Revizyon Teklifi:' : 'Host Revision Proposal:'
+                                    : inq.status === 'DECLINED'
+                                      ? locale === 'tr' ? 'Ev Sahibi Ret Gerekçesi:' : 'Host Decline Reason:'
+                                      : locale === 'tr' ? 'Ev Sahibi Mesajı:' : 'Host Note:'}
+                              </span>
+                              <span className="font-medium">{inq.hostReplyNote}</span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
                 ))}
               </tbody>
             </table>

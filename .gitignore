@@ -35,6 +35,7 @@ Thumbs.db
 .idea/
 *.suo
 *.ntvs*
-*.njsproj
-*.sln
 *.sw?
+
+# Scratch & temporary test scripts
+scratch/

@@ -196,22 +196,57 @@ export default function AdminVerificationQueueModal({
                 )}
 
                 {/* Kurum Üst Bilgi Kartı */}
-                <div className="flex items-start justify-between bg-slate-50 p-4 rounded-xl border border-slate-200">
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900 m-0">
-                      {selectedHost.name}
-                    </h3>
-                    <div className="text-xs text-slate-600 mt-1 flex items-center gap-3">
-                      <span><strong>OID:</strong> {selectedHost.oid}</span>
-                      <span>•</span>
-                      <span><strong>{locale === 'tr' ? 'Tür:' : 'Type:'}</strong> {selectedHost.organisationType}</span>
-                      <span>•</span>
-                      <span><strong>{locale === 'tr' ? 'Konum:' : 'Location:'}</strong> {selectedHost.city}, {selectedHost.countryCode}</span>
+                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 m-0">
+                        {selectedHost.name}
+                      </h3>
+                      <div className="text-xs text-slate-600 mt-1 flex items-center gap-3 flex-wrap">
+                        <span><strong>OID:</strong> {selectedHost.oid || (locale === 'tr' ? 'Yok' : 'None')}</span>
+                        <span>•</span>
+                        <span><strong>{locale === 'tr' ? 'Tür:' : 'Type:'}</strong> {selectedHost.organisationType}</span>
+                        <span>•</span>
+                        <span><strong>{locale === 'tr' ? 'Konum:' : 'Location:'}</strong> {selectedHost.city}, {selectedHost.countryCode}</span>
+                      </div>
                     </div>
+                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs shrink-0">
+                      {locale === 'tr' ? 'Durum:' : 'Status:'} {selectedHost.verificationStatus}
+                    </span>
                   </div>
-                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs">
-                    {locale === 'tr' ? 'Durum:' : 'Status:'} {selectedHost.verificationStatus}
-                  </span>
+
+                  {/* Sektörler Rozet Listesi */}
+                  <div className="flex items-center gap-2 flex-wrap pt-1 border-t border-slate-200/60">
+                    <span className="text-[11px] font-bold text-slate-600">
+                      {locale === 'tr' ? 'Faaliyet Sektörleri:' : 'Operating Sectors:'}
+                    </span>
+                    {(Array.isArray(selectedHost.sectors) && selectedHost.sectors.length > 0
+                      ? selectedHost.sectors
+                      : selectedHost.primarySector
+                      ? [selectedHost.primarySector]
+                      : ['ict']
+                    ).map((secCode: string) => {
+                      const labels: Record<string, { tr: string; en: string }> = {
+                        ict: { tr: 'Bilişim & Yazılım', en: 'ICT & Software' },
+                        automotive: { tr: 'Otomotiv & Raylı', en: 'Automotive' },
+                        electrical: { tr: 'Elektrik & Otomasyon', en: 'Electrical & Automation' },
+                        machinery: { tr: 'Makine & İmalat', en: 'Machinery & Manufacturing' },
+                        health: { tr: 'Sağlık Hizmetleri', en: 'Health Services' },
+                        tourism: { tr: 'Turizm & Otelcilik', en: 'Tourism & Hospitality' },
+                        logistics: { tr: 'Lojistik & Tedarik', en: 'Logistics' },
+                        green_energy: { tr: 'Yenilenebilir Enerji', en: 'Green Energy' },
+                      };
+                      const label = labels[secCode] ? (locale === 'tr' ? labels[secCode].tr : labels[secCode].en) : secCode;
+                      return (
+                        <span
+                          key={secCode}
+                          className="px-2 py-0.5 rounded-md bg-blue-50 text-blue-800 border border-blue-200 text-[11px] font-semibold"
+                        >
+                          {label}
+                        </span>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 {/* 1. Resmi Bilgiler & Evraklar (Admin Only) */}

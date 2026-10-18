@@ -219,7 +219,7 @@ export interface AppState {
 
   // 9. Mobility Inquiries State (Sending & Receiving)
   inquiries: MobilityInquiry[];
-  fetchInquiriesFromServer: () => Promise<void>;
+  fetchInquiriesFromServer: (options?: { userEmail?: string; adminKey?: string; fetchAll?: boolean }) => Promise<void>;
   sendInquiry: (inquiry: Omit<MobilityInquiry, 'id' | 'createdAt' | 'status'>) => MobilityInquiry;
   updateInquiryStatus: (
     inquiryId: string,
@@ -390,22 +390,43 @@ export const useAppStore = create<AppState>((set, get) => ({
     }));
   },
 
-  fetchInquiriesFromServer: async () => {
+  fetchInquiriesFromServer: async (options) => {
     try {
-      const { schoolProfile, currentHost } = get();
-      const schoolOid = schoolProfile?.oid;
-      const hostId = currentHost?.id;
+      const { schoolProfile, currentOrg, currentHost } = get();
+      const schoolOid = options?.fetchAll ? undefined : (schoolProfile?.oid || currentOrg?.oid);
+      const schoolName = options?.fetchAll ? undefined : (schoolProfile?.schoolName || currentOrg?.name);
+      const hostId = options?.fetchAll ? undefined : currentHost?.id;
+
+      const queryParams: { schoolOid?: string; schoolName?: string; hostId?: string; userEmail?: string; adminKey?: string } = {};
+      if (schoolOid) queryParams.schoolOid = schoolOid;
+      if (schoolName) queryParams.schoolName = schoolName;
+      if (hostId) queryParams.hostId = hostId;
+      if (options?.userEmail) queryParams.userEmail = options.userEmail;
+      if (options?.adminKey) queryParams.adminKey = options.adminKey;
+
       const serverInquiries = await apiClient.getInquiries(
-        schoolOid || hostId ? { schoolOid, hostId } : undefined
+        Object.keys(queryParams).length > 0 ? queryParams : undefined
       );
-      if (Array.isArray(serverInquiries) && serverInquiries.length > 0) {
-        set(() => {
+
+      if (Array.isArray(serverInquiries)) {
+        set((state) => {
+          const serverMap = new Map(serverInquiries.map((inq: any) => [inq.id, inq]));
+          const merged = state.inquiries.map((inq) => serverMap.get(inq.id) || inq);
+          for (const sInq of serverInquiries) {
+            if (!merged.some((m) => m.id === sInq.id)) {
+              merged.push(sInq);
+            }
+          }
+          merged.sort(
+            (a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime()
+          );
+
           if (typeof window !== 'undefined') {
             try {
-              localStorage.setItem('em_inquiries', JSON.stringify(serverInquiries));
+              localStorage.setItem('em_inquiries', JSON.stringify(merged));
             } catch {}
           }
-          return { inquiries: serverInquiries };
+          return { inquiries: merged };
         });
       }
     } catch (err) {
@@ -509,9 +530,6 @@ export const useAppStore = create<AppState>((set, get) => ({
             set(() => ({ inquiries: parsedInquiries }));
           }
         }
-        // Always sync latest inquiries from server/database
-        get().fetchInquiriesFromServer();
-
         const storedHost = localStorage.getItem('em_current_host') || localStorage.getItem('cappinno_current_host');
         if (storedHost) {
           const { host } = JSON.parse(storedHost);
@@ -523,6 +541,7 @@ export const useAppStore = create<AppState>((set, get) => ({
               userRole: 'ORG_ADMIN',
               isOnboarded: true,
             }));
+            get().fetchInquiriesFromServer();
             return;
           }
         }
@@ -552,7 +571,10 @@ export const useAppStore = create<AppState>((set, get) => ({
                   org.institutionNeed || state.schoolProfile.institutionNeed,
               },
             }));
+            get().fetchInquiriesFromServer();
           }
+        } else {
+          get().fetchInquiriesFromServer();
         }
 
         // Restore Application Draft with 7-day TTL expiration for shared computer privacy

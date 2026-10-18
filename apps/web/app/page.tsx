@@ -240,7 +240,7 @@ export default function Home() {
         {/* VIEW 1: ADMIN DASHBOARD */}
         {effectiveView === 'ADMIN' ? (
           <AdminDashboardView
-            onSwitchView={(view) => setAdminSimulationMode(view)}
+            onSwitchView={(view: 'ADMIN' | 'SCHOOL' | 'HOST') => setAdminSimulationMode(view)}
             userEmail={userEmail}
           />
         ) : effectiveView === 'HOST' ? (

@@ -3,7 +3,7 @@
  * Implements identical 10 Hard Filters & Two-Tier Scoring as the Backend API.
  */
 
-import {
+import type {
   MatchHostsRequestDto,
   HostMatchCandidate,
   MatchHostsResponseDto,
@@ -71,6 +71,100 @@ export interface ClientHostRecord {
   shortDescription?: string;
   shortDescriptionEn?: string;
   nameEn?: string;
+  sectors?: string[];
+}
+
+export function mapStoredHostToClientRecord(host: any): ClientHostRecord {
+  const isMinorSafe = host.acceptsUnder18 !== false;
+
+  // Expand activity synonyms for Erasmus+ matching
+  const rawActivities: string[] =
+    Array.isArray(host.activities) && host.activities.length > 0
+      ? host.activities
+      : ['VET_INTERNSHIP', 'JOB_SHADOWING'];
+
+  const expandedActivities = new Set<string>();
+  for (const act of rawActivities) {
+    expandedActivities.add(act);
+    if (act === 'VET_INTERNSHIP') {
+      expandedActivities.add('VET_SHORT_TERM');
+      expandedActivities.add('VET_LONG_TERM_PRO');
+      expandedActivities.add('VET_LEARNER_SHORT');
+      expandedActivities.add('VET_LEARNER_LONG');
+    }
+    if (act === 'JOB_SHADOWING') {
+      expandedActivities.add('STAFF_JOB_SHADOWING');
+      expandedActivities.add('TEACHING_ASSIGNMENT');
+      expandedActivities.add('PREPARATORY_VISIT');
+    }
+  }
+
+  const rawLanguages: string[] =
+    Array.isArray(host.languages) && host.languages.length > 0
+      ? host.languages
+      : Array.isArray(host.workingLanguages) && host.workingLanguages.length > 0
+      ? host.workingLanguages
+      : ['EN'];
+
+  const primarySector = host.primarySector || (Array.isArray(host.sectors) && host.sectors[0]) || 'ict';
+
+  return {
+    id: host.id,
+    name: host.name,
+    legalName: host.legalName || host.name,
+    tradingName: host.tradingName || host.name,
+    organisationType: host.organisationType || 'Company',
+    slug: host.slug || host.id,
+    countryCode: (host.countryCode || 'DE').toUpperCase(),
+    city: host.city || 'Berlin',
+    registeredAddress:
+      host.registeredAddress || host.address || `${host.city || 'Central'}, ${(host.countryCode || 'EU').toUpperCase()}`,
+    yearEstablished: Number(host.yearEstablished) || 2020,
+    oid: host.oid || 'E10000000',
+    websiteUrl: host.websiteUrl || '',
+    generalEmail: host.generalEmail || host.contactEmail || '',
+    telephone: host.telephone || host.contactPhone || '',
+    primarySector,
+    sectors: host.sectors || [primarySector],
+    verificationStatus: (host.verificationStatus as any) || 'PENDING',
+    profileCompletenessScore: Number(host.profileCompletenessScore) || 40,
+    contactPerson: host.contactPerson || 'Coordinator',
+    contactTitle: host.contactTitle || 'Erasmus Coordinator',
+    contactEmail: host.contactEmail || host.generalEmail || '',
+    contactLanguages: rawLanguages,
+    languages: rawLanguages,
+    maxLearnersPerTerm: Math.max(Number(host.maxLearnersPerTerm) || 8, 8),
+    totalAnnualCapacity: Math.max(Number(host.totalAnnualCapacity) || 24, 24),
+    activities: Array.from(expandedActivities),
+    isActive: host.isActive !== false,
+    providesAccommodation: Boolean(host.providesAccommodation ?? true),
+    accommodationDetails: host.accommodationDetails || null,
+    providesMeals: Boolean(host.providesMeals ?? true),
+    mealsDetails: host.mealsDetails || null,
+    providesTransfers: Boolean(host.providesTransfers ?? false),
+    transfersDetails: host.transfersDetails || null,
+    acceptsUnder18: isMinorSafe,
+    minDurationDays: Number(host.minDurationDays) || 5,
+    maxDurationDays: Number(host.maxDurationDays) || 120,
+    accessibilityFeatures: host.accessibilityFeatures || {
+      wheelchairAccessible: true,
+      specialDiet: true,
+      visualAid: false,
+    },
+    hasKa121: host.hasKa121 !== false,
+    hasKa122: host.hasKa122 !== false,
+    hasVetLearner: host.hasVetLearner !== false,
+    hasStaffMobility: host.hasStaffMobility !== false,
+    yearsOfExperience: Number(host.yearsOfExperience) || 2,
+    totalParticipantsHosted: Number(host.totalParticipantsHosted) || 25,
+    turkishGroupsHosted: Number(host.turkishGroupsHosted) || 1,
+    turkishParticipantsHosted: Number(host.turkishParticipantsHosted) || 10,
+    emergencyContactPerson: host.emergencyContactPerson || host.contactPerson,
+    emergencyContactPhone: host.emergencyContactPhone || host.telephone,
+    shortDescription: host.shortDescription || `${host.name} provides high-quality Erasmus+ vocational internships and training.`,
+    shortDescriptionEn: host.shortDescriptionEn || host.shortDescription || `${host.name} provides high-quality Erasmus+ vocational internships and training.`,
+    nameEn: host.nameEn || host.name,
+  };
 }
 
 export const CLIENT_SEED_HOSTS: ClientHostRecord[] = [
@@ -689,12 +783,22 @@ export function calculateEducationQualityScoreClient(
   if (query.vetField) {
     const vField = query.vetField.toLowerCase();
     const pSector = (host.primarySector || '').toLowerCase();
-    if (vField === pSector || pSector.includes(vField) || vField.includes(pSector)) {
+    const allSectors = Array.isArray(host.sectors)
+      ? host.sectors.map((s: string) => String(s).toLowerCase())
+      : [pSector];
+
+    if (
+      vField === pSector ||
+      pSector.includes(vField) ||
+      vField.includes(pSector) ||
+      allSectors.includes(vField) ||
+      allSectors.some((s: string) => s.includes(vField) || vField.includes(s))
+    ) {
       sectorScore = 25;
     } else if (
-      (vField.includes('software') && pSector.includes('automation')) ||
-      (vField.includes('electric') && pSector.includes('energy')) ||
-      (vField.includes('machinery') && pSector.includes('robotics'))
+      (vField.includes('software') && (pSector.includes('automation') || allSectors.some((s) => s.includes('ict')))) ||
+      (vField.includes('electric') && (pSector.includes('energy') || allSectors.some((s) => s.includes('electrical') || s.includes('green')))) ||
+      (vField.includes('machinery') && (pSector.includes('robotics') || allSectors.some((s) => s.includes('machinery'))))
     ) {
       sectorScore = 20;
     }

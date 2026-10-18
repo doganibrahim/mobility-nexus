@@ -550,9 +550,28 @@ export const apiClient = {
     payload: import('@mobility-nexus/types').MatchHostsRequestDto,
   ): Promise<{ data: import('@mobility-nexus/types').MatchHostsResponseDto; isFallback: boolean }> {
     const correlationId = `web-match-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+
+    // 1. Try internal Next.js API route first (combines real registered hosts & seeds)
+    try {
+      const response = await fetch('/api/hosts/match', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Correlation-Id': correlationId,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        return { data, isFallback: false };
+      }
+    } catch {}
+
+    // 2. Try external API URL if configured
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 4000);
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
 
       const response = await fetch(`${API_BASE_URL}/hosts/match`, {
         method: 'POST',
@@ -566,15 +585,16 @@ export const apiClient = {
 
       clearTimeout(timeoutId);
 
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-      return { data, isFallback: false };
-    } catch {
-      // Resilient client-side fallback
-      const { matchHostsClientSide } = await import('./matching-engine');
-      const fallbackData = matchHostsClientSide(payload);
-      return { data: fallbackData, isFallback: true };
-    }
+      if (response.ok) {
+        const data = await response.json();
+        return { data, isFallback: false };
+      }
+    } catch {}
+
+    // 3. Resilient client-side fallback
+    const { matchHostsClientSide } = await import('./matching-engine');
+    const fallbackData = matchHostsClientSide(payload);
+    return { data: fallbackData, isFallback: true };
   },
 
   /**
@@ -615,17 +635,39 @@ export const apiClient = {
   /**
    * Fetches all mobility inquiries from server/database
    */
-  async getInquiries(params?: { status?: string; hostId?: string; schoolOid?: string }): Promise<any[]> {
+  async getInquiries(params?: {
+    status?: string;
+    hostId?: string;
+    schoolOid?: string;
+    schoolName?: string;
+    userEmail?: string;
+    adminKey?: string;
+  }): Promise<any[]> {
     try {
       const query = new URLSearchParams();
       if (params?.status) query.set('status', params.status);
       if (params?.hostId) query.set('hostId', params.hostId);
       if (params?.schoolOid) query.set('schoolOid', params.schoolOid);
+      if (params?.schoolName) query.set('schoolName', params.schoolName);
 
       const qs = query.toString() ? `?${query.toString()}` : '';
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      const defaultKey = 'super-secret-jwt-key-change-in-production-erasmusmobility-2026';
+      const secret =
+        params?.adminKey ||
+        process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY ||
+        (typeof window !== 'undefined' ? localStorage.getItem('em_admin_secret_key') : null) ||
+        defaultKey;
+      if (secret) headers['x-admin-key'] = secret;
+      if (params?.userEmail) {
+        headers['x-user-email'] = params.userEmail;
+      } else if (typeof window !== 'undefined' && localStorage.getItem('em_user_email')) {
+        headers['x-user-email'] = localStorage.getItem('em_user_email')!;
+      }
+
       const response = await fetch(`/api/inquiries${qs}`, {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
       });
       const contentType = response.headers.get('content-type') || '';
       if (!response.ok || !contentType.includes('application/json')) {

@@ -12,6 +12,39 @@ import AdminInquiriesSection from '../admin/AdminInquiriesSection';
 import ErasmusResultsWidget from '../ui/ErasmusResultsWidget';
 import MebSchoolsWidget from '../ui/MebSchoolsWidget';
 
+const SECTOR_LABELS: Record<string, { tr: string; en: string }> = {
+  ict: { tr: 'Bilişim & Yazılım', en: 'ICT & Software' },
+  automotive: { tr: 'Otomotiv & Raylı', en: 'Automotive' },
+  electrical: { tr: 'Elektrik & Otomasyon', en: 'Electrical & Automation' },
+  machinery: { tr: 'Makine & İmalat', en: 'Machinery & Manufacturing' },
+  health: { tr: 'Sağlık Hizmetleri', en: 'Health Services' },
+  tourism: { tr: 'Turizm & Otelcilik', en: 'Tourism & Hospitality' },
+  logistics: { tr: 'Lojistik & Tedarik', en: 'Logistics' },
+  green_energy: { tr: 'Yenilenebilir Enerji', en: 'Green Energy' },
+};
+
+function formatSectors(host: any, locale: string): string {
+  const list: string[] =
+    Array.isArray(host.sectors) && host.sectors.length > 0
+      ? host.sectors
+      : host.primarySector
+      ? [host.primarySector]
+      : [];
+
+  if (list.length === 0) return locale === 'tr' ? 'Genel' : 'General';
+
+  const names = list.map((code) => {
+    const found = SECTOR_LABELS[code];
+    if (found) return locale === 'tr' ? found.tr : found.en;
+    return code.charAt(0).toUpperCase() + code.slice(1);
+  });
+
+  if (names.length <= 2) {
+    return names.join(', ');
+  }
+  return `${names[0]}, ${names[1]} (+${names.length - 2} ${locale === 'tr' ? 'diğer' : 'more'})`;
+}
+
 interface AdminDashboardViewProps {
   onSwitchView: (view: 'ADMIN' | 'SCHOOL' | 'HOST') => void;
   userEmail?: string;
@@ -46,8 +79,8 @@ export default function AdminDashboardView({
   }, []);
 
   useEffect(() => {
-    store.fetchInquiriesFromServer();
-  }, []);
+    store.fetchInquiriesFromServer({ userEmail, fetchAll: true });
+  }, [userEmail]);
 
   useEffect(() => {
     async function fetchQueueStats() {
@@ -279,7 +312,7 @@ export default function AdminDashboardView({
                       <span className="text-xs">{item.countryCode}</span>
                     </div>
                     <p className="text-xs text-slate-500 m-0">
-                      {locale === 'tr' ? 'Yetkili' : 'Contact'}: {item.contactPerson || '-'} • {locale === 'tr' ? 'Sektör' : 'Sector'}: {item.primarySector || 'General'}
+                      {locale === 'tr' ? 'Yetkili' : 'Contact'}: {item.contactPerson || '-'} • {locale === 'tr' ? 'Sektör' : 'Sector'}: <span className="font-medium text-slate-700">{formatSectors(item, locale)}</span>
                     </p>
                   </div>
 
