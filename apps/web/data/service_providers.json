@@ -1,0 +1,1530 @@
+[
+  {
+    "id": "sp-actilingua-academy",
+    "name": "ActiLingua Academy",
+    "country": "Austria",
+    "countryCode": "AT",
+    "city": "Vienna",
+    "websiteUrl": "https://www.actilingua.com",
+    "generalEmail": "info@actilingua.com",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Dil eğitimi, mesleki staj ve kültürel entegrasyon programları",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "DE"
+    ]
+  },
+  {
+    "id": "sp-bfi-wien",
+    "name": "BFI Wien",
+    "country": "Austria",
+    "countryCode": "AT",
+    "city": "Vienna",
+    "websiteUrl": "https://www.bfi.wien",
+    "generalEmail": "info@bfi.wien",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "electrical",
+      "machinery"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Mesleki eğitim, teknik atölyeler ve kurumsal staj programları",
+    "organisationType": "VET School",
+    "languages": [
+      "EN",
+      "DE"
+    ]
+  },
+  {
+    "id": "sp-ecq-bg",
+    "name": "European Center for Quality – ECQ",
+    "aliasNames": [
+      "ECQ",
+      "European Center for Quality"
+    ],
+    "country": "Bulgaria",
+    "countryCode": "BG",
+    "city": "Sofia",
+    "websiteUrl": "https://ecq-bg.com",
+    "generalEmail": "office@ecq-bg.com",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "green_energy"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "PREPARATORY_VISIT"
+    ],
+    "activityDescription": "Kalite güvencesi, proje yönetimi ve mesleki eğitim hareketlilikleri",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "BG"
+    ]
+  },
+  {
+    "id": "sp-talent-zone-croatia",
+    "name": "Talent Zone Croatia",
+    "country": "Croatia",
+    "countryCode": "HR",
+    "city": "Zagreb",
+    "websiteUrl": "https://talentzonecroatia.com",
+    "generalEmail": "info@talentzonecroatia.com",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Öğrenci staj yerleştirmeleri, mentörlük ve yerel lojistik",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "HR"
+    ]
+  },
+  {
+    "id": "sp-erasmus-mobility-croatia",
+    "name": "Erasmus Mobility Croatia",
+    "country": "Croatia",
+    "countryCode": "HR",
+    "city": "Zagreb",
+    "websiteUrl": "https://erasmusmobilitycroatia.eu",
+    "generalEmail": "info@erasmusmobilitycroatia.eu",
+    "primarySector": "logistics",
+    "sectors": [
+      "logistics",
+      "tourism",
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "PREPARATORY_VISIT"
+    ],
+    "activityDescription": "Erasmus+ ev sahibi organizasyonu, konaklama, transfer ve staj yönetimi",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "HR"
+    ]
+  },
+  {
+    "id": "sp-shipcon-group",
+    "name": "ShipCon Group",
+    "country": "Cyprus",
+    "countryCode": "CY",
+    "city": "Limassol",
+    "websiteUrl": "https://shipcon.eu.com",
+    "generalEmail": "info@shipcon.eu.com",
+    "primarySector": "logistics",
+    "sectors": [
+      "logistics",
+      "green_energy",
+      "machinery"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Denizcilik, lojistik, teknik eğitim ve personel kursları",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "EL"
+    ]
+  },
+  {
+    "id": "sp-emphasys-centre",
+    "name": "Emphasys Centre",
+    "country": "Cyprus",
+    "countryCode": "CY",
+    "city": "Nicosia",
+    "websiteUrl": "https://emphasyscentre.com",
+    "generalEmail": "info@emphasyscentre.com",
+    "primarySector": "ict",
+    "sectors": [
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Yazılım, robotik, STEM eğitimi ve VET staj koordinasyonu",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "EL"
+    ]
+  },
+  {
+    "id": "sp-dorea-educational-institute",
+    "name": "DOREA Educational Institute",
+    "country": "Cyprus",
+    "countryCode": "CY",
+    "city": "Limassol",
+    "websiteUrl": "https://dorea.org",
+    "generalEmail": "info@dorea.org",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict"
+    ],
+    "activities": [
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT",
+      "VET_INTERNSHIP"
+    ],
+    "activityDescription": "Yapılandırılmış öğretmen kursları, job shadowing ve mesleki stajlar",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "EL"
+    ]
+  },
+  {
+    "id": "sp-itc-international",
+    "name": "ITC International",
+    "country": "Czechia",
+    "countryCode": "CZ",
+    "city": "Prague",
+    "websiteUrl": "https://itc-international.eu",
+    "generalEmail": "info@itc-international.eu",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "machinery",
+      "automotive"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Mühendislik, otomotiv ve bilişim alanında öğrenci stajları",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "CS"
+    ]
+  },
+  {
+    "id": "sp-schola-empirica",
+    "name": "Schola Empirica",
+    "country": "Czechia",
+    "countryCode": "CZ",
+    "city": "Prague",
+    "websiteUrl": "https://scholaempirica.org",
+    "generalEmail": "info@scholaempirica.org",
+    "primarySector": "health",
+    "sectors": [
+      "health"
+    ],
+    "activities": [
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Sosyal bilimler, eğitim metodolojileri ve personel eğitimi",
+    "organisationType": "NGO",
+    "languages": [
+      "EN",
+      "CS"
+    ]
+  },
+  {
+    "id": "sp-tec-copenhagen",
+    "name": "TEC – Technical Education Copenhagen",
+    "aliasNames": [
+      "TEC Copenhagen",
+      "Technical Education Copenhagen"
+    ],
+    "country": "Denmark",
+    "countryCode": "DK",
+    "city": "Copenhagen",
+    "websiteUrl": "https://www.tec.dk",
+    "generalEmail": "tec@tec.dk",
+    "primarySector": "machinery",
+    "sectors": [
+      "machinery",
+      "electrical",
+      "automotive",
+      "green_energy"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Danimarka teknik mesleki eğitim okulu, atölye stajları ve işbirliği",
+    "organisationType": "VET School",
+    "languages": [
+      "EN",
+      "DA"
+    ]
+  },
+  {
+    "id": "sp-euneos",
+    "name": "Euneos",
+    "country": "Estonia",
+    "countryCode": "EE",
+    "city": "Tallinn",
+    "websiteUrl": "https://euneos.eu",
+    "generalEmail": "courses@euneos.eu",
+    "primarySector": "ict",
+    "sectors": [
+      "ict"
+    ],
+    "activities": [
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Dijital beceriler, okul yönetimi ve yenilikçi eğitim kursları",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "ET"
+    ]
+  },
+  {
+    "id": "sp-tallinn-school-of-services",
+    "name": "Tallinn School of Services",
+    "aliasNames": [
+      "Tallinna Teeninduskool",
+      "Teko"
+    ],
+    "country": "Estonia",
+    "countryCode": "EE",
+    "city": "Tallinn",
+    "websiteUrl": "https://www.teeninduskool.ee",
+    "generalEmail": "kool@teeninduskool.ee",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "logistics"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Gastronomi, otelcilik ve hizmet sektörü mesleki eğitimi",
+    "organisationType": "VET School",
+    "languages": [
+      "EN",
+      "ET"
+    ]
+  },
+  {
+    "id": "sp-visitedufinn",
+    "name": "VisitEDUfinn Oy",
+    "country": "Finland",
+    "countryCode": "FI",
+    "city": "Helsinki",
+    "websiteUrl": "https://visitedufinn.com",
+    "generalEmail": "info@visitedufinn.com",
+    "primarySector": "green_energy",
+    "sectors": [
+      "green_energy",
+      "ict"
+    ],
+    "activities": [
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT",
+      "PREPARATORY_VISIT"
+    ],
+    "activityDescription": "Finlandiya eğitim sistemi ziyaretleri, pedagojik kurslar ve job shadowing",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "FI"
+    ]
+  },
+  {
+    "id": "sp-berlink",
+    "name": "Berlink",
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Berlin",
+    "websiteUrl": "https://www.berlink.eu",
+    "generalEmail": "info@berlink.eu",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "tourism",
+      "logistics"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Berlin merkezli mesleki staj organizasyonu, konaklama ve refakat",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "DE"
+    ]
+  },
+  {
+    "id": "sp-kulturlife",
+    "name": "KulturLife",
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Kiel",
+    "websiteUrl": "https://kultur-life.de",
+    "generalEmail": "info@kultur-life.de",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "green_energy"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Kültürlerarası hareketlilik, sürdürülebilirlik ve mesleki stajlar",
+    "organisationType": "NGO",
+    "languages": [
+      "EN",
+      "DE"
+    ]
+  },
+  {
+    "id": "sp-vividus-international",
+    "name": "Vividus International",
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Berlin",
+    "websiteUrl": "https://vividus-international.com",
+    "generalEmail": "mail@vividus-international.com",
+    "primarySector": "health",
+    "sectors": [
+      "health",
+      "tourism"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Sağlık, hasta bakımı ve sosyal hizmetler staj yerleştirmeleri",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "DE"
+    ]
+  },
+  {
+    "id": "sp-wisamar",
+    "name": "Wisamar Bildungsgesellschaft",
+    "aliasNames": [
+      "Wisamar"
+    ],
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Leipzig",
+    "websiteUrl": "https://wisamar.de",
+    "generalEmail": "info@wisamar.de",
+    "primarySector": "machinery",
+    "sectors": [
+      "machinery",
+      "electrical",
+      "green_energy",
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "PREPARATORY_VISIT"
+    ],
+    "activityDescription": "Teknik stajlar, yenilenebilir enerji atölyeleri ve proje koordinasyonu",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "DE"
+    ]
+  },
+  {
+    "id": "sp-evec-athens",
+    "name": "EVEC Athens",
+    "aliasNames": [
+      "EVEC",
+      "European Vocational Education Centre Athens"
+    ],
+    "country": "Greece",
+    "countryCode": "GR",
+    "city": "Athens",
+    "websiteUrl": "https://evec.org.gr/vet/",
+    "generalEmail": "erasmus@evec.org.gr",
+    "contactPerson": "Ristov Blagoj",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "tourism",
+      "electrical",
+      "machinery"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "PREPARATORY_VISIT"
+    ],
+    "activityDescription": "VET grup hareketliliği, mesleki eğitim, şirket ve kurum ziyaretleri",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "EL"
+    ]
+  },
+  {
+    "id": "sp-in-planet",
+    "name": "IN-PLANET",
+    "country": "Greece",
+    "countryCode": "GR",
+    "city": "Athens",
+    "websiteUrl": "https://inplanetgreece.com",
+    "generalEmail": "inplanetgreece@gmail.com",
+    "primarySector": "green_energy",
+    "sectors": [
+      "green_energy",
+      "tourism"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Gençlik ve mesleki eğitim projeleri, staj yerleştirme",
+    "organisationType": "NGO",
+    "languages": [
+      "EN",
+      "EL"
+    ]
+  },
+  {
+    "id": "sp-meout-group",
+    "name": "MeOut Group",
+    "country": "Hungary",
+    "countryCode": "HU",
+    "city": "Budapest",
+    "websiteUrl": "https://meout.org",
+    "generalEmail": "info@meout.org",
+    "primarySector": "ict",
+    "sectors": [
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "İnovasyon, girişimcilik ve bilişim teknolojileri stajları",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "HU"
+    ]
+  },
+  {
+    "id": "sp-careertraining-cti",
+    "name": "Career Training Internships – CTI",
+    "aliasNames": [
+      "CTI",
+      "Career Training Internships"
+    ],
+    "country": "Ireland",
+    "countryCode": "IE",
+    "city": "Cork",
+    "websiteUrl": "https://careertraining.ie",
+    "generalEmail": "contact@careertraining.ie",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict",
+      "logistics"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "İrlanda genelinde mesleki stajlar, aile yanı ve yurt konaklama",
+    "organisationType": "Company",
+    "languages": [
+      "EN"
+    ]
+  },
+  {
+    "id": "sp-eprojectconsult",
+    "name": "EProjectConsult",
+    "aliasNames": [
+      "EProject Consult",
+      "A Rocca"
+    ],
+    "country": "Italy",
+    "countryCode": "IT",
+    "city": "Barcellona Pozzo di Gotto",
+    "websiteUrl": "https://eprojectconsult.com/",
+    "generalEmail": "info@eprojectconsult.com",
+    "contactEmails": [
+      "info@eprojectconsult.com",
+      "sottile@eprojectconsult.com",
+      "pr@eprojectconsult.com"
+    ],
+    "contactPerson": "Antonino Sottile",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict",
+      "automotive",
+      "electrical",
+      "health"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT",
+      "PREPARATORY_VISIT"
+    ],
+    "activityDescription": "Staj, işyeri yerleştirme, transfer, konaklama ve Europass belgelendirme",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "IT"
+    ]
+  },
+  {
+    "id": "sp-italian-hospitality-school",
+    "name": "Italian Hospitality School",
+    "aliasNames": [
+      "Hospitality School Italy",
+      "Italian Hospitality"
+    ],
+    "country": "Italy",
+    "countryCode": "IT",
+    "city": "Rome",
+    "websiteUrl": "https://hoschool.it/",
+    "generalEmail": "info@hoschool.it",
+    "contactPerson": "Ramsa Shahab, Neno Gabelia",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Turizm, gastronomi ve otelcilik stajları; job shadowing",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "IT"
+    ]
+  },
+  {
+    "id": "sp-sistema-turismo-etn",
+    "name": "Sistema Turismo – ETN",
+    "aliasNames": [
+      "Sistema Turismo",
+      "ETN International"
+    ],
+    "country": "Italy",
+    "countryCode": "IT",
+    "city": "Rimini",
+    "websiteUrl": "https://sistematurismo.it",
+    "generalEmail": "info@sistematurismo.it",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict",
+      "logistics"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Turizm, ağırlama ve kültürel miras alanında tam paket staj desteği",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "IT"
+    ]
+  },
+  {
+    "id": "sp-essenia-uetp",
+    "name": "Essenia UETP",
+    "country": "Italy",
+    "countryCode": "IT",
+    "city": "Salerno",
+    "websiteUrl": "https://esseniauetp.it",
+    "generalEmail": "infoessenia@esseniauetp.it",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "tourism",
+      "machinery"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Üniversite-işletme işbirliği, mesleki staj ve AB proje ortaklıkları",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "IT"
+    ]
+  },
+  {
+    "id": "sp-ceipes",
+    "name": "CEIPES",
+    "country": "Italy",
+    "countryCode": "IT",
+    "city": "Palermo",
+    "websiteUrl": "https://ceipes.org",
+    "generalEmail": "info@ceipes.org",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "green_energy"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Eğitim, yenilikçilik ve sosyal kapsayıcılık projeleri",
+    "organisationType": "NGO",
+    "languages": [
+      "EN",
+      "IT"
+    ]
+  },
+  {
+    "id": "sp-erasmus-learning-academy",
+    "name": "Erasmus Learning Academy",
+    "aliasNames": [
+      "ELA Bologna"
+    ],
+    "country": "Italy",
+    "countryCode": "IT",
+    "city": "Bologna",
+    "websiteUrl": "https://erasmuslearningacademy.eu",
+    "generalEmail": "info@erasmuslearningacademy.eu",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "tourism"
+    ],
+    "activities": [
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT",
+      "VET_INTERNSHIP"
+    ],
+    "activityDescription": "Öğretmen eğitimleri, yapılandırılmış kurslar ve mesleki stajlar",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "IT"
+    ]
+  },
+  {
+    "id": "sp-eurofortis",
+    "name": "EUROFORTIS",
+    "country": "Latvia",
+    "countryCode": "LV",
+    "city": "Riga",
+    "websiteUrl": "https://eurofortis.lv",
+    "generalEmail": "info@eurofortis.lv",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "logistics"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Yetkinlik geliştirme, kalite güvencesi ve mesleki stajlar",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "LV"
+    ]
+  },
+  {
+    "id": "sp-riga-state-technical-school",
+    "name": "Riga State Technical School",
+    "aliasNames": [
+      "RVT",
+      "Rīgas Valsts tehnikums"
+    ],
+    "country": "Latvia",
+    "countryCode": "LV",
+    "city": "Riga",
+    "websiteUrl": "https://www.rvt.lv",
+    "generalEmail": "rvt@rvt.lv",
+    "primarySector": "machinery",
+    "sectors": [
+      "machinery",
+      "electrical",
+      "automotive",
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Teknik atölye stajları, demiryolu, makine ve bilişim eğitimi",
+    "organisationType": "VET School",
+    "languages": [
+      "EN",
+      "LV"
+    ]
+  },
+  {
+    "id": "sp-uni-liechtenstein",
+    "name": "University of Liechtenstein",
+    "country": "Liechtenstein",
+    "countryCode": "LI",
+    "city": "Vaduz",
+    "websiteUrl": "https://www.uni.li",
+    "generalEmail": "info@uni.li",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "green_energy"
+    ],
+    "activities": [
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Mimarlık, finans, bilgi sistemleri ve akademik hareketlilikler",
+    "organisationType": "University",
+    "languages": [
+      "EN",
+      "DE"
+    ]
+  },
+  {
+    "id": "sp-beti-lithuania",
+    "name": "Baltic Education Technology Institute – BETI",
+    "aliasNames": [
+      "BETI",
+      "Baltic Education Technology Institute"
+    ],
+    "country": "Lithuania",
+    "countryCode": "LT",
+    "city": "Kaunas",
+    "websiteUrl": "https://beti.lt",
+    "generalEmail": "info@beti.lt",
+    "primarySector": "ict",
+    "sectors": [
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "E-öğrenme, yapay zeka, dijital eğitim teknolojileri ve stajlar",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "LT"
+    ]
+  },
+  {
+    "id": "sp-tavo-europa",
+    "name": "Tavo Europa",
+    "country": "Lithuania",
+    "countryCode": "LT",
+    "city": "Vilnius",
+    "websiteUrl": "https://tavoeuropa.eu",
+    "generalEmail": "info@tavoeuropa.eu",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Gençlik katılımı, kurumsal stajlar ve Erasmus+ ev sahipliği",
+    "organisationType": "NGO",
+    "languages": [
+      "EN",
+      "LT"
+    ]
+  },
+  {
+    "id": "sp-lexema",
+    "name": "Lexema Ltd",
+    "aliasNames": [
+      "Lexema"
+    ],
+    "country": "Malta",
+    "countryCode": "MT",
+    "city": "Valletta",
+    "websiteUrl": "https://www.lexema.net/",
+    "generalEmail": "info@lexema.net",
+    "contactEmails": [
+      "info@lexema.net",
+      "iberodachille@gmail.com"
+    ],
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict",
+      "logistics"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "İngilizce, VET stajları ve öğretmen/personel eğitimleri",
+    "organisationType": "Company",
+    "languages": [
+      "EN"
+    ]
+  },
+  {
+    "id": "sp-safeer-global",
+    "name": "Safeer Global",
+    "country": "Malta",
+    "countryCode": "MT",
+    "city": "Birkirkara",
+    "websiteUrl": "https://www.safeerglobal.com/",
+    "generalEmail": "info@safeerglobal.com",
+    "contactPerson": "Safeer",
+    "primarySector": "logistics",
+    "sectors": [
+      "logistics",
+      "machinery",
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Havacılık, lojistik, havaalanı hizmetleri ve teknik stajlar",
+    "organisationType": "Company",
+    "languages": [
+      "EN"
+    ]
+  },
+  {
+    "id": "sp-edu-project",
+    "name": "EDU Project Ltd.",
+    "aliasNames": [
+      "EDU Project"
+    ],
+    "country": "Malta",
+    "countryCode": "MT",
+    "city": "Birkirkara",
+    "websiteUrl": "https://www.projectedu.eu/about",
+    "generalEmail": "info@projectedu.eu",
+    "contactEmails": [
+      "info@projectedu.eu",
+      "georgi.timcenko@gmail.com"
+    ],
+    "contactPerson": "Georgi Timcenko",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "tourism"
+    ],
+    "activities": [
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT",
+      "VET_INTERNSHIP"
+    ],
+    "activityDescription": "Job shadowing ve yapılandırılmış öğretmen eğitimleri",
+    "organisationType": "Company",
+    "languages": [
+      "EN"
+    ]
+  },
+  {
+    "id": "sp-easy-school-languages",
+    "name": "Easy School of Languages",
+    "country": "Malta",
+    "countryCode": "MT",
+    "city": "Valletta",
+    "websiteUrl": "https://easysl.com",
+    "generalEmail": "info@easysl.com",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism"
+    ],
+    "activities": [
+      "JOB_SHADOWING",
+      "VET_INTERNSHIP",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Dil eğitimi, mesleki staj ve öğretmen metodoloji kursları",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN"
+    ]
+  },
+  {
+    "id": "sp-cid-kumanovo",
+    "name": "Center for Intercultural Dialogue",
+    "aliasNames": [
+      "CID",
+      "Center for Intercultural Dialogue Kumanovo"
+    ],
+    "country": "North Macedonia",
+    "countryCode": "MK",
+    "city": "Kumanovo",
+    "websiteUrl": "https://cid.mk",
+    "generalEmail": "info@cid.mk",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Kültürlerarası diyalog, yerel stajlar ve gençlik hareketlilikleri",
+    "organisationType": "NGO",
+    "languages": [
+      "EN",
+      "MK"
+    ]
+  },
+  {
+    "id": "sp-semper-avanti",
+    "name": "Semper Avanti",
+    "country": "Poland",
+    "countryCode": "PL",
+    "city": "Wroclaw",
+    "websiteUrl": "https://semperavanti.org",
+    "generalEmail": "info@semperavanti.org",
+    "primarySector": "logistics",
+    "sectors": [
+      "logistics",
+      "tourism",
+      "ict",
+      "machinery"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "PREPARATORY_VISIT"
+    ],
+    "activityDescription": "Polonya genelinde mesleki staj, konaklama ve refakat hizmeti",
+    "organisationType": "NGO",
+    "languages": [
+      "EN",
+      "PL"
+    ]
+  },
+  {
+    "id": "sp-mobility-friends",
+    "name": "Mobility Friends",
+    "country": "Portugal",
+    "countryCode": "PT",
+    "city": "Barcelos",
+    "websiteUrl": "https://mobilityfriends.org/",
+    "generalEmail": "info@mobilityfriends.org",
+    "contactPerson": "Nuno Varajao Barbosa",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict",
+      "automotive",
+      "electrical",
+      "machinery",
+      "health"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT",
+      "PREPARATORY_VISIT"
+    ],
+    "activityDescription": "KA121-VET grupları, staj, şirket eşleştirme ve yerel destek",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "PT"
+    ]
+  },
+  {
+    "id": "sp-dna-europe",
+    "name": "DNA Europe",
+    "country": "Portugal",
+    "countryCode": "PT",
+    "city": "Lisbon",
+    "websiteUrl": "https://dnaeurope.org/",
+    "generalEmail": "info@dnaeurope.org",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "tourism",
+      "logistics"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "VET stajı, öğretmen eğitimi, konaklama ve raporlama",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "PT"
+    ]
+  },
+  {
+    "id": "sp-bragamob",
+    "name": "BragaMob",
+    "aliasNames": [
+      "Braga Mobility Open"
+    ],
+    "country": "Portugal",
+    "countryCode": "PT",
+    "city": "Braga",
+    "websiteUrl": "https://bragamobilityopen.com/",
+    "generalEmail": "info@bragamobilityopen.com",
+    "primarySector": "machinery",
+    "sectors": [
+      "machinery",
+      "automotive",
+      "electrical",
+      "ict",
+      "tourism"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "VET stajı, öğretmen eğitimi, konaklama, yemek ve ulaşım",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "PT"
+    ]
+  },
+  {
+    "id": "sp-team4excellence",
+    "name": "TEAM4Excellence – TrainingClub",
+    "aliasNames": [
+      "TEAM4Excellence",
+      "TrainingClub"
+    ],
+    "country": "Romania",
+    "countryCode": "RO",
+    "city": "Constanta",
+    "websiteUrl": "https://team4excellence.ro",
+    "generalEmail": "office@team4excellence.ro",
+    "primarySector": "logistics",
+    "sectors": [
+      "logistics",
+      "ict",
+      "green_energy"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Denizcilik, lojistik, dijital beceriler ve mesleki stajlar",
+    "organisationType": "NGO",
+    "languages": [
+      "EN",
+      "RO"
+    ]
+  },
+  {
+    "id": "sp-cpip-romania",
+    "name": "CPIP",
+    "aliasNames": [
+      "Centrul Pentru Promovarea Invatarii Permanente"
+    ],
+    "country": "Romania",
+    "countryCode": "RO",
+    "city": "Timisoara",
+    "websiteUrl": "https://cpip.ro",
+    "generalEmail": "contact@cpip.ro",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "machinery"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Sürekli mesleki eğitim, yetişkin eğitimi ve sektörel projeler",
+    "organisationType": "NGO",
+    "languages": [
+      "EN",
+      "RO"
+    ]
+  },
+  {
+    "id": "sp-bdc-kragujevac",
+    "name": "Business Development Center Kragujevac",
+    "aliasNames": [
+      "BDC Kragujevac"
+    ],
+    "country": "Serbia",
+    "countryCode": "RS",
+    "city": "Kragujevac",
+    "websiteUrl": "https://bdc.rs",
+    "generalEmail": "office@bdc.rs",
+    "primarySector": "automotive",
+    "sectors": [
+      "automotive",
+      "machinery",
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Otomotiv kümelenmesi, iş geliştirme ve teknik mesleki stajlar",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "SR"
+    ]
+  },
+  {
+    "id": "sp-placement-slovakia",
+    "name": "Placement Slovakia – WSE Services",
+    "aliasNames": [
+      "Placement Slovakia",
+      "WSE Services"
+    ],
+    "country": "Slovakia",
+    "countryCode": "SK",
+    "city": "Bratislava",
+    "websiteUrl": "https://placementslovakia.com",
+    "generalEmail": "info@placementslovakia.com",
+    "primarySector": "automotive",
+    "sectors": [
+      "automotive",
+      "machinery",
+      "ict",
+      "logistics"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Slovakya genelinde uluslararası şirket stajları ve konaklama",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "SK"
+    ]
+  },
+  {
+    "id": "sp-simo-experience",
+    "name": "SiMO Experience",
+    "country": "Slovenia",
+    "countryCode": "SI",
+    "city": "Ljubljana",
+    "websiteUrl": "https://simoexperience.com",
+    "generalEmail": "info@simoexperience.com",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "green_energy"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Eko-turizm, sürdürülebilir işletmeler ve mesleki staj koordinasyonu",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "SL"
+    ]
+  },
+  {
+    "id": "sp-primera-slovenia",
+    "name": "Primera",
+    "country": "Slovenia",
+    "countryCode": "SI",
+    "city": "Ljubljana",
+    "websiteUrl": "https://primera.si",
+    "generalEmail": "info@primera.si",
+    "primarySector": "ict",
+    "sectors": [
+      "ict"
+    ],
+    "activities": [
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Girişimcilik, koçluk ve yapılandırılmış eğitimci kursları",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "SL"
+    ]
+  },
+  {
+    "id": "sp-euromind-projects",
+    "name": "Euromind Projects",
+    "aliasNames": [
+      "Euromind",
+      "EuroMind"
+    ],
+    "country": "Spain",
+    "countryCode": "ES",
+    "city": "Seville",
+    "websiteUrl": "https://www.euromind.es/erasmus",
+    "generalEmail": "info@euromind.es",
+    "contactEmails": [
+      "info@euromind.es",
+      "amelia@euromind.es",
+      "alfonso.santos@euromind.es",
+      "carlos@euromind.es",
+      "inma.doblado@idevelopcourses.com"
+    ],
+    "contactPerson": "Amelia Wojcik, Inma Doblado",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict",
+      "automotive",
+      "electrical",
+      "machinery",
+      "health",
+      "logistics",
+      "green_energy"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT",
+      "PREPARATORY_VISIT"
+    ],
+    "activityDescription": "Öğrenci stajı, personel hareketliliği, konaklama ve transfer (İspanya ve Portekiz)",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "ES"
+    ]
+  },
+  {
+    "id": "sp-europexchange",
+    "name": "EuropeXchange",
+    "aliasNames": [
+      "Europe Xchange"
+    ],
+    "country": "Spain",
+    "countryCode": "ES",
+    "city": "Málaga",
+    "websiteUrl": "https://www.europex-change.com/",
+    "generalEmail": "info@europex-change.com",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict",
+      "logistics"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Öğrenci stajı, job shadowing, öğretmen kursları ve tam hizmet paketi",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "ES"
+    ]
+  },
+  {
+    "id": "sp-european-era",
+    "name": "European Era",
+    "country": "Spain",
+    "countryCode": "ES",
+    "city": "Málaga",
+    "websiteUrl": "https://europeanera.eu/",
+    "generalEmail": "info@europeanera.eu",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "health",
+      "machinery",
+      "tourism",
+      "logistics",
+      "automotive"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "IT, sağlık, mühendislik, turizm, lojistik, otomotiv ve diğer VET alanları",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "ES"
+    ]
+  },
+  {
+    "id": "sp-roses-international-tours",
+    "name": "Roses International Tours",
+    "aliasNames": [
+      "Roses International"
+    ],
+    "country": "Spain",
+    "countryCode": "ES",
+    "city": "Costa Brava",
+    "websiteUrl": "https://rosesinternacional.com/en/",
+    "generalEmail": "info@rosesinternacional.com",
+    "contactEmails": [
+      "info@rosesinternacional.com",
+      "esther@rosesinternacional.com"
+    ],
+    "contactPerson": "Esther",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Okul/VET grupları, dil eğitimi, konaklama ve kültürel program",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "ES"
+    ]
+  },
+  {
+    "id": "sp-kadar-international",
+    "name": "Kadar International",
+    "aliasNames": [
+      "Kedaro International",
+      "Kedaro",
+      "Kadar"
+    ],
+    "country": "Spain",
+    "countryCode": "ES",
+    "city": "Seville",
+    "websiteUrl": "https://eumobility.kedaro.com/",
+    "generalEmail": "info@kedaro.com",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict"
+    ],
+    "activities": [
+      "JOB_SHADOWING",
+      "VET_INTERNSHIP",
+      "TEACHING_ASSIGNMENT"
+    ],
+    "activityDescription": "Job shadowing, okul ve işletme ziyaretleri, öğretmen programları",
+    "organisationType": "Training Centre",
+    "languages": [
+      "EN",
+      "ES"
+    ]
+  },
+  {
+    "id": "sp-piktalent",
+    "name": "Piktalent",
+    "country": "Spain",
+    "countryCode": "ES",
+    "city": "Barcelona",
+    "websiteUrl": "https://piktalent.com/",
+    "generalEmail": "info@piktalent.com",
+    "primarySector": "ict",
+    "sectors": [
+      "ict",
+      "tourism",
+      "logistics",
+      "machinery"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "VET stajı, job shadowing, şirket yerleştirme, konaklama ve lojistik (İspanya, Portekiz, İtalya, Almanya)",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "ES"
+    ]
+  },
+  {
+    "id": "sp-europe-connexion",
+    "name": "Europe Connexion",
+    "country": "Spain",
+    "countryCode": "ES",
+    "city": "Valencia",
+    "websiteUrl": "https://europeconnexion.eu",
+    "generalEmail": "info@europeconnexion.eu",
+    "primarySector": "tourism",
+    "sectors": [
+      "tourism",
+      "ict"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "Valencia merkezli Erasmus+ staj ve eğitim organizasyonları",
+    "organisationType": "Company",
+    "languages": [
+      "EN",
+      "ES"
+    ]
+  },
+  {
+    "id": "sp-yrkesakademin",
+    "name": "YrkesAkademin",
+    "aliasNames": [
+      "YA"
+    ],
+    "country": "Sweden",
+    "countryCode": "SE",
+    "city": "Stockholm",
+    "websiteUrl": "https://ya.se",
+    "generalEmail": "info@ya.se",
+    "primarySector": "machinery",
+    "sectors": [
+      "machinery",
+      "automotive",
+      "logistics",
+      "electrical"
+    ],
+    "activities": [
+      "VET_INTERNSHIP",
+      "JOB_SHADOWING"
+    ],
+    "activityDescription": "İsveç mesleki eğitim akademisi, ağır vasıta, otomasyon ve teknik stajlar",
+    "organisationType": "VET School",
+    "languages": [
+      "EN",
+      "SV"
+    ]
+  }
+]

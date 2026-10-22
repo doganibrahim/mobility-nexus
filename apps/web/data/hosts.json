@@ -1,6 +1,53 @@
 [
   {
     "host": {
+      "id": "host-mvjgvj2n-jr8x",
+      "name": "Anadolu Özel Eğitim ve Lojistik Hizmetleri",
+      "tradingName": "Anadolu Lojistik",
+      "organisationType": "Company",
+      "countryCode": "DE",
+      "city": "Frankfurt",
+      "address": "Mainzer Landstraße 150, 60327 Frankfurt, Germany",
+      "registeredAddress": "Mainzer Landstraße 150, 60327 Frankfurt, Germany",
+      "operationalAddress": null,
+      "yearEstablished": 2021,
+      "oid": "E10887766",
+      "picNumber": null,
+      "websiteUrl": "https://anadolulogistics.de",
+      "generalEmail": "info@anadolulogistics.de",
+      "telephone": "+49 69 9876543",
+      "primarySector": "logistics",
+      "sectors": [
+        "logistics"
+      ],
+      "verificationStatus": "PENDING",
+      "contactPerson": "Ahmet Yılmaz",
+      "contactTitle": "Genel Koordinatör",
+      "contactEmail": "ahmet@anadolulogistics.de",
+      "contactPhone": "+49 69 9876543",
+      "consentPublicDisplay": true,
+      "languages": [
+        "EN"
+      ],
+      "workingLanguages": [
+        "EN"
+      ],
+      "maxLearnersPerTerm": 8,
+      "totalAnnualCapacity": 12,
+      "activities": [
+        "VET_INTERNSHIP"
+      ],
+      "isActive": true,
+      "createdAt": "2026-10-22T11:37:44.783Z",
+      "updatedAt": "2026-10-22T11:38:10.289Z",
+      "profileCompletenessScore": 40
+    },
+    "userId": "test_user_custom_456",
+    "userEmail": "ahmet@anadolulogistics.de",
+    "userFullName": "Ahmet Yılmaz"
+  },
+  {
+    "host": {
       "id": "host-mu87yrf5-l3vv",
       "name": "Bavaria VET Academy",
       "tradingName": "Bavaria VET Academy",
@@ -27,5 +74,2744 @@
     },
     "userId": "user_host_456",
     "userEmail": "info@bavariavet.de"
+  },
+  {
+    "host": {
+      "id": "host-sp-actilingua-academy",
+      "name": "ActiLingua Academy",
+      "tradingName": "ActiLingua Academy",
+      "organisationType": "Training Centre",
+      "countryCode": "AT",
+      "city": "Vienna",
+      "address": "Vienna, Austria",
+      "registeredAddress": "Vienna, Austria",
+      "websiteUrl": "https://www.actilingua.com",
+      "generalEmail": "info@actilingua.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@actilingua.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "DE"
+      ],
+      "workingLanguages": [
+        "EN",
+        "DE"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism"
+      ],
+      "shortDescription": "Dil eğitimi, mesleki staj ve kültürel entegrasyon programları",
+      "shortDescriptionEn": "ActiLingua Academy provides accredited Erasmus+ hosting, internship and training placements in Vienna, Austria.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.306Z"
+    },
+    "userId": "system_sp-actilingua-academy",
+    "userEmail": "info@actilingua.com",
+    "userFullName": "ActiLingua Academy"
+  },
+  {
+    "host": {
+      "id": "host-sp-bfi-wien",
+      "name": "BFI Wien",
+      "tradingName": "BFI Wien",
+      "organisationType": "VET School",
+      "countryCode": "AT",
+      "city": "Vienna",
+      "address": "Vienna, Austria",
+      "registeredAddress": "Vienna, Austria",
+      "websiteUrl": "https://www.bfi.wien",
+      "generalEmail": "info@bfi.wien",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@bfi.wien",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "DE"
+      ],
+      "workingLanguages": [
+        "EN",
+        "DE"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "electrical",
+        "machinery"
+      ],
+      "shortDescription": "Mesleki eğitim, teknik atölyeler ve kurumsal staj programları",
+      "shortDescriptionEn": "BFI Wien provides accredited Erasmus+ hosting, internship and training placements in Vienna, Austria.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-bfi-wien",
+    "userEmail": "info@bfi.wien",
+    "userFullName": "BFI Wien"
+  },
+  {
+    "host": {
+      "id": "host-sp-ecq-bg",
+      "name": "European Center for Quality – ECQ",
+      "tradingName": "European Center for Quality – ECQ",
+      "organisationType": "Company",
+      "countryCode": "BG",
+      "city": "Sofia",
+      "address": "Sofia, Bulgaria",
+      "registeredAddress": "Sofia, Bulgaria",
+      "websiteUrl": "https://ecq-bg.com",
+      "generalEmail": "office@ecq-bg.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "office@ecq-bg.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "BG"
+      ],
+      "workingLanguages": [
+        "EN",
+        "BG"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "PREPARATORY_VISIT"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "green_energy"
+      ],
+      "shortDescription": "Kalite güvencesi, proje yönetimi ve mesleki eğitim hareketlilikleri",
+      "shortDescriptionEn": "European Center for Quality – ECQ provides accredited Erasmus+ hosting, internship and training placements in Sofia, Bulgaria.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-ecq-bg",
+    "userEmail": "office@ecq-bg.com",
+    "userFullName": "European Center for Quality – ECQ"
+  },
+  {
+    "host": {
+      "id": "host-sp-talent-zone-croatia",
+      "name": "Talent Zone Croatia",
+      "tradingName": "Talent Zone Croatia",
+      "organisationType": "Company",
+      "countryCode": "HR",
+      "city": "Zagreb",
+      "address": "Zagreb, Croatia",
+      "registeredAddress": "Zagreb, Croatia",
+      "websiteUrl": "https://talentzonecroatia.com",
+      "generalEmail": "info@talentzonecroatia.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@talentzonecroatia.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "HR"
+      ],
+      "workingLanguages": [
+        "EN",
+        "HR"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict"
+      ],
+      "shortDescription": "Öğrenci staj yerleştirmeleri, mentörlük ve yerel lojistik",
+      "shortDescriptionEn": "Talent Zone Croatia provides accredited Erasmus+ hosting, internship and training placements in Zagreb, Croatia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-talent-zone-croatia",
+    "userEmail": "info@talentzonecroatia.com",
+    "userFullName": "Talent Zone Croatia"
+  },
+  {
+    "host": {
+      "id": "host-sp-erasmus-mobility-croatia",
+      "name": "Erasmus Mobility Croatia",
+      "tradingName": "Erasmus Mobility Croatia",
+      "organisationType": "Company",
+      "countryCode": "HR",
+      "city": "Zagreb",
+      "address": "Zagreb, Croatia",
+      "registeredAddress": "Zagreb, Croatia",
+      "websiteUrl": "https://erasmusmobilitycroatia.eu",
+      "generalEmail": "info@erasmusmobilitycroatia.eu",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@erasmusmobilitycroatia.eu",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "HR"
+      ],
+      "workingLanguages": [
+        "EN",
+        "HR"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "PREPARATORY_VISIT"
+      ],
+      "primarySector": "logistics",
+      "sectors": [
+        "logistics",
+        "tourism",
+        "ict"
+      ],
+      "shortDescription": "Erasmus+ ev sahibi organizasyonu, konaklama, transfer ve staj yönetimi",
+      "shortDescriptionEn": "Erasmus Mobility Croatia provides accredited Erasmus+ hosting, internship and training placements in Zagreb, Croatia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-erasmus-mobility-croatia",
+    "userEmail": "info@erasmusmobilitycroatia.eu",
+    "userFullName": "Erasmus Mobility Croatia"
+  },
+  {
+    "host": {
+      "id": "host-sp-shipcon-group",
+      "name": "ShipCon Group",
+      "tradingName": "ShipCon Group",
+      "organisationType": "Training Centre",
+      "countryCode": "CY",
+      "city": "Limassol",
+      "address": "Limassol, Cyprus",
+      "registeredAddress": "Limassol, Cyprus",
+      "websiteUrl": "https://shipcon.eu.com",
+      "generalEmail": "info@shipcon.eu.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@shipcon.eu.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "EL"
+      ],
+      "workingLanguages": [
+        "EN",
+        "EL"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "logistics",
+      "sectors": [
+        "logistics",
+        "green_energy",
+        "machinery"
+      ],
+      "shortDescription": "Denizcilik, lojistik, teknik eğitim ve personel kursları",
+      "shortDescriptionEn": "ShipCon Group provides accredited Erasmus+ hosting, internship and training placements in Limassol, Cyprus.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-shipcon-group",
+    "userEmail": "info@shipcon.eu.com",
+    "userFullName": "ShipCon Group"
+  },
+  {
+    "host": {
+      "id": "host-sp-emphasys-centre",
+      "name": "Emphasys Centre",
+      "tradingName": "Emphasys Centre",
+      "organisationType": "Training Centre",
+      "countryCode": "CY",
+      "city": "Nicosia",
+      "address": "Nicosia, Cyprus",
+      "registeredAddress": "Nicosia, Cyprus",
+      "websiteUrl": "https://emphasyscentre.com",
+      "generalEmail": "info@emphasyscentre.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@emphasyscentre.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "EL"
+      ],
+      "workingLanguages": [
+        "EN",
+        "EL"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict"
+      ],
+      "shortDescription": "Yazılım, robotik, STEM eğitimi ve VET staj koordinasyonu",
+      "shortDescriptionEn": "Emphasys Centre provides accredited Erasmus+ hosting, internship and training placements in Nicosia, Cyprus.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-emphasys-centre",
+    "userEmail": "info@emphasyscentre.com",
+    "userFullName": "Emphasys Centre"
+  },
+  {
+    "host": {
+      "id": "host-sp-dorea-educational-institute",
+      "name": "DOREA Educational Institute",
+      "tradingName": "DOREA Educational Institute",
+      "organisationType": "Training Centre",
+      "countryCode": "CY",
+      "city": "Limassol",
+      "address": "Limassol, Cyprus",
+      "registeredAddress": "Limassol, Cyprus",
+      "websiteUrl": "https://dorea.org",
+      "generalEmail": "info@dorea.org",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@dorea.org",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "EL"
+      ],
+      "workingLanguages": [
+        "EN",
+        "EL"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT",
+        "VET_INTERNSHIP"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict"
+      ],
+      "shortDescription": "Yapılandırılmış öğretmen kursları, job shadowing ve mesleki stajlar",
+      "shortDescriptionEn": "DOREA Educational Institute provides accredited Erasmus+ hosting, internship and training placements in Limassol, Cyprus.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-dorea-educational-institute",
+    "userEmail": "info@dorea.org",
+    "userFullName": "DOREA Educational Institute"
+  },
+  {
+    "host": {
+      "id": "host-sp-itc-international",
+      "name": "ITC International",
+      "tradingName": "ITC International",
+      "organisationType": "Company",
+      "countryCode": "CZ",
+      "city": "Prague",
+      "address": "Prague, Czechia",
+      "registeredAddress": "Prague, Czechia",
+      "websiteUrl": "https://itc-international.eu",
+      "generalEmail": "info@itc-international.eu",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@itc-international.eu",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "CS"
+      ],
+      "workingLanguages": [
+        "EN",
+        "CS"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "machinery",
+        "automotive"
+      ],
+      "shortDescription": "Mühendislik, otomotiv ve bilişim alanında öğrenci stajları",
+      "shortDescriptionEn": "ITC International provides accredited Erasmus+ hosting, internship and training placements in Prague, Czechia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-itc-international",
+    "userEmail": "info@itc-international.eu",
+    "userFullName": "ITC International"
+  },
+  {
+    "host": {
+      "id": "host-sp-schola-empirica",
+      "name": "Schola Empirica",
+      "tradingName": "Schola Empirica",
+      "organisationType": "NGO",
+      "countryCode": "CZ",
+      "city": "Prague",
+      "address": "Prague, Czechia",
+      "registeredAddress": "Prague, Czechia",
+      "websiteUrl": "https://scholaempirica.org",
+      "generalEmail": "info@scholaempirica.org",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@scholaempirica.org",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "CS"
+      ],
+      "workingLanguages": [
+        "EN",
+        "CS"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "health",
+      "sectors": [
+        "health"
+      ],
+      "shortDescription": "Sosyal bilimler, eğitim metodolojileri ve personel eğitimi",
+      "shortDescriptionEn": "Schola Empirica provides accredited Erasmus+ hosting, internship and training placements in Prague, Czechia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-schola-empirica",
+    "userEmail": "info@scholaempirica.org",
+    "userFullName": "Schola Empirica"
+  },
+  {
+    "host": {
+      "id": "host-sp-tec-copenhagen",
+      "name": "TEC – Technical Education Copenhagen",
+      "tradingName": "TEC – Technical Education Copenhagen",
+      "organisationType": "VET School",
+      "countryCode": "DK",
+      "city": "Copenhagen",
+      "address": "Copenhagen, Denmark",
+      "registeredAddress": "Copenhagen, Denmark",
+      "websiteUrl": "https://www.tec.dk",
+      "generalEmail": "tec@tec.dk",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "tec@tec.dk",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "DA"
+      ],
+      "workingLanguages": [
+        "EN",
+        "DA"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "machinery",
+      "sectors": [
+        "machinery",
+        "electrical",
+        "automotive",
+        "green_energy"
+      ],
+      "shortDescription": "Danimarka teknik mesleki eğitim okulu, atölye stajları ve işbirliği",
+      "shortDescriptionEn": "TEC – Technical Education Copenhagen provides accredited Erasmus+ hosting, internship and training placements in Copenhagen, Denmark.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-tec-copenhagen",
+    "userEmail": "tec@tec.dk",
+    "userFullName": "TEC – Technical Education Copenhagen"
+  },
+  {
+    "host": {
+      "id": "host-sp-euneos",
+      "name": "Euneos",
+      "tradingName": "Euneos",
+      "organisationType": "Training Centre",
+      "countryCode": "EE",
+      "city": "Tallinn",
+      "address": "Tallinn, Estonia",
+      "registeredAddress": "Tallinn, Estonia",
+      "websiteUrl": "https://euneos.eu",
+      "generalEmail": "courses@euneos.eu",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "courses@euneos.eu",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "ET"
+      ],
+      "workingLanguages": [
+        "EN",
+        "ET"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict"
+      ],
+      "shortDescription": "Dijital beceriler, okul yönetimi ve yenilikçi eğitim kursları",
+      "shortDescriptionEn": "Euneos provides accredited Erasmus+ hosting, internship and training placements in Tallinn, Estonia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-euneos",
+    "userEmail": "courses@euneos.eu",
+    "userFullName": "Euneos"
+  },
+  {
+    "host": {
+      "id": "host-sp-tallinn-school-of-services",
+      "name": "Tallinn School of Services",
+      "tradingName": "Tallinn School of Services",
+      "organisationType": "VET School",
+      "countryCode": "EE",
+      "city": "Tallinn",
+      "address": "Tallinn, Estonia",
+      "registeredAddress": "Tallinn, Estonia",
+      "websiteUrl": "https://www.teeninduskool.ee",
+      "generalEmail": "kool@teeninduskool.ee",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "kool@teeninduskool.ee",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "ET"
+      ],
+      "workingLanguages": [
+        "EN",
+        "ET"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "logistics"
+      ],
+      "shortDescription": "Gastronomi, otelcilik ve hizmet sektörü mesleki eğitimi",
+      "shortDescriptionEn": "Tallinn School of Services provides accredited Erasmus+ hosting, internship and training placements in Tallinn, Estonia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-tallinn-school-of-services",
+    "userEmail": "kool@teeninduskool.ee",
+    "userFullName": "Tallinn School of Services"
+  },
+  {
+    "host": {
+      "id": "host-sp-visitedufinn",
+      "name": "VisitEDUfinn Oy",
+      "tradingName": "VisitEDUfinn Oy",
+      "organisationType": "Company",
+      "countryCode": "FI",
+      "city": "Helsinki",
+      "address": "Helsinki, Finland",
+      "registeredAddress": "Helsinki, Finland",
+      "websiteUrl": "https://visitedufinn.com",
+      "generalEmail": "info@visitedufinn.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@visitedufinn.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "FI"
+      ],
+      "workingLanguages": [
+        "EN",
+        "FI"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT",
+        "PREPARATORY_VISIT"
+      ],
+      "primarySector": "green_energy",
+      "sectors": [
+        "green_energy",
+        "ict"
+      ],
+      "shortDescription": "Finlandiya eğitim sistemi ziyaretleri, pedagojik kurslar ve job shadowing",
+      "shortDescriptionEn": "VisitEDUfinn Oy provides accredited Erasmus+ hosting, internship and training placements in Helsinki, Finland.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-visitedufinn",
+    "userEmail": "info@visitedufinn.com",
+    "userFullName": "VisitEDUfinn Oy"
+  },
+  {
+    "host": {
+      "id": "host-sp-berlink",
+      "name": "Berlink",
+      "tradingName": "Berlink",
+      "organisationType": "Company",
+      "countryCode": "DE",
+      "city": "Berlin",
+      "address": "Berlin, Germany",
+      "registeredAddress": "Berlin, Germany",
+      "websiteUrl": "https://www.berlink.eu",
+      "generalEmail": "info@berlink.eu",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@berlink.eu",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "DE"
+      ],
+      "workingLanguages": [
+        "EN",
+        "DE"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "tourism",
+        "logistics"
+      ],
+      "shortDescription": "Berlin merkezli mesleki staj organizasyonu, konaklama ve refakat",
+      "shortDescriptionEn": "Berlink provides accredited Erasmus+ hosting, internship and training placements in Berlin, Germany.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-berlink",
+    "userEmail": "info@berlink.eu",
+    "userFullName": "Berlink"
+  },
+  {
+    "host": {
+      "id": "host-sp-kulturlife",
+      "name": "KulturLife",
+      "tradingName": "KulturLife",
+      "organisationType": "NGO",
+      "countryCode": "DE",
+      "city": "Kiel",
+      "address": "Kiel, Germany",
+      "registeredAddress": "Kiel, Germany",
+      "websiteUrl": "https://kultur-life.de",
+      "generalEmail": "info@kultur-life.de",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@kultur-life.de",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "DE"
+      ],
+      "workingLanguages": [
+        "EN",
+        "DE"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "green_energy"
+      ],
+      "shortDescription": "Kültürlerarası hareketlilik, sürdürülebilirlik ve mesleki stajlar",
+      "shortDescriptionEn": "KulturLife provides accredited Erasmus+ hosting, internship and training placements in Kiel, Germany.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-kulturlife",
+    "userEmail": "info@kultur-life.de",
+    "userFullName": "KulturLife"
+  },
+  {
+    "host": {
+      "id": "host-sp-vividus-international",
+      "name": "Vividus International",
+      "tradingName": "Vividus International",
+      "organisationType": "Company",
+      "countryCode": "DE",
+      "city": "Berlin",
+      "address": "Berlin, Germany",
+      "registeredAddress": "Berlin, Germany",
+      "websiteUrl": "https://vividus-international.com",
+      "generalEmail": "mail@vividus-international.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "mail@vividus-international.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "DE"
+      ],
+      "workingLanguages": [
+        "EN",
+        "DE"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "health",
+      "sectors": [
+        "health",
+        "tourism"
+      ],
+      "shortDescription": "Sağlık, hasta bakımı ve sosyal hizmetler staj yerleştirmeleri",
+      "shortDescriptionEn": "Vividus International provides accredited Erasmus+ hosting, internship and training placements in Berlin, Germany.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-vividus-international",
+    "userEmail": "mail@vividus-international.com",
+    "userFullName": "Vividus International"
+  },
+  {
+    "host": {
+      "id": "host-sp-wisamar",
+      "name": "Wisamar Bildungsgesellschaft",
+      "tradingName": "Wisamar Bildungsgesellschaft",
+      "organisationType": "Training Centre",
+      "countryCode": "DE",
+      "city": "Leipzig",
+      "address": "Leipzig, Germany",
+      "registeredAddress": "Leipzig, Germany",
+      "websiteUrl": "https://wisamar.de",
+      "generalEmail": "info@wisamar.de",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@wisamar.de",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "DE"
+      ],
+      "workingLanguages": [
+        "EN",
+        "DE"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "PREPARATORY_VISIT"
+      ],
+      "primarySector": "machinery",
+      "sectors": [
+        "machinery",
+        "electrical",
+        "green_energy",
+        "ict"
+      ],
+      "shortDescription": "Teknik stajlar, yenilenebilir enerji atölyeleri ve proje koordinasyonu",
+      "shortDescriptionEn": "Wisamar Bildungsgesellschaft provides accredited Erasmus+ hosting, internship and training placements in Leipzig, Germany.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.308Z"
+    },
+    "userId": "system_sp-wisamar",
+    "userEmail": "info@wisamar.de",
+    "userFullName": "Wisamar Bildungsgesellschaft"
+  },
+  {
+    "host": {
+      "id": "host-sp-evec-athens",
+      "name": "EVEC Athens",
+      "tradingName": "EVEC Athens",
+      "organisationType": "Training Centre",
+      "countryCode": "GR",
+      "city": "Athens",
+      "address": "Athens, Greece",
+      "registeredAddress": "Athens, Greece",
+      "websiteUrl": "https://evec.org.gr/vet/",
+      "generalEmail": "erasmus@evec.org.gr",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Ristov Blagoj",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "erasmus@evec.org.gr",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "EL"
+      ],
+      "workingLanguages": [
+        "EN",
+        "EL"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "PREPARATORY_VISIT"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "tourism",
+        "electrical",
+        "machinery"
+      ],
+      "shortDescription": "VET grup hareketliliği, mesleki eğitim, şirket ve kurum ziyaretleri",
+      "shortDescriptionEn": "EVEC Athens provides accredited Erasmus+ hosting, internship and training placements in Athens, Greece.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-evec-athens",
+    "userEmail": "erasmus@evec.org.gr",
+    "userFullName": "Ristov Blagoj"
+  },
+  {
+    "host": {
+      "id": "host-sp-in-planet",
+      "name": "IN-PLANET",
+      "tradingName": "IN-PLANET",
+      "organisationType": "NGO",
+      "countryCode": "GR",
+      "city": "Athens",
+      "address": "Athens, Greece",
+      "registeredAddress": "Athens, Greece",
+      "websiteUrl": "https://inplanetgreece.com",
+      "generalEmail": "inplanetgreece@gmail.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "inplanetgreece@gmail.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "EL"
+      ],
+      "workingLanguages": [
+        "EN",
+        "EL"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "green_energy",
+      "sectors": [
+        "green_energy",
+        "tourism"
+      ],
+      "shortDescription": "Gençlik ve mesleki eğitim projeleri, staj yerleştirme",
+      "shortDescriptionEn": "IN-PLANET provides accredited Erasmus+ hosting, internship and training placements in Athens, Greece.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-in-planet",
+    "userEmail": "inplanetgreece@gmail.com",
+    "userFullName": "IN-PLANET"
+  },
+  {
+    "host": {
+      "id": "host-sp-meout-group",
+      "name": "MeOut Group",
+      "tradingName": "MeOut Group",
+      "organisationType": "Company",
+      "countryCode": "HU",
+      "city": "Budapest",
+      "address": "Budapest, Hungary",
+      "registeredAddress": "Budapest, Hungary",
+      "websiteUrl": "https://meout.org",
+      "generalEmail": "info@meout.org",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@meout.org",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "HU"
+      ],
+      "workingLanguages": [
+        "EN",
+        "HU"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict"
+      ],
+      "shortDescription": "İnovasyon, girişimcilik ve bilişim teknolojileri stajları",
+      "shortDescriptionEn": "MeOut Group provides accredited Erasmus+ hosting, internship and training placements in Budapest, Hungary.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-meout-group",
+    "userEmail": "info@meout.org",
+    "userFullName": "MeOut Group"
+  },
+  {
+    "host": {
+      "id": "host-sp-careertraining-cti",
+      "name": "Career Training Internships – CTI",
+      "tradingName": "Career Training Internships – CTI",
+      "organisationType": "Company",
+      "countryCode": "IE",
+      "city": "Cork",
+      "address": "Cork, Ireland",
+      "registeredAddress": "Cork, Ireland",
+      "websiteUrl": "https://careertraining.ie",
+      "generalEmail": "contact@careertraining.ie",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "contact@careertraining.ie",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN"
+      ],
+      "workingLanguages": [
+        "EN"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict",
+        "logistics"
+      ],
+      "shortDescription": "İrlanda genelinde mesleki stajlar, aile yanı ve yurt konaklama",
+      "shortDescriptionEn": "Career Training Internships – CTI provides accredited Erasmus+ hosting, internship and training placements in Cork, Ireland.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-careertraining-cti",
+    "userEmail": "contact@careertraining.ie",
+    "userFullName": "Career Training Internships – CTI"
+  },
+  {
+    "host": {
+      "id": "host-sp-eprojectconsult",
+      "name": "EProjectConsult",
+      "tradingName": "EProjectConsult",
+      "organisationType": "Company",
+      "countryCode": "IT",
+      "city": "Barcellona Pozzo di Gotto",
+      "address": "Barcellona Pozzo di Gotto, Italy",
+      "registeredAddress": "Barcellona Pozzo di Gotto, Italy",
+      "websiteUrl": "https://eprojectconsult.com/",
+      "generalEmail": "info@eprojectconsult.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Antonino Sottile",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@eprojectconsult.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "IT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "IT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT",
+        "PREPARATORY_VISIT"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict",
+        "automotive",
+        "electrical",
+        "health"
+      ],
+      "shortDescription": "Staj, işyeri yerleştirme, transfer, konaklama ve Europass belgelendirme",
+      "shortDescriptionEn": "EProjectConsult provides accredited Erasmus+ hosting, internship and training placements in Barcellona Pozzo di Gotto, Italy.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-eprojectconsult",
+    "userEmail": "info@eprojectconsult.com",
+    "userFullName": "Antonino Sottile"
+  },
+  {
+    "host": {
+      "id": "host-sp-italian-hospitality-school",
+      "name": "Italian Hospitality School",
+      "tradingName": "Italian Hospitality School",
+      "organisationType": "Training Centre",
+      "countryCode": "IT",
+      "city": "Rome",
+      "address": "Rome, Italy",
+      "registeredAddress": "Rome, Italy",
+      "websiteUrl": "https://hoschool.it/",
+      "generalEmail": "info@hoschool.it",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Ramsa Shahab, Neno Gabelia",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@hoschool.it",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "IT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "IT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism"
+      ],
+      "shortDescription": "Turizm, gastronomi ve otelcilik stajları; job shadowing",
+      "shortDescriptionEn": "Italian Hospitality School provides accredited Erasmus+ hosting, internship and training placements in Rome, Italy.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-italian-hospitality-school",
+    "userEmail": "info@hoschool.it",
+    "userFullName": "Ramsa Shahab, Neno Gabelia"
+  },
+  {
+    "host": {
+      "id": "host-sp-sistema-turismo-etn",
+      "name": "Sistema Turismo – ETN",
+      "tradingName": "Sistema Turismo – ETN",
+      "organisationType": "Company",
+      "countryCode": "IT",
+      "city": "Rimini",
+      "address": "Rimini, Italy",
+      "registeredAddress": "Rimini, Italy",
+      "websiteUrl": "https://sistematurismo.it",
+      "generalEmail": "info@sistematurismo.it",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@sistematurismo.it",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "IT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "IT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict",
+        "logistics"
+      ],
+      "shortDescription": "Turizm, ağırlama ve kültürel miras alanında tam paket staj desteği",
+      "shortDescriptionEn": "Sistema Turismo – ETN provides accredited Erasmus+ hosting, internship and training placements in Rimini, Italy.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-sistema-turismo-etn",
+    "userEmail": "info@sistematurismo.it",
+    "userFullName": "Sistema Turismo – ETN"
+  },
+  {
+    "host": {
+      "id": "host-sp-essenia-uetp",
+      "name": "Essenia UETP",
+      "tradingName": "Essenia UETP",
+      "organisationType": "Training Centre",
+      "countryCode": "IT",
+      "city": "Salerno",
+      "address": "Salerno, Italy",
+      "registeredAddress": "Salerno, Italy",
+      "websiteUrl": "https://esseniauetp.it",
+      "generalEmail": "infoessenia@esseniauetp.it",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "infoessenia@esseniauetp.it",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "IT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "IT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "tourism",
+        "machinery"
+      ],
+      "shortDescription": "Üniversite-işletme işbirliği, mesleki staj ve AB proje ortaklıkları",
+      "shortDescriptionEn": "Essenia UETP provides accredited Erasmus+ hosting, internship and training placements in Salerno, Italy.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-essenia-uetp",
+    "userEmail": "infoessenia@esseniauetp.it",
+    "userFullName": "Essenia UETP"
+  },
+  {
+    "host": {
+      "id": "host-sp-ceipes",
+      "name": "CEIPES",
+      "tradingName": "CEIPES",
+      "organisationType": "NGO",
+      "countryCode": "IT",
+      "city": "Palermo",
+      "address": "Palermo, Italy",
+      "registeredAddress": "Palermo, Italy",
+      "websiteUrl": "https://ceipes.org",
+      "generalEmail": "info@ceipes.org",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@ceipes.org",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "IT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "IT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "green_energy"
+      ],
+      "shortDescription": "Eğitim, yenilikçilik ve sosyal kapsayıcılık projeleri",
+      "shortDescriptionEn": "CEIPES provides accredited Erasmus+ hosting, internship and training placements in Palermo, Italy.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-ceipes",
+    "userEmail": "info@ceipes.org",
+    "userFullName": "CEIPES"
+  },
+  {
+    "host": {
+      "id": "host-sp-erasmus-learning-academy",
+      "name": "Erasmus Learning Academy",
+      "tradingName": "Erasmus Learning Academy",
+      "organisationType": "Training Centre",
+      "countryCode": "IT",
+      "city": "Bologna",
+      "address": "Bologna, Italy",
+      "registeredAddress": "Bologna, Italy",
+      "websiteUrl": "https://erasmuslearningacademy.eu",
+      "generalEmail": "info@erasmuslearningacademy.eu",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@erasmuslearningacademy.eu",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "IT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "IT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT",
+        "VET_INTERNSHIP"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "tourism"
+      ],
+      "shortDescription": "Öğretmen eğitimleri, yapılandırılmış kurslar ve mesleki stajlar",
+      "shortDescriptionEn": "Erasmus Learning Academy provides accredited Erasmus+ hosting, internship and training placements in Bologna, Italy.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-erasmus-learning-academy",
+    "userEmail": "info@erasmuslearningacademy.eu",
+    "userFullName": "Erasmus Learning Academy"
+  },
+  {
+    "host": {
+      "id": "host-sp-eurofortis",
+      "name": "EUROFORTIS",
+      "tradingName": "EUROFORTIS",
+      "organisationType": "Company",
+      "countryCode": "LV",
+      "city": "Riga",
+      "address": "Riga, Latvia",
+      "registeredAddress": "Riga, Latvia",
+      "websiteUrl": "https://eurofortis.lv",
+      "generalEmail": "info@eurofortis.lv",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@eurofortis.lv",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "LV"
+      ],
+      "workingLanguages": [
+        "EN",
+        "LV"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "logistics"
+      ],
+      "shortDescription": "Yetkinlik geliştirme, kalite güvencesi ve mesleki stajlar",
+      "shortDescriptionEn": "EUROFORTIS provides accredited Erasmus+ hosting, internship and training placements in Riga, Latvia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-eurofortis",
+    "userEmail": "info@eurofortis.lv",
+    "userFullName": "EUROFORTIS"
+  },
+  {
+    "host": {
+      "id": "host-sp-riga-state-technical-school",
+      "name": "Riga State Technical School",
+      "tradingName": "Riga State Technical School",
+      "organisationType": "VET School",
+      "countryCode": "LV",
+      "city": "Riga",
+      "address": "Riga, Latvia",
+      "registeredAddress": "Riga, Latvia",
+      "websiteUrl": "https://www.rvt.lv",
+      "generalEmail": "rvt@rvt.lv",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "rvt@rvt.lv",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "LV"
+      ],
+      "workingLanguages": [
+        "EN",
+        "LV"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "machinery",
+      "sectors": [
+        "machinery",
+        "electrical",
+        "automotive",
+        "ict"
+      ],
+      "shortDescription": "Teknik atölye stajları, demiryolu, makine ve bilişim eğitimi",
+      "shortDescriptionEn": "Riga State Technical School provides accredited Erasmus+ hosting, internship and training placements in Riga, Latvia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-riga-state-technical-school",
+    "userEmail": "rvt@rvt.lv",
+    "userFullName": "Riga State Technical School"
+  },
+  {
+    "host": {
+      "id": "host-sp-uni-liechtenstein",
+      "name": "University of Liechtenstein",
+      "tradingName": "University of Liechtenstein",
+      "organisationType": "University",
+      "countryCode": "LI",
+      "city": "Vaduz",
+      "address": "Vaduz, Liechtenstein",
+      "registeredAddress": "Vaduz, Liechtenstein",
+      "websiteUrl": "https://www.uni.li",
+      "generalEmail": "info@uni.li",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@uni.li",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "DE"
+      ],
+      "workingLanguages": [
+        "EN",
+        "DE"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "green_energy"
+      ],
+      "shortDescription": "Mimarlık, finans, bilgi sistemleri ve akademik hareketlilikler",
+      "shortDescriptionEn": "University of Liechtenstein provides accredited Erasmus+ hosting, internship and training placements in Vaduz, Liechtenstein.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-uni-liechtenstein",
+    "userEmail": "info@uni.li",
+    "userFullName": "University of Liechtenstein"
+  },
+  {
+    "host": {
+      "id": "host-sp-beti-lithuania",
+      "name": "Baltic Education Technology Institute – BETI",
+      "tradingName": "Baltic Education Technology Institute – BETI",
+      "organisationType": "Training Centre",
+      "countryCode": "LT",
+      "city": "Kaunas",
+      "address": "Kaunas, Lithuania",
+      "registeredAddress": "Kaunas, Lithuania",
+      "websiteUrl": "https://beti.lt",
+      "generalEmail": "info@beti.lt",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@beti.lt",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "LT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "LT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict"
+      ],
+      "shortDescription": "E-öğrenme, yapay zeka, dijital eğitim teknolojileri ve stajlar",
+      "shortDescriptionEn": "Baltic Education Technology Institute – BETI provides accredited Erasmus+ hosting, internship and training placements in Kaunas, Lithuania.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-beti-lithuania",
+    "userEmail": "info@beti.lt",
+    "userFullName": "Baltic Education Technology Institute – BETI"
+  },
+  {
+    "host": {
+      "id": "host-sp-tavo-europa",
+      "name": "Tavo Europa",
+      "tradingName": "Tavo Europa",
+      "organisationType": "NGO",
+      "countryCode": "LT",
+      "city": "Vilnius",
+      "address": "Vilnius, Lithuania",
+      "registeredAddress": "Vilnius, Lithuania",
+      "websiteUrl": "https://tavoeuropa.eu",
+      "generalEmail": "info@tavoeuropa.eu",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@tavoeuropa.eu",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "LT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "LT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict"
+      ],
+      "shortDescription": "Gençlik katılımı, kurumsal stajlar ve Erasmus+ ev sahipliği",
+      "shortDescriptionEn": "Tavo Europa provides accredited Erasmus+ hosting, internship and training placements in Vilnius, Lithuania.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-tavo-europa",
+    "userEmail": "info@tavoeuropa.eu",
+    "userFullName": "Tavo Europa"
+  },
+  {
+    "host": {
+      "id": "host-sp-lexema",
+      "name": "Lexema Ltd",
+      "tradingName": "Lexema Ltd",
+      "organisationType": "Company",
+      "countryCode": "MT",
+      "city": "Valletta",
+      "address": "Valletta, Malta",
+      "registeredAddress": "Valletta, Malta",
+      "websiteUrl": "https://www.lexema.net/",
+      "generalEmail": "info@lexema.net",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@lexema.net",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN"
+      ],
+      "workingLanguages": [
+        "EN"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict",
+        "logistics"
+      ],
+      "shortDescription": "İngilizce, VET stajları ve öğretmen/personel eğitimleri",
+      "shortDescriptionEn": "Lexema Ltd provides accredited Erasmus+ hosting, internship and training placements in Valletta, Malta.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-lexema",
+    "userEmail": "info@lexema.net",
+    "userFullName": "Lexema Ltd"
+  },
+  {
+    "host": {
+      "id": "host-sp-safeer-global",
+      "name": "Safeer Global",
+      "tradingName": "Safeer Global",
+      "organisationType": "Company",
+      "countryCode": "MT",
+      "city": "Birkirkara",
+      "address": "Birkirkara, Malta",
+      "registeredAddress": "Birkirkara, Malta",
+      "websiteUrl": "https://www.safeerglobal.com/",
+      "generalEmail": "info@safeerglobal.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Safeer",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@safeerglobal.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN"
+      ],
+      "workingLanguages": [
+        "EN"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "logistics",
+      "sectors": [
+        "logistics",
+        "machinery",
+        "ict"
+      ],
+      "shortDescription": "Havacılık, lojistik, havaalanı hizmetleri ve teknik stajlar",
+      "shortDescriptionEn": "Safeer Global provides accredited Erasmus+ hosting, internship and training placements in Birkirkara, Malta.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-safeer-global",
+    "userEmail": "info@safeerglobal.com",
+    "userFullName": "Safeer"
+  },
+  {
+    "host": {
+      "id": "host-sp-edu-project",
+      "name": "EDU Project Ltd.",
+      "tradingName": "EDU Project Ltd.",
+      "organisationType": "Company",
+      "countryCode": "MT",
+      "city": "Birkirkara",
+      "address": "Birkirkara, Malta",
+      "registeredAddress": "Birkirkara, Malta",
+      "websiteUrl": "https://www.projectedu.eu/about",
+      "generalEmail": "info@projectedu.eu",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Georgi Timcenko",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@projectedu.eu",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN"
+      ],
+      "workingLanguages": [
+        "EN"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT",
+        "VET_INTERNSHIP"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "tourism"
+      ],
+      "shortDescription": "Job shadowing ve yapılandırılmış öğretmen eğitimleri",
+      "shortDescriptionEn": "EDU Project Ltd. provides accredited Erasmus+ hosting, internship and training placements in Birkirkara, Malta.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-edu-project",
+    "userEmail": "info@projectedu.eu",
+    "userFullName": "Georgi Timcenko"
+  },
+  {
+    "host": {
+      "id": "host-sp-easy-school-languages",
+      "name": "Easy School of Languages",
+      "tradingName": "Easy School of Languages",
+      "organisationType": "Training Centre",
+      "countryCode": "MT",
+      "city": "Valletta",
+      "address": "Valletta, Malta",
+      "registeredAddress": "Valletta, Malta",
+      "websiteUrl": "https://easysl.com",
+      "generalEmail": "info@easysl.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@easysl.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN"
+      ],
+      "workingLanguages": [
+        "EN"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "JOB_SHADOWING",
+        "VET_INTERNSHIP",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism"
+      ],
+      "shortDescription": "Dil eğitimi, mesleki staj ve öğretmen metodoloji kursları",
+      "shortDescriptionEn": "Easy School of Languages provides accredited Erasmus+ hosting, internship and training placements in Valletta, Malta.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-easy-school-languages",
+    "userEmail": "info@easysl.com",
+    "userFullName": "Easy School of Languages"
+  },
+  {
+    "host": {
+      "id": "host-sp-cid-kumanovo",
+      "name": "Center for Intercultural Dialogue",
+      "tradingName": "Center for Intercultural Dialogue",
+      "organisationType": "NGO",
+      "countryCode": "MK",
+      "city": "Kumanovo",
+      "address": "Kumanovo, North Macedonia",
+      "registeredAddress": "Kumanovo, North Macedonia",
+      "websiteUrl": "https://cid.mk",
+      "generalEmail": "info@cid.mk",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@cid.mk",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "MK"
+      ],
+      "workingLanguages": [
+        "EN",
+        "MK"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict"
+      ],
+      "shortDescription": "Kültürlerarası diyalog, yerel stajlar ve gençlik hareketlilikleri",
+      "shortDescriptionEn": "Center for Intercultural Dialogue provides accredited Erasmus+ hosting, internship and training placements in Kumanovo, North Macedonia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-cid-kumanovo",
+    "userEmail": "info@cid.mk",
+    "userFullName": "Center for Intercultural Dialogue"
+  },
+  {
+    "host": {
+      "id": "host-sp-semper-avanti",
+      "name": "Semper Avanti",
+      "tradingName": "Semper Avanti",
+      "organisationType": "NGO",
+      "countryCode": "PL",
+      "city": "Wroclaw",
+      "address": "Wroclaw, Poland",
+      "registeredAddress": "Wroclaw, Poland",
+      "websiteUrl": "https://semperavanti.org",
+      "generalEmail": "info@semperavanti.org",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@semperavanti.org",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "PL"
+      ],
+      "workingLanguages": [
+        "EN",
+        "PL"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "PREPARATORY_VISIT"
+      ],
+      "primarySector": "logistics",
+      "sectors": [
+        "logistics",
+        "tourism",
+        "ict",
+        "machinery"
+      ],
+      "shortDescription": "Polonya genelinde mesleki staj, konaklama ve refakat hizmeti",
+      "shortDescriptionEn": "Semper Avanti provides accredited Erasmus+ hosting, internship and training placements in Wroclaw, Poland.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-semper-avanti",
+    "userEmail": "info@semperavanti.org",
+    "userFullName": "Semper Avanti"
+  },
+  {
+    "host": {
+      "id": "host-sp-mobility-friends",
+      "name": "Mobility Friends",
+      "tradingName": "Mobility Friends",
+      "organisationType": "Company",
+      "countryCode": "PT",
+      "city": "Barcelos",
+      "address": "Barcelos, Portugal",
+      "registeredAddress": "Barcelos, Portugal",
+      "websiteUrl": "https://mobilityfriends.org/",
+      "generalEmail": "info@mobilityfriends.org",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Nuno Varajao Barbosa",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@mobilityfriends.org",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "PT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "PT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT",
+        "PREPARATORY_VISIT"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict",
+        "automotive",
+        "electrical",
+        "machinery",
+        "health"
+      ],
+      "shortDescription": "KA121-VET grupları, staj, şirket eşleştirme ve yerel destek",
+      "shortDescriptionEn": "Mobility Friends provides accredited Erasmus+ hosting, internship and training placements in Barcelos, Portugal.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-mobility-friends",
+    "userEmail": "info@mobilityfriends.org",
+    "userFullName": "Nuno Varajao Barbosa"
+  },
+  {
+    "host": {
+      "id": "host-sp-dna-europe",
+      "name": "DNA Europe",
+      "tradingName": "DNA Europe",
+      "organisationType": "Company",
+      "countryCode": "PT",
+      "city": "Lisbon",
+      "address": "Lisbon, Portugal",
+      "registeredAddress": "Lisbon, Portugal",
+      "websiteUrl": "https://dnaeurope.org/",
+      "generalEmail": "info@dnaeurope.org",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@dnaeurope.org",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "PT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "PT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "tourism",
+        "logistics"
+      ],
+      "shortDescription": "VET stajı, öğretmen eğitimi, konaklama ve raporlama",
+      "shortDescriptionEn": "DNA Europe provides accredited Erasmus+ hosting, internship and training placements in Lisbon, Portugal.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-dna-europe",
+    "userEmail": "info@dnaeurope.org",
+    "userFullName": "DNA Europe"
+  },
+  {
+    "host": {
+      "id": "host-sp-bragamob",
+      "name": "BragaMob",
+      "tradingName": "BragaMob",
+      "organisationType": "Company",
+      "countryCode": "PT",
+      "city": "Braga",
+      "address": "Braga, Portugal",
+      "registeredAddress": "Braga, Portugal",
+      "websiteUrl": "https://bragamobilityopen.com/",
+      "generalEmail": "info@bragamobilityopen.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@bragamobilityopen.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "PT"
+      ],
+      "workingLanguages": [
+        "EN",
+        "PT"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "machinery",
+      "sectors": [
+        "machinery",
+        "automotive",
+        "electrical",
+        "ict",
+        "tourism"
+      ],
+      "shortDescription": "VET stajı, öğretmen eğitimi, konaklama, yemek ve ulaşım",
+      "shortDescriptionEn": "BragaMob provides accredited Erasmus+ hosting, internship and training placements in Braga, Portugal.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-bragamob",
+    "userEmail": "info@bragamobilityopen.com",
+    "userFullName": "BragaMob"
+  },
+  {
+    "host": {
+      "id": "host-sp-team4excellence",
+      "name": "TEAM4Excellence – TrainingClub",
+      "tradingName": "TEAM4Excellence – TrainingClub",
+      "organisationType": "NGO",
+      "countryCode": "RO",
+      "city": "Constanta",
+      "address": "Constanta, Romania",
+      "registeredAddress": "Constanta, Romania",
+      "websiteUrl": "https://team4excellence.ro",
+      "generalEmail": "office@team4excellence.ro",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "office@team4excellence.ro",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "RO"
+      ],
+      "workingLanguages": [
+        "EN",
+        "RO"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "logistics",
+      "sectors": [
+        "logistics",
+        "ict",
+        "green_energy"
+      ],
+      "shortDescription": "Denizcilik, lojistik, dijital beceriler ve mesleki stajlar",
+      "shortDescriptionEn": "TEAM4Excellence – TrainingClub provides accredited Erasmus+ hosting, internship and training placements in Constanta, Romania.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-team4excellence",
+    "userEmail": "office@team4excellence.ro",
+    "userFullName": "TEAM4Excellence – TrainingClub"
+  },
+  {
+    "host": {
+      "id": "host-sp-cpip-romania",
+      "name": "CPIP",
+      "tradingName": "CPIP",
+      "organisationType": "NGO",
+      "countryCode": "RO",
+      "city": "Timisoara",
+      "address": "Timisoara, Romania",
+      "registeredAddress": "Timisoara, Romania",
+      "websiteUrl": "https://cpip.ro",
+      "generalEmail": "contact@cpip.ro",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "contact@cpip.ro",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "RO"
+      ],
+      "workingLanguages": [
+        "EN",
+        "RO"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "machinery"
+      ],
+      "shortDescription": "Sürekli mesleki eğitim, yetişkin eğitimi ve sektörel projeler",
+      "shortDescriptionEn": "CPIP provides accredited Erasmus+ hosting, internship and training placements in Timisoara, Romania.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-cpip-romania",
+    "userEmail": "contact@cpip.ro",
+    "userFullName": "CPIP"
+  },
+  {
+    "host": {
+      "id": "host-sp-bdc-kragujevac",
+      "name": "Business Development Center Kragujevac",
+      "tradingName": "Business Development Center Kragujevac",
+      "organisationType": "Company",
+      "countryCode": "RS",
+      "city": "Kragujevac",
+      "address": "Kragujevac, Serbia",
+      "registeredAddress": "Kragujevac, Serbia",
+      "websiteUrl": "https://bdc.rs",
+      "generalEmail": "office@bdc.rs",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "office@bdc.rs",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "SR"
+      ],
+      "workingLanguages": [
+        "EN",
+        "SR"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "automotive",
+      "sectors": [
+        "automotive",
+        "machinery",
+        "ict"
+      ],
+      "shortDescription": "Otomotiv kümelenmesi, iş geliştirme ve teknik mesleki stajlar",
+      "shortDescriptionEn": "Business Development Center Kragujevac provides accredited Erasmus+ hosting, internship and training placements in Kragujevac, Serbia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-bdc-kragujevac",
+    "userEmail": "office@bdc.rs",
+    "userFullName": "Business Development Center Kragujevac"
+  },
+  {
+    "host": {
+      "id": "host-sp-placement-slovakia",
+      "name": "Placement Slovakia – WSE Services",
+      "tradingName": "Placement Slovakia – WSE Services",
+      "organisationType": "Company",
+      "countryCode": "SK",
+      "city": "Bratislava",
+      "address": "Bratislava, Slovakia",
+      "registeredAddress": "Bratislava, Slovakia",
+      "websiteUrl": "https://placementslovakia.com",
+      "generalEmail": "info@placementslovakia.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@placementslovakia.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "SK"
+      ],
+      "workingLanguages": [
+        "EN",
+        "SK"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "automotive",
+      "sectors": [
+        "automotive",
+        "machinery",
+        "ict",
+        "logistics"
+      ],
+      "shortDescription": "Slovakya genelinde uluslararası şirket stajları ve konaklama",
+      "shortDescriptionEn": "Placement Slovakia – WSE Services provides accredited Erasmus+ hosting, internship and training placements in Bratislava, Slovakia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-placement-slovakia",
+    "userEmail": "info@placementslovakia.com",
+    "userFullName": "Placement Slovakia – WSE Services"
+  },
+  {
+    "host": {
+      "id": "host-sp-simo-experience",
+      "name": "SiMO Experience",
+      "tradingName": "SiMO Experience",
+      "organisationType": "Company",
+      "countryCode": "SI",
+      "city": "Ljubljana",
+      "address": "Ljubljana, Slovenia",
+      "registeredAddress": "Ljubljana, Slovenia",
+      "websiteUrl": "https://simoexperience.com",
+      "generalEmail": "info@simoexperience.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@simoexperience.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "SL"
+      ],
+      "workingLanguages": [
+        "EN",
+        "SL"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "green_energy"
+      ],
+      "shortDescription": "Eko-turizm, sürdürülebilir işletmeler ve mesleki staj koordinasyonu",
+      "shortDescriptionEn": "SiMO Experience provides accredited Erasmus+ hosting, internship and training placements in Ljubljana, Slovenia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-simo-experience",
+    "userEmail": "info@simoexperience.com",
+    "userFullName": "SiMO Experience"
+  },
+  {
+    "host": {
+      "id": "host-sp-primera-slovenia",
+      "name": "Primera",
+      "tradingName": "Primera",
+      "organisationType": "Company",
+      "countryCode": "SI",
+      "city": "Ljubljana",
+      "address": "Ljubljana, Slovenia",
+      "registeredAddress": "Ljubljana, Slovenia",
+      "websiteUrl": "https://primera.si",
+      "generalEmail": "info@primera.si",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@primera.si",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "SL"
+      ],
+      "workingLanguages": [
+        "EN",
+        "SL"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict"
+      ],
+      "shortDescription": "Girişimcilik, koçluk ve yapılandırılmış eğitimci kursları",
+      "shortDescriptionEn": "Primera provides accredited Erasmus+ hosting, internship and training placements in Ljubljana, Slovenia.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-primera-slovenia",
+    "userEmail": "info@primera.si",
+    "userFullName": "Primera"
+  },
+  {
+    "host": {
+      "id": "host-sp-euromind-projects",
+      "name": "Euromind Projects",
+      "tradingName": "Euromind Projects",
+      "organisationType": "Company",
+      "countryCode": "ES",
+      "city": "Seville",
+      "address": "Calle Sierpes 48, 41004 Seville, Spain",
+      "registeredAddress": "Calle Sierpes 48, 41004 Seville, Spain",
+      "websiteUrl": "https://www.euromind.es/erasmus",
+      "generalEmail": "info@euromind.es",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Amelia Wojcik",
+      "contactTitle": "Erasmus Coordinator",
+      "contactEmail": "amelia@euromind.es",
+      "contactPhone": "+34 954 123456",
+      "languages": [
+        "EN"
+      ],
+      "workingLanguages": [
+        "EN"
+      ],
+      "maxLearnersPerTerm": 15,
+      "totalAnnualCapacity": 12,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism"
+      ],
+      "shortDescription": "Öğrenci stajı, personel hareketliliği, konaklama ve transfer (İspanya ve Portekiz)",
+      "shortDescriptionEn": "Euromind Projects provides accredited Erasmus+ hosting, internship and training placements in Seville, Spain.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 75,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:38:10.230Z",
+      "operationalAddress": null,
+      "yearEstablished": 2014,
+      "oid": "E10294819",
+      "picNumber": null,
+      "telephone": "+34 954 123456",
+      "consentPublicDisplay": true
+    },
+    "userId": "test_user_euromind_123",
+    "userEmail": "amelia@euromind.es",
+    "userFullName": "Amelia Wojcik"
+  },
+  {
+    "host": {
+      "id": "host-sp-europexchange",
+      "name": "EuropeXchange",
+      "tradingName": "EuropeXchange",
+      "organisationType": "Company",
+      "countryCode": "ES",
+      "city": "Málaga",
+      "address": "Málaga, Spain",
+      "registeredAddress": "Málaga, Spain",
+      "websiteUrl": "https://www.europex-change.com/",
+      "generalEmail": "info@europex-change.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@europex-change.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "ES"
+      ],
+      "workingLanguages": [
+        "EN",
+        "ES"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict",
+        "logistics"
+      ],
+      "shortDescription": "Öğrenci stajı, job shadowing, öğretmen kursları ve tam hizmet paketi",
+      "shortDescriptionEn": "EuropeXchange provides accredited Erasmus+ hosting, internship and training placements in Málaga, Spain.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-europexchange",
+    "userEmail": "info@europex-change.com",
+    "userFullName": "EuropeXchange"
+  },
+  {
+    "host": {
+      "id": "host-sp-european-era",
+      "name": "European Era",
+      "tradingName": "European Era",
+      "organisationType": "Company",
+      "countryCode": "ES",
+      "city": "Málaga",
+      "address": "Málaga, Spain",
+      "registeredAddress": "Málaga, Spain",
+      "websiteUrl": "https://europeanera.eu/",
+      "generalEmail": "info@europeanera.eu",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@europeanera.eu",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "ES"
+      ],
+      "workingLanguages": [
+        "EN",
+        "ES"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "health",
+        "machinery",
+        "tourism",
+        "logistics",
+        "automotive"
+      ],
+      "shortDescription": "IT, sağlık, mühendislik, turizm, lojistik, otomotiv ve diğer VET alanları",
+      "shortDescriptionEn": "European Era provides accredited Erasmus+ hosting, internship and training placements in Málaga, Spain.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-european-era",
+    "userEmail": "info@europeanera.eu",
+    "userFullName": "European Era"
+  },
+  {
+    "host": {
+      "id": "host-sp-roses-international-tours",
+      "name": "Roses International Tours",
+      "tradingName": "Roses International Tours",
+      "organisationType": "Company",
+      "countryCode": "ES",
+      "city": "Costa Brava",
+      "address": "Costa Brava, Spain",
+      "registeredAddress": "Costa Brava, Spain",
+      "websiteUrl": "https://rosesinternacional.com/en/",
+      "generalEmail": "info@rosesinternacional.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Esther",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@rosesinternacional.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "ES"
+      ],
+      "workingLanguages": [
+        "EN",
+        "ES"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism"
+      ],
+      "shortDescription": "Okul/VET grupları, dil eğitimi, konaklama ve kültürel program",
+      "shortDescriptionEn": "Roses International Tours provides accredited Erasmus+ hosting, internship and training placements in Costa Brava, Spain.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-roses-international-tours",
+    "userEmail": "info@rosesinternacional.com",
+    "userFullName": "Esther"
+  },
+  {
+    "host": {
+      "id": "host-sp-kadar-international",
+      "name": "Kadar International",
+      "tradingName": "Kadar International",
+      "organisationType": "Training Centre",
+      "countryCode": "ES",
+      "city": "Seville",
+      "address": "Seville, Spain",
+      "registeredAddress": "Seville, Spain",
+      "websiteUrl": "https://eumobility.kedaro.com/",
+      "generalEmail": "info@kedaro.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@kedaro.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "ES"
+      ],
+      "workingLanguages": [
+        "EN",
+        "ES"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "JOB_SHADOWING",
+        "VET_INTERNSHIP",
+        "TEACHING_ASSIGNMENT"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict"
+      ],
+      "shortDescription": "Job shadowing, okul ve işletme ziyaretleri, öğretmen programları",
+      "shortDescriptionEn": "Kadar International provides accredited Erasmus+ hosting, internship and training placements in Seville, Spain.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-kadar-international",
+    "userEmail": "info@kedaro.com",
+    "userFullName": "Kadar International"
+  },
+  {
+    "host": {
+      "id": "host-sp-piktalent",
+      "name": "Piktalent",
+      "tradingName": "Piktalent",
+      "organisationType": "Company",
+      "countryCode": "ES",
+      "city": "Barcelona",
+      "address": "Barcelona, Spain",
+      "registeredAddress": "Barcelona, Spain",
+      "websiteUrl": "https://piktalent.com/",
+      "generalEmail": "info@piktalent.com",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@piktalent.com",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "ES"
+      ],
+      "workingLanguages": [
+        "EN",
+        "ES"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "ict",
+      "sectors": [
+        "ict",
+        "tourism",
+        "logistics",
+        "machinery"
+      ],
+      "shortDescription": "VET stajı, job shadowing, şirket yerleştirme, konaklama ve lojistik (İspanya, Portekiz, İtalya, Almanya)",
+      "shortDescriptionEn": "Piktalent provides accredited Erasmus+ hosting, internship and training placements in Barcelona, Spain.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-piktalent",
+    "userEmail": "info@piktalent.com",
+    "userFullName": "Piktalent"
+  },
+  {
+    "host": {
+      "id": "host-sp-europe-connexion",
+      "name": "Europe Connexion",
+      "tradingName": "Europe Connexion",
+      "organisationType": "Company",
+      "countryCode": "ES",
+      "city": "Valencia",
+      "address": "Valencia, Spain",
+      "registeredAddress": "Valencia, Spain",
+      "websiteUrl": "https://europeconnexion.eu",
+      "generalEmail": "info@europeconnexion.eu",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@europeconnexion.eu",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "ES"
+      ],
+      "workingLanguages": [
+        "EN",
+        "ES"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "tourism",
+      "sectors": [
+        "tourism",
+        "ict"
+      ],
+      "shortDescription": "Valencia merkezli Erasmus+ staj ve eğitim organizasyonları",
+      "shortDescriptionEn": "Europe Connexion provides accredited Erasmus+ hosting, internship and training placements in Valencia, Spain.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-europe-connexion",
+    "userEmail": "info@europeconnexion.eu",
+    "userFullName": "Europe Connexion"
+  },
+  {
+    "host": {
+      "id": "host-sp-yrkesakademin",
+      "name": "YrkesAkademin",
+      "tradingName": "YrkesAkademin",
+      "organisationType": "VET School",
+      "countryCode": "SE",
+      "city": "Stockholm",
+      "address": "Stockholm, Sweden",
+      "registeredAddress": "Stockholm, Sweden",
+      "websiteUrl": "https://ya.se",
+      "generalEmail": "info@ya.se",
+      "verificationStatus": "VERIFIED",
+      "contactPerson": "Erasmus Coordinator",
+      "contactTitle": "Erasmus+ Mobility Coordinator",
+      "contactEmail": "info@ya.se",
+      "contactPhone": "+49 30 1234567",
+      "languages": [
+        "EN",
+        "SV"
+      ],
+      "workingLanguages": [
+        "EN",
+        "SV"
+      ],
+      "maxLearnersPerTerm": 12,
+      "totalAnnualCapacity": 36,
+      "activities": [
+        "VET_INTERNSHIP",
+        "JOB_SHADOWING"
+      ],
+      "primarySector": "machinery",
+      "sectors": [
+        "machinery",
+        "automotive",
+        "logistics",
+        "electrical"
+      ],
+      "shortDescription": "İsveç mesleki eğitim akademisi, ağır vasıta, otomasyon ve teknik stajlar",
+      "shortDescriptionEn": "YrkesAkademin provides accredited Erasmus+ hosting, internship and training placements in Stockholm, Sweden.",
+      "isActive": true,
+      "isPredefinedProvider": true,
+      "profileCompletenessScore": 80,
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-10-22T11:20:13.309Z"
+    },
+    "userId": "system_sp-yrkesakademin",
+    "userEmail": "info@ya.se",
+    "userFullName": "YrkesAkademin"
   }
 ]

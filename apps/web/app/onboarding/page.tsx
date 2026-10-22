@@ -13,6 +13,11 @@ import HostVerificationModal from '../../components/host/HostVerificationModal';
 import AdminVerificationQueueModal from '../../components/admin/AdminVerificationQueueModal';
 import { useTranslation } from '../../lib/i18n';
 import LegalModal, { LegalTabType } from '../../components/ui/LegalModal';
+import ServiceProviderCombobox from '../../components/onboarding/ServiceProviderCombobox';
+import {
+  type PredefinedServiceProvider,
+  findServiceProviderByName,
+} from '../../lib/data/service-providers';
 
 const SECTOR_ICONS: Record<string, string> = {
   ict: '💻',
@@ -74,8 +79,53 @@ export default function OnboardingPage() {
   const [role, setRole] = useState<'ORG_ADMIN' | 'MEMBER'>('ORG_ADMIN');
 
   // 2. Host Form State (Tier 1: Onboarding Quick Setup)
+  const [selectedPredefinedProvider, setSelectedPredefinedProvider] =
+    useState<PredefinedServiceProvider | null>(null);
   const [hostName, setHostName] = useState('');
   const [hostTradingName, setHostTradingName] = useState('');
+
+  const handleSelectPredefinedProvider = (
+    provider: PredefinedServiceProvider | null
+  ) => {
+    setSelectedPredefinedProvider(provider);
+    if (provider) {
+      setHostName(provider.name);
+      setHostTradingName(provider.name);
+      if (provider.countryCode) {
+        setHostCountryCode(provider.countryCode);
+      }
+      if (provider.city) {
+        setHostCity(provider.city);
+        setHostRegisteredAddress(`${provider.city}, ${provider.country}`);
+      }
+      if (provider.websiteUrl) {
+        setHostWebsite(provider.websiteUrl);
+      }
+      if (provider.generalEmail) {
+        setHostGeneralEmail(provider.generalEmail);
+      }
+      if (provider.contactEmails && provider.contactEmails.length > 0) {
+        setHostContactEmail(provider.contactEmails[0]);
+      } else if (provider.generalEmail) {
+        setHostContactEmail(provider.generalEmail);
+      }
+      if (provider.contactPerson) {
+        setHostContactPerson(provider.contactPerson);
+        setHostContactTitle('Erasmus+ Mobility Coordinator');
+      }
+      if (provider.organisationType) {
+        setHostOrgType(provider.organisationType);
+      }
+      if (provider.activities && provider.activities.length > 0) {
+        setHostActivities(provider.activities);
+      }
+      if (provider.sectors && provider.sectors.length > 0) {
+        setHostSectors(provider.sectors);
+      } else if (provider.primarySector) {
+        setHostSectors([provider.primarySector]);
+      }
+    }
+  };
   const [hostOrgType, setHostOrgType] = useState('Company');
   const [hostCountryCode, setHostCountryCode] = useState('DE');
   const [hostCity, setHostCity] = useState('');
@@ -186,6 +236,8 @@ export default function OnboardingPage() {
   const startEditingHost = (host: any) => {
     setIsEditing(true);
     setSelectedRole('HOST');
+    const matched = host.name ? findServiceProviderByName(host.name) : null;
+    setSelectedPredefinedProvider(matched || null);
     setHostName(host.name || '');
     setHostTradingName(host.tradingName || '');
     setHostOrgType(host.organisationType || 'Company');
@@ -519,7 +571,10 @@ export default function OnboardingPage() {
     try {
       const userEmail = user?.primaryEmailAddress?.emailAddress;
       const userFullName = user?.fullName || undefined;
-      const existingHostId = (isEditing && (submittedHost?.id || currentHost?.id)) || undefined;
+      const existingHostId =
+        (isEditing && (submittedHost?.id || currentHost?.id)) ||
+        (selectedPredefinedProvider ? `host-${selectedPredefinedProvider.id}` : undefined) ||
+        undefined;
 
       const { data } = await apiClient.registerHost({
         ...(existingHostId ? { id: existingHostId } : {}),
@@ -1628,18 +1683,15 @@ export default function OnboardingPage() {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-4">
                     <div>
-                      <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                        {locale === 'tr' ? 'Kurumun Yasal Tam Adı (Legal Name)' : 'Legal Name of Organisation'} <span className="text-rose-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder={locale === 'tr' ? 'Örn: TechNordic Solutions GmbH' : 'e.g. TechNordic Solutions GmbH'}
+                      <ServiceProviderCombobox
                         value={hostName}
-                        onChange={(e) => setHostName(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-600 transition-all"
+                        onChange={(val) => setHostName(val)}
+                        onSelectProvider={handleSelectPredefinedProvider}
+                        selectedProvider={selectedPredefinedProvider}
+                        locale={locale}
+                        required
                       />
                     </div>
 
