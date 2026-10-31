@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppHeader from '../../components/layout/AppHeader';
 import AppFooter from '../../components/layout/AppFooter';
-import CookieBanner from '../../components/ui/CookieBanner';
 import LegalModal, { LegalTabType } from '../../components/ui/LegalModal';
 import ErasmusResultsWidget from '../../components/ui/ErasmusResultsWidget';
 import MebSchoolsWidget from '../../components/ui/MebSchoolsWidget';
@@ -18,7 +17,6 @@ type LibraryTab = 'RESOURCES' | 'FORMS' | 'DATA' | 'LEGAL';
 export default function LibraryPage() {
   const { t, locale } = useTranslation();
   const [activeTab, setActiveTab] = useState<LibraryTab>('RESOURCES');
-  const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
   const [legalModalTab, setLegalModalTab] = useState<LegalTabType>('LEGAL');
   const [isHibeWidgetOpen, setIsHibeWidgetOpen] = useState(false);
@@ -536,12 +534,6 @@ export default function LibraryPage() {
       <AppFooter />
 
       {/* 5. Modals & Widgets */}
-      <CookieBanner onManagePreferences={() => setIsCookieLegalOpen(true)} />
-      <LegalModal
-        isOpen={isCookieLegalOpen}
-        onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
-      />
       <LegalModal
         isOpen={isLegalModalOpen}
         onClose={() => setIsLegalModalOpen(false)}

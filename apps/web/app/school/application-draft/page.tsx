@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { useUser, SignInButton } from '@clerk/nextjs';
 import AppHeader from '../../../components/layout/AppHeader';
 import AppFooter from '../../../components/layout/AppFooter';
-import CookieBanner from '../../../components/ui/CookieBanner';
-import LegalModal from '../../../components/ui/LegalModal';
 
 import ContextSection from '../../../components/application-draft/sections/ContextSection';
 import OrgProfileSection from '../../../components/application-draft/sections/OrgProfileSection';
@@ -29,7 +27,6 @@ export default function ApplicationDraftPage() {
   const { isSignedIn } = useUser();
 
   const [activeSection, setActiveSection] = useState<string>('context');
-  const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
   const [saveToast, setSaveToast] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -964,12 +961,6 @@ export default function ApplicationDraftPage() {
       )}
 
       <AppFooter />
-      <CookieBanner onManagePreferences={() => setIsCookieLegalOpen(true)} />
-      <LegalModal
-        isOpen={isCookieLegalOpen}
-        onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
-      />
 
       {/* KA120 Preview & Edit Modal */}
       <Ka120ImportPreviewModal

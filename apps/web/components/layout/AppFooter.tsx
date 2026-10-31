@@ -145,6 +145,18 @@ export default function AppFooter() {
                 {locale === 'tr' ? 'Kullanım Koşulları ve Açık Rıza' : 'Platform Participation Terms & Consent'}
               </Link>
               <span>•</span>
+              <button
+                type="button"
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    window.dispatchEvent(new CustomEvent('open-cookie-preferences'));
+                  }
+                }}
+                className="hover:text-blue-700 hover:underline transition-colors font-medium text-slate-500 cursor-pointer"
+              >
+                {locale === 'tr' ? 'Çerez Tercihleri' : 'Cookie Preferences'}
+              </button>
+              <span>•</span>
               <Link
                 href="/cookies"
                 onClick={(e) => {

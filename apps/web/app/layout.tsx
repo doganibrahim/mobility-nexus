@@ -8,6 +8,7 @@ import { AccessibilityProvider } from '../lib/accessibility-context';
 import { SkipToContent } from '../components/ui/SkipToContent';
 import UserOrgSync from '../components/auth/UserOrgSync';
 import ErasmusChatWidget from '../components/chat/ErasmusChatWidget';
+import CookieBanner from '../components/ui/CookieBanner';
 import { clerkTrLocalization } from '../lib/clerk-tr';
 
 // 1. Google Fonts with full Turkish (Latin-Extended) support
@@ -129,6 +130,7 @@ export default function RootLayout({
                 <SkipToContent />
                 {children}
                 <ErasmusChatWidget />
+                <CookieBanner />
               </AccessibilityProvider>
             </LanguageProvider>
           </ThemeProvider>

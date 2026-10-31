@@ -380,8 +380,51 @@ export default function LegalDocumentView({
                   1. Çerez Kullanım İlkemiz
                 </h2>
                 <p className="m-0">
-                  ErasmusMobility platformu, ziyaretçileri izinsiz takip eden ticari veya reklam amaçlı 3. parti çerezler kullanmaz. Yalnızca oturum güvenliği (Clerk Auth), dil tercihi (TR/EN) ve güvenli form işleyişi için zorunlu teknik çerezler kullanılır.
+                  ErasmusMobility platformu (erasmusmobility.com), kullanıcı güvenliğini sağlamak, oturum yönetimini yürütmek ve platform deneyimini zenginleştirmek amacıyla çerezlerden ve yerel depolama teknolojilerinden yararlanır. Platformumuzda kullanıcıları izinsiz takip eden ticari, hedefleme veya reklam amaçlı üçüncü taraf çerezler kesinlikle kullanılmaz.
                 </p>
+              </div>
+
+              <div className="space-y-2">
+                <h2 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider m-0">
+                  2. Çerez Kategorileri ve Tercih Yönetimi
+                </h2>
+                <p className="m-0">
+                  Platformumuzda kullanılan çerezler üç ana kategoride sınıflandırılmıştır:
+                </p>
+                <ul className="list-disc pl-5 space-y-1.5 text-slate-600 text-xs leading-relaxed">
+                  <li>
+                    <strong>Zorunlu ve Güvenlik Çerezleri:</strong> Güvenli oturum açma (Clerk Auth), veri bütünlüğü ve CSRF savunması için teknik olarak zorunludur. Platformun çalışabilmesi için gerekli olduğundan devre dışı bırakılamaz.
+                  </li>
+                  <li>
+                    <strong>İşlevsel ve Tercih Çerezleri:</strong> Seçilen dil (Türkçe / İngilizce), görsel tema ve form taslak tercihlerini hatırlayarak deneyimi optimize eder. Kullanıcının tercihine bağlıdır.
+                  </li>
+                  <li>
+                    <strong>Analitik ve Performans Çerezleri:</strong> Sayfa yanıt hızlarını ve platform fonksiyonlarının verimliliğini anonim telemetri verileriyle ölçümler. Kullanıcının tercihine bağlıdır.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Direct Manage Trigger */}
+              <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <div className="font-extrabold text-blue-950 text-xs">
+                    Çerez Tercihlerinizi Şimdi Yönetin
+                  </div>
+                  <div className="text-[11px] text-blue-800">
+                    Kategori bazlı izinlerinizi anlık olarak güncelleyebilir veya tümünü yönetebilirsiniz.
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      window.dispatchEvent(new CustomEvent('open-cookie-preferences'));
+                    }
+                  }}
+                  className="px-3.5 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs shrink-0 transition-colors shadow-2xs cursor-pointer"
+                >
+                  🍪 Tercihleri Yönet
+                </button>
               </div>
 
               <div className="overflow-x-auto rounded-xl border border-slate-200">
@@ -398,13 +441,25 @@ export default function LegalDocumentView({
                     <tr>
                       <td className="py-2 px-3 font-mono font-semibold text-slate-900">__session / __client_uat</td>
                       <td className="py-2 px-3 text-slate-600">Zorunlu Güvenlik</td>
-                      <td className="py-2 px-3 text-slate-600">Oturum açma ve kimlik doğrulama</td>
+                      <td className="py-2 px-3 text-slate-600">Clerk oturum açma, kimlik doğrulama ve CSRF koruması</td>
                       <td className="py-2 px-3 text-slate-600">Oturum Süresince</td>
                     </tr>
                     <tr>
                       <td className="py-2 px-3 font-mono font-semibold text-slate-900">em_locale</td>
                       <td className="py-2 px-3 text-slate-600">İşlevsel Tercih</td>
                       <td className="py-2 px-3 text-slate-600">Seçilen arayüz dili (Türkçe / İngilizce)</td>
+                      <td className="py-2 px-3 text-slate-600">1 Yıl</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-3 font-mono font-semibold text-slate-900">em_cookie_prefs / em_cookie_consent</td>
+                      <td className="py-2 px-3 text-slate-600">İşlevsel & Yönetim</td>
+                      <td className="py-2 px-3 text-slate-600">Çerez onay durumu ve kategori izin tercihleri</td>
+                      <td className="py-2 px-3 text-slate-600">1 Yıl</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-3 font-mono font-semibold text-slate-900">em_analytics_perf</td>
+                      <td className="py-2 px-3 text-slate-600">Analitik & Performans</td>
+                      <td className="py-2 px-3 text-slate-600">Sayfa yükleme hızları ve anonim performans telemetrisi</td>
                       <td className="py-2 px-3 text-slate-600">1 Yıl</td>
                     </tr>
                   </tbody>
@@ -415,7 +470,7 @@ export default function LegalDocumentView({
             <div className="space-y-6">
               <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
                 <div className="font-extrabold text-slate-950 text-sm">
-                  COOKIE POLICY & TECHNICAL DECLARATION
+                  COOKIE POLICY & CONSENT DECLARATION
                 </div>
                 <div className="text-[11px] text-slate-600 font-medium">
                   Compliance with EU e-Privacy Directive and GDPR Article 7
@@ -424,11 +479,54 @@ export default function LegalDocumentView({
 
               <div className="space-y-2">
                 <h2 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider m-0">
-                  1. Strictly Necessary Cookies Only
+                  1. Cookie Usage Principles
                 </h2>
                 <p className="m-0">
-                  ErasmusMobility does not employ third-party advertising or behavioral tracking pixels. We use strictly necessary session cookies for authentication (Clerk Auth) and preference cookies for UI localization.
+                  ErasmusMobility employs cookies and local storage to safeguard user sessions, maintain security, and optimize interface performance. We do not use third-party behavioral advertising or commercial tracking cookies.
                 </p>
+              </div>
+
+              <div className="space-y-2">
+                <h2 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider m-0">
+                  2. Cookie Categories & Preference Management
+                </h2>
+                <p className="m-0">
+                  Cookies deployed on our platform fall into three distinct categories:
+                </p>
+                <ul className="list-disc pl-5 space-y-1.5 text-slate-600 text-xs leading-relaxed">
+                  <li>
+                    <strong>Strictly Necessary & Security Cookies:</strong> Essential for user authentication (Clerk Auth), session integrity, and CSRF protection. Cannot be disabled.
+                  </li>
+                  <li>
+                    <strong>Functional & Preference Cookies:</strong> Remembers chosen language (TR/EN), visual themes, and drafting preferences. Operates based on user choice.
+                  </li>
+                  <li>
+                    <strong>Analytics & Performance Cookies:</strong> Anonymous telemetry measuring latency and system efficiency. Operates based on user choice.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Direct Manage Trigger */}
+              <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <div className="font-extrabold text-blue-950 text-xs">
+                    Manage Cookie Preferences Now
+                  </div>
+                  <div className="text-[11px] text-blue-800">
+                    Update your category permissions dynamically or manage all preferences.
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      window.dispatchEvent(new CustomEvent('open-cookie-preferences'));
+                    }
+                  }}
+                  className="px-3.5 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs shrink-0 transition-colors shadow-2xs cursor-pointer"
+                >
+                  🍪 Manage Preferences
+                </button>
               </div>
 
               <div className="overflow-x-auto rounded-xl border border-slate-200">
@@ -445,13 +543,25 @@ export default function LegalDocumentView({
                     <tr>
                       <td className="py-2 px-3 font-mono font-semibold text-slate-900">__session / __client_uat</td>
                       <td className="py-2 px-3 text-slate-600">Strictly Necessary</td>
-                      <td className="py-2 px-3 text-slate-600">User session and authentication</td>
+                      <td className="py-2 px-3 text-slate-600">Clerk session, authentication, and CSRF security</td>
                       <td className="py-2 px-3 text-slate-600">Session</td>
                     </tr>
                     <tr>
                       <td className="py-2 px-3 font-mono font-semibold text-slate-900">em_locale</td>
                       <td className="py-2 px-3 text-slate-600">Functional Preference</td>
                       <td className="py-2 px-3 text-slate-600">Selected interface language (Turkish / English)</td>
+                      <td className="py-2 px-3 text-slate-600">1 Year</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-3 font-mono font-semibold text-slate-900">em_cookie_prefs / em_cookie_consent</td>
+                      <td className="py-2 px-3 text-slate-600">Functional & Governance</td>
+                      <td className="py-2 px-3 text-slate-600">Cookie consent status and category preferences</td>
+                      <td className="py-2 px-3 text-slate-600">1 Year</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-3 font-mono font-semibold text-slate-900">em_analytics_perf</td>
+                      <td className="py-2 px-3 text-slate-600">Analytics & Performance</td>
+                      <td className="py-2 px-3 text-slate-600">Page load latency and anonymous system telemetry</td>
                       <td className="py-2 px-3 text-slate-600">1 Year</td>
                     </tr>
                   </tbody>

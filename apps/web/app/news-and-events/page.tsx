@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import AppHeader from '../../components/layout/AppHeader';
 import AppFooter from '../../components/layout/AppFooter';
-import CookieBanner from '../../components/ui/CookieBanner';
-import LegalModal from '../../components/ui/LegalModal';
 import DistinctSectionPurposeCard from '../../components/ui/DistinctSectionPurposeCard';
 import { useTranslation } from '../../lib/i18n';
 
@@ -293,7 +291,6 @@ const INITIAL_NEWS_ITEMS: NewsItem[] = [
 function NewsAndEventsContent() {
   const { t, locale } = useTranslation();
   const searchParams = useSearchParams();
-  const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState<'ALL' | 'CALLS' | 'EVENTS' | 'RESULTS' | 'ARCHIVE'>('ALL');
   const [newsList, setNewsList] = useState<NewsItem[]>(INITIAL_NEWS_ITEMS);
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -828,14 +825,6 @@ function NewsAndEventsContent() {
 
       {/* 4. Institutional Footer */}
       <AppFooter />
-
-      {/* 5. Modals */}
-      <CookieBanner onManagePreferences={() => setIsCookieLegalOpen(true)} />
-      <LegalModal
-        isOpen={isCookieLegalOpen}
-        onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
-      />
 
       {/* 6. News Details Modal (Acceptance Criteria 3) */}
       {selectedNewsItem && (

@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 import AppHeader from '../components/layout/AppHeader';
 import AppFooter from '../components/layout/AppFooter';
-import CookieBanner from '../components/ui/CookieBanner';
-import LegalModal from '../components/ui/LegalModal';
 import AdminDashboardView from '../components/dashboard/AdminDashboardView';
 import HostDashboardView from '../components/dashboard/HostDashboardView';
 import SchoolDashboardView from '../components/dashboard/SchoolDashboardView';
@@ -21,7 +19,6 @@ export default function Home() {
   const { t, locale } = useTranslation();
   const store = useAppStore();
 
-  const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
   const [isDirectoryModalOpen, setIsDirectoryModalOpen] = useState(false);
   const [directoryCategory, setDirectoryCategory] = useState<BeneficiaryCategory>('MESLEK_LISELERI');
   const [directorySearch, setDirectorySearch] = useState('');
@@ -286,16 +283,6 @@ export default function Home() {
 
       {/* Institutional Footer */}
       <AppFooter />
-
-      {/* Cookie Consent Banner */}
-      <CookieBanner onManagePreferences={() => setIsCookieLegalOpen(true)} />
-
-      {/* Direct Cookie Preferences Modal */}
-      <LegalModal
-        isOpen={isCookieLegalOpen}
-        onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
-      />
 
       {/* MEB Open Data Beneficiaries Directory Modal */}
       <BeneficiariesModal

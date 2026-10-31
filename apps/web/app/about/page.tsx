@@ -4,13 +4,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppHeader from '../../components/layout/AppHeader';
 import AppFooter from '../../components/layout/AppFooter';
-import CookieBanner from '../../components/ui/CookieBanner';
-import LegalModal from '../../components/ui/LegalModal';
 import { useTranslation } from '../../lib/i18n';
 
 export default function AboutPage() {
   const { t, locale } = useTranslation();
-  const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
 
   useEffect(() => {
     document.title =
@@ -365,14 +362,6 @@ export default function AboutPage() {
 
       {/* 4. Institutional Footer */}
       <AppFooter />
-
-      {/* 5. Cookie Consent & Modals */}
-      <CookieBanner onManagePreferences={() => setIsCookieLegalOpen(true)} />
-      <LegalModal
-        isOpen={isCookieLegalOpen}
-        onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
-      />
     </div>
   );
 }

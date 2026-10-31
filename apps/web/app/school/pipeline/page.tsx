@@ -4,8 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppHeader from '../../../components/layout/AppHeader';
 import AppFooter from '../../../components/layout/AppFooter';
-import CookieBanner from '../../../components/ui/CookieBanner';
-import LegalModal from '../../../components/ui/LegalModal';
 
 import SystemKpiCard from '../../../components/gateway/SystemKpiCard';
 import SchoolProfileCard from '../../../components/gateway/SchoolProfileCard';
@@ -47,7 +45,6 @@ export default function SchoolPipelinePage() {
 
   // Active Tab State
   const [activeTab, setActiveTab] = useState<string>('profile');
-  const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
 
   // Modern Non-blocking Toast Notification State (Prevents headless browser timeouts)
   const [toastMessage, setToastMessage] = useState<{
@@ -1148,16 +1145,6 @@ export default function SchoolPipelinePage() {
 
       {/* 5. Institutional Footer */}
       <AppFooter />
-
-      {/* 6. Cookie Consent Banner */}
-      <CookieBanner onManagePreferences={() => setIsCookieLegalOpen(true)} />
-
-      {/* Direct Cookie Preferences Modal */}
-      <LegalModal
-        isOpen={isCookieLegalOpen}
-        onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
-      />
 
       {/* Modern Non-blocking Floating Toast Notification */}
       {toastMessage && (

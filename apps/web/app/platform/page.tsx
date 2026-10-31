@@ -4,15 +4,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import AppHeader from '../../components/layout/AppHeader';
 import AppFooter from '../../components/layout/AppFooter';
-import CookieBanner from '../../components/ui/CookieBanner';
-import LegalModal from '../../components/ui/LegalModal';
 import MatchingCriteriaExplainer from '../../components/platform/MatchingCriteriaExplainer';
 import DistinctSectionPurposeCard from '../../components/ui/DistinctSectionPurposeCard';
 import { useTranslation } from '../../lib/i18n';
 
 export default function PlatformPage() {
   const { t, locale } = useTranslation();
-  const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 transition-colors duration-150">
@@ -417,14 +414,6 @@ export default function PlatformPage() {
 
       {/* 4. Institutional Footer */}
       <AppFooter />
-
-      {/* 5. Cookie Consent & Modals */}
-      <CookieBanner onManagePreferences={() => setIsCookieLegalOpen(true)} />
-      <LegalModal
-        isOpen={isCookieLegalOpen}
-        onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
-      />
     </div>
   );
 }

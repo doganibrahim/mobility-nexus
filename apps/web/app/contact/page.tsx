@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import AppHeader from '../../components/layout/AppHeader';
 import AppFooter from '../../components/layout/AppFooter';
-import CookieBanner from '../../components/ui/CookieBanner';
-import LegalModal from '../../components/ui/LegalModal';
 import AppointmentModal from '../../components/ui/AppointmentModal';
 import DistinctSectionPurposeCard from '../../components/ui/DistinctSectionPurposeCard';
 import { useTranslation } from '../../lib/i18n';
@@ -13,7 +11,6 @@ import { ChevronDown } from 'lucide-react';
 
 export default function ContactPage() {
   const { t, locale } = useTranslation();
-  const [isCookieLegalOpen, setIsCookieLegalOpen] = useState(false);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -683,12 +680,6 @@ export default function ContactPage() {
       <AppFooter />
 
       {/* 5. Modals */}
-      <CookieBanner onManagePreferences={() => setIsCookieLegalOpen(true)} />
-      <LegalModal
-        isOpen={isCookieLegalOpen}
-        onClose={() => setIsCookieLegalOpen(false)}
-        initialTab="COOKIES"
-      />
       <AppointmentModal
         isOpen={isAppointmentOpen}
         onClose={() => setIsAppointmentOpen(false)}
